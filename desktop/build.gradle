@@ -1,9 +1,9 @@
 apply plugin: "java"
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 sourceSets.main.java.srcDirs = [ "src/" ]
 
-project.ext.mainClassName = 'SETUP DESKTOP MAIN CLASS'
+project.ext.mainClassName = "org.destinationsol.desktop.SolDesktop"
 
 dependencies {
     compile project(":main")
@@ -12,6 +12,7 @@ dependencies {
     compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
     compile "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
     compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
+    compile "org.terasology:CrashReporter-destsol:3.0.0"
 }
 
 task run(type: JavaExec) {
@@ -25,11 +26,11 @@ task run(type: JavaExec) {
 }
 
 jar {
-    archiveName = "GAME NAME .JAR"
+    archiveName = "solDesktop.jar"
 
     manifest {
         def manifestClasspath = configurations.runtime.collect {it.getName() }.join(" ")
-        attributes 'Main-Class': 'GAME DESKTOP CLASS'
+        attributes 'Main-Class': project.mainClassName
         attributes("Class-Path" : manifestClasspath)
     }
 }
@@ -54,7 +55,7 @@ task dist (type: Sync) {
 task distZip (type: Zip) {
     dependsOn dist
     from "$distsDir/app"
-    archiveName = "GAME NAME .ZIP"
+    archiveName = "DestinationSol.zip"
 }
 
 // TODO: LibGDX Generated config for Eclipse. Needs adjustment for assets not being in the Android facade
