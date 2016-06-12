@@ -1,0 +1,34 @@
+apply plugin: "java"
+
+sourceCompatibility = 1.7
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+dependencies {
+    compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+    compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+    compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+}
+
+sourceSets {
+    main {
+        java.srcDirs = ["src"]
+    }
+    res {
+        resources.srcDirs = ["res"]
+    }
+}
+
+jar {
+    archiveName = "sol.jar"
+
+    doFirst {
+        copy {
+            from 'src/SolAppListener.gwt.xml'
+            into 'build/classes/main'
+        }
+    }
+}
+
+eclipse.project {
+    name = appName + "-main"
+}
