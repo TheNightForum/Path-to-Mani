@@ -29,7 +29,7 @@ public class MainScreen implements ManiUiScreen {
   private final ManiUiControl myOptionsCtrl;
   private final ManiUiControl myCreditsCtrl;
   private final ManiUiControl myQuitCtrl;
-  private final TextureAtlas.AtlasRegion myTitleTex;
+  //private final TextureAtlas.AtlasRegion myTitleTex;
   private final boolean isMobile;
   GameOptions gameOptions;
 
@@ -54,7 +54,7 @@ public class MainScreen implements ManiUiScreen {
     myQuitCtrl.setDisplayName("Quit");
     myControls.add(myQuitCtrl);
 
-    myTitleTex = textureManager.getTex("ui/title", null);
+    //myTitleTex = textureManager.getTex("ui/title", null);
   }
 
   public static Rectangle creditsBtnRect(float r) {
@@ -69,27 +69,6 @@ public class MainScreen implements ManiUiScreen {
   public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     ManiInputManager im = cmp.getInputMan();
     MenuScreens screens = cmp.getMenuScreens();
-    /*if (cmp.getOptions().controlType == GameOptions.CONTROL_CONTROLLER) {
-      myTutCtrl.setEnabled(false);
-    } else {
-      myTutCtrl.setEnabled(true);
-    }
-
-    if (myTutCtrl.isJustOff()) {
-      cmp.loadNewGame(true, false);
-      return;
-    }
-    if (myNewGameCtrl.isJustOff()) {
-      im.setScreen(cmp, screens.newGame);
-      return;
-    }
-    if (myOptionsCtrl.isJustOff()) {
-      im.setScreen(cmp, screens.options);
-      return;
-    }
-    if (myCreditsCtrl.isJustOff()) {
-      im.setScreen(cmp, screens.credits);
-    }*/
     if (myPlayCtrl.isJustOff()) {
       im.setScreen(cmp, screens.playScreen);
       return;
@@ -131,7 +110,7 @@ public class MainScreen implements ManiUiScreen {
   @Override
   public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
     float sz = .55f;
-    if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(myTitleTex, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, SolColor.W);
+    //if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(myTitleTex, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, SolColor.W);
   }
 
   @Override
