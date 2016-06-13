@@ -1,0 +1,2 @@
+clear
+./gradlew idea
