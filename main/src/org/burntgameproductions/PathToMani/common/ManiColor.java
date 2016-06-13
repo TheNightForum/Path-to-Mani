@@ -26,8 +26,7 @@ public class ManiColor {
   public static final Color Cyan = new Color(.16f, .56f, .68f, 1);
   public static final Color Green = new Color(.4f, .88f, .34f, 1);
   public static final Color L_Blue = new Color(.13f, .85f, .92f, 1);
-
-
+  public static final Color Background_Grey = new Color(.18f, .18f, .18f, 1);
 
   public static Color col(float b, float t) {
     return new Color(b, b, b, t);
