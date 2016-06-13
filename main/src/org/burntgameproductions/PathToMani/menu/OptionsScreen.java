@@ -17,12 +17,17 @@ public class OptionsScreen implements ManiUiScreen {
   private final ArrayList<ManiUiControl> myControls;
   private final ManiUiControl myBackCtrl;
   private final ManiUiControl myResoCtrl;
+  private final ManiUiControl myVolCtrl;
   private final ManiUiControl myControlTypeCtrl;
   private final ManiUiControl inputMapCtrl;
 
   public OptionsScreen(MenuLayout menuLayout, GameOptions gameOptions) {
 
     myControls = new ArrayList<ManiUiControl>();
+
+    myVolCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 0), true);
+    myVolCtrl.setDisplayName("Vol");
+    myControls.add(myVolCtrl);
 
     myResoCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true);
     myResoCtrl.setDisplayName("Resolution");
@@ -50,6 +55,11 @@ public class OptionsScreen implements ManiUiScreen {
   public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     ManiInputManager im = cmp.getInputMan();
     MenuScreens screens = cmp.getMenuScreens();
+    GameOptions options = cmp.getOptions();
+    myVolCtrl.setDisplayName("Volume: " + getVolName(options));
+    if (myVolCtrl.isJustOff()) {
+      options.advanceVolMul();
+    }
     if (myResoCtrl.isJustOff()) {
       im.setScreen(cmp, screens.resolutionScreen);
     }
@@ -78,6 +88,13 @@ public class OptionsScreen implements ManiUiScreen {
       }
       im.setScreen(cmp, screens.inputMapScreen);
     }
+  }
+  private String getVolName(GameOptions options) {
+    float volMul = options.volMul;
+    if (volMul == 0) return "Off";
+    if (volMul < .4f) return "Low";
+    if (volMul < .7f) return "High";
+    return "Max";
   }
 
   @Override
