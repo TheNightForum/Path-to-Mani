@@ -95,8 +95,8 @@ public class GameOptions {
 
   public GameOptions(boolean mobile, ManiFileReader reader) {
     IniReader r = new IniReader(FILE_NAME, reader, false);
-    x = r.getInt("x", 800);
-    y = r.getInt("y", 600);
+    x = r.getInt("x", 1366);
+    y = r.getInt("y", 768);
     fullscreen = r.getBoolean("fullscreen", false);
     controlType = mobile ? CONTROL_KB : r.getInt("controlType", CONTROL_MIXED);
     volMul = r.getFloat("vol", 1);
