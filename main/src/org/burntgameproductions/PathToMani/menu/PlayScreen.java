@@ -27,7 +27,7 @@ public class PlayScreen implements ManiUiScreen {
   private final ManiUiControl myNewCtrl;
   private final ManiUiControl myLoadCtrl;
   private final ManiUiControl myBackCtrl;
-  private final TextureAtlas.AtlasRegion myTitleTex;
+  //private final TextureAtlas.AtlasRegion myTitleTex;
   private final boolean isMobile;
   GameOptions gameOptions;
 
@@ -52,7 +52,7 @@ public class PlayScreen implements ManiUiScreen {
     myBackCtrl.setDisplayName("Back");
     myControls.add(myBackCtrl);
 
-    myTitleTex = textureManager.getTex("ui/title", null);
+    //myTitleTex = textureManager.getTex("ui/title", null);
   }
 
   public static Rectangle creditsBtnRect(float r) {
@@ -106,7 +106,7 @@ public class PlayScreen implements ManiUiScreen {
   @Override
   public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
     float sz = .55f;
-    if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(myTitleTex, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, SolColor.W);
+    //if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(myTitleTex, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, SolColor.W);
   }
 
   @Override
