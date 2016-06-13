@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.files.FileManager;
 
 public class CommonDrawer {
@@ -96,18 +96,18 @@ public class CommonDrawer {
   public void drawCircle(TextureRegion tex, Vector2 center, float radius, Color col, float width, float vh) {
     float relRad = radius / vh;
     int pointCount = (int) (160 * relRad);
-    Vector2 pos = SolMath.getVec();
+    Vector2 pos = ManiMath.getVec();
     if (pointCount < 8) pointCount = 8;
-    float lineLen = radius * SolMath.PI * 2 / pointCount;
+    float lineLen = radius * ManiMath.PI * 2 / pointCount;
     float angleStep = 360f / pointCount;
     float angleStepH = angleStep / 2;
     for (int i = 0; i < pointCount; i++) {
       float angle = angleStep * i;
-      SolMath.fromAl(pos, angle, radius);
+      ManiMath.fromAl(pos, angle, radius);
       pos.add(center);
       draw(tex, width, lineLen, (float) 0, (float) 0, pos.x, pos.y, angle + angleStepH, col);
     }
-    SolMath.free(pos);
+    ManiMath.free(pos);
   }
 
   public void drawLine(TextureRegion tex, float x, float y, float angle, float len, Color col, float width) {
@@ -115,10 +115,10 @@ public class CommonDrawer {
   }
 
   public void drawLine(TextureRegion tex, Vector2 p1, Vector2 p2, Color col, float width, boolean precise) {
-    Vector2 v = SolMath.getVec(p2);
+    Vector2 v = ManiMath.getVec(p2);
     v.sub(p1);
-    drawLine(tex, p1.x, p1.y, SolMath.angle(v, precise), v.len(), col, width);
-    SolMath.free(v);
+    drawLine(tex, p1.x, p1.y, ManiMath.angle(v, precise), v.len(), col, width);
+    ManiMath.free(v);
   }
 
   public void dispose() {

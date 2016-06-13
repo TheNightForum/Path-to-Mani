@@ -2,7 +2,7 @@
 
 package org.burntgameproductions.PathToMani.game.item;
 
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.Const;
 
 import java.util.*;
@@ -114,7 +114,7 @@ public class ItemContainer implements Iterable<List<ManiItem>> {
   }
 
   public ManiItem getRandom() {
-    return myGroups.isEmpty() ? null : SolMath.elemRnd(SolMath.elemRnd(myGroups));
+    return myGroups.isEmpty() ? null : ManiMath.elemRnd(ManiMath.elemRnd(myGroups));
   }
 
   public boolean isNew(List<ManiItem> group) {

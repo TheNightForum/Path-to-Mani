@@ -6,7 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.files.HullConfigManager;
 import org.burntgameproductions.PathToMani.game.PathLoader;
 import org.burntgameproductions.PathToMani.game.ShipConfig;
@@ -75,7 +75,7 @@ public class MazeConfig {
   {
     for (TextureAtlas.AtlasRegion tex : texs) {
       String pathEntry = tex.name + "_" + tex.index + ".png";
-      TextureAtlas.AtlasRegion bgTex = SolMath.elemRnd(bgTexs);
+      TextureAtlas.AtlasRegion bgTex = ManiMath.elemRnd(bgTexs);
       MazeTile iw = MazeTile.load(tex, paths, wall, pathEntry, metal, bgTex);
       list.add(iw);
     }

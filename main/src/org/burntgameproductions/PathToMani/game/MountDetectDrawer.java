@@ -5,7 +5,7 @@ package org.burntgameproductions.PathToMani.game;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolColor;
+import org.burntgameproductions.PathToMani.common.ManiColor;
 import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
 public class MountDetectDrawer {
@@ -42,6 +42,6 @@ public class MountDetectDrawer {
     float radPerc = myAnimPerc * 2;
     if (radPerc > 1) radPerc = 2 - radPerc;
     float rad = myBaseRad * (1 + .5f * radPerc);
-    drawer.draw(myTex, rad * 2, rad * 2, rad, rad, myNePos.x, myNePos.y, myAngle, SolColor.W);
+    drawer.draw(myTex, rad * 2, rad * 2, rad, rad, myNePos.x, myNePos.y, myAngle, ManiColor.W);
   }
 }

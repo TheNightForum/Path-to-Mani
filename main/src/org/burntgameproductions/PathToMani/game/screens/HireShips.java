@@ -5,7 +5,7 @@ package org.burntgameproductions.PathToMani.game.screens;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.ManiApplication;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.Faction;
 import org.burntgameproductions.PathToMani.game.input.AiPilot;
 import org.burntgameproductions.PathToMani.game.input.Guardian;
@@ -87,7 +87,7 @@ public class HireShips implements InventoryOperations {
 
   private boolean hireShip(ManiGame game, ManiShip hero, MercItem selected) {
     ShipConfig config = selected.getConfig();
-    Guardian dp = new Guardian(game, config.hull, hero.getPilot(), hero.getPosition(), hero.getHull().config, SolMath.rnd(180));
+    Guardian dp = new Guardian(game, config.hull, hero.getPilot(), hero.getPosition(), hero.getHull().config, ManiMath.rnd(180));
     AiPilot pilot = new AiPilot(dp, true, Faction.LAANI, false, "Merc", Const.AI_DET_DIST);
     Vector2 pos = getPos(game, hero, config.hull);
     if (pos == null) return false;
@@ -102,15 +102,15 @@ public class HireShips implements InventoryOperations {
     Vector2 heroPos = hero.getPosition();
     Planet np = game.getPlanetMan().getNearestPlanet();
     boolean nearGround = np.isNearGround(heroPos);
-    float fromPlanet = SolMath.angle(np.getPos(), heroPos);
+    float fromPlanet = ManiMath.angle(np.getPos(), heroPos);
     for (int i = 0; i < 50; i++) {
       float relAngle;
       if (nearGround) {
         relAngle = fromPlanet;
       } else {
-        relAngle = SolMath.rnd(180);
+        relAngle = ManiMath.rnd(180);
       }
-      SolMath.fromAl(pos, relAngle, dist);
+      ManiMath.fromAl(pos, relAngle, dist);
       pos.add(heroPos);
       if (game.isPlaceEmpty(pos, false)) return pos;
       dist += Guardian.DIST;

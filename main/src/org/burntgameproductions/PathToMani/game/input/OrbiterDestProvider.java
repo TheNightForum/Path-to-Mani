@@ -3,7 +3,7 @@
 package org.burntgameproductions.PathToMani.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 import org.burntgameproductions.PathToMani.game.ship.ManiShip;
@@ -23,7 +23,7 @@ public class OrbiterDestProvider implements MoveDestProvider {
     myPlanet = planet;
     myHeight = height;
     myCw = cw;
-    myDesiredSpd = SolMath.sqrt(myPlanet.getGravConst() / myHeight);
+    myDesiredSpd = ManiMath.sqrt(myPlanet.getGravConst() / myHeight);
     myDest = new Vector2();
   }
 
@@ -50,8 +50,8 @@ public class OrbiterDestProvider implements MoveDestProvider {
   @Override
   public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, ManiShip nearestEnemy) {
     Vector2 pPos = myPlanet.getPos();
-    float destAngle = SolMath.angle(pPos, shipPos) + 5 * SolMath.toInt(myCw);
-    SolMath.fromAl(myDest, destAngle, myHeight);
+    float destAngle = ManiMath.angle(pPos, shipPos) + 5 * ManiMath.toInt(myCw);
+    ManiMath.fromAl(myDest, destAngle, myHeight);
     myDest.add(pPos);
   }
 

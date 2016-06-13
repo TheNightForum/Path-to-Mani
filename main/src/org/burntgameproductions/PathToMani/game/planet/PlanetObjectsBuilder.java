@@ -8,8 +8,8 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.DebugOptions;
 import org.burntgameproductions.PathToMani.game.Faction;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
@@ -43,7 +43,7 @@ public class PlanetObjectsBuilder {
   private static final float CLOUD_DENSITY = .2f;
 
   private static final float DECO_PACK_SZ = 5f;
-  private static final float DECO_PACK_ANGULAR_WIDTH = 360 * DECO_PACK_SZ / (2 * SolMath.PI * Const.MAX_GROUND_HEIGHT);
+  private static final float DECO_PACK_ANGULAR_WIDTH = 360 * DECO_PACK_SZ / (2 * ManiMath.PI * Const.MAX_GROUND_HEIGHT);
 
 
   public float createPlanetObjs(ManiGame game, Planet planet) {
@@ -109,7 +109,7 @@ public class PlanetObjectsBuilder {
   private float createGround(ManiGame game, Planet planet) {
     // helper values
     float maxR = planet.getGroundHeight() - TOP_TILE_SZ / 2;
-    int cols = (int)(2 * SolMath.PI * maxR / TOP_TILE_SZ);
+    int cols = (int)(2 * ManiMath.PI * maxR / TOP_TILE_SZ);
     if (cols <= 0) throw new AssertionError("eh");
     int rows = planet.getConfig().rowCount;
 
@@ -118,7 +118,7 @@ public class PlanetObjectsBuilder {
     float[] tileSizes = new float[rows];
     float currRadius = maxR;
     for (int row = 0; row < rows; row++) {
-      float tileSize = 2 * SolMath.PI * currRadius / cols;
+      float tileSize = 2 * ManiMath.PI * currRadius / cols;
       radii[row] = currRadius;
       tileSizes[row] = tileSize;
       currRadius -= tileSize;
@@ -151,7 +151,7 @@ public class PlanetObjectsBuilder {
   private void createClouds(ManiGame game, Planet planet) {
     ArrayList<TextureAtlas.AtlasRegion> cloudTexs = planet.getConfig().cloudTexs;
     if (cloudTexs.isEmpty()) return;
-    int cloudCount = SolMath.intRnd(.7f, (int) (CLOUD_DENSITY * Const.ATM_HEIGHT * planet.getGroundHeight()));
+    int cloudCount = ManiMath.intRnd(.7f, (int) (CLOUD_DENSITY * Const.ATM_HEIGHT * planet.getGroundHeight()));
     for (int i = 0; i < cloudCount; i++) {
       FarPlanetSprites cloud = createCloud(planet, cloudTexs, game.getTexMan());
       game.getObjMan().addFarObjNow(cloud);
@@ -159,14 +159,14 @@ public class PlanetObjectsBuilder {
   }
 
   private FarPlanetSprites createCloud(Planet planet, ArrayList<TextureAtlas.AtlasRegion> cloudTexs, TextureManager textureManager) {
-    float distPerc = SolMath.rnd(0, 1);
+    float distPerc = ManiMath.rnd(0, 1);
     float dist = planet.getGroundHeight() - TOP_TILE_SZ + .9f * Const.ATM_HEIGHT * distPerc;
-    float angle = SolMath.rnd(180);
+    float angle = ManiMath.rnd(180);
 
     ArrayList<Dra> dras = new ArrayList<Dra>();
-    float sizePerc = SolMath.rnd(.2f, 1);
+    float sizePerc = ManiMath.rnd(.2f, 1);
     float linearWidth = sizePerc * (distPerc + .5f) * AVG_CLOUD_LINEAR_WIDTH;
-    float maxAngleShift = SolMath.arcToAngle(linearWidth, dist);
+    float maxAngleShift = ManiMath.arcToAngle(linearWidth, dist);
     float maxDistShift = (1 - distPerc) * MAX_CLOUD_PIECE_DIST_SHIFT;
 
     int pieceCount = (int) (sizePerc * MAX_CLOUD_PIECE_COUNT);
@@ -174,7 +174,7 @@ public class PlanetObjectsBuilder {
       RectSprite s = createCloudSprite(cloudTexs, maxAngleShift, maxDistShift, dist, textureManager);
       dras.add(s);
     }
-    float rotSpd = SolMath.rnd(.1f, 1) * SolMath.arcToAngle(MAX_CLOUD_LINEAR_SPD, dist);
+    float rotSpd = ManiMath.rnd(.1f, 1) * ManiMath.arcToAngle(MAX_CLOUD_LINEAR_SPD, dist);
 
     return new FarPlanetSprites(planet, angle, dist, dras, rotSpd);
   }
@@ -184,24 +184,24 @@ public class PlanetObjectsBuilder {
     float maxDistShift, float baseDist, TextureManager textureManager)
   {
 
-    TextureAtlas.AtlasRegion tex = SolMath.elemRnd(cloudTexs);
-    if (SolMath.test(.5f)) tex = textureManager.getFlipped(tex);
-    float angleShiftRel = SolMath.rnd(1);
-    float distPerc = 1 - SolMath.abs(angleShiftRel);
+    TextureAtlas.AtlasRegion tex = ManiMath.elemRnd(cloudTexs);
+    if (ManiMath.test(.5f)) tex = textureManager.getFlipped(tex);
+    float angleShiftRel = ManiMath.rnd(1);
+    float distPerc = 1 - ManiMath.abs(angleShiftRel);
     float sz = .5f * (1 + distPerc) * MAX_CLOUD_PIECE_SZ;
 
-    float relAngle = SolMath.rnd(30);
-    float rotSpd = SolMath.rnd(MAX_CLOUT_PIECE_ROT_SPD);
+    float relAngle = ManiMath.rnd(30);
+    float rotSpd = ManiMath.rnd(MAX_CLOUT_PIECE_ROT_SPD);
     float angleShift = angleShiftRel * maxAngleShift;
-    float distShift = maxDistShift == 0 ? 0 : distPerc * SolMath.rnd(0, maxDistShift);
+    float distShift = maxDistShift == 0 ? 0 : distPerc * ManiMath.rnd(0, maxDistShift);
     float dist = baseDist + distShift;
-    Vector2 basePos = SolMath.getVec(0, -baseDist);
+    Vector2 basePos = ManiMath.getVec(0, -baseDist);
     Vector2 relPos = new Vector2(0, -dist);
-    SolMath.rotate(relPos, angleShift, true);
+    ManiMath.rotate(relPos, angleShift, true);
     relPos.sub(basePos);
-    SolMath.free(basePos);
+    ManiMath.free(basePos);
 
-    return new RectSprite(tex, sz, 0, 0, relPos, DraLevel.CLOUDS, relAngle, rotSpd, SolColor.W, false);
+    return new RectSprite(tex, sz, 0, 0, relPos, DraLevel.CLOUDS, relAngle, rotSpd, ManiColor.W, false);
   }
 
   public void createDeco(ManiGame game, Planet planet) {
@@ -217,7 +217,7 @@ public class PlanetObjectsBuilder {
     for (Map.Entry<Vector2, List<Dra>> e : collector.entrySet()) {
       Vector2 packPos = e.getKey();
       List<Dra> ss = e.getValue();
-      float packAngle = SolMath.angle(planetPos, packPos, true) - planetAngle;
+      float packAngle = ManiMath.angle(planetPos, packPos, true) - planetAngle;
       float packDist = packPos.dst(planetPos);
       FarPlanetSprites ps = new FarPlanetSprites(planet, packAngle, packDist, ss, 0);
       game.getObjMan().addFarObjNow(ps);
@@ -242,44 +242,44 @@ public class PlanetObjectsBuilder {
       }
     };
 
-    int decoCount = (int) (2 * SolMath.PI * groundHeight * dc.density);
+    int decoCount = (int) (2 * ManiMath.PI * groundHeight * dc.density);
     for (int i = 0; i < decoCount; i++) {
-      float decoSz = SolMath.rnd(dc.szMin, dc.szMax);
-      float angularHalfWidth = SolMath.angularWidthOfSphere(decoSz / 2, groundHeight);
+      float decoSz = ManiMath.rnd(dc.szMin, dc.szMax);
+      float angularHalfWidth = ManiMath.angularWidthOfSphere(decoSz / 2, groundHeight);
 
       float decoAngle = 0;
       for (int j = 0; j < 5; j++) {
-        decoAngle = SolMath.rnd(180);
+        decoAngle = ManiMath.rnd(180);
         if (!consumed.isConsumed(decoAngle, angularHalfWidth)) {
           consumed.add(decoAngle, angularHalfWidth);
           break;
         }
       }
 
-      SolMath.fromAl(rayCasted, decoAngle, groundHeight, true);
+      ManiMath.fromAl(rayCasted, decoAngle, groundHeight, true);
       rayCasted.add(planetPos);
       w.rayCast(rcc, rayCasted, planetPos);
       float decoDist = rayCasted.dst(planetPos);
 
-      float baseAngle = SolMath.windowCenter(decoAngle, DECO_PACK_ANGULAR_WIDTH);
-      float baseDist = SolMath.windowCenter(decoDist, DECO_PACK_SZ);
-      Vector2 basePos = SolMath.fromAl(baseAngle, baseDist).add(planetPos);
+      float baseAngle = ManiMath.windowCenter(decoAngle, DECO_PACK_ANGULAR_WIDTH);
+      float baseDist = ManiMath.windowCenter(decoDist, DECO_PACK_SZ);
+      Vector2 basePos = ManiMath.fromAl(baseAngle, baseDist).add(planetPos);
       Vector2 decoRelPos = new Vector2(rayCasted).sub(basePos);
-      SolMath.rotate(decoRelPos, -baseAngle - 90, true);
+      ManiMath.rotate(decoRelPos, -baseAngle - 90, true);
       float decoRelAngle = decoAngle - baseAngle;
 
 
-      TextureAtlas.AtlasRegion decoTex = SolMath.elemRnd(dc.texs);
-      if (dc.allowFlip && SolMath.test(.5f)) decoTex = game.getTexMan().getFlipped(decoTex);
+      TextureAtlas.AtlasRegion decoTex = ManiMath.elemRnd(dc.texs);
+      if (dc.allowFlip && ManiMath.test(.5f)) decoTex = game.getTexMan().getFlipped(decoTex);
 
-      RectSprite s = new RectSprite(decoTex, decoSz, dc.orig.x, dc.orig.y, decoRelPos, DraLevel.DECO, decoRelAngle, 0, SolColor.W, false);
+      RectSprite s = new RectSprite(decoTex, decoSz, dc.orig.x, dc.orig.y, decoRelPos, DraLevel.DECO, decoRelAngle, 0, ManiColor.W, false);
       List<Dra> ss = collector.get(basePos);
       if (ss == null) {
         ss = new ArrayList<Dra>();
         collector.put(new Vector2(basePos), ss);
       }
       ss.add(s);
-      SolMath.free(basePos);
+      ManiMath.free(basePos);
     }
   }
 
@@ -301,13 +301,13 @@ public class PlanetObjectsBuilder {
       aboveGround = ge.hull.getSize();
     }
     pos.scl((height + aboveGround)/height);
-    SolMath.toWorld(pos, pos, planet.getAngle(), planet.getPos(), false);
+    ManiMath.toWorld(pos, pos, planet.getAngle(), planet.getPos(), false);
 
-    Vector2 toPlanet = SolMath.getVec(planet.getPos()).sub(pos);
-    float angle = SolMath.angle(toPlanet) - 180;
+    Vector2 toPlanet = ManiMath.getVec(planet.getPos()).sub(pos);
+    float angle = ManiMath.angle(toPlanet) - 180;
     if (station) angle += 90;
     Vector2 spd = new Vector2(toPlanet).nor();
-    SolMath.free(toPlanet);
+    ManiMath.free(toPlanet);
 
     Pilot provider = new AiPilot(new StillGuard(pos, game, ge), false, faction, true, mapHint, Const.AI_DET_DIST);
 
@@ -318,16 +318,16 @@ public class PlanetObjectsBuilder {
   public FarShip buildOrbitEnemy(ManiGame game, Planet planet, float heightPerc, ShipConfig oe, float detDist) {
     float height = planet.getGroundHeight() + heightPerc * Const.ATM_HEIGHT;
     Vector2 pos = new Vector2();
-    SolMath.fromAl(pos, SolMath.rnd(180), height);
+    ManiMath.fromAl(pos, ManiMath.rnd(180), height);
     Vector2 planetPos = planet.getPos();
     pos.add(planetPos);
-    float spdLen = SolMath.sqrt(planet.getGravConst() / height);
-    boolean cw = SolMath.test(.5f);
+    float spdLen = ManiMath.sqrt(planet.getGravConst() / height);
+    boolean cw = ManiMath.test(.5f);
     if (!cw) spdLen *= -1;
     Vector2 spd = new Vector2(0, -spdLen);
-    Vector2 v = SolMath.distVec(pos, planetPos);
-    SolMath.rotate(spd, SolMath.angle(v));
-    SolMath.free(v);
+    Vector2 v = ManiMath.distVec(pos, planetPos);
+    ManiMath.rotate(spd, ManiMath.angle(v));
+    ManiMath.free(v);
 
     OrbiterDestProvider dp = new OrbiterDestProvider(planet, height, cw);
     Pilot provider = new AiPilot(dp, false, Faction.EHAR, true, null, detDist);

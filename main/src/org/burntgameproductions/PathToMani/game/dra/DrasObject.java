@@ -4,7 +4,7 @@ package org.burntgameproductions.PathToMani.game.dra;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.*;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.common.Consumed;
@@ -55,7 +55,7 @@ public class DrasObject implements ManiObject {
         Vector2 draPos = dra.getPos();
         float gradSz = .25f * Const.ATM_HEIGHT;
         float distPerc = (draPos.dst(npPos) - npgh - Const.ATM_HEIGHT) / gradSz;
-        distPerc = SolMath.clamp(distPerc);
+        distPerc = ManiMath.clamp(distPerc);
         ((RectSprite) dra).tint.a = distPerc;
       }
     } else if (myMaxFadeTime > 0) {
@@ -65,7 +65,7 @@ public class DrasObject implements ManiObject {
         Dra dra = myDras.get(i);
         if (!(dra instanceof RectSprite)) continue;
         RectSprite rs = (RectSprite) dra;
-        rs.tint.a = SolMath.clamp(tintPerc * rs.baseAlpha);
+        rs.tint.a = ManiMath.clamp(tintPerc * rs.baseAlpha);
       }
 
     }

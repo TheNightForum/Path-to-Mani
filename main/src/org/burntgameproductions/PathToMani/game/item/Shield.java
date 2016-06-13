@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.sound.SoundManager;
 import org.burntgameproductions.PathToMani.files.FileManager;
@@ -40,7 +40,7 @@ public class Shield implements ManiItem {
     if (myIdleTime >= myConfig.myMaxIdleTime) {
       if (myLife < myConfig.maxLife) {
         float regen = myConfig.regenSpd * ts;
-        myLife = SolMath.approach(myLife, myConfig.maxLife, regen);
+        myLife = ManiMath.approach(myLife, myConfig.maxLife, regen);
       }
     } else {
       myIdleTime += ts;
@@ -109,7 +109,7 @@ public class Shield implements ManiItem {
     myLife -= myLife < dmg ? myLife : dmg;
 
     game.getPartMan().shieldSpark(game, pos, ship.getHull(), myConfig.tex, dmg / myConfig.maxLife);
-    float volMul = SolMath.clamp(4 * dmg / myConfig.maxLife);
+    float volMul = ManiMath.clamp(4 * dmg / myConfig.maxLife);
     game.getSoundMan().play(game, myConfig.absorbSound, null, ship, volMul);
 
   }
@@ -151,7 +151,7 @@ public class Shield implements ManiItem {
 
     private String makeDesc() {
       StringBuilder sb = new StringBuilder();
-      sb.append("Takes ").append(SolMath.nice(maxLife)).append(" dmg\n");
+      sb.append("Takes ").append(ManiMath.nice(maxLife)).append(" dmg\n");
       sb.append("Strong against bullets\n");
       return sb.toString();
     }

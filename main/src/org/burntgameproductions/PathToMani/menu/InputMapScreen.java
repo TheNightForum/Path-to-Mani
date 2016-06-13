@@ -6,10 +6,10 @@ package org.burntgameproductions.PathToMani.menu;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.GameOptions;
+import org.burntgameproductions.PathToMani.common.ManiColor;
 import org.burntgameproductions.PathToMani.ui.*;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.ManiApplication;
-import org.burntgameproductions.PathToMani.common.SolColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -247,15 +247,15 @@ public class InputMapScreen implements ManiUiScreen {
             float rowCenterY = rect.y + rect.height / 2;
 
             // Draw the name of in the input and the key it is mapped to
-            uiDrawer.drawString(displayName, rect.x + equiColW + imgColW + nameWidth/2, rowCenterY, FontSize.WINDOW, true, selectedIndex == groupIdx ? SolColor.W : SolColor.G);
-            uiDrawer.drawString(inputKey, rect.x + rect.width - amtWidth - priceWidth/2, rowCenterY, FontSize.WINDOW, true, SolColor.LG);
+            uiDrawer.drawString(displayName, rect.x + equiColW + imgColW + nameWidth/2, rowCenterY, FontSize.WINDOW, true, selectedIndex == groupIdx ? ManiColor.W : ManiColor.G);
+            uiDrawer.drawString(inputKey, rect.x + rect.width - amtWidth - priceWidth/2, rowCenterY, FontSize.WINDOW, true, ManiColor.LG);
         }
 
         // Draw the header title
-        uiDrawer.drawString(operations.getHeader(), listHeaderPos.x, listHeaderPos.y, FontSize.WINDOW, false, SolColor.W);
+        uiDrawer.drawString(operations.getHeader(), listHeaderPos.x, listHeaderPos.y, FontSize.WINDOW, false, ManiColor.W);
 
         // Draw the detail text
-        uiDrawer.drawString(operations.getDisplayDetail(), detailArea.x + .015f, detailArea.y + .015f, FontSize.WINDOW, false, SolColor.W);
+        uiDrawer.drawString(operations.getDisplayDetail(), detailArea.x + .015f, detailArea.y + .015f, FontSize.WINDOW, false, ManiColor.W);
     }
 
     @Override

@@ -8,14 +8,14 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.*;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
 import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.ui.*;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.ManiApplication;
-import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.game.gun.GunItem;
 import org.burntgameproductions.PathToMani.game.item.Shield;
 import org.burntgameproductions.PathToMani.game.item.ManiItem;
@@ -114,17 +114,17 @@ public class MainScreen implements ManiUiScreen {
     myInfinityTex = textureManager.getTex(TextureManager.ICONS_DIR + "infinity", null);
     myWaitTex = textureManager.getTex(TextureManager.ICONS_DIR + "wait", null);
     myCompassTex = textureManager.getTex("ui/compass", null);
-    myCompassTint = SolColor.col(1, 0);
+    myCompassTint = ManiColor.col(1, 0);
 
-    myLifeTp = new TextPlace(SolColor.W50);
-    myRepairsExcessTp = new TextPlace(SolColor.W);
-    myShieldLifeTp = new TextPlace(SolColor.W50);
-    myG1AmmoTp = new TextPlace(SolColor.W50);
-    myG1AmmoExcessTp = new TextPlace(SolColor.W);
-    myG2AmmoTp = new TextPlace(SolColor.W50);
-    myG2AmmoExcessTp = new TextPlace(SolColor.W);
-    myChargesExcessTp = new TextPlace(SolColor.W);
-    myMoneyExcessTp = new TextPlace(SolColor.W);
+    myLifeTp = new TextPlace(ManiColor.W50);
+    myRepairsExcessTp = new TextPlace(ManiColor.W);
+    myShieldLifeTp = new TextPlace(ManiColor.W50);
+    myG1AmmoTp = new TextPlace(ManiColor.W50);
+    myG1AmmoExcessTp = new TextPlace(ManiColor.W);
+    myG2AmmoTp = new TextPlace(ManiColor.W50);
+    myG2AmmoExcessTp = new TextPlace(ManiColor.W);
+    myChargesExcessTp = new TextPlace(ManiColor.W);
+    myMoneyExcessTp = new TextPlace(ManiColor.W);
   }
 
   public void maybeDrawHeight(UiDrawer drawer, ManiApplication cmp) {
@@ -145,7 +145,7 @@ public class MainScreen implements ManiUiScreen {
     float sz = .08f;
     float maxY = 1 - sz/2;
     float y = 1 - perc;
-    myCompassTint.a = SolMath.clamp(1.5f * y);
+    myCompassTint.a = ManiMath.clamp(1.5f * y);
     if (maxY < y) y = maxY;
     float angle = np.getAngle() - camAngle;
     drawer.draw(myCompassTex, sz, sz, sz/2, sz/2, sz/2, y, angle, myCompassTint);
@@ -258,7 +258,7 @@ public class MainScreen implements ManiUiScreen {
     if (g == null) return false;
     TextureAtlas.AtlasRegion tex = g.config.icon;
 
-    uiDrawer.draw(tex, ICON_SZ, ICON_SZ, 0, 0, col0, y, 0, SolColor.W);
+    uiDrawer.draw(tex, ICON_SZ, ICON_SZ, 0, 0, col0, y, 0, ManiColor.W);
     float curr;
     float max;
     if (g.reloadAwait > 0) {
@@ -275,19 +275,19 @@ public class MainScreen implements ManiUiScreen {
       int clipCount = hero.getItemContainer().count(g.config.clipConf.example);
       drawIcons(uiDrawer, col2, y, clipCount, g.config.clipConf.icon, secondary ? myG2AmmoExcessTp : myG1AmmoExcessTp);
     } else {
-      uiDrawer.draw(myInfinityTex, ICON_SZ, ICON_SZ, 0, 0, col2, y, 0, SolColor.W);
+      uiDrawer.draw(myInfinityTex, ICON_SZ, ICON_SZ, 0, 0, col2, y, 0, ManiColor.W);
     }
     return true;
   }
 
   private void drawWait(UiDrawer uiDrawer, float x, float y) {
-    uiDrawer.draw(myWaitTex, ICON_SZ, ICON_SZ, ICON_SZ/2, ICON_SZ/2, x + BAR_SZ/2, y + ICON_SZ/2, 0, SolColor.W);
+    uiDrawer.draw(myWaitTex, ICON_SZ, ICON_SZ, ICON_SZ/2, ICON_SZ/2, x + BAR_SZ/2, y + ICON_SZ/2, 0, ManiColor.W);
   }
 
   private void drawBar(UiDrawer uiDrawer, float x, float y, float curr, float max, TextPlace tp) {
     float perc = curr / max;
-    uiDrawer.draw(uiDrawer.whiteTex, BAR_SZ, ICON_SZ, 0, 0, x, y, 0, SolColor.UI_DARK);
-    uiDrawer.draw(uiDrawer.whiteTex, BAR_SZ * perc, ICON_SZ, 0, 0, x, y, 0, SolColor.UI_LIGHT);
+    uiDrawer.draw(uiDrawer.whiteTex, BAR_SZ, ICON_SZ, 0, 0, x, y, 0, ManiColor.UI_DARK);
+    uiDrawer.draw(uiDrawer.whiteTex, BAR_SZ * perc, ICON_SZ, 0, 0, x, y, 0, ManiColor.UI_LIGHT);
     if (tp != null && max > 1 && curr > 0) {
       tp.text = (int) curr + "/" + (int) max;
       tp.pos.set(x + BAR_SZ/2, y + ICON_SZ/2);
@@ -299,7 +299,7 @@ public class MainScreen implements ManiUiScreen {
     int excess = count - MAX_ICON_COUNT;
     int iconCount = excess > 0 ? MAX_ICON_COUNT : count;
     for (int i = 0; i < iconCount; i++) {
-      uiDrawer.draw(tex, ICON_SZ, ICON_SZ, 0, 0, x, y, 0, SolColor.W);
+      uiDrawer.draw(tex, ICON_SZ, ICON_SZ, 0, 0, x, y, 0, ManiColor.W);
       x += ICON_SZ + H_PAD;
     }
     if (excess > 0) {
@@ -351,12 +351,12 @@ public class MainScreen implements ManiUiScreen {
 
       Shield shield = hero.getShield();
       if (shield != null) {
-        uiDrawer.draw(shield.getIcon(game), ICON_SZ, ICON_SZ, 0, 0, col0, row, 0, SolColor.W);
+        uiDrawer.draw(shield.getIcon(game), ICON_SZ, ICON_SZ, 0, 0, col0, row, 0, ManiColor.W);
         drawBar(uiDrawer, col1, row, shield.getLife(), shield.getMaxLife(), myShieldLifeTp);
         row += ICON_SZ + V_PAD;
       }
 
-      uiDrawer.draw(myLifeTex, ICON_SZ, ICON_SZ, 0, 0, col0, row, 0, SolColor.W);
+      uiDrawer.draw(myLifeTex, ICON_SZ, ICON_SZ, 0, 0, col0, row, 0, ManiColor.W);
       drawBar(uiDrawer, col1, row, hero.getLife(), hero.getHull().config.getMaxLife(), myLifeTp);
       int repairKitCount = hero.getItemContainer().count(game.getItemMan().getRepairExample());
       ItemManager itemManager = game.getItemMan();
@@ -373,14 +373,14 @@ public class MainScreen implements ManiUiScreen {
       if (abilityChargeEx != null) {
         int abilityChargeCount = hero.getItemContainer().count(abilityChargeEx);
         TextureAtlas.AtlasRegion icon = abilityChargeEx.getIcon(game);
-        uiDrawer.draw(icon, ICON_SZ, ICON_SZ, 0, 0, col0, row, 0, SolColor.W);
-        float chargePerc = 1 - SolMath.clamp(hero.getAbilityAwait() / ability.getConfig().getRechargeTime());
+        uiDrawer.draw(icon, ICON_SZ, ICON_SZ, 0, 0, col0, row, 0, ManiColor.W);
+        float chargePerc = 1 - ManiMath.clamp(hero.getAbilityAwait() / ability.getConfig().getRechargeTime());
         drawBar(uiDrawer, col1, row, chargePerc, 1, null);
         if (chargePerc < 1) drawWait(uiDrawer, col1, row);
         drawIcons(uiDrawer, col2, row, abilityChargeCount, icon, myChargesExcessTp);
         row += ICON_SZ + V_PAD;
       }
-      uiDrawer.draw(game.getItemMan().moneyIcon, ICON_SZ, ICON_SZ, 0, 0, col0, row, 0, SolColor.W);
+      uiDrawer.draw(game.getItemMan().moneyIcon, ICON_SZ, ICON_SZ, 0, 0, col0, row, 0, ManiColor.W);
       updateTextPlace(col1, row, (int) hero.getMoney() + "", myMoneyExcessTp);
     }
 

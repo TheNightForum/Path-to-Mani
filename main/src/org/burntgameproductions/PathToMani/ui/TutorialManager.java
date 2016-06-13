@@ -4,10 +4,10 @@ package org.burntgameproductions.PathToMani.ui;
 
 import com.badlogic.gdx.math.Rectangle;
 import org.burntgameproductions.PathToMani.GameOptions;
+import org.burntgameproductions.PathToMani.common.ManiColor;
 import org.burntgameproductions.PathToMani.game.screens.MainScreen;
 import org.burntgameproductions.PathToMani.game.screens.ShipKbControl;
 import org.burntgameproductions.PathToMani.game.screens.ShipMixedControl;
-import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.game.screens.GameScreens;
 
 import java.util.ArrayList;
@@ -207,8 +207,8 @@ public class TutorialManager {
   public void draw(UiDrawer uiDrawer) {
     if (isFinished()) return;
     Step step = mySteps.get(myStepIdx);
-    uiDrawer.draw(myBg, SolColor.UI_BG);
-    uiDrawer.drawString(step.text, uiDrawer.r/2, myBg.y + myBg.height/2, FontSize.TUT, true, SolColor.W);
+    uiDrawer.draw(myBg, ManiColor.UI_BG);
+    uiDrawer.drawString(step.text, uiDrawer.r/2, myBg.y + myBg.height/2, FontSize.TUT, true, ManiColor.W);
   }
 
   public boolean isFinished() {

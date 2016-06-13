@@ -3,7 +3,7 @@
 package org.burntgameproductions.PathToMani.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.Faction;
 import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
@@ -32,13 +32,13 @@ public class ForceBeacon {
   }
 
   public void update(ManiGame game, Vector2 basePos, float baseAngle, ManiShip ship) {
-    Vector2 pos = SolMath.toWorld(myRelPos, baseAngle, basePos);
-    Vector2 spd = SolMath.distVec(myPrevPos, pos).scl(1 / game.getTimeStep());
+    Vector2 pos = ManiMath.toWorld(myRelPos, baseAngle, basePos);
+    Vector2 spd = ManiMath.distVec(myPrevPos, pos).scl(1 / game.getTimeStep());
     Faction faction = ship.getPilot().getFaction();
     pullShips(game, ship, pos, spd, faction, MAX_PULL_DIST);
-    SolMath.free(spd);
+    ManiMath.free(spd);
     myPrevPos.set(pos);
-    SolMath.free(pos);
+    ManiMath.free(pos);
   }
 
   public static ManiShip pullShips(ManiGame game, ManiObject owner, Vector2 ownPos, Vector2 ownSpd, Faction faction,
@@ -55,7 +55,7 @@ public class ForceBeacon {
       Pilot pilot = ship.getPilot();
       if (pilot.isUp() || pilot.isLeft() || pilot.isRight()) continue;
       if (game.getFactionMan().areEnemies(faction, pilot.getFaction())) continue;
-      Vector2 toMe = SolMath.distVec(ship.getPosition(), ownPos);
+      Vector2 toMe = ManiMath.distVec(ship.getPosition(), ownPos);
       float toMeLen = toMe.len();
       if (toMeLen < maxPullDist) {
         if (toMeLen > 1) toMe.scl(1 / toMeLen);
@@ -67,7 +67,7 @@ public class ForceBeacon {
           minLen = toMeLen;
         }
       }
-      SolMath.free(toMe);
+      ManiMath.free(toMe);
     }
     return res;
   }

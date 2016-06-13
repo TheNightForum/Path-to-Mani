@@ -6,7 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.DebugOptions;
 import org.burntgameproductions.PathToMani.game.PathLoader;
 
@@ -97,7 +97,7 @@ public class PlanetTiles {
 
   public Tile getGround(SurfaceDirection from, SurfaceDirection to) {
     List<Tile> list = myGroundTiles.get(from).get(to);
-    return SolMath.elemRnd(list);
+    return ManiMath.elemRnd(list);
   }
 
   public Tile getDungeonEntrance(boolean down, boolean left, boolean right) {

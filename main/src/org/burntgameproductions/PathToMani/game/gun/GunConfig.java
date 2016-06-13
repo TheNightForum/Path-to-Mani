@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.item.*;
 import org.burntgameproductions.PathToMani.game.projectile.ProjectileConfig;
 import org.burntgameproductions.PathToMani.game.sound.SoundManager;
@@ -81,17 +81,17 @@ public class GunConfig {
     ProjectileConfig pc = clipConf.projConfig;
     sb.append(fixed ? "Heavy gun (no rotation)\n" : "Light gun (auto rotation)\n");
     if (pc.dmg > 0) {
-      sb.append("Dmg: ").append(SolMath.nice(dps)).append("/s\n");
+      sb.append("Dmg: ").append(ManiMath.nice(dps)).append("/s\n");
       DmgType dmgType = pc.dmgType;
       if (dmgType == DmgType.ENERGY) sb.append("Weak against armor\n");
       else if (dmgType == DmgType.BULLET) sb.append("Weak against shields\n");
     } else if (pc.emTime > 0) {
-      sb.append("Disables enemy ships for ").append(SolMath.nice(pc.emTime)).append(" s\n");
+      sb.append("Disables enemy ships for ").append(ManiMath.nice(pc.emTime)).append(" s\n");
     }
     if (pc.density > 0) {
       sb.append("Knocks enemies back\n");
     }
-    sb.append("Reload: ").append(SolMath.nice(reloadTime)).append(" s\n");
+    sb.append("Reload: ").append(ManiMath.nice(reloadTime)).append(" s\n");
     if (clipConf.infinite) {
       sb.append("Infinite ammo\n");
     } else {

@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.asteroid.AsteroidBuilder;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
@@ -41,20 +41,20 @@ public class ShardBuilder {
   public Shard build(ManiGame game, Vector2 basePos, Vector2 baseSpd, float size) {
 
     ArrayList<Dra> dras = new ArrayList<Dra>();
-    float scale = SolMath.rnd(MIN_SCALE, MAX_SCALE);
-    TextureAtlas.AtlasRegion tex = SolMath.elemRnd(myTexs);
-    float spdAngle = SolMath.rnd(180);
+    float scale = ManiMath.rnd(MIN_SCALE, MAX_SCALE);
+    TextureAtlas.AtlasRegion tex = ManiMath.elemRnd(myTexs);
+    float spdAngle = ManiMath.rnd(180);
     Vector2 pos = new Vector2();
-    SolMath.fromAl(pos, spdAngle, SolMath.rnd(size));
+    ManiMath.fromAl(pos, spdAngle, ManiMath.rnd(size));
     pos.add(basePos);
     Body body = myPathLoader.getBodyAndSprite(game, "smallGameObjs", AsteroidBuilder.removePath(tex.name) + "_" + tex.index, scale,
-      BodyDef.BodyType.DynamicBody, pos, SolMath.rnd(180), dras, ShipBuilder.SHIP_DENSITY, DraLevel.PROJECTILES, tex);
+      BodyDef.BodyType.DynamicBody, pos, ManiMath.rnd(180), dras, ShipBuilder.SHIP_DENSITY, DraLevel.PROJECTILES, tex);
 
-    body.setAngularVelocity(SolMath.rnd(MAX_ROT_SPD));
-    Vector2 spd = SolMath.fromAl(spdAngle, SolMath.rnd(MAX_SPD));
+    body.setAngularVelocity(ManiMath.rnd(MAX_ROT_SPD));
+    Vector2 spd = ManiMath.fromAl(spdAngle, ManiMath.rnd(MAX_SPD));
     spd.add(baseSpd);
     body.setLinearVelocity(spd);
-    SolMath.free(spd);
+    ManiMath.free(spd);
 
     Shard shard = new Shard(body, dras);
     body.setUserData(shard);

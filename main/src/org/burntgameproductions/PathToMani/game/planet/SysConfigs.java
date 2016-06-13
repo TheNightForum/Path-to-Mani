@@ -6,7 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
 import org.burntgameproductions.PathToMani.game.item.TradeConfig;
 import org.burntgameproductions.PathToMani.files.FileManager;
@@ -61,7 +61,7 @@ public class SysConfigs {
 
   public SysConfig getRandomBelt(boolean hard) {
     Map<String, SysConfig> config = hard ? myHardBeltConfigs : myBeltConfigs;
-    return SolMath.elemRnd(new ArrayList<SysConfig>(config.values()));
+    return ManiMath.elemRnd(new ArrayList<SysConfig>(config.values()));
   }
 
   public SysConfig getConfig(String name) {
@@ -72,7 +72,7 @@ public class SysConfigs {
 
   public SysConfig getRandomCfg(boolean hard) {
     Map<String, SysConfig> config = hard ? myHardConfigs : myConfigs;
-    return SolMath.elemRnd(new ArrayList<SysConfig>(config.values()));
+    return ManiMath.elemRnd(new ArrayList<SysConfig>(config.values()));
   }
 
   public void addAllConfigs(ArrayList<ShipConfig> l) {

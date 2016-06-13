@@ -6,7 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
 import org.burntgameproductions.PathToMani.ManiApplication;
-import org.burntgameproductions.PathToMani.common.SolColor;
+import org.burntgameproductions.PathToMani.common.ManiColor;
 
 public class ManiUiControl {
   private final int[] myKeys;
@@ -124,11 +124,11 @@ public class ManiUiControl {
 
   public void drawButton(UiDrawer uiDrawer, ManiApplication cmp, Color warnCol) {
     if (myScreenArea == null) return;
-    Color tint = SolColor.UI_INACTIVE;
+    Color tint = ManiColor.UI_INACTIVE;
     if (myEnabled) {
-      if (isOn()) tint = SolColor.UI_LIGHT;
-      else if (myMouseHover) tint = SolColor.UI_MED;
-      else tint = SolColor.UI_DARK;
+      if (isOn()) tint = ManiColor.UI_LIGHT;
+      else if (myMouseHover) tint = ManiColor.UI_MED;
+      else tint = ManiColor.UI_DARK;
     }
     uiDrawer.draw(myScreenArea, tint);
     if (myWarnCount > 0) {
@@ -138,7 +138,7 @@ public class ManiUiControl {
 
   public void drawDisplayName(UiDrawer uiDrawer) {
     if (myScreenArea == null) return;
-    Color tint = myEnabled ? SolColor.W : SolColor.G;
+    Color tint = myEnabled ? ManiColor.W : ManiColor.G;
     uiDrawer.drawString(myDisplayName, myScreenArea.x + myScreenArea.width/2, myScreenArea.y + myScreenArea.height/2,
       FontSize.MENU, true, tint);
   }

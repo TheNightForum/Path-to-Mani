@@ -4,7 +4,7 @@ package org.burntgameproductions.PathToMani.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.GameColors;
 import org.burntgameproductions.PathToMani.game.gun.GunConfig;
 import org.burntgameproductions.PathToMani.game.gun.GunItem;
@@ -58,8 +58,8 @@ public class ItemManager {
         List<ItemConfig> list = parseItems(items);
         for (ItemConfig ic : list) {
             for (int i = 0; i < ic.amt; i++) {
-                if (SolMath.test(ic.chance)) {
-                    ManiItem item = SolMath.elemRnd(ic.examples).copy();
+                if (ManiMath.test(ic.chance)) {
+                    ManiItem item = ManiMath.elemRnd(ic.examples).copy();
                     c.add(item);
                 }
             }
@@ -133,7 +133,7 @@ public class ItemManager {
     }
 
     public ManiItem random() {
-        return myL.get(SolMath.intRnd(myM.size())).copy();
+        return myL.get(ManiMath.intRnd(myM.size())).copy();
     }
 
     public void registerItem(ManiItem example) {

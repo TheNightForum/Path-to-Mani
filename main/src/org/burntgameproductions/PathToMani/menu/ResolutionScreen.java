@@ -6,7 +6,7 @@ import com.badlogic.gdx.Gdx;
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.ui.*;
 import org.burntgameproductions.PathToMani.ManiApplication;
-import org.burntgameproductions.PathToMani.common.SolColor;
+import org.burntgameproductions.PathToMani.common.ManiColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +71,7 @@ public class ResolutionScreen implements ManiUiScreen {
 
   @Override
   public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
-    uiDrawer.drawString("Click 'Back' to apply changes", .5f * uiDrawer.r, .3f, FontSize.MENU, true, SolColor.W);
+    uiDrawer.drawString("Click 'Back' to apply changes", .5f * uiDrawer.r, .3f, FontSize.MENU, true, ManiColor.W);
   }
 
   @Override

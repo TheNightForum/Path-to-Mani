@@ -3,9 +3,9 @@
 package org.burntgameproductions.PathToMani.ui;
 
 import com.badlogic.gdx.utils.TimeUtils;
+import org.burntgameproductions.PathToMani.common.ManiColor;
 import org.burntgameproductions.PathToMani.game.DebugOptions;
 import org.burntgameproductions.PathToMani.game.screens.BorderDrawer;
-import org.burntgameproductions.PathToMani.common.SolColor;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,7 +20,7 @@ public class DebugCollector {
   }
 
   public static void draw(UiDrawer drawer) {
-    drawer.drawString(myDebugStrings.toString(), .5f, BorderDrawer.TISHCH_SZ, FontSize.DEBUG, false, SolColor.W);
+    drawer.drawString(myDebugStrings.toString(), .5f, BorderDrawer.TISHCH_SZ, FontSize.DEBUG, false, ManiColor.W);
   }
 
   public static void debug(String name, String val) {

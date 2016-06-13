@@ -2,7 +2,7 @@
 
 package org.burntgameproductions.PathToMani.game;
 
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.gun.GunConfig;
 import org.burntgameproductions.PathToMani.game.item.*;
 import org.burntgameproductions.PathToMani.game.planet.PlanetConfig;
@@ -39,7 +39,7 @@ public class HardnessCalc {
     } else {
       projHitChance = (pc.spdLen + pc.acc) / 6;
       if (pc.physSize > 0) projHitChance += pc.physSize;
-      projHitChance = SolMath.clamp(projHitChance, .1f, 1);
+      projHitChance = ManiMath.clamp(projHitChance, .1f, 1);
       if (gc.fixed) {
         projHitChance *= .3f;
       }

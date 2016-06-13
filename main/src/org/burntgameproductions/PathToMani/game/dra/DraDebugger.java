@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.DevTextureProvider;
 import org.burntgameproductions.PathToMani.common.DebugCol;
-import org.burntgameproductions.PathToMani.common.SolColor;
+import org.burntgameproductions.PathToMani.common.ManiColor;
 import org.burntgameproductions.PathToMani.game.DebugOptions;
 import org.burntgameproductions.PathToMani.ui.FontSize;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
@@ -43,13 +43,13 @@ public class DraDebugger {
     float y = GAP;
     for (TextureAtlas.AtlasRegion tex : myCollector) {
       float x = GAP;
-      uiDrawer.draw(uiDrawer.whiteTex, 5 * TEX_SZ, TEX_SZ + 2 * GAP, 0, 0, x, y, 0, SolColor.DG);
+      uiDrawer.draw(uiDrawer.whiteTex, 5 * TEX_SZ, TEX_SZ + 2 * GAP, 0, 0, x, y, 0, ManiColor.DG);
       y += GAP;
       x += GAP;
       float r = 1f * tex.getTexture().getWidth() / tex.getTexture().getHeight();
       float w = r > 1 ? TEX_SZ : TEX_SZ/r;
       float h = r > 1 ? TEX_SZ/r : TEX_SZ;
-      uiDrawer.draw(tex, w, h, w/2, h/2, x + .5f * TEX_SZ, y + .5f * TEX_SZ, 0, SolColor.W);
+      uiDrawer.draw(tex, w, h, w/2, h/2, x + .5f * TEX_SZ, y + .5f * TEX_SZ, 0, ManiColor.W);
       x += TEX_SZ + GAP;
       uiDrawer.drawString(tex.name, x, y, FontSize.DEBUG, false, DebugCol.TEX_INFO);
       y += .5f * TEX_SZ;

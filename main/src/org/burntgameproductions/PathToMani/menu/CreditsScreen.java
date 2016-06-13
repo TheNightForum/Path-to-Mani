@@ -4,8 +4,8 @@ package org.burntgameproductions.PathToMani.menu;
 
 import com.badlogic.gdx.graphics.Color;
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.ui.*;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.ManiApplication;
@@ -28,7 +28,7 @@ public class CreditsScreen implements ManiUiScreen {
     myCloseCtrl = new ManiUiControl(MainScreen.creditsBtnRect(r), true, gameOptions.getKeyEscape());
     myCloseCtrl.setDisplayName("Close");
     myControls.add(myCloseCtrl);
-    myColor = SolColor.col(1, 1);
+    myColor = ManiColor.col(1, 1);
 
     myPages = new ArrayList<String>();
     String[][] sss = {
@@ -124,7 +124,7 @@ public class CreditsScreen implements ManiUiScreen {
     float a = myPerc * 2;
     if (a > 1) a = 2 - a;
     a *= 3;
-    myColor.a = SolMath.clamp(a);
+    myColor.a = ManiMath.clamp(a);
   }
 
   @Override

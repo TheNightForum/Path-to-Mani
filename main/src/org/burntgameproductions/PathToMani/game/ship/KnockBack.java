@@ -4,7 +4,7 @@ package org.burntgameproductions.PathToMani.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
@@ -47,11 +47,11 @@ public class KnockBack implements ShipAbility {
       if (dst == 0) continue; // O__o
       float perc = getPerc(dst, MAX_RADIUS);
       if (perc <= 0) continue;
-      Vector2 toO = SolMath.distVec(ownerPos, oPos);
+      Vector2 toO = ManiMath.distVec(ownerPos, oPos);
       float accLen = myConfig.force * perc;
       toO.scl(accLen / dst);
       o.receiveForce(toO, game, false);
-      SolMath.free(toO);
+      ManiMath.free(toO);
     }
     ParticleSrc src = new ParticleSrc(myConfig.cc.effect, MAX_RADIUS, DraLevel.PART_BG_0, new Vector2(), true, game, ownerPos, Vector2.Zero, 0);
     game.getPartMan().finish(game, src, ownerPos);

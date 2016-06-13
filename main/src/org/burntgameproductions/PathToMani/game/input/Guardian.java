@@ -4,7 +4,7 @@ package org.burntgameproductions.PathToMani.game.input;
 
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.ObjectManager;
 import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.ManiObject;
@@ -103,9 +103,9 @@ public class Guardian implements MoveDestProvider {
     Planet np = game.getPlanetMan().getNearestPlanet(targetPos);
     float desiredAngle = myRelAngle;
     if (np.isNearGround(targetPos)) {
-      desiredAngle = SolMath.angle(np.getPos(), targetPos);
+      desiredAngle = ManiMath.angle(np.getPos(), targetPos);
     }
-    SolMath.fromAl(myDest, desiredAngle, targetApproxRad + DIST + hullConfig.getApproxRadius());
+    ManiMath.fromAl(myDest, desiredAngle, targetApproxRad + DIST + hullConfig.getApproxRadius());
     myDest.add(targetPos);
   }
 

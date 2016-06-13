@@ -4,11 +4,11 @@ package org.burntgameproductions.PathToMani.game.screens;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.ui.FontSize;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public abstract class WarnDrawer {
@@ -25,9 +25,9 @@ public abstract class WarnDrawer {
   public WarnDrawer(float r, String text) {
     myWarn = rect(r);
     myText = text;
-    myBgCol = new Color(SolColor.UI_WARN);
+    myBgCol = new Color(ManiColor.UI_WARN);
     myBgOrigA = myBgCol.a;
-    myTextCol = new Color(SolColor.W);
+    myTextCol = new Color(ManiColor.W);
   }
 
   public static Rectangle rect(float r) {
@@ -37,7 +37,7 @@ public abstract class WarnDrawer {
   public void update(ManiGame game) {
     show = shouldWarn(game);
     if (show) drawPerc = 1;
-    else drawPerc = SolMath.approach(drawPerc, 0, Const.REAL_TIME_STEP / FADE_TIME);
+    else drawPerc = ManiMath.approach(drawPerc, 0, Const.REAL_TIME_STEP / FADE_TIME);
     myBgCol.a = myBgOrigA * drawPerc;
     myTextCol.a = drawPerc;
   }

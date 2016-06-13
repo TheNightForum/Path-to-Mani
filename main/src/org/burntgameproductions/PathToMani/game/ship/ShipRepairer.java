@@ -2,7 +2,7 @@
 
 package org.burntgameproductions.PathToMani.game.ship;
 
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.item.RepairItem;
 import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.item.ItemContainer;
@@ -30,7 +30,7 @@ public class ShipRepairer {
       float inc = REPAIR_SPD * ts;
       if (myRepairPoints < inc) inc = myRepairPoints;
       myRepairPoints -= inc;
-      return SolMath.approach(life, inc, config.getMaxLife());
+      return ManiMath.approach(life, inc, config.getMaxLife());
     }
     return 0;
   }

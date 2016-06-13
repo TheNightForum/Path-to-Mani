@@ -4,7 +4,7 @@ package org.burntgameproductions.PathToMani.game.screens;
 
 import com.badlogic.gdx.math.Rectangle;
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.common.SolColor;
+import org.burntgameproductions.PathToMani.common.ManiColor;
 import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
@@ -100,7 +100,7 @@ public class TalkScreen implements ManiUiScreen {
 
   @Override
   public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
-    uiDrawer.draw(myBg, SolColor.UI_BG);
+    uiDrawer.draw(myBg, ManiColor.UI_BG);
   }
 
   @Override

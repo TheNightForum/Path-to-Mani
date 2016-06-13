@@ -3,7 +3,7 @@
 package org.burntgameproductions.PathToMani.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.Faction;
 import org.burntgameproductions.PathToMani.game.item.EngineItem;
 import org.burntgameproductions.PathToMani.game.ManiGame;
@@ -218,27 +218,27 @@ public class AiPilot implements Pilot {
         spd.set(myDestProvider.getDestSpd());
         desiredAngle = angle; // can be improved
       } else {
-        desiredAngle = SolMath.angle(shipPos, dest);
+        desiredAngle = ManiMath.angle(shipPos, dest);
         if (myDestProvider.shouldAvoidBigObjs()) {
           desiredAngle = myMover.getBigObjAvoider().avoid(game, shipPos, dest, desiredAngle);
         }
         float desiredSpdLen = myDestProvider.getDesiredSpdLen();
         float spdLenDiff = engine.getAcc() * ts;
-        float spdLen = SolMath.approach(spd.len(), desiredSpdLen, spdLenDiff);
+        float spdLen = ManiMath.approach(spd.len(), desiredSpdLen, spdLenDiff);
         if (toDestLen < spdLen) spdLen = toDestLen;
-        SolMath.fromAl(spd, desiredAngle, spdLen);
+        ManiMath.fromAl(spd, desiredAngle, spdLen);
       }
-      angle = SolMath.approachAngle(angle, desiredAngle, engine.getMaxRotSpd() * ts);
+      angle = ManiMath.approachAngle(angle, desiredAngle, engine.getMaxRotSpd() * ts);
     }
 
     farShip.setSpd(spd);
     farShip.setAngle(angle);
 
-    Vector2 newPos = SolMath.getVec(spd);
+    Vector2 newPos = ManiMath.getVec(spd);
     newPos.scl(ts);
     newPos.add(shipPos);
     farShip.setPos(newPos);
-    SolMath.free(newPos);
+    ManiMath.free(newPos);
   }
 
   @Override

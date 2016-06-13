@@ -3,7 +3,7 @@
 package org.burntgameproductions.PathToMani.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
@@ -60,14 +60,14 @@ public class ExplorerDestProvider implements MoveDestProvider {
   private void calcRelDest(HullConfig hullConfig) {
     List<Vector2> lps = myPlanet.getLandingPlaces();
     if (lps.size() > 0) {
-      myRelDest = new Vector2(SolMath.elemRnd(lps));
+      myRelDest = new Vector2(ManiMath.elemRnd(lps));
       float len = myRelDest.len();
       float aboveGround = hullConfig.getType() == HullConfig.Type.BIG ? Const.ATM_HEIGHT * .75f : .75f * hullConfig.getSize();
       myRelDest.scl((len + aboveGround)/len);
       myDestIsLanding = true;
     } else {
       myRelDest = new Vector2();
-      SolMath.fromAl(myRelDest, SolMath.rnd(180), myPlanet.getGroundHeight() + .3f * Const.ATM_HEIGHT);
+      ManiMath.fromAl(myRelDest, ManiMath.rnd(180), myPlanet.getGroundHeight() + .3f * Const.ATM_HEIGHT);
       myDestIsLanding = false;
     }
   }
@@ -89,7 +89,7 @@ public class ExplorerDestProvider implements MoveDestProvider {
         myAwaitOnPlanet -= game.getTimeStep();
       } else {
         ArrayList<Planet> ps = mySys.getPlanets();
-        int pIdx = SolMath.intRnd(allowedSz());
+        int pIdx = ManiMath.intRnd(allowedSz());
         myPlanet = ps.get(pIdx);
         calcRelDest(hullConfig);
         myAwaitOnPlanet = MAX_AWAIT_ON_PLANET;
@@ -100,7 +100,7 @@ public class ExplorerDestProvider implements MoveDestProvider {
       calcRelDest(hullConfig);
     }
 
-    SolMath.toWorld(myDest, myRelDest, myPlanet.getAngle(), myPlanet.getPos(), false);
+    ManiMath.toWorld(myDest, myRelDest, myPlanet.getAngle(), myPlanet.getPos(), false);
     myPlanet.calcSpdAtPos(myDestSpd, myDest);
   }
 

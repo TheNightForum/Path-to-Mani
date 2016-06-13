@@ -3,8 +3,8 @@
 package org.burntgameproductions.PathToMani.game;
 
 import com.badlogic.gdx.graphics.Color;
-import org.burntgameproductions.PathToMani.common.SolColorUtil;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiColorUtil;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 
 public class HsbSpan extends ColorSpan {
   private final float[] myHsbaStart;
@@ -17,12 +17,12 @@ public class HsbSpan extends ColorSpan {
 
   @Override
   public void set(float perc, Color col) {
-    perc = SolMath.clamp(perc, 0, 1);
+    perc = ManiMath.clamp(perc, 0, 1);
     float hue = midVal(0, perc);
     float sat = midVal(1, perc);
     float br = midVal(2, perc);
     float a = midVal(3, perc);
-    SolColorUtil.fromHSB(hue, sat, br, a, col);
+    ManiColorUtil.fromHSB(hue, sat, br, a, col);
   }
 
   private float midVal(int idx, float perc) {

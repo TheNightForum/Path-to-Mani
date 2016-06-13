@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.*;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
@@ -50,11 +50,11 @@ public class
     if (myConfig.stretch) {
       dra = new MyDra(this, myConfig.tex, myConfig.texSz);
     } else {
-      dra = new RectSprite(myConfig.tex, myConfig.texSz, myConfig.origin.x, myConfig.origin.y, new Vector2(), DraLevel.PROJECTILES, 0, 0, SolColor.W, false);
+      dra = new RectSprite(myConfig.tex, myConfig.texSz, myConfig.origin.x, myConfig.origin.y, new Vector2(), DraLevel.PROJECTILES, 0, 0, ManiColor.W, false);
     }
     myDras.add(dra);
     float spdLen = myConfig.spdLen;
-    if (varySpd) spdLen *= SolMath.rnd(.9f, 1.1f);
+    if (varySpd) spdLen *= ManiMath.rnd(.9f, 1.1f);
     if (myConfig.physSize > 0) {
       myBody = new BallProjectileBody(game, muzzlePos, angle, this, gunSpd, spdLen, myConfig);
     } else {
@@ -64,7 +64,7 @@ public class
     myBodyEffect = buildEffect(game, myConfig.bodyEffect, DraLevel.PART_BG_0, null, true);
     myTrailEffect = buildEffect(game, myConfig.trailEffect, DraLevel.PART_BG_0, null, false);
     if (myConfig.lightSz > 0) {
-      Color col = SolColor.W;
+      Color col = ManiColor.W;
       if (myBodyEffect != null) col = myConfig.bodyEffect.tint;
       myLightSrc = new LightSrc(game, myConfig.lightSz, true, 1f, new Vector2(), col);
       myLightSrc.collectDras(myDras);
@@ -112,10 +112,10 @@ public class
     if (ne == null) return;
     float desiredAngle = myBody.getDesiredAngle(ne);
     float angle = getAngle();
-    float diffAngle = SolMath.norm(desiredAngle - angle);
-    if (SolMath.abs(diffAngle) < MIN_ANGLE_TO_GUIDE) return;
+    float diffAngle = ManiMath.norm(desiredAngle - angle);
+    if (ManiMath.abs(diffAngle) < MIN_ANGLE_TO_GUIDE) return;
     float rot = ts * myConfig.guideRotSpd;
-    diffAngle = SolMath.clamp(diffAngle, -rot, rot);
+    diffAngle = ManiMath.clamp(diffAngle, -rot, rot);
     myBody.changeAngle(diffAngle);
   }
 
@@ -297,7 +297,7 @@ public class
       Vector2 pos = myProjectile.getPosition();
       float w = myProjectile.getSpd().len() * game.getTimeStep();
       if (w < 4 * h) w = 4 * h;
-      drawer.draw(myTex, w, h, w, h / 2, pos.x, pos.y, SolMath.angle(myProjectile.getSpd()), SolColor.LG);
+      drawer.draw(myTex, w, h, w, h / 2, pos.x, pos.y, ManiMath.angle(myProjectile.getSpd()), ManiColor.LG);
     }
 
     @Override

@@ -4,7 +4,7 @@ package org.burntgameproductions.PathToMani.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.DmgType;
@@ -41,7 +41,7 @@ public class PlanetSprites implements ManiObject {
 
   private void setDependentParams() {
     float angleToPlanet = myPlanet.getAngle() + myRelAngleToPlanet;
-    SolMath.fromAl(myPos, angleToPlanet, myDist, true);
+    ManiMath.fromAl(myPos, angleToPlanet, myDist, true);
     myPos.add(myPlanet.getPos());
     myAngle = angleToPlanet + 90;
   }

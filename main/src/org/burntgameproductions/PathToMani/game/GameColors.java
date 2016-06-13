@@ -6,7 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import org.burntgameproductions.PathToMani.common.SolColorUtil;
+import org.burntgameproductions.PathToMani.common.ManiColorUtil;
 import org.burntgameproductions.PathToMani.files.FileManager;
 
 import java.util.HashMap;
@@ -47,7 +47,7 @@ public class GameColors {
 
     public Color load(String s) {
         if (s.contains(" ")) {
-            return SolColorUtil.load(s);
+            return ManiColorUtil.load(s);
         }
 
         return get(s);

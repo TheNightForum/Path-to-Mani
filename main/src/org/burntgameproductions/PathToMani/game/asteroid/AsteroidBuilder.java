@@ -9,11 +9,11 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.common.SolColor;
+import org.burntgameproductions.PathToMani.common.ManiColor;
 import org.burntgameproductions.PathToMani.game.PathLoader;
 import org.burntgameproductions.PathToMani.game.RemoveController;
 import org.burntgameproductions.PathToMani.game.ManiGame;
@@ -36,14 +36,14 @@ public class AsteroidBuilder {
 
   // doesn't consume pos
   public Asteroid buildNew(ManiGame game, Vector2 pos, Vector2 spd, float sz, RemoveController removeController) {
-    float rotSpd = SolMath.rnd(MAX_A_ROT_SPD);
-    return build(game, pos, SolMath.elemRnd(myTexs), sz, SolMath.rnd(180), rotSpd, spd, removeController);
+    float rotSpd = ManiMath.rnd(MAX_A_ROT_SPD);
+    return build(game, pos, ManiMath.elemRnd(myTexs), sz, ManiMath.rnd(180), rotSpd, spd, removeController);
   }
 
   // doesn't consume pos
   public FarAsteroid buildNewFar(Vector2 pos, Vector2 spd, float sz, RemoveController removeController) {
-    float rotSpd = SolMath.rnd(MAX_A_ROT_SPD);
-    return new FarAsteroid(SolMath.elemRnd(myTexs), new Vector2(pos), SolMath.rnd(180), removeController, sz, new Vector2(spd), rotSpd);
+    float rotSpd = ManiMath.rnd(MAX_A_ROT_SPD);
+    return new FarAsteroid(ManiMath.elemRnd(myTexs), new Vector2(pos), ManiMath.rnd(180), removeController, sz, new Vector2(spd), rotSpd);
   }
 
   // doesn't consume pos
@@ -56,7 +56,7 @@ public class AsteroidBuilder {
         BodyDef.BodyType.DynamicBody, pos, angle, dras, DENSITY, DraLevel.BODIES, tex);
     } else {
       body = buildBall(game, pos, angle, sz/2, DENSITY, false);
-      RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.BODIES, 0, 0, SolColor.W, false);
+      RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.BODIES, 0, 0, ManiColor.W, false);
       dras.add(s);
     }
     body.setAngularVelocity(rotSpd);
@@ -75,7 +75,7 @@ public class AsteroidBuilder {
   public static Body buildBall(ManiGame game, Vector2 pos, float angle, float rad, float density, boolean sensor) {
     BodyDef bd = new BodyDef();
     bd.type = BodyDef.BodyType.DynamicBody;
-    bd.angle = angle * SolMath.degRad;
+    bd.angle = angle * ManiMath.degRad;
     bd.angularDamping = 0;
     bd.position.set(pos);
     bd.linearDamping = 0;

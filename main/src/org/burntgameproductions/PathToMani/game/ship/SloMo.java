@@ -4,7 +4,7 @@ package org.burntgameproductions.PathToMani.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.AbilityCommonConfig;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
@@ -48,7 +48,7 @@ public class SloMo implements ShipAbility {
       return true;
     }
     float ts = game.getTimeStep();
-    myFactor = SolMath.approach(myFactor, 1, SLO_MO_CHG_SPD * ts);
+    myFactor = ManiMath.approach(myFactor, 1, SLO_MO_CHG_SPD * ts);
     return false;
   }
 

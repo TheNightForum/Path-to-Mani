@@ -3,7 +3,7 @@
 package org.burntgameproductions.PathToMani.game.maze;
 
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.Faction;
 import org.burntgameproductions.PathToMani.game.input.Pilot;
 import org.burntgameproductions.PathToMani.Const;
@@ -28,7 +28,7 @@ public class MazeBuilder {
     myInnerRad = maze.getRadius() - BORDER;
     mySz = (int) (myInnerRad * 2 / TILE_SZ);
     myMazePos = maze.getPos();
-    myMazeAngle = SolMath.rnd(180);
+    myMazeAngle = ManiMath.rnd(180);
 
     MazeLayout layout = buildMaze(game, maze);
     buildEnemies(game, maze, layout);
@@ -54,8 +54,8 @@ public class MazeBuilder {
           } else {
             tiles = inner ? config.innerPasses : config.borderPasses;
           }
-          MazeTile tile = SolMath.elemRnd(tiles);
-          MazeTileObject.MyFar mto = new MazeTileObject.MyFar(tile, tileAngle, new Vector2(tilePos), SolMath.test(.5f));
+          MazeTile tile = ManiMath.elemRnd(tiles);
+          MazeTileObject.MyFar mto = new MazeTileObject.MyFar(tile, tileAngle, new Vector2(tilePos), ManiMath.test(.5f));
           game.getObjMan().addFarObjNow(mto);
         }
 
@@ -72,8 +72,8 @@ public class MazeBuilder {
           } else {
             tiles = inner ? config.innerPasses : config.borderPasses;
           }
-          MazeTile tile = SolMath.elemRnd(tiles);
-          MazeTileObject.MyFar mto = new MazeTileObject.MyFar(tile, tileAngle, new Vector2(tilePos), SolMath.test(.5f));
+          MazeTile tile = ManiMath.elemRnd(tiles);
+          MazeTileObject.MyFar mto = new MazeTileObject.MyFar(tile, tileAngle, new Vector2(tilePos), ManiMath.test(.5f));
           game.getObjMan().addFarObjNow(mto);
         }
       }
@@ -83,7 +83,7 @@ public class MazeBuilder {
 
   private Vector2 cellPos(int col, int row, float xOffset, float yOffset) {
     Vector2 res = new Vector2((col - mySz / 2) * TILE_SZ + xOffset, (row - mySz / 2) * TILE_SZ + yOffset);
-    SolMath.rotate(res, myMazeAngle);
+    ManiMath.rotate(res, myMazeAngle);
     res.add(myMazePos);
     return res;
   }
@@ -91,12 +91,12 @@ public class MazeBuilder {
   private void buildEnemies(ManiGame game, Maze maze, MazeLayout layout) {
     MazeConfig config = maze.getConfig();
     float dist = maze.getRadius() - BORDER / 2;
-    float circleLen = dist * SolMath.PI * 2;
+    float circleLen = dist * ManiMath.PI * 2;
     for (ShipConfig e : config.outerEnemies) {
       int count = (int) (e.density * circleLen);
       for (int i = 0; i < count; i++) {
         Vector2 pos = new Vector2();
-        SolMath.fromAl(pos, SolMath.rnd(180), dist);
+        ManiMath.fromAl(pos, ManiMath.rnd(180), dist);
         pos.add(myMazePos);
         buildEnemy(pos, game, e, false);
       }
@@ -105,21 +105,21 @@ public class MazeBuilder {
     boolean[][] occupiedCells = new boolean[mySz][mySz];
     occupiedCells[mySz/2][mySz/2] = true;
     for (ShipConfig e : config.innerEnemies) {
-      int count = (int) (e.density * myInnerRad * myInnerRad * SolMath.PI);
+      int count = (int) (e.density * myInnerRad * myInnerRad * ManiMath.PI);
       for (int i = 0; i < count; i++) {
         Vector2 pos = getFreeCellPos(occupiedCells);
         if (pos != null) buildEnemy(pos, game, e, true);
       }
     }
-    ShipConfig bossConfig = SolMath.elemRnd(config.bosses);
+    ShipConfig bossConfig = ManiMath.elemRnd(config.bosses);
     Vector2 pos = cellPos(mySz / 2, mySz / 2, 0f, 0f);
     buildEnemy(pos, game, bossConfig, true);
   }
 
   private Vector2 getFreeCellPos(boolean[][] occupiedCells) {
     for (int i = 0; i < 10; i++) {
-      int col = SolMath.intRnd(mySz);
-      int row = SolMath.intRnd(mySz);
+      int col = ManiMath.intRnd(mySz);
+      int row = ManiMath.intRnd(mySz);
       if (occupiedCells[col][row]) continue;
       Vector2 pos = cellPos(col, row, 0f, 0f);
       if (.8f * myInnerRad < pos.dst(myMazePos)) continue;
@@ -130,7 +130,7 @@ public class MazeBuilder {
   }
 
   private void buildEnemy(Vector2 pos, ManiGame game, ShipConfig e, boolean inner) {
-    float angle = SolMath.rnd(180);
+    float angle = ManiMath.rnd(180);
     ShipBuilder sb = game.getShipBuilder();
     float viewDist = Const.AI_DET_DIST;
     if (inner) viewDist = TILE_SZ * 1.25f;

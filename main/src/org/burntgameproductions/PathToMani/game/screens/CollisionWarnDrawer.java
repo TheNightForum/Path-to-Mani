@@ -5,7 +5,7 @@ package org.burntgameproductions.PathToMani.game.screens;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.ship.ManiShip;
@@ -25,18 +25,18 @@ public class CollisionWarnDrawer extends WarnDrawer {
     Vector2 spd = myHero.getSpd();
     float acc = myHero.getAcc();
     float spdLen = spd.len();
-    float spdAngle = SolMath.angle(spd);
+    float spdAngle = ManiMath.angle(spd);
     if (acc <= 0 || spdLen < 2 * acc) return false;
     // t = v/a;
     // s = att/2 = vv/a/2;
     float breakWay = spdLen * spdLen / acc / 2;
     breakWay += 2 * spdLen;
-    Vector2 finalPos = SolMath.getVec(0, 0);
-    SolMath.fromAl(finalPos, spdAngle, breakWay);
+    Vector2 finalPos = ManiMath.getVec(0, 0);
+    ManiMath.fromAl(finalPos, spdAngle, breakWay);
     finalPos.add(pos);
     myWarnCallback.show = false;
     game.getObjMan().getWorld().rayCast(myWarnCallback, pos, finalPos);
-    SolMath.free(finalPos);
+    ManiMath.free(finalPos);
     return myWarnCallback.show;
   }
 

@@ -5,7 +5,7 @@ package org.burntgameproductions.PathToMani.game.ship.hulls;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.Faction;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.gun.GunMount;
@@ -119,21 +119,21 @@ public class Hull {
     }
 
     if (myPlanetBind != null) {
-      Vector2 spd = SolMath.getVec();
+      Vector2 spd = ManiMath.getVec();
       myPlanetBind.setDiff(spd, myPos, true);
       float fps = 1 / game.getTimeStep();
       spd.scl(fps);
       myBody.setLinearVelocity(spd);
-      SolMath.free(spd);
+      ManiMath.free(spd);
       float angleDiff = myPlanetBind.getDesiredAngle() - myAngle;
-      myBody.setAngularVelocity(angleDiff * SolMath.degRad * fps);
+      myBody.setAngularVelocity(angleDiff * ManiMath.degRad * fps);
     }
   }
 
   private void setParamsFromBody() {
     myPos.set(myBody.getPosition());
-    myAngle = myBody.getAngle() * SolMath.radDeg;
-    myRotSpd = myBody.getAngularVelocity() * SolMath.radDeg;
+    myAngle = myBody.getAngle() * ManiMath.radDeg;
+    myRotSpd = myBody.getAngularVelocity() * ManiMath.radDeg;
     mySpd.set(myBody.getLinearVelocity());
   }
 

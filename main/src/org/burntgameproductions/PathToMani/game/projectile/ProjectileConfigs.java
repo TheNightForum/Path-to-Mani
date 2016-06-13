@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.particle.EffectConfig;
 import org.burntgameproductions.PathToMani.game.sound.SoundManager;
 import org.burntgameproductions.PathToMani.files.FileManager;
@@ -46,7 +46,7 @@ public class ProjectileConfigs {
       EffectConfig collisionEffectBg = EffectConfig.load(sh.get("collisionEffectBg"), effectTypes, textureManager, configFile, cols);
       float guideRotSpd = sh.getFloat("guideRotSpd", 0);
       boolean zeroAbsSpd = sh.getBoolean("zeroAbsSpd", false);
-      Vector2 origin = SolMath.readV2(sh.getString("texOrig", "0 0"));
+      Vector2 origin = ManiMath.readV2(sh.getString("texOrig", "0 0"));
       float acc = sh.getFloat("acceleration", 0);
       String workSoundDir = sh.getString("workSound", "");
       ManiSound workSound = workSoundDir.isEmpty() ? null : soundManager.getLoopedSound(workSoundDir, configFile);

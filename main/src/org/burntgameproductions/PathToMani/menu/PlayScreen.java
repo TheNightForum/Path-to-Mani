@@ -1,14 +1,10 @@
 package org.burntgameproductions.PathToMani.menu;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.game.DebugOptions;
 import org.burntgameproductions.PathToMani.game.sound.MusicManager;
 import org.burntgameproductions.PathToMani.ui.ManiInputManager;
 import org.burntgameproductions.PathToMani.ui.ManiUiControl;
@@ -106,7 +102,7 @@ public class PlayScreen implements ManiUiScreen {
   @Override
   public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
     float sz = .55f;
-    //if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(myTitleTex, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, SolColor.W);
+    //if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(myTitleTex, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
   }
 
   @Override

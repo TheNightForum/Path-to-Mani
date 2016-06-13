@@ -3,7 +3,7 @@
 package org.burntgameproductions.PathToMani.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.game.ShipConfig;
 import org.burntgameproductions.PathToMani.game.ManiGame;
@@ -48,10 +48,10 @@ public class StillGuard implements MoveDestProvider {
   @Override
   public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, ManiShip nearestEnemy) {
     if (myPlanetBind != null) {
-      Vector2 diff = SolMath.getVec();
+      Vector2 diff = ManiMath.getVec();
       myPlanetBind.setDiff(diff, myDest, false);
       myDest.add(diff);
-      SolMath.free(diff);
+      ManiMath.free(diff);
       myPlanetBind.getPlanet().calcSpdAtPos(myDestSpd, myDest);
     }
   }

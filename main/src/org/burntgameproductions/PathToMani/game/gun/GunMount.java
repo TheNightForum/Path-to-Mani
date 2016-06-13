@@ -3,7 +3,7 @@
 package org.burntgameproductions.PathToMani.game.gun;
 
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.Faction;
 import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
@@ -20,7 +20,7 @@ import java.util.List;
 public class GunMount {
   private final Vector2 myRelPos;
   private final boolean myFixed;
-  private SolGun myGun;
+  private ManiGun myGun;
   private boolean myDetected;
   private float myRelGunAngle;
 
@@ -44,7 +44,7 @@ public class GunMount {
       float dst = creatorPos.dst(nePos) - creator.getHull().config.getApproxRadius() - nearestEnemy.getHull().config.getApproxRadius();
       float detDst = game.getPlanetMan().getNearestPlanet().isNearGround(creatorPos) ? Const.AUTO_SHOOT_GROUND : Const.AUTO_SHOOT_SPACE;
       if (dst < detDst) {
-        Vector2 mountPos = SolMath.toWorld(myRelPos, shipAngle, creatorPos);
+        Vector2 mountPos = ManiMath.toWorld(myRelPos, shipAngle, creatorPos);
         boolean player = creator.getPilot().isPlayer();
         float shootAngle = Shooter.calcShootAngle(mountPos, creator.getSpd(), nePos, nearestEnemy.getSpd(), myGun.getConfig().clipConf.projConfig.spdLen, player);
         if (shootAngle == shootAngle) {
@@ -52,7 +52,7 @@ public class GunMount {
           myDetected = true;
           if (player) game.getMountDetectDrawer().setNe(nearestEnemy);
         }
-        SolMath.free(mountPos);
+        ManiMath.free(mountPos);
       }
     }
 
@@ -75,7 +75,7 @@ public class GunMount {
     }
     if (gunItem != null) {
       if (gunItem.config.fixed != myFixed) throw new AssertionError("tried to set gun to incompatible mount");
-      myGun = new SolGun(game, gunItem, myRelPos, underShip);
+      myGun = new ManiGun(game, gunItem, myRelPos, underShip);
       myGun.getItem().setEquipped(slotNr);
       List<Dra> dras1 = myGun.getDras();
       dras.addAll(dras1);

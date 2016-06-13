@@ -4,7 +4,7 @@ package org.burntgameproductions.PathToMani.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.Bound;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.HardnessCalc;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.game.ManiGame;
@@ -48,7 +48,7 @@ public class Planet {
     myObjsCreated = objsCreated;
     myPos = new Vector2();
     mySpd = new Vector2();
-    float grav = SolMath.rnd(config.minGrav, config.maxGrav);
+    float grav = ManiMath.rnd(config.minGrav, config.maxGrav);
     myGravConst = grav * myGroundHeight * myGroundHeight;
     myGroundDps = HardnessCalc.getGroundDps(myConfig, grav);
     myAtmDps = HardnessCalc.getAtmDps(myConfig);
@@ -71,11 +71,11 @@ public class Planet {
   }
 
   private void setSecondaryParams() {
-    SolMath.fromAl(myPos, myAngleToSys, myDist, true);
+    ManiMath.fromAl(myPos, myAngleToSys, myDist, true);
     myPos.add(mySys.getPos());
-    float spdLen = SolMath.angleToArc(myToSysRotSpd, myDist);
+    float spdLen = ManiMath.angleToArc(myToSysRotSpd, myDist);
     float spdAngle = myAngleToSys + 90;
-    SolMath.fromAl(mySpd, spdAngle, spdLen);
+    ManiMath.fromAl(mySpd, spdAngle, spdLen);
   }
 
   private void fillLangingPlaces(ManiGame game) {
@@ -107,28 +107,28 @@ public class Planet {
 
   @Bound
   public Vector2 getAdjustedEffectSpd(Vector2 pos, Vector2 spd) {
-    Vector2 r = SolMath.getVec(spd);
+    Vector2 r = ManiMath.getVec(spd);
     if (myConfig.skyConfig == null) {
       return r;
     }
-    Vector2 up = SolMath.distVec(myPos, pos);
+    Vector2 up = ManiMath.distVec(myPos, pos);
     float dst = up.len();
     if (dst == 0 || getFullHeight() < dst) {
-      SolMath.free(up);
+      ManiMath.free(up);
       return r;
     }
     float smokeConst = 1.2f * myGravConst;
     if (dst < myGroundHeight) {
       up.scl(smokeConst / dst / myGroundHeight / myGroundHeight);
       r.set(up);
-      SolMath.free(up);
+      ManiMath.free(up);
       return r;
     }
     float spdPerc = (dst - myGroundHeight) / Const.ATM_HEIGHT;
     r.scl(spdPerc);
     up.scl(smokeConst / dst / dst / dst);
     r.add(up);
-    SolMath.free(up);
+    ManiMath.free(up);
     return r;
   }
 
@@ -177,11 +177,11 @@ public class Planet {
   }
 
   public void calcSpdAtPos(Vector2 spd, Vector2 pos) {
-    Vector2 toPos = SolMath.distVec(myPos, pos);
-    float fromPlanetAngle = SolMath.angle(toPos);
-    float hSpdLen = SolMath.angleToArc(myRotSpd, toPos.len());
-    SolMath.free(toPos);
-    SolMath.fromAl(spd, fromPlanetAngle + 90, hSpdLen);
+    Vector2 toPos = ManiMath.distVec(myPos, pos);
+    float fromPlanetAngle = ManiMath.angle(toPos);
+    float hSpdLen = ManiMath.angleToArc(myRotSpd, toPos.len());
+    ManiMath.free(toPos);
+    ManiMath.fromAl(spd, fromPlanetAngle + 90, hSpdLen);
     spd.add(mySpd);
   }
 

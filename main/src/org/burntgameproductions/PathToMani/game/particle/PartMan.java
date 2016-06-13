@@ -4,12 +4,12 @@ package org.burntgameproductions.PathToMani.game.particle;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
 import org.burntgameproductions.PathToMani.game.dra.DrasObject;
 import org.burntgameproductions.PathToMani.game.item.Shield;
-import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.dra.RectSprite;
 import org.burntgameproductions.PathToMani.game.ship.hulls.Hull;
@@ -36,10 +36,10 @@ public class PartMan {
     int count = (int) (SZ_TO_BLINK_COUNT * sz * sz);
     for (int i = 0; i < count; i++) {
       Vector2 lightPos = new Vector2();
-      SolMath.fromAl(lightPos, SolMath.rnd(180), SolMath.rnd(0, sz / 2));
+      ManiMath.fromAl(lightPos, ManiMath.rnd(180), ManiMath.rnd(0, sz / 2));
       lightPos.add(pos);
-      float lightSz = SolMath.rnd(.5f, 1) * EXPL_LIGHT_MAX_SZ;
-      float fadeTime = SolMath.rnd(.5f, 1) * EXPL_LIGHT_MAX_FADE_TIME;
+      float lightSz = ManiMath.rnd(.5f, 1) * EXPL_LIGHT_MAX_SZ;
+      float fadeTime = ManiMath.rnd(.5f, 1) * EXPL_LIGHT_MAX_FADE_TIME;
       LightObject light = new LightObject(game, lightSz, true, 1, lightPos, fadeTime, game.getCols().fire);
       game.getObjMan().addObjDelayed(light);
     }
@@ -48,7 +48,7 @@ public class PartMan {
   public void shieldSpark(ManiGame game, Vector2 collPos, Hull hull, TextureAtlas.AtlasRegion shieldTex, float perc) {
     if (perc <= 0) return;
     Vector2 pos = hull.getPos();
-    float angle = SolMath.angle(pos, collPos);
+    float angle = ManiMath.angle(pos, collPos);
     float sz = hull.config.getSize() * Shield.SIZE_PERC * 2;
     float alphaSum = perc * 3;
     RectSprite s = null;
@@ -56,7 +56,7 @@ public class PartMan {
     for (int i = 0; i < count; i++) {
       s = blip(game, pos, angle, sz, .5f, hull.getSpd(), shieldTex);
     }
-    float lastTint = SolMath.clamp(alphaSum - (int) alphaSum);
+    float lastTint = ManiMath.clamp(alphaSum - (int) alphaSum);
     if (s != null) {
       s.tint.a = lastTint;
       s.baseAlpha = lastTint;
@@ -66,7 +66,7 @@ public class PartMan {
   public RectSprite blip(ManiGame game, Vector2 pos, float angle, float sz, float fadeTime, Vector2 spd,
                          TextureAtlas.AtlasRegion tex)
   {
-    RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.PART_FG_0, angle, 0, SolColor.W, true);
+    RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.PART_FG_0, angle, 0, ManiColor.W, true);
     ArrayList<Dra> dras = new ArrayList<Dra>();
     dras.add(s);
     DrasObject o = new DrasObject(dras, new Vector2(pos), new Vector2(spd), null, false, false);

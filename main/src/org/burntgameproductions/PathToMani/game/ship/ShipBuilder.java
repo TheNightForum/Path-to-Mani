@@ -10,8 +10,8 @@ import com.badlogic.gdx.physics.box2d.joints.PrismaticJoint;
 import com.badlogic.gdx.physics.box2d.joints.PrismaticJointDef;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.files.FileManager;
 import org.burntgameproductions.PathToMani.files.HullConfigManager;
 import org.burntgameproductions.PathToMani.game.Faction;
@@ -112,7 +112,7 @@ public class ShipBuilder {
     if (cc.infinite) return;
     float clipUseTime = cc.size * gc.timeBetweenShots + gc.reloadTime;
     float lifeTime = pilot.getFaction() == Faction.LAANI ? AVG_ALLY_LIFE_TIME : AVG_BATTLE_TIME;
-    int count = 1 + (int) (lifeTime / clipUseTime) + SolMath.intRnd(0, 2);
+    int count = 1 + (int) (lifeTime / clipUseTime) + ManiMath.intRnd(0, 2);
     for (int i = 0; i < count; i++) {
       if (ic.canAdd(cc.example)) ic.add(cc.example.copy());
     }
@@ -127,7 +127,7 @@ public class ShipBuilder {
           count = 3;
         } else {
           float lifeTime = pilot.getFaction() == Faction.LAANI ? AVG_ALLY_LIFE_TIME : AVG_BATTLE_TIME;
-          count = (int) (lifeTime / hc.getAbility().getRechargeTime() * SolMath.rnd(.3f, 1));
+          count = (int) (lifeTime / hc.getAbility().getRechargeTime() * ManiMath.rnd(.3f, 1));
         }
         for (int i = 0; i < count; i++) ic.add(ex.copy());
       }
@@ -210,7 +210,7 @@ public class ShipBuilder {
     Fixture base = getBase(hullConfig.hasBase(), body);
     Hull hull = new Hull(game, hullConfig, body, gunMount0, gunMount1, base, lCs, life, beacons, doors, shieldFixture);
     body.setLinearVelocity(spd);
-    body.setAngularVelocity(rotSpd * SolMath.degRad);
+    body.setAngularVelocity(rotSpd * ManiMath.degRad);
     return hull;
   }
 
@@ -229,7 +229,7 @@ public class ShipBuilder {
     World w = game.getObjMan().getWorld();
     TextureAtlas.AtlasRegion tex = game.getTexMan().getTex("smallGameObjs/door", null);
     PrismaticJoint joint = createDoorJoint(body, w, pos, doorRelPos, angle);
-    RectSprite s = new RectSprite(tex, Door.DOOR_LEN, 0, 0, new Vector2(doorRelPos), DraLevel.BODIES, 0, 0, SolColor.W, false);
+    RectSprite s = new RectSprite(tex, Door.DOOR_LEN, 0, 0, new Vector2(doorRelPos), DraLevel.BODIES, 0, 0, ManiColor.W, false);
     return new Door(joint, s);
   }
 
@@ -251,10 +251,10 @@ public class ShipBuilder {
   private Body createDoorBody(World world, Vector2 shipPos, Vector2 doorRelPos, float shipAngle) {
     BodyDef bd = new BodyDef();
     bd.type = BodyDef.BodyType.DynamicBody;
-    bd.angle = shipAngle * SolMath.degRad;
+    bd.angle = shipAngle * ManiMath.degRad;
     bd.angularDamping = 0;
     bd.linearDamping = 0;
-    SolMath.toWorld(bd.position, doorRelPos, shipAngle, shipPos, false);
+    ManiMath.toWorld(bd.position, doorRelPos, shipAngle, shipPos, false);
     Body body = world.createBody(bd);
     PolygonShape shape = new PolygonShape();
     shape.setAsBox(Door.DOOR_LEN/2, .03f);
@@ -266,7 +266,7 @@ public class ShipBuilder {
   private static Fixture getBase(boolean hasBase, Body body) {
     if (!hasBase) return null;
     Fixture base = null;
-    Vector2 v = SolMath.getVec();
+    Vector2 v = ManiMath.getVec();
     float lowestX = Float.MAX_VALUE;
     for (Fixture f : body.getFixtureList()) {
       Shape s = f.getShape();
@@ -281,7 +281,7 @@ public class ShipBuilder {
         }
       }
     }
-    SolMath.free(v);
+    ManiMath.free(v);
     return base;
   }
 

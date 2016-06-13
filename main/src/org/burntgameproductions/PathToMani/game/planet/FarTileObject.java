@@ -3,7 +3,7 @@
 package org.burntgameproductions.PathToMani.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.FarObj;
 import org.burntgameproductions.PathToMani.game.ManiGame;
@@ -22,7 +22,7 @@ public class FarTileObject implements FarObj {
     myToPlanetAngle = toPlanetAngle;
     myDist = dist;
     mySize = size;
-    myRadius = SolMath.sqrt(2) * mySize;
+    myRadius = ManiMath.sqrt(2) * mySize;
     myTile = tile;
     myPos = new Vector2();
   }
@@ -40,7 +40,7 @@ public class FarTileObject implements FarObj {
   @Override
   public void update(ManiGame game) {
     if (game.getPlanetMan().getNearestPlanet() == myPlanet) {
-      SolMath.fromAl(myPos, myPlanet.getAngle() + myToPlanetAngle, myDist);
+      ManiMath.fromAl(myPos, myPlanet.getAngle() + myToPlanetAngle, myDist);
       myPos.add(myPlanet.getPos());
     }
   }

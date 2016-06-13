@@ -3,7 +3,7 @@
 package org.burntgameproductions.PathToMani.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.gun.GunMount;
 import org.burntgameproductions.PathToMani.game.projectile.ProjectileConfig;
 import org.burntgameproductions.PathToMani.game.gun.GunItem;
@@ -53,21 +53,21 @@ public class Shooter {
     }
 
     Vector2 gunRelPos = ship.getHull().getGunMount(g == g2).getRelPos();
-    Vector2 gunPos = SolMath.toWorld(gunRelPos, ship.getAngle(), shipPos);
+    Vector2 gunPos = ManiMath.toWorld(gunRelPos, ship.getAngle(), shipPos);
     float shootAngle = calcShootAngle(gunPos, ship.getSpd(), enemyPos, enemySpd, projSpd, false);
-    SolMath.free(gunPos);
+    ManiMath.free(gunPos);
     if (shootAngle != shootAngle) return;
     {
       // ok this is a hack
-      float toShip = SolMath.angle(enemyPos, shipPos);
-      float toGun = SolMath.angle(enemyPos, gunPos);
+      float toShip = ManiMath.angle(enemyPos, shipPos);
+      float toGun = ManiMath.angle(enemyPos, gunPos);
       shootAngle += toGun - toShip;
     }
     float shipAngle = ship.getAngle();
-    float maxAngleDiff = SolMath.angularWidthOfSphere(enemyApproxRad, toEnemyDst) + 10f;
+    float maxAngleDiff = ManiMath.angularWidthOfSphere(enemyApproxRad, toEnemyDst) + 10f;
     ProjectileConfig projConfig = g.config.clipConf.projConfig;
     if (projSpd > 0 && projConfig.guideRotSpd > 0) maxAngleDiff += projConfig.guideRotSpd * toEnemyDst / projSpd;
-    if (SolMath.angleDiff(shootAngle, shipAngle) < maxAngleDiff) {
+    if (ManiMath.angleDiff(shootAngle, shipAngle) < maxAngleDiff) {
       myShoot = true;
       myShoot2 = true;
       return;
@@ -119,30 +119,30 @@ public class Shooter {
   public static float calcShootAngle(Vector2 gunPos, Vector2 gunSpd, Vector2 ePos, Vector2 eSpd, float projSpd,
     boolean sharp)
   {
-    Vector2 eSpdShortened = SolMath.getVec(eSpd);
+    Vector2 eSpdShortened = ManiMath.getVec(eSpd);
     if (!sharp) eSpdShortened.scl(E_SPD_PERC);
-    Vector2 relESpd = SolMath.distVec(gunSpd, eSpdShortened);
-    SolMath.free(eSpdShortened);
-    float rotAngle = SolMath.angle(relESpd);
+    Vector2 relESpd = ManiMath.distVec(gunSpd, eSpdShortened);
+    ManiMath.free(eSpdShortened);
+    float rotAngle = ManiMath.angle(relESpd);
     float v = relESpd.len();
     float v2 = projSpd;
-    SolMath.free(relESpd);
-    Vector2 toE = SolMath.distVec(gunPos, ePos);
-    SolMath.rotate(toE, -rotAngle);
+    ManiMath.free(relESpd);
+    Vector2 toE = ManiMath.distVec(gunPos, ePos);
+    ManiMath.rotate(toE, -rotAngle);
     float x = toE.x;
     float y = toE.y;
     float a = v * v - v2 * v2;
     float b = 2 * x * v;
     float c = x * x + y * y;
-    float t = SolMath.genQuad(a, b, c);
+    float t = ManiMath.genQuad(a, b, c);
     float res;
     if (t != t) {
       res = Float.NaN;
     } else {
       toE.x += t * v;
-      res = SolMath.angle(toE) + rotAngle;
+      res = ManiMath.angle(toE) + rotAngle;
     }
-    SolMath.free(toE);
+    ManiMath.free(toE);
     return res;
   }
 }

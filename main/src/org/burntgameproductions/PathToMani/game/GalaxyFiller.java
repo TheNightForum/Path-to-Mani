@@ -4,7 +4,7 @@ package org.burntgameproductions.PathToMani.game;
 
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.input.*;
 import org.burntgameproductions.PathToMani.game.item.TradeConfig;
 import org.burntgameproductions.PathToMani.game.maze.Maze;
@@ -28,20 +28,20 @@ public class GalaxyFiller {
     float angleToSun;
     if (mainStation) {
       p = planets.get(planets.size() - 2);
-      angleToSun = p.getAngleToSys() + 20 * SolMath.toInt(p.getToSysRotSpd() > 0);
+      angleToSun = p.getAngleToSys() + 20 * ManiMath.toInt(p.getToSysRotSpd() > 0);
     } else {
-      int pIdx = SolMath.intRnd(planets.size() - 1);
+      int pIdx = ManiMath.intRnd(planets.size() - 1);
       p = planets.get(pIdx);
       angleToSun = 0;
       for (int i = 0; i < 10; i++) {
-        angleToSun = SolMath.rnd(180);
+        angleToSun = ManiMath.rnd(180);
         if (!angles.isConsumed(angleToSun, STATION_CONSUME_SECTOR)) break;
       }
     }
     angles.add(angleToSun, STATION_CONSUME_SECTOR);
     float stationDist = p.getDist() + p.getFullHeight() + Const.PLANET_GAP;
     Vector2 stationPos = new Vector2();
-    SolMath.fromAl(stationPos, angleToSun, stationDist);
+    ManiMath.fromAl(stationPos, angleToSun, stationDist);
     stationPos.add(p.getSys().getPos());
     return stationPos;
   }
@@ -70,7 +70,7 @@ public class GalaxyFiller {
       }
     }
     Pilot pilot = new AiPilot(dp, true, faction, true, "something", detectionDist);
-    float angle = mainStation ? 0 : SolMath.rnd(180);
+    float angle = mainStation ? 0 : ManiMath.rnd(180);
     boolean hasRepairer;
     hasRepairer = faction == Faction.LAANI;
     int money = cfg.money;
@@ -82,7 +82,7 @@ public class GalaxyFiller {
       for (int i = 0; i < guardConf.density; i++) {
         float guardianAngle = 0;
         for (int j = 0; j < 5; j++) {
-          guardianAngle = SolMath.rnd(180);
+          guardianAngle = ManiMath.rnd(180);
           if (!ca.isConsumed(guardianAngle, guardConf.hull.getApproxRadius())) {
             ca.add(guardianAngle, guardConf.hull.getApproxRadius());
             break;
@@ -158,11 +158,11 @@ public class GalaxyFiller {
     if (a == b) throw new AssertionError("Linking planet to itself");
     Vector2 aPos = StarPort.getDesiredPos(a, b, false);
     StarPort.MyFar sp = new StarPort.MyFar(a, b, aPos, false);
-    SolMath.free(aPos);
+    ManiMath.free(aPos);
     game.getObjMan().addFarObjNow(sp);
     Vector2 bPos = StarPort.getDesiredPos(b, a, false);
     sp = new StarPort.MyFar(b, a, bPos, false);
-    SolMath.free(bPos);
+    ManiMath.free(bPos);
     game.getObjMan().addFarObjNow(sp);
   }
 
@@ -182,7 +182,7 @@ public class GalaxyFiller {
     float sRadius = s.getConfig().hard ? s.getRadius() : s.getInnerRad();
 
     for (int i = 0; i < 100; i++) {
-      SolMath.fromAl(res, SolMath.rnd(180), SolMath.rnd(sRadius));
+      ManiMath.fromAl(res, ManiMath.rnd(180), ManiMath.rnd(sRadius));
       res.add(sPos);
       if (game.isPlaceEmpty(res, true)) return res;
     }
@@ -197,7 +197,7 @@ public class GalaxyFiller {
       pos.set(p.getPos());
       pos.x += p.getFullHeight();
     } else if (DebugOptions.SPAWN_PLACE.isEmpty() && myMainStationPos != null) {
-      SolMath.fromAl(pos, 90, myMainStationHc.getSize() / 2);
+      ManiMath.fromAl(pos, 90, myMainStationHc.getSize() / 2);
       pos.add(myMainStationPos);
     } else if ("maze".equals(DebugOptions.SPAWN_PLACE)) {
       Maze m = game.getPlanetMan().getMazes().get(0);

@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class DecoConfig {
       float density = deco.getFloat("density");
       float szMin = deco.getFloat("szMin");
       float szMax = deco.getFloat("szMax");
-      Vector2 orig = SolMath.readV2(deco, "orig");
+      Vector2 orig = ManiMath.readV2(deco, "orig");
       boolean allowFlip = deco.getBoolean("allowFlip");
       String texName = planetConfig.getString("decoTexs") + "/" + deco.name;
       ArrayList<TextureAtlas.AtlasRegion> texs = textureManager.getPack(texName, configFile);

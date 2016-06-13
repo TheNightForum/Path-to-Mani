@@ -3,7 +3,7 @@
 package org.burntgameproductions.PathToMani.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 import org.burntgameproductions.PathToMani.game.ship.ManiShip;
@@ -19,16 +19,16 @@ public class BattleDestProvider {
 
   public BattleDestProvider() {
     myDest = new Vector2();
-    myCw = SolMath.test(.5f);
+    myCw = ManiMath.test(.5f);
   }
 
   public Vector2 getDest(ManiShip ship, ManiShip enemy, Planet np, boolean battle, float ts,
                          boolean canShootUnfixed, boolean nearGround) {
     myDirChangeAwait -= ts;
     if (myDirChangeAwait <= 0) {
-      int rnd = SolMath.intRnd(0, 2);
+      int rnd = ManiMath.intRnd(0, 2);
       myCw = rnd == 0 ? null : rnd == 1;
-      myDirChangeAwait = SolMath.rnd(MIN_DIR_CHANGE_AWAIT, MAX_DIR_CHANGE_AWAIT);
+      myDirChangeAwait = ManiMath.rnd(MIN_DIR_CHANGE_AWAIT, MAX_DIR_CHANGE_AWAIT);
     }
     if (!battle) throw new AssertionError("can't flee yet!");
     float prefAngle;
@@ -37,19 +37,19 @@ public class BattleDestProvider {
     float enemyApproxRad = enemy.getHull().config.getApproxRadius();
 
     if (nearGround) {
-      prefAngle = SolMath.angle(np.getPos(), enemyPos);
+      prefAngle = ManiMath.angle(np.getPos(), enemyPos);
       myStopNearDest = false;
       float dist = canShootUnfixed ? .9f * Const.AUTO_SHOOT_GROUND : .75f * Const.CAM_VIEW_DIST_GROUND;
       dist += approxRad + enemyApproxRad;
-      SolMath.fromAl(myDest, prefAngle, dist);
+      ManiMath.fromAl(myDest, prefAngle, dist);
       myDest.add(enemyPos);
     } else {
       Vector2 shipPos = ship.getPosition();
-      float a = SolMath.angle(enemyPos, shipPos);
-      if (myCw != null) a += 90 * SolMath.toInt(myCw);
+      float a = ManiMath.angle(enemyPos, shipPos);
+      if (myCw != null) a += 90 * ManiMath.toInt(myCw);
       float len = canShootUnfixed ? .9f * Const.AUTO_SHOOT_SPACE : .5f * Const.CAM_VIEW_DIST_SPACE;
       len += approxRad + enemyApproxRad;
-      SolMath.fromAl(myDest, a, len);
+      ManiMath.fromAl(myDest, a, len);
       myDest.add(enemyPos);
       myStopNearDest = false;
     }

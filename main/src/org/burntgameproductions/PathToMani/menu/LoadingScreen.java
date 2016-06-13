@@ -4,7 +4,7 @@ package org.burntgameproductions.PathToMani.menu;
 
 import org.burntgameproductions.PathToMani.ui.*;
 import org.burntgameproductions.PathToMani.ManiApplication;
-import org.burntgameproductions.PathToMani.common.SolColor;
+import org.burntgameproductions.PathToMani.common.ManiColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +51,7 @@ public class LoadingScreen implements ManiUiScreen {
 
   @Override
   public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
-    uiDrawer.drawString("Loading...", uiDrawer.r/2, .5f, FontSize.MENU, true, SolColor.W);
+    uiDrawer.drawString("Loading...", uiDrawer.r/2, .5f, FontSize.MENU, true, ManiColor.W);
   }
 
   @Override

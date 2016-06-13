@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.joints.PrismaticJoint;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.Faction;
 import org.burntgameproductions.PathToMani.game.FactionManager;
 import org.burntgameproductions.PathToMani.game.ManiObject;
@@ -49,7 +49,7 @@ public class Door {
 
     Vector2 shipPos = ship.getPosition();
     float shipAngle = ship.getAngle();
-    SolMath.toRel(doorPos, myS.getRelPos(), shipAngle, shipPos);
+    ManiMath.toRel(doorPos, myS.getRelPos(), shipAngle, shipPos);
   }
 
   private boolean shouldOpen(ManiGame game, ManiShip ship, Vector2 doorPos) {

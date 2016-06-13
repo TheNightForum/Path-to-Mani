@@ -3,9 +3,9 @@
 package org.burntgameproductions.PathToMani.game.screens;
 
 import org.burntgameproductions.PathToMani.GameOptions;
+import org.burntgameproductions.PathToMani.common.ManiColor;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 import org.burntgameproductions.PathToMani.ManiApplication;
-import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.menu.MenuLayout;
 import org.burntgameproductions.PathToMani.ui.ManiInputManager;
@@ -76,7 +76,7 @@ public class MenuScreen implements ManiUiScreen {
 
   @Override
   public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
-    uiDrawer.draw(uiDrawer.filler, SolColor.UI_BG);
+    uiDrawer.draw(uiDrawer.filler, ManiColor.UI_BG);
   }
 
   @Override

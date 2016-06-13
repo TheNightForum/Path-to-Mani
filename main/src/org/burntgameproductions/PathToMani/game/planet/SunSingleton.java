@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.DmgType;
 import org.burntgameproductions.PathToMani.game.GameDrawer;
 import org.burntgameproductions.PathToMani.game.ManiObject;
@@ -27,28 +27,28 @@ public class SunSingleton {
   public SunSingleton(TextureManager textureManager) {
     myGradTex = textureManager.getTex("planetStarCommons/grad", null);
     myWhiteTex = textureManager.getTex("planetStarCommons/whiteTex", null);
-    myGradTint = SolColor.col(1, 1);
-    myFillTint = SolColor.col(1, 1);
+    myGradTint = ManiColor.col(1, 1);
+    myFillTint = ManiColor.col(1, 1);
   }
 
 
   public void draw(ManiGame game, GameDrawer drawer) {
     Vector2 camPos = game.getCam().getPos();
     ManiSystem sys = game.getPlanetMan().getNearestSystem(camPos);
-    Vector2 toCam = SolMath.getVec(camPos);
+    Vector2 toCam = ManiMath.getVec(camPos);
     toCam.sub(sys.getPos());
     float toCamLen = toCam.len();
     if (toCamLen < Const.SUN_RADIUS) {
       float closeness = 1 - toCamLen / Const.SUN_RADIUS;
-      myGradTint.a = SolMath.clamp(closeness * 4, 0, 1);
-      myFillTint.a = SolMath.clamp((closeness - .25f) * 4, 0, 1);
+      myGradTint.a = ManiMath.clamp(closeness * 4, 0, 1);
+      myFillTint.a = ManiMath.clamp((closeness - .25f) * 4, 0, 1);
 
       float sz = 2 * game.getCam().getViewDist();
-      float gradAngle = SolMath.angle(toCam) + 90;
+      float gradAngle = ManiMath.angle(toCam) + 90;
       drawer.draw(myWhiteTex, sz*2, sz*2, sz, sz, camPos.x, camPos.y, 0, myFillTint);
       drawer.draw(myGradTex, sz*2, sz*2, sz, sz, camPos.x, camPos.y, gradAngle, myGradTint);
     }
-    SolMath.free(toCam);
+    ManiMath.free(toCam);
   }
 
   public void doDmg(ManiGame game, ManiObject obj, float toSys) {

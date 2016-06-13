@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.AbilityCommonConfigs;
 import org.burntgameproductions.PathToMani.game.item.EngineItem;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
@@ -69,7 +69,7 @@ public final class HullConfigManager {
         String string = jsonValue.getString(name, null);
         return (string == null)
                 ? defaultValue
-                : SolMath.readV2(string);
+                : ManiMath.readV2(string);
     }
 
     private static EngineItem.Config readEngineConfig(ItemManager itemManager, JsonValue jsonValue, String name) {
@@ -144,10 +144,10 @@ public final class HullConfigManager {
         configData.e1Pos = readVector2(jsonNode, "e1Pos", new Vector2());
         configData.e2Pos = readVector2(jsonNode, "e2Pos", new Vector2());
 
-        configData.lightSrcPoss = SolMath.readV2List(jsonNode, "lightSrcPoss");
+        configData.lightSrcPoss = ManiMath.readV2List(jsonNode, "lightSrcPoss");
         configData.hasBase = jsonNode.getBoolean("hasBase", false);
-        configData.forceBeaconPoss = SolMath.readV2List(jsonNode, "forceBeaconPoss");
-        configData.doorPoss = SolMath.readV2List(jsonNode, "doorPoss");
+        configData.forceBeaconPoss = ManiMath.readV2List(jsonNode, "forceBeaconPoss");
+        configData.doorPoss = ManiMath.readV2List(jsonNode, "doorPoss");
         configData.type = HullConfig.Type.forName(jsonNode.getString("type"));
         configData.durability = (configData.type == HullConfig.Type.BIG) ? 3 : .25f;
         configData.engineConfig = readEngineConfig(itemManager, jsonNode, "engine");

@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.*;
 import org.burntgameproductions.PathToMani.common.DebugCol;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.files.FileManager;
 import org.burntgameproductions.PathToMani.files.HullConfigManager;
 import org.burntgameproductions.PathToMani.game.asteroid.AsteroidBuilder;
@@ -132,7 +132,7 @@ public class ManiGame {
     myGalaxyFiller.fill(this);
     ShipConfig startingShip = usePrevShip ? SaveManager.readShip(hullConfigManager, myItemManager) : null;
     createPlayer(startingShip);
-    SolMath.checkVectorsTaken(null);
+    ManiMath.checkVectorsTaken(null);
   }
 
   // uh, this needs refactoring
@@ -517,7 +517,7 @@ public class ManiGame {
     for (List<ManiItem> group : ic) {
       for (ManiItem item : group) {
         boolean equipped = myHero == null || myHero.maybeUnequip(this, item, false);
-        if (equipped || SolMath.test(.75f)) {
+        if (equipped || ManiMath.test(.75f)) {
           System.out.println(item.getCode() + " " + item.isEquipped());
           myRespawnItems.add(0, item);
         }

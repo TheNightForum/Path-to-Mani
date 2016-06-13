@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * A class with helpful mathematical functions
  */
-public class SolMath {
+public class ManiMath {
   public static final float PI = MathUtils.PI;
   public static float radDeg = MathUtils.radDeg;
   public static float degRad = MathUtils.degRad;
@@ -84,10 +84,10 @@ public class SolMath {
   public static float rnd(float min, float max) {
     float result = max;
     if (min == max) {
-      Gdx.app.log("SolMath", "rnd was called with bad parameters! Min " + min + " matches max " + max + ", accepting max.");
-      Gdx.app.log("SolMath",  "Please review appropriate code in the stack dump:");
+      Gdx.app.log("ManiMath", "rnd was called with bad parameters! Min " + min + " matches max " + max + ", accepting max.");
+      Gdx.app.log("ManiMath",  "Please review appropriate code in the stack dump:");
       for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
-        Gdx.app.log("SolMath", ste.toString());
+        Gdx.app.log("ManiMath", ste.toString());
       }
 
       return result;
@@ -318,7 +318,7 @@ public class SolMath {
    * @return a length of a projection of a vector onto a line defined by angle
    */
   public static float project(Vector2 v, float angle) {
-    float angleDiff = angle - SolMath.angle(v);
+    float angleDiff = angle - ManiMath.angle(v);
     return v.len() * cos(angleDiff);
   }
 
@@ -405,7 +405,7 @@ public class SolMath {
   }
 
   public static void checkVectorsTaken(Object o) {
-    if (SolMath.VECTORS_TAKEN != 0) throw new AssertionError("vectors " + SolMath.VECTORS_TAKEN + ", blame on " + o);
+    if (ManiMath.VECTORS_TAKEN != 0) throw new AssertionError("vectors " + ManiMath.VECTORS_TAKEN + ", blame on " + o);
   }
 
   /**

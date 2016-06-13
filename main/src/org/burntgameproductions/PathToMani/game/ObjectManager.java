@@ -5,10 +5,10 @@ package org.burntgameproductions.PathToMani.game;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.common.DebugCol;
-import org.burntgameproductions.PathToMani.common.SolColor;
+import org.burntgameproductions.PathToMani.common.ManiColor;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.dra.DraMan;
 import org.burntgameproductions.PathToMani.game.dra.FarDras;
@@ -79,7 +79,7 @@ public class ObjectManager {
     for (int i1 = 0, myObjsSize = myObjs.size(); i1 < myObjsSize; i1++) {
       ManiObject o = myObjs.get(i1);
       o.update(game);
-      SolMath.checkVectorsTaken(o);
+      ManiMath.checkVectorsTaken(o);
       List<Dra> dras = o.getDras();
       for (int i = 0, drasSize = dras.size(); i < drasSize; i++) {
         Dra dra = dras.get(i);
@@ -103,7 +103,7 @@ public class ObjectManager {
       FarObjData fod = it.next();
       FarObj fo = fod.fo;
       fo.update(game);
-      SolMath.checkVectorsTaken(fo);
+      ManiMath.checkVectorsTaken(fo);
       if (fo.shouldBeRemoved(game)) {
         removeFo(it, fo);
         continue;
@@ -212,13 +212,13 @@ public class ObjectManager {
     for (ManiObject o : myObjs) {
       Vector2 pos = o.getPosition();
       String ds = o.toDebugString();
-      if (ds != null) drawer.drawString(ds, pos.x, pos.y, fontSize, true, SolColor.W);
+      if (ds != null) drawer.drawString(ds, pos.x, pos.y, fontSize, true, ManiColor.W);
     }
     for (FarObjData fod : myFarObjs) {
       FarObj fo = fod.fo;
       Vector2 pos = fo.getPos();
       String ds = fo.toDebugString();
-      if (ds != null) drawer.drawString(ds, pos.x, pos.y, fontSize, true, SolColor.G);
+      if (ds != null) drawer.drawString(ds, pos.x, pos.y, fontSize, true, ManiColor.G);
     }
   }
 
@@ -236,8 +236,8 @@ public class ObjectManager {
       FarObj fo = fod.fo;
       drawer.drawCircle(drawer.debugWhiteTex, fo.getPos(), fo.getRadius(), DebugCol.OBJ_FAR, lineWidth, vh);
     }
-    drawer.drawCircle(drawer.debugWhiteTex, cam.getPos(), myFarBeginDist, SolColor.W, lineWidth, vh);
-    drawer.drawCircle(drawer.debugWhiteTex, cam.getPos(), myFarEndDist, SolColor.W, lineWidth, vh);
+    drawer.drawCircle(drawer.debugWhiteTex, cam.getPos(), myFarBeginDist, ManiColor.W, lineWidth, vh);
+    drawer.drawCircle(drawer.debugWhiteTex, cam.getPos(), myFarEndDist, ManiColor.W, lineWidth, vh);
   }
 
   public List<ManiObject> getObjs() {

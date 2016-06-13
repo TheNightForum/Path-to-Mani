@@ -4,8 +4,8 @@ package org.burntgameproductions.PathToMani.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.*;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
@@ -28,9 +28,9 @@ public class Sky implements ManiObject {
     myPlanet = planet;
     myDras = new ArrayList<Dra>();
 
-    myFill = new RectSprite(game.getTexMan().getTex("planetStarCommons/whiteTex", null), 5, 0, 0, new Vector2(), DraLevel.ATM, 0f, 0, SolColor.col(.5f, 0), false);
+    myFill = new RectSprite(game.getTexMan().getTex("planetStarCommons/whiteTex", null), 5, 0, 0, new Vector2(), DraLevel.ATM, 0f, 0, ManiColor.col(.5f, 0), false);
     myDras.add(myFill);
-    myGrad = new RectSprite(game.getTexMan().getTex("planetStarCommons/grad", null), 5, 0, 0, new Vector2(), DraLevel.ATM, 0f, 0, SolColor.col(.5f, 0), false);
+    myGrad = new RectSprite(game.getTexMan().getTex("planetStarCommons/grad", null), 5, 0, 0, new Vector2(), DraLevel.ATM, 0f, 0, ManiColor.col(.5f, 0), false);
     myDras.add(myGrad);
     SkyConfig config = planet.getConfig().skyConfig;
     mySkySpan = ColorSpan.rgb(config.dawn, config.day);
@@ -60,17 +60,17 @@ public class Sky implements ManiObject {
     if (1 < distPerc) distPerc = 1;
 
     Vector2 sysPos = myPlanet.getSys().getPos();
-    float angleToCam = SolMath.angle(planetPos, camPos);
-    float angleToSun = SolMath.angle(planetPos, sysPos);
-    float dayPerc = 1 - SolMath.angleDiff(angleToCam, angleToSun) / 180;
-    float skyIntensity = SolMath.clamp(1 - ((1 - dayPerc) / .75f));
-    float skyColorPerc = SolMath.clamp((skyIntensity - .5f) * 2f + .5f);
+    float angleToCam = ManiMath.angle(planetPos, camPos);
+    float angleToSun = ManiMath.angle(planetPos, sysPos);
+    float dayPerc = 1 - ManiMath.angleDiff(angleToCam, angleToSun) / 180;
+    float skyIntensity = ManiMath.clamp(1 - ((1 - dayPerc) / .75f));
+    float skyColorPerc = ManiMath.clamp((skyIntensity - .5f) * 2f + .5f);
     mySkySpan.set(skyColorPerc, myGrad.tint);
     mySkySpan.set(skyColorPerc, myFill.tint);
-    float gradPerc = SolMath.clamp(2 * skyIntensity);
-    float fillPerc = SolMath.clamp(2 * (skyIntensity - .5f));
+    float gradPerc = ManiMath.clamp(2 * skyIntensity);
+    float fillPerc = ManiMath.clamp(2 * (skyIntensity - .5f));
     myGrad.tint.a = gradPerc * distPerc;
-    myFill.tint.a = fillPerc * SolMath.clamp(1 - (1 - distPerc) * 2) * .37f;
+    myFill.tint.a = fillPerc * ManiMath.clamp(1 - (1 - distPerc) * 2) * .37f;
 
     float viewDist = cam.getViewDist();
     float sz = 2 * viewDist;
@@ -79,7 +79,7 @@ public class Sky implements ManiObject {
 
     float angleCamToSun = angleToCam - angleToSun;
     float relAngle;
-    if (SolMath.abs(SolMath.norm(angleCamToSun)) < 90) relAngle = angleToCam + 180 + angleCamToSun;
+    if (ManiMath.abs(ManiMath.norm(angleCamToSun)) < 90) relAngle = angleToCam + 180 + angleCamToSun;
     else relAngle = angleToCam - angleCamToSun;
     myGrad.relAngle = relAngle - 90;
   }

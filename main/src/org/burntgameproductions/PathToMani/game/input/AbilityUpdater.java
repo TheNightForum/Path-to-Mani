@@ -2,7 +2,7 @@
 
 package org.burntgameproductions.PathToMani.game.input;
 
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.game.ship.ShipAbility;
 import org.burntgameproductions.PathToMani.game.item.ManiItem;
@@ -14,8 +14,8 @@ public class AbilityUpdater {
   private boolean myAbility;
 
   public AbilityUpdater() {
-    myAbilityUseStartPerc = SolMath.rnd(.3f, .7f);
-    myChargesToKeep = SolMath.intRnd(1, 2);
+    myAbilityUseStartPerc = ManiMath.rnd(.3f, .7f);
+    myChargesToKeep = ManiMath.intRnd(1, 2);
   }
 
   public void update(ManiShip ship, ManiShip nearestEnemy) {

@@ -4,7 +4,7 @@ package org.burntgameproductions.PathToMani.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.AbilityCommonConfig;
 import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
@@ -94,7 +94,7 @@ public class UnShield implements ShipAbility {
 
     @Override
     public void appendDesc(StringBuilder sb) {
-      sb.append("Deal ").append(SolMath.nice(amount)).append(" dmg to enemy shields\n");
+      sb.append("Deal ").append(ManiMath.nice(amount)).append(" dmg to enemy shields\n");
     }
 
     public static AbilityConfig load(JsonValue abNode, ItemManager itemManager, AbilityCommonConfig cc) {

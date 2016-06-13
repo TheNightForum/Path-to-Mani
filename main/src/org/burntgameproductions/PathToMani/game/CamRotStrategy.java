@@ -3,7 +3,7 @@
 package org.burntgameproductions.PathToMani.game;
 
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 import org.burntgameproductions.PathToMani.game.planet.ManiSystem;
@@ -24,12 +24,12 @@ public interface CamRotStrategy {
       float fh = np.getFullHeight();
       Vector2 npPos = np.getPos();
       if (npPos.dst(pos) < fh) {
-        return SolMath.angle(pos, npPos, true) - 90;
+        return ManiMath.angle(pos, npPos, true) - 90;
       }
       ManiSystem sys = game.getPlanetMan().getNearestSystem(pos);
       Vector2 sysPos = sys.getPos();
       if (sysPos.dst(pos) < Const.SUN_RADIUS) {
-        return SolMath.angle(pos, sysPos, true) - 90;
+        return ManiMath.angle(pos, sysPos, true) - 90;
       }
       return 0;
     }

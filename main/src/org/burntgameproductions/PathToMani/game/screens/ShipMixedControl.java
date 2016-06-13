@@ -7,7 +7,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.input.Mover;
 import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.game.ManiGame;
@@ -57,7 +57,7 @@ public class ShipMixedControl implements ShipUiControl {
     if (h != null) {
       myMouseWorldPos.set(Gdx.input.getX(), Gdx.input.getY());
       g.getCam().screenToWorld(myMouseWorldPos);
-      float desiredAngle = SolMath.angle(h.getPosition(), myMouseWorldPos);
+      float desiredAngle = ManiMath.angle(h.getPosition(), myMouseWorldPos);
       Boolean ntt = Mover.needsToTurn(h.getAngle(), desiredAngle, h.getRotSpd(), h.getRotAcc(), Shooter.MIN_SHOOT_AAD);
       if (ntt != null) {
         if (ntt) myRight = true; else myLeft = true;

@@ -10,8 +10,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.files.FileManager;
 import org.burntgameproductions.PathToMani.files.HullConfigManager;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
@@ -392,7 +392,7 @@ public class PathLoader {
 
         BodyDef bd = new BodyDef();
         bd.type = type;
-        bd.angle = angle * SolMath.degRad;
+        bd.angle = angle * ManiMath.degRad;
         bd.angularDamping = 0;
         bd.position.set(pos);
         bd.linearDamping = 0;
@@ -415,7 +415,7 @@ public class PathLoader {
             String imgName = pathName;
             tex = hullConfig.getTexture();
         }
-        RectSprite s = new RectSprite(tex, scale, orig.x - .5f, orig.y - .5f, new Vector2(), level, 0, 0, SolColor.W, false);
+        RectSprite s = new RectSprite(tex, scale, orig.x - .5f, orig.y - .5f, new Vector2(), level, 0, 0, ManiColor.W, false);
         dras.add(s);
         return body;
     }
@@ -432,7 +432,7 @@ public class PathLoader {
   {
     BodyDef bd = new BodyDef();
     bd.type = type;
-    bd.angle = angle * SolMath.degRad;
+    bd.angle = angle * ManiMath.degRad;
     bd.angularDamping = 0;
     bd.position.set(pos);
     bd.linearDamping = 0;
@@ -456,7 +456,7 @@ public class PathLoader {
       String imgName = texDirName + "/" + texName;
       tex = game.getTexMan().getTex(imgName, null);
     }
-    RectSprite s = new RectSprite(tex, scale, orig.x - .5f, orig.y - .5f, new Vector2(), level, 0, 0, SolColor.W, false);
+    RectSprite s = new RectSprite(tex, scale, orig.x - .5f, orig.y - .5f, new Vector2(), level, 0, 0, ManiColor.W, false);
     dras.add(s);
     return body;
   }

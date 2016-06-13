@@ -3,7 +3,7 @@
 package org.burntgameproductions.PathToMani.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
@@ -27,21 +27,21 @@ public class BigObjAvoider {
     if (dest.dst(pPos) < pRad) pRad = p.getGroundHeight();
     myProj.set(pPos);
     myProj.sub(from);
-    SolMath.rotate(myProj, -toDestAngle);
+    ManiMath.rotate(myProj, -toDestAngle);
     if (0 < myProj.x && myProj.x < toDestLen) {
-      if (SolMath.abs(myProj.y) < pRad) {
+      if (ManiMath.abs(myProj.y) < pRad) {
         toDestLen = myProj.x;
-        res = toDestAngle + 45 * SolMath.toInt(myProj.y < 0);
+        res = toDestAngle + 45 * ManiMath.toInt(myProj.y < 0);
       }
     }
     Vector2 sunPos = p.getSys().getPos();
     float sunRad = Const.SUN_RADIUS;
     myProj.set(sunPos);
     myProj.sub(from);
-    SolMath.rotate(myProj, -toDestAngle);
+    ManiMath.rotate(myProj, -toDestAngle);
     if (0 < myProj.x && myProj.x < toDestLen) {
-      if (SolMath.abs(myProj.y) < sunRad) {
-        res = toDestAngle + 45 * SolMath.toInt(myProj.y < 0);
+      if (ManiMath.abs(myProj.y) < sunRad) {
+        res = toDestAngle + 45 * ManiMath.toInt(myProj.y < 0);
       }
     }
     return res;

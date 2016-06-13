@@ -6,7 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
 import org.burntgameproductions.PathToMani.files.FileManager;
 import org.burntgameproductions.PathToMani.files.HullConfigManager;
@@ -47,7 +47,7 @@ public class PlanetConfigs {
 
   public PlanetConfig getRandom(boolean easy, boolean hard) {
     List<PlanetConfig> cfg = easy ? myEasy : hard ? myHard : myMedium;
-    return SolMath.elemRnd(cfg);
+    return ManiMath.elemRnd(cfg);
   }
 
   public Map<String, PlanetConfig> getAllConfigs() {

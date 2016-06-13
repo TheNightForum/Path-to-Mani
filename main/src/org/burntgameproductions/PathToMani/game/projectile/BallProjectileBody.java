@@ -4,7 +4,7 @@ package org.burntgameproductions.PathToMani.game.projectile;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.asteroid.AsteroidBuilder;
 import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.ship.ManiShip;
@@ -23,10 +23,10 @@ public class BallProjectileBody implements ProjectileBody {
   {
     float density = config.density == -1 ? 1 : config.density;
     myBody = AsteroidBuilder.buildBall(game, pos, angle, config.physSize / 2, density, config.massless);
-    if (config.zeroAbsSpd) myBody.setAngularVelocity(15f * SolMath.degRad);
+    if (config.zeroAbsSpd) myBody.setAngularVelocity(15f * ManiMath.degRad);
 
     mySpd = new Vector2();
-    SolMath.fromAl(mySpd, angle, spdLen);
+    ManiMath.fromAl(mySpd, angle, spdLen);
     mySpd.add(gunSpd);
     myBody.setLinearVelocity(mySpd);
     myBody.setUserData(projectile);
@@ -39,17 +39,17 @@ public class BallProjectileBody implements ProjectileBody {
 
   private void setParamsFromBody() {
     myPos.set(myBody.getPosition());
-    myAngle = myBody.getAngle() * SolMath.radDeg;
+    myAngle = myBody.getAngle() * ManiMath.radDeg;
     mySpd.set(myBody.getLinearVelocity());
   }
 
   @Override
   public void update(ManiGame game) {
     setParamsFromBody();
-    if (myAcc > 0 && SolMath.canAccelerate(myAngle, mySpd)) {
-      Vector2 force = SolMath.fromAl(myAngle, myAcc * myMass);
+    if (myAcc > 0 && ManiMath.canAccelerate(myAngle, mySpd)) {
+      Vector2 force = ManiMath.fromAl(myAngle, myAcc * myMass);
       myBody.applyForceToCenter(force, true);
-      SolMath.free(force);
+      ManiMath.free(force);
     }
   }
 
@@ -82,7 +82,7 @@ public class BallProjectileBody implements ProjectileBody {
   @Override
   public void changeAngle(float diff) {
     myAngle += diff;
-    myBody.setTransform(myPos, myAngle * SolMath.degRad);
+    myBody.setTransform(myPos, myAngle * ManiMath.degRad);
     myBody.setAngularVelocity(0);
   }
 
@@ -90,11 +90,11 @@ public class BallProjectileBody implements ProjectileBody {
   public float getDesiredAngle(ManiShip ne) {
     float spdLen = mySpd.len();
     if (spdLen < 3) spdLen = 3;
-    float toNe = SolMath.angle(myPos, ne.getPosition());
-    Vector2 desiredSpd = SolMath.fromAl(toNe, spdLen);
+    float toNe = ManiMath.angle(myPos, ne.getPosition());
+    Vector2 desiredSpd = ManiMath.fromAl(toNe, spdLen);
     desiredSpd.add(ne.getSpd());
-    float res = SolMath.angle(mySpd, desiredSpd);
-    SolMath.free(desiredSpd);
+    float res = ManiMath.angle(mySpd, desiredSpd);
+    ManiMath.free(desiredSpd);
     return res;
   }
 }

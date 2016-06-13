@@ -5,7 +5,7 @@ package org.burntgameproductions.PathToMani;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.files.FileManager;
 
 import java.util.ArrayList;
@@ -92,9 +92,9 @@ public class TextureManager {
   }
 
   public TextureAtlas.AtlasRegion getRndTex(String name, Boolean flipped, FileHandle configFile) {
-    if (flipped == null) flipped = SolMath.test(.5f);
+    if (flipped == null) flipped = ManiMath.test(.5f);
     ArrayList<TextureAtlas.AtlasRegion> pack = getPack(name, configFile);
-    TextureAtlas.AtlasRegion r = SolMath.elemRnd(pack);
+    TextureAtlas.AtlasRegion r = ManiMath.elemRnd(pack);
     if (flipped) {
       r = getFlipped(r);
     }

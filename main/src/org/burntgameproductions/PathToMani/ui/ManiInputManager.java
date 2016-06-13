@@ -14,8 +14,8 @@ import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.files.FileManager;
 import org.burntgameproductions.PathToMani.game.ManiGame;
@@ -75,7 +75,7 @@ public class ManiInputManager {
     myScreens = new ArrayList<ManiUiScreen>();
     myToRemove = new ArrayList<ManiUiScreen>();
     myToAdd = new ArrayList<ManiUiScreen>();
-    myWarnCol = new Color(SolColor.UI_WARN);
+    myWarnCol = new Color(ManiColor.UI_WARN);
 
     FileHandle hoverSoundFile = FileManager.getInstance().getSoundsDirectory().child("ui").child("uiHover.ogg");
     myHoverSound = Gdx.audio.newSound(hoverSoundFile);
@@ -218,10 +218,10 @@ public class ManiInputManager {
   }
 
   private void updateWarnPerc() {
-    float dif = SolMath.toInt(myWarnPercGrows) * Const.REAL_TIME_STEP / WARN_PERC_GROWTH_TIME;
+    float dif = ManiMath.toInt(myWarnPercGrows) * Const.REAL_TIME_STEP / WARN_PERC_GROWTH_TIME;
     myWarnPerc += dif;
     if (myWarnPerc < 0 || 1 < myWarnPerc) {
-      myWarnPerc = SolMath.clamp(myWarnPerc);
+      myWarnPerc = ManiMath.clamp(myWarnPerc);
       myWarnPercGrows = !myWarnPercGrows;
     }
     myWarnCol.a = myWarnPerc * .5f;
@@ -271,8 +271,8 @@ public class ManiInputManager {
     int mouseY = Gdx.input.getY();
     int w = Gdx.graphics.getWidth();
     int h = Gdx.graphics.getHeight();
-    mouseX = (int)SolMath.clamp(mouseX, 0, w);
-    mouseY = (int)SolMath.clamp(mouseY, 0, h);
+    mouseX = (int) ManiMath.clamp(mouseX, 0, w);
+    mouseY = (int) ManiMath.clamp(mouseY, 0, h);
     Gdx.input.setCursorPosition(mouseX, mouseY);
   }
 
@@ -314,7 +314,7 @@ public class ManiInputManager {
     if (tutorialManager != null && getTopScreen() != game.getScreens().menuScreen) tutorialManager.draw(uiDrawer);
 
     if (myCurrCursor != null) {
-      uiDrawer.draw(myCurrCursor, CURSOR_SZ, CURSOR_SZ, CURSOR_SZ/2, CURSOR_SZ/2, myMousePos.x, myMousePos.y, 0, SolColor.W);
+      uiDrawer.draw(myCurrCursor, CURSOR_SZ, CURSOR_SZ, CURSOR_SZ/2, CURSOR_SZ/2, myMousePos.x, myMousePos.y, 0, ManiColor.W);
     }
   }
 

@@ -5,7 +5,7 @@ package org.burntgameproductions.PathToMani.game.chunk;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.RemoveController;
 import org.burntgameproductions.PathToMani.game.ManiGame;
 
@@ -85,14 +85,14 @@ public class ChunkManager {
   }
 
   private void maybeAddChunk(Set<Vector2> chunks, int oX, int oY, ManiGame game) {
-    Vector2 v = SolMath.getVec(myX + oX, myY + oY);
+    Vector2 v = ManiMath.getVec(myX + oX, myY + oY);
     if (!chunks.contains(v)) {
       Vector2 chunk = new Vector2(v);
       chunks.add(chunk);
       boolean bg = chunks == myBgFilledChunks;
       myFiller.fill(game, chunk, bg ? myBgRemover : myRemover, bg);
     }
-    SolMath.free(v);
+    ManiMath.free(v);
   }
 
   public boolean isInactive(Vector2 pos, int dist) {

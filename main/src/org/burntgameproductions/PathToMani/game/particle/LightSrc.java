@@ -5,10 +5,10 @@ package org.burntgameproductions.PathToMani.game.particle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
-import org.burntgameproductions.PathToMani.common.SolColorUtil;
+import org.burntgameproductions.PathToMani.common.ManiColorUtil;
 import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.dra.RectSprite;
 
@@ -35,7 +35,7 @@ public class LightSrc {
     tex = game.getTexMan().getTex("smallGameObjs/particles/lightHalo", null);
     if (hasHalo) {
       Color haloCol = new Color(col);
-      SolColorUtil.changeBrightness(haloCol, .8f);
+      ManiColorUtil.changeBrightness(haloCol, .8f);
       myHalo = new RectSprite(tex, 0, 0, 0, new Vector2(relPos), DraLevel.PART_FG_0, 0, 0, haloCol, true);
     } else {
       myHalo = null;
@@ -48,11 +48,11 @@ public class LightSrc {
     if (working) {
       myWorkPerc = 1f;
     } else {
-      myWorkPerc = SolMath.approach(myWorkPerc, 0, game.getTimeStep() / myFadeTime);
+      myWorkPerc = ManiMath.approach(myWorkPerc, 0, game.getTimeStep() / myFadeTime);
     }
-    float baseA = SolMath.rnd(.5f, 1) * myWorkPerc * myIntensity;
+    float baseA = ManiMath.rnd(.5f, 1) * myWorkPerc * myIntensity;
     myCircle.tint.a = baseA * A_RATIO;
-    float sz = (1 + SolMath.rnd(.2f * myIntensity)) * mySz;
+    float sz = (1 + ManiMath.rnd(.2f * myIntensity)) * mySz;
     myCircle.setTexSz(SZ_RATIO * sz);
     if (myHalo != null) {
       myHalo.tint.a = baseA;

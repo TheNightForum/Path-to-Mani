@@ -5,7 +5,7 @@ package org.burntgameproductions.PathToMani.game.planet;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.common.SolColor;
+import org.burntgameproductions.PathToMani.common.ManiColor;
 import org.burntgameproductions.PathToMani.game.GameDrawer;
 import org.burntgameproductions.PathToMani.game.ManiCam;
 import org.burntgameproductions.PathToMani.game.ManiGame;
@@ -28,7 +28,7 @@ public class PlanetCoreSingleton {
     float gh = p.getMinGroundHeight();
     if (toCamLen < gh + vd) {
       float sz = gh;
-      drawer.draw(myTex, sz *2, sz *2, sz, sz, pPos.x, pPos.y, p.getAngle(), SolColor.W);
+      drawer.draw(myTex, sz *2, sz *2, sz, sz, pPos.x, pPos.y, p.getAngle(), ManiColor.W);
     }
   }
 }

@@ -8,8 +8,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.physics.box2d.Box2D;
-import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.DebugOptions;
 import org.burntgameproductions.PathToMani.game.sound.MusicManager;
 import org.burntgameproductions.PathToMani.menu.MenuScreens;
@@ -120,7 +120,7 @@ public class ManiApplication implements ApplicationListener {
       myGame.update();
     }
 
-    SolMath.checkVectorsTaken(null);
+    ManiMath.checkVectorsTaken(null);
   }
 
   private void draw() {
@@ -135,13 +135,13 @@ public class ManiApplication implements ApplicationListener {
       myGame.drawDebugUi(myUiDrawer);
     }
     if (myFatalErrorMsg != null) {
-      myUiDrawer.draw(myUiDrawer.whiteTex, myUiDrawer.r, .5f, 0, 0, 0, .25f, 0, SolColor.UI_BG);
-      myUiDrawer.drawString(myFatalErrorMsg, myUiDrawer.r / 2, .5f, FontSize.MENU, true, SolColor.W);
-      myUiDrawer.drawString(myFatalErrorTrace, .2f * myUiDrawer.r, .6f, FontSize.DEBUG, false, SolColor.W);
+      myUiDrawer.draw(myUiDrawer.whiteTex, myUiDrawer.r, .5f, 0, 0, 0, .25f, 0, ManiColor.UI_BG);
+      myUiDrawer.drawString(myFatalErrorMsg, myUiDrawer.r / 2, .5f, FontSize.MENU, true, ManiColor.W);
+      myUiDrawer.drawString(myFatalErrorTrace, .2f * myUiDrawer.r, .6f, FontSize.DEBUG, false, ManiColor.W);
     }
     DebugCollector.draw(myUiDrawer);
     if (myGame == null) {
-      myUiDrawer.drawString("version: " + Const.VERSION, 0.01f, .98f, FontSize.DEBUG, false, SolColor.W);
+      myUiDrawer.drawString("version: " + Const.VERSION, 0.01f, .98f, FontSize.DEBUG, false, ManiColor.W);
     }
     myCommonDrawer.end();
   }

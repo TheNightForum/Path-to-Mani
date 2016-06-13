@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.common.ManiMath;
 import org.burntgameproductions.PathToMani.game.projectile.Projectile;
 
 public class ManiContactListener implements ContactListener {
@@ -59,7 +59,7 @@ public class ManiContactListener implements ContactListener {
     float[] normImpulses = impulse.getNormalImpulses();
     for (int i = 0; i < pointCount; i++) {
       float normImpulse = normImpulses[i];
-      normImpulse = SolMath.abs(normImpulse);
+      normImpulse = ManiMath.abs(normImpulse);
       if (absImpulse < normImpulse) absImpulse = normImpulse;
     }
     return absImpulse;
