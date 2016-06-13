@@ -20,6 +20,9 @@ public class ManiColor {
   public static final Color UI_OPAQUE = new Color(0, .56f, .75f, 1f);
   public static final Color UI_WARN = new Color(1, .5f, 0, .5f);
 
+  public static final Color Magneta = new Color(.90f, .14f, .30f, 1);
+
+
   public static Color col(float b, float t) {
     return new Color(b, b, b, t);
   }
