@@ -1,5 +1,3 @@
-
-
 package org.burntgameproductions.PathToMani.menu;
 
 import com.badlogic.gdx.Gdx;
@@ -7,52 +5,52 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import org.burntgameproductions.PathToMani.GameOptions;
+import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.game.DebugOptions;
-import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
-import org.burntgameproductions.PathToMani.ui.UiDrawer;
-import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.game.sound.MusicManager;
 import org.burntgameproductions.PathToMani.ui.ManiInputManager;
 import org.burntgameproductions.PathToMani.ui.ManiUiControl;
+import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
+import org.burntgameproductions.PathToMani.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainScreen implements ManiUiScreen {
+public class PlayScreen implements ManiUiScreen {
   public static final float CREDITS_BTN_W = .15f;
   public static final float CREDITS_BTN_H = .07f;
 
   private final ArrayList<ManiUiControl> myControls;
-  private final ManiUiControl myPlayCtrl;
-  private final ManiUiControl myOptionsCtrl;
-  private final ManiUiControl myCreditsCtrl;
-  private final ManiUiControl myQuitCtrl;
+  private final ManiUiControl myTutCtrl;
+  private final ManiUiControl myNewCtrl;
+  private final ManiUiControl myLoadCtrl;
+  private final ManiUiControl myBackCtrl;
   private final TextureAtlas.AtlasRegion myTitleTex;
   private final boolean isMobile;
   GameOptions gameOptions;
 
-  public MainScreen(MenuLayout menuLayout, TextureManager textureManager, boolean mobile, float r, GameOptions gameOptions) {
+  public PlayScreen(MenuLayout menuLayout, TextureManager textureManager, boolean mobile, float r, GameOptions gameOptions) {
     isMobile = mobile;
     myControls = new ArrayList<ManiUiControl>();
     this.gameOptions = gameOptions;
 
-    myPlayCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true, Input.Keys.P);
-    myPlayCtrl.setDisplayName("Play");
-    myControls.add(myPlayCtrl);
+    myTutCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true, Input.Keys.T);
+    myTutCtrl.setDisplayName("Tutorial");
+    myControls.add(myTutCtrl);
 
-    myOptionsCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true, Input.Keys.O);
-    myOptionsCtrl.setDisplayName("Options");
-    myControls.add(myOptionsCtrl);
+    myNewCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true, Input.Keys.N);
+    myNewCtrl.setDisplayName("New Game");
+    myControls.add(myNewCtrl);
 
-    myCreditsCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.C);
-    myCreditsCtrl.setDisplayName("Credits");
-    myControls.add(myCreditsCtrl);
+    myLoadCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.L);
+    myLoadCtrl.setDisplayName("Load Game");
+    myControls.add(myLoadCtrl);
 
-    myQuitCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, Input.Keys.Q);
-    myQuitCtrl.setDisplayName("Quit");
-    myControls.add(myQuitCtrl);
+    myBackCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, Input.Keys.B);
+    myBackCtrl.setDisplayName("Back");
+    myControls.add(myBackCtrl);
 
     myTitleTex = textureManager.getTex("ui/title", null);
   }
@@ -69,49 +67,26 @@ public class MainScreen implements ManiUiScreen {
   public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     ManiInputManager im = cmp.getInputMan();
     MenuScreens screens = cmp.getMenuScreens();
-    /*if (cmp.getOptions().controlType == GameOptions.CONTROL_CONTROLLER) {
+    if (cmp.getOptions().controlType == GameOptions.CONTROL_CONTROLLER) {
       myTutCtrl.setEnabled(false);
     } else {
       myTutCtrl.setEnabled(true);
     }
-
-    if (myTutCtrl.isJustOff()) {
-      cmp.loadNewGame(true, false);
-      return;
-    }
-    if (myNewGameCtrl.isJustOff()) {
-      im.setScreen(cmp, screens.newGame);
-      return;
-    }
-    if (myOptionsCtrl.isJustOff()) {
-      im.setScreen(cmp, screens.options);
-      return;
-    }
-    if (myCreditsCtrl.isJustOff()) {
-      im.setScreen(cmp, screens.credits);
-    }*/
-    if (myPlayCtrl.isJustOff()) {
-      im.setScreen(cmp, screens.playScreen);
-      return;
-    }
-    if (myOptionsCtrl.isJustOff()) {
-      im.setScreen(cmp, screens.options);
-      return;
-    }
-    if (myCreditsCtrl.isJustOff()) {
-      im.setScreen(cmp, screens.credits);
-      return;
-    }
-    if (myQuitCtrl.isJustOff()) {
-      // Save the settings on exit, but not on mobile as settings don't exist there.
-      if (isMobile == false) {
-        cmp.getOptions().save();
+    if (myNewCtrl.isJustOff()) {
+      if (!myLoadCtrl.isEnabled()) {
+        cmp.loadNewGame(false, false);
+      } else {
+        im.setScreen(cmp, screens.newShip);
       }
-      Gdx.app.exit();
+    }
+    if (myLoadCtrl.isJustOff()) {
+      cmp.loadNewGame(false, true);
       return;
     }
-
-
+    if (myBackCtrl.isJustOff()) {
+      im.setScreen(cmp, screens.main);
+      return;
+    }
   }
 
   @Override
@@ -121,7 +96,7 @@ public class MainScreen implements ManiUiScreen {
 
   @Override
   public void onAdd(ManiApplication cmp) {
-  //  MusicManager.getInstance().PlayMenuMusic(gameOptions);
+    MusicManager.getInstance().PlayMenuMusic(gameOptions);
   }
 
   @Override
