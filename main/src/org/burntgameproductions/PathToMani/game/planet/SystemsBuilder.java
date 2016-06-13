@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SystemsBuilder {
-  public static final int SYS_COUNT = 2;
+  public static final int SYS_COUNT = 50;//This here tells how many solar systems to build
+  //TODO: MAKE ^^^ NEVER ENDING AND LOAD IT IN CHUNCKS
+  //TODO: Maybe dumb it down a bit for android version. :)
   public static final int MAZE_COUNT = SYS_COUNT * 2;
   public static final int PLANET_COUNT = 5;
   public static final float PLANET_SPD = .2f;
