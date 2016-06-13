@@ -21,6 +21,8 @@ public class ManiColor {
   public static final Color UI_WARN = new Color(1, .5f, 0, .5f);
 
   public static final Color Magneta = new Color(.90f, .14f, .30f, 1);
+  public static final Color Organge = new Color(.99f, .53f, .11f, 1);
+
 
 
   public static Color col(float b, float t) {
