@@ -1,4 +1,4 @@
 @echo off
 color 0a
-clear
+cls
 gradlew run
