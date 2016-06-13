@@ -1,5 +1,3 @@
-
-
 package org.burntgameproductions.PathToMani.menu;
 
 import com.badlogic.gdx.Gdx;
