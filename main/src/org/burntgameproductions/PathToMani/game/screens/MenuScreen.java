@@ -17,26 +17,29 @@ import java.util.List;
 
 public class MenuScreen implements ManiUiScreen {
   private final List<ManiUiControl> myControls;
-  private final ManiUiControl myCloseCtrl;
-  private final ManiUiControl myExitCtrl;
   private final ManiUiControl myRespawnCtrl;
-  private final ManiUiControl myVolCtrl;
+  private final ManiUiControl myExitCtrl;
+  private final ManiUiControl myCloseCtrl;
+  private final ManiUiControl myOptionsCtrl;
 
   public MenuScreen(MenuLayout menuLayout, GameOptions gameOptions) {
     myControls = new ArrayList<ManiUiControl>();
 
-    myVolCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true);
-    myVolCtrl.setDisplayName("Vol");
-    myControls.add(myVolCtrl);
+    myCloseCtrl = new ManiUiControl(menuLayout.buttonRect(-1,1), true);
+    myCloseCtrl.setDisplayName("Resume");
+    myControls.add(myCloseCtrl);
+
     myRespawnCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true);
     myRespawnCtrl.setDisplayName("Respawn");
     myControls.add(myRespawnCtrl);
-    myExitCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true);
+
+    myOptionsCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true);
+    myOptionsCtrl.setDisplayName("Options");
+    myControls.add(myOptionsCtrl);
+
+    myExitCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true);
     myExitCtrl.setDisplayName("Exit");
     myControls.add(myExitCtrl);
-    myCloseCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyClose());
-    myCloseCtrl.setDisplayName("Resume");
-    myControls.add(myCloseCtrl);
   }
 
   @Override
@@ -49,31 +52,26 @@ public class MenuScreen implements ManiUiScreen {
     ManiGame g = cmp.getGame();
     g.setPaused(true);
     ManiInputManager im = cmp.getInputMan();
-    GameOptions options = cmp.getOptions();
-    myVolCtrl.setDisplayName("Volume: " + getVolName(options));
-    if (myVolCtrl.isJustOff()) {
-      options.advanceVolMul();
+
+    if (myCloseCtrl.isJustOff()) {
+      g.setPaused(false);
+      im.setScreen(cmp, g.getScreens().mainScreen);
     }
+
     if (myRespawnCtrl.isJustOff()) {
       g.respawn();
       im.setScreen(cmp, g.getScreens().mainScreen);
       g.setPaused(false);
     }
+
+    if (myOptionsCtrl.isJustOff()) {
+      g.setPaused(true);
+      return;
+    }
+
     if (myExitCtrl.isJustOff()) {
       cmp.finishGame();
     }
-    if (myCloseCtrl.isJustOff()) {
-      g.setPaused(false);
-      im.setScreen(cmp, g.getScreens().mainScreen);
-    }
-  }
-
-  private String getVolName(GameOptions options) {
-    float volMul = options.volMul;
-    if (volMul == 0) return "Off";
-    if (volMul < .4f) return "Low";
-    if (volMul < .7f) return "High";
-    return "Max";
   }
 
   @Override
