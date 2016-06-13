@@ -3,7 +3,7 @@ apply plugin: "java"
 sourceCompatibility = 1.8
 sourceSets.main.java.srcDirs = [ "src/" ]
 
-project.ext.mainClassName = "ManiDesktop"
+project.ext.mainClassName = 'org.burntgameproductions.PathToMani.desktop.ManiDesktop'
 
 dependencies {
     compile project(":main")
@@ -26,7 +26,7 @@ task run(type: JavaExec) {
 }
 
 jar {
-    archiveName = "solDesktop.jar"
+    archiveName = "maniDesktop.jar"
 
     manifest {
         def manifestClasspath = configurations.runtime.collect {it.getName() }.join(" ")
@@ -55,7 +55,7 @@ task dist (type: Sync) {
 task distZip (type: Zip) {
     dependsOn dist
     from "$distsDir/app"
-    archiveName = "DestinationSol.zip"
+    archiveName = "PathToMani.zip"
 }
 
 // TODO: LibGDX Generated config for Eclipse. Needs adjustment for assets not being in the Android facade
