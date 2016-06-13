@@ -23,6 +23,8 @@ public class ManiColor {
   public static final Color Magneta = new Color(.90f, .14f, .30f, 1);
   public static final Color Organge = new Color(.99f, .53f, .11f, 1);
   public static final Color Yellow = new Color(.86f, .86f, .9f, 1);
+  public static final Color Cyan = new Color(.16f, .56f, .68f, 1);
+
 
 
   public static Color col(float b, float t) {
