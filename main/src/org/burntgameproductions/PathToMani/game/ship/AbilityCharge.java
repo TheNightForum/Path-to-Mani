@@ -22,13 +22,13 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
-import org.burntgameproductions.PathToMani.game.item.SolItemType;
-import org.burntgameproductions.PathToMani.game.item.SolItemTypes;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
+import org.burntgameproductions.PathToMani.game.item.ManiItemType;
+import org.burntgameproductions.PathToMani.game.item.ManiItemTypes;
 import org.burntgameproductions.PathToMani.files.FileManager;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
-public class AbilityCharge implements SolItem {
+public class AbilityCharge implements ManiItem {
   private final Config myConfig;
 
   public AbilityCharge(Config config) {
@@ -51,22 +51,22 @@ public class AbilityCharge implements SolItem {
   }
 
   @Override
-  public SolItem copy() {
+  public ManiItem copy() {
     return new AbilityCharge(myConfig);
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return item instanceof AbilityCharge && ((AbilityCharge) item).myConfig == myConfig;
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return myConfig.icon;
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return myConfig.itemType;
   }
 
@@ -91,10 +91,10 @@ public class AbilityCharge implements SolItem {
     private final float price;
     private final String displayName;
     private final String desc;
-    public final SolItemType itemType;
+    public final ManiItemType itemType;
     public final String code;
 
-    public Config(TextureAtlas.AtlasRegion icon, float price, String displayName, String desc, SolItemType itemType,
+    public Config(TextureAtlas.AtlasRegion icon, float price, String displayName, String desc, ManiItemType itemType,
       String code) {
       this.icon = icon;
       this.price = price;
@@ -104,7 +104,7 @@ public class AbilityCharge implements SolItem {
       this.code = code;
     }
 
-    public static void load(ItemManager itemManager, TextureManager textureManager, SolItemTypes types) {
+    public static void load(ItemManager itemManager, TextureManager textureManager, ManiItemTypes types) {
       JsonReader r = new JsonReader();
       FileHandle configFile = FileManager.getInstance().getItemsDirectory().child("abilityCharges.json");
       JsonValue parsed = r.parse(configFile);

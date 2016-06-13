@@ -26,7 +26,7 @@ import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.item.Loot;
 import org.burntgameproductions.PathToMani.game.particle.ParticleSrc;
 import org.burntgameproductions.PathToMani.game.item.MoneyItem;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 import org.burntgameproductions.PathToMani.game.planet.TileObject;
 
@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Asteroid implements SolObject {
+public class Asteroid implements ManiObject {
 
   public static final float MIN_SPLIT_SZ = .25f;
   public static final float MIN_BURN_SZ = .3f;
@@ -58,7 +58,7 @@ public class Asteroid implements SolObject {
   private float mySize;
 
 
-  public Asteroid(SolGame game, TextureAtlas.AtlasRegion tex, Body body, float size, RemoveController removeController, ArrayList<Dra> dras) {
+  public Asteroid(ManiGame game, TextureAtlas.AtlasRegion tex, Body body, float size, RemoveController removeController, ArrayList<Dra> dras) {
     myTex = tex;
     myRemoveController = removeController;
     myDras = dras;
@@ -103,8 +103,8 @@ public class Asteroid implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-    SolGame game, Vector2 collPos)
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+                            ManiGame game, Vector2 collPos)
   {
     float dmg;
     if (other instanceof TileObject && MIN_BURN_SZ < mySize) {
@@ -131,14 +131,14 @@ public class Asteroid implements SolObject {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     boolean burning = updateInAtm(game);
     mySmokeSrc.setWorking(burning);
     myFireSrc.setWorking(burning);
     setParamsFromBody();
   }
 
-  private boolean updateInAtm(SolGame game) {
+  private boolean updateInAtm(ManiGame game) {
     Planet np = game.getPlanetMan().getNearestPlanet();
     float dst = np.getPos().dst(myPos);
     if (np.getFullHeight() < dst) return false;
@@ -156,12 +156,12 @@ public class Asteroid implements SolObject {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return myLife <= 0 || myRemoveController != null && myRemoveController.shouldRemove(myPos);
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
     game.getPartMan().finish(game, mySmokeSrc, myPos);
     game.getPartMan().finish(game, myFireSrc, myPos);
     myBody.getWorld().destroyBody(myBody);
@@ -173,7 +173,7 @@ public class Asteroid implements SolObject {
     }
   }
 
-  private void maybeSplit(SolGame game) {
+  private void maybeSplit(ManiGame game) {
     if (MIN_SPLIT_SZ > mySize) return;
     float sclSum = 0;
     while (sclSum < .7f * mySize * mySize) {
@@ -196,7 +196,7 @@ public class Asteroid implements SolObject {
     }
   }
 
-  private void throwLoot(SolGame game, SolItem item) {
+  private void throwLoot(ManiGame game, ManiItem item) {
     float spdAngle = SolMath.rnd(180);
     Vector2 lootSpd = new Vector2();
     SolMath.fromAl(lootSpd, spdAngle, SolMath.rnd(0, Loot.MAX_SPD));
@@ -209,7 +209,7 @@ public class Asteroid implements SolObject {
   }
 
   @Override
-  public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+  public void receiveDmg(float dmg, ManiGame game, Vector2 pos, DmgType dmgType) {
     myLife -= dmg;
     game.getSpecialSounds().playHit(game, this, pos, dmgType);
   }
@@ -220,7 +220,7 @@ public class Asteroid implements SolObject {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
     if (acc) force.scl(myMass);
     myBody.applyForceToCenter(force, true);
   }

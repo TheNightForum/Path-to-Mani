@@ -19,11 +19,11 @@ package org.burntgameproductions.PathToMani.game.ship;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.Faction;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.input.Pilot;
 import org.burntgameproductions.PathToMani.game.particle.ParticleSrc;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class ForceBeacon {
   private final Vector2 myPrevPos;
   private final ParticleSrc myEffect;
 
-  public ForceBeacon(SolGame game, Vector2 relPos, Vector2 basePos, Vector2 baseSpd) {
+  public ForceBeacon(ManiGame game, Vector2 relPos, Vector2 basePos, Vector2 baseSpd) {
     myRelPos = relPos;
     myEffect = game.getSpecialEffects().buildForceBeacon(.6f, game, relPos, basePos, baseSpd);
     myEffect.setWorking(true);
@@ -45,7 +45,7 @@ public class ForceBeacon {
     dras.add(myEffect);
   }
 
-  public void update(SolGame game, Vector2 basePos, float baseAngle, SolShip ship) {
+  public void update(ManiGame game, Vector2 basePos, float baseAngle, ManiShip ship) {
     Vector2 pos = SolMath.toWorld(myRelPos, baseAngle, basePos);
     Vector2 spd = SolMath.distVec(myPrevPos, pos).scl(1 / game.getTimeStep());
     Faction faction = ship.getPilot().getFaction();
@@ -55,17 +55,17 @@ public class ForceBeacon {
     SolMath.free(pos);
   }
 
-  public static SolShip pullShips(SolGame game, SolObject owner, Vector2 ownPos, Vector2 ownSpd, Faction faction,
-                                  float maxPullDist)
+  public static ManiShip pullShips(ManiGame game, ManiObject owner, Vector2 ownPos, Vector2 ownSpd, Faction faction,
+                                   float maxPullDist)
   {
-    SolShip res = null;
+    ManiShip res = null;
     float minLen = Float.MAX_VALUE;
-    List<SolObject> objs = game.getObjMan().getObjs();
+    List<ManiObject> objs = game.getObjMan().getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject o = objs.get(i);
+      ManiObject o = objs.get(i);
       if (o == owner) continue;
-      if (!(o instanceof SolShip)) continue;
-      SolShip ship = (SolShip) o;
+      if (!(o instanceof ManiShip)) continue;
+      ManiShip ship = (ManiShip) o;
       Pilot pilot = ship.getPilot();
       if (pilot.isUp() || pilot.isLeft() || pilot.isRight()) continue;
       if (game.getFactionMan().areEnemies(faction, pilot.getFaction())) continue;

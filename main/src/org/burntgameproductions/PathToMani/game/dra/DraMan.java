@@ -43,7 +43,7 @@ public class DraMan {
     myInCam = new HashSet<Dra>();
   }
 
-  public void objRemoved(SolObject o) {
+  public void objRemoved(ManiObject o) {
     List<Dra> dras = o.getDras();
     removeAll(dras);
   }
@@ -61,7 +61,7 @@ public class DraMan {
     }
   }
 
-  public void objAdded(SolObject o) {
+  public void objAdded(ManiObject o) {
     List<Dra> dras = o.getDras();
     addAll(dras);
   }
@@ -85,23 +85,23 @@ public class DraMan {
     }
   }
 
-  public void draw(SolGame game) {
+  public void draw(ManiGame game) {
     MapDrawer mapDrawer = game.getMapDrawer();
     if (mapDrawer.isToggled()) {
       mapDrawer.draw(myDrawer, game);
       return;
     }
 
-    SolCam cam = game.getCam();
+    ManiCam cam = game.getCam();
     myDrawer.updateMtx(game);
     game.getFarBgManOld().draw(myDrawer, cam, game);
     Vector2 camPos = cam.getPos();
     float viewDist = cam.getViewDist();
 
     ObjectManager objectManager = game.getObjMan();
-    List<SolObject> objs = objectManager.getObjs();
+    List<ManiObject> objs = objectManager.getObjs();
     for (int i1 = 0, objsSize = objs.size(); i1 < objsSize; i1++) {
-      SolObject o = objs.get(i1);
+      ManiObject o = objs.get(i1);
       Vector2 objPos = o.getPosition();
       float r = objectManager.getPresenceRadius(o);
       List<Dra> dras = o.getDras();
@@ -170,8 +170,8 @@ public class DraMan {
     myDrawer.maybeChangeAdditive(false);
   }
 
-  private void drawDebug(GameDrawer drawer, SolGame game, Dra dra) {
-    SolCam cam = game.getCam();
+  private void drawDebug(GameDrawer drawer, ManiGame game, Dra dra) {
+    ManiCam cam = game.getCam();
     float lineWidth = cam.getRealLineWidth();
     Color col = myInCam.contains(dra) ? DebugCol.DRA : DebugCol.DRA_OUT;
     Vector2 pos = dra.getPos();
@@ -182,7 +182,7 @@ public class DraMan {
     return camPos.dst(pos) - viewDist < r;
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
   }
 
   public static float radiusFromDras(List<Dra> dras) {

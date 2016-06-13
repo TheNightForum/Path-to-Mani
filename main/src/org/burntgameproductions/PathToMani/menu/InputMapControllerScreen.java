@@ -26,9 +26,9 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.SolApplication;
-import org.burntgameproductions.PathToMani.ui.SolInputManager;
-import org.burntgameproductions.PathToMani.ui.SolUiControl;
+import org.burntgameproductions.PathToMani.ManiApplication;
+import org.burntgameproductions.PathToMani.ui.ManiInputManager;
+import org.burntgameproductions.PathToMani.ui.ManiUiControl;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 
 import java.util.ArrayList;
@@ -37,14 +37,14 @@ import java.util.List;
 public class InputMapControllerScreen implements InputMapOperations {
     private static final String HEADER_TEXT = "Controller Inputs";
 
-    private final ArrayList<SolUiControl> controls;
+    private final ArrayList<ManiUiControl> controls;
     private boolean isEnterNewKey;
     private List<InputConfigItem> itemsList = new ArrayList<InputConfigItem>();
     private int selectedIndex;
     private int controllerItems;
 
     public InputMapControllerScreen(InputMapScreen inputMapScreen, GameOptions gameOptions) {
-        controls = new ArrayList<SolUiControl>();
+        controls = new ArrayList<ManiUiControl>();
     }
 
     private InputConfigItem InitItem(int axis, int button, String displayName) {
@@ -182,12 +182,12 @@ public class InputMapControllerScreen implements InputMapOperations {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<ManiUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     }
 
     /**
@@ -334,17 +334,17 @@ public class InputMapControllerScreen implements InputMapOperations {
     }
 
     @Override
-    public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+    public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
 
     }
 
     @Override
-    public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+    public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
 
     }
 
     @Override
-    public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+    public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
     }
 
     @Override
@@ -353,12 +353,12 @@ public class InputMapControllerScreen implements InputMapOperations {
     }
 
     @Override
-    public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+    public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
         return false;
     }
 
     @Override
-    public void onAdd(SolApplication cmp) {
+    public void onAdd(ManiApplication cmp) {
         InitialiseList(cmp.getOptions());
         Controllers.clearListeners();
         isEnterNewKey = false;
@@ -366,7 +366,7 @@ public class InputMapControllerScreen implements InputMapOperations {
     }
 
     @Override
-    public void blurCustom(SolApplication cmp) {
+    public void blurCustom(ManiApplication cmp) {
 
     }
 

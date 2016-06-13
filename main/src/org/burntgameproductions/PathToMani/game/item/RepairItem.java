@@ -18,13 +18,13 @@ package org.burntgameproductions.PathToMani.game.item;
 
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
-public class RepairItem implements SolItem {
+public class RepairItem implements ManiItem {
   public static final int LIFE_AMT = 20;
-  private final SolItemType myItemType;
+  private final ManiItemType myItemType;
 
-  public RepairItem(SolItemType itemType) {
+  public RepairItem(ManiItemType itemType) {
     myItemType = itemType;
   }
 
@@ -44,22 +44,22 @@ public class RepairItem implements SolItem {
   }
 
   @Override
-  public SolItem copy() {
+  public ManiItem copy() {
     return new RepairItem(myItemType);
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return item instanceof RepairItem;
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return game.getItemMan().repairIcon;
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return myItemType;
   }
 

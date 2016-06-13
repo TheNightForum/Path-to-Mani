@@ -24,10 +24,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.GameDrawer;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 
@@ -55,7 +55,7 @@ public class ParticleSrc implements Dra {
   private final BoundingBox myBb;
 
   public ParticleSrc(EffectConfig config, float sz, DraLevel draLevel, Vector2 relPos, boolean inheritsSpd,
-    SolGame game, Vector2 basePos, Vector2 baseSpd, float relAngle)
+                     ManiGame game, Vector2 basePos, Vector2 baseSpd, float relAngle)
   {
     myConfig = config;
     myEmitter = myConfig.effectType.newEmitter();
@@ -141,7 +141,7 @@ public class ParticleSrc implements Dra {
     return myEmitter.isComplete();
   }
 
-  public void update(SolGame game, SolObject o) {
+  public void update(ManiGame game, ManiObject o) {
     maybeSwitchRelPos(game);
     Vector2 basePos = o.getPosition();
     float baseAngle = o.getAngle();
@@ -161,7 +161,7 @@ public class ParticleSrc implements Dra {
     }
   }
 
-  private void updateSpd(SolGame game, Vector2 baseSpd, Vector2 basePos) {
+  private void updateSpd(ManiGame game, Vector2 baseSpd, Vector2 basePos) {
     if (isContinuous()) {
       if (!isWorking()) return;
     } else {
@@ -179,7 +179,7 @@ public class ParticleSrc implements Dra {
     SolMath.free(spd);
   }
 
-  private void maybeSwitchRelPos(SolGame game) {
+  private void maybeSwitchRelPos(ManiGame game) {
     if (myAreaSz == 0) return;
     float ts = game.getTimeStep();
     myTimeSincePosChange += ts;
@@ -215,7 +215,7 @@ public class ParticleSrc implements Dra {
   }
 
   @Override
-  public void prepare(SolObject o) {
+  public void prepare(ManiObject o) {
   }
 
   @Override
@@ -238,7 +238,7 @@ public class ParticleSrc implements Dra {
   }
 
   @Override
-  public void draw(GameDrawer drawer, SolGame game) {
+  public void draw(GameDrawer drawer, ManiGame game) {
     drawer.draw(myEmitter, myConfig.tex, myConfig.effectType.additive);
   }
 

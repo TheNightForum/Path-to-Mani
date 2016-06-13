@@ -19,9 +19,9 @@ package org.burntgameproductions.PathToMani.game.sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import org.burntgameproductions.PathToMani.common.DebugCol;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.GameDrawer;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,10 +32,10 @@ public class DebugHint {
   private final Vector2 myPos;
   private final Map<String, Long> myMsgs;
 
-  private SolObject myOwner;
+  private ManiObject myOwner;
   private String myMsg;
 
-  public DebugHint(SolObject owner, Vector2 pos) {
+  public DebugHint(ManiObject owner, Vector2 pos) {
     myOwner = owner;
     myPos = new Vector2(pos);
     myMsgs = new HashMap<String, Long>();
@@ -55,7 +55,7 @@ public class DebugHint {
     myMsg = sb.toString();
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     if (myOwner != null) {
       if (myOwner.shouldBeRemoved(game)) {
         myOwner = null;
@@ -81,7 +81,7 @@ public class DebugHint {
     return myMsgs.isEmpty();
   }
 
-  public void draw(GameDrawer drawer, SolGame game) {
+  public void draw(GameDrawer drawer, ManiGame game) {
     float fontSz = game.getCam().getDebugFontSize();
     drawer.drawString(myMsg, myPos.x, myPos.y, fontSz, false, DebugCol.HINT);
   }

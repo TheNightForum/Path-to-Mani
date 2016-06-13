@@ -21,11 +21,11 @@ import org.burntgameproductions.PathToMani.files.FileManager;
 
 import java.util.ArrayList;
 
-public class SolNames {
+public class ManiNames {
   public final ArrayList<String> planets;
   public final ArrayList<String> systems;
 
-  public SolNames() {
+  public ManiNames() {
     planets = readList("planet");
     systems = readList("system");
   }

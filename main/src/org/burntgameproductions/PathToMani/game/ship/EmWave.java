@@ -19,12 +19,12 @@ package org.burntgameproductions.PathToMani.game.ship;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.game.AbilityCommonConfig;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
 import org.burntgameproductions.PathToMani.game.particle.ParticleSrc;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public class EmWave implements ShipAbility {
   public static final int MAX_RADIUS = 4;
@@ -50,12 +50,12 @@ public class EmWave implements ShipAbility {
   }
 
   @Override
-  public boolean update(SolGame game, SolShip owner, boolean tryToUse) {
+  public boolean update(ManiGame game, ManiShip owner, boolean tryToUse) {
     if (!tryToUse) return false;
     Vector2 ownerPos = owner.getPosition();
-    for (SolObject o : game.getObjMan().getObjs()) {
-      if (!(o instanceof SolShip) || o == owner) continue;
-      SolShip oShip = (SolShip) o;
+    for (ManiObject o : game.getObjMan().getObjs()) {
+      if (!(o instanceof ManiShip) || o == owner) continue;
+      ManiShip oShip = (ManiShip) o;
       if (!game.getFactionMan().areEnemies(oShip, owner)) continue;
       Vector2 oPos = o.getPosition();
       float dst = oPos.dst(ownerPos);
@@ -72,11 +72,11 @@ public class EmWave implements ShipAbility {
 
   public static class Config implements AbilityConfig {
     public final float rechargeTime;
-    private final SolItem chargeExample;
+    private final ManiItem chargeExample;
     public final float duration;
     private final AbilityCommonConfig cc;
 
-    public Config(float rechargeTime, SolItem chargeExample, float duration, AbilityCommonConfig cc) {
+    public Config(float rechargeTime, ManiItem chargeExample, float duration, AbilityCommonConfig cc) {
       this.rechargeTime = rechargeTime;
       this.chargeExample = chargeExample;
       this.duration = duration;
@@ -89,7 +89,7 @@ public class EmWave implements ShipAbility {
     }
 
     @Override
-    public SolItem getChargeExample() {
+    public ManiItem getChargeExample() {
       return chargeExample;
     }
 
@@ -106,7 +106,7 @@ public class EmWave implements ShipAbility {
     public static AbilityConfig load(JsonValue abNode, ItemManager itemManager, AbilityCommonConfig cc) {
       float rechargeTime = abNode.getFloat("rechargeTime");
       float duration = abNode.getFloat("duration");
-      SolItem chargeExample = itemManager.getExample("emWaveCharge");
+      ManiItem chargeExample = itemManager.getExample("emWaveCharge");
       return new Config(rechargeTime, chargeExample, duration, cc);
     }
   }

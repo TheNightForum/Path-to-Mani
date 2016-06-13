@@ -21,8 +21,8 @@ import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.game.GameDrawer;
-import org.burntgameproductions.PathToMani.game.SolCam;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiCam;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public class PlanetCoreSingleton {
   private final TextureAtlas.AtlasRegion myTex;
@@ -32,8 +32,8 @@ public class PlanetCoreSingleton {
   }
 
 
-  public void draw(SolGame game, GameDrawer drawer) {
-    SolCam cam = game.getCam();
+  public void draw(ManiGame game, GameDrawer drawer) {
+    ManiCam cam = game.getCam();
     Vector2 camPos = cam.getPos();
     Planet p = game.getPlanetMan().getNearestPlanet();
     Vector2 pPos = p.getPos();

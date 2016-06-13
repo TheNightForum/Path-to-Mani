@@ -19,43 +19,43 @@ package org.burntgameproductions.PathToMani.menu;
 import com.badlogic.gdx.Gdx;
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.ui.*;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.common.SolColor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResolutionScreen implements SolUiScreen {
+public class ResolutionScreen implements ManiUiScreen {
 
-  private final ArrayList<SolUiControl> myControls;
-  private final SolUiControl myCloseCtrl;
-  private final SolUiControl myResoCtrl;
-  private final SolUiControl myFsCtrl;
+  private final ArrayList<ManiUiControl> myControls;
+  private final ManiUiControl myCloseCtrl;
+  private final ManiUiControl myResoCtrl;
+  private final ManiUiControl myFsCtrl;
 
   public ResolutionScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    myResoCtrl = new SolUiControl(menuLayout.buttonRect(-1, 2), true);
+    myResoCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true);
     myResoCtrl.setDisplayName("Resolution");
     myControls.add(myResoCtrl);
 
-    myFsCtrl = new SolUiControl(menuLayout.buttonRect(-1, 3), true);
+    myFsCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true);
     myFsCtrl.setDisplayName("Fullscreen");
     myControls.add(myFsCtrl);
 
-    myCloseCtrl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+    myCloseCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
     myCloseCtrl.setDisplayName("Back");
     myControls.add(myCloseCtrl);
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolInputManager im = cmp.getInputMan();
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    ManiInputManager im = cmp.getInputMan();
     if (myCloseCtrl.isJustOff()) {
       GameOptions options = cmp.getOptions();
       Gdx.graphics.setDisplayMode(options.x, options.y, options.fullscreen);
@@ -75,16 +75,16 @@ public class ResolutionScreen implements SolUiScreen {
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
     uiDrawer.drawString("Click 'Back' to apply changes", .5f * uiDrawer.r, .3f, FontSize.MENU, true, SolColor.W);
   }
 
@@ -94,16 +94,16 @@ public class ResolutionScreen implements SolUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
 
   }
 

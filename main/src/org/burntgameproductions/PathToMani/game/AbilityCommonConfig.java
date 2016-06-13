@@ -22,13 +22,13 @@ import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.game.particle.EffectConfig;
 import org.burntgameproductions.PathToMani.game.particle.EffectTypes;
 import org.burntgameproductions.PathToMani.game.sound.SoundManager;
-import org.burntgameproductions.PathToMani.game.sound.SolSound;
+import org.burntgameproductions.PathToMani.game.sound.ManiSound;
 
 public class AbilityCommonConfig {
   public final EffectConfig effect;
-  public final SolSound activatedSound;
+  public final ManiSound activatedSound;
 
-  public AbilityCommonConfig(EffectConfig effect, SolSound activatedSound) {
+  public AbilityCommonConfig(EffectConfig effect, ManiSound activatedSound) {
     this.effect = effect;
     this.activatedSound = activatedSound;
   }
@@ -37,7 +37,7 @@ public class AbilityCommonConfig {
                                          FileHandle configFile, SoundManager soundManager)
   {
     EffectConfig ec = EffectConfig.load(node.get("effect"), types, textureManager, configFile, cols);
-    SolSound activatedSound = soundManager.getSound(node.getString("activatedSound"), configFile);
+    ManiSound activatedSound = soundManager.getSound(node.getString("activatedSound"), configFile);
     return new AbilityCommonConfig(ec, activatedSound);
   }
 }

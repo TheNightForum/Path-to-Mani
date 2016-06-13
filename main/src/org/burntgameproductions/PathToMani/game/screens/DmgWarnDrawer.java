@@ -16,8 +16,8 @@
 
 package org.burntgameproductions.PathToMani.game.screens;
 
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
 public class DmgWarnDrawer extends WarnDrawer {
 
@@ -26,8 +26,8 @@ public class DmgWarnDrawer extends WarnDrawer {
   }
 
   @Override
-  protected boolean shouldWarn(SolGame game) {
-    SolShip hero = game.getHero();
+  protected boolean shouldWarn(ManiGame game) {
+    ManiShip hero = game.getHero();
     if (hero == null) return false;
     float l = hero.getLife();
     int ml = hero.getHull().config.getMaxLife();

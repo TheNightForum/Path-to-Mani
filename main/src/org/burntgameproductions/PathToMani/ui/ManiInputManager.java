@@ -26,18 +26,18 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.files.FileManager;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolInputManager {
+public class ManiInputManager {
 
   private static final int POINTER_COUNT = 4;
   private static final float CURSOR_SHOW_TIME = 3;
@@ -46,9 +46,9 @@ public class SolInputManager {
   private static final float initialRatio = ((float) Gdx.graphics.getWidth()) / ((float) Gdx.graphics.getHeight());
   private static Cursor hiddenCursor;
 
-  private final List<SolUiScreen> myScreens;
-  private final List<SolUiScreen> myToRemove;
-  private final List<SolUiScreen> myToAdd;
+  private final List<ManiUiScreen> myScreens;
+  private final List<ManiUiScreen> myToRemove;
+  private final List<ManiUiScreen> myToAdd;
   private final Ptr[] myPtrs;
   private final Ptr myFlashPtr;
   private final Vector2 myMousePos;
@@ -64,12 +64,12 @@ public class SolInputManager {
   private boolean myWarnPercGrows;
   private Boolean myScrolledUp;
 
-  public SolInputManager(TextureManager textureManager, float r) {
+  public ManiInputManager(TextureManager textureManager, float r) {
     myPtrs = new Ptr[POINTER_COUNT];
     for (int i = 0; i < POINTER_COUNT; i++) {
       myPtrs[i] = new Ptr();
     }
-    SolInputProcessor sip = new SolInputProcessor(this);
+    ManiInputProcessor sip = new ManiInputProcessor(this);
     Gdx.input.setInputProcessor(sip);
     myFlashPtr = new Ptr();
     myMousePos = new Vector2();
@@ -86,9 +86,9 @@ public class SolInputManager {
     Gdx.input.setCursorCatched(false);
     setMouseCursorHidden();
     myUiCursor = textureManager.getTex("ui/cursor", null);
-    myScreens = new ArrayList<SolUiScreen>();
-    myToRemove = new ArrayList<SolUiScreen>();
-    myToAdd = new ArrayList<SolUiScreen>();
+    myScreens = new ArrayList<ManiUiScreen>();
+    myToRemove = new ArrayList<ManiUiScreen>();
+    myToAdd = new ArrayList<ManiUiScreen>();
     myWarnCol = new Color(SolColor.UI_WARN);
 
     FileHandle hoverSoundFile = FileManager.getInstance().getSoundsDirectory().child("ui").child("uiHover.ogg");
@@ -104,11 +104,11 @@ public class SolInputManager {
 
   public void maybeFlashPressed(int keyCode) {
     for (int i = 0, myScreensSize = myScreens.size(); i < myScreensSize; i++) {
-      SolUiScreen screen = myScreens.get(i);
+      ManiUiScreen screen = myScreens.get(i);
       boolean consumed = false;
-      List<SolUiControl> controls = screen.getControls();
+      List<ManiUiControl> controls = screen.getControls();
       for (int i1 = 0, controlsSize = controls.size(); i1 < controlsSize; i1++) {
-        SolUiControl c = controls.get(i1);
+        ManiUiControl c = controls.get(i1);
         if (c.maybeFlashPressed(keyCode)) consumed = true;
       }
       if (consumed) return;
@@ -119,10 +119,10 @@ public class SolInputManager {
   public void maybeFlashPressed(int x, int y) {
     setPtrPos(myFlashPtr, x, y);
     for (int i = 0, myScreensSize = myScreens.size(); i < myScreensSize; i++) {
-      SolUiScreen screen = myScreens.get(i);
-      List<SolUiControl> controls = screen.getControls();
+      ManiUiScreen screen = myScreens.get(i);
+      List<ManiUiControl> controls = screen.getControls();
       for (int i1 = 0, controlsSize = controls.size(); i1 < controlsSize; i1++) {
-        SolUiControl c = controls.get(i1);
+        ManiUiControl c = controls.get(i1);
         if (c.maybeFlashPressed(myFlashPtr)) return;
       }
       if (screen.isCursorOnBg(myFlashPtr)) return;
@@ -130,30 +130,30 @@ public class SolInputManager {
 
   }
 
-  public void setScreen(SolApplication cmp, SolUiScreen screen) {
+  public void setScreen(ManiApplication cmp, ManiUiScreen screen) {
     for (int i = 0, myScreensSize = myScreens.size(); i < myScreensSize; i++) {
-      SolUiScreen oldScreen = myScreens.get(i);
+      ManiUiScreen oldScreen = myScreens.get(i);
       removeScreen(oldScreen, cmp);
     }
     addScreen(cmp, screen);
   }
 
-  public void addScreen(SolApplication cmp, SolUiScreen screen) {
+  public void addScreen(ManiApplication cmp, ManiUiScreen screen) {
     myToAdd.add(screen);
     screen.onAdd(cmp);
   }
 
-  private void removeScreen(SolUiScreen screen, SolApplication cmp) {
+  private void removeScreen(ManiUiScreen screen, ManiApplication cmp) {
     myToRemove.add(screen);
-    List<SolUiControl> controls = screen.getControls();
+    List<ManiUiControl> controls = screen.getControls();
     for (int i = 0, controlsSize = controls.size(); i < controlsSize; i++) {
-      SolUiControl c = controls.get(i);
+      ManiUiControl c = controls.get(i);
       c.blur();
     }
     screen.blurCustom(cmp);
   }
 
-  public boolean isScreenOn(SolUiScreen screen) {
+  public boolean isScreenOn(ManiUiScreen screen) {
     return myScreens.contains(screen);
   }
 
@@ -165,9 +165,9 @@ public class SolInputManager {
     ptr.y = 1f * screenY / h;
   }
 
-  public void update(SolApplication cmp) {
+  public void update(ManiApplication cmp) {
     boolean mobile = cmp.isMobile();
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
 
     // This keeps the mouse within the window, but only when playing the game with the mouse.
     // All other times the mouse can freely leave and return.
@@ -185,11 +185,11 @@ public class SolInputManager {
     myMouseOnUi = false;
     boolean clickOutsideReacted = false;
     for (int i = 0, myScreensSize = myScreens.size(); i < myScreensSize; i++) {
-      SolUiScreen screen = myScreens.get(i);
+      ManiUiScreen screen = myScreens.get(i);
       boolean consumedNow = false;
-      List<SolUiControl> controls = screen.getControls();
+      List<ManiUiControl> controls = screen.getControls();
       for (int i1 = 0, controlsSize = controls.size(); i1 < controlsSize; i1++) {
-        SolUiControl c = controls.get(i1);
+        ManiUiControl c = controls.get(i1);
         c.update(myPtrs, myCurrCursor != null, !consumed, this, cmp);
         if (c.isOn() || c.isJustOff()) {
           consumedNow = true;
@@ -243,22 +243,22 @@ public class SolInputManager {
 
   private void addRemoveScreens() {
     for (int i = 0, myToRemoveSize = myToRemove.size(); i < myToRemoveSize; i++) {
-      SolUiScreen screen = myToRemove.get(i);
+      ManiUiScreen screen = myToRemove.get(i);
       myScreens.remove(screen);
     }
     myToRemove.clear();
 
     for (int i = 0, myToAddSize = myToAdd.size(); i < myToAddSize; i++) {
-      SolUiScreen screen = myToAdd.get(i);
+      ManiUiScreen screen = myToAdd.get(i);
       if (isScreenOn(screen)) continue;
       myScreens.add(0, screen);
     }
     myToAdd.clear();
   }
 
-  private void updateCursor(SolApplication cmp) {
+  private void updateCursor(ManiApplication cmp) {
     if (cmp.isMobile()) return;
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
 
     myMousePos.set(myPtrs[0].x, myPtrs[0].y);
     if (cmp.getOptions().controlType == GameOptions.CONTROL_MIXED || cmp.getOptions().controlType == GameOptions.CONTROL_MOUSE) {
@@ -301,15 +301,15 @@ public class SolInputManager {
     }
   }
 
-  public void draw(UiDrawer uiDrawer, SolApplication cmp) {
+  public void draw(UiDrawer uiDrawer, ManiApplication cmp) {
     for (int i = myScreens.size() - 1; i >= 0; i--) {
-      SolUiScreen screen = myScreens.get(i);
+      ManiUiScreen screen = myScreens.get(i);
 
       uiDrawer.setTextMode(false);
       screen.drawBg(uiDrawer, cmp);
-      List<SolUiControl> ctrls = screen.getControls();
+      List<ManiUiControl> ctrls = screen.getControls();
       for (int i1 = 0, ctrlsSize = ctrls.size(); i1 < ctrlsSize; i1++) {
-        SolUiControl ctrl = ctrls.get(i1);
+        ManiUiControl ctrl = ctrls.get(i1);
         ctrl.drawButton(uiDrawer, cmp, myWarnCol);
       }
       screen.drawImgs(uiDrawer, cmp);
@@ -317,13 +317,13 @@ public class SolInputManager {
       uiDrawer.setTextMode(true);
       screen.drawText(uiDrawer, cmp);
       for (int i1 = 0, ctrlsSize = ctrls.size(); i1 < ctrlsSize; i1++) {
-        SolUiControl ctrl = ctrls.get(i1);
+        ManiUiControl ctrl = ctrls.get(i1);
         ctrl.drawDisplayName(uiDrawer);
       }
     }
     uiDrawer.setTextMode(null);
 
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
     TutorialManager tutorialManager = game == null ? null : game.getTutMan();
     if (tutorialManager != null && getTopScreen() != game.getScreens().menuScreen) tutorialManager.draw(uiDrawer);
 
@@ -344,15 +344,15 @@ public class SolInputManager {
     return myMouseOnUi;
   }
 
-  public void playHover(SolApplication cmp) {
+  public void playHover(ManiApplication cmp) {
     myHoverSound.play(.7f * cmp.getOptions().volMul, .7f, 0);
   }
 
-  public void playClick(SolApplication cmp) {
+  public void playClick(ManiApplication cmp) {
     myHoverSound.play(.7f * cmp.getOptions().volMul, .9f, 0);
   }
 
-  public SolUiScreen getTopScreen() {
+  public ManiUiScreen getTopScreen() {
     return myScreens.isEmpty() ? null : myScreens.get(0);
   }
 

@@ -23,15 +23,15 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.sound.SoundManager;
 import org.burntgameproductions.PathToMani.files.FileManager;
 import org.burntgameproductions.PathToMani.game.DmgType;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
-import org.burntgameproductions.PathToMani.game.sound.SolSound;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
+import org.burntgameproductions.PathToMani.game.sound.ManiSound;
 
-public class Shield implements SolItem {
+public class Shield implements ManiItem {
   public static final float SIZE_PERC = .7f;
   private static final float BULLET_DMG_FACTOR = .7f;
   private final Config myConfig;
@@ -49,7 +49,7 @@ public class Shield implements SolItem {
     myEquipped = equipped;
   }
 
-  public void update(SolGame game, SolObject owner) {
+  public void update(ManiGame game, ManiObject owner) {
     float ts = game.getTimeStep();
     if (myIdleTime >= myConfig.myMaxIdleTime) {
       if (myLife < myConfig.maxLife) {
@@ -80,22 +80,22 @@ public class Shield implements SolItem {
   }
 
   @Override
-  public SolItem copy() {
+  public ManiItem copy() {
     return new Shield(myConfig, myEquipped);
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return false;
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return myConfig.icon;
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return myConfig.itemType;
   }
 
@@ -116,7 +116,7 @@ public class Shield implements SolItem {
     return myLife > 0 && dmgType != DmgType.FIRE && dmgType != DmgType.CRASH;
   }
 
-  public void absorb(SolGame game, float dmg, Vector2 pos, SolShip ship, DmgType dmgType) {
+  public void absorb(ManiGame game, float dmg, Vector2 pos, ManiShip ship, DmgType dmgType) {
     if (!canAbsorb(dmgType) || dmg <= 0) throw new AssertionError("illegal call to absorb");
     myIdleTime = 0f;
     if (dmgType == DmgType.BULLET) dmg *= BULLET_DMG_FACTOR;
@@ -136,19 +136,19 @@ public class Shield implements SolItem {
     public final String displayName;
     public final int price;
     public final String desc;
-    public final SolSound absorbSound;
-    public final SolSound regenSound;
+    public final ManiSound absorbSound;
+    public final ManiSound regenSound;
     public final Shield example;
     public final float maxLife;
     public final float myMaxIdleTime = 2;
     public final float regenSpd;
     public final TextureAtlas.AtlasRegion icon;
     public TextureAtlas.AtlasRegion tex;
-    public final SolItemType itemType;
+    public final ManiItemType itemType;
     public final String code;
 
-    private Config(int maxLife, String displayName, int price, SolSound absorbSound, SolSound regenSound,
-      TextureAtlas.AtlasRegion icon, TextureAtlas.AtlasRegion tex, SolItemType itemType, String code) {
+    private Config(int maxLife, String displayName, int price, ManiSound absorbSound, ManiSound regenSound,
+                   TextureAtlas.AtlasRegion icon, TextureAtlas.AtlasRegion tex, ManiItemType itemType, String code) {
       this.maxLife = maxLife;
       this.displayName = displayName;
       this.price = price;
@@ -170,7 +170,7 @@ public class Shield implements SolItem {
       return sb.toString();
     }
 
-    public static void loadConfigs(ItemManager itemManager, SoundManager soundManager, TextureManager textureManager, SolItemTypes types) {
+    public static void loadConfigs(ItemManager itemManager, SoundManager soundManager, TextureManager textureManager, ManiItemTypes types) {
       JsonReader r = new JsonReader();
       FileHandle configFile = FileManager.getInstance().getItemsDirectory().child("shields.json");
       JsonValue parsed = r.parse(configFile);
@@ -180,9 +180,9 @@ public class Shield implements SolItem {
         int price = sh.getInt("price");
         String soundDir = sh.getString("absorbSound");
         float absorbPitch = sh.getFloat("absorbSoundPitch", 1);
-        SolSound absorbSound = soundManager.getPitchedSound(soundDir, configFile, absorbPitch);
+        ManiSound absorbSound = soundManager.getPitchedSound(soundDir, configFile, absorbPitch);
         soundDir = sh.getString("regenSound");
-        SolSound regenSound = soundManager.getSound(soundDir, configFile);
+        ManiSound regenSound = soundManager.getSound(soundDir, configFile);
         TextureAtlas.AtlasRegion icon = textureManager.getTex(TextureManager.ICONS_DIR + sh.getString("icon"), configFile);
         TextureAtlas.AtlasRegion tex = textureManager.getTex(sh.getString("tex"), configFile);
         String code = sh.name;

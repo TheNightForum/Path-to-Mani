@@ -19,14 +19,14 @@ package org.burntgameproductions.PathToMani.game.gun;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.Faction;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.ship.hulls.GunSlot;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.input.Shooter;
 import org.burntgameproductions.PathToMani.game.item.ItemContainer;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 
 import java.util.List;
@@ -43,7 +43,7 @@ public class GunMount {
     myFixed = !gunSlot.allowsRotation();
   }
 
-  public void update(ItemContainer ic, SolGame game, float shipAngle, SolShip creator, boolean shouldShoot, SolShip nearestEnemy, Faction faction) {
+  public void update(ItemContainer ic, ManiGame game, float shipAngle, ManiShip creator, boolean shouldShoot, ManiShip nearestEnemy, Faction faction) {
     if (myGun == null) return;
     if (!ic.contains(myGun.getItem())) {
       setGun(game, creator, null, false, 0);
@@ -78,7 +78,7 @@ public class GunMount {
     return myGun == null ? null : myGun.getItem();
   }
 
-  public void setGun(SolGame game, SolObject o, GunItem gunItem, boolean underShip, int slotNr) {
+  public void setGun(ManiGame game, ManiObject o, GunItem gunItem, boolean underShip, int slotNr) {
     List<Dra> dras = o.getDras();
     if (myGun != null) {
       List<Dra> dras1 = myGun.getDras();

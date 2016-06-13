@@ -18,51 +18,51 @@ package org.burntgameproductions.PathToMani.menu;
 
 import com.badlogic.gdx.Input;
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.SolApplication;
-import org.burntgameproductions.PathToMani.ui.SolInputManager;
-import org.burntgameproductions.PathToMani.ui.SolUiControl;
-import org.burntgameproductions.PathToMani.ui.SolUiScreen;
+import org.burntgameproductions.PathToMani.ManiApplication;
+import org.burntgameproductions.PathToMani.ui.ManiInputManager;
+import org.burntgameproductions.PathToMani.ui.ManiUiControl;
+import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OptionsScreen implements SolUiScreen {
-  private final ArrayList<SolUiControl> myControls;
-  private final SolUiControl myBackCtrl;
-  private final SolUiControl myResoCtrl;
-  private final SolUiControl myControlTypeCtrl;
-  private final SolUiControl inputMapCtrl;
+public class OptionsScreen implements ManiUiScreen {
+  private final ArrayList<ManiUiControl> myControls;
+  private final ManiUiControl myBackCtrl;
+  private final ManiUiControl myResoCtrl;
+  private final ManiUiControl myControlTypeCtrl;
+  private final ManiUiControl inputMapCtrl;
 
   public OptionsScreen(MenuLayout menuLayout, GameOptions gameOptions) {
 
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    myResoCtrl = new SolUiControl(menuLayout.buttonRect(-1, 1), true);
+    myResoCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true);
     myResoCtrl.setDisplayName("Resolution");
     myControls.add(myResoCtrl);
 
-    myControlTypeCtrl = new SolUiControl(menuLayout.buttonRect(-1, 2), true, Input.Keys.C);
+    myControlTypeCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true, Input.Keys.C);
     myControlTypeCtrl.setDisplayName("Control Type");
     myControls.add(myControlTypeCtrl);
 
-    inputMapCtrl = new SolUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.M);
+    inputMapCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.M);
     inputMapCtrl.setDisplayName("Controls");
     myControls.add(inputMapCtrl);
 
-    myBackCtrl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+    myBackCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
     myBackCtrl.setDisplayName("Back");
     myControls.add(myBackCtrl);
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolInputManager im = cmp.getInputMan();
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    ManiInputManager im = cmp.getInputMan();
     MenuScreens screens = cmp.getMenuScreens();
     if (myResoCtrl.isJustOff()) {
       im.setScreen(cmp, screens.resolutionScreen);
@@ -95,17 +95,17 @@ public class OptionsScreen implements SolUiScreen {
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
@@ -114,17 +114,17 @@ public class OptionsScreen implements SolUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
 
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
 
   }
 }

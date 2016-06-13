@@ -18,11 +18,11 @@ package org.burntgameproductions.PathToMani.menu;
 
 
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.ui.SolUiScreen;
+import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
 
 import java.util.List;
 
-public interface InputMapOperations extends SolUiScreen {
+public interface InputMapOperations extends ManiUiScreen {
     /**
      * Get the header title to display on the input mapping screen.
      * @return String The header title

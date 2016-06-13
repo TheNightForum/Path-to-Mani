@@ -24,23 +24,23 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.projectile.Projectile;
 
-public class SolContactListener implements ContactListener {
-  private final SolGame myGame;
+public class ManiContactListener implements ContactListener {
+  private final ManiGame myGame;
 
-  public SolContactListener(SolGame game) {
+  public ManiContactListener(ManiGame game) {
     myGame = game;
   }
 
   @Override
   public void beginContact(Contact contact) {
-    SolObject oA = (SolObject) contact.getFixtureA().getBody().getUserData();
-    SolObject oB = (SolObject) contact.getFixtureB().getBody().getUserData();
+    ManiObject oA = (ManiObject) contact.getFixtureA().getBody().getUserData();
+    ManiObject oB = (ManiObject) contact.getFixtureB().getBody().getUserData();
 
     boolean aIsProj = oA instanceof Projectile;
     if (!aIsProj && !(oB instanceof Projectile)) return;
 
     Projectile proj = (Projectile)(aIsProj ? oA : oB);
-    SolObject o = aIsProj ? oB : oA;
+    ManiObject o = aIsProj ? oB : oA;
     proj.setObstacle(o, myGame);
   }
 
@@ -54,8 +54,8 @@ public class SolContactListener implements ContactListener {
 
   @Override
   public void postSolve(Contact contact, ContactImpulse impulse) {
-    SolObject soa = (SolObject) contact.getFixtureA().getBody().getUserData();
-    SolObject sob = (SolObject) contact.getFixtureB().getBody().getUserData();
+    ManiObject soa = (ManiObject) contact.getFixtureA().getBody().getUserData();
+    ManiObject sob = (ManiObject) contact.getFixtureB().getBody().getUserData();
     if (soa instanceof Projectile && ((Projectile) soa).getConfig().density <= 0) return;
     if (sob instanceof Projectile && ((Projectile) sob).getConfig().density <= 0) return;
 

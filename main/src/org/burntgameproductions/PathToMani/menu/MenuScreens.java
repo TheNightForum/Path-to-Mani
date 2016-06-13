@@ -18,7 +18,7 @@ package org.burntgameproductions.PathToMani.menu;
 
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.TextureManager;
-import org.burntgameproductions.PathToMani.ui.SolLayouts;
+import org.burntgameproductions.PathToMani.ui.ManiLayouts;
 
 public class MenuScreens {
   public final MainScreen main;
@@ -30,7 +30,7 @@ public class MenuScreens {
   public final NewGameScreen newGame;
   public final NewShipScreen newShip;
 
-  public MenuScreens(SolLayouts layouts, TextureManager textureManager, boolean mobile, float r, GameOptions gameOptions) {
+  public MenuScreens(ManiLayouts layouts, TextureManager textureManager, boolean mobile, float r, GameOptions gameOptions) {
     MenuLayout menuLayout = layouts.menuLayout;
     main = new MainScreen(menuLayout, textureManager, mobile, r, gameOptions);
     options = new OptionsScreen(menuLayout, gameOptions);

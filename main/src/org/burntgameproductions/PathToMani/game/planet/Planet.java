@@ -21,13 +21,13 @@ import org.burntgameproductions.PathToMani.common.Bound;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.HardnessCalc;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Planet {
-  private final SolSystem mySys;
+  private final ManiSystem mySys;
   private final Vector2 myPos;
   private final float myDist;
   private final float myToSysRotSpd;
@@ -46,8 +46,8 @@ public class Planet {
   private float myMinGroundHeight;
   private Vector2 mySpd;
 
-  public Planet(SolSystem sys, float angleToSys, float dist, float angle, float toSysRotSpd, float rotSpd,
-    float groundHeight, boolean objsCreated, PlanetConfig config, String name)
+  public Planet(ManiSystem sys, float angleToSys, float dist, float angle, float toSysRotSpd, float rotSpd,
+                float groundHeight, boolean objsCreated, PlanetConfig config, String name)
   {
     mySys = sys;
     myAngleToSys = angleToSys;
@@ -70,7 +70,7 @@ public class Planet {
     setSecondaryParams();
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     float ts = game.getTimeStep();
     myAngleToSys += myToSysRotSpd * ts;
     myAngle += myRotSpd * ts;
@@ -92,7 +92,7 @@ public class Planet {
     SolMath.fromAl(mySpd, spdAngle, spdLen);
   }
 
-  private void fillLangingPlaces(SolGame game) {
+  private void fillLangingPlaces(ManiGame game) {
     for (int i = 0; i < 10; i++) {
       Vector2 lp = game.getPlanetMan().findFlatPlace(game, this, null, 0);
       myLps.add(lp);
@@ -115,7 +115,7 @@ public class Planet {
     return myGroundHeight;
   }
 
-  public SolSystem getSys() {
+  public ManiSystem getSys() {
     return mySys;
   }
 

@@ -17,10 +17,10 @@
 package org.burntgameproductions.PathToMani.game.dra;
 
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.FarObj;
 import org.burntgameproductions.PathToMani.game.RemoveController;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 import java.util.List;
 
@@ -43,17 +43,17 @@ public class FarDras implements FarObj {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return myRemoveController != null && myRemoveController.shouldRemove(myPos);
   }
 
   @Override
-  public SolObject toObj(SolGame game) {
+  public ManiObject toObj(ManiGame game) {
     return new DrasObject(myDras, myPos, mySpd, myRemoveController, false, myHideOnPlanet);
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
   }
 
   @Override

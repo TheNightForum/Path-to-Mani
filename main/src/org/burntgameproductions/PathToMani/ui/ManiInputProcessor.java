@@ -18,11 +18,11 @@ package org.burntgameproductions.PathToMani.ui;
 
 import com.badlogic.gdx.InputProcessor;
 
-public class SolInputProcessor implements InputProcessor {
+public class ManiInputProcessor implements InputProcessor {
 
-  private final SolInputManager myInputMan;
+  private final ManiInputManager myInputMan;
 
-  public SolInputProcessor(SolInputManager inputMan) {
+  public ManiInputProcessor(ManiInputManager inputMan) {
     myInputMan = inputMan;
   }
 

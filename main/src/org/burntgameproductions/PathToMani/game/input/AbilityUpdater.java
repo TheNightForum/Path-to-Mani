@@ -17,9 +17,9 @@
 package org.burntgameproductions.PathToMani.game.input;
 
 import org.burntgameproductions.PathToMani.common.SolMath;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.game.ship.ShipAbility;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
 
 public class AbilityUpdater {
   private final float myAbilityUseStartPerc;
@@ -32,13 +32,13 @@ public class AbilityUpdater {
     myChargesToKeep = SolMath.intRnd(1, 2);
   }
 
-  public void update(SolShip ship, SolShip nearestEnemy) {
+  public void update(ManiShip ship, ManiShip nearestEnemy) {
     myAbility = false;
     if (nearestEnemy == null) return;
     ShipAbility ability = ship.getAbility();
     if (ability == null) return;
     if (ship.getHull().config.getMaxLife() * myAbilityUseStartPerc < ship.getLife()) return;
-    SolItem ex = ability.getConfig().getChargeExample();
+    ManiItem ex = ability.getConfig().getChargeExample();
     if (ex != null) {
       if (ship.getItemContainer().count(ex) <= myChargesToKeep) return;
     }

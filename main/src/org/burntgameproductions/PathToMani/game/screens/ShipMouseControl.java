@@ -19,11 +19,11 @@ package org.burntgameproductions.PathToMani.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.game.BeaconHandler;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
-import org.burntgameproductions.PathToMani.ui.SolInputManager;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
+import org.burntgameproductions.PathToMani.ui.ManiInputManager;
 
 public class ShipMouseControl implements ShipUiControl {
   private final TextureAtlas.AtlasRegion myMoveCursor;
@@ -33,7 +33,7 @@ public class ShipMouseControl implements ShipUiControl {
 
   private TextureAtlas.AtlasRegion myCursor;
 
-  public ShipMouseControl(SolApplication cmp) {
+  public ShipMouseControl(ManiApplication cmp) {
     myMoveCursor = cmp.getTexMan().getTex("ui/cursorMove", null);
     myAttackCursor = cmp.getTexMan().getTex("ui/cursorAttack", null);
     myFollowCursor = cmp.getTexMan().getTex("ui/cursorFollow", null);
@@ -41,14 +41,14 @@ public class ShipMouseControl implements ShipUiControl {
   }
 
   @Override
-  public void update(SolApplication cmp, boolean enabled) {
-    SolGame g = cmp.getGame();
-    SolShip h = g.getHero();
+  public void update(ManiApplication cmp, boolean enabled) {
+    ManiGame g = cmp.getGame();
+    ManiShip h = g.getHero();
     myCursor = null;
     if (h != null) {
       myMouseWorldPos.set(Gdx.input.getX(), Gdx.input.getY());
       g.getCam().screenToWorld(myMouseWorldPos);
-      SolInputManager im = cmp.getInputMan();
+      ManiInputManager im = cmp.getInputMan();
       boolean clicked = im.getPtrs()[0].pressed;
       boolean onMap = im.isScreenOn(g.getScreens().mapScreen);
       BeaconHandler.Action a = g.getBeaconHandler().processMouse(g, myMouseWorldPos, clicked, onMap);

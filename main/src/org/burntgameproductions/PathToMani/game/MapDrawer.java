@@ -24,12 +24,12 @@ import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.maze.MazeBuilder;
 import org.burntgameproductions.PathToMani.game.planet.*;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.game.maze.Maze;
 import org.burntgameproductions.PathToMani.game.ship.FarShip;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,13 +106,13 @@ public class MapDrawer {
     return myToggled;
   }
 
-  public void draw(GameDrawer drawer, SolGame game) {
-    SolCam cam = game.getCam();
+  public void draw(GameDrawer drawer, ManiGame game) {
+    ManiCam cam = game.getCam();
     float iconSz = getIconRadius(cam) * 2;
     float starNodeW = cam.getViewHeight(myZoom) * STAR_NODE_SZ;
     float viewDist = cam.getViewDist(myZoom);
     FactionManager factionManager = game.getFactionMan();
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     Planet np = game.getPlanetMan().getNearestPlanet();
     Vector2 camPos = cam.getPos();
     float camAngle = cam.getAngle();
@@ -128,12 +128,12 @@ public class MapDrawer {
     drawIcons(drawer, game, iconSz, viewDist, factionManager, hero, camPos, heroDmgCap);
   }
 
-  public float getIconRadius(SolCam cam) {
+  public float getIconRadius(ManiCam cam) {
     return cam.getViewHeight(myZoom) * myIconRad;
   }
 
-  private void drawMazes(GameDrawer drawer, SolGame game, float viewDist, Planet np, Vector2 camPos, float heroDmgCap,
-    float camAngle)
+  private void drawMazes(GameDrawer drawer, ManiGame game, float viewDist, Planet np, Vector2 camPos, float heroDmgCap,
+                         float camAngle)
   {
     ArrayList<Maze> mazes = game.getPlanetMan().getMazes();
     for (int i = 0, mazesSize = mazes.size(); i < mazesSize; i++) {
@@ -150,19 +150,19 @@ public class MapDrawer {
 
   }
 
-  private void drawPlanets(GameDrawer drawer, SolGame game, float viewDist, Planet np, Vector2 camPos, float heroDmgCap,
-    float camAngle)
+  private void drawPlanets(GameDrawer drawer, ManiGame game, float viewDist, Planet np, Vector2 camPos, float heroDmgCap,
+                           float camAngle)
   {
-    ArrayList<SolSystem> systems = game.getPlanetMan().getSystems();
-    SolCam cam = game.getCam();
+    ArrayList<ManiSystem> systems = game.getPlanetMan().getSystems();
+    ManiCam cam = game.getCam();
     float circleWidth = cam.getRealLineWidth() * 6;
     float vh = cam.getViewHeight(myZoom);
     for (int i3 = 0, systemsSize1 = systems.size(); i3 < systemsSize1; i3++) {
-      SolSystem sys = systems.get(i3);
+      ManiSystem sys = systems.get(i3);
       drawer.drawCircle(myLineTex, sys.getPos(), sys.getRadius(), SolColor.UI_MED, circleWidth, vh);
     }
     for (int i2 = 0, systemsSize = systems.size(); i2 < systemsSize; i2++) {
-      SolSystem sys = systems.get(i2);
+      ManiSystem sys = systems.get(i2);
       float dangerRad = HardnessCalc.isDangerous(heroDmgCap, sys.getDps()) ? sys.getRadius() : 0;
       Vector2 sysPos = sys.getPos();
       float rad = Const.SUN_RADIUS;
@@ -232,16 +232,16 @@ public class MapDrawer {
     drawer.draw(mySkullBigTex, rad *2, rad *2, rad, rad, pos.x, pos.y, angle, myAreaWarnCol);
   }
 
-  private void drawIcons(GameDrawer drawer, SolGame game, float iconSz, float viewDist, FactionManager factionManager,
-    SolShip hero, Vector2 camPos, float heroDmgCap)
+  private void drawIcons(GameDrawer drawer, ManiGame game, float iconSz, float viewDist, FactionManager factionManager,
+                         ManiShip hero, Vector2 camPos, float heroDmgCap)
   {
-    List<SolObject> objs = game.getObjMan().getObjs();
+    List<ManiObject> objs = game.getObjMan().getObjs();
     for (int i1 = 0, objsSize = objs.size(); i1 < objsSize; i1++) {
-      SolObject o = objs.get(i1);
+      ManiObject o = objs.get(i1);
       Vector2 oPos = o.getPosition();
       if (viewDist < camPos.dst(oPos)) continue;
-      if ((o instanceof SolShip)) {
-        SolShip ship = (SolShip) o;
+      if ((o instanceof ManiShip)) {
+        ManiShip ship = (ManiShip) o;
         String hint = ship.getPilot().getMapHint();
         if (hint == null && !DebugOptions.DETAILED_MAP) continue;
         drawObjIcon(iconSz, oPos, ship.getAngle(), factionManager, hero, ship.getPilot().getFaction(), heroDmgCap, o, ship.getHull().config.getIcon(), drawer);
@@ -295,11 +295,11 @@ public class MapDrawer {
     SolMath.free(pos);
   }
 
-  private void drawStarNodes(GameDrawer drawer, SolGame game, float viewDist, Vector2 camPos, float starNodeW)
+  private void drawStarNodes(GameDrawer drawer, ManiGame game, float viewDist, Vector2 camPos, float starNodeW)
   {
-    List<SolObject> objs = game.getObjMan().getObjs();
+    List<ManiObject> objs = game.getObjMan().getObjs();
     for (int i1 = 0, objsSize = objs.size(); i1 < objsSize; i1++) {
-      SolObject o = objs.get(i1);
+      ManiObject o = objs.get(i1);
       if (!(o instanceof StarPort)) continue;
       Vector2 oPos = o.getPosition();
       if (viewDist < camPos.dst(oPos)) continue;
@@ -324,11 +324,11 @@ public class MapDrawer {
     SolMath.free(pos2);
   }
 
-  private void drawNpGround(GameDrawer drawer, SolGame game, float viewDist, Planet np, Vector2 camPos) {
+  private void drawNpGround(GameDrawer drawer, ManiGame game, float viewDist, Planet np, Vector2 camPos) {
     ObjectManager objectManager = game.getObjMan();
-    List<SolObject> objs = objectManager.getObjs();
+    List<ManiObject> objs = objectManager.getObjs();
     for (int i1 = 0, objsSize = objs.size(); i1 < objsSize; i1++) {
-      SolObject o = objs.get(i1);
+      ManiObject o = objs.get(i1);
       if (!(o instanceof TileObject)) continue;
       TileObject to = (TileObject) o;
       if (to.getPlanet() != np) continue;
@@ -353,7 +353,7 @@ public class MapDrawer {
   }
 
   public void drawObjIcon(float iconSz, Vector2 pos, float objAngle,
-                          FactionManager factionManager, SolShip hero, Faction objFac, float heroDmgCap,
+                          FactionManager factionManager, ManiShip hero, Faction objFac, float heroDmgCap,
                           Object shipHack, TextureAtlas.AtlasRegion icon, Object drawerHack)
   {
     boolean enemy = hero != null && factionManager.areEnemies(objFac, hero.getPilot().getFaction());
@@ -388,7 +388,7 @@ public class MapDrawer {
     return myZoom;
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     mySkullTime += game.getTimeStep();
     if (mySkullTime > MAX_SKULL_TIME) mySkullTime = -MAX_SKULL_TIME;
     myAreaSkullTime += game.getTimeStep();

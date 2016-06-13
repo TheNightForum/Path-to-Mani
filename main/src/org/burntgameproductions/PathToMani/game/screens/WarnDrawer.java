@@ -23,7 +23,7 @@ import org.burntgameproductions.PathToMani.ui.FontSize;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public abstract class WarnDrawer {
   public static final float FADE_TIME = 1f;
@@ -48,7 +48,7 @@ public abstract class WarnDrawer {
     return new Rectangle(.4f * r, 0, .2f * r, .1f);
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     show = shouldWarn(game);
     if (show) drawPerc = 1;
     else drawPerc = SolMath.approach(drawPerc, 0, Const.REAL_TIME_STEP / FADE_TIME);
@@ -56,7 +56,7 @@ public abstract class WarnDrawer {
     myTextCol.a = drawPerc;
   }
 
-  protected abstract boolean shouldWarn(SolGame game);
+  protected abstract boolean shouldWarn(ManiGame game);
 
   public void draw(UiDrawer uiDrawer) {
     uiDrawer.draw(myWarn, myBgCol);

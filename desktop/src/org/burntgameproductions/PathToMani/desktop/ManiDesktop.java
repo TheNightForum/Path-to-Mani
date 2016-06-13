@@ -19,10 +19,10 @@ import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.game.DebugOptions;
 import org.burntgameproductions.PathToMani.soundtest.SoundTestListener;
-import org.burntgameproductions.PathToMani.SolFileReader;
+import org.burntgameproductions.PathToMani.ManiFileReader;
 import org.terasology.crashreporter.CrashReporter;
 
 import java.io.BufferedReader;
@@ -39,7 +39,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-public class SolDesktop {
+public class ManiDesktop {
     public static void main(String[] argv) {
         if (false) {
             new LwjglApplication(new SoundTestListener(), "sound test", 800, 600);
@@ -100,10 +100,10 @@ public class SolDesktop {
             }
         });
 
-        new LwjglApplication(new SolApplication(), c);
+        new LwjglApplication(new ManiApplication(), c);
     }
 
-    private static class MyReader implements SolFileReader {
+    private static class MyReader implements ManiFileReader {
         @Override
         public Path create(String fileName, List<String> lines) {
             if (DebugOptions.DEV_ROOT_PATH != null) {

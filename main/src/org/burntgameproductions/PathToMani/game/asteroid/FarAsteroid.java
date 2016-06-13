@@ -18,10 +18,10 @@ package org.burntgameproductions.PathToMani.game.asteroid;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.FarObj;
 import org.burntgameproductions.PathToMani.game.RemoveController;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public class FarAsteroid implements FarObj {
   private final Vector2 myPos;
@@ -45,17 +45,17 @@ public class FarAsteroid implements FarObj {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return myRemoveController != null && myRemoveController.shouldRemove(myPos);
   }
 
   @Override
-  public SolObject toObj(SolGame game) {
+  public ManiObject toObj(ManiGame game) {
     return game.getAsteroidBuilder().build(game, myPos, myTex, mySz, myAngle, myRotSpd, mySpd, myRemoveController);
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
   }
 
   @Override

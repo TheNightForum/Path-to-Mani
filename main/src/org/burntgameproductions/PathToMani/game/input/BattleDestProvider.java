@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
 public class BattleDestProvider {
   public static final float MIN_DIR_CHANGE_AWAIT = 10f;
@@ -36,8 +36,8 @@ public class BattleDestProvider {
     myCw = SolMath.test(.5f);
   }
 
-  public Vector2 getDest(SolShip ship, SolShip enemy, Planet np, boolean battle, float ts,
-    boolean canShootUnfixed, boolean nearGround) {
+  public Vector2 getDest(ManiShip ship, ManiShip enemy, Planet np, boolean battle, float ts,
+                         boolean canShootUnfixed, boolean nearGround) {
     myDirChangeAwait -= ts;
     if (myDirChangeAwait <= 0) {
       int rnd = SolMath.intRnd(0, 2);

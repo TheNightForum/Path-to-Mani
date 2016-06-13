@@ -16,14 +16,14 @@
 
 package org.burntgameproductions.PathToMani.game.screens;
 
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.item.ItemContainer;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
-import org.burntgameproductions.PathToMani.ui.SolUiScreen;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
+import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
 
-public interface InventoryOperations extends SolUiScreen {
-  ItemContainer getItems(SolGame game);
-  boolean isUsing(SolGame game, SolItem item);
+public interface InventoryOperations extends ManiUiScreen {
+  ItemContainer getItems(ManiGame game);
+  boolean isUsing(ManiGame game, ManiItem item);
   float getPriceMul();
   String getHeader();
 }

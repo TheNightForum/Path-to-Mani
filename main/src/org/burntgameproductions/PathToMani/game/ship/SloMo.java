@@ -22,9 +22,9 @@ import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.AbilityCommonConfig;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
 import org.burntgameproductions.PathToMani.game.particle.ParticleSrc;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public class SloMo implements ShipAbility {
   private static final float SLO_MO_CHG_SPD = .03f;
@@ -53,7 +53,7 @@ public class SloMo implements ShipAbility {
   }
 
   @Override
-  public boolean update(SolGame game, SolShip owner, boolean tryToUse) {
+  public boolean update(ManiGame game, ManiShip owner, boolean tryToUse) {
     if (tryToUse) {
       myFactor = myConfig.factor;
       Vector2 pos = owner.getPosition();
@@ -74,10 +74,10 @@ public class SloMo implements ShipAbility {
   public static class Config implements AbilityConfig {
     public final float factor;
     public final float rechargeTime;
-    private final SolItem chargeExample;
+    private final ManiItem chargeExample;
     private final AbilityCommonConfig cc;
 
-    public Config(float factor, float rechargeTime, SolItem chargeExample, AbilityCommonConfig cc)
+    public Config(float factor, float rechargeTime, ManiItem chargeExample, AbilityCommonConfig cc)
     {
       this.factor = factor;
       this.rechargeTime = rechargeTime;
@@ -91,7 +91,7 @@ public class SloMo implements ShipAbility {
     }
 
     @Override
-    public SolItem getChargeExample() {
+    public ManiItem getChargeExample() {
       return chargeExample;
     }
 
@@ -108,7 +108,7 @@ public class SloMo implements ShipAbility {
     public static AbilityConfig load(JsonValue abNode, ItemManager itemManager, AbilityCommonConfig cc) {
       float factor = abNode.getFloat("factor");
       float rechargeTime = abNode.getFloat("rechargeTime");
-      SolItem chargeExample = itemManager.getExample("sloMoCharge");
+      ManiItem chargeExample = itemManager.getExample("sloMoCharge");
       return new Config(factor, rechargeTime, chargeExample, cc);
     }
   }

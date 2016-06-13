@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public class FlatPlaceFinder {
   private final Vector2 myVec = new Vector2();
@@ -38,7 +38,7 @@ public class FlatPlaceFinder {
     }
   };
 
-  public Vector2 find(SolGame game, Planet p, ConsumedAngles takenAngles, float objHalfWidth) {
+  public Vector2 find(ManiGame game, Planet p, ConsumedAngles takenAngles, float objHalfWidth) {
     Vector2 pPos = p.getPos();
 
     Vector2 res = new Vector2(pPos);

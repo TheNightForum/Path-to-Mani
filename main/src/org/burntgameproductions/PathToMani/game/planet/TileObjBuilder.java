@@ -25,14 +25,14 @@ import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.dra.RectSprite;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TileObjBuilder {
-  public TileObject build(SolGame game, float sz, float toPlanetRelAngle, float dist, Tile tile, Planet planet) {
+  public TileObject build(ManiGame game, float sz, float toPlanetRelAngle, float dist, Tile tile, Planet planet) {
     float spriteSz = sz * 2;
     RectSprite sprite = new RectSprite(tile.tex, spriteSz, 0, 0, new Vector2(), DraLevel.GROUND, 0, 0f, SolColor.W, false);
     Body body = null;
@@ -44,7 +44,7 @@ public class TileObjBuilder {
     return res;
   }
 
-  private Body buildBody(SolGame game, float toPlanetRelAngle, float dist, Tile tile, Planet planet, float spriteSz) {
+  private Body buildBody(ManiGame game, float toPlanetRelAngle, float dist, Tile tile, Planet planet, float spriteSz) {
     BodyDef def = new BodyDef();
     def.type = BodyDef.BodyType.KinematicBody;
     float toPlanetAngle = planet.getAngle() + toPlanetRelAngle;

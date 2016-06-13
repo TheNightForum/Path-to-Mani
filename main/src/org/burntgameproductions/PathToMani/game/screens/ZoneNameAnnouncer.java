@@ -21,10 +21,10 @@ import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.ui.FontSize;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 import org.burntgameproductions.PathToMani.game.planet.PlanetManager;
-import org.burntgameproductions.PathToMani.game.planet.SolSystem;
+import org.burntgameproductions.PathToMani.game.planet.ManiSystem;
 
 public class ZoneNameAnnouncer {
   private static final float FADE_TIME = 4f;
@@ -32,7 +32,7 @@ public class ZoneNameAnnouncer {
   private final Color myCol = new Color(1, 1, 1, 1);
   private String myText;
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     PlanetManager pm = game.getPlanetMan();
     String zone = null;
     String pref = null;
@@ -42,7 +42,7 @@ public class ZoneNameAnnouncer {
       zone = p.getName();
       pref = "Planet";
     } else {
-      SolSystem s = pm.getNearestSystem(camPos);
+      ManiSystem s = pm.getNearestSystem(camPos);
       if (s.getPos().dst(camPos) < s.getRadius()) {
         zone = s.getName();
         pref = "System";

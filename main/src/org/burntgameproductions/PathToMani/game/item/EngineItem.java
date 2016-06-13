@@ -24,14 +24,14 @@ import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.game.sound.SoundManager;
 import org.burntgameproductions.PathToMani.files.FileManager;
 import org.burntgameproductions.PathToMani.game.GameColors;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.particle.EffectConfig;
 import org.burntgameproductions.PathToMani.game.particle.EffectTypes;
-import org.burntgameproductions.PathToMani.game.sound.SolSound;
+import org.burntgameproductions.PathToMani.game.sound.ManiSound;
 
 import java.util.HashMap;
 
-public class EngineItem implements SolItem {
+public class EngineItem implements ManiItem {
   private final Config myConfig;
 
   private EngineItem(Config config) {
@@ -64,17 +64,17 @@ public class EngineItem implements SolItem {
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return item instanceof EngineItem && ((EngineItem) item).myConfig == myConfig;
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return myConfig.icon;
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return null;
   }
 
@@ -93,7 +93,7 @@ public class EngineItem implements SolItem {
 
   }
 
-  public SolSound getWorkSound() {
+  public ManiSound getWorkSound() {
     return myConfig.workSound;
   }
 
@@ -110,13 +110,13 @@ public class EngineItem implements SolItem {
     public final float acc;
     public final float maxRotSpd;
     public final boolean big;
-    public final SolSound workSound;
+    public final ManiSound workSound;
     public final EngineItem example;
     public final TextureAtlas.AtlasRegion icon;
     public final EffectConfig effectConfig;
 
     private Config(String displayName, int price, String desc, float rotAcc, float acc, float maxRotSpd, boolean big,
-      SolSound workSound, TextureAtlas.AtlasRegion icon, EffectConfig effectConfig)
+                   ManiSound workSound, TextureAtlas.AtlasRegion icon, EffectConfig effectConfig)
     {
       this.displayName = displayName;
       this.price = price;
@@ -139,7 +139,7 @@ public class EngineItem implements SolItem {
       float acc = 2f;
       float maxRotSpd = big ? 40f : 230f;
       String workSoundDir = sh.getString("workSound");
-      SolSound workSound = soundManager.getLoopedSound(workSoundDir, configFile);
+      ManiSound workSound = soundManager.getLoopedSound(workSoundDir, configFile);
       EffectConfig effectConfig = EffectConfig.load(sh.get("effect"), effectTypes, textureManager, configFile, cols);
       return new Config(null, 0, null, rotAcc, acc, maxRotSpd, big, workSound, null, effectConfig);
     }

@@ -25,8 +25,8 @@ import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.DmgType;
 import org.burntgameproductions.PathToMani.game.GameDrawer;
-import org.burntgameproductions.PathToMani.game.SolObject;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiObject;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public class SunSingleton {
   private static final float SUN_DMG = 4f;
@@ -46,9 +46,9 @@ public class SunSingleton {
   }
 
 
-  public void draw(SolGame game, GameDrawer drawer) {
+  public void draw(ManiGame game, GameDrawer drawer) {
     Vector2 camPos = game.getCam().getPos();
-    SolSystem sys = game.getPlanetMan().getNearestSystem(camPos);
+    ManiSystem sys = game.getPlanetMan().getNearestSystem(camPos);
     Vector2 toCam = SolMath.getVec(camPos);
     toCam.sub(sys.getPos());
     float toCamLen = toCam.len();
@@ -65,7 +65,7 @@ public class SunSingleton {
     SolMath.free(toCam);
   }
 
-  public void doDmg(SolGame game, SolObject obj, float toSys) {
+  public void doDmg(ManiGame game, ManiObject obj, float toSys) {
     float dmg = SUN_DMG * game.getTimeStep();
     if (SUN_HOT_RAD < toSys) return;
     obj.receiveDmg(dmg, game, null, DmgType.FIRE);

@@ -22,11 +22,11 @@ import org.burntgameproductions.PathToMani.game.HardnessCalc;
 public class SystemBelt {
   private final Float myHalfWidth;
   private final float myRadius;
-  private final SolSystem myS;
+  private final ManiSystem myS;
   private final SysConfig myConfig;
   private final float myDps;
 
-  public SystemBelt(Float halfWidth, float radius, SolSystem s, SysConfig config) {
+  public SystemBelt(Float halfWidth, float radius, ManiSystem s, SysConfig config) {
     myHalfWidth = halfWidth;
     myRadius = radius;
     myS = s;

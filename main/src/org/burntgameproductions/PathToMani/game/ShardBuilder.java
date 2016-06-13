@@ -44,7 +44,7 @@ public class ShardBuilder {
     myTexs = textureManager.getPack("smallGameObjs/shard", null);
   }
 
-  public void buildExplosionShards(SolGame game, Vector2 pos, Vector2 baseSpd, float size) {
+  public void buildExplosionShards(ManiGame game, Vector2 pos, Vector2 baseSpd, float size) {
     int count = (int) (size * SIZE_TO_SHARD_COUNT);
     for (int i = 0; i < count; i++) {
       Shard s = build(game, pos, baseSpd, size);
@@ -52,7 +52,7 @@ public class ShardBuilder {
     }
   }
 
-  public Shard build(SolGame game, Vector2 basePos, Vector2 baseSpd, float size) {
+  public Shard build(ManiGame game, Vector2 basePos, Vector2 baseSpd, float size) {
 
     ArrayList<Dra> dras = new ArrayList<Dra>();
     float scale = SolMath.rnd(MIN_SCALE, MAX_SCALE);

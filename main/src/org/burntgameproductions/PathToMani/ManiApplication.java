@@ -29,21 +29,21 @@ import org.burntgameproductions.PathToMani.game.sound.MusicManager;
 import org.burntgameproductions.PathToMani.menu.MenuScreens;
 import org.burntgameproductions.PathToMani.ui.DebugCollector;
 import org.burntgameproductions.PathToMani.ui.FontSize;
-import org.burntgameproductions.PathToMani.ui.SolLayouts;
+import org.burntgameproductions.PathToMani.ui.ManiLayouts;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.ui.SolInputManager;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.ui.ManiInputManager;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public class SolApplication implements ApplicationListener {
+public class ManiApplication implements ApplicationListener {
 
-  private SolInputManager myInputMan;
+  private ManiInputManager myInputMan;
   private UiDrawer myUiDrawer;
   private MenuScreens myMenuScreens;
   private TextureManager myTextureManager;
-  private SolLayouts myLayouts;
+  private ManiLayouts myLayouts;
   private boolean myReallyMobile;
   private GameOptions myOptions;
   private CommonDrawer myCommonDrawer;
@@ -53,9 +53,9 @@ public class SolApplication implements ApplicationListener {
   private String myFatalErrorTrace;
 
   private float myAccum = 0;
-  private SolGame myGame;
+  private ManiGame myGame;
 
-  public SolApplication() {
+  public ManiApplication() {
     // Initiate Box2D to make sure natives are loaded early enough
     Box2D.init();
   }
@@ -72,8 +72,8 @@ public class SolApplication implements ApplicationListener {
     myTextureManager = new TextureManager();
     myCommonDrawer = new CommonDrawer();
     myUiDrawer = new UiDrawer(myTextureManager, myCommonDrawer);
-    myInputMan = new SolInputManager(myTextureManager, myUiDrawer.r);
-    myLayouts = new SolLayouts(myUiDrawer.r);
+    myInputMan = new ManiInputManager(myTextureManager, myUiDrawer.r);
+    myLayouts = new ManiLayouts(myUiDrawer.r);
     myMenuScreens = new MenuScreens(myLayouts, myTextureManager, isMobile(), myUiDrawer.r, myOptions);
 
     myInputMan.setScreen(this, myMenuScreens.main);
@@ -168,12 +168,12 @@ public class SolApplication implements ApplicationListener {
   }
 
   public void startNewGame(boolean tut, boolean usePrevShip) {
-    myGame = new SolGame(this, usePrevShip, myTextureManager, tut, myCommonDrawer);
+    myGame = new ManiGame(this, usePrevShip, myTextureManager, tut, myCommonDrawer);
     myInputMan.setScreen(this, myGame.getScreens().mainScreen);
     MusicManager.getInstance().PlayGameMusic(myOptions);
   }
 
-  public SolInputManager getInputMan() {
+  public ManiInputManager getInputMan() {
     return myInputMan;
   }
 
@@ -188,11 +188,11 @@ public class SolApplication implements ApplicationListener {
     myInputMan.dispose();
   }
 
-  public SolGame getGame() {
+  public ManiGame getGame() {
     return myGame;
   }
 
-  public SolLayouts getLayouts() {
+  public ManiLayouts getLayouts() {
     return myLayouts;
   }
 

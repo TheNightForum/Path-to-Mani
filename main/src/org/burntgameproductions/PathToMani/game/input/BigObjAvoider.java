@@ -19,7 +19,7 @@ package org.burntgameproductions.PathToMani.game.input;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 
 public class BigObjAvoider {
@@ -31,7 +31,7 @@ public class BigObjAvoider {
     myProj = new Vector2();
   }
 
-  public float avoid(SolGame game, Vector2 from, Vector2 dest, float toDestAngle) {
+  public float avoid(ManiGame game, Vector2 from, Vector2 dest, float toDestAngle) {
     float toDestLen = from.dst(dest);
     if (toDestLen > MAX_DIST_LEN) toDestLen = MAX_DIST_LEN;
     float res = toDestAngle;

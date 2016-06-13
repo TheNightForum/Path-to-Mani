@@ -22,15 +22,15 @@ import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.ui.*;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreditsScreen implements SolUiScreen {
+public class CreditsScreen implements ManiUiScreen {
   public static final float MAX_AWAIT = 6f;
-  private final ArrayList<SolUiControl> myControls;
-  private final SolUiControl myCloseCtrl;
+  private final ArrayList<ManiUiControl> myControls;
+  private final ManiUiControl myCloseCtrl;
   private final ArrayList<String> myPages;
   private final Color myColor;
 
@@ -38,8 +38,8 @@ public class CreditsScreen implements SolUiScreen {
   private float myPerc;
 
   public CreditsScreen(float r, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
-    myCloseCtrl = new SolUiControl(MainScreen.creditsBtnRect(r), true, gameOptions.getKeyEscape());
+    myControls = new ArrayList<ManiUiControl>();
+    myCloseCtrl = new ManiUiControl(MainScreen.creditsBtnRect(r), true, gameOptions.getKeyEscape());
     myCloseCtrl.setDisplayName("Close");
     myControls.add(myCloseCtrl);
     myColor = SolColor.col(1, 1);
@@ -112,19 +112,19 @@ public class CreditsScreen implements SolUiScreen {
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
     myIdx = 0;
     myPerc = 0;
     myColor.a = 0;
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     if (myCloseCtrl.isJustOff()) {
       cmp.getInputMan().setScreen(cmp, cmp.getMenuScreens().main);
       return;
@@ -142,24 +142,24 @@ public class CreditsScreen implements SolUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
     uiDrawer.drawString(myPages.get(myIdx), uiDrawer.r/2, .5f, FontSize.MENU, true, myColor);
   }
 

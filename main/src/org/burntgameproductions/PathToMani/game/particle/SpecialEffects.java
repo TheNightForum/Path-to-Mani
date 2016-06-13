@@ -24,7 +24,7 @@ import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
 import org.burntgameproductions.PathToMani.files.FileManager;
 import org.burntgameproductions.PathToMani.game.GameColors;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class SpecialEffects {
     transcendentWork = EffectConfig.load(node.get("transcendentWork"), effectTypes, textureManager, configFile, cols);
   }
 
-  public List<ParticleSrc> buildBodyEffs(float objRad, SolGame game, Vector2 pos, Vector2 spd) {
+  public List<ParticleSrc> buildBodyEffs(float objRad, ManiGame game, Vector2 pos, Vector2 spd) {
     ArrayList<ParticleSrc> res = new ArrayList<ParticleSrc>();
     float sz = objRad * .9f;
     ParticleSrc smoke = new ParticleSrc(mySmoke, sz, DraLevel.PART_FG_0, new Vector2(), true, game, pos, spd, 0);
@@ -68,7 +68,7 @@ public class SpecialEffects {
     return res;
   }
 
-  public void explodeShip(SolGame game, Vector2 pos, float sz) {
+  public void explodeShip(ManiGame game, Vector2 pos, float sz) {
     PartMan pm = game.getPartMan();
     ParticleSrc smoke = new ParticleSrc(myShipExplSmoke, 2 * sz, DraLevel.PART_FG_0, new Vector2(), false, game, pos, Vector2.Zero, 0);
     pm.finish(game, smoke, pos);
@@ -77,13 +77,13 @@ public class SpecialEffects {
     pm.blinks(pos, game, sz);
   }
 
-  public void asteroidDust(SolGame game, Vector2 pos, Vector2 spd, float size) {
+  public void asteroidDust(ManiGame game, Vector2 pos, Vector2 spd, float size) {
     PartMan pm = game.getPartMan();
     ParticleSrc smoke = new ParticleSrc(myAsteroidDust, size, DraLevel.PART_FG_0, new Vector2(), true, game, pos, spd, 0);
     pm.finish(game, smoke, pos);
   }
 
-  public ParticleSrc buildForceBeacon(float sz, SolGame game, Vector2 relPos, Vector2 basePos, Vector2 spd) {
+  public ParticleSrc buildForceBeacon(float sz, ManiGame game, Vector2 relPos, Vector2 basePos, Vector2 spd) {
     return new ParticleSrc(myForceBeacon, sz, DraLevel.PART_FG_0, relPos, false, game, basePos, spd, 0);
   }
 }

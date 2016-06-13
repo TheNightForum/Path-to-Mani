@@ -21,16 +21,16 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.*;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 import org.burntgameproductions.PathToMani.game.planet.PlanetManager;
-import org.burntgameproductions.PathToMani.game.planet.SolSystem;
+import org.burntgameproductions.PathToMani.game.planet.ManiSystem;
 import org.burntgameproductions.PathToMani.game.planet.SunSingleton;
 import org.burntgameproductions.PathToMani.game.ship.FarShip;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class BorderDrawer {
   private final ArrayList<Tishch> myTishches;
   private final Vector2 myTmpVec = new Vector2();
 
-  public BorderDrawer(float r, SolApplication cmp) {
+  public BorderDrawer(float r, ManiApplication cmp) {
     TextureAtlas.AtlasRegion tex = cmp.getTexMan().getTex("ui/tishch", null);
     int hCellCount = (int) (r / TISHCH_SZ);
     int vCellCount = (int) (1 / TISHCH_SZ);
@@ -71,21 +71,21 @@ public class BorderDrawer {
     }
   }
 
-  public void draw(UiDrawer drawer, SolApplication cmp) {
-    SolGame g = cmp.getGame();
-    SolCam cam = g.getCam();
+  public void draw(UiDrawer drawer, ManiApplication cmp) {
+    ManiGame g = cmp.getGame();
+    ManiCam cam = g.getCam();
     Vector2 camPos = cam.getPos();
-    SolShip hero = g.getHero();
+    ManiShip hero = g.getHero();
     drawTishches(drawer, g, cam, camPos);
     MapDrawer mapDrawer = g.getMapDrawer();
     FactionManager factionManager = g.getFactionMan();
     float heroDmgCap = hero == null ? Float.MAX_VALUE : HardnessCalc.getShipDmgCap(hero);
 
-    List<SolObject> objs = g.getObjMan().getObjs();
+    List<ManiObject> objs = g.getObjMan().getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject o = objs.get(i);
-      if ((o instanceof SolShip)) {
-        SolShip ship = (SolShip) o;
+      ManiObject o = objs.get(i);
+      if ((o instanceof ManiShip)) {
+        ManiShip ship = (ManiShip) o;
         Vector2 shipPos = ship.getPosition();
         Faction shipFaction = ship.getPilot().getFaction();
         float shipSize = ship.getHull().config.getSize();
@@ -114,8 +114,8 @@ public class BorderDrawer {
     }
   }
 
-  private void maybeDrawIcon(UiDrawer drawer, Vector2 pos, SolCam cam, float objSize,
-                             float objAngle, MapDrawer mapDrawer, FactionManager factionManager, SolShip hero,
+  private void maybeDrawIcon(UiDrawer drawer, Vector2 pos, ManiCam cam, float objSize,
+                             float objAngle, MapDrawer mapDrawer, FactionManager factionManager, ManiShip hero,
                              Faction objFac, Object shipHack, float heroDmgCap, TextureAtlas.AtlasRegion icon)
   {
     Vector2 camPos = cam.getPos();
@@ -141,7 +141,7 @@ public class BorderDrawer {
     mapDrawer.drawObjIcon(sz, myTmpVec, objAngle - camAngle, factionManager, hero, objFac, heroDmgCap, shipHack, icon, drawer);
   }
 
-  private void drawTishches(UiDrawer drawer, SolGame g, SolCam cam, Vector2 camPos) {
+  private void drawTishches(UiDrawer drawer, ManiGame g, ManiCam cam, Vector2 camPos) {
     PlanetManager pMan = g.getPlanetMan();
     Planet np = pMan.getNearestPlanet();
     if (np != null && np.getPos().dst(camPos) < np.getFullHeight()) return;
@@ -158,7 +158,7 @@ public class BorderDrawer {
       float objRad = p.getFullHeight();
       apply0(camPos, camAngle, objPos, objRad);
     }
-    SolSystem sys = pMan.getNearestSystem(camPos);
+    ManiSystem sys = pMan.getNearestSystem(camPos);
     apply0(camPos, camAngle, sys.getPos(), SunSingleton.SUN_HOT_RAD);
     for (int i = 0, myTishchesSize = myTishches.size(); i < myTishchesSize; i++) {
       Tishch t = myTishches.get(i);

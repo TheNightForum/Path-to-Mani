@@ -20,10 +20,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
 public class PointProjectileBody implements ProjectileBody {
   private final Vector2 myPos;
@@ -32,7 +32,7 @@ public class PointProjectileBody implements ProjectileBody {
   private final float myAcc;
 
   public PointProjectileBody(float angle, Vector2 muzzlePos, Vector2 gunSpd, float spdLen,
-    Projectile projectile, SolGame game, float acc)
+                             Projectile projectile, ManiGame game, float acc)
   {
     myPos = new Vector2(muzzlePos);
     mySpd = new Vector2();
@@ -43,7 +43,7 @@ public class PointProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     if (myAcc > 0 && SolMath.canAccelerate(myAcc, mySpd)) {
       float spdLen = mySpd.len();
       if (spdLen < Const.MAX_MOVE_SPD) {
@@ -65,7 +65,7 @@ public class PointProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
     force.scl(game.getTimeStep());
     if (!acc) force.scl(10f);
     mySpd.add(force);
@@ -77,7 +77,7 @@ public class PointProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
   }
 
   @Override
@@ -91,7 +91,7 @@ public class PointProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public float getDesiredAngle(SolShip ne) {
+  public float getDesiredAngle(ManiShip ne) {
     return SolMath.angle(myPos, ne.getPosition());
   }
 
@@ -99,16 +99,16 @@ public class PointProjectileBody implements ProjectileBody {
   private class MyRayBack implements RayCastCallback {
 
     private final Projectile myProjectile;
-    private final SolGame myGame;
+    private final ManiGame myGame;
 
-    private MyRayBack(Projectile projectile, SolGame game) {
+    private MyRayBack(Projectile projectile, ManiGame game) {
       myProjectile = projectile;
       myGame = game;
     }
 
     @Override
     public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
-      SolObject o = (SolObject) fixture.getBody().getUserData();
+      ManiObject o = (ManiObject) fixture.getBody().getUserData();
       boolean oIsMassless = o instanceof Projectile && ((Projectile) o).isMassless();
       if (!oIsMassless && myProjectile.shouldCollide(o, fixture, myGame.getFactionMan())) {
         myPos.set(point);

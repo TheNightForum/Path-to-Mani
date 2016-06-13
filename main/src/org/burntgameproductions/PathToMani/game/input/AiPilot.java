@@ -20,12 +20,12 @@ import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.Faction;
 import org.burntgameproductions.PathToMani.game.item.EngineItem;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.gun.GunItem;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 import org.burntgameproductions.PathToMani.game.planet.PlanetBind;
 import org.burntgameproductions.PathToMani.game.ship.FarShip;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 
 public class AiPilot implements Pilot {
@@ -68,7 +68,7 @@ public class AiPilot implements Pilot {
   }
 
   @Override
-  public void update(SolGame game, SolShip ship, SolShip nearestEnemy) {
+  public void update(ManiGame game, ManiShip ship, ManiShip nearestEnemy) {
     myAbilityUpdater.update(ship, nearestEnemy);
     myPlanetBind = null;
     Vector2 shipPos = ship.getPosition();
@@ -131,7 +131,7 @@ public class AiPilot implements Pilot {
     return maxIdleDist;
   }
 
-  private Boolean canShoot0(SolShip ship) {
+  private Boolean canShoot0(ManiShip ship) {
     GunItem g1 = ship.getHull().getGun(false);
     if (g1 != null && g1.canShoot()) return !g1.config.fixed ? null : true;
     GunItem g2 = ship.getHull().getGun(true);
@@ -199,7 +199,7 @@ public class AiPilot implements Pilot {
   }
 
   @Override
-  public void updateFar(SolGame game, FarShip farShip) {
+  public void updateFar(ManiGame game, FarShip farShip) {
     Vector2 shipPos = farShip.getPos();
     HullConfig hullConfig = farShip.getHullConfig();
     float maxIdleDist = getMaxIdleDist(hullConfig);

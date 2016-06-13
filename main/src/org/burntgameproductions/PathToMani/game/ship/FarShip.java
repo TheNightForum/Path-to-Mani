@@ -21,7 +21,7 @@ import org.burntgameproductions.PathToMani.game.input.Pilot;
 import org.burntgameproductions.PathToMani.game.item.*;
 import org.burntgameproductions.PathToMani.game.FarObj;
 import org.burntgameproductions.PathToMani.game.RemoveController;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.gun.GunItem;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 
@@ -84,18 +84,18 @@ public class FarShip implements FarObj {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return myRemoveController != null && myRemoveController.shouldRemove(myPos);
   }
 
   @Override
-  public SolShip toObj(SolGame game) {
+  public ManiShip toObj(ManiGame game) {
     return game.getShipBuilder().build(game, myPos, mySpd, myAngle, myRotSpd, myPilot, myContainer, myHullConfig, myLife, myGun1,
       myGun2, myRemoveController, myEngine, myRepairer, myMoney, myTradeContainer, myShield, myArmor);
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     myPilot.updateFar(game, this);
     if (myTradeContainer != null) myTradeContainer.update(game);
     if (myRepairer != null) myLife += myRepairer.tryRepair(game, myContainer, myLife, myHullConfig);

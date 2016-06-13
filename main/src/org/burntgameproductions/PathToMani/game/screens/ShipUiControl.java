@@ -17,10 +17,10 @@
 package org.burntgameproductions.PathToMani.game.screens;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 
 public interface ShipUiControl {
-  void update(SolApplication cmp, boolean enabled);
+  void update(ManiApplication cmp, boolean enabled);
   boolean isLeft();
   boolean isRight();
   boolean isUp();

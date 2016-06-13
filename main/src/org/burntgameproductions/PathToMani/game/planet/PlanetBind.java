@@ -18,7 +18,7 @@ package org.burntgameproductions.PathToMani.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public class PlanetBind {
   private final Planet myPlanet;
@@ -42,7 +42,7 @@ public class PlanetBind {
     return myPlanet.getAngle() + myRelAngle;
   }
 
-  public static PlanetBind tryBind(SolGame game, Vector2 pos, float angle) {
+  public static PlanetBind tryBind(ManiGame game, Vector2 pos, float angle) {
     Planet np = game.getPlanetMan().getNearestPlanet(pos);
     if (!np.isNearGround(pos)) return null;
     return new PlanetBind(np, pos, angle);

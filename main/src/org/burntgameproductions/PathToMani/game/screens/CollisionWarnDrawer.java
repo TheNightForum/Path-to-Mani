@@ -20,19 +20,19 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.SolObject;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.game.ManiObject;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
 public class CollisionWarnDrawer extends WarnDrawer {
   private final MyRayBack myWarnCallback = new MyRayBack();
-  private SolShip myHero;
+  private ManiShip myHero;
 
   public CollisionWarnDrawer(float r) {
     super(r, "Object Near");
   }
 
-  public boolean shouldWarn(SolGame game) {
+  public boolean shouldWarn(ManiGame game) {
     myHero = game.getHero();
     if (myHero == null) return false;
     Vector2 pos = myHero.getPosition();
@@ -58,7 +58,7 @@ public class CollisionWarnDrawer extends WarnDrawer {
     private boolean show;
     @Override
     public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
-      SolObject o = (SolObject) fixture.getBody().getUserData();
+      ManiObject o = (ManiObject) fixture.getBody().getUserData();
       if (myHero == o) {
         return -1;
       }

@@ -36,13 +36,13 @@ import org.burntgameproductions.PathToMani.game.input.UiControlledPilot;
 import org.burntgameproductions.PathToMani.game.item.ItemContainer;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
 import org.burntgameproductions.PathToMani.game.item.LootBuilder;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
 import org.burntgameproductions.PathToMani.game.particle.EffectTypes;
 import org.burntgameproductions.PathToMani.game.particle.PartMan;
 import org.burntgameproductions.PathToMani.game.particle.SpecialEffects;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 import org.burntgameproductions.PathToMani.game.planet.PlanetManager;
-import org.burntgameproductions.PathToMani.game.planet.SolSystem;
+import org.burntgameproductions.PathToMani.game.planet.ManiSystem;
 import org.burntgameproductions.PathToMani.game.planet.SunSingleton;
 import org.burntgameproductions.PathToMani.game.screens.GameScreens;
 import org.burntgameproductions.PathToMani.game.ship.*;
@@ -52,17 +52,16 @@ import org.burntgameproductions.PathToMani.game.sound.SpecialSounds;
 import org.burntgameproductions.PathToMani.ui.DebugCollector;
 import org.burntgameproductions.PathToMani.ui.TutorialManager;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
-import org.destinationsol.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolGame {
+public class ManiGame {
 
   private final GameScreens myScreens;
-  private final SolCam myCam;
+  private final ManiCam myCam;
   private final ObjectManager myObjectManager;
-  private final SolApplication myCmp;
+  private final ManiApplication myCmp;
   private final DraMan myDraMan;
   private final PlanetManager myPlanetManager;
   private final TextureManager myTextureManager;
@@ -87,12 +86,12 @@ public class SolGame {
   private final SpecialEffects mySpecialEffects;
   private final GameColors gameColors;
   private final AbilityCommonConfigs myAbilityCommonConfigs;
-  private final SolNames myNames;
+  private final ManiNames myNames;
   private final BeaconHandler myBeaconHandler;
   private final MountDetectDrawer myMountDetectDrawer;
   private final TutorialManager myTutorialManager;
 
-  private SolShip myHero;
+  private ManiShip myHero;
   private float myTimeStep;
   private float myTime;
   private boolean myPaused;
@@ -101,16 +100,16 @@ public class SolGame {
   private float myTimeFactor;
   private float myRespawnMoney;
   private HullConfig myRespawnHull;
-  private final ArrayList<SolItem> myRespawnItems;
+  private final ArrayList<ManiItem> myRespawnItems;
 
-  public SolGame(SolApplication cmp, boolean usePrevShip, TextureManager textureManager, boolean tut, CommonDrawer commonDrawer) {
+  public ManiGame(ManiApplication cmp, boolean usePrevShip, TextureManager textureManager, boolean tut, CommonDrawer commonDrawer) {
     myCmp = cmp;
     GameDrawer drawer = new GameDrawer(textureManager, commonDrawer);
     gameColors = new GameColors();
     mySoundManager = new SoundManager();
     mySpecialSounds = new SpecialSounds(mySoundManager);
     myDraMan = new DraMan(drawer);
-    myCam = new SolCam(drawer.r);
+    myCam = new ManiCam(drawer.r);
     myScreens = new GameScreens(drawer.r, cmp);
     myTutorialManager = tut ? new TutorialManager(commonDrawer.r, myScreens, cmp.isMobile(), cmp.getOptions()) : null;
     myTextureManager = textureManager;
@@ -121,9 +120,9 @@ public class SolGame {
     myItemManager = new ItemManager(myTextureManager, mySoundManager, myEffectTypes, gameColors);
     myAbilityCommonConfigs = new AbilityCommonConfigs(myEffectTypes, myTextureManager, gameColors, mySoundManager);
     hullConfigManager = new HullConfigManager(myShipBuilder, FileManager.getInstance(), textureManager, myItemManager, myAbilityCommonConfigs, mySoundManager);
-    myNames = new SolNames();
+    myNames = new ManiNames();
     myPlanetManager = new PlanetManager(myTextureManager, hullConfigManager, gameColors, myItemManager);
-    SolContactListener contactListener = new SolContactListener(this);
+    ManiContactListener contactListener = new ManiContactListener(this);
     myFactionManager = new FactionManager();
     myObjectManager = new ObjectManager(contactListener, myFactionManager);
     myGridDrawer = new GridDrawer(textureManager);
@@ -139,7 +138,7 @@ public class SolGame {
     myDraDebugger = new DraDebugger();
     myBeaconHandler = new BeaconHandler(textureManager);
     myMountDetectDrawer = new MountDetectDrawer(textureManager);
-    myRespawnItems = new ArrayList<SolItem>();
+    myRespawnItems = new ArrayList<ManiItem>();
     myTimeFactor = 1;
 
     // from this point we're ready!
@@ -184,7 +183,7 @@ public class SolGame {
     ItemContainer ic = myHero.getItemContainer();
     if (!myRespawnItems.isEmpty()) {
       for (int i1 = 0, sz = myRespawnItems.size(); i1 < sz; i1++) {
-        SolItem item = myRespawnItems.get(i1);
+        ManiItem item = myRespawnItems.get(i1);
         ic.add(item);
         // Ensure that previously equipped items stay equipped
         if (item.isEquipped() > 0) {
@@ -201,7 +200,7 @@ public class SolGame {
     } else if (myTutorialManager != null) {
       for (int i = 0; i < 50; i++) {
         if (ic.groupCount() > 1.5f * Const.ITEM_GROUPS_PER_PAGE) break;
-        SolItem it = myItemManager.random();
+        ManiItem it = myItemManager.random();
         if (!(it instanceof GunItem) && it.getIcon(this) != null && ic.canAdd(it)) {
           ic.add(it.copy());
         }
@@ -224,13 +223,13 @@ public class SolGame {
     if (myTutorialManager != null) return;
     HullConfig hull;
     float money;
-    ArrayList<SolItem> items;
+    ArrayList<ManiItem> items;
     if (myHero != null) {
       hull = myHero.getHull().config;
       money = myHero.getMoney();
-      items = new ArrayList<SolItem>();
-      for (List<SolItem> group : myHero.getItemContainer()) {
-        for (SolItem i : group) {
+      items = new ArrayList<ManiItem>();
+      for (List<ManiItem> group : myHero.getItemContainer()) {
+        for (ManiItem i : group) {
           items.add(0, i);
         }
       }
@@ -238,9 +237,9 @@ public class SolGame {
       FarShip farH = myTranscendentHero.getShip();
       hull = farH.getHullConfig();
       money = farH.getMoney();
-      items = new ArrayList<SolItem>();
-      for (List<SolItem> group : farH.getIc()) {
-        for (SolItem i : group) {
+      items = new ArrayList<ManiItem>();
+      for (List<ManiItem> group : farH.getIc()) {
+        for (ManiItem i : group) {
           items.add(0, i);
         }
       }
@@ -284,11 +283,11 @@ public class SolGame {
 
     myHero = null;
     myTranscendentHero = null;
-    List<SolObject> objs = myObjectManager.getObjs();
+    List<ManiObject> objs = myObjectManager.getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject obj = objs.get(i);
-      if ((obj instanceof SolShip)) {
-        SolShip ship = (SolShip) obj;
+      ManiObject obj = objs.get(i);
+      if ((obj instanceof ManiShip)) {
+        ManiShip ship = (ManiShip) obj;
         Pilot prov = ship.getPilot();
         if (prov.isPlayer()) {
           myHero = ship;
@@ -333,11 +332,11 @@ public class SolGame {
     return myTimeStep;
   }
 
-  public SolCam getCam() {
+  public ManiCam getCam() {
     return myCam;
   }
 
-  public SolApplication getCmp() {
+  public ManiApplication getCmp() {
     return myCmp;
   }
 
@@ -369,7 +368,7 @@ public class SolGame {
     return myLootBuilder;
   }
 
-  public SolShip getHero() {
+  public ManiShip getHero() {
     return myHero;
   }
 
@@ -416,11 +415,11 @@ public class SolGame {
       boolean inPlanet = np.getPos().dst(pos) < np.getFullHeight();
       if (inPlanet) return false;
     }
-    SolSystem ns = myPlanetManager.getNearestSystem(pos);
+    ManiSystem ns = myPlanetManager.getNearestSystem(pos);
     if (ns.getPos().dst(pos) < SunSingleton.SUN_HOT_RAD) return false;
-    List<SolObject> objs = myObjectManager.getObjs();
+    List<ManiObject> objs = myObjectManager.getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject o = objs.get(i);
+      ManiObject o = objs.get(i);
       if (!o.hasBody()) continue;
       if (pos.dst(o.getPosition()) < myObjectManager.getRadius(o)) {
         return false;
@@ -519,7 +518,7 @@ public class SolGame {
     setRespawnState(money, ic, myHero.getHull().config);
 
     myHero.setMoney(money - myRespawnMoney);
-    for (SolItem item : myRespawnItems) {
+    for (ManiItem item : myRespawnItems) {
       ic.remove(item);
     }
   }
@@ -529,8 +528,8 @@ public class SolGame {
     myRespawnHull = hullConfig;
     myRespawnItems.clear();
     System.out.println("setRespawnState");
-    for (List<SolItem> group : ic) {
-      for (SolItem item : group) {
+    for (List<ManiItem> group : ic) {
+      for (ManiItem item : group) {
         boolean equipped = myHero == null || myHero.maybeUnequip(this, item, false);
         if (equipped || SolMath.test(.75f)) {
           System.out.println(item.getCode() + " " + item.isEquipped());

@@ -22,15 +22,15 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.DmgType;
 import org.burntgameproductions.PathToMani.game.FarObj;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.particle.LightSrc;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
 import java.util.List;
 
-public class Loot implements SolObject {
+public class Loot implements ManiObject {
 
   public static final int MAX_ROT_SPD = 4;
   public static final float MAX_SPD = .2f;
@@ -39,19 +39,19 @@ public class Loot implements SolObject {
   public static final float PULL_DESIRED_SPD = 1f;
   public static final float PULL_FORCE = .1f;
   public static final float MAX_OWNER_AWAIT = 4f;
-  private final SolItem myItem;
+  private final ManiItem myItem;
   private final List<Dra> myDras;
   private final LightSrc myLightSrc;
   private final Vector2 myPos;
   private final Body myBody;
   private final float myMass;
 
-  private SolShip myOwner;
+  private ManiShip myOwner;
   private float myOwnerAwait;
   private int myLife;
   private float myAngle;
 
-  public Loot(SolItem item, Body body, int life, List<Dra> dras, LightSrc ls, SolShip owner) {
+  public Loot(ManiItem item, Body body, int life, List<Dra> dras, LightSrc ls, ManiShip owner) {
     myBody = body;
     myLife = life;
     myItem = item;
@@ -65,20 +65,20 @@ public class Loot implements SolObject {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     setParamsFromBody();
     myLightSrc.update(true, myAngle, game);
     if (myOwnerAwait > 0) {
       myOwnerAwait -= game.getTimeStep();
       if (myOwnerAwait <= 0) myOwner = null;
     }
-    SolShip puller = null;
+    ManiShip puller = null;
     float minDist = Float.MAX_VALUE;
-    List<SolObject> objs = game.getObjMan().getObjs();
+    List<ManiObject> objs = game.getObjMan().getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject o = objs.get(i);
-      if (!(o instanceof SolShip)) continue;
-      SolShip ship = (SolShip) o;
+      ManiObject o = objs.get(i);
+      if (!(o instanceof ManiShip)) continue;
+      ManiShip ship = (ManiShip) o;
       if (!ship.getPilot().collectsItems()) continue;
       if (!(myItem instanceof MoneyItem) && !ship.getItemContainer().canAdd(myItem)) continue;
       float dst = ship.getPosition().dst(myPos);
@@ -97,17 +97,17 @@ public class Loot implements SolObject {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return myLife <= 0;
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
     myBody.getWorld().destroyBody(myBody);
   }
 
   @Override
-  public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+  public void receiveDmg(float dmg, ManiGame game, Vector2 pos, DmgType dmgType) {
     myLife -= dmg;
     game.getSpecialSounds().playHit(game, this, pos, dmgType);
   }
@@ -118,7 +118,7 @@ public class Loot implements SolObject {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
     if (acc) force.scl(myMass);
     myBody.applyForceToCenter(force, true);
   }
@@ -149,8 +149,8 @@ public class Loot implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-    SolGame game, Vector2 collPos)
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+                            ManiGame game, Vector2 collPos)
   {
     float dmg = absImpulse / myMass / DURABILITY;
     receiveDmg((int) dmg, game, collPos, DmgType.CRASH);
@@ -171,7 +171,7 @@ public class Loot implements SolObject {
     return true;
   }
 
-  public void maybePulled(SolShip ship, Vector2 pullerPos, float radius) {
+  public void maybePulled(ManiShip ship, Vector2 pullerPos, float radius) {
     if (ship == myOwner) return;
     Vector2 toPuller = SolMath.getVec(pullerPos);
     toPuller.sub(getPosition());
@@ -190,7 +190,7 @@ public class Loot implements SolObject {
     SolMath.free(toPuller);
   }
 
-  public SolItem getItem() {
+  public ManiItem getItem() {
     return myLife > 0 ? myItem : null;
   }
 
@@ -198,11 +198,11 @@ public class Loot implements SolObject {
     myLife = life;
   }
 
-  public SolShip getOwner() {
+  public ManiShip getOwner() {
     return myOwner;
   }
 
-  public void pickedUp(SolGame game, SolShip ship) {
+  public void pickedUp(ManiGame game, ManiShip ship) {
     myLife = 0;
     Vector2 spd = new Vector2(ship.getPosition());
     spd.sub(myPos);

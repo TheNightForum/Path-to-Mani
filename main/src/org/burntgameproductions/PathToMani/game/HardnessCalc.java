@@ -22,11 +22,11 @@ import org.burntgameproductions.PathToMani.game.item.*;
 import org.burntgameproductions.PathToMani.game.planet.PlanetConfig;
 import org.burntgameproductions.PathToMani.game.planet.SysConfig;
 import org.burntgameproductions.PathToMani.game.projectile.ProjectileConfig;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.game.ship.hulls.GunSlot;
 import org.burntgameproductions.PathToMani.game.gun.GunItem;
 import org.burntgameproductions.PathToMani.game.maze.MazeConfig;
 import org.burntgameproductions.PathToMani.game.ship.FarShip;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
 import org.burntgameproductions.PathToMani.game.ship.hulls.Hull;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 
@@ -77,12 +77,12 @@ public class HardnessCalc {
 
   private static float getItemCfgDps(ItemConfig ic, boolean fixed) {
     float dps = 0;
-    for (SolItem e : ic.examples) {
+    for (ManiItem e : ic.examples) {
       if (!(e instanceof GunItem)) throw new AssertionError("all item options must be of the same type");
       GunItem g = (GunItem) e;
       if (g.config.fixed != fixed) {
         String items = "";
-        for (SolItem ex : ic.examples) {
+        for (ManiItem ex : ic.examples) {
           items += ex.getDisplayName() + " ";
         }
         throw new AssertionError("all gun options must have equal fixed param: " + items);
@@ -102,7 +102,7 @@ public class HardnessCalc {
 
     while(itemConfigIterator.hasNext() && !unusedGunSlots.isEmpty()) {
         ItemConfig itemConfig = itemConfigIterator.next();
-        final SolItem item = itemConfig.examples.get(0);
+        final ManiItem item = itemConfig.examples.get(0);
 
         if (item instanceof GunItem) {
             final GunItem gunItem = (GunItem) item;
@@ -129,16 +129,16 @@ public class HardnessCalc {
     float meanShieldLife = 0;
     float meanArmorPerc = 0;
     for (ItemConfig ic : parsed) {
-      SolItem item = ic.examples.get(0);
+      ManiItem item = ic.examples.get(0);
       if (meanShieldLife == 0 && item instanceof Shield) {
-        for (SolItem ex : ic.examples) {
+        for (ManiItem ex : ic.examples) {
           meanShieldLife += ((Shield) ex).getLife();
         }
         meanShieldLife /= ic.examples.size();
         meanShieldLife *= ic.chance;
       }
       if (meanArmorPerc == 0 && item instanceof Armor) {
-        for (SolItem ex : ic.examples) {
+        for (ManiItem ex : ic.examples) {
           meanArmorPerc += ((Armor) ex).getPerc();
         }
         meanArmorPerc /= ic.examples.size();
@@ -188,7 +188,7 @@ public class HardnessCalc {
     return g.config.meanDps;
   }
 
-  public static float getShipDps(SolShip s) {
+  public static float getShipDps(ManiShip s) {
     Hull h = s.getHull();
     return getGunDps(h.getGun(false)) + getGunDps(h.getGun(true));
   }
@@ -197,7 +197,7 @@ public class HardnessCalc {
     return getGunDps(s.getGun(false)) + getGunDps(s.getGun(true));
   }
 
-  public static float getShipDmgCap(SolShip s) {
+  public static float getShipDmgCap(ManiShip s) {
     return getDmgCap(s.getHull().config, s.getArmor(), s.getShield());
   }
 
@@ -223,6 +223,6 @@ public class HardnessCalc {
   }
 
   public static float getShipObjDps(Object srcObj) {
-    return srcObj instanceof SolShip ? getShipDps((SolShip) srcObj) : getFarShipDps((FarShip) srcObj);
+    return srcObj instanceof ManiShip ? getShipDps((ManiShip) srcObj) : getFarShipDps((FarShip) srcObj);
   }
 }

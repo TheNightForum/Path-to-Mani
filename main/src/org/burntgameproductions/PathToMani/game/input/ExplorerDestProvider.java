@@ -19,10 +19,10 @@ package org.burntgameproductions.PathToMani.game.input;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
-import org.burntgameproductions.PathToMani.game.planet.SolSystem;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.planet.ManiSystem;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 
 import java.util.ArrayList;
@@ -37,14 +37,14 @@ public class ExplorerDestProvider implements MoveDestProvider {
   private final Vector2 myDest;
   private final boolean myAggressive;
   private final float myDesiredSpdLen;
-  private final SolSystem mySys;
+  private final ManiSystem mySys;
   private Vector2 myRelDest;
   private Planet myPlanet;
   private float myAwaitOnPlanet;
   private boolean myDestIsLanding;
   private Vector2 myDestSpd;
 
-  public ExplorerDestProvider(SolGame game, Vector2 pos, boolean aggressive, HullConfig config, SolSystem sys)
+  public ExplorerDestProvider(ManiGame game, Vector2 pos, boolean aggressive, HullConfig config, ManiSystem sys)
   {
     mySys = sys;
     myDest = new Vector2();
@@ -97,7 +97,7 @@ public class ExplorerDestProvider implements MoveDestProvider {
   }
 
   @Override
-  public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, ManiShip nearestEnemy) {
     if (myDest.dst(shipPos) < maxIdleDist) {
       if (myAwaitOnPlanet > 0) {
         myAwaitOnPlanet -= game.getTimeStep();
@@ -119,7 +119,7 @@ public class ExplorerDestProvider implements MoveDestProvider {
   }
 
   @Override
-  public Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround) {
+  public Boolean shouldManeuver(boolean canShoot, ManiShip nearestEnemy, boolean nearGround) {
     if (myAggressive && canShoot) return true;
     return null;
   }

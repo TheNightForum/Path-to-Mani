@@ -26,9 +26,9 @@ import org.burntgameproductions.PathToMani.game.screens.MainScreen;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
-public class SolCam {
+public class ManiCam {
   private static final float VIEWPORT_HEIGHT = 5f;
   private static final float MAX_ZOOM_SPD = 5f;
   private static final float MED_ZOOM_SPD = 3f;
@@ -49,7 +49,7 @@ public class SolCam {
   private float myZoom;
   private Vector2 myPos;
 
-  public SolCam(float r) {
+  public ManiCam(float r) {
     myCamRotStrategy = new CamRotStrategy.ToPlanet();
     myCam = new OrthographicCamera(VIEWPORT_HEIGHT * r, -VIEWPORT_HEIGHT);
     myZoom = calcZoom(Const.CAM_VIEW_DIST_GROUND);
@@ -61,12 +61,12 @@ public class SolCam {
     return myCam.combined;
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
 
     float desiredVd = Const.CAM_VIEW_DIST_GROUND;
     float life = 0;
 
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     float ts = game.getTimeStep();
     if (hero == null) {
       StarPort.Transcendent trans = game.getTranscendentHero();
@@ -151,7 +151,7 @@ public class SolCam {
     myCam.position.set(posX, posY, 0);
   }
 
-  private void applyInput(SolGame game) {
+  private void applyInput(ManiGame game) {
     MainScreen s = game.getScreens().mainScreen;
     boolean d = s.isDown();
     boolean u = s.isUp();

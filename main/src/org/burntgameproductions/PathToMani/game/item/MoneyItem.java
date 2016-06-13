@@ -17,17 +17,17 @@
 package org.burntgameproductions.PathToMani.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
-public class MoneyItem implements SolItem {
+public class MoneyItem implements ManiItem {
   public static final int AMT = 10;
   public static final int MED_AMT = 3 * AMT;
   public static final int BIG_AMT = 10 * AMT;
 
   private final float myAmt;
-  private final SolItemType myItemType;
+  private final ManiItemType myItemType;
 
-  public MoneyItem(float amt, SolItemType itemType) {
+  public MoneyItem(float amt, ManiItemType itemType) {
     myAmt = amt;
     myItemType = itemType;
   }
@@ -53,12 +53,12 @@ public class MoneyItem implements SolItem {
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return item instanceof MoneyItem && ((MoneyItem) item).myAmt == myAmt;
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     ItemManager im = game.getItemMan();
     if (myAmt == BIG_AMT) return im.bigMoneyIcon;
     if (myAmt == MED_AMT) return im.medMoneyIcon;
@@ -66,7 +66,7 @@ public class MoneyItem implements SolItem {
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return myItemType;
   }
 

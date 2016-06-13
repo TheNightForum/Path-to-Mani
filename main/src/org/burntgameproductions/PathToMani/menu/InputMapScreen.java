@@ -22,7 +22,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.ui.*;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.common.SolColor;
 
 import java.util.ArrayList;
@@ -32,23 +32,23 @@ import java.util.List;
  * <h1>Config Screen to Change Input Mapping</h1>
  * The input mapping screen is based on the inventory screen used within the game.
  */
-public class InputMapScreen implements SolUiScreen {
+public class InputMapScreen implements ManiUiScreen {
     public final InputMapKeyboardScreen inputMapKeyboardScreen;
     public final InputMapControllerScreen inputMapControllerScreen;
     public final InputMapMixedScreen inputMapMixedScreen;
 
-    private final List<SolUiControl> controls;
-    private final SolUiControl prevCtrl;
-    private final SolUiControl nextCtrl;
+    private final List<ManiUiControl> controls;
+    private final ManiUiControl prevCtrl;
+    private final ManiUiControl nextCtrl;
     private final Rectangle listArea;
-    private final SolUiControl[] itemCtrls;
+    private final ManiUiControl[] itemCtrls;
     private final Rectangle detailArea;
     private final Rectangle itemCtrlArea;
-    private final SolUiControl cancelCtrl;
-    private final SolUiControl saveCtrl;
-    private final SolUiControl defaultsCtrl;
-    private final SolUiControl upCtrl;
-    private final SolUiControl downCtrl;
+    private final ManiUiControl cancelCtrl;
+    private final ManiUiControl saveCtrl;
+    private final ManiUiControl defaultsCtrl;
+    private final ManiUiControl upCtrl;
+    private final ManiUiControl downCtrl;
 
     private static final float IMG_COL_PERC = .1f;
     private static final float EQUI_COL_PERC = .1f;
@@ -65,7 +65,7 @@ public class InputMapScreen implements SolUiScreen {
 
 
     public InputMapScreen(float r, GameOptions gameOptions) {
-        controls = new ArrayList<SolUiControl>();
+        controls = new ArrayList<ManiUiControl>();
 
         float contentW = .8f;
         float col0 = r / 2 - contentW / 2;
@@ -80,11 +80,11 @@ public class InputMapScreen implements SolUiScreen {
         listHeaderPos = new Vector2(col0 + HEADER_TEXT_OFFS, row + HEADER_TEXT_OFFS); // offset hack
         float listCtrlW = contentW * .15f;
         Rectangle nextArea = new Rectangle(col0 + contentW - listCtrlW, row, listCtrlW, headerH);
-        nextCtrl = new SolUiControl(nextArea, true, gameOptions.getKeyRight());
+        nextCtrl = new ManiUiControl(nextArea, true, gameOptions.getKeyRight());
         nextCtrl.setDisplayName(">");
         controls.add(nextCtrl);
         Rectangle prevArea = new Rectangle(nextArea.x - SMALL_GAP - listCtrlW, row, listCtrlW, headerH);
-        prevCtrl = new SolUiControl(prevArea, true, gameOptions.getKeyLeft());
+        prevCtrl = new ManiUiControl(prevArea, true, gameOptions.getKeyLeft());
         prevCtrl.setDisplayName("<");
         controls.add(prevCtrl);
         row += headerH + SMALL_GAP;
@@ -92,10 +92,10 @@ public class InputMapScreen implements SolUiScreen {
         // list
         float itemRowH = .04f;
         float listRow0 = row;
-        itemCtrls = new SolUiControl[Const.ITEM_GROUPS_PER_PAGE];
+        itemCtrls = new ManiUiControl[Const.ITEM_GROUPS_PER_PAGE];
         for (int i = 0; i < Const.ITEM_GROUPS_PER_PAGE; i++) {
             Rectangle itemR = new Rectangle(col0, row, contentW, itemRowH);
-            SolUiControl itemCtrl = new SolUiControl(itemR, true);
+            ManiUiControl itemCtrl = new ManiUiControl(itemR, true);
             itemCtrls[i] = itemCtrl;
             controls.add(itemCtrl);
             row += itemRowH + SMALL_GAP;
@@ -111,21 +111,21 @@ public class InputMapScreen implements SolUiScreen {
         row += detailArea.height;
 
         // Add the buttons and controls
-        cancelCtrl = new SolUiControl(itemCtrl(3), true, gameOptions.getKeyClose());
+        cancelCtrl = new ManiUiControl(itemCtrl(3), true, gameOptions.getKeyClose());
         cancelCtrl.setDisplayName("Cancel");
         controls.add(cancelCtrl);
 
-        saveCtrl = new SolUiControl(itemCtrl(2), true);
+        saveCtrl = new ManiUiControl(itemCtrl(2), true);
         saveCtrl.setDisplayName("Save");
         controls.add(saveCtrl);
 
-        defaultsCtrl = new SolUiControl(itemCtrl(1), true);
+        defaultsCtrl = new ManiUiControl(itemCtrl(1), true);
         defaultsCtrl.setDisplayName("Defaults");
         controls.add(defaultsCtrl);
 
-        upCtrl = new SolUiControl(null, true, gameOptions.getKeyUp());
+        upCtrl = new ManiUiControl(null, true, gameOptions.getKeyUp());
         controls.add(upCtrl);
-        downCtrl = new SolUiControl(null, true, gameOptions.getKeyDown());
+        downCtrl = new ManiUiControl(null, true, gameOptions.getKeyDown());
         controls.add(downCtrl);
 
         // Create the input screens
@@ -135,14 +135,14 @@ public class InputMapScreen implements SolUiScreen {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<ManiUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
         GameOptions gameOptions = cmp.getOptions();
-        SolInputManager im = cmp.getInputMan();
+        ManiInputManager im = cmp.getInputMan();
         MenuScreens screens = cmp.getMenuScreens();
 
         // Save - saves new settings and returns to the options screen
@@ -192,7 +192,7 @@ public class InputMapScreen implements SolUiScreen {
         // Select the item the mouse clicked
         int offset = page * Const.ITEM_GROUPS_PER_PAGE;
         for (int i = 0; i < itemCtrls.length; i++) {
-            SolUiControl itemCtrl = itemCtrls[i];
+            ManiUiControl itemCtrl = itemCtrls[i];
             if (itemCtrl.isJustOff()) {
                 selectedIndex = i + offset;
                 operations.setEnterNewKey(true);
@@ -229,17 +229,17 @@ public class InputMapScreen implements SolUiScreen {
     }
 
     @Override
-    public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+    public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
 
     }
 
     @Override
-    public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+    public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
 
     }
 
     @Override
-    public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+    public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
         GameOptions gameOptions = cmp.getOptions();
         List<InputConfigItem> list = operations.getItems(gameOptions);
 
@@ -254,7 +254,7 @@ public class InputMapScreen implements SolUiScreen {
             int groupIdx = page * Const.ITEM_GROUPS_PER_PAGE + i;
             int groupCount = list.size();
             if (groupCount <= groupIdx) continue;
-            SolUiControl itemCtrl = itemCtrls[i];
+            ManiUiControl itemCtrl = itemCtrls[i];
             String displayName = list.get(groupIdx).getDisplayName();
             String inputKey = list.get(groupIdx).getInputKey();
             Rectangle rect = itemCtrl.getScreenArea();
@@ -278,12 +278,12 @@ public class InputMapScreen implements SolUiScreen {
     }
 
     @Override
-    public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+    public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
         return false;
     }
 
     @Override
-    public void onAdd(SolApplication cmp) {
+    public void onAdd(ManiApplication cmp) {
         // Add any extra screen information as required by the input screens. E.g. buttons
         if (operations != null) {
             cmp.getInputMan().addScreen(cmp, operations);
@@ -294,7 +294,7 @@ public class InputMapScreen implements SolUiScreen {
     }
 
     @Override
-    public void blurCustom(SolApplication cmp) {
+    public void blurCustom(ManiApplication cmp) {
 
     }
 

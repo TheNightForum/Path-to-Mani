@@ -23,11 +23,11 @@ import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.files.FileManager;
 import org.burntgameproductions.PathToMani.game.DmgType;
-import org.burntgameproductions.PathToMani.game.sound.SolSound;
+import org.burntgameproductions.PathToMani.game.sound.ManiSound;
 import org.burntgameproductions.PathToMani.game.sound.SoundManager;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
-public class Armor implements SolItem {
+public class Armor implements ManiItem {
   private final Config myConfig;
   private int myEquipped;
 
@@ -56,22 +56,22 @@ public class Armor implements SolItem {
   }
 
   @Override
-  public SolItem copy() {
+  public ManiItem copy() {
     return new Armor(myConfig, myEquipped);
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return false;
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return myConfig.icon;
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return myConfig.itemType;
   }
 
@@ -84,7 +84,7 @@ public class Armor implements SolItem {
     return myConfig.perc;
   }
 
-  public SolSound getHitSound(DmgType dmgType) {
+  public ManiSound getHitSound(DmgType dmgType) {
     switch (dmgType) {
       case BULLET: return myConfig.bulletHitSound;
       case ENERGY: return myConfig.energyHitSound;
@@ -101,15 +101,15 @@ public class Armor implements SolItem {
     public final int price;
     public final float perc;
     public final String desc;
-    public final SolSound bulletHitSound;
+    public final ManiSound bulletHitSound;
     public final Armor example;
     public final TextureAtlas.AtlasRegion icon;
-    public final SolSound energyHitSound;
-    public final SolItemType itemType;
+    public final ManiSound energyHitSound;
+    public final ManiItemType itemType;
     public final String code;
 
-    private Config(String displayName, int price, float perc, SolSound bulletHitSound,
-      TextureAtlas.AtlasRegion icon, SolSound energyHitSound, SolItemType itemType, String code)
+    private Config(String displayName, int price, float perc, ManiSound bulletHitSound,
+                   TextureAtlas.AtlasRegion icon, ManiSound energyHitSound, ManiItemType itemType, String code)
     {
       this.displayName = displayName;
       this.price = price;
@@ -123,7 +123,7 @@ public class Armor implements SolItem {
       this.example = new Armor(this);
     }
 
-    public static void loadConfigs(ItemManager itemManager, SoundManager soundManager, TextureManager textureManager, SolItemTypes types)
+    public static void loadConfigs(ItemManager itemManager, SoundManager soundManager, TextureManager textureManager, ManiItemTypes types)
     {
       JsonReader r = new JsonReader();
       FileHandle configFile = FileManager.getInstance().getItemsDirectory().child("armors.json");
@@ -135,8 +135,8 @@ public class Armor implements SolItem {
         String bulletDmgSoundDir = sh.getString("bulletHitSound");
         String energyDmgSoundDir = sh.getString("energyHitSound");
         float basePitch = sh.getFloat("baseSoundPitch", 1);
-        SolSound bulletDmgSound = soundManager.getPitchedSound(bulletDmgSoundDir, configFile, basePitch);
-        SolSound energyDmgSound = soundManager.getPitchedSound(energyDmgSoundDir, configFile, basePitch);
+        ManiSound bulletDmgSound = soundManager.getPitchedSound(bulletDmgSoundDir, configFile, basePitch);
+        ManiSound energyDmgSound = soundManager.getPitchedSound(energyDmgSoundDir, configFile, basePitch);
         TextureAtlas.AtlasRegion icon = textureManager.getTex(TextureManager.ICONS_DIR + sh.getString("icon"), configFile);
         String code = sh.name;
         Config config = new Config(displayName, price, perc, bulletDmgSound, icon, energyDmgSound, types.armor, code);

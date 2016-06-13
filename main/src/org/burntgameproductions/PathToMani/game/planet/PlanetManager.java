@@ -28,7 +28,7 @@ import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.files.HullConfigManager;
 import org.burntgameproductions.PathToMani.game.maze.Maze;
 import org.burntgameproductions.PathToMani.game.maze.MazeConfigs;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.game.ship.hulls.Hull;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 
@@ -37,7 +37,7 @@ import java.util.List;
 
 public class PlanetManager {
 
-  private final ArrayList<SolSystem> mySystems;
+  private final ArrayList<ManiSystem> mySystems;
   private final ArrayList<Planet> myPlanets;
   private final ArrayList<SystemBelt> myBelts;
   private final FlatPlaceFinder myFlatPlaceFinder;
@@ -54,7 +54,7 @@ public class PlanetManager {
     mySysConfigs = new SysConfigs(textureManager, hullConfigs, itemManager);
     myMazeConfigs = new MazeConfigs(textureManager, hullConfigs, itemManager);
 
-    mySystems = new ArrayList<SolSystem>();
+    mySystems = new ArrayList<ManiSystem>();
     myMazes = new ArrayList<Maze>();
     myPlanets = new ArrayList<Planet>();
     myBelts = new ArrayList<SystemBelt>();
@@ -63,11 +63,11 @@ public class PlanetManager {
     myPlanetCore = new PlanetCoreSingleton(textureManager);
   }
 
-  public void fill(SolNames names) {
+  public void fill(ManiNames names) {
     new SystemsBuilder().build(mySystems, myPlanets, myBelts, myPlanetConfigs, myMazeConfigs, myMazes, mySysConfigs, names);
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     Vector2 camPos = game.getCam().getPos();
     for (int i = 0, myPlanetsSize = myPlanets.size(); i < myPlanetsSize; i++) {
       Planet p = myPlanets.get(i);
@@ -80,7 +80,7 @@ public class PlanetManager {
 
     myNearestPlanet = getNearestPlanet(camPos);
 
-    SolSystem nearestSys = getNearestSystem(camPos);
+    ManiSystem nearestSys = getNearestSystem(camPos);
     applyGrav(game, nearestSys);
   }
 
@@ -98,7 +98,7 @@ public class PlanetManager {
     return res;
   }
 
-  private void applyGrav(SolGame game, SolSystem nearestSys) {
+  private void applyGrav(ManiGame game, ManiSystem nearestSys) {
     float npGh = myNearestPlanet.getGroundHeight();
     float npFh = myNearestPlanet.getFullHeight();
     float npMinH = myNearestPlanet.getMinGroundHeight();
@@ -106,9 +106,9 @@ public class PlanetManager {
     Vector2 sysPos = nearestSys.getPos();
     float npGravConst = myNearestPlanet.getGravConst();
 
-    List<SolObject> objs = game.getObjMan().getObjs();
+    List<ManiObject> objs = game.getObjMan().getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject obj = objs.get(i);
+      ManiObject obj = objs.get(i);
       if (!obj.receivesGravity()) continue;
 
       Vector2 objPos = obj.getPosition();
@@ -151,10 +151,10 @@ public class PlanetManager {
 
   }
 
-  private boolean recoverObj(SolObject obj, float toNp, float npMinH) {
+  private boolean recoverObj(ManiObject obj, float toNp, float npMinH) {
     if (npMinH < toNp) return false;
-    if (!(obj instanceof SolShip)) return false;
-    SolShip ship = (SolShip) obj;
+    if (!(obj instanceof ManiShip)) return false;
+    ManiShip ship = (ManiShip) obj;
     Hull hull = ship.getHull();
     if (hull.config.getType() == HullConfig.Type.STATION) return false;
     float fh = myNearestPlanet.getFullHeight();
@@ -178,9 +178,9 @@ public class PlanetManager {
     return myNearestPlanet;
   }
 
-  public void drawDebug(GameDrawer drawer, SolGame game) {
+  public void drawDebug(GameDrawer drawer, ManiGame game) {
     if (DebugOptions.DRAW_PLANET_BORDERS) {
-      SolCam cam = game.getCam();
+      ManiCam cam = game.getCam();
       float lineWidth = cam.getRealLineWidth();
       float vh = cam.getViewHeight();
       for (Planet p : myPlanets) {
@@ -204,12 +204,12 @@ public class PlanetManager {
     return myBelts;
   }
 
-  public ArrayList<SolSystem> getSystems() {
+  public ArrayList<ManiSystem> getSystems() {
     return mySystems;
   }
 
-  public Vector2 findFlatPlace(SolGame game, Planet p, ConsumedAngles takenAngles,
-    float objHalfWidth) {
+  public Vector2 findFlatPlace(ManiGame game, Planet p, ConsumedAngles takenAngles,
+                               float objHalfWidth) {
     return myFlatPlaceFinder.find(game, p, takenAngles, objHalfWidth);
   }
 
@@ -217,11 +217,11 @@ public class PlanetManager {
     return myMazes;
   }
 
-  public SolSystem getNearestSystem(Vector2 pos) {
+  public ManiSystem getNearestSystem(Vector2 pos) {
     float minDst = Float.MAX_VALUE;
-    SolSystem res = null;
+    ManiSystem res = null;
     for (int i = 0, mySystemsSize = mySystems.size(); i < mySystemsSize; i++) {
-      SolSystem s = mySystems.get(i);
+      ManiSystem s = mySystems.get(i);
       float dst = pos.dst(s.getPos());
       if (dst < minDst) {
         minDst = dst;
@@ -245,11 +245,11 @@ public class PlanetManager {
     return res;
   }
 
-  public void drawSunHack(SolGame game, GameDrawer drawer) {
+  public void drawSunHack(ManiGame game, GameDrawer drawer) {
     mySunSingleton.draw(game, drawer);
   }
 
-  public void drawPlanetCoreHack(SolGame game, GameDrawer drawer) {
+  public void drawPlanetCoreHack(ManiGame game, GameDrawer drawer) {
     myPlanetCore.draw(game, drawer);
   }
 }

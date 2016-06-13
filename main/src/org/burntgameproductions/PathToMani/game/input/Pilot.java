@@ -17,12 +17,12 @@
 package org.burntgameproductions.PathToMani.game.input;
 
 import org.burntgameproductions.PathToMani.game.Faction;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.ship.FarShip;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
 public interface Pilot {
-  void update(SolGame game, SolShip ship, SolShip nearestEnemy);
+  void update(ManiGame game, ManiShip ship, ManiShip nearestEnemy);
   boolean isUp();
   boolean isLeft();
   boolean isRight();
@@ -34,7 +34,7 @@ public interface Pilot {
   boolean shootsAtObstacles();
   float getDetectionDist();
   String getMapHint();
-  void updateFar(SolGame game, FarShip farShip);
+  void updateFar(ManiGame game, FarShip farShip);
   String toDebugString();
   boolean isPlayer();
 

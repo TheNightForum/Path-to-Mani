@@ -17,9 +17,9 @@
 package org.burntgameproductions.PathToMani.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
-public class ClipItem implements SolItem {
+public class ClipItem implements ManiItem {
   private final ClipConfig myConfig;
 
   public ClipItem(ClipConfig config) {
@@ -46,22 +46,22 @@ public class ClipItem implements SolItem {
   }
 
   @Override
-  public SolItem copy() {
+  public ManiItem copy() {
     return new ClipItem(myConfig);
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return item instanceof ClipItem && ((ClipItem) item).myConfig == myConfig;
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return myConfig.icon;
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return myConfig.itemType;
   }
 

@@ -19,7 +19,7 @@ package org.burntgameproductions.PathToMani.game.ship;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
 import org.burntgameproductions.PathToMani.game.input.Pilot;
@@ -28,8 +28,8 @@ import org.burntgameproductions.PathToMani.game.particle.EffectConfig;
 import org.burntgameproductions.PathToMani.game.particle.LightSrc;
 import org.burntgameproductions.PathToMani.game.particle.PartMan;
 import org.burntgameproductions.PathToMani.game.particle.ParticleSrc;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.sound.SolSound;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.game.sound.ManiSound;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ public class ShipEngine {
   private final List<Dra> myDras;
   private float myRecoverAwait;
 
-  public ShipEngine(SolGame game, EngineItem ei, Vector2 e1RelPos, Vector2 e2RelPos, SolShip ship) {
+  public ShipEngine(ManiGame game, EngineItem ei, Vector2 e1RelPos, Vector2 e2RelPos, ManiShip ship) {
     myItem = ei;
     myDras = new ArrayList<Dra>();
     EffectConfig ec = myItem.getEffectConfig();
@@ -68,7 +68,7 @@ public class ShipEngine {
     return myDras;
   }
 
-  public void update(float angle, SolGame game, Pilot provider, Body body, Vector2 spd, SolObject owner,
+  public void update(float angle, ManiGame game, Pilot provider, Body body, Vector2 spd, ManiObject owner,
                      boolean controlsEnabled, float mass)
   {
     boolean working = applyInput(game, angle, provider, body, spd, controlsEnabled, mass);
@@ -79,13 +79,13 @@ public class ShipEngine {
     myLightSrc1.update(working, angle, game);
     myLightSrc2.update(working, angle, game);
     if (working) {
-      SolSound sound = myItem.getWorkSound();
+      ManiSound sound = myItem.getWorkSound();
       game.getSoundMan().play(game, sound, myFlameSrc1.getPos(), owner); // hack with pos
     }
   }
 
-  private boolean applyInput(SolGame cmp, float shipAngle, Pilot provider, Body body, Vector2 spd,
-    boolean controlsEnabled, float mass)
+  private boolean applyInput(ManiGame cmp, float shipAngle, Pilot provider, Body body, Vector2 spd,
+                             boolean controlsEnabled, float mass)
   {
     boolean spdOk = SolMath.canAccelerate(shipAngle, spd);
     boolean working = controlsEnabled && provider.isUp() && spdOk;
@@ -117,7 +117,7 @@ public class ShipEngine {
     return working;
   }
 
-  public void onRemove(SolGame game, Vector2 basePos) {
+  public void onRemove(ManiGame game, Vector2 basePos) {
     PartMan pm = game.getPartMan();
     pm.finish(game, myFlameSrc1, basePos);
     pm.finish(game, myFlameSrc2, basePos);

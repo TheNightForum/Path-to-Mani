@@ -19,15 +19,15 @@ package org.burntgameproductions.PathToMani.game.planet;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.DmgType;
 import org.burntgameproductions.PathToMani.game.FarObj;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 import java.util.List;
 
-public class PlanetSprites implements SolObject {
+public class PlanetSprites implements ManiObject {
 
   private final Planet myPlanet;
   private float myRelAngleToPlanet;
@@ -48,7 +48,7 @@ public class PlanetSprites implements SolObject {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     setDependentParams();
     myRelAngleToPlanet += myToPlanetRotSpd * game.getTimeStep();
   }
@@ -61,16 +61,16 @@ public class PlanetSprites implements SolObject {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return false;
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
   }
 
   @Override
-  public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+  public void receiveDmg(float dmg, ManiGame game, Vector2 pos, DmgType dmgType) {
   }
 
   @Override
@@ -79,7 +79,7 @@ public class PlanetSprites implements SolObject {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
   }
 
   @Override
@@ -108,8 +108,8 @@ public class PlanetSprites implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-    SolGame game, Vector2 collPos)
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+                            ManiGame game, Vector2 collPos)
   {
   }
 

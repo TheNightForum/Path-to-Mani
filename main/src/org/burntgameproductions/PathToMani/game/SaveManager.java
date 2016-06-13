@@ -19,7 +19,7 @@ package org.burntgameproductions.PathToMani.game;
 import org.burntgameproductions.PathToMani.files.FileManager;
 import org.burntgameproductions.PathToMani.files.HullConfigManager;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 import org.burntgameproductions.PathToMani.IniReader;
 import org.burntgameproductions.PathToMani.game.gun.GunItem;
@@ -30,10 +30,10 @@ public class SaveManager {
 
   public static final String FILE_NAME = "prevShip.ini";
 
-  public static void writeShip(HullConfig hull, float money, ArrayList<SolItem> items, SolGame game) {
+  public static void writeShip(HullConfig hull, float money, ArrayList<ManiItem> items, ManiGame game) {
     String hullName = game.getHullConfigs().getName(hull);
     StringBuilder sb = new StringBuilder();
-    for (SolItem i : items) {
+    for (ManiItem i : items) {
       sb.append(i.getCode());
       if (i.isEquipped() > 0) {
         sb.append("-" + i.isEquipped());

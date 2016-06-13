@@ -17,53 +17,53 @@
 package org.burntgameproductions.PathToMani.menu;
 
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.game.SaveManager;
-import org.burntgameproductions.PathToMani.ui.SolInputManager;
-import org.burntgameproductions.PathToMani.ui.SolUiControl;
-import org.burntgameproductions.PathToMani.ui.SolUiScreen;
+import org.burntgameproductions.PathToMani.ui.ManiInputManager;
+import org.burntgameproductions.PathToMani.ui.ManiUiControl;
+import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewGameScreen implements SolUiScreen {
-  private final ArrayList<SolUiControl> myControls;
-  private final SolUiControl myBackCtrl;
-  private final SolUiControl myPrevCtrl;
-  private final SolUiControl myNewCtrl;
+public class NewGameScreen implements ManiUiScreen {
+  private final ArrayList<ManiUiControl> myControls;
+  private final ManiUiControl myBackCtrl;
+  private final ManiUiControl myPrevCtrl;
+  private final ManiUiControl myNewCtrl;
 
   public NewGameScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    myPrevCtrl = new SolUiControl(menuLayout.buttonRect(-1, 1), true, gameOptions.getKeyShoot());
+    myPrevCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true, gameOptions.getKeyShoot());
     myPrevCtrl.setDisplayName("Previous Ship");
     myControls.add(myPrevCtrl);
 
-    myNewCtrl = new SolUiControl(menuLayout.buttonRect(-1, 2), true);
+    myNewCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true);
     myNewCtrl.setDisplayName("New Ship");
     myControls.add(myNewCtrl);
 
-    myBackCtrl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+    myBackCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
     myBackCtrl.setDisplayName("Cancel");
     myControls.add(myBackCtrl);
 
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
     myPrevCtrl.setEnabled(SaveManager.hasPrevShip());
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     MenuScreens screens = cmp.getMenuScreens();
-    SolInputManager im = cmp.getInputMan();
+    ManiInputManager im = cmp.getInputMan();
     if (myBackCtrl.isJustOff()) {
       im.setScreen(cmp, screens.main);
       return;
@@ -82,24 +82,24 @@ public class NewGameScreen implements SolUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return true;
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override

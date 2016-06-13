@@ -25,7 +25,7 @@ import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.game.DebugOptions;
 import org.burntgameproductions.PathToMani.ui.FontSize;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,12 +39,12 @@ public class DraDebugger {
     myCollector = new HashSet<TextureAtlas.AtlasRegion>();
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     if (!DebugOptions.TEX_INFO) return;
     maybeCollectTexs(game);
   }
 
-  private void maybeCollectTexs(SolGame game) {
+  private void maybeCollectTexs(ManiGame game) {
     if (!Gdx.input.isTouched()) return;
     myCollector.clear();
     Vector2 cursorPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
@@ -52,7 +52,7 @@ public class DraDebugger {
     game.getDraMan().collectTexs(myCollector, cursorPos);
   }
 
-  public void draw(UiDrawer uiDrawer, SolGame game) {
+  public void draw(UiDrawer uiDrawer, ManiGame game) {
     if (!DebugOptions.TEX_INFO) return;
     float y = GAP;
     for (TextureAtlas.AtlasRegion tex : myCollector) {

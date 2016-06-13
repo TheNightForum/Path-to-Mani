@@ -18,51 +18,51 @@ package org.burntgameproductions.PathToMani.game.screens;
 
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.menu.MenuLayout;
-import org.burntgameproductions.PathToMani.ui.SolInputManager;
-import org.burntgameproductions.PathToMani.ui.SolUiControl;
-import org.burntgameproductions.PathToMani.ui.SolUiScreen;
+import org.burntgameproductions.PathToMani.ui.ManiInputManager;
+import org.burntgameproductions.PathToMani.ui.ManiUiControl;
+import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuScreen implements SolUiScreen {
-  private final List<SolUiControl> myControls;
-  private final SolUiControl myCloseCtrl;
-  private final SolUiControl myExitCtrl;
-  private final SolUiControl myRespawnCtrl;
-  private final SolUiControl myVolCtrl;
+public class MenuScreen implements ManiUiScreen {
+  private final List<ManiUiControl> myControls;
+  private final ManiUiControl myCloseCtrl;
+  private final ManiUiControl myExitCtrl;
+  private final ManiUiControl myRespawnCtrl;
+  private final ManiUiControl myVolCtrl;
 
   public MenuScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    myVolCtrl = new SolUiControl(menuLayout.buttonRect(-1, 1), true);
+    myVolCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true);
     myVolCtrl.setDisplayName("Vol");
     myControls.add(myVolCtrl);
-    myRespawnCtrl = new SolUiControl(menuLayout.buttonRect(-1, 2), true);
+    myRespawnCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true);
     myRespawnCtrl.setDisplayName("Respawn");
     myControls.add(myRespawnCtrl);
-    myExitCtrl = new SolUiControl(menuLayout.buttonRect(-1, 3), true);
+    myExitCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true);
     myExitCtrl.setDisplayName("Exit");
     myControls.add(myExitCtrl);
-    myCloseCtrl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyClose());
+    myCloseCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyClose());
     myCloseCtrl.setDisplayName("Resume");
     myControls.add(myCloseCtrl);
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolGame g = cmp.getGame();
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    ManiGame g = cmp.getGame();
     g.setPaused(true);
-    SolInputManager im = cmp.getInputMan();
+    ManiInputManager im = cmp.getInputMan();
     GameOptions options = cmp.getOptions();
     myVolCtrl.setDisplayName("Volume: " + getVolName(options));
     if (myVolCtrl.isJustOff()) {
@@ -91,17 +91,17 @@ public class MenuScreen implements SolUiScreen {
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
     uiDrawer.draw(uiDrawer.filler, SolColor.UI_BG);
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
@@ -110,17 +110,17 @@ public class MenuScreen implements SolUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return true;
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
 
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
 
   }
 }

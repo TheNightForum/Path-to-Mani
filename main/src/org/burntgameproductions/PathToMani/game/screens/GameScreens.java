@@ -16,8 +16,8 @@
 
 package org.burntgameproductions.PathToMani.game.screens;
 
-import org.burntgameproductions.PathToMani.ui.SolLayouts;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ui.ManiLayouts;
+import org.burntgameproductions.PathToMani.ManiApplication;
 
 public class GameScreens {
   public final MainScreen mainScreen;
@@ -26,8 +26,8 @@ public class GameScreens {
   public final InventoryScreen inventoryScreen;
   public final TalkScreen talkScreen;
 
-  public GameScreens(float r, SolApplication cmp) {
-    SolLayouts layouts = cmp.getLayouts();
+  public GameScreens(float r, ManiApplication cmp) {
+    ManiLayouts layouts = cmp.getLayouts();
     RightPaneLayout rightPaneLayout = layouts.rightPaneLayout;
     mainScreen = new MainScreen(r, rightPaneLayout, cmp);
     mapScreen = new MapScreen(rightPaneLayout, cmp.isMobile(), r, cmp.getOptions());

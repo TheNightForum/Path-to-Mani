@@ -20,8 +20,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.asteroid.AsteroidBuilder;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
 public class BallProjectileBody implements ProjectileBody {
   private final Body myBody;
@@ -32,8 +32,8 @@ public class BallProjectileBody implements ProjectileBody {
 
   private float myAngle;
 
-  public BallProjectileBody(SolGame game, Vector2 pos, float angle, Projectile projectile,
-    Vector2 gunSpd, float spdLen, ProjectileConfig config)
+  public BallProjectileBody(ManiGame game, Vector2 pos, float angle, Projectile projectile,
+                            Vector2 gunSpd, float spdLen, ProjectileConfig config)
   {
     float density = config.density == -1 ? 1 : config.density;
     myBody = AsteroidBuilder.buildBall(game, pos, angle, config.physSize / 2, density, config.massless);
@@ -58,7 +58,7 @@ public class BallProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     setParamsFromBody();
     if (myAcc > 0 && SolMath.canAccelerate(myAngle, mySpd)) {
       Vector2 force = SolMath.fromAl(myAngle, myAcc * myMass);
@@ -78,13 +78,13 @@ public class BallProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
     if (acc) force.scl(myMass);
     myBody.applyForceToCenter(force, true);
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
     myBody.getWorld().destroyBody(myBody);
   }
 
@@ -101,7 +101,7 @@ public class BallProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public float getDesiredAngle(SolShip ne) {
+  public float getDesiredAngle(ManiShip ne) {
     float spdLen = mySpd.len();
     if (spdLen < 3) spdLen = 3;
     float toNe = SolMath.angle(myPos, ne.getPosition());

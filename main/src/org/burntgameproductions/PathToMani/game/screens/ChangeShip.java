@@ -19,43 +19,43 @@ package org.burntgameproductions.PathToMani.game.screens;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.game.item.EngineItem;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
-import org.burntgameproductions.PathToMani.SolApplication;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.ManiApplication;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.gun.GunItem;
 import org.burntgameproductions.PathToMani.game.item.ItemContainer;
 import org.burntgameproductions.PathToMani.game.item.ShipItem;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
 import org.burntgameproductions.PathToMani.game.ship.ShipRepairer;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
 import org.burntgameproductions.PathToMani.game.ship.hulls.Hull;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
-import org.burntgameproductions.PathToMani.ui.SolInputManager;
-import org.burntgameproductions.PathToMani.ui.SolUiControl;
+import org.burntgameproductions.PathToMani.ui.ManiInputManager;
+import org.burntgameproductions.PathToMani.ui.ManiUiControl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeShip implements InventoryOperations {
 
-  private final ArrayList<SolUiControl> myControls;
-  private final SolUiControl myBuyCtrl;
+  private final ArrayList<ManiUiControl> myControls;
+  private final ManiUiControl myBuyCtrl;
 
   public ChangeShip(InventoryScreen inventoryScreen, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    myBuyCtrl = new SolUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyChangeShip());
+    myBuyCtrl = new ManiUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyChangeShip());
     myBuyCtrl.setDisplayName("Change");
     myControls.add(myBuyCtrl);
   }
 
   @Override
-  public ItemContainer getItems(SolGame game) {
+  public ItemContainer getItems(ManiGame game) {
     return game.getScreens().talkScreen.getTarget().getTradeContainer().getShips();
   }
 
   @Override
-  public boolean isUsing(SolGame game, SolItem item) {
+  public boolean isUsing(ManiGame game, ManiItem item) {
     return false;
   }
 
@@ -70,21 +70,21 @@ public class ChangeShip implements InventoryOperations {
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolGame game = cmp.getGame();
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    ManiGame game = cmp.getGame();
     InventoryScreen is = game.getScreens().inventoryScreen;
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     TalkScreen talkScreen = game.getScreens().talkScreen;
     if (talkScreen.isTargetFar(hero)) {
       cmp.getInputMan().setScreen(cmp, game.getScreens().mainScreen);
       return;
     }
-    SolItem selItem = is.getSelectedItem();
+    ManiItem selItem = is.getSelectedItem();
     boolean enabled = selItem != null && hero.getMoney() >= selItem.getPrice();
     myBuyCtrl.setDisplayName(enabled ? "Change" : "---");
     myBuyCtrl.setEnabled(enabled);
@@ -95,13 +95,13 @@ public class ChangeShip implements InventoryOperations {
     }
   }
 
-  private void changeShip(SolGame game, SolShip hero, ShipItem selected) {
+  private void changeShip(ManiGame game, ManiShip hero, ShipItem selected) {
     HullConfig newConfig = selected.getConfig();
     Hull hull = hero.getHull();
     EngineItem.Config ec = newConfig.getEngineConfig();
     EngineItem ei = ec == null ? null : ec.example.copy();
     GunItem g2 = hull.getGun(true);
-    SolShip newHero = game.getShipBuilder().build(game, hero.getPosition(), new Vector2(), hero.getAngle(), 0, hero.getPilot(),
+    ManiShip newHero = game.getShipBuilder().build(game, hero.getPosition(), new Vector2(), hero.getAngle(), 0, hero.getPilot(),
       hero.getItemContainer(), newConfig, newConfig.getMaxLife(), hull.getGun(false), g2, null,
       ei, new ShipRepairer(), hero.getMoney(), hero.getTradeContainer(), hero.getShield(), hero.getArmor());
     game.getObjMan().removeObjDelayed(hero);
@@ -109,32 +109,32 @@ public class ChangeShip implements InventoryOperations {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
 
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 

@@ -19,8 +19,8 @@ package org.burntgameproductions.PathToMani.game.planet;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.game.FarObj;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 
 public class FarSky implements FarObj {
   private final Planet myPlanet;
@@ -30,17 +30,17 @@ public class FarSky implements FarObj {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return false;
   }
 
   @Override
-  public SolObject toObj(SolGame game) {
+  public ManiObject toObj(ManiGame game) {
     return new Sky(game, myPlanet);
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
   }
 
   @Override

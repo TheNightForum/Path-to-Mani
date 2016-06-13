@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
 public class MountDetectDrawer {
   private final Vector2 myNePos;
@@ -36,7 +36,7 @@ public class MountDetectDrawer {
     myTex = textureManager.getTex("smallGameObjs/targetDetected", null);
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     myShouldDraw = false;
     float ts = game.getTimeStep();
     myAnimPerc += ts / 2f;
@@ -45,7 +45,7 @@ public class MountDetectDrawer {
     if (myAngle > 180) myAngle -= 360;
   }
 
-  public void setNe(SolShip ne) {
+  public void setNe(ManiShip ne) {
     myNePos.set(ne.getPosition());
     myBaseRad = ne.getHull().config.getApproxRadius();
     myShouldDraw = true;

@@ -18,9 +18,9 @@ package org.burntgameproductions.PathToMani.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.FarObj;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public class FarTileObject implements FarObj {
   private final Planet myPlanet;
@@ -42,17 +42,17 @@ public class FarTileObject implements FarObj {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return false;
   }
 
   @Override
-  public SolObject toObj(SolGame game) {
+  public ManiObject toObj(ManiGame game) {
     return new TileObjBuilder().build(game, mySize, myToPlanetAngle, myDist, myTile, myPlanet);
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     if (game.getPlanetMan().getNearestPlanet() == myPlanet) {
       SolMath.fromAl(myPos, myPlanet.getAngle() + myToPlanetAngle, myDist);
       myPos.add(myPlanet.getPos());

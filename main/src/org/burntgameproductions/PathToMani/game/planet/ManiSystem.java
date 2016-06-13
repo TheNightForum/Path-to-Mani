@@ -21,7 +21,7 @@ import org.burntgameproductions.PathToMani.game.HardnessCalc;
 
 import java.util.ArrayList;
 
-public class SolSystem {
+public class ManiSystem {
 
   private final Vector2 myPos;
   private final ArrayList<Planet> myPlanets;
@@ -33,7 +33,7 @@ public class SolSystem {
   private final float myInnerDps;
   private float myInnerRad;
 
-  public SolSystem(Vector2 pos, SysConfig config, String name, float sysRadius) {
+  public ManiSystem(Vector2 pos, SysConfig config, String name, float sysRadius) {
     myConfig = config;
     myName = name;
     myPos = new Vector2(pos);

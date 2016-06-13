@@ -20,11 +20,11 @@ import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.ObjectManager;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 import org.burntgameproductions.PathToMani.game.ship.FarShip;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 
 import java.util.List;
@@ -39,11 +39,11 @@ public class Guardian implements MoveDestProvider {
   private final Vector2 myDest;
   private final float myRelAngle;
 
-  private SolShip myTarget;
+  private ManiShip myTarget;
   private FarShip myFarTarget;
 
-  public Guardian(SolGame game, HullConfig hullConfig, Pilot targetPilot, Vector2 targetPos, HullConfig targetHc,
-    float relAngle)
+  public Guardian(ManiGame game, HullConfig hullConfig, Pilot targetPilot, Vector2 targetPos, HullConfig targetHc,
+                  float relAngle)
   {
     myTargetPilot = targetPilot;
     myDest = new Vector2();
@@ -72,7 +72,7 @@ public class Guardian implements MoveDestProvider {
   }
 
   @Override
-  public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, ManiShip nearestEnemy) {
     updateTarget(game);
     myDest.set(shipPos);
     Vector2 targetPos;
@@ -88,9 +88,9 @@ public class Guardian implements MoveDestProvider {
     setDest(game, targetPos, targetApproxRad, hullConfig);
   }
 
-  public void updateTarget(SolGame game) {
+  public void updateTarget(ManiGame game) {
     ObjectManager om = game.getObjMan();
-    List<SolObject> objs = om.getObjs();
+    List<ManiObject> objs = om.getObjs();
     if (myTarget != null && objs.contains(myTarget)) return;
     myTarget = null;
     List<FarShip> farShips = om.getFarShips();
@@ -98,9 +98,9 @@ public class Guardian implements MoveDestProvider {
     myFarTarget = null;
 
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject o = objs.get(i);
-      if (!(o instanceof SolShip)) continue;
-      SolShip other = (SolShip) o;
+      ManiObject o = objs.get(i);
+      if (!(o instanceof ManiShip)) continue;
+      ManiShip other = (ManiShip) o;
       if (other.getPilot() != myTargetPilot) continue;
       myTarget = other;
       return;
@@ -113,7 +113,7 @@ public class Guardian implements MoveDestProvider {
     }
   }
 
-  private void setDest(SolGame game, Vector2 targetPos, float targetApproxRad, HullConfig hullConfig) {
+  private void setDest(ManiGame game, Vector2 targetPos, float targetApproxRad, HullConfig hullConfig) {
     Planet np = game.getPlanetMan().getNearestPlanet(targetPos);
     float desiredAngle = myRelAngle;
     if (np.isNearGround(targetPos)) {
@@ -124,7 +124,7 @@ public class Guardian implements MoveDestProvider {
   }
 
   @Override
-  public Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround) {
+  public Boolean shouldManeuver(boolean canShoot, ManiShip nearestEnemy, boolean nearGround) {
     if (!canShoot) return null;
     Vector2 targetPos = null;
     if (myTarget != null) {

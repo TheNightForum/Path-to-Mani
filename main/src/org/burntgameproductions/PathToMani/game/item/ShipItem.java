@@ -18,12 +18,12 @@ package org.burntgameproductions.PathToMani.game.item;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 
-public class ShipItem implements SolItem {
+public class ShipItem implements ManiItem {
 
-  public static final SolItemType EMPTY = new SolItemType(new Color(), null, 1);
+  public static final ManiItemType EMPTY = new ManiItemType(new Color(), null, 1);
   private final HullConfig myConfig;
   private final String myDesc;
 
@@ -68,22 +68,22 @@ public class ShipItem implements SolItem {
   }
 
   @Override
-  public SolItem copy() {
+  public ManiItem copy() {
     return new ShipItem(myConfig);
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return item instanceof ShipItem && ((ShipItem) item).myConfig == myConfig;
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return myConfig.getIcon();
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return EMPTY;
   }
 

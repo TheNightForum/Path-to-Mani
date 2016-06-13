@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import org.burntgameproductions.PathToMani.game.input.Pilot;
 import org.burntgameproductions.PathToMani.game.projectile.Projectile;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
 import java.util.List;
 
@@ -34,12 +34,12 @@ public class FactionManager {
     }
 
     /**
-     * Finds the nearest Enemy @{link SolShip} for the given ship
+     * Finds the nearest Enemy @{link ManiShip} for the given ship
      * @param game the game object
      * @param ship the ship to find enemies for
      * @return the nearest Enemy ship
      */
-    public SolShip getNearestEnemy(SolGame game, SolShip ship) {
+    public ManiShip getNearestEnemy(ManiGame game, ManiShip ship) {
         Pilot pilot = ship.getPilot();
         float detectionDist = pilot.getDetectionDist();
         if (detectionDist <= 0) return null;
@@ -54,28 +54,28 @@ public class FactionManager {
      * @param projectile  the target seeking projectile
      * @return the nearest Enemy ship
      */
-    public SolShip getNearestEnemy(SolGame game, Projectile projectile) {
+    public ManiShip getNearestEnemy(ManiGame game, Projectile projectile) {
         return getNearestEnemy(game, game.getCam().getViewDist(), projectile.getFaction(), projectile.getPosition());
     }
 
     /**
-     * Finds the nearest Enemy @{link SolShip}
+     * Finds the nearest Enemy @{link ManiShip}
      * @param game the game object
      * @param detectionDist the maximum distance allowed for detection
      * @param faction the faction of the entity
      * @param position the position of the entity
      * @return the nearest Enemy ship
      */
-    public SolShip getNearestEnemy(SolGame game, float detectionDist, Faction faction, Vector2 position) {
-        SolShip nearestEnemyShip = null;
+    public ManiShip getNearestEnemy(ManiGame game, float detectionDist, Faction faction, Vector2 position) {
+        ManiShip nearestEnemyShip = null;
         float minimumDistance = detectionDist;
-        List<SolObject> objects = game.getObjMan().getObjs();
+        List<ManiObject> objects = game.getObjMan().getObjs();
         for (int i = 0, objectsSize = objects.size(); i < objectsSize; i++) {
-            SolObject solObject = objects.get(i);
-            if (!(solObject instanceof SolShip)) {
+            ManiObject solObject = objects.get(i);
+            if (!(solObject instanceof ManiShip)) {
                 continue;
             }
-            SolShip potentialEnemyShip = (SolShip) solObject;
+            ManiShip potentialEnemyShip = (ManiShip) solObject;
             if (!areEnemies(faction, potentialEnemyShip.getPilot().getFaction()))
                 continue;
             float distance = potentialEnemyShip.getPosition().dst(position) - potentialEnemyShip.getHull().config.getApproxRadius();
@@ -88,7 +88,7 @@ public class FactionManager {
         return nearestEnemyShip;
     }
 
-    private boolean hasObstacles(SolGame game, SolShip shipFrom, SolShip shipTo) {
+    private boolean hasObstacles(ManiGame game, ManiShip shipFrom, ManiShip shipTo) {
         myRayBack.shipFrom = shipFrom;
         myRayBack.shipTo = shipTo;
         myRayBack.hasObstacle = false;
@@ -96,7 +96,7 @@ public class FactionManager {
         return myRayBack.hasObstacle;
     }
 
-    public boolean areEnemies(SolShip s1, SolShip s2) {
+    public boolean areEnemies(ManiShip s1, ManiShip s2) {
         Faction f1 = s1.getPilot().getFaction();
         Faction f2 = s2.getPilot().getFaction();
         return areEnemies(f1, f2);
@@ -107,13 +107,13 @@ public class FactionManager {
     }
 
     private static class MyRayBack implements RayCastCallback {
-        public SolShip shipFrom;
-        public SolShip shipTo;
+        public ManiShip shipFrom;
+        public ManiShip shipTo;
         public boolean hasObstacle;
 
         @Override
         public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
-            SolObject o = (SolObject) fixture.getBody().getUserData();
+            ManiObject o = (ManiObject) fixture.getBody().getUserData();
             if (o == shipFrom || o == shipTo) {
                 return -1;
             }

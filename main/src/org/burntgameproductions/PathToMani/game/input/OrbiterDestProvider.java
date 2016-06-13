@@ -18,9 +18,9 @@ package org.burntgameproductions.PathToMani.game.input;
 
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 
 /**
@@ -62,7 +62,7 @@ public class OrbiterDestProvider implements MoveDestProvider {
   }
 
   @Override
-  public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, ManiShip nearestEnemy) {
     Vector2 pPos = myPlanet.getPos();
     float destAngle = SolMath.angle(pPos, shipPos) + 5 * SolMath.toInt(myCw);
     SolMath.fromAl(myDest, destAngle, myHeight);
@@ -70,7 +70,7 @@ public class OrbiterDestProvider implements MoveDestProvider {
   }
 
   @Override
-  public Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround) {
+  public Boolean shouldManeuver(boolean canShoot, ManiShip nearestEnemy, boolean nearGround) {
     return null;
   }
 

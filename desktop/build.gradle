@@ -3,7 +3,7 @@ apply plugin: "java"
 sourceCompatibility = 1.8
 sourceSets.main.java.srcDirs = [ "src/" ]
 
-project.ext.mainClassName = "SolDesktop"
+project.ext.mainClassName = "ManiDesktop"
 
 dependencies {
     compile project(":main")

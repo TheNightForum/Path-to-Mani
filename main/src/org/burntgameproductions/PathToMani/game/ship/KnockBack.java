@@ -19,13 +19,13 @@ package org.burntgameproductions.PathToMani.game.ship;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
 import org.burntgameproductions.PathToMani.game.particle.ParticleSrc;
 import org.burntgameproductions.PathToMani.game.AbilityCommonConfig;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public class KnockBack implements ShipAbility {
   public static final int MAX_RADIUS = 8;
@@ -51,10 +51,10 @@ public class KnockBack implements ShipAbility {
   }
 
   @Override
-  public boolean update(SolGame game, SolShip owner, boolean tryToUse) {
+  public boolean update(ManiGame game, ManiShip owner, boolean tryToUse) {
     if (!tryToUse) return false;
     Vector2 ownerPos = owner.getPosition();
-    for (SolObject o : game.getObjMan().getObjs()) {
+    for (ManiObject o : game.getObjMan().getObjs()) {
       if (o == owner || !o.receivesGravity()) continue;
       Vector2 oPos = o.getPosition();
       float dst = oPos.dst(ownerPos);
@@ -82,11 +82,11 @@ public class KnockBack implements ShipAbility {
 
   public static class Config implements AbilityConfig {
     public final float rechargeTime;
-    private final SolItem chargeExample;
+    private final ManiItem chargeExample;
     public final float force;
     public final AbilityCommonConfig cc;
 
-    public Config(float rechargeTime, SolItem chargeExample, float force, AbilityCommonConfig cc) {
+    public Config(float rechargeTime, ManiItem chargeExample, float force, AbilityCommonConfig cc) {
       this.rechargeTime = rechargeTime;
       this.chargeExample = chargeExample;
       this.force = force;
@@ -99,7 +99,7 @@ public class KnockBack implements ShipAbility {
     }
 
     @Override
-    public SolItem getChargeExample() {
+    public ManiItem getChargeExample() {
       return chargeExample;
     }
 
@@ -116,7 +116,7 @@ public class KnockBack implements ShipAbility {
     public static AbilityConfig load(JsonValue abNode, ItemManager itemManager, AbilityCommonConfig cc) {
       float rechargeTime = abNode.getFloat("rechargeTime");
       float force = abNode.getFloat("force");
-      SolItem chargeExample = itemManager.getExample("knockBackCharge");
+      ManiItem chargeExample = itemManager.getExample("knockBackCharge");
       return new Config(rechargeTime, chargeExample, force, cc);
     }
   }

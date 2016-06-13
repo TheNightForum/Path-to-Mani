@@ -19,51 +19,51 @@ package org.burntgameproductions.PathToMani.game.screens;
 import com.badlogic.gdx.math.Rectangle;
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.common.SolColor;
-import org.burntgameproductions.PathToMani.ui.SolUiScreen;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
+import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
-import org.burntgameproductions.PathToMani.SolApplication;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.ManiApplication;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 import org.burntgameproductions.PathToMani.menu.MenuLayout;
-import org.burntgameproductions.PathToMani.ui.SolInputManager;
-import org.burntgameproductions.PathToMani.ui.SolUiControl;
+import org.burntgameproductions.PathToMani.ui.ManiInputManager;
+import org.burntgameproductions.PathToMani.ui.ManiUiControl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TalkScreen implements SolUiScreen {
+public class TalkScreen implements ManiUiScreen {
 
   public static final float MAX_TALK_DIST = 1f;
-  private final List<SolUiControl> myControls;
-  private final SolUiControl mySellCtrl;
-  public final SolUiControl buyCtrl;
-  private final SolUiControl myShipsCtrl;
-  private final SolUiControl myHireCtrl;
+  private final List<ManiUiControl> myControls;
+  private final ManiUiControl mySellCtrl;
+  public final ManiUiControl buyCtrl;
+  private final ManiUiControl myShipsCtrl;
+  private final ManiUiControl myHireCtrl;
   private final Rectangle myBg;
-  public final SolUiControl closeCtrl;
-  private SolShip myTarget;
+  public final ManiUiControl closeCtrl;
+  private ManiShip myTarget;
 
   public TalkScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    mySellCtrl = new SolUiControl(menuLayout.buttonRect(-1, 0), true, gameOptions.getKeySellMenu());
+    mySellCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 0), true, gameOptions.getKeySellMenu());
     mySellCtrl.setDisplayName("Sell");
     myControls.add(mySellCtrl);
 
-    buyCtrl = new SolUiControl(menuLayout.buttonRect(-1, 1), true, gameOptions.getKeyBuyMenu());
+    buyCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true, gameOptions.getKeyBuyMenu());
     buyCtrl.setDisplayName("Buy");
     myControls.add(buyCtrl);
 
-    myShipsCtrl = new SolUiControl(menuLayout.buttonRect(-1, 2), true, gameOptions.getKeyChangeShipMenu());
+    myShipsCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true, gameOptions.getKeyChangeShipMenu());
     myShipsCtrl.setDisplayName("Change Ship");
     myControls.add(myShipsCtrl);
 
-    myHireCtrl = new SolUiControl(menuLayout.buttonRect(-1, 3), true, gameOptions.getKeyHireShipMenu());
+    myHireCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true, gameOptions.getKeyHireShipMenu());
     myHireCtrl.setDisplayName("Hire");
     myControls.add(myHireCtrl);
 
-    closeCtrl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyClose());
+    closeCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyClose());
     closeCtrl.setDisplayName("Close");
     myControls.add(closeCtrl);
 
@@ -71,19 +71,19 @@ public class TalkScreen implements SolUiScreen {
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     if (clickedOutside) {
       closeCtrl.maybeFlashPressed(cmp.getOptions().getKeyClose());
       return;
     }
-    SolGame g = cmp.getGame();
-    SolShip hero = g.getHero();
-    SolInputManager inputMan = cmp.getInputMan();
+    ManiGame g = cmp.getGame();
+    ManiShip hero = g.getHero();
+    ManiInputManager inputMan = cmp.getInputMan();
     if (closeCtrl.isJustOff() || isTargetFar(hero))
     {
       inputMan.setScreen(cmp, g.getScreens().mainScreen);
@@ -106,24 +106,24 @@ public class TalkScreen implements SolUiScreen {
     }
   }
 
-  public boolean isTargetFar(SolShip hero) {
+  public boolean isTargetFar(ManiShip hero) {
     if (hero == null || myTarget == null || myTarget.getLife() <= 0) return true;
     float dst = myTarget.getPosition().dst(hero.getPosition()) - hero.getHull().config.getApproxRadius() - myTarget.getHull().config.getApproxRadius();
     return MAX_TALK_DIST < dst;
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
     uiDrawer.draw(myBg, SolColor.UI_BG);
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
@@ -132,24 +132,24 @@ public class TalkScreen implements SolUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return myBg.contains(ptr.x, ptr.y);
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
 
   }
 
-  public void setTarget(SolShip target) {
+  public void setTarget(ManiShip target) {
     myTarget = target;
   }
 
-  public SolShip getTarget() {
+  public ManiShip getTarget() {
     return myTarget;
   }
 }

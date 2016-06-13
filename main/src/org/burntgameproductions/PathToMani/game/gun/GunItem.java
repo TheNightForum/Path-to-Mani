@@ -17,11 +17,11 @@
 package org.burntgameproductions.PathToMani.game.gun;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
-import org.burntgameproductions.PathToMani.game.item.SolItemType;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
+import org.burntgameproductions.PathToMani.game.item.ManiItemType;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
-public class GunItem implements SolItem {
+public class GunItem implements ManiItem {
 
   public final GunConfig config;
   public int ammo;
@@ -60,17 +60,17 @@ public class GunItem implements SolItem {
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return false;
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return config.icon;
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return config.itemType;
   }
 

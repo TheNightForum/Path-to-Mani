@@ -21,8 +21,8 @@ import org.burntgameproductions.PathToMani.game.Faction;
 import org.burntgameproductions.PathToMani.game.screens.MainScreen;
 import org.burntgameproductions.PathToMani.game.ship.FarShip;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
 public class UiControlledPilot implements Pilot {
 
@@ -33,7 +33,7 @@ public class UiControlledPilot implements Pilot {
   }
 
   @Override
-  public void update(SolGame game, SolShip ship, SolShip nearestEnemy) {
+  public void update(ManiGame game, ManiShip ship, ManiShip nearestEnemy) {
   }
 
   @Override
@@ -92,7 +92,7 @@ public class UiControlledPilot implements Pilot {
   }
 
   @Override
-  public void updateFar(SolGame game, FarShip farShip) {
+  public void updateFar(ManiGame game, FarShip farShip) {
   }
 
   @Override

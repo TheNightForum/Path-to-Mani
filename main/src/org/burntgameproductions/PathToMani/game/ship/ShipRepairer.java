@@ -18,7 +18,7 @@ package org.burntgameproductions.PathToMani.game.ship;
 
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.item.RepairItem;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.item.ItemContainer;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 
@@ -30,7 +30,7 @@ public class ShipRepairer {
   public ShipRepairer() {
   }
 
-  public float tryRepair(SolGame game, ItemContainer ic, float life, HullConfig config) {
+  public float tryRepair(ManiGame game, ItemContainer ic, float life, HullConfig config) {
     // Don't attempt to repair if already at full health
     if (life == config.getMaxLife()) {
       return 0;

@@ -23,10 +23,10 @@ import com.badlogic.gdx.utils.JsonValue;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.Faction;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 import org.burntgameproductions.PathToMani.game.AbilityCommonConfig;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public class Teleport implements ShipAbility {
   public static final int MAX_RADIUS = 4;
@@ -42,12 +42,12 @@ public class Teleport implements ShipAbility {
   }
 
   @Override
-  public boolean update(SolGame game, SolShip owner, boolean tryToUse) {
+  public boolean update(ManiGame game, ManiShip owner, boolean tryToUse) {
     myShouldTeleport = false;
     if (!tryToUse) return false;
     Vector2 pos = owner.getPosition();
     Faction faction = owner.getPilot().getFaction();
-    SolShip ne = game.getFactionMan().getNearestEnemy(game, MAX_RADIUS, faction, pos);
+    ManiShip ne = game.getFactionMan().getNearestEnemy(game, MAX_RADIUS, faction, pos);
     if (ne == null) return false;
     Vector2 nePos = ne.getPosition();
     Planet np = game.getPlanetMan().getNearestPlanet();
@@ -82,7 +82,7 @@ public class Teleport implements ShipAbility {
   }
 
   // can be performed in update
-  public void maybeTeleport(SolGame game, SolShip owner) {
+  public void maybeTeleport(ManiGame game, ManiShip owner) {
     if (!myShouldTeleport) return;
 
     TextureAtlas.AtlasRegion tex = game.getTexMan().getTex(TEX_PATH, null);
@@ -103,11 +103,11 @@ public class Teleport implements ShipAbility {
 
   public static class Config implements AbilityConfig {
     private final float angle;
-    private final SolItem chargeExample;
+    private final ManiItem chargeExample;
     private final float rechargeTime;
     private final AbilityCommonConfig cc;
 
-    public Config(float angle, SolItem chargeExample, float rechargeTime, AbilityCommonConfig cc) {
+    public Config(float angle, ManiItem chargeExample, float rechargeTime, AbilityCommonConfig cc) {
       this.angle = angle;
       this.chargeExample = chargeExample;
       this.rechargeTime = rechargeTime;
@@ -119,7 +119,7 @@ public class Teleport implements ShipAbility {
     }
 
     @Override
-    public SolItem getChargeExample() {
+    public ManiItem getChargeExample() {
       return chargeExample;
     }
 
@@ -135,7 +135,7 @@ public class Teleport implements ShipAbility {
 
     public static AbilityConfig load(JsonValue abNode, ItemManager itemManager, AbilityCommonConfig cc) {
       float angle = abNode.getFloat("angle");
-      SolItem chargeExample = itemManager.getExample("teleportCharge");
+      ManiItem chargeExample = itemManager.getExample("teleportCharge");
       float rechargeTime = abNode.getFloat("rechargeTime");
       return new Config(angle, chargeExample, rechargeTime, cc);
     }

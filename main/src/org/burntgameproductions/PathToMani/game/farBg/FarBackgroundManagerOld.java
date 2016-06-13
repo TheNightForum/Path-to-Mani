@@ -25,8 +25,8 @@ import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.common.SolColorUtil;
 import org.burntgameproductions.PathToMani.game.GameDrawer;
-import org.burntgameproductions.PathToMani.game.SolCam;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiCam;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class FarBackgroundManagerOld {
     myNebTint = SolColor.col(.5f, 1);
   }
 
-  public void draw(GameDrawer drawer, SolCam cam, SolGame game) {
+  public void draw(GameDrawer drawer, ManiCam cam, ManiGame game) {
     Planet np = game.getPlanetMan().getNearestPlanet();
     Vector2 camPos = cam.getPos();
     float nebPerc = (camPos.dst(np.getPos()) - np.getGroundHeight()) / (4 * Const.ATM_HEIGHT);

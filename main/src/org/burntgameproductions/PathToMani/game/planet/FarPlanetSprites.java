@@ -18,11 +18,11 @@ package org.burntgameproductions.PathToMani.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.dra.DraMan;
 import org.burntgameproductions.PathToMani.game.FarObj;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 import java.util.List;
 
@@ -47,17 +47,17 @@ public class FarPlanetSprites implements FarObj {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return false;
   }
 
   @Override
-  public SolObject toObj(SolGame game) {
+  public ManiObject toObj(ManiGame game) {
     return new PlanetSprites(myPlanet, myRelAngleToPlanet, myDist, myDras, myToPlanetRotSpd);
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     myRelAngleToPlanet += myToPlanetRotSpd * game.getTimeStep();
     if (game.getPlanetMan().getNearestPlanet() == myPlanet) {
       SolMath.fromAl(myPos, myPlanet.getAngle() + myRelAngleToPlanet, myDist);

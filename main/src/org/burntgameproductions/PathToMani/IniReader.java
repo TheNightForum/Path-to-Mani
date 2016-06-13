@@ -27,7 +27,7 @@ public class IniReader {
 
   private final HashMap<String,String> myVals;
 
-  public IniReader(String fileName, SolFileReader reader, boolean readOnly) {
+  public IniReader(String fileName, ManiFileReader reader, boolean readOnly) {
     myVals = new HashMap<String, String>();
     List<String> lines = reader != null ? reader.read(fileName) : fileToLines(fileName, readOnly);
 

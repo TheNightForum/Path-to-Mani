@@ -14,20 +14,13 @@
  * limitations under the License.
  */
 
-package org.burntgameproductions.PathToMani.game.item;
+package org.burntgameproductions.PathToMani;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import java.nio.file.Path;
+import java.util.List;
 
-public interface SolItem {
-  String getDisplayName();
-  float getPrice();
-  String getDesc();
-  SolItem copy();
-  boolean isSame(SolItem item);
-  TextureAtlas.AtlasRegion getIcon(SolGame game);
-  SolItemType getItemType();
-  String getCode();
-  int isEquipped();
-  void setEquipped(int equipped);
+public interface ManiFileReader {
+    Path create(String fileName, List<String> lines);
+
+    List<String> read(String fileName);
 }

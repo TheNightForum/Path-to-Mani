@@ -16,27 +16,27 @@
 
 package org.burntgameproductions.PathToMani.ui;
 
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 
 import java.util.List;
 
-public interface SolUiScreen {
-  List<SolUiControl> getControls();
+public interface ManiUiScreen {
+  List<ManiUiControl> getControls();
 
-  void onAdd(SolApplication cmp);
+  void onAdd(ManiApplication cmp);
 
-  void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside);
+  void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside);
 
-  boolean isCursorOnBg(SolInputManager.Ptr ptr);
+  boolean isCursorOnBg(ManiInputManager.Ptr ptr);
 
-  void blurCustom(SolApplication cmp);
+  void blurCustom(ManiApplication cmp);
 
 
-  void drawBg(UiDrawer uiDrawer, SolApplication cmp);
+  void drawBg(UiDrawer uiDrawer, ManiApplication cmp);
 
-  void drawImgs(UiDrawer uiDrawer, SolApplication cmp);
+  void drawImgs(UiDrawer uiDrawer, ManiApplication cmp);
 
-  void drawText(UiDrawer uiDrawer, SolApplication cmp);
+  void drawText(UiDrawer uiDrawer, ManiApplication cmp);
 
   boolean reactsToClickOutside();
 }

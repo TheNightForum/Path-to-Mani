@@ -17,13 +17,13 @@
 package org.burntgameproductions.PathToMani.game.screens;
 
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.SolApplication;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.ManiApplication;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.item.ItemContainer;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
-import org.burntgameproductions.PathToMani.ui.SolInputManager;
-import org.burntgameproductions.PathToMani.ui.SolUiControl;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
+import org.burntgameproductions.PathToMani.ui.ManiInputManager;
+import org.burntgameproductions.PathToMani.ui.ManiUiControl;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 
 import java.util.ArrayList;
@@ -31,38 +31,38 @@ import java.util.List;
 
 public class ShowInventory implements InventoryOperations {
 
-  private final List<SolUiControl> myControls;
-  public final SolUiControl eq1Ctrl;
-  public final SolUiControl eq2Ctrl;
-  public final SolUiControl dropCtrl;
+  private final List<ManiUiControl> myControls;
+  public final ManiUiControl eq1Ctrl;
+  public final ManiUiControl eq2Ctrl;
+  public final ManiUiControl dropCtrl;
 
   public ShowInventory(InventoryScreen inventoryScreen, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    eq1Ctrl = new SolUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyEquip());
+    eq1Ctrl = new ManiUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyEquip());
     eq1Ctrl.setDisplayName("Eq");
     myControls.add(eq1Ctrl);
 
-    eq2Ctrl = new SolUiControl(inventoryScreen.itemCtrl(1), true, gameOptions.getKeyEquip2());
+    eq2Ctrl = new ManiUiControl(inventoryScreen.itemCtrl(1), true, gameOptions.getKeyEquip2());
     eq2Ctrl.setDisplayName("Eq2");
     myControls.add(eq2Ctrl);
 
-    dropCtrl = new SolUiControl(inventoryScreen.itemCtrl(2), true, gameOptions.getKeyDrop());
+    dropCtrl = new ManiUiControl(inventoryScreen.itemCtrl(2), true, gameOptions.getKeyDrop());
     dropCtrl.setDisplayName("Drop");
     myControls.add(dropCtrl);
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolGame g = cmp.getGame();
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    ManiGame g = cmp.getGame();
     InventoryScreen is = g.getScreens().inventoryScreen;
-    SolItem selItem = is.getSelectedItem();
-    SolShip hero = g.getHero();
+    ManiItem selItem = is.getSelectedItem();
+    ManiShip hero = g.getHero();
 
     eq1Ctrl.setDisplayName("---");
     eq1Ctrl.setEnabled(false);
@@ -107,16 +107,16 @@ public class ShowInventory implements InventoryOperations {
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
@@ -125,28 +125,28 @@ public class ShowInventory implements InventoryOperations {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
 
   }
 
   @Override
-  public ItemContainer getItems(SolGame game) {
-    SolShip h = game.getHero();
+  public ItemContainer getItems(ManiGame game) {
+    ManiShip h = game.getHero();
     return h == null ? null : h.getItemContainer();
   }
 
   @Override
-  public boolean isUsing(SolGame game, SolItem item) {
-    SolShip h = game.getHero();
+  public boolean isUsing(ManiGame game, ManiItem item) {
+    ManiShip h = game.getHero();
     return h != null && h.maybeUnequip(game, item, false);
   }
 

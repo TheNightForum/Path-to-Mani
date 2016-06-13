@@ -16,11 +16,11 @@
 
 package org.burntgameproductions.PathToMani.game.ship;
 
-import org.burntgameproductions.PathToMani.game.item.SolItem;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
 
 public interface AbilityConfig {
   public ShipAbility build();
-  public SolItem getChargeExample();
+  public ManiItem getChargeExample();
   public float getRechargeTime();
   void appendDesc(StringBuilder sb);
 }

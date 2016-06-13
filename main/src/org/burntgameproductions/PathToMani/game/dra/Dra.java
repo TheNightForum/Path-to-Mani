@@ -20,8 +20,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.game.GameDrawer;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 
 //TODO Dra?
 public interface Dra {
@@ -29,13 +29,13 @@ public interface Dra {
   TextureAtlas.AtlasRegion getTex();
   DraLevel getLevel();
   // called on every update from manager
-  void update(SolGame game, SolObject o);
+  void update(ManiGame game, ManiObject o);
   // called on every draw from manager. after that, this dra should be able to return correct pos & radius
-  void prepare(SolObject o);
+  void prepare(ManiObject o);
   Vector2 getPos();
   Vector2 getRelPos();
   float getRadius();
-  void draw(GameDrawer drawer, SolGame game);
+  void draw(GameDrawer drawer, ManiGame game);
   boolean isEnabled();
   boolean okToRemove();
 }

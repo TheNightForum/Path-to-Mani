@@ -18,56 +18,56 @@ package org.burntgameproductions.PathToMani.game.screens;
 
 import com.badlogic.gdx.math.Rectangle;
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.game.MapDrawer;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.ui.SolInputManager;
-import org.burntgameproductions.PathToMani.ui.SolUiControl;
-import org.burntgameproductions.PathToMani.ui.SolUiScreen;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.ui.ManiInputManager;
+import org.burntgameproductions.PathToMani.ui.ManiUiControl;
+import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapScreen implements SolUiScreen {
-  private final List<SolUiControl> myControls;
-  public final SolUiControl closeCtrl;
-  public final SolUiControl zoomInCtrl;
-  public final SolUiControl zoomOutCtrl;
+public class MapScreen implements ManiUiScreen {
+  private final List<ManiUiControl> myControls;
+  public final ManiUiControl closeCtrl;
+  public final ManiUiControl zoomInCtrl;
+  public final ManiUiControl zoomOutCtrl;
 
   public MapScreen(RightPaneLayout rightPaneLayout, boolean mobile, float r, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
     Rectangle closeArea = mobile ? MainScreen.btn(0, MainScreen.HELPER_ROW_1, true) : rightPaneLayout.buttonRect(1);
-    closeCtrl = new SolUiControl(closeArea, true, gameOptions.getKeyMap(), gameOptions.getKeyClose());
+    closeCtrl = new ManiUiControl(closeArea, true, gameOptions.getKeyMap(), gameOptions.getKeyClose());
     closeCtrl.setDisplayName("Close");
     myControls.add(closeCtrl);
     float row0 = 1 - MainScreen.CELL_SZ;
     float row1 = row0 - MainScreen.CELL_SZ;
     float colN = r - MainScreen.CELL_SZ;
     Rectangle zoomInArea = mobile ? MainScreen.btn(0, row1, false) : rightPaneLayout.buttonRect(2);
-    zoomInCtrl = new SolUiControl(zoomInArea, true, gameOptions.getKeyZoomIn());
+    zoomInCtrl = new ManiUiControl(zoomInArea, true, gameOptions.getKeyZoomIn());
     zoomInCtrl.setDisplayName("Zoom In");
     myControls.add(zoomInCtrl);
     Rectangle zoomOutArea = mobile ? MainScreen.btn(0, row0, false) : rightPaneLayout.buttonRect(3);
-    zoomOutCtrl = new SolUiControl(zoomOutArea, true, gameOptions.getKeyZoomOut());
+    zoomOutCtrl = new ManiUiControl(zoomOutArea, true, gameOptions.getKeyZoomOut());
     zoomOutCtrl.setDisplayName("Zoom Out");
     myControls.add(zoomOutCtrl);
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolGame g = cmp.getGame();
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    ManiGame g = cmp.getGame();
     GameOptions gameOptions = cmp.getOptions();
     boolean justClosed = closeCtrl.isJustOff();
     MapDrawer mapDrawer = g.getMapDrawer();
     mapDrawer.setToggled(!justClosed);
-    SolInputManager im = cmp.getInputMan();
+    ManiInputManager im = cmp.getInputMan();
     if (justClosed) {
       im.setScreen(cmp, g.getScreens().mainScreen);
     }
@@ -91,16 +91,16 @@ public class MapScreen implements SolUiScreen {
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
@@ -109,17 +109,17 @@ public class MapScreen implements SolUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
 
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
 
   }
 }

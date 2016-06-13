@@ -19,10 +19,10 @@ package org.burntgameproductions.PathToMani.ui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.common.SolColor;
 
-public class SolUiControl {
+public class ManiUiControl {
   private final int[] myKeys;
   private final Rectangle myScreenArea;
 
@@ -42,7 +42,7 @@ public class SolUiControl {
   private int myWarnCount;
   private final boolean myWithSound;
 
-  public SolUiControl(Rectangle screenArea, boolean withSound, int... keys) {
+  public ManiUiControl(Rectangle screenArea, boolean withSound, int... keys) {
     myWithSound = withSound;
     myKeys = keys == null ? new int[0] : keys;
     myScreenArea = screenArea;
@@ -59,15 +59,15 @@ public class SolUiControl {
     return false;
   }
 
-  public boolean maybeFlashPressed(SolInputManager.Ptr ptr) {
+  public boolean maybeFlashPressed(ManiInputManager.Ptr ptr) {
     if (!myEnabled) return false;
     boolean pressed = myScreenArea != null && myScreenArea.contains(ptr.x, ptr.y);
     if (pressed) myAreaFlash = true;
     return pressed;
   }
 
-  public void update(SolInputManager.Ptr[] ptrs, boolean cursorShown, boolean canBePressed, SolInputManager inputMan,
-    SolApplication cmp)
+  public void update(ManiInputManager.Ptr[] ptrs, boolean cursorShown, boolean canBePressed, ManiInputManager inputMan,
+                     ManiApplication cmp)
   {
     if (!myEnabled) canBePressed = false;
     updateKeys(canBePressed);
@@ -77,7 +77,7 @@ public class SolUiControl {
     if (myWarnCount > 0) myWarnCount--;
   }
 
-  private void updateHover(SolInputManager.Ptr[] ptrs, boolean cursorShown, SolInputManager inputMan, SolApplication cmp) {
+  private void updateHover(ManiInputManager.Ptr[] ptrs, boolean cursorShown, ManiInputManager inputMan, ManiApplication cmp) {
     if (myScreenArea == null || myAreaPressed || ptrs[0].pressed) return;
     boolean prev = myMouseHover;
     myMouseHover = cursorShown && myScreenArea.contains(ptrs[0].x, ptrs[0].y);
@@ -102,7 +102,7 @@ public class SolUiControl {
     }
   }
 
-  private void updateArea(SolInputManager.Ptr[] ptrs, boolean canBePressed) {
+  private void updateArea(ManiInputManager.Ptr[] ptrs, boolean canBePressed) {
     if (myScreenArea == null) return;
     myAreaJustUnpressed = false;
     if (myAreaFlash) {
@@ -112,7 +112,7 @@ public class SolUiControl {
       myAreaPressed = false;
       if (canBePressed) {
         for (int i = 0, ptrsLength = ptrs.length; i < ptrsLength; i++) {
-          SolInputManager.Ptr ptr = ptrs[i];
+          ManiInputManager.Ptr ptr = ptrs[i];
           if (!myScreenArea.contains(ptr.x, ptr.y)) continue;
           myAreaPressed = ptr.pressed;
           myAreaJustUnpressed = !ptr.pressed && ptr.prevPressed;
@@ -136,7 +136,7 @@ public class SolUiControl {
     myDisplayName = displayName;
   }
 
-  public void drawButton(UiDrawer uiDrawer, SolApplication cmp, Color warnCol) {
+  public void drawButton(UiDrawer uiDrawer, ManiApplication cmp, Color warnCol) {
     if (myScreenArea == null) return;
     Color tint = SolColor.UI_INACTIVE;
     if (myEnabled) {

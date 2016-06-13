@@ -20,17 +20,17 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.DmgType;
 import org.burntgameproductions.PathToMani.game.FarObj;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.dra.RectSprite;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileObject implements SolObject {
+public class TileObject implements ManiObject {
 
   private final Planet myPlanet;
   private final float myToPlanetRelAngle;
@@ -62,7 +62,7 @@ public class TileObject implements SolObject {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     setDependentParams();
 
     if (myBody != null) {
@@ -86,17 +86,17 @@ public class TileObject implements SolObject {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return false;
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
     if (myBody != null) myBody.getWorld().destroyBody(myBody);
   }
 
   @Override
-  public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+  public void receiveDmg(float dmg, ManiGame game, Vector2 pos, DmgType dmgType) {
     game.getSpecialSounds().playHit(game, this, pos, dmgType);
   }
 
@@ -106,7 +106,7 @@ public class TileObject implements SolObject {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
   }
 
   @Override
@@ -135,8 +135,8 @@ public class TileObject implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-    SolGame game, Vector2 collPos)
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+                            ManiGame game, Vector2 collPos)
   {
   }
 

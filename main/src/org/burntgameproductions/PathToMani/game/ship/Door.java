@@ -23,9 +23,9 @@ import com.badlogic.gdx.physics.box2d.joints.PrismaticJoint;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.Faction;
 import org.burntgameproductions.PathToMani.game.FactionManager;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.input.Pilot;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.dra.RectSprite;
 
@@ -46,7 +46,7 @@ public class Door {
     myS = s;
   }
 
-  public void update(SolGame game, SolShip ship) {
+  public void update(ManiGame game, ManiShip ship) {
     Vector2 doorPos = getBody().getPosition();
     boolean open = myOpenAwait <= 0 && shouldOpen(game, ship, doorPos);
     if (open) {
@@ -66,15 +66,15 @@ public class Door {
     SolMath.toRel(doorPos, myS.getRelPos(), shipAngle, shipPos);
   }
 
-  private boolean shouldOpen(SolGame game, SolShip ship, Vector2 doorPos) {
+  private boolean shouldOpen(ManiGame game, ManiShip ship, Vector2 doorPos) {
     Faction faction = ship.getPilot().getFaction();
     FactionManager factionManager = game.getFactionMan();
-    List<SolObject> objs = game.getObjMan().getObjs();
+    List<ManiObject> objs = game.getObjMan().getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject o = objs.get(i);
+      ManiObject o = objs.get(i);
       if (o == ship) continue;
-      if (!(o instanceof SolShip)) continue;
-      SolShip ship2 = (SolShip) o;
+      if (!(o instanceof ManiShip)) continue;
+      ManiShip ship2 = (ManiShip) o;
       Pilot pilot2 = ship2.getPilot();
       if (!pilot2.isUp()) continue;
       if (factionManager.areEnemies(pilot2.getFaction(), faction)) continue;
@@ -91,7 +91,7 @@ public class Door {
     return myJoint.getBodyB();
   }
 
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
     World w = game.getObjMan().getWorld();
     Body doorBody = getBody();
     w.destroyJoint(myJoint);

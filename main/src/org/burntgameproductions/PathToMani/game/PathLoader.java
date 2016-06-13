@@ -398,7 +398,7 @@ public class PathLoader {
      * @param dras a texture will be added here
      * @param tex pass if you already have a texture.. So hacky!
      */
-    public Body getBodyAndSprite(SolGame game, HullConfig hullConfig, float scale, BodyDef.BodyType type,
+    public Body getBodyAndSprite(ManiGame game, HullConfig hullConfig, float scale, BodyDef.BodyType type,
                                  Vector2 pos, float angle, List<Dra> dras, float density, DraLevel level, TextureAtlas.AtlasRegion tex)
     {
         final String name = hullConfig.getInternalName();
@@ -441,8 +441,8 @@ public class PathLoader {
    * @param dras a texture will be added here
    * @param tex pass if you already have a texture.. So hacky!
    */
-  public Body getBodyAndSprite(SolGame game, String texDirName, String texName, float scale, BodyDef.BodyType type,
-    Vector2 pos, float angle, List<Dra> dras, float density, DraLevel level, TextureAtlas.AtlasRegion tex)
+  public Body getBodyAndSprite(ManiGame game, String texDirName, String texName, float scale, BodyDef.BodyType type,
+                               Vector2 pos, float angle, List<Dra> dras, float density, DraLevel level, TextureAtlas.AtlasRegion tex)
   {
     BodyDef bd = new BodyDef();
     bd.type = type;

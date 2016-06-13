@@ -28,7 +28,7 @@ import org.burntgameproductions.PathToMani.game.sound.SoundManager;
 import org.burntgameproductions.PathToMani.files.FileManager;
 import org.burntgameproductions.PathToMani.game.DmgType;
 import org.burntgameproductions.PathToMani.game.HardnessCalc;
-import org.burntgameproductions.PathToMani.game.sound.SolSound;
+import org.burntgameproductions.PathToMani.game.sound.ManiSound;
 
 public class GunConfig {
   public final float minAngleVar;
@@ -46,21 +46,21 @@ public class GunConfig {
   public final float dps;
   public final GunItem example;
   public final ClipConfig clipConf;
-  public final SolSound shootSound;
-  public final SolSound reloadSound;
+  public final ManiSound shootSound;
+  public final ManiSound reloadSound;
   public final TextureAtlas.AtlasRegion icon;
   public final boolean fixed;
   public final float meanDps;
-  public final SolItemType itemType;
+  public final ManiItemType itemType;
   public final float texLenPerc;
   public final String code;
 
   public GunConfig(float minAngleVar, float maxAngleVar, float angleVarDamp, float angleVarPerShot,
-    float timeBetweenShots,
-    float reloadTime, float gunLength, String displayName,
-    boolean lightOnShot, int price,
-    ClipConfig clipConf, SolSound shootSound, SolSound reloadSound, TextureAtlas.AtlasRegion tex,
-    TextureAtlas.AtlasRegion icon, boolean fixed, SolItemType itemType, float texLenPerc, String code)
+                   float timeBetweenShots,
+                   float reloadTime, float gunLength, String displayName,
+                   boolean lightOnShot, int price,
+                   ClipConfig clipConf, ManiSound shootSound, ManiSound reloadSound, TextureAtlas.AtlasRegion tex,
+                   TextureAtlas.AtlasRegion icon, boolean fixed, ManiItemType itemType, float texLenPerc, String code)
   {
     this.shootSound = shootSound;
     this.reloadSound = reloadSound;
@@ -114,7 +114,7 @@ public class GunConfig {
     return sb.toString();
   }
 
-  public static void load(TextureManager textureManager, ItemManager itemManager, SoundManager soundManager, SolItemTypes types) {
+  public static void load(TextureManager textureManager, ItemManager itemManager, SoundManager soundManager, ManiItemTypes types) {
     JsonReader r = new JsonReader();
     FileHandle configFile = FileManager.getInstance().getItemsDirectory().child("guns.json");
     JsonValue parsed = r.parse(configFile);
@@ -134,15 +134,15 @@ public class GunConfig {
       String clipName = sh.getString("clipName");
       ClipConfig clipConf = clipName.isEmpty() ? null : ((ClipItem) itemManager.getExample(clipName)).getConfig();
       String reloadSoundPath = sh.getString("reloadSound");
-      SolSound reloadSound = soundManager.getSound(reloadSoundPath, configFile);
+      ManiSound reloadSound = soundManager.getSound(reloadSoundPath, configFile);
       String shootSoundPath = sh.getString("shootSound");
       float shootPitch = sh.getFloat("shootSoundPitch", 1);
-      SolSound shootSound = soundManager.getPitchedSound(shootSoundPath, configFile, shootPitch);
+      ManiSound shootSound = soundManager.getPitchedSound(shootSoundPath, configFile, shootPitch);
       TextureAtlas.AtlasRegion tex = textureManager.getTex("smallGameObjs/guns/" + texName, configFile);
       TextureAtlas.AtlasRegion icon = textureManager.getTex(TextureManager.ICONS_DIR + texName, configFile);
       boolean fixed = sh.getBoolean("fixed", false);
       String code = sh.name;
-      SolItemType itemType = fixed ? types.fixedGun : types.gun;
+      ManiItemType itemType = fixed ? types.fixedGun : types.gun;
       GunConfig c = new GunConfig(minAngleVar, maxAngleVar, angleVarDamp, angleVarPerShot, timeBetweenShots, reloadTime,
         gunLength, displayName, lightOnShot, price, clipConf, shootSound, reloadSound, tex, icon, fixed, itemType, texLenPerc, code);
       itemManager.registerItem(c.example);

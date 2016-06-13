@@ -18,48 +18,48 @@ package org.burntgameproductions.PathToMani.game.screens;
 
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.Faction;
 import org.burntgameproductions.PathToMani.game.input.AiPilot;
 import org.burntgameproductions.PathToMani.game.input.Guardian;
 import org.burntgameproductions.PathToMani.game.item.ItemContainer;
 import org.burntgameproductions.PathToMani.game.item.MercItem;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 import org.burntgameproductions.PathToMani.game.ship.FarShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
-import org.burntgameproductions.PathToMani.ui.SolInputManager;
+import org.burntgameproductions.PathToMani.ui.ManiInputManager;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.game.ShipConfig;
-import org.burntgameproductions.PathToMani.game.SolGame;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
-import org.burntgameproductions.PathToMani.ui.SolUiControl;
+import org.burntgameproductions.PathToMani.game.ManiGame;
+import org.burntgameproductions.PathToMani.ui.ManiUiControl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HireShips implements InventoryOperations {
 
-  private final ArrayList<SolUiControl> myControls;
-  private final SolUiControl myBuyCtrl;
+  private final ArrayList<ManiUiControl> myControls;
+  private final ManiUiControl myBuyCtrl;
 
   public HireShips(InventoryScreen inventoryScreen, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    myBuyCtrl = new SolUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyHireShip());
+    myBuyCtrl = new ManiUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyHireShip());
     myBuyCtrl.setDisplayName("Hire");
     myControls.add(myBuyCtrl);
   }
 
   @Override
-  public ItemContainer getItems(SolGame game) {
+  public ItemContainer getItems(ManiGame game) {
     return game.getScreens().talkScreen.getTarget().getTradeContainer().getMercs();
   }
 
   @Override
-  public boolean isUsing(SolGame game, SolItem item) {
+  public boolean isUsing(ManiGame game, ManiItem item) {
     return false;
   }
 
@@ -74,21 +74,21 @@ public class HireShips implements InventoryOperations {
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolGame game = cmp.getGame();
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    ManiGame game = cmp.getGame();
     InventoryScreen is = game.getScreens().inventoryScreen;
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     TalkScreen talkScreen = game.getScreens().talkScreen;
     if (talkScreen.isTargetFar(hero)) {
       cmp.getInputMan().setScreen(cmp, game.getScreens().mainScreen);
       return;
     }
-    SolItem selItem = is.getSelectedItem();
+    ManiItem selItem = is.getSelectedItem();
     boolean enabled = selItem != null && hero.getMoney() >= selItem.getPrice();
     myBuyCtrl.setDisplayName(enabled ? "Hire" : "---");
     myBuyCtrl.setEnabled(enabled);
@@ -99,7 +99,7 @@ public class HireShips implements InventoryOperations {
     }
   }
 
-  private boolean hireShip(SolGame game, SolShip hero, MercItem selected) {
+  private boolean hireShip(ManiGame game, ManiShip hero, MercItem selected) {
     ShipConfig config = selected.getConfig();
     Guardian dp = new Guardian(game, config.hull, hero.getPilot(), hero.getPosition(), hero.getHull().config, SolMath.rnd(180));
     AiPilot pilot = new AiPilot(dp, true, Faction.LAANI, false, "Merc", Const.AI_DET_DIST);
@@ -110,7 +110,7 @@ public class HireShips implements InventoryOperations {
     return true;
   }
 
-  private Vector2 getPos(SolGame game, SolShip hero, HullConfig hull) {
+  private Vector2 getPos(ManiGame game, ManiShip hero, HullConfig hull) {
     Vector2 pos = new Vector2();
     float dist = hero.getHull().config.getApproxRadius() + Guardian.DIST + hull.getApproxRadius();
     Vector2 heroPos = hero.getPosition();
@@ -133,32 +133,32 @@ public class HireShips implements InventoryOperations {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
 
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
     cmp.getGame();
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 

@@ -22,9 +22,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.Consumed;
 import org.burntgameproductions.PathToMani.common.SolMath;
-import org.burntgameproductions.PathToMani.game.SolObject;
+import org.burntgameproductions.PathToMani.game.ManiObject;
 import org.burntgameproductions.PathToMani.game.GameDrawer;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public class RectSprite implements Dra {
 
@@ -106,11 +106,11 @@ public class RectSprite implements Dra {
     return myLevel;
   }
 
-  public void update(SolGame game, SolObject o) {
+  public void update(ManiGame game, ManiObject o) {
     relAngle += myRotSpd * game.getTimeStep();
   }
 
-  public void prepare(SolObject o) {
+  public void prepare(ManiObject o) {
     float baseAngle = o.getAngle();
     Vector2 basePos = o.getPosition();
     SolMath.toWorld(myPos, relPos, baseAngle, basePos, false);
@@ -130,7 +130,7 @@ public class RectSprite implements Dra {
     return myRadius;
   }
 
-  public void draw(GameDrawer drawer, SolGame game) {
+  public void draw(GameDrawer drawer, ManiGame game) {
     float x = myPos.x;
     float y = myPos.y;
     if (myLevel.depth != 1) {

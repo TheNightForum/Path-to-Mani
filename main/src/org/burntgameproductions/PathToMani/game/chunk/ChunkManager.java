@@ -21,7 +21,7 @@ import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.RemoveController;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -50,7 +50,7 @@ public class ChunkManager {
     myFiller = new ChunkFiller(textureManager);
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     Vector2 camPos = game.getCam().getPos();
     boolean refill = updateCurrChunk(camPos);
     if (refill) {
@@ -88,7 +88,7 @@ public class ChunkManager {
     return x <= myX - dist || myX + dist <= x || y <= myY - dist || myY + dist <= y;
   }
 
-  private void addNewChunks(Set<Vector2> chunks, int dist, SolGame game) {
+  private void addNewChunks(Set<Vector2> chunks, int dist, ManiGame game) {
     maybeAddChunk(chunks, 0, 0, game);
     for (int i = -dist; i < dist + 1; i++) {
       for (int j = -dist; j < dist + 1; j++) {
@@ -98,7 +98,7 @@ public class ChunkManager {
     }
   }
 
-  private void maybeAddChunk(Set<Vector2> chunks, int oX, int oY, SolGame game) {
+  private void maybeAddChunk(Set<Vector2> chunks, int oX, int oY, ManiGame game) {
     Vector2 v = SolMath.getVec(myX + oX, myY + oY);
     if (!chunks.contains(v)) {
       Vector2 chunk = new Vector2(v);

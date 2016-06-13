@@ -23,7 +23,7 @@ import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector3;
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 
 // XBOX 360 Button Mapping
 // 0 = Up
@@ -60,7 +60,7 @@ public class ShipControllerControl implements ShipUiControl  {
     private boolean controllerDown;
 
 
-    public ShipControllerControl(SolApplication cmp) {
+    public ShipControllerControl(ManiApplication cmp) {
         final GameOptions gameOptions = cmp.getOptions();
 
         Controllers.clearListeners();
@@ -209,7 +209,7 @@ public class ShipControllerControl implements ShipUiControl  {
     }
 
     @Override
-    public void update(SolApplication cmp, boolean enabled) {
+    public void update(ManiApplication cmp, boolean enabled) {
     }
 
     @Override

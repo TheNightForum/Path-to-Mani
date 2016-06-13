@@ -18,9 +18,9 @@ package org.burntgameproductions.PathToMani.game.maze;
 
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.game.HardnessCalc;
-import org.burntgameproductions.PathToMani.game.SolCam;
+import org.burntgameproductions.PathToMani.game.ManiCam;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 
 public class Maze {
 
@@ -37,8 +37,8 @@ public class Maze {
     myDps = HardnessCalc.getMazeDps(config);
   }
 
-  public void update(SolGame game) {
-    SolCam cam = game.getCam();
+  public void update(ManiGame game) {
+    ManiCam cam = game.getCam();
     Vector2 camPos = cam.getPos();
     if (!myObjsCreated && camPos.dst(myPos) < myRadius + Const.CAM_VIEW_DIST_JOURNEY * 2) {
       new MazeBuilder().build(game, this);

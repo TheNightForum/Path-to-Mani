@@ -30,7 +30,7 @@ import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.game.PathLoader;
 import org.burntgameproductions.PathToMani.game.RemoveController;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.dra.RectSprite;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class AsteroidBuilder {
   }
 
   // doesn't consume pos
-  public Asteroid buildNew(SolGame game, Vector2 pos, Vector2 spd, float sz, RemoveController removeController) {
+  public Asteroid buildNew(ManiGame game, Vector2 pos, Vector2 spd, float sz, RemoveController removeController) {
     float rotSpd = SolMath.rnd(MAX_A_ROT_SPD);
     return build(game, pos, SolMath.elemRnd(myTexs), sz, SolMath.rnd(180), rotSpd, spd, removeController);
   }
@@ -61,7 +61,7 @@ public class AsteroidBuilder {
   }
 
   // doesn't consume pos
-  public Asteroid build(SolGame game, Vector2 pos, TextureAtlas.AtlasRegion tex, float sz, float angle, float rotSpd, Vector2 spd, RemoveController removeController) {
+  public Asteroid build(ManiGame game, Vector2 pos, TextureAtlas.AtlasRegion tex, float sz, float angle, float rotSpd, Vector2 spd, RemoveController removeController) {
 
     ArrayList<Dra> dras = new ArrayList<Dra>();
     Body body;
@@ -86,7 +86,7 @@ public class AsteroidBuilder {
     return parts[parts.length - 1];
   }
 
-  public static Body buildBall(SolGame game, Vector2 pos, float angle, float rad, float density, boolean sensor) {
+  public static Body buildBall(ManiGame game, Vector2 pos, float angle, float rad, float density, boolean sensor) {
     BodyDef bd = new BodyDef();
     bd.type = BodyDef.BodyType.DynamicBody;
     bd.angle = angle * SolMath.degRad;

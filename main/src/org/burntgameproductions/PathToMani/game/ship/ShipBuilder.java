@@ -41,7 +41,7 @@ import org.burntgameproductions.PathToMani.game.particle.LightSrc;
 import org.burntgameproductions.PathToMani.game.ship.hulls.Hull;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 import org.burntgameproductions.PathToMani.game.RemoveController;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.gun.GunItem;
 
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public class ShipBuilder {
     myPathLoader = new PathLoader();
   }
 
-  public FarShip buildNewFar(SolGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
+  public FarShip buildNewFar(ManiGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
                              String items, HullConfig hullConfig,
                              RemoveController removeController,
                              boolean hasRepairer, float money, TradeConfig tradeConfig, boolean giveAmmo)
@@ -76,8 +76,8 @@ public class ShipBuilder {
     Shield shield = null;
     Armor armor = null;
 
-    for (List<SolItem> group : ic) {
-      for (SolItem i : group) {
+    for (List<ManiItem> group : ic) {
+      for (ManiItem i : group) {
         if (i instanceof Shield) {
           if (i.isEquipped() > 0) {
             shield = (Shield) i;
@@ -134,7 +134,7 @@ public class ShipBuilder {
 
   private void addAbilityCharges(ItemContainer ic, HullConfig hc, Pilot pilot) {
     if (hc.getAbility() != null) {
-      SolItem ex = hc.getAbility().getChargeExample();
+      ManiItem ex = hc.getAbility().getChargeExample();
       if (ex != null) {
         int count;
         if (pilot.isPlayer()) {
@@ -148,14 +148,14 @@ public class ShipBuilder {
     }
   }
 
-  public SolShip build(SolGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
-    ItemContainer container, HullConfig hullConfig, float life,
-    GunItem gun1, GunItem gun2, RemoveController removeController,
-    EngineItem engine, ShipRepairer repairer, float money, TradeContainer tradeContainer, Shield shield, Armor armor)
+  public ManiShip build(ManiGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
+                        ItemContainer container, HullConfig hullConfig, float life,
+                        GunItem gun1, GunItem gun2, RemoveController removeController,
+                        EngineItem engine, ShipRepairer repairer, float money, TradeContainer tradeContainer, Shield shield, Armor armor)
   {
     ArrayList<Dra> dras = new ArrayList<Dra>();
     Hull hull = buildHull(game, pos, spd, angle, rotSpd, hullConfig, life, dras);
-    SolShip ship = new SolShip(game, pilot, hull, removeController, dras, container, repairer, money, tradeContainer, shield, armor);
+    ManiShip ship = new ManiShip(game, pilot, hull, removeController, dras, container, repairer, money, tradeContainer, shield, armor);
     hull.getBody().setUserData(ship);
     for (Door door : hull.getDoors()) door.getBody().setUserData(ship);
 
@@ -179,8 +179,8 @@ public class ShipBuilder {
     return ship;
   }
 
-  private Hull buildHull(SolGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, HullConfig hullConfig,
-    float life, ArrayList<Dra> dras)
+  private Hull buildHull(ManiGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, HullConfig hullConfig,
+                         float life, ArrayList<Dra> dras)
   {
       //TODO: This logic belongs in the HullConfigManager/HullConfig
       FileHandle hullPropertiesFile =  FileManager.getInstance().getHullsDirectory().child(hullConfig.getInternalName()).child(HullConfigManager.PROPERTIES_FILE_NAME);
@@ -239,7 +239,7 @@ public class ShipBuilder {
     return shieldFixture;
   }
 
-  private Door createDoor(SolGame game, Vector2 pos, float angle, Body body, Vector2 doorRelPos) {
+  private Door createDoor(ManiGame game, Vector2 pos, float angle, Body body, Vector2 doorRelPos) {
     World w = game.getObjMan().getWorld();
     TextureAtlas.AtlasRegion tex = game.getTexMan().getTex("smallGameObjs/door", null);
     PrismaticJoint joint = createDoorJoint(body, w, pos, doorRelPos, angle);

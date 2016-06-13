@@ -17,13 +17,13 @@
 package org.burntgameproductions.PathToMani.game.screens;
 
 import org.burntgameproductions.PathToMani.GameOptions;
-import org.burntgameproductions.PathToMani.SolApplication;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.ManiApplication;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.item.ItemContainer;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
-import org.burntgameproductions.PathToMani.ui.SolInputManager;
-import org.burntgameproductions.PathToMani.ui.SolUiControl;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
+import org.burntgameproductions.PathToMani.ui.ManiInputManager;
+import org.burntgameproductions.PathToMani.ui.ManiUiControl;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 
 import java.util.ArrayList;
@@ -32,26 +32,26 @@ import java.util.List;
 public class SellItems implements InventoryOperations {
 
   public static float PERC = .8f;
-  private final ArrayList<SolUiControl> myControls;
-  public final SolUiControl sellCtrl;
+  private final ArrayList<ManiUiControl> myControls;
+  public final ManiUiControl sellCtrl;
 
   public SellItems(InventoryScreen inventoryScreen, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    sellCtrl = new SolUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeySellItem());
+    sellCtrl = new ManiUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeySellItem());
     sellCtrl.setDisplayName("Sell");
     myControls.add(sellCtrl);
   }
 
   @Override
-  public ItemContainer getItems(SolGame game) {
-    SolShip h = game.getHero();
+  public ItemContainer getItems(ManiGame game) {
+    ManiShip h = game.getHero();
     return h == null ? null : h.getItemContainer();
   }
 
   @Override
-  public boolean isUsing(SolGame game, SolItem item) {
-    SolShip h = game.getHero();
+  public boolean isUsing(ManiGame game, ManiItem item) {
+    ManiShip h = game.getHero();
     return h != null && h.maybeUnequip(game, item, false);
   }
 
@@ -66,22 +66,22 @@ public class SellItems implements InventoryOperations {
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolGame game = cmp.getGame();
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    ManiGame game = cmp.getGame();
     InventoryScreen is = game.getScreens().inventoryScreen;
     TalkScreen talkScreen = game.getScreens().talkScreen;
-    SolShip target = talkScreen.getTarget();
-    SolShip hero = game.getHero();
+    ManiShip target = talkScreen.getTarget();
+    ManiShip hero = game.getHero();
     if (talkScreen.isTargetFar(hero)) {
       cmp.getInputMan().setScreen(cmp, game.getScreens().mainScreen);
       return;
     }
-    SolItem selItem = is.getSelectedItem();
+    ManiItem selItem = is.getSelectedItem();
     boolean enabled = selItem != null && target.getTradeContainer().getItems().canAdd(selItem);
     sellCtrl.setDisplayName(enabled ? "Sell" : "---");
     sellCtrl.setEnabled(enabled);
@@ -96,17 +96,17 @@ public class SellItems implements InventoryOperations {
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
@@ -116,17 +116,17 @@ public class SellItems implements InventoryOperations {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
 
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
 
   }
 }

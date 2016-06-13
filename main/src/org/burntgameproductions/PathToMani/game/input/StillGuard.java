@@ -20,9 +20,9 @@ import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.Const;
 import org.burntgameproductions.PathToMani.game.ShipConfig;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.planet.PlanetBind;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.game.ship.hulls.HullConfig;
 
 public class StillGuard implements MoveDestProvider {
@@ -32,7 +32,7 @@ public class StillGuard implements MoveDestProvider {
   private Vector2 myDest;
   private Vector2 myDestSpd;
 
-  public StillGuard(Vector2 target, SolGame game, ShipConfig sc) {
+  public StillGuard(Vector2 target, ManiGame game, ShipConfig sc) {
     myDest = new Vector2(target);
     myPlanetBind = PlanetBind.tryBind(game, myDest, 0);
     myDesiredSpdLen = sc.hull.getType() == HullConfig.Type.BIG ? Const.BIG_AI_SPD : Const.DEFAULT_AI_SPD;
@@ -60,7 +60,7 @@ public class StillGuard implements MoveDestProvider {
   }
 
   @Override
-  public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, ManiShip nearestEnemy) {
     if (myPlanetBind != null) {
       Vector2 diff = SolMath.getVec();
       myPlanetBind.setDiff(diff, myDest, false);
@@ -71,7 +71,7 @@ public class StillGuard implements MoveDestProvider {
   }
 
   @Override
-  public Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround) {
+  public Boolean shouldManeuver(boolean canShoot, ManiShip nearestEnemy, boolean nearGround) {
     return true;
   }
 

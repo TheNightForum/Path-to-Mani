@@ -21,23 +21,23 @@ import org.burntgameproductions.PathToMani.Const;
 
 import java.util.*;
 
-public class ItemContainer implements Iterable<List<SolItem>> {
+public class ItemContainer implements Iterable<List<ManiItem>> {
   public static final int MAX_GROUP_COUNT = 4 * Const.ITEM_GROUPS_PER_PAGE;
   public static final int MAX_GROUP_SZ = 30;
 
-  private List<List<SolItem>> myGroups;
-  private Set<List<SolItem>> myNewGroups;
+  private List<List<ManiItem>> myGroups;
+  private Set<List<ManiItem>> myNewGroups;
   private int mySize;
 
   public ItemContainer() {
-    myGroups = new ArrayList<List<SolItem>>();
-    myNewGroups = new HashSet<List<SolItem>>();
+    myGroups = new ArrayList<List<ManiItem>>();
+    myNewGroups = new HashSet<List<ManiItem>>();
   }
 
-  public boolean tryConsumeItem(SolItem example) {
+  public boolean tryConsumeItem(ManiItem example) {
     for (int i = 0, myGroupsSize = myGroups.size(); i < myGroupsSize; i++) {
-      List<SolItem> group = myGroups.get(i);
-      SolItem item = group.get(0);
+      List<ManiItem> group = myGroups.get(i);
+      ManiItem item = group.get(0);
       if (!example.isSame(item)) continue;
       remove(item);
       return true;
@@ -45,29 +45,29 @@ public class ItemContainer implements Iterable<List<SolItem>> {
     return false;
   }
 
-  public int count(SolItem example) {
+  public int count(ManiItem example) {
     for (int i = 0, myGroupsSize = myGroups.size(); i < myGroupsSize; i++) {
-      List<SolItem> group = myGroups.get(i);
-      SolItem item = group.get(0);
+      List<ManiItem> group = myGroups.get(i);
+      ManiItem item = group.get(0);
       if (example.isSame(item)) return group.size();
     }
     return 0;
   }
 
-  public boolean canAdd(SolItem example) {
+  public boolean canAdd(ManiItem example) {
     for (int i = 0, myGroupsSize = myGroups.size(); i < myGroupsSize; i++) {
-      List<SolItem> group = myGroups.get(i);
-      SolItem item = group.get(0);
+      List<ManiItem> group = myGroups.get(i);
+      ManiItem item = group.get(0);
       if (item.isSame(example)) return group.size() < MAX_GROUP_SZ;
     }
     return myGroups.size() < MAX_GROUP_COUNT;
   }
 
-  public void add(SolItem addedItem) {
+  public void add(ManiItem addedItem) {
     if (addedItem == null) throw new AssertionError("adding null item");
     for (int i = 0, myGroupsSize = myGroups.size(); i < myGroupsSize; i++) {
-      List<SolItem> group = myGroups.get(i);
-      SolItem item = group.get(0);
+      List<ManiItem> group = myGroups.get(i);
+      ManiItem item = group.get(0);
       if (item.isSame(addedItem)) {
         if (group.size() >= MAX_GROUP_SZ) throw new AssertionError("reached group size limit");
         group.add(addedItem);
@@ -76,7 +76,7 @@ public class ItemContainer implements Iterable<List<SolItem>> {
       }
     }
     if (myGroups.size() >= MAX_GROUP_COUNT) throw new AssertionError("reached group count limit");
-    ArrayList<SolItem> group = new ArrayList<SolItem>();
+    ArrayList<ManiItem> group = new ArrayList<ManiItem>();
     group.add(addedItem);
     myGroups.add(0, group);
     mySize++;
@@ -84,7 +84,7 @@ public class ItemContainer implements Iterable<List<SolItem>> {
   }
 
   @Override
-  public Iterator<List<SolItem>> iterator() {
+  public Iterator<List<ManiItem>> iterator() {
     return new Itr();
   }
 
@@ -96,19 +96,19 @@ public class ItemContainer implements Iterable<List<SolItem>> {
     return mySize;
   }
 
-  public boolean contains(SolItem item) {
+  public boolean contains(ManiItem item) {
     for (int i = 0, myGroupsSize = myGroups.size(); i < myGroupsSize; i++) {
-      List<SolItem> group = myGroups.get(i);
+      List<ManiItem> group = myGroups.get(i);
       if (group.contains(item)) return true;
     }
     return false;
   }
 
-  public void remove(SolItem item) {
-    List<SolItem> remGroup = null;
+  public void remove(ManiItem item) {
+    List<ManiItem> remGroup = null;
     boolean removed = false;
     for (int i = 0, myGroupsSize = myGroups.size(); i < myGroupsSize; i++) {
-      List<SolItem> group = myGroups.get(i);
+      List<ManiItem> group = myGroups.get(i);
       removed = group.remove(item);
       if (group.isEmpty()) remGroup = group;
       if (removed) break;
@@ -120,22 +120,22 @@ public class ItemContainer implements Iterable<List<SolItem>> {
     }
   }
 
-  public List<SolItem> getSelectionAfterRemove(List<SolItem> selected) {
+  public List<ManiItem> getSelectionAfterRemove(List<ManiItem> selected) {
     if (selected.size() > 1) return selected;
     int idx = myGroups.indexOf(selected) + 1;
     if (idx <= 0 || idx >= groupCount()) return null;
     return myGroups.get(idx);
   }
 
-  public SolItem getRandom() {
+  public ManiItem getRandom() {
     return myGroups.isEmpty() ? null : SolMath.elemRnd(SolMath.elemRnd(myGroups));
   }
 
-  public boolean isNew(List<SolItem> group) {
+  public boolean isNew(List<ManiItem> group) {
     return myNewGroups.contains(group);
   }
 
-  public void seen(List<SolItem> group) {
+  public void seen(List<ManiItem> group) {
     myNewGroups.remove(group);
   }
 
@@ -151,11 +151,11 @@ public class ItemContainer implements Iterable<List<SolItem>> {
     return myGroups.get(groupIdx).size();
   }
 
-  public boolean containsGroup(List<SolItem> group) {
+  public boolean containsGroup(List<ManiItem> group) {
     return myGroups.contains(group);
   }
 
-  public List<SolItem> getGroup(int groupIdx) {
+  public List<ManiItem> getGroup(int groupIdx) {
     return myGroups.get(groupIdx);
   }
 
@@ -165,14 +165,14 @@ public class ItemContainer implements Iterable<List<SolItem>> {
     mySize = 0;
   }
 
-  private class Itr implements Iterator<List<SolItem>> {
+  private class Itr implements Iterator<List<ManiItem>> {
     int myCur;       // index of next element to return
 
     public boolean hasNext() {
       return myCur != myGroups.size();
     }
 
-    public List<SolItem> next() {
+    public List<ManiItem> next() {
       return myGroups.get(myCur++);
     }
 

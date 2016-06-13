@@ -23,7 +23,7 @@ import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.dra.Dra;
 import org.burntgameproductions.PathToMani.game.dra.DraLevel;
 import org.burntgameproductions.PathToMani.common.SolColorUtil;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.dra.RectSprite;
 
 import java.util.List;
@@ -42,7 +42,7 @@ public class LightSrc {
 
   /** doesn't consume relPos
    */
-  public LightSrc(SolGame game, float sz, boolean hasHalo, float intensity, Vector2 relPos, Color col) {
+  public LightSrc(ManiGame game, float sz, boolean hasHalo, float intensity, Vector2 relPos, Color col) {
     TextureAtlas.AtlasRegion tex = game.getTexMan().getTex("smallGameObjs/particles/lightCircle", null);
     mySz = sz;
     myCircle = new RectSprite(tex, 0, 0, 0, new Vector2(relPos), DraLevel.PART_BG_0, 0, 0, col, true);
@@ -58,7 +58,7 @@ public class LightSrc {
     myFadeTime = DEFAULT_FADE_TIME;
   }
 
-  public void update(boolean working, float baseAngle, SolGame game) {
+  public void update(boolean working, float baseAngle, ManiGame game) {
     if (working) {
       myWorkPerc = 1f;
     } else {

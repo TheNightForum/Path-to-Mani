@@ -25,21 +25,21 @@ import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.*;
 import org.burntgameproductions.PathToMani.game.item.ItemManager;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 import org.burntgameproductions.PathToMani.ui.*;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.SolApplication;
+import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.common.SolColor;
 import org.burntgameproductions.PathToMani.game.gun.GunItem;
 import org.burntgameproductions.PathToMani.game.item.Shield;
-import org.burntgameproductions.PathToMani.game.item.SolItem;
+import org.burntgameproductions.PathToMani.game.item.ManiItem;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
 import org.burntgameproductions.PathToMani.game.ship.ShipAbility;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainScreen implements SolUiScreen {
+public class MainScreen implements ManiUiScreen {
   public static final float ICON_SZ = .03f;
   public static final float BAR_SZ = ICON_SZ * 5;
   public static final int MAX_ICON_COUNT = 3;
@@ -47,7 +47,7 @@ public class MainScreen implements SolUiScreen {
   public static final float H_PAD = .005f;
   public static final float V_PAD = H_PAD;
 
-  private final List<SolUiControl> myControls;
+  private final List<ManiUiControl> myControls;
   private final ZoneNameAnnouncer myZoneNameAnnouncer;
   private final BorderDrawer myBorderDrawer;
   private final TextureAtlas.AtlasRegion myLifeTex;
@@ -57,11 +57,11 @@ public class MainScreen implements SolUiScreen {
   private final List<WarnDrawer> myWarnDrawers;
 
   public final ShipUiControl shipControl;
-  private final SolUiControl myMenuCtrl;
-  public final SolUiControl mapCtrl;
-  public final SolUiControl invCtrl;
-  public final SolUiControl talkCtrl;
-  private final SolUiControl myPauseCtrl;
+  private final ManiUiControl myMenuCtrl;
+  public final ManiUiControl mapCtrl;
+  public final ManiUiControl invCtrl;
+  public final ManiUiControl talkCtrl;
+  private final ManiUiControl myPauseCtrl;
   private final Color myCompassTint;
   private final TextPlace myLifeTp;
   private final TextPlace myRepairsExcessTp;
@@ -76,8 +76,8 @@ public class MainScreen implements SolUiScreen {
   public static final float HELPER_ROW_2 = HELPER_ROW_1 - .5f * MainScreen.CELL_SZ;
 
 
-  public MainScreen(float r, RightPaneLayout rightPaneLayout, SolApplication cmp) {
-    myControls = new ArrayList<SolUiControl>();
+  public MainScreen(float r, RightPaneLayout rightPaneLayout, ManiApplication cmp) {
+    myControls = new ArrayList<ManiUiControl>();
     GameOptions gameOptions = cmp.getOptions();
 
     int ct = cmp.getOptions().controlType;
@@ -93,22 +93,22 @@ public class MainScreen implements SolUiScreen {
     boolean mobile = cmp.isMobile();
     float lastCol = r - MainScreen.CELL_SZ;
     Rectangle menuArea = mobile ? btn(0, HELPER_ROW_2, true) : rightPaneLayout.buttonRect(0);
-    myMenuCtrl = new SolUiControl(menuArea, true, gameOptions.getKeyMenu());
+    myMenuCtrl = new ManiUiControl(menuArea, true, gameOptions.getKeyMenu());
     myMenuCtrl.setDisplayName("Menu");
     myControls.add(myMenuCtrl);
     Rectangle mapArea = mobile ? btn(0, HELPER_ROW_1, true) : rightPaneLayout.buttonRect(1);
-    mapCtrl = new SolUiControl(mapArea, true, gameOptions.getKeyMap());
+    mapCtrl = new ManiUiControl(mapArea, true, gameOptions.getKeyMap());
     mapCtrl.setDisplayName("Map");
     myControls.add(mapCtrl);
     Rectangle invArea = mobile ? btn(lastCol, HELPER_ROW_1, true) : rightPaneLayout.buttonRect(2);
-    invCtrl = new SolUiControl(invArea, true, gameOptions.getKeyInventory());
+    invCtrl = new ManiUiControl(invArea, true, gameOptions.getKeyInventory());
     invCtrl.setDisplayName("Items");
     myControls.add(invCtrl);
     Rectangle talkArea = mobile ? btn(lastCol, HELPER_ROW_2, true) : rightPaneLayout.buttonRect(3);
-    talkCtrl = new SolUiControl(talkArea, true, gameOptions.getKeyTalk());
+    talkCtrl = new ManiUiControl(talkArea, true, gameOptions.getKeyTalk());
     talkCtrl.setDisplayName("Talk");
     myControls.add(talkCtrl);
-    myPauseCtrl = new SolUiControl(null, true, gameOptions.getKeyPause());
+    myPauseCtrl = new ManiUiControl(null, true, gameOptions.getKeyPause());
     myControls.add(myPauseCtrl);
 
 
@@ -141,10 +141,10 @@ public class MainScreen implements SolUiScreen {
     myMoneyExcessTp = new TextPlace(SolColor.W);
   }
 
-  public void maybeDrawHeight(UiDrawer drawer, SolApplication cmp) {
-    SolGame game = cmp.getGame();
+  public void maybeDrawHeight(UiDrawer drawer, ManiApplication cmp) {
+    ManiGame game = cmp.getGame();
     Planet np = game.getPlanetMan().getNearestPlanet();
-    SolCam cam = game.getCam();
+    ManiCam cam = game.getCam();
     Vector2 camPos = cam.getPos();
     if (np != null && np.getPos().dst(camPos) < np.getFullHeight()) {
       drawHeight(drawer, np, camPos, cam.getAngle());
@@ -173,20 +173,20 @@ public class MainScreen implements SolUiScreen {
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     if (DebugOptions.PRINT_BALANCE) {
       cmp.finishGame();
       return;
     }
-    SolGame game = cmp.getGame();
-    SolInputManager inputMan = cmp.getInputMan();
+    ManiGame game = cmp.getGame();
+    ManiInputManager inputMan = cmp.getInputMan();
     GameScreens screens = game.getScreens();
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
 
     for (int i = 0, sz = myWarnDrawers.size(); i < sz; i++) {
       WarnDrawer wd = myWarnDrawers.get(i);
@@ -227,22 +227,22 @@ public class MainScreen implements SolUiScreen {
     }
   }
 
-  private void updateTalk(SolGame game) {
-    SolShip hero = game.getHero();
+  private void updateTalk(ManiGame game) {
+    ManiShip hero = game.getHero();
     if (hero == null) {
       talkCtrl.setEnabled(false);
       return;
     }
     FactionManager factionManager = game.getFactionMan();
 
-    SolShip target = null;
+    ManiShip target = null;
     float minDist = TalkScreen.MAX_TALK_DIST;
     float har = hero.getHull().config.getApproxRadius();
-    List<SolObject> objs = game.getObjMan().getObjs();
+    List<ManiObject> objs = game.getObjMan().getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject o = objs.get(i);
-      if (!(o instanceof SolShip)) continue;
-      SolShip ship = (SolShip) o;
+      ManiObject o = objs.get(i);
+      if (!(o instanceof ManiShip)) continue;
+      ManiShip ship = (ManiShip) o;
       if (factionManager.areEnemies(hero, ship)) continue;
       if (ship.getTradeContainer() == null) continue;
       float dst = ship.getPosition().dst(hero.getPosition());
@@ -254,8 +254,8 @@ public class MainScreen implements SolUiScreen {
     talkCtrl.setEnabled(target != null);
     if (talkCtrl.isJustOff()) {
       TalkScreen talkScreen = game.getScreens().talkScreen;
-      SolApplication cmp = game.getCmp();
-      SolInputManager inputMan = cmp.getInputMan();
+      ManiApplication cmp = game.getCmp();
+      ManiInputManager inputMan = cmp.getInputMan();
       boolean isOn = inputMan.isScreenOn(talkScreen);
       inputMan.setScreen(cmp, this);
       if (!isOn) {
@@ -265,8 +265,8 @@ public class MainScreen implements SolUiScreen {
     }
   }
 
-  private boolean drawGunStat(UiDrawer uiDrawer, SolShip hero, boolean secondary, float col0, float col1,
-    float col2, float y)
+  private boolean drawGunStat(UiDrawer uiDrawer, ManiShip hero, boolean secondary, float col0, float col1,
+                              float col2, float y)
   {
     GunItem g = hero.getHull().getGun(secondary);
     if (g == null) return false;
@@ -327,21 +327,21 @@ public class MainScreen implements SolUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
     myLifeTp.text = null;
     myRepairsExcessTp.text = null;
     myShieldLifeTp.text = null;
@@ -355,8 +355,8 @@ public class MainScreen implements SolUiScreen {
     maybeDrawHeight(uiDrawer, cmp);
     myBorderDrawer.draw(uiDrawer, cmp);
 
-    SolGame game = cmp.getGame();
-    SolShip hero = game.getHero();
+    ManiGame game = cmp.getGame();
+    ManiShip hero = game.getHero();
     if (hero != null) {
       float row = BorderDrawer.TISHCH_SZ + V_PAD;
       float col0 = BorderDrawer.TISHCH_SZ + H_PAD;
@@ -383,7 +383,7 @@ public class MainScreen implements SolUiScreen {
       if (consumed) row += ICON_SZ + V_PAD;
 
       ShipAbility ability = hero.getAbility();
-      SolItem abilityChargeEx = ability == null ? null : ability.getConfig().getChargeExample();
+      ManiItem abilityChargeEx = ability == null ? null : ability.getConfig().getChargeExample();
       if (abilityChargeEx != null) {
         int abilityChargeCount = hero.getItemContainer().count(abilityChargeEx);
         TextureAtlas.AtlasRegion icon = abilityChargeEx.getIcon(game);
@@ -408,7 +408,7 @@ public class MainScreen implements SolUiScreen {
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
     myLifeTp.draw(uiDrawer);
     myRepairsExcessTp.draw(uiDrawer);
     myShieldLifeTp.draw(uiDrawer);
@@ -436,7 +436,7 @@ public class MainScreen implements SolUiScreen {
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
     shipControl.blur();
   }
 
@@ -486,8 +486,8 @@ public class MainScreen implements SolUiScreen {
     public NoShieldWarn(float r) {
       super(r, "No Shield");
     }
-    protected boolean shouldWarn(SolGame game) {
-      SolShip h = game.getHero();
+    protected boolean shouldWarn(ManiGame game) {
+      ManiShip h = game.getHero();
       if (h == null) return false;
       return h.getShield() == null;
     }
@@ -497,8 +497,8 @@ public class MainScreen implements SolUiScreen {
     public NoArmorWarn(float r) {
       super(r, "No Armor");
     }
-    protected boolean shouldWarn(SolGame game) {
-      SolShip h = game.getHero();
+    protected boolean shouldWarn(ManiGame game) {
+      ManiShip h = game.getHero();
       if (h == null) return false;
       return h.getArmor() == null;
     }
@@ -508,19 +508,19 @@ public class MainScreen implements SolUiScreen {
     public EnemyWarn(float r) {
       super(r, "Dangerous\nEnemy");
     }
-    protected boolean shouldWarn(SolGame game) {
-      SolShip h = game.getHero();
+    protected boolean shouldWarn(ManiGame game) {
+      ManiShip h = game.getHero();
       if (h == null) return false;
       float heroCap = HardnessCalc.getShipDmgCap(h);
-      List<SolObject> objs = game.getObjMan().getObjs();
+      List<ManiObject> objs = game.getObjMan().getObjs();
       FactionManager fm = game.getFactionMan();
-      SolCam cam = game.getCam();
+      ManiCam cam = game.getCam();
       float viewDist = cam.getViewDist();
       float dps = 0;
       for (int i = 0, sz = objs.size(); i < sz; i++) {
-        SolObject o = objs.get(i);
-        if (!(o instanceof SolShip)) continue;
-        SolShip ship = (SolShip) o;
+        ManiObject o = objs.get(i);
+        if (!(o instanceof ManiShip)) continue;
+        ManiShip ship = (ManiShip) o;
         if (viewDist < ship.getPosition().dst(h.getPosition())) continue;
         if (!fm.areEnemies(h, ship)) continue;
         dps += HardnessCalc.getShipDps(ship);

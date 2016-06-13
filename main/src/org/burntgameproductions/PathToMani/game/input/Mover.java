@@ -19,9 +19,9 @@ package org.burntgameproductions.PathToMani.game.input;
 import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.Const;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.planet.Planet;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
 public class Mover {
   public static final float MIN_MOVE_AAD = 2f;
@@ -43,9 +43,9 @@ public class Mover {
     myDesiredSpd = new Vector2();
   }
 
-  public void update(SolGame game, SolShip ship, Vector2 dest, Planet np,
-    float maxIdleDist, boolean hasEngine, boolean avoidBigObjs, float desiredSpdLen, boolean stopNearDest,
-    Vector2 destSpd) {
+  public void update(ManiGame game, ManiShip ship, Vector2 dest, Planet np,
+                     float maxIdleDist, boolean hasEngine, boolean avoidBigObjs, float desiredSpdLen, boolean stopNearDest,
+                     Vector2 destSpd) {
     myUp = false;
     myLeft = false;
     myRight = false;
@@ -80,8 +80,8 @@ public class Mover {
     }
   }
 
-  private void updateDesiredSpd(SolGame game, SolShip ship, Vector2 dest, float toDestLen, boolean stopNearDest,
-    Planet np, boolean avoidBigObjs, float desiredSpdLen, Vector2 destSpd)
+  private void updateDesiredSpd(ManiGame game, ManiShip ship, Vector2 dest, float toDestLen, boolean stopNearDest,
+                                Planet np, boolean avoidBigObjs, float desiredSpdLen, Vector2 destSpd)
   {
     float toDestAngle = getToDestAngle(game, ship, dest, avoidBigObjs, np);
     if (stopNearDest) {
@@ -97,7 +97,7 @@ public class Mover {
     SolMath.fromAl(myDesiredSpd, toDestAngle, desiredSpdLen);
   }
 
-  public void rotateOnIdle(SolShip ship, Planet np, Vector2 dest, boolean stopNearDest, float maxIdleDist) {
+  public void rotateOnIdle(ManiShip ship, Planet np, Vector2 dest, boolean stopNearDest, float maxIdleDist) {
     if (isActive() || dest == null) return;
     Vector2 shipPos = ship.getPosition();
     float shipAngle = ship.getAngle();
@@ -124,7 +124,7 @@ public class Mover {
     }
   }
 
-  private float getToDestAngle(SolGame game, SolShip ship, Vector2 dest, boolean avoidBigObjs, Planet np) {
+  private float getToDestAngle(ManiGame game, ManiShip ship, Vector2 dest, boolean avoidBigObjs, Planet np) {
     Vector2 shipPos = ship.getPosition();
     float toDestAngle = SolMath.angle(shipPos, dest);
     if (avoidBigObjs) {

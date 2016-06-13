@@ -25,7 +25,7 @@ import org.burntgameproductions.PathToMani.game.dra.*;
 import org.burntgameproductions.PathToMani.game.input.Pilot;
 import org.burntgameproductions.PathToMani.game.planet.PlanetBind;
 import org.burntgameproductions.PathToMani.game.ship.FarShip;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class BeaconHandler {
   private DrasObject myD;
   private FarDras myFarD;
   private Pilot myTargetPilot;
-  private SolShip myTarget;
+  private ManiShip myTarget;
   private FarShip myFarTarget;
   private Action myCurrAction;
   private PlanetBind myPlanetBind;
@@ -62,7 +62,7 @@ public class BeaconHandler {
     mySpd = new Vector2();
   }
 
-  public void init(SolGame game, Vector2 pos) {
+  public void init(ManiGame game, Vector2 pos) {
     ArrayList<Dra> dras = new ArrayList<Dra>();
     dras.add(myAttackSprite);
     dras.add(myFollowSprite);
@@ -72,7 +72,7 @@ public class BeaconHandler {
     myInitialized = true;
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     if (!myInitialized) return;
     updateD(game);
     mySpd.set(0, 0);
@@ -80,7 +80,7 @@ public class BeaconHandler {
     maybeUpdatePlanetPos(game);
   }
 
-  private void maybeUpdatePlanetPos(SolGame game) {
+  private void maybeUpdatePlanetPos(ManiGame game) {
     Vector2 beaconPos = getPos0();
     if (myPlanetBind == null) {
       myPlanetBind = PlanetBind.tryBind(game, beaconPos, 0);
@@ -93,7 +93,7 @@ public class BeaconHandler {
     myPlanetBind.getPlanet().calcSpdAtPos(mySpd, beaconPos);
   }
 
-  private boolean maybeUpdateTargetPos(SolGame game) {
+  private boolean maybeUpdateTargetPos(ManiGame game) {
     updateTarget(game);
     if (myTargetPilot == null) return false;
     Vector2 beaconPos = getPos0();
@@ -106,10 +106,10 @@ public class BeaconHandler {
     return true;
   }
 
-  private void updateTarget(SolGame game) {
+  private void updateTarget(ManiGame game) {
     if (myTargetPilot == null) return;
     ObjectManager om = game.getObjMan();
-    List<SolObject> objs = om.getObjs();
+    List<ManiObject> objs = om.getObjs();
     List<FarShip> farShips = om.getFarShips();
     if (myTarget != null) {
       if (objs.contains(myTarget)) return;
@@ -125,9 +125,9 @@ public class BeaconHandler {
     if (myFarTarget == null) throw new AssertionError();
     if (om.getFarShips().contains(myFarTarget)) return;
     myFarTarget = null;
-    for (SolObject o : objs) {
-      if ((o instanceof SolShip)) {
-        SolShip ship = (SolShip) o;
+    for (ManiObject o : objs) {
+      if ((o instanceof ManiShip)) {
+        ManiShip ship = (ManiShip) o;
         if (ship.getPilot() != myTargetPilot) continue;
         myTarget = ship;
         return;
@@ -136,9 +136,9 @@ public class BeaconHandler {
     applyAction(Action.MOVE);
   }
 
-  private void updateD(SolGame game) {
+  private void updateD(ManiGame game) {
     ObjectManager om = game.getObjMan();
-    List<SolObject> objs = om.getObjs();
+    List<ManiObject> objs = om.getObjs();
     List<FarObjData> farObjs = om.getFarObjs();
 
     if (myD != null) {
@@ -159,7 +159,7 @@ public class BeaconHandler {
     if (myFarD == null) throw new AssertionError();
     if (om.containsFarObj(myFarD)) return;
     myFarD = null;
-    for (SolObject o : objs) {
+    for (ManiObject o : objs) {
       if ((o instanceof DrasObject)) {
         List<Dra> dras = o.getDras();
         if (dras.size() != 3) continue;
@@ -172,7 +172,7 @@ public class BeaconHandler {
     throw new AssertionError();
   }
 
-  public Action processMouse(SolGame g, Vector2 pos, boolean clicked, boolean onMap) {
+  public Action processMouse(ManiGame g, Vector2 pos, boolean clicked, boolean onMap) {
     Action action;
     Pilot targetPilot = findPilotInPos(g, pos, onMap, clicked);
     if (targetPilot != null) {
@@ -217,13 +217,13 @@ public class BeaconHandler {
     }
   }
 
-  private Pilot findPilotInPos(SolGame g, Vector2 pos, boolean onMap, boolean clicked) {
+  private Pilot findPilotInPos(ManiGame g, Vector2 pos, boolean onMap, boolean clicked) {
     ObjectManager om = g.getObjMan();
-    SolShip h = g.getHero();
+    ManiShip h = g.getHero();
     float iconRad = onMap ? g.getMapDrawer().getIconRadius(g.getCam()) : 0;
-    for (SolObject o : om.getObjs()) {
-      if (o == h || !(o instanceof SolShip)) continue;
-      SolShip s = (SolShip) o;
+    for (ManiObject o : om.getObjs()) {
+      if (o == h || !(o instanceof ManiShip)) continue;
+      ManiShip s = (ManiShip) o;
       Pilot pilot = s.getPilot();
       if (onMap && pilot.getMapHint() == null) continue;
       float dst = o.getPosition().dst(pos);

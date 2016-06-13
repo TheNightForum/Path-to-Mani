@@ -23,51 +23,51 @@ import com.badlogic.gdx.math.Vector2;
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.common.SolMath;
 import org.burntgameproductions.PathToMani.game.input.Mover;
-import org.burntgameproductions.PathToMani.SolApplication;
-import org.burntgameproductions.PathToMani.game.SolGame;
+import org.burntgameproductions.PathToMani.ManiApplication;
+import org.burntgameproductions.PathToMani.game.ManiGame;
 import org.burntgameproductions.PathToMani.game.input.Shooter;
-import org.burntgameproductions.PathToMani.game.ship.SolShip;
-import org.burntgameproductions.PathToMani.ui.SolInputManager;
-import org.burntgameproductions.PathToMani.ui.SolUiControl;
+import org.burntgameproductions.PathToMani.game.ship.ManiShip;
+import org.burntgameproductions.PathToMani.ui.ManiInputManager;
+import org.burntgameproductions.PathToMani.ui.ManiUiControl;
 
 import java.util.List;
 
 public class ShipMixedControl implements ShipUiControl {
-  public final SolUiControl upCtrl;
-  private final SolUiControl myDownCtrl;
+  public final ManiUiControl upCtrl;
+  private final ManiUiControl myDownCtrl;
   private final Vector2 myMouseWorldPos;
   private final TextureAtlas.AtlasRegion myCursor;
-  public final SolUiControl shootCtrl;
-  public final SolUiControl shoot2Ctrl;
-  public final SolUiControl abilityCtrl;
+  public final ManiUiControl shootCtrl;
+  public final ManiUiControl shoot2Ctrl;
+  public final ManiUiControl abilityCtrl;
 
   private boolean myRight;
   private boolean myLeft;
 
-  public ShipMixedControl(SolApplication cmp, List<SolUiControl> controls) {
+  public ShipMixedControl(ManiApplication cmp, List<ManiUiControl> controls) {
     GameOptions gameOptions = cmp.getOptions();
     myCursor = cmp.getTexMan().getTex("ui/cursorTarget", null);
     myMouseWorldPos = new Vector2();
-    upCtrl = new SolUiControl(null, false, gameOptions.getKeyUpMouse());
+    upCtrl = new ManiUiControl(null, false, gameOptions.getKeyUpMouse());
     controls.add(upCtrl);
-    myDownCtrl = new SolUiControl(null, false, gameOptions.getKeyDownMouse());
+    myDownCtrl = new ManiUiControl(null, false, gameOptions.getKeyDownMouse());
     controls.add(myDownCtrl);
-    shootCtrl = new SolUiControl(null, false, gameOptions.getKeyShoot());
+    shootCtrl = new ManiUiControl(null, false, gameOptions.getKeyShoot());
     controls.add(shootCtrl);
-    shoot2Ctrl = new SolUiControl(null, false, gameOptions.getKeyShoot2());
+    shoot2Ctrl = new ManiUiControl(null, false, gameOptions.getKeyShoot2());
     controls.add(shoot2Ctrl);
-    abilityCtrl = new SolUiControl(null, false, gameOptions.getKeyAbility());
+    abilityCtrl = new ManiUiControl(null, false, gameOptions.getKeyAbility());
     controls.add(abilityCtrl);
   }
 
   @Override
-  public void update(SolApplication cmp, boolean enabled) {
+  public void update(ManiApplication cmp, boolean enabled) {
     GameOptions gameOptions = cmp.getOptions();
     blur();
     if (!enabled) return;
-    SolInputManager im = cmp.getInputMan();
-    SolGame g = cmp.getGame();
-    SolShip h = g.getHero();
+    ManiInputManager im = cmp.getInputMan();
+    ManiGame g = cmp.getGame();
+    ManiShip h = g.getHero();
     if (h != null) {
       myMouseWorldPos.set(Gdx.input.getX(), Gdx.input.getY());
       g.getCam().screenToWorld(myMouseWorldPos);
