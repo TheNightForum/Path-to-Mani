@@ -17,6 +17,7 @@ import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class PlayScreen implements ManiUiScreen {
@@ -76,7 +77,14 @@ public class PlayScreen implements ManiUiScreen {
     //April fools.
     FileHandle imageFile2 = FileManager.getInstance().getImagesDirectory().child("aprilfools.png");
     aprilfools = textureManager.getTexture(imageFile2);
-    //
+
+    //Date changer.
+    Calendar var1 = Calendar.getInstance();
+    if (var1.get(2) + 1 == 04 && var1.get(5) >= 01 && var1.get(5) <= 03)
+    {
+      this.isAprilFools = true;
+    }
+    
   }
 
   public static Rectangle creditsBtnRect(float r) {
