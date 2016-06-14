@@ -6,10 +6,10 @@ options=("Eclipse" "Intellij" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Option 1")
+        "eclipse")
             ./gradlew eclipse
             ;;
-        "Option 2")
+        "intellij")
             ./gradlew idea
             ;;
         "Quit")
