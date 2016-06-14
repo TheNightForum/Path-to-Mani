@@ -58,6 +58,7 @@ public class CreditsScreen implements ManiUiScreen {
                 "Team Leader: CrazyWolf",
                 "Programmer: stur86 & CrazyWolf",
                 "Ideas: xXDahChubChubXx",
+                "Music selection: KittoDJ"
                 "Art: CrazyWolf"
             },
             {
