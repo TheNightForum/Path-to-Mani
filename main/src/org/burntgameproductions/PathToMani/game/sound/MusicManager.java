@@ -35,7 +35,7 @@ public final class MusicManager {
      * Initalise the MusicManager class.
      */
     private MusicManager() {//TODO: Replace this music with some of our own so then we can bypass the copyrights on it.
-        menuMusic = Gdx.audio.newMusic(FileManager.getInstance().getStaticFile("res/sounds/music/prismo-coexist.ogg"));
+        menuMusic = Gdx.audio.newMusic(FileManager.getInstance().getStaticFile("res/sounds/music/menu.ogg"));
         //TODO: No copyright sound on YouTube would probably be the go.
         gameMusic.add(Gdx.audio.newMusic(FileManager.getInstance().getStaticFile("res/sounds/music/cartoon-on-off.ogg")));
         gameMusic.add(Gdx.audio.newMusic(FileManager.getInstance().getStaticFile("res/sounds/music/AW-force.ogg")));
