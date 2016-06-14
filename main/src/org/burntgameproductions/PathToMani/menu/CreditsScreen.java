@@ -35,7 +35,7 @@ public class CreditsScreen implements ManiUiScreen {
       {
         "A game from",
         "",
-        "MovingBlocks"
+        "Burnt Game Productions"
       },
       {
         "Original Creators",
@@ -52,21 +52,33 @@ public class CreditsScreen implements ManiUiScreen {
         "Additional drawing:",
         "Julia Nikolaeva"
       },
+            {
+                "Burnt Games Productions Team:",
+                "",
+                "Team Leader: CrazyWolf",
+                "Programmer: stur86 & CrazyWolf",
+                "Ideas: xXDahChubChubXx",
+                "Art: CrazyWolf"
+            },
+            {
+                    "MovingBlocks team on GitHub",
+                    "",
+                    "Cervator",
+                    "Rulasmur",
+                    "theotherjay",
+                    "LinusVanElswijk",
+                    "SimonC4",
+                    "grauerkoala",
+                    "rzats",
+                    "LadySerenaKitty",
+                    "askneller"
+            },
       {
-        "Contributors on GitHub",
+        "Music by",
         "",
-        "Cervator",
-        "Rulasmur",
-        "theotherjay",
-        "LinusVanElswijk",
-        "SimonC4",
-        "grauerkoala",
-        "rzats",
-        "LadySerenaKitty",
-        "askneller"
-      },
-      {
-        "Soundtrack by NeonInsect"
+        "Alan Walker - NCS",
+        "Cartoon - NCS",
+        "Prismo"
       },
       {
         "Game engine:",
