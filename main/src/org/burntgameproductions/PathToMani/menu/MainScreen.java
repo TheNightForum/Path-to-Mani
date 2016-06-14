@@ -56,8 +56,7 @@ public class MainScreen implements ManiUiScreen {
     myQuitCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, Input.Keys.Q);
     myQuitCtrl.setDisplayName("Quit");
     myControls.add(myQuitCtrl);
-
-    //myTitleTex = textureManager.getTex("ui/title", null);
+    
     /**
     *The reason why we are doing it like this is so it doesnt have to use a texture atlas.
     */
