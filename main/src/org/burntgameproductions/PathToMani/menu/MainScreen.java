@@ -2,9 +2,14 @@ package org.burntgameproductions.PathToMani.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.TextureManager;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.files.FileManager;
+import org.burntgameproductions.PathToMani.game.DebugOptions;
 import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 import org.burntgameproductions.PathToMani.ManiApplication;
@@ -24,6 +29,10 @@ public class MainScreen implements ManiUiScreen {
   private final ManiUiControl myCreditsCtrl;
   private final ManiUiControl myQuitCtrl;
   //private final TextureAtlas.AtlasRegion myTitleTex;
+  //Loading different logo variants.
+  private final TextureAtlas.AtlasRegion logo;
+
+
   private final boolean isMobile;
   GameOptions gameOptions;
 
@@ -49,6 +58,14 @@ public class MainScreen implements ManiUiScreen {
     myControls.add(myQuitCtrl);
 
     //myTitleTex = textureManager.getTex("ui/title", null);
+    /**
+    *The reason why we are doing it like this is so it doesnt have to use a texture atlas.
+    */
+    //Normal
+    FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
+    logo = textureManager.getTexture(imageFile);
+
+    
   }
 
   public static Rectangle creditsBtnRect(float r) {
@@ -104,6 +121,7 @@ public class MainScreen implements ManiUiScreen {
   @Override
   public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
     float sz = .55f;
+    if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(logo, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
     //if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(myTitleTex, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
   }
 

@@ -1,10 +1,15 @@
 package org.burntgameproductions.PathToMani.menu;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import org.burntgameproductions.PathToMani.GameOptions;
 import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.TextureManager;
+import org.burntgameproductions.PathToMani.common.ManiColor;
+import org.burntgameproductions.PathToMani.files.FileManager;
+import org.burntgameproductions.PathToMani.game.DebugOptions;
 import org.burntgameproductions.PathToMani.game.sound.MusicManager;
 import org.burntgameproductions.PathToMani.ui.ManiInputManager;
 import org.burntgameproductions.PathToMani.ui.ManiUiControl;
@@ -24,6 +29,9 @@ public class PlayScreen implements ManiUiScreen {
   private final ManiUiControl myLoadCtrl;
   private final ManiUiControl myBackCtrl;
   //private final TextureAtlas.AtlasRegion myTitleTex;
+  //Logos...
+  private final TextureAtlas.AtlasRegion logo;
+
   private final boolean isMobile;
   GameOptions gameOptions;
 
@@ -49,6 +57,12 @@ public class PlayScreen implements ManiUiScreen {
     myControls.add(myBackCtrl);
 
     //myTitleTex = textureManager.getTex("ui/title", null);
+    /**
+     *The reason why we are doing it like this is so it doesnt have to use a texture atlas.
+     */
+    //Normal
+    FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
+    logo = textureManager.getTexture(imageFile);
   }
 
   public static Rectangle creditsBtnRect(float r) {
@@ -102,6 +116,7 @@ public class PlayScreen implements ManiUiScreen {
   @Override
   public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
     float sz = .55f;
+    if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(logo, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
     //if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(myTitleTex, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
   }
 
