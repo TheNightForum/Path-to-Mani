@@ -28,9 +28,16 @@ public class PlayScreen implements ManiUiScreen {
   private final ManiUiControl myNewCtrl;
   private final ManiUiControl myLoadCtrl;
   private final ManiUiControl myBackCtrl;
-  //private final TextureAtlas.AtlasRegion myTitleTex;
-  //Logos...
+  //logos
   private final TextureAtlas.AtlasRegion logo;
+  private final TextureAtlas.AtlasRegion newyears;
+  private final TextureAtlas.AtlasRegion aprilfools;
+  private final TextureAtlas.AtlasRegion australiaday;
+
+  //boolean's for date checker.
+  private boolean isNewYears;
+  private boolean isAustraliaDay;
+  private boolean isAprilFools;
 
   private final boolean isMobile;
   GameOptions gameOptions;
@@ -63,6 +70,8 @@ public class PlayScreen implements ManiUiScreen {
     //Normal
     FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
     logo = textureManager.getTexture(imageFile);
+    
+    //
   }
 
   public static Rectangle creditsBtnRect(float r) {
