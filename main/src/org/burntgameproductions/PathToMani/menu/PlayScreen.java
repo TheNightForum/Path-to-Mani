@@ -88,7 +88,10 @@ public class PlayScreen implements ManiUiScreen {
     {
       this.isAustraliaDay = true;
     }
-    
+    else if (var1.get(2) + 1 == 01 && var1.get(5) >= 01 && var1.get(5) <= 07)
+    {
+      this.isNewYears = true;
+    }
   }
 
   public static Rectangle creditsBtnRect(float r) {
