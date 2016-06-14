@@ -84,6 +84,10 @@ public class PlayScreen implements ManiUiScreen {
     {
       this.isAprilFools = true;
     }
+    else if (var1.get(2) + 1 == 01 && var1.get(5) >= 26 && var1.get(5) <= 28)
+    {
+      this.isAustraliaDay = true;
+    }
     
   }
 
