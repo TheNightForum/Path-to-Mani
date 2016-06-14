@@ -30,7 +30,7 @@ public class PlayScreen implements ManiUiScreen {
   private final ManiUiControl myNewCtrl;
   private final ManiUiControl myLoadCtrl;
   private final ManiUiControl myBackCtrl;
-  
+
   //logos
   private final TextureAtlas.AtlasRegion logo;
   private final TextureAtlas.AtlasRegion newyears;

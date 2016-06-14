@@ -28,8 +28,8 @@ public class MainScreen implements ManiUiScreen {
   private final ManiUiControl myOptionsCtrl;
   private final ManiUiControl myCreditsCtrl;
   private final ManiUiControl myQuitCtrl;
-  //private final TextureAtlas.AtlasRegion myTitleTex;
-  //Loading different logo variants.
+
+  //logos
   private final TextureAtlas.AtlasRegion logo;
 
 
