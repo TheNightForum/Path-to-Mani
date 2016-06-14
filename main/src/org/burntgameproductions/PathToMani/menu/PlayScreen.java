@@ -70,6 +70,9 @@ public class PlayScreen implements ManiUiScreen {
     //Normal
     FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
     logo = textureManager.getTexture(imageFile);
+    //Australia day.
+    FileHandle imageFile1 = FileManager.getInstance().getImagesDirectory().child("australiaday.png");
+    australiaday = textureManager.getTexture(imageFile1);
     
     //
   }
