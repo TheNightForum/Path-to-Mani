@@ -39,6 +39,7 @@ public final class MusicManager {
         gameMusic.add(Gdx.audio.newMusic(FileManager.getInstance().getStaticFile("res/sounds/music/cimmerian dawn.ogg")));
         gameMusic.add(Gdx.audio.newMusic(FileManager.getInstance().getStaticFile("res/sounds/music/into the dark.ogg")));
         gameMusic.add(Gdx.audio.newMusic(FileManager.getInstance().getStaticFile("res/sounds/music/space theatre.ogg")));
+        //TODO: No copyright sound on YouTube would probably be the go.
         menuMusic.setLooping(true);
     }
 
