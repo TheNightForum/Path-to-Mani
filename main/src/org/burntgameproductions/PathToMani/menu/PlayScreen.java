@@ -162,7 +162,7 @@ public class PlayScreen implements ManiUiScreen {
     else if (this.isAprilFools)
     {
       float sz = .55f;
-      if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(aprilfools, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, SolColor.W);
+      if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(aprilfools, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
     }
     else
     {
