@@ -16,6 +16,7 @@ import org.burntgameproductions.PathToMani.ui.ManiUiControl;
 import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -77,6 +78,9 @@ public class PlayScreen implements ManiUiScreen {
     //April fools.
     FileHandle imageFile2 = FileManager.getInstance().getImagesDirectory().child("aprilfools.png");
     aprilfools = textureManager.getTexture(imageFile2);
+    //New years.
+    FileHandle imageFile3 = FileManager.getInstance().getImagesDirectory().child("newyears.png");
+    newyears = textureManager.getTexture(imageFile3);
 
     //Date changer.
     Calendar var1 = Calendar.getInstance();
