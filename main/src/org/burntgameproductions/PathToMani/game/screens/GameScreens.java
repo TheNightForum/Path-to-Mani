@@ -12,6 +12,8 @@ public class GameScreens {
   public final InventoryScreen inventoryScreen;
   public final TalkScreen talkScreen;
 
+  //TODO: Dan here it is...
+
   public GameScreens(float r, ManiApplication cmp) {
     ManiLayouts layouts = cmp.getLayouts();
     RightPaneLayout rightPaneLayout = layouts.rightPaneLayout;
