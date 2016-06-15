@@ -206,6 +206,11 @@ public class PlayScreen implements ManiUiScreen {
       float sz = .55f;
       if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(bdayWilson, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
     }
+    else if (this.isWolfBday)
+    {
+      float sz = .55f;
+      if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(bdayWolf, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
+    }
     else
     {
       float sz = .55f;
