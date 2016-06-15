@@ -506,8 +506,9 @@ public class ManiGame {
     /**This part here is what the game will do before it renders you dead**/
     if (myHero == null) return;
 
-    /
+    /**This will collect the total player money to use later on to decide how much money they will have on respawn**/
     float money = myHero.getMoney();
+    
     ItemContainer ic = myHero.getItemContainer();
 
     setRespawnState(money, ic, myHero.getHull().config);
