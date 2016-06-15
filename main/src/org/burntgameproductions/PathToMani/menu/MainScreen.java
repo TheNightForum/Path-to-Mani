@@ -123,7 +123,7 @@ public class MainScreen implements ManiUiScreen {
       return;
     }
 
-    //What to do when "Credits" button is pressed.
+    /**What to do when "Credits" button is pressed.**/
     if (myCreditsCtrl.isJustOff()) {
       im.setScreen(cmp, screens.credits);
       return;
