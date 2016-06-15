@@ -71,7 +71,7 @@ public class PlayScreen implements ManiUiScreen {
     myControls.add(myBackCtrl);
 
     /**Logos for date changer are loaded here.**/
-    //Normal
+    /**Normal**/
     FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
     logo = textureManager.getTexture(imageFile);
     //Australia day.
