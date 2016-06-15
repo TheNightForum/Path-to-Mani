@@ -80,7 +80,7 @@ public class PlayScreen implements ManiUiScreen {
     /**April fools.**/
     FileHandle imageFile2 = FileManager.getInstance().getImagesDirectory().child("aprilfools.png");
     aprilfools = textureManager.getTexture(imageFile2);
-    //New years.
+    /**New years.**/
     FileHandle imageFile3 = FileManager.getInstance().getImagesDirectory().child("newyears.png");
     newyears = textureManager.getTexture(imageFile3);
 
