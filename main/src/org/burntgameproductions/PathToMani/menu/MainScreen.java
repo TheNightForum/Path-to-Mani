@@ -157,8 +157,10 @@ public class MainScreen implements ManiUiScreen {
     if (myQuitCtrl.isJustOff()) {
       /** Save the settings on exit, but not on mobile as settings don't exist there.**/
       if (isMobile == false) {
+        /**If the player is on the computer like most normal people.... it will save the game then quit**/
         cmp.getOptions().save();
       }
+      /**If the player is on there mobile it will not save and instead just quit**/
       Gdx.app.exit();
       return;
     }
