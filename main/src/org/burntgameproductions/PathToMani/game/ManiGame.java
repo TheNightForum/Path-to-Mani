@@ -531,6 +531,7 @@ public class ManiGame {
     myRespawnItems.clear();
     /**This is only here so when there is a fatal error we can see they tried to respawn in the log**/
     System.out.println("setRespawnState");
+    /**This is just some math that you should not touch if you dont understand it... -_- **/
     for (List<ManiItem> group : ic) {
       for (ManiItem item : group) {
         boolean equipped = myHero == null || myHero.maybeUnequip(this, item, false);
