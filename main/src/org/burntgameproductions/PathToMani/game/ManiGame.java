@@ -204,8 +204,11 @@ public class ManiGame {
   public void onGameEnd() {
     /** This is what to do when the game ends.**/
     saveShip();
+    /**This will save the ship that the user was last using**/
     myObjectManager.dispose();
+    /**This will clear all the objects off the screen so it can transition to a menu**/
     mySoundManager.dispose();
+    /**This will stop the music from the game and allow it to go back to the main menu music**/
   }
 
   public void saveShip() {
