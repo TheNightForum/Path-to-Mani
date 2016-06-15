@@ -111,6 +111,7 @@ public class MainScreen implements ManiUiScreen {
     ManiInputManager im = cmp.getInputMan();
     MenuScreens screens = cmp.getMenuScreens();
 
+    //What to do when "Play" button is pressed.
     if (myPlayCtrl.isJustOff()) {
       im.setScreen(cmp, screens.playScreen);
       return;
