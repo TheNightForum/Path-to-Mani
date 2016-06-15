@@ -71,7 +71,9 @@ public class MainScreen implements ManiUiScreen {
     myQuitCtrl.setDisplayName("Quit");
     myControls.add(myQuitCtrl);
 
-    /**Logos for date changer are loaded here.**/
+    /**
+     * Logos for date changer are loaded here.
+     **/
     /**Normal.**/
     FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
     logo = textureManager.getTexture(imageFile);
