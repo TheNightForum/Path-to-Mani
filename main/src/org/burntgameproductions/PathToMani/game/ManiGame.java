@@ -506,6 +506,7 @@ public class ManiGame {
     /**This part here is what the game will do before it renders you dead**/
     if (myHero == null) return;
 
+    /
     float money = myHero.getMoney();
     ItemContainer ic = myHero.getItemContainer();
 
@@ -514,6 +515,7 @@ public class ManiGame {
     /**This deducts some money from your account as a cost to respawn**/
     myHero.setMoney(money - myRespawnMoney);
     for (ManiItem item : myRespawnItems) {
+      /**This here will deduct the items from you inventory so then you have to go out and find them again.**/
       ic.remove(item);
     }
   }
