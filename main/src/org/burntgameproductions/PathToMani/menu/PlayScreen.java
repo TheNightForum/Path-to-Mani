@@ -65,8 +65,7 @@ public class PlayScreen implements ManiUiScreen {
     myBackCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, Input.Keys.B);
     myBackCtrl.setDisplayName("Back");
     myControls.add(myBackCtrl);
-
-    //myTitleTex = textureManager.getTex("ui/title", null);
+    
     /**
      *The reason why we are doing it like this is so it doesnt have to use a texture atlas.
      */
