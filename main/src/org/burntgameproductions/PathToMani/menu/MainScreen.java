@@ -56,13 +56,16 @@ public class MainScreen implements ManiUiScreen {
     myPlayCtrl.setDisplayName("Play");
     myControls.add(myPlayCtrl);
 
+    /**Options button**/
     myOptionsCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true, Input.Keys.O);
     myOptionsCtrl.setDisplayName("Options");
     myControls.add(myOptionsCtrl);
 
+    
     myCreditsCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.C);
     myCreditsCtrl.setDisplayName("Credits");
     myControls.add(myCreditsCtrl);
+
 
     myQuitCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, Input.Keys.Q);
     myQuitCtrl.setDisplayName("Quit");
