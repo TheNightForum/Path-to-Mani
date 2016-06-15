@@ -127,7 +127,7 @@ public class PlayScreen implements ManiUiScreen {
       /**If you have tried to load a game, it will load that instead.**/
       if (!myLoadCtrl.isEnabled()) {
         cmp.loadNewGame(false, false);
-        //If you havent tried to load a game... it should be good to start.
+        /**If you havent tried to load a game... it should be good to start.**/
       } else {
         im.setScreen(cmp, screens.newShip);
       }
