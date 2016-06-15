@@ -154,7 +154,12 @@ public class MainScreen implements ManiUiScreen {
 
   @Override
   public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
-
+    /**We are now loading the correct image for the date**/
+    if (this.isNewYears)
+    {
+      float sz = .55f;
+      if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(newyears, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
+    }
   }
 
   @Override
