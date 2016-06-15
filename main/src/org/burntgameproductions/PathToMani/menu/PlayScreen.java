@@ -117,6 +117,7 @@ public class PlayScreen implements ManiUiScreen {
       myTutCtrl.setEnabled(true);
     }
 
+    //What to do when "New" button is pressed.
     if (myNewCtrl.isJustOff()) {
       if (!myLoadCtrl.isEnabled()) {
         cmp.loadNewGame(false, false);
