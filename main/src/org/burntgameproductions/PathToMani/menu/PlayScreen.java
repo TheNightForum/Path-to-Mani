@@ -42,6 +42,7 @@ public class PlayScreen implements ManiUiScreen {
   private boolean isNewYears;
   private boolean isAustraliaDay;
   private boolean isAprilFools;
+  private boolean isWilsonsBday;
 
   private final boolean isMobile;
   GameOptions gameOptions;
