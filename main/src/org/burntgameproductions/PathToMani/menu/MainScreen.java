@@ -29,9 +29,8 @@ public class MainScreen implements ManiUiScreen {
   private final ManiUiControl myCreditsCtrl;
   private final ManiUiControl myQuitCtrl;
 
-  //logos
+  /**We have these listed here as a texture so then we can use them later on.**/
   private final TextureAtlas.AtlasRegion logo;
-
 
   private final boolean isMobile;
   GameOptions gameOptions;
@@ -56,10 +55,8 @@ public class MainScreen implements ManiUiScreen {
     myQuitCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, Input.Keys.Q);
     myQuitCtrl.setDisplayName("Quit");
     myControls.add(myQuitCtrl);
-    
-    /**
-    *The reason why we are doing it like this is so it doesnt have to use a texture atlas.
-    */
+
+    /**Logos for date changer are loaded here.**/
     //Normal
     FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
     logo = textureManager.getTexture(imageFile);
