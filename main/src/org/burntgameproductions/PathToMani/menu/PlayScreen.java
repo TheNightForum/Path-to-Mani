@@ -86,8 +86,11 @@ public class PlayScreen implements ManiUiScreen {
     /**New years.**/
     FileHandle imageFile3 = FileManager.getInstance().getImagesDirectory().child("newyears.png");
     newyears = textureManager.getTexture(imageFile3);
+    /**Wilsons bday.**/
+    FileHandle imageFile4 = FileManager.getInstance().getImagesDirectory().child("wilson.png");
+    bdayWilson = textureManager.getTexture(imageFile4);
 
-    /**Calendar**/
+     /**Calendar**/
     Calendar var1 = Calendar.getInstance();
     if (var1.get(2) + 1 == 04 && var1.get(5) >= 01 && var1.get(5) <= 03)
     {/**This ^^^^ here... We want to display the logo between these days of this month.**/
