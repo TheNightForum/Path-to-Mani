@@ -61,7 +61,7 @@ public class MainScreen implements ManiUiScreen {
     myOptionsCtrl.setDisplayName("Options");
     myControls.add(myOptionsCtrl);
 
-    
+    /**Credits button**/
     myCreditsCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.C);
     myCreditsCtrl.setDisplayName("Credits");
     myControls.add(myCreditsCtrl);
