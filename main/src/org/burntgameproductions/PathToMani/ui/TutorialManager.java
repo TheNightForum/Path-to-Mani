@@ -18,6 +18,7 @@ public class TutorialManager {
 
   private int myStepIdx;
 
+  //TODO: Daniel here it is aswell... \/\/\/\/\/
   public TutorialManager(float r, GameScreens screens, boolean mobile, GameOptions gameOptions) {
     float bgW = r * .5f;
     float bgH = .2f;

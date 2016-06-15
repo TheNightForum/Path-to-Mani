@@ -125,6 +125,8 @@ public class CreditsScreen implements ManiUiScreen {
   @Override
   public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     if (myCloseCtrl.isJustOff()) {
+      //TODO: Daniel here is the MenuScreens file.
+      //TODO: Dan... these are used in most files... just search for it.
       cmp.getInputMan().setScreen(cmp, cmp.getMenuScreens().main);
       return;
     }

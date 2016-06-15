@@ -60,6 +60,7 @@ public class ManiApplication implements ApplicationListener {
     myUiDrawer = new UiDrawer(myTextureManager, myCommonDrawer);
     myInputMan = new ManiInputManager(myTextureManager, myUiDrawer.r);
     myLayouts = new ManiLayouts(myUiDrawer.r);
+    //TODO: Daniel here is the MenuScreens file.
     myMenuScreens = new MenuScreens(myLayouts, myTextureManager, isMobile(), myUiDrawer.r, myOptions);
 
     myInputMan.setScreen(this, myMenuScreens.main);
@@ -148,6 +149,7 @@ public class ManiApplication implements ApplicationListener {
 
   public void loadNewGame(boolean tut, boolean usePrevShip) {
     if (myGame != null) throw new AssertionError("Starting a new game with unfinished current one");
+    //TODO: Daniel here is the MenuScreens file.
     myInputMan.setScreen(this, myMenuScreens.loading);
     myMenuScreens.loading.setMode(tut, usePrevShip);
     MusicManager.getInstance().PlayGameMusic(myOptions);
@@ -163,6 +165,7 @@ public class ManiApplication implements ApplicationListener {
     return myInputMan;
   }
 
+  //TODO: Daniel here is the MenuScreens file.
   public MenuScreens getMenuScreens() {
     return myMenuScreens;
   }
@@ -185,6 +188,7 @@ public class ManiApplication implements ApplicationListener {
   public void finishGame() {
     myGame.onGameEnd();
     myGame = null;
+    //TODO: Daniel here is the MenuScreens file.
     myInputMan.setScreen(this, myMenuScreens.main);
   }
 

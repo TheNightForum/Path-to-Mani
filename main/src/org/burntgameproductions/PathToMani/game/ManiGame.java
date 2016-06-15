@@ -44,6 +44,7 @@ import java.util.List;
 
 public class ManiGame {
 
+  //TODO: Daniel it is also here...
   private final GameScreens myScreens;
   private final ManiCam myCam;
   private final ObjectManager myObjectManager;
@@ -96,6 +97,7 @@ public class ManiGame {
     mySpecialSounds = new SpecialSounds(mySoundManager);
     myDraMan = new DraMan(drawer);
     myCam = new ManiCam(drawer.r);
+    //TODO: GameScreens is also initialized here.
     myScreens = new GameScreens(drawer.r, cmp);
     myTutorialManager = tut ? new TutorialManager(commonDrawer.r, myScreens, cmp.isMobile(), cmp.getOptions()) : null;
     myTextureManager = textureManager;
@@ -237,6 +239,7 @@ public class ManiGame {
     SaveManager.writeShip(hull, money, items, this);
   }
 
+  //TODO: Daniel... GameScreens is initialized here.
   public GameScreens getScreens() {
     return myScreens;
   }
