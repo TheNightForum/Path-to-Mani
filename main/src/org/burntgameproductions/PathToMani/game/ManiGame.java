@@ -503,13 +503,14 @@ public class ManiGame {
   }
 
   public void beforeHeroDeath() {
+    /**This part here is what the game will do before it renders you dead**/
     if (myHero == null) return;
 
     float money = myHero.getMoney();
     ItemContainer ic = myHero.getItemContainer();
 
     setRespawnState(money, ic, myHero.getHull().config);
-
+    
     myHero.setMoney(money - myRespawnMoney);
     for (ManiItem item : myRespawnItems) {
       ic.remove(item);
