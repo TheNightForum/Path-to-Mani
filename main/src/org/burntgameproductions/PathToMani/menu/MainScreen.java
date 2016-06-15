@@ -39,7 +39,7 @@ public class MainScreen implements ManiUiScreen {
   private final TextureAtlas.AtlasRegion newyears;
 
   /**Boolean's for date checker**/
-  private boolean isNewYear;
+  private boolean isNewYears;
   private boolean isAustraliaDay;
   private boolean isAprilFools;
 
@@ -90,6 +90,10 @@ public class MainScreen implements ManiUiScreen {
     else if (var1.get(2) + 1 == 01 && var1.get(5) >= 26 && var1.get(5) <= 28)
     {
       this.isAustraliaDay = true;
+    }
+    else if (var1.get(2) + 1 == 01 && var1.get(5) >= 01 && var1.get(5) <= 07)
+    {
+      this.isNewYears = true;
     }
     
   }
