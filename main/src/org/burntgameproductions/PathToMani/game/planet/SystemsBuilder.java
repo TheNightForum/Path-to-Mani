@@ -22,10 +22,13 @@ public class SystemsBuilder {
   //TODO: Add solar system names.
   /**This here determines the amount of mazes to build depending on the amount of solar systems.**/
   public static final int MAZE_COUNT = SYS_COUNT * 2;
+  /** This is the amount of planets in any one solar-system.**/
   public static final int PLANET_COUNT = 5;
   public static final float PLANET_SPD = .2f;
   private static final float GROUND_SPD = .2f;
+  /**This is the code that says how big a maze can be.**/
   private static final float MAX_MAZE_RADIUS = 40f;
+  /**This code here is to say how far apart each maze should be.**/
   private static final float MAZE_GAP = 10f;
   private static final float BELT_HALF_WIDTH = 20f;
 
