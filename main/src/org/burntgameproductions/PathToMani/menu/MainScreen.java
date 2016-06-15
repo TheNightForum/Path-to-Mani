@@ -31,6 +31,7 @@ public class MainScreen implements ManiUiScreen {
 
   /**We have these listed here as a texture so then we can use them later on.**/
   private final TextureAtlas.AtlasRegion logo;
+  private final TextureAtlas.AtlasRegion aprilfools;
 
   private final boolean isMobile;
   GameOptions gameOptions;
@@ -60,6 +61,7 @@ public class MainScreen implements ManiUiScreen {
     //Normal
     FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
     logo = textureManager.getTexture(imageFile);
+    //April fools.
 
     
   }
