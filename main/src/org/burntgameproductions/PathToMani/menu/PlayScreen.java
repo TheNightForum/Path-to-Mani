@@ -113,8 +113,10 @@ public class PlayScreen implements ManiUiScreen {
 
     //What to do when "Tutorial" button is pressed.
     if (cmp.getOptions().controlType == GameOptions.CONTROL_CONTROLLER) {
+      //Load this version of the tutorial if you are using a tutorial.
       myTutCtrl.setEnabled(false);
     } else {
+      //Load this version of the tutorial if you are using anything but a controller.
       myTutCtrl.setEnabled(true);
     }
 
