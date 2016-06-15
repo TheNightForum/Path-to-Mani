@@ -51,6 +51,7 @@ public class MainScreen implements ManiUiScreen {
     myControls = new ArrayList<ManiUiControl>();
     this.gameOptions = gameOptions;
 
+    /**Play button**/
     myPlayCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true, Input.Keys.P);
     myPlayCtrl.setDisplayName("Play");
     myControls.add(myPlayCtrl);
