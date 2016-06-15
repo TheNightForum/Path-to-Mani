@@ -87,7 +87,7 @@ public class PlayScreen implements ManiUiScreen {
     /**Calendar**/
     Calendar var1 = Calendar.getInstance();
     if (var1.get(2) + 1 == 04 && var1.get(5) >= 01 && var1.get(5) <= 03)
-    {//This ^^^^ here... We want to display the logo between these days of this month.
+    {/**This ^^^^ here... We want to display the logo between these days of this month.**/
       this.isAprilFools = true;
     }
     else if (var1.get(2) + 1 == 01 && var1.get(5) >= 26 && var1.get(5) <= 28)
