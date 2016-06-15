@@ -508,7 +508,7 @@ public class ManiGame {
 
     /**This will collect the total player money to use later on to decide how much money they will have on respawn**/
     float money = myHero.getMoney();
-    
+    /**This here will collect what items, if any the player has collected.**/
     ItemContainer ic = myHero.getItemContainer();
 
     setRespawnState(money, ic, myHero.getHull().config);
