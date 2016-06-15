@@ -19,6 +19,7 @@ import org.burntgameproductions.PathToMani.ui.ManiUiControl;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainScreen implements ManiUiScreen {
@@ -79,6 +80,9 @@ public class MainScreen implements ManiUiScreen {
     //New years.
     FileHandle imageFile4 = FileManager.getInstance().getImagesDirectory().child("newyears.png");
     newyears = textureManager.getTexture(imageFile4);
+
+    /**Calendar**/
+    Calendar var1 = Calendar.getInstance();
     
   }
 
@@ -138,7 +142,7 @@ public class MainScreen implements ManiUiScreen {
 
   @Override
   public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
-    
+
   }
 
   @Override
