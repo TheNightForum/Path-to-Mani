@@ -16,6 +16,7 @@ import org.burntgameproductions.PathToMani.ManiApplication;
 import org.burntgameproductions.PathToMani.ui.ManiInputManager;
 import org.burntgameproductions.PathToMani.ui.ManiUiControl;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,10 +66,13 @@ public class MainScreen implements ManiUiScreen {
     myControls.add(myQuitCtrl);
 
     /**Logos for date changer are loaded here.**/
-    //Normal
+    //Normal.
     FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
     logo = textureManager.getTexture(imageFile);
-    //April fools.
+    //Australiad Day.
+    FileHandle imageFile2 = FileManager.getInstance().getImagesDirectory().child("australiaday.png");
+    australiaday = textureManager.getTexture(imageFile2);
+    //April Fools.
 
     
   }
