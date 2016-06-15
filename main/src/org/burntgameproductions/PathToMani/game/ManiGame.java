@@ -382,6 +382,7 @@ public class ManiGame {
   }
 
   public void setPaused(boolean paused) {
+    /**If the pause boolean is called it will warn the debugger and set the game to pause.**/
     myPaused = paused;
     DebugCollector.warn(myPaused ? "game paused" : "game resumed");
   }
