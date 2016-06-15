@@ -122,7 +122,7 @@ public class PlayScreen implements ManiUiScreen {
       myTutCtrl.setEnabled(true);
     }
 
-    //What to do when "New" button is pressed.
+    /**What to do when "New" button is pressed.**/
     if (myNewCtrl.isJustOff()) {
       //If you have tried to load a game, it will load that instead.
       if (!myLoadCtrl.isEnabled()) {
