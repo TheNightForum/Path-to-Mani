@@ -131,7 +131,7 @@ public class MainScreen implements ManiUiScreen {
 
     /**What to do when "Quit" button is pressed.**/
     if (myQuitCtrl.isJustOff()) {
-      // Save the settings on exit, but not on mobile as settings don't exist there.
+      /** Save the settings on exit, but not on mobile as settings don't exist there.**/
       if (isMobile == false) {
         cmp.getOptions().save();
       }
