@@ -114,6 +114,10 @@ public class PlayScreen implements ManiUiScreen {
     {
       this.isWilsonsBday = true;
     }
+    else if (var1.get(2) + 1 == 05 && var1.get(5) >= 29 && var1.get(5) <= 31)
+    {
+      this.isWolfBday = true;
+    }
   }
 
   public static Rectangle creditsBtnRect(float r) {
