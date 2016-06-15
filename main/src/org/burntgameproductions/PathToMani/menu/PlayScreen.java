@@ -111,11 +111,13 @@ public class PlayScreen implements ManiUiScreen {
   public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     ManiInputManager im = cmp.getInputMan();
     MenuScreens screens = cmp.getMenuScreens();
+
     if (cmp.getOptions().controlType == GameOptions.CONTROL_CONTROLLER) {
       myTutCtrl.setEnabled(false);
     } else {
       myTutCtrl.setEnabled(true);
     }
+
     if (myNewCtrl.isJustOff()) {
       if (!myLoadCtrl.isEnabled()) {
         cmp.loadNewGame(false, false);
@@ -123,10 +125,12 @@ public class PlayScreen implements ManiUiScreen {
         im.setScreen(cmp, screens.newShip);
       }
     }
+
     if (myLoadCtrl.isJustOff()) {
       cmp.loadNewGame(false, true);
       return;
     }
+
     if (myBackCtrl.isJustOff()) {
       im.setScreen(cmp, screens.main);
       return;

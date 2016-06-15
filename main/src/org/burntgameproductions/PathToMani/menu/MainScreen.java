@@ -94,18 +94,22 @@ public class MainScreen implements ManiUiScreen {
   public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     ManiInputManager im = cmp.getInputMan();
     MenuScreens screens = cmp.getMenuScreens();
+
     if (myPlayCtrl.isJustOff()) {
       im.setScreen(cmp, screens.playScreen);
       return;
     }
+
     if (myOptionsCtrl.isJustOff()) {
       im.setScreen(cmp, screens.options);
       return;
     }
+
     if (myCreditsCtrl.isJustOff()) {
       im.setScreen(cmp, screens.credits);
       return;
     }
+    
     if (myQuitCtrl.isJustOff()) {
       // Save the settings on exit, but not on mobile as settings don't exist there.
       if (isMobile == false) {
