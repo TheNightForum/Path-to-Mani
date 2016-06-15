@@ -387,14 +387,18 @@ public class ManiGame {
   }
 
   public void respawn() {
+    /**This is where the math happens on wheather or not the player is dead and trying to respawn or not.**/
     if (myHero != null) {
+      /**If the player is not dead. The game will kill the player to then respawn**/
       beforeHeroDeath();
       myObjectManager.removeObjDelayed(myHero);
     } else if (myTranscendentHero != null) {
+      /**If the player is something... something will happen... don't ask me... i didnt code it.**/
       FarShip farH = myTranscendentHero.getShip();
       setRespawnState(farH.getMoney(), farH.getIc(), farH.getHullConfig());
       myObjectManager.removeObjDelayed(myTranscendentHero);
     }
+    /**If the player truely is dead. This code will generate another player so the user can continue to have fun!**/
     createPlayer(null);
   }
 
