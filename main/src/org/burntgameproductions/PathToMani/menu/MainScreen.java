@@ -33,6 +33,7 @@ public class MainScreen implements ManiUiScreen {
   private final TextureAtlas.AtlasRegion logo;
   private final TextureAtlas.AtlasRegion aprilfools;
   private final TextureAtlas.AtlasRegion australiaday;
+  private final TextureAtlas.AtlasRegion newyears;
 
   private final boolean isMobile;
   GameOptions gameOptions;
