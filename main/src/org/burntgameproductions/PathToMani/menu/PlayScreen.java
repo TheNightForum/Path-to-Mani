@@ -66,9 +66,7 @@ public class PlayScreen implements ManiUiScreen {
     myBackCtrl.setDisplayName("Back");
     myControls.add(myBackCtrl);
 
-    /**
-     *The reason why we are doing it like this is so it doesnt have to use a texture atlas.
-     */
+    /**The reason why we are doing it like this is so it doesnt have to use a texture atlas.**/
     //Normal
     FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
     logo = textureManager.getTexture(imageFile);
@@ -82,7 +80,7 @@ public class PlayScreen implements ManiUiScreen {
     FileHandle imageFile3 = FileManager.getInstance().getImagesDirectory().child("newyears.png");
     newyears = textureManager.getTexture(imageFile3);
 
-    //Date changer.
+    /**Calendar**/
     Calendar var1 = Calendar.getInstance();
     if (var1.get(2) + 1 == 04 && var1.get(5) >= 01 && var1.get(5) <= 03)
     {//This ^^^^ here... We want to display the logo between these days of this month.
