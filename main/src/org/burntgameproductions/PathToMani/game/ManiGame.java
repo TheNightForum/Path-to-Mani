@@ -202,6 +202,7 @@ public class ManiGame {
   }
 
   public void onGameEnd() {
+    /** This is what to do when the game ends.**/
     saveShip();
     myObjectManager.dispose();
     mySoundManager.dispose();
