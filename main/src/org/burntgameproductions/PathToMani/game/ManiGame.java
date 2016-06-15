@@ -523,9 +523,13 @@ public class ManiGame {
   }
 
   private void setRespawnState(float money, ItemContainer ic, HullConfig hullConfig) {
+    /**This will give you a bit more money... we are generous like that.**/
     myRespawnMoney = .75f * money;
+    /**This will tell the game what ship they last had so you can spawn with it**/
     myRespawnHull = hullConfig;
+    /**This pretty much tells the game to forget all items and give the player nothing on respawn**/
     myRespawnItems.clear();
+    /**This is only here so when there is a fatal error we can see they tried to respawn in the log**/
     System.out.println("setRespawnState");
     for (List<ManiItem> group : ic) {
       for (ManiItem item : group) {
