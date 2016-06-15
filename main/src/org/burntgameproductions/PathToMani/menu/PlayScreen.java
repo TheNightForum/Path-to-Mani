@@ -104,6 +104,10 @@ public class PlayScreen implements ManiUiScreen {
     {/**This ^^^^ here... We want to display the logo between these days of this month.**/
       this.isNewYears = true;
     }
+    else if (var1.get(2) + 1 == 06 && var1.get(5) >= 21 && var1.get(5) <= 23)
+    {
+      this.isWilsonsBday = true;
+    }
   }
 
   public static Rectangle creditsBtnRect(float r) {
