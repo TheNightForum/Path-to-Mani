@@ -35,6 +35,9 @@ public class MainScreen implements ManiUiScreen {
   private final TextureAtlas.AtlasRegion australiaday;
   private final TextureAtlas.AtlasRegion newyears;
 
+  /**Boolean's for date checker**/
+  private boolean isNewYear;
+
   private final boolean isMobile;
   GameOptions gameOptions;
 
