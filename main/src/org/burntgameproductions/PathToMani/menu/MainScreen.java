@@ -71,7 +71,7 @@ public class MainScreen implements ManiUiScreen {
     /**Normal.**/
     FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
     logo = textureManager.getTexture(imageFile);
-    //Australiad Day.
+    /**Australiad Day.**/
     FileHandle imageFile2 = FileManager.getInstance().getImagesDirectory().child("australiaday.png");
     australiaday = textureManager.getTexture(imageFile2);
     //April Fools.
