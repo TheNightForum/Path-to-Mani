@@ -93,6 +93,9 @@ public class MainScreen implements ManiUiScreen {
     /**Wilsons bday.**/
     FileHandle imageFile4 = FileManager.getInstance().getImagesDirectory().child("wilson.png");
     wilsonBday = textureManager.getTexture(imageFile4);
+    /**Wolf Bday.**/
+    FileHandle imageFile5 = FileManager.getInstance().getImagesDirectory().child("wolf.png");
+    bdayWolf = textureManager.getTexture(imageFile5);
 
     /**Calendar**/
     Calendar var1 = Calendar.getInstance();
