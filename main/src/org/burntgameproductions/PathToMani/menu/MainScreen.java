@@ -10,6 +10,7 @@ import org.burntgameproductions.PathToMani.TextureManager;
 import org.burntgameproductions.PathToMani.common.ManiColor;
 import org.burntgameproductions.PathToMani.files.FileManager;
 import org.burntgameproductions.PathToMani.game.DebugOptions;
+import org.burntgameproductions.PathToMani.game.sound.MusicManager;
 import org.burntgameproductions.PathToMani.ui.ManiUiScreen;
 import org.burntgameproductions.PathToMani.ui.UiDrawer;
 import org.burntgameproductions.PathToMani.ManiApplication;
@@ -124,7 +125,7 @@ public class MainScreen implements ManiUiScreen {
 
   @Override
   public void onAdd(ManiApplication cmp) {
-  //  MusicManager.getInstance().PlayMenuMusic(gameOptions);
+    MusicManager.getInstance().PlayMenuMusic(gameOptions);
   }
 
   @Override
