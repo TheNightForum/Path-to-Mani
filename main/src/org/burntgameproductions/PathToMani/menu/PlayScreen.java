@@ -133,7 +133,7 @@ public class PlayScreen implements ManiUiScreen {
       }
     }
 
-    //What to do when "Load" button is pressed.
+    /**What to do when "Load" button is pressed.**/
     if (myLoadCtrl.isJustOff()) {
       cmp.loadNewGame(false, true);
       return;
