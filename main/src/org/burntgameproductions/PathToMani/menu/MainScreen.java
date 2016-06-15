@@ -117,7 +117,7 @@ public class MainScreen implements ManiUiScreen {
     }
 
 
-    //
+    //What to do when "Options" button is pressed.
     if (myOptionsCtrl.isJustOff()) {
       im.setScreen(cmp, screens.options);
       return;
