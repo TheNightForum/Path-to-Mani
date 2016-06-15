@@ -139,7 +139,7 @@ public class PlayScreen implements ManiUiScreen {
       return;
     }
 
-    //What to do when "Back" button is pressed.
+    /**What to do when "Back" button is pressed.**/
     if (myBackCtrl.isJustOff()) {
       im.setScreen(cmp, screens.main);
       return;
