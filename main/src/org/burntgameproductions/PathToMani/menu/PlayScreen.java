@@ -93,7 +93,7 @@ public class PlayScreen implements ManiUiScreen {
       this.isAustraliaDay = true;
     }
     else if (var1.get(2) + 1 == 01 && var1.get(5) >= 01 && var1.get(5) <= 07)
-    {
+    {//This ^^^^ here... We want to display the logo between these days of this month.
       this.isNewYears = true;
     }
   }
@@ -170,6 +170,7 @@ public class PlayScreen implements ManiUiScreen {
     else if (this.isAustraliaDay)
     {
       float sz = .55f;
+
       if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(australiaday, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
     }
     else if (this.isAprilFools)
