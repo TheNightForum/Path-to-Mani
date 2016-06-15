@@ -83,6 +83,10 @@ public class MainScreen implements ManiUiScreen {
 
     /**Calendar**/
     Calendar var1 = Calendar.getInstance();
+    if (var1.get(2) + 1 == 04 && var1.get(5) >= 01 && var1.get(5) <= 03)
+    {
+      this.isAprilFools = true;
+    }
     
   }
 
