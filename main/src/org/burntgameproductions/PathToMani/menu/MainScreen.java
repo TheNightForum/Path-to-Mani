@@ -66,7 +66,7 @@ public class MainScreen implements ManiUiScreen {
     myCreditsCtrl.setDisplayName("Credits");
     myControls.add(myCreditsCtrl);
 
-
+    /**Quit button**/
     myQuitCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, Input.Keys.Q);
     myQuitCtrl.setDisplayName("Quit");
     myControls.add(myQuitCtrl);
