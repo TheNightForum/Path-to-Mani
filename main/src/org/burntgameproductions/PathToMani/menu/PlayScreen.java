@@ -207,7 +207,7 @@ public class PlayScreen implements ManiUiScreen {
       if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(bdayWilson, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
     }
     else if (this.isWolfBday)
-    {
+    {/**Load this logo when the date on the players computer is the same as the one we set above.**/
       float sz = .55f;
       if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(bdayWolf, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
     }
