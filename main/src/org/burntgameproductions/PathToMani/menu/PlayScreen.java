@@ -70,7 +70,9 @@ public class PlayScreen implements ManiUiScreen {
     myBackCtrl.setDisplayName("Back");
     myControls.add(myBackCtrl);
 
-    /**Logos for date changer are loaded here.**/
+    /**
+     * Logos for date changer are loaded here.
+     **/
     /**Normal**/
     FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
     logo = textureManager.getTexture(imageFile);
