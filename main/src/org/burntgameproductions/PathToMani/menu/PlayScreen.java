@@ -111,7 +111,7 @@ public class PlayScreen implements ManiUiScreen {
       this.isNewYears = true;
     }
     else if (var1.get(2) + 1 == 06 && var1.get(5) >= 21 && var1.get(5) <= 23)
-    {
+    {/**This ^^^^ here... We want to display the logo between these days of this month.**/
       this.isWilsonsBday = true;
     }
     else if (var1.get(2) + 1 == 05 && var1.get(5) >= 29 && var1.get(5) <= 31)
