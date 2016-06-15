@@ -116,11 +116,14 @@ public class MainScreen implements ManiUiScreen {
       return;
     }
 
+
+    //
     if (myOptionsCtrl.isJustOff()) {
       im.setScreen(cmp, screens.options);
       return;
     }
 
+    //What to do when "Credits" button is pressed.
     if (myCreditsCtrl.isJustOff()) {
       im.setScreen(cmp, screens.credits);
       return;
