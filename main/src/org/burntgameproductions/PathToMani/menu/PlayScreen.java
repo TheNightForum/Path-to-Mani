@@ -118,7 +118,7 @@ public class PlayScreen implements ManiUiScreen {
       /**Load this version of the tutorial if you are using a tutorial.**/
       myTutCtrl.setEnabled(false);
     } else {
-      //Load this version of the tutorial if you are using anything but a controller.
+      /**Load this version of the tutorial if you are using anything but a controller.**/
       myTutCtrl.setEnabled(true);
     }
 
