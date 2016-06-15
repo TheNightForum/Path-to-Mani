@@ -80,14 +80,14 @@ public class MainScreen implements ManiUiScreen {
     FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
     logo = textureManager.getTexture(imageFile);
     /**Australiad Day.**/
-    FileHandle imageFile2 = FileManager.getInstance().getImagesDirectory().child("australiaday.png");
-    australiaday = textureManager.getTexture(imageFile2);
+    FileHandle imageFile1 = FileManager.getInstance().getImagesDirectory().child("australiaday.png");
+    australiaday = textureManager.getTexture(imageFile1);
     /**April Fools.**/
-    FileHandle imageFile3 = FileManager.getInstance().getImagesDirectory().child("aprilfools.png");
-    aprilfools = textureManager.getTexture(imageFile3);
+    FileHandle imageFile2 = FileManager.getInstance().getImagesDirectory().child("aprilfools.png");
+    aprilfools = textureManager.getTexture(imageFile2);
     /**New years.**/
-    FileHandle imageFile4 = FileManager.getInstance().getImagesDirectory().child("newyears.png");
-    newyears = textureManager.getTexture(imageFile4);
+    FileHandle imageFile3 = FileManager.getInstance().getImagesDirectory().child("newyears.png");
+    newyears = textureManager.getTexture(imageFile3);
     /**Wilsons bday.**/
     FileHandle imageFile4 = FileManager.getInstance().getImagesDirectory().child("wilson.png");
     wilsonBday = textureManager.getTexture(imageFile4);
