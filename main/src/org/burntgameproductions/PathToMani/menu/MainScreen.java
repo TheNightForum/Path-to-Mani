@@ -38,6 +38,7 @@ public class MainScreen implements ManiUiScreen {
   /**Boolean's for date checker**/
   private boolean isNewYear;
   private boolean isAustraliaDay;
+  private boolean isAprilFools;
 
   private final boolean isMobile;
   GameOptions gameOptions;
