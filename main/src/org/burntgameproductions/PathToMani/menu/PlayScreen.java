@@ -60,6 +60,7 @@ public class PlayScreen implements ManiUiScreen {
     myNewCtrl.setDisplayName("New Game");
     myControls.add(myNewCtrl);
 
+    /**Load Button**/
     myLoadCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.L);
     myLoadCtrl.setDisplayName("Load Game");
     myControls.add(myLoadCtrl);
