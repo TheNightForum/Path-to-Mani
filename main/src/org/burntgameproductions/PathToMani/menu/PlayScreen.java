@@ -66,7 +66,7 @@ public class PlayScreen implements ManiUiScreen {
     myBackCtrl.setDisplayName("Back");
     myControls.add(myBackCtrl);
 
-    /**The reason why we are doing it like this is so it doesnt have to use a texture atlas.**/
+    /**Logos for date changer are loaded here.**/
     //Normal
     FileHandle imageFile = FileManager.getInstance().getImagesDirectory().child("logo.png");
     logo = textureManager.getTexture(imageFile);
