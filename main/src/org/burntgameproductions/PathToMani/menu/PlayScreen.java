@@ -176,6 +176,7 @@ public class PlayScreen implements ManiUiScreen {
     else if (this.isAprilFools)
     {
       float sz = .55f;
+      //Load this logo when the date on the players computer is the same as the one we set above.
       if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(aprilfools, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
     }
     else
