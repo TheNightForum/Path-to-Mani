@@ -36,6 +36,7 @@ public class PlayScreen implements ManiUiScreen {
   private final TextureAtlas.AtlasRegion newyears;
   private final TextureAtlas.AtlasRegion aprilfools;
   private final TextureAtlas.AtlasRegion australiaday;
+  private final TextureAtlas.AtlasRegion bdayWilson;
 
   /**Boolean's for date checker**/
   private boolean isNewYears;
