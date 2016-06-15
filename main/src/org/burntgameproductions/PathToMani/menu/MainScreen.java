@@ -109,7 +109,7 @@ public class MainScreen implements ManiUiScreen {
       im.setScreen(cmp, screens.credits);
       return;
     }
-    
+
     if (myQuitCtrl.isJustOff()) {
       // Save the settings on exit, but not on mobile as settings don't exist there.
       if (isMobile == false) {
@@ -140,7 +140,6 @@ public class MainScreen implements ManiUiScreen {
   public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
     float sz = .55f;
     if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(logo, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
-    //if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(myTitleTex, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
   }
 
   @Override
