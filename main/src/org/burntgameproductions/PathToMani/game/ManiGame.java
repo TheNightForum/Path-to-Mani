@@ -510,7 +510,8 @@ public class ManiGame {
     ItemContainer ic = myHero.getItemContainer();
 
     setRespawnState(money, ic, myHero.getHull().config);
-    
+
+    /**This deducts some money from your account as a cost to respawn**/
     myHero.setMoney(money - myRespawnMoney);
     for (ManiItem item : myRespawnItems) {
       ic.remove(item);
