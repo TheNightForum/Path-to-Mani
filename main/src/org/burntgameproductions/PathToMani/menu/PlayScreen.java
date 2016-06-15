@@ -111,6 +111,7 @@ public class PlayScreen implements ManiUiScreen {
     ManiInputManager im = cmp.getInputMan();
     MenuScreens screens = cmp.getMenuScreens();
 
+    //What to do when "Tutorial" button is pressed.
     if (cmp.getOptions().controlType == GameOptions.CONTROL_CONTROLLER) {
       myTutCtrl.setEnabled(false);
     } else {
