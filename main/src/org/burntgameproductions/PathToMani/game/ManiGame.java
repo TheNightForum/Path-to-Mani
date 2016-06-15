@@ -511,6 +511,7 @@ public class ManiGame {
     /**This here will collect what items, if any the player has collected.**/
     ItemContainer ic = myHero.getItemContainer();
 
+    /**This will here tells the game what to give back the player on respawn**/
     setRespawnState(money, ic, myHero.getHull().config);
 
     /**This deducts some money from your account as a cost to respawn**/
