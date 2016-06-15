@@ -31,7 +31,7 @@ public class PlayScreen implements ManiUiScreen {
   private final ManiUiControl myLoadCtrl;
   private final ManiUiControl myBackCtrl;
 
-  //logos
+  /**We have these listed here as a texture so then we can use them later on.**/
   private final TextureAtlas.AtlasRegion logo;
   private final TextureAtlas.AtlasRegion newyears;
   private final TextureAtlas.AtlasRegion aprilfools;
