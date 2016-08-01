@@ -186,9 +186,9 @@ _________________________
 ____People Who I Will Need To Get Help From____
 
 +	Feint (Youtuber). *Will have to talk about using his music*
-+	Kids at school. *Find someone who can draw* and *get sketches
++	People at WORK. *Find someone who can draw* and *get sketches
 	from them so i can add to the game*
-+	Drawers (School, Tafe, ANYONE!) *Need logo and help with the 
++	Drawers (WORK, UNI, ANYONE!) *Need logo and help with the 
 	weapons and space ships and the enviroment*
 
 _________________________
