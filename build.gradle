@@ -29,6 +29,8 @@ allprojects {
         pmd('net.sourceforge.pmd:pmd-core:5.3.3')
         pmd('net.sourceforge.pmd:pmd-java:5.3.3')
         // the FindBugs version is set in the configuration
+        // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+       compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.38'
     }
 
     version = '1.4.0'

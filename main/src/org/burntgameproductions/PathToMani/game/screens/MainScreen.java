@@ -2,6 +2,7 @@
 
 package org.burntgameproductions.PathToMani.game.screens;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
@@ -83,7 +84,7 @@ public class MainScreen implements ManiUiScreen {
     myMenuCtrl.setDisplayName("Menu");
     myControls.add(myMenuCtrl);
     Rectangle mapArea = mobile ? btn(0, HELPER_ROW_1, true) : rightPaneLayout.buttonRect(1);
-    mapCtrl = new ManiUiControl(mapArea, true, gameOptions.getKeyMap());
+    mapCtrl = new ManiUiControl(mapArea, true, gameOptions.getKeyMap(), Input.Keys.M);
     mapCtrl.setDisplayName("Map");
     myControls.add(mapCtrl);
     Rectangle invArea = mobile ? btn(lastCol, HELPER_ROW_1, true) : rightPaneLayout.buttonRect(2);

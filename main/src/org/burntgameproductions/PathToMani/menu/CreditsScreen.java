@@ -23,11 +23,13 @@ public class CreditsScreen implements ManiUiScreen {
   private int myIdx;
   private float myPerc;
 
-  public CreditsScreen(float r, GameOptions gameOptions) {
+  public CreditsScreen(MenuLayout menuLayout, float r, GameOptions gameOptions) {
     myControls = new ArrayList<ManiUiControl>();
-    myCloseCtrl = new ManiUiControl(MainScreen.creditsBtnRect(r), true, gameOptions.getKeyEscape());
-    myCloseCtrl.setDisplayName("Close");
+
+    myCloseCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+    myCloseCtrl.setDisplayName("Back");
     myControls.add(myCloseCtrl);
+
     myColor = ManiColor.col(1, 1);
 
     myPages = new ArrayList<String>();
@@ -52,28 +54,28 @@ public class CreditsScreen implements ManiUiScreen {
         "Additional drawing:",
         "Julia Nikolaeva"
       },
-            {
-                "Burnt Games Productions Team:",
-                "",
-                "Team Leader: CrazyWolf",
-                "Programmer: stur86 & CrazyWolf",
-                "Ideas: xXDahChubChubXx",
-                "Music selection: KittoDJ",
-                "Art: CrazyWolf"
-            },
-            {
-                    "MovingBlocks team on GitHub",
-                    "",
-                    "Cervator",
-                    "Rulasmur",
-                    "theotherjay",
-                    "LinusVanElswijk",
-                    "SimonC4",
-                    "grauerkoala",
-                    "rzats",
-                    "LadySerenaKitty",
-                    "askneller"
-            },
+      {
+        "Burnt Games Productions Team:",
+        "",
+        "Team Leader: CrazyWolf",
+        "Programmer: stur86 & CrazyWolf",
+        "Ideas: xXDahChubChubXx",
+        "Music selection: KittoDJ",
+        "Art: CrazyWolf"
+      },
+      {
+        "MovingBlocks team on GitHub",
+        "",
+        "Cervator",
+        "Rulasmur",
+        "theotherjay",
+        "LinusVanElswijk",
+        "SimonC4",
+        "grauerkoala",
+        "rzats",
+        "LadySerenaKitty",
+        "askneller"
+      },
       {
         "Music by",
         "",

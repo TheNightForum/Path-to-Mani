@@ -32,6 +32,7 @@ public class MainScreen implements ManiUiScreen {
   private final ManiUiControl myCreditsCtrl;
   private final ManiUiControl myQuitCtrl;
 
+
   /**We have these listed here as a texture so then we can use them later on.**/
   private final TextureAtlas.AtlasRegion logo;
   private final TextureAtlas.AtlasRegion aprilfools;
@@ -91,10 +92,10 @@ public class MainScreen implements ManiUiScreen {
     FileHandle imageFile3 = FileManager.getInstance().getImagesDirectory().child("newyears.png");
     newyears = textureManager.getTexture(imageFile3);
     /**Wilsons bday.**/
-    FileHandle imageFile4 = FileManager.getInstance().getImagesDirectory().child("wilson.png");
+    FileHandle imageFile4 = FileManager.getInstance().getImagesDirectory().child("newyears.png"); //TODO: fix image to wilson.png
     wilsonBday = textureManager.getTexture(imageFile4);
     /**Wolf Bday.**/
-    FileHandle imageFile5 = FileManager.getInstance().getImagesDirectory().child("wolf.png");
+    FileHandle imageFile5 = FileManager.getInstance().getImagesDirectory().child("newyears.png"); //TODO: fix image to wolf.png
     bdayWolf = textureManager.getTexture(imageFile5);
 
     /**Calendar**/

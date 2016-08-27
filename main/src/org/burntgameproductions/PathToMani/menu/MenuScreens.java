@@ -16,6 +16,7 @@ public class MenuScreens {
   public final NewGameScreen newGame;
   public final NewShipScreen newShip;
   public final PlayScreen playScreen;
+  public final ControlsScreen controlsScreen;
 
   //TODO: Dan... this is it.
 
@@ -25,11 +26,12 @@ public class MenuScreens {
     options = new OptionsScreen(menuLayout, gameOptions);
     inputMapScreen = new InputMapScreen(r, gameOptions);
     resolutionScreen = new ResolutionScreen(menuLayout, gameOptions);
-    credits = new CreditsScreen(r, gameOptions);
+    credits = new CreditsScreen(menuLayout, r, gameOptions);
     loading = new LoadingScreen();
     newGame = new NewGameScreen(menuLayout, gameOptions);
     newShip = new NewShipScreen(menuLayout, gameOptions);
     playScreen = new PlayScreen(menuLayout, textureManager, mobile, r, gameOptions);
+    controlsScreen = new ControlsScreen(menuLayout, gameOptions);
   }
 
 }

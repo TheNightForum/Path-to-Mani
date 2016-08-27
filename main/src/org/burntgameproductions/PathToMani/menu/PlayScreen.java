@@ -90,10 +90,10 @@ public class PlayScreen implements ManiUiScreen {
     FileHandle imageFile3 = FileManager.getInstance().getImagesDirectory().child("newyears.png");
     newyears = textureManager.getTexture(imageFile3);
     /**Wilsons bday.**/
-    FileHandle imageFile4 = FileManager.getInstance().getImagesDirectory().child("wilson.png");
+    FileHandle imageFile4 = FileManager.getInstance().getImagesDirectory().child("newyears.png"); //TODO: fix image to wilson.png
     bdayWilson = textureManager.getTexture(imageFile4);
     /**Wolf Bday.**/
-    FileHandle imageFile5 = FileManager.getInstance().getImagesDirectory().child("wolf.png");
+    FileHandle imageFile5 = FileManager.getInstance().getImagesDirectory().child("newyears.png"); //TODO: fix image to wolf.png
     bdayWolf = textureManager.getTexture(imageFile5);
 
      /**Calendar**/
