@@ -66,6 +66,7 @@ public class MenuScreen implements ManiUiScreen {
 
     if (myOptionsCtrl.isJustOff()) {
       g.setPaused(true);
+      im.setScreen(cmp, g.getScreens().optionsScreen);
       return;
     }
 

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class SystemsBuilder {
   /**This code here is the amount of solar systems on the map for the player to explore.**/
-  public static final int SYS_COUNT = 50;
+  public static final int SYS_COUNT = 25;
   //TODO: MAKE ^^^ NEVER ENDING AND LOAD IT IN CHUNCKS
   //TODO: Maybe dumb it down a bit for android version. :)
   //TODO: Add solar system names.
