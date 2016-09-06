@@ -2,7 +2,7 @@
 
 package org.burntgameproductions.PathToMani.game.screens;
 
-import org.burntgameproductions.PathToMani.menu.OptionsScreen;
+import org.burntgameproductions.PathToMani.menu.GameOptionsScreen;
 import org.burntgameproductions.PathToMani.ui.ManiLayouts;
 import org.burntgameproductions.PathToMani.ManiApplication;
 
@@ -12,7 +12,7 @@ public class GameScreens {
   public final MenuScreen menuScreen;
   public final InventoryScreen inventoryScreen;
   public final TalkScreen talkScreen;
-  public final OptionsScreen optionsScreen;
+  public final GameOptionsScreen optionsScreen;
 
   //TODO: Dan here it is...
 
@@ -24,7 +24,7 @@ public class GameScreens {
     menuScreen = new MenuScreen(layouts.menuLayout, cmp.getOptions());
     inventoryScreen = new InventoryScreen(r, cmp.getOptions());
     talkScreen = new TalkScreen(layouts.menuLayout, cmp.getOptions());
-    optionsScreen = new OptionsScreen(layouts.menuLayout, cmp.getOptions());
+    optionsScreen = new GameOptionsScreen(layouts.menuLayout, cmp.getOptions());
   }
 
 }
