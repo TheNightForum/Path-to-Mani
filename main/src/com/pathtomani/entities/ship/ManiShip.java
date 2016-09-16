@@ -23,14 +23,14 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.*;
-import com.pathtomani.game.dra.Dra;
+import com.pathtomani.managers.dra.Dra;
 import com.pathtomani.entities.gun.GunItem;
 import com.pathtomani.entities.ship.hulls.HullConfig;
-import com.pathtomani.game.sound.ManiSound;
-import com.pathtomani.game.sound.SoundManager;
+import com.pathtomani.managers.sound.ManiSound;
+import com.pathtomani.managers.sound.SoundManager;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.entities.gun.GunMount;
-import com.pathtomani.game.input.Pilot;
+import com.pathtomani.managers.input.Pilot;
 import com.pathtomani.entities.item.Armor;
 import com.pathtomani.entities.item.ItemContainer;
 import com.pathtomani.entities.item.Shield;
@@ -42,7 +42,7 @@ import com.pathtomani.entities.item.RepairItem;
 import com.pathtomani.entities.item.EngineItem;
 import com.pathtomani.gfx.particle.ParticleSrc;
 import com.pathtomani.entities.ship.hulls.Hull;
-import com.pathtomani.game.sound.SpecialSounds;
+import com.pathtomani.managers.sound.SpecialSounds;
 
 import java.util.List;
 
