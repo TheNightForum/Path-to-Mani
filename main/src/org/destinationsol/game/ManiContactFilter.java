@@ -20,10 +20,10 @@ import com.badlogic.gdx.physics.box2d.ContactFilter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import org.destinationsol.game.projectile.Projectile;
 
-public class SolContactFilter implements ContactFilter {
+public class ManiContactFilter implements ContactFilter {
   private final FactionManager myFactionManager;
 
-  public SolContactFilter(FactionManager factionManager) {
+  public ManiContactFilter(FactionManager factionManager) {
     myFactionManager = factionManager;
   }
 

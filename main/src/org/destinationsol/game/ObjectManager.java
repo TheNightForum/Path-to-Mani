@@ -58,7 +58,7 @@ public class ObjectManager {
     myFarPorts = new ArrayList<StarPort.MyFar>();
     myWorld = new World(new Vector2(0, 0), true);
     myWorld.setContactListener(contactListener);
-    myWorld.setContactFilter(new SolContactFilter(factionManager));
+    myWorld.setContactFilter(new ManiContactFilter(factionManager));
     myDr = new Box2DDebugRenderer();
     myRadii = new HashMap<ManiObject, Float>();
   }
