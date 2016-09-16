@@ -21,8 +21,8 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.FarObj;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
-import com.pathtomani.game.dra.Dra;
-import com.pathtomani.game.dra.DraMan;
+import com.pathtomani.managers.dra.Dra;
+import com.pathtomani.managers.dra.DraMan;
 
 import java.util.List;
 
