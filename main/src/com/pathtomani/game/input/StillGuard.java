@@ -22,7 +22,7 @@ import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ShipConfig;
 import com.pathtomani.game.planet.PlanetBind;
 import com.pathtomani.game.ship.hulls.HullConfig;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.game.ship.ManiShip;
 
 public class StillGuard implements MoveDestProvider {
