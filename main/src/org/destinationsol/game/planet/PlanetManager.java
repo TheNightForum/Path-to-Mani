@@ -63,7 +63,7 @@ public class PlanetManager {
     myPlanetCore = new PlanetCoreSingleton(textureManager);
   }
 
-  public void fill(SolNames names) {
+  public void fill(ManiNames names) {
     new SystemsBuilder().build(mySystems, myPlanets, myBelts, myPlanetConfigs, myMazeConfigs, myMazes, mySysConfigs, names);
   }
 

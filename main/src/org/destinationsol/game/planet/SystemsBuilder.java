@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DebugOptions;
-import org.destinationsol.game.SolNames;
+import org.destinationsol.game.ManiNames;
 import org.destinationsol.game.maze.Maze;
 import org.destinationsol.game.maze.MazeConfig;
 import org.destinationsol.game.maze.MazeConfigs;
@@ -40,7 +40,7 @@ public class SystemsBuilder {
 
   public List<SolSystem> build(List<SolSystem> systems, List<Planet> planets, ArrayList<SystemBelt> belts,
     PlanetConfigs planetConfigs,
-    MazeConfigs mazeConfigs, ArrayList<Maze> mazes, SysConfigs sysConfigs, SolNames names)
+    MazeConfigs mazeConfigs, ArrayList<Maze> mazes, SysConfigs sysConfigs, ManiNames names)
   {
     int sysLeft = SYS_COUNT;
     int mazesLeft = MAZE_COUNT;
@@ -129,8 +129,8 @@ public class SystemsBuilder {
   }
 
   private SolSystem createSystem(List<Float> ghs, Vector2 sysPos, List<Planet> planets, ArrayList<SystemBelt> belts,
-    PlanetConfigs planetConfigs,
-    float sysRadius, SysConfigs sysConfigs, SolNames names, boolean firstSys)
+                                 PlanetConfigs planetConfigs,
+                                 float sysRadius, SysConfigs sysConfigs, ManiNames names, boolean firstSys)
   {
     boolean hard = !firstSys;
     String st = DebugOptions.FORCE_SYSTEM_TYPE;
@@ -177,7 +177,7 @@ public class SystemsBuilder {
   }
 
   private Planet createPlanet(float planetDist, SolSystem s, float groundHeight, PlanetConfig planetConfig,
-    SolNames names) {
+    ManiNames names) {
     float toSysRotSpd = ManiMath.arcToAngle(PLANET_SPD, planetDist) * ManiMath.toInt(ManiMath.test(.5f));
     float rotSpd = ManiMath.arcToAngle(GROUND_SPD, groundHeight)  * ManiMath.toInt(ManiMath.test(.5f));
     String name = ManiMath.elemRnd(names.planets);

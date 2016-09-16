@@ -83,7 +83,7 @@ public class SolGame {
   private final SpecialEffects mySpecialEffects;
   private final GameColors gameColors;
   private final AbilityCommonConfigs myAbilityCommonConfigs;
-  private final SolNames myNames;
+  private final ManiNames myNames;
   private final BeaconHandler myBeaconHandler;
   private final MountDetectDrawer myMountDetectDrawer;
   private final TutorialManager myTutorialManager;
@@ -117,7 +117,7 @@ public class SolGame {
     myItemManager = new ItemManager(myTextureManager, mySoundManager, myEffectTypes, gameColors);
     myAbilityCommonConfigs = new AbilityCommonConfigs(myEffectTypes, myTextureManager, gameColors, mySoundManager);
     hullConfigManager = new HullConfigManager(myShipBuilder, FileManager.getInstance(), textureManager, myItemManager, myAbilityCommonConfigs, mySoundManager);
-    myNames = new SolNames();
+    myNames = new ManiNames();
     myPlanetManager = new PlanetManager(myTextureManager, hullConfigManager, gameColors, myItemManager);
     SolContactListener contactListener = new SolContactListener(this);
     myFactionManager = new FactionManager();
