@@ -21,11 +21,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.game.dra.Dra;
+import com.pathtomani.managers.dra.Dra;
 import com.pathtomani.entities.ship.ShipBuilder;
 import com.pathtomani.gfx.TextureManager;
 import com.pathtomani.entities.asteroid.AsteroidBuilder;
-import com.pathtomani.game.dra.DraLevel;
+import com.pathtomani.managers.dra.DraLevel;
 
 import java.util.ArrayList;
 
