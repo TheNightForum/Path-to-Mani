@@ -17,7 +17,7 @@
 package com.pathtomani.game.screens;
 
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.ship.ManiShip;
 
 public class DmgWarnDrawer extends WarnDrawer {
 
