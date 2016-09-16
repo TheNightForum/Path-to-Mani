@@ -21,7 +21,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.GameOptions;
-import org.destinationsol.SolApplication;
+import org.destinationsol.ManiApplication;
 import org.destinationsol.common.SolColor;
 import org.destinationsol.ui.*;
 
@@ -140,7 +140,7 @@ public class InputMapScreen implements SolUiScreen {
     }
 
     @Override
-    public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
         GameOptions gameOptions = cmp.getOptions();
         SolInputManager im = cmp.getInputMan();
         MenuScreens screens = cmp.getMenuScreens();
@@ -229,17 +229,17 @@ public class InputMapScreen implements SolUiScreen {
     }
 
     @Override
-    public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+    public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
 
     }
 
     @Override
-    public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+    public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
 
     }
 
     @Override
-    public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+    public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
         GameOptions gameOptions = cmp.getOptions();
         List<InputConfigItem> list = operations.getItems(gameOptions);
 
@@ -283,7 +283,7 @@ public class InputMapScreen implements SolUiScreen {
     }
 
     @Override
-    public void onAdd(SolApplication cmp) {
+    public void onAdd(ManiApplication cmp) {
         // Add any extra screen information as required by the input screens. E.g. buttons
         if (operations != null) {
             cmp.getInputMan().addScreen(cmp, operations);
@@ -294,7 +294,7 @@ public class InputMapScreen implements SolUiScreen {
     }
 
     @Override
-    public void blurCustom(SolApplication cmp) {
+    public void blurCustom(ManiApplication cmp) {
 
     }
 

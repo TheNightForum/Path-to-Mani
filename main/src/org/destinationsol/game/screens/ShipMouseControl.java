@@ -19,7 +19,7 @@ package org.destinationsol.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import org.destinationsol.SolApplication;
+import org.destinationsol.ManiApplication;
 import org.destinationsol.game.BeaconHandler;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.ship.SolShip;
@@ -33,7 +33,7 @@ public class ShipMouseControl implements ShipUiControl {
 
   private TextureAtlas.AtlasRegion myCursor;
 
-  public ShipMouseControl(SolApplication cmp) {
+  public ShipMouseControl(ManiApplication cmp) {
     myMoveCursor = cmp.getTexMan().getTex("ui/cursorMove", null);
     myAttackCursor = cmp.getTexMan().getTex("ui/cursorAttack", null);
     myFollowCursor = cmp.getTexMan().getTex("ui/cursorFollow", null);
@@ -41,7 +41,7 @@ public class ShipMouseControl implements ShipUiControl {
   }
 
   @Override
-  public void update(SolApplication cmp, boolean enabled) {
+  public void update(ManiApplication cmp, boolean enabled) {
     SolGame g = cmp.getGame();
     SolShip h = g.getHero();
     myCursor = null;

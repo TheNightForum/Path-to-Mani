@@ -21,7 +21,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.GameOptions;
-import org.destinationsol.SolApplication;
+import org.destinationsol.ManiApplication;
 import org.destinationsol.common.SolColor;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.item.ItemContainer;
@@ -138,7 +138,7 @@ public class InventoryScreen implements SolUiScreen {
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
     if (clickedOutside) {
       closeCtrl.maybeFlashPressed(cmp.getOptions().getKeyClose());
       return;
@@ -201,19 +201,19 @@ public class InventoryScreen implements SolUiScreen {
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
     if (myOperations != null) cmp.getInputMan().addScreen(cmp, myOperations);
     myPage = 0;
     mySelected = null;
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
     uiDrawer.draw(myArea, SolColor.UI_BG);
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
     SolGame game = cmp.getGame();
     ItemContainer ic = myOperations.getItems(game);
     if (ic == null) ic = EMPTY_CONTAINER;
@@ -239,7 +239,7 @@ public class InventoryScreen implements SolUiScreen {
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
     SolGame game = cmp.getGame();
     ItemContainer ic = myOperations.getItems(game);
     if (ic == null) ic = EMPTY_CONTAINER;
@@ -286,7 +286,7 @@ public class InventoryScreen implements SolUiScreen {
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
     if (!showingHeroItems()) return;
     SolGame game = cmp.getGame();
     ItemContainer items = myOperations.getItems(game);

@@ -18,7 +18,7 @@ package org.destinationsol.game.screens;
 
 import com.badlogic.gdx.math.Rectangle;
 import org.destinationsol.GameOptions;
-import org.destinationsol.SolApplication;
+import org.destinationsol.ManiApplication;
 import org.destinationsol.game.MapDrawer;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.ui.SolInputManager;
@@ -61,7 +61,7 @@ public class MapScreen implements SolUiScreen {
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
     SolGame g = cmp.getGame();
     GameOptions gameOptions = cmp.getOptions();
     boolean justClosed = closeCtrl.isJustOff();
@@ -91,16 +91,16 @@ public class MapScreen implements SolUiScreen {
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
@@ -114,12 +114,12 @@ public class MapScreen implements SolUiScreen {
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
 
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
 
   }
 }

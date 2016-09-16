@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
-import org.destinationsol.SolApplication;
+import org.destinationsol.ManiApplication;
 import org.destinationsol.common.SolColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.*;
@@ -44,7 +44,7 @@ public class BorderDrawer {
   private final ArrayList<Tishch> myTishches;
   private final Vector2 myTmpVec = new Vector2();
 
-  public BorderDrawer(float r, SolApplication cmp) {
+  public BorderDrawer(float r, ManiApplication cmp) {
     TextureAtlas.AtlasRegion tex = cmp.getTexMan().getTex("ui/tishch", null);
     int hCellCount = (int) (r / TISHCH_SZ);
     int vCellCount = (int) (1 / TISHCH_SZ);
@@ -71,7 +71,7 @@ public class BorderDrawer {
     }
   }
 
-  public void draw(UiDrawer drawer, SolApplication cmp) {
+  public void draw(UiDrawer drawer, ManiApplication cmp) {
     SolGame g = cmp.getGame();
     SolCam cam = g.getCam();
     Vector2 camPos = cam.getPos();

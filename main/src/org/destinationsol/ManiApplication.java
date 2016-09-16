@@ -37,7 +37,7 @@ import org.destinationsol.ui.UiDrawer;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public class SolApplication implements ApplicationListener {
+public class ManiApplication implements ApplicationListener {
 
   private SolInputManager myInputMan;
   private UiDrawer myUiDrawer;
@@ -55,7 +55,7 @@ public class SolApplication implements ApplicationListener {
   private float myAccum = 0;
   private SolGame myGame;
 
-  public SolApplication() {
+  public ManiApplication() {
     // Initiate Box2D to make sure natives are loaded early enough
     Box2D.init();
   }

@@ -17,10 +17,10 @@
 package org.destinationsol.game.screens;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.destinationsol.SolApplication;
+import org.destinationsol.ManiApplication;
 
 public interface ShipUiControl {
-  void update(SolApplication cmp, boolean enabled);
+  void update(ManiApplication cmp, boolean enabled);
   boolean isLeft();
   boolean isRight();
   boolean isUp();

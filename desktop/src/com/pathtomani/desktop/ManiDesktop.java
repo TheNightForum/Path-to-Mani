@@ -19,7 +19,7 @@ import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import org.destinationsol.GameOptions;
-import org.destinationsol.SolApplication;
+import org.destinationsol.ManiApplication;
 import org.destinationsol.SolFileReader;
 import org.destinationsol.game.DebugOptions;
 import org.destinationsol.soundtest.SoundTestListener;
@@ -100,7 +100,7 @@ public class ManiDesktop {
             }
         });
 
-        new LwjglApplication(new SolApplication(), c);
+        new LwjglApplication(new ManiApplication(), c);
     }
 
     private static class MyReader implements SolFileReader {

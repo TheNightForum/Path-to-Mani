@@ -18,7 +18,7 @@ package org.destinationsol.game.screens;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import org.destinationsol.GameOptions;
-import org.destinationsol.SolApplication;
+import org.destinationsol.ManiApplication;
 import org.destinationsol.game.gun.GunItem;
 import org.destinationsol.game.ship.SolShip;
 import org.destinationsol.ui.SolUiControl;
@@ -34,7 +34,7 @@ public class ShipKbControl implements ShipUiControl {
   public final SolUiControl shoot2Ctrl;
   public final SolUiControl abilityCtrl;
 
-  public ShipKbControl(SolApplication cmp, float r, List<SolUiControl> controls) {
+  public ShipKbControl(ManiApplication cmp, float r, List<SolUiControl> controls) {
     GameOptions gameOptions = cmp.getOptions();
     boolean showButtons = cmp.isMobile();
     float col0 = 0;
@@ -67,7 +67,7 @@ public class ShipKbControl implements ShipUiControl {
   }
 
   @Override
-  public void update(SolApplication cmp, boolean enabled) {
+  public void update(ManiApplication cmp, boolean enabled) {
     if (!enabled) {
       upCtrl.setEnabled(false);
       leftCtrl.setEnabled(false);

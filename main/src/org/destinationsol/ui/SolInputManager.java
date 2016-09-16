@@ -27,7 +27,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.GameOptions;
-import org.destinationsol.SolApplication;
+import org.destinationsol.ManiApplication;
 import org.destinationsol.TextureManager;
 import org.destinationsol.common.SolColor;
 import org.destinationsol.common.SolMath;
@@ -130,7 +130,7 @@ public class SolInputManager {
 
   }
 
-  public void setScreen(SolApplication cmp, SolUiScreen screen) {
+  public void setScreen(ManiApplication cmp, SolUiScreen screen) {
     for (int i = 0, myScreensSize = myScreens.size(); i < myScreensSize; i++) {
       SolUiScreen oldScreen = myScreens.get(i);
       removeScreen(oldScreen, cmp);
@@ -138,12 +138,12 @@ public class SolInputManager {
     addScreen(cmp, screen);
   }
 
-  public void addScreen(SolApplication cmp, SolUiScreen screen) {
+  public void addScreen(ManiApplication cmp, SolUiScreen screen) {
     myToAdd.add(screen);
     screen.onAdd(cmp);
   }
 
-  private void removeScreen(SolUiScreen screen, SolApplication cmp) {
+  private void removeScreen(SolUiScreen screen, ManiApplication cmp) {
     myToRemove.add(screen);
     List<SolUiControl> controls = screen.getControls();
     for (int i = 0, controlsSize = controls.size(); i < controlsSize; i++) {
@@ -165,7 +165,7 @@ public class SolInputManager {
     ptr.y = 1f * screenY / h;
   }
 
-  public void update(SolApplication cmp) {
+  public void update(ManiApplication cmp) {
     boolean mobile = cmp.isMobile();
     SolGame game = cmp.getGame();
 
@@ -256,7 +256,7 @@ public class SolInputManager {
     myToAdd.clear();
   }
 
-  private void updateCursor(SolApplication cmp) {
+  private void updateCursor(ManiApplication cmp) {
     if (cmp.isMobile()) return;
     SolGame game = cmp.getGame();
 
@@ -301,7 +301,7 @@ public class SolInputManager {
     }
   }
 
-  public void draw(UiDrawer uiDrawer, SolApplication cmp) {
+  public void draw(UiDrawer uiDrawer, ManiApplication cmp) {
     for (int i = myScreens.size() - 1; i >= 0; i--) {
       SolUiScreen screen = myScreens.get(i);
 
@@ -344,11 +344,11 @@ public class SolInputManager {
     return myMouseOnUi;
   }
 
-  public void playHover(SolApplication cmp) {
+  public void playHover(ManiApplication cmp) {
     myHoverSound.play(.7f * cmp.getOptions().volMul, .7f, 0);
   }
 
-  public void playClick(SolApplication cmp) {
+  public void playClick(ManiApplication cmp) {
     myHoverSound.play(.7f * cmp.getOptions().volMul, .9f, 0);
   }
 

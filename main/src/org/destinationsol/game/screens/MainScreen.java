@@ -22,7 +22,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.GameOptions;
-import org.destinationsol.SolApplication;
+import org.destinationsol.ManiApplication;
 import org.destinationsol.TextureManager;
 import org.destinationsol.common.SolColor;
 import org.destinationsol.common.SolMath;
@@ -76,7 +76,7 @@ public class MainScreen implements SolUiScreen {
   public static final float HELPER_ROW_2 = HELPER_ROW_1 - .5f * MainScreen.CELL_SZ;
 
 
-  public MainScreen(float r, RightPaneLayout rightPaneLayout, SolApplication cmp) {
+  public MainScreen(float r, RightPaneLayout rightPaneLayout, ManiApplication cmp) {
     myControls = new ArrayList<SolUiControl>();
     GameOptions gameOptions = cmp.getOptions();
 
@@ -141,7 +141,7 @@ public class MainScreen implements SolUiScreen {
     myMoneyExcessTp = new TextPlace(SolColor.W);
   }
 
-  public void maybeDrawHeight(UiDrawer drawer, SolApplication cmp) {
+  public void maybeDrawHeight(UiDrawer drawer, ManiApplication cmp) {
     SolGame game = cmp.getGame();
     Planet np = game.getPlanetMan().getNearestPlanet();
     SolCam cam = game.getCam();
@@ -178,7 +178,7 @@ public class MainScreen implements SolUiScreen {
   }
 
   @Override
-  public void updateCustom(SolApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
     if (DebugOptions.PRINT_BALANCE) {
       cmp.finishGame();
       return;
@@ -254,7 +254,7 @@ public class MainScreen implements SolUiScreen {
     talkCtrl.setEnabled(target != null);
     if (talkCtrl.isJustOff()) {
       TalkScreen talkScreen = game.getScreens().talkScreen;
-      SolApplication cmp = game.getCmp();
+      ManiApplication cmp = game.getCmp();
       SolInputManager inputMan = cmp.getInputMan();
       boolean isOn = inputMan.isScreenOn(talkScreen);
       inputMan.setScreen(cmp, this);
@@ -332,16 +332,16 @@ public class MainScreen implements SolUiScreen {
   }
 
   @Override
-  public void onAdd(SolApplication cmp) {
+  public void onAdd(ManiApplication cmp) {
 
   }
 
   @Override
-  public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
   }
 
   @Override
-  public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
     myLifeTp.text = null;
     myRepairsExcessTp.text = null;
     myShieldLifeTp.text = null;
@@ -408,7 +408,7 @@ public class MainScreen implements SolUiScreen {
   }
 
   @Override
-  public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+  public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
     myLifeTp.draw(uiDrawer);
     myRepairsExcessTp.draw(uiDrawer);
     myShieldLifeTp.draw(uiDrawer);
@@ -436,7 +436,7 @@ public class MainScreen implements SolUiScreen {
   }
 
   @Override
-  public void blurCustom(SolApplication cmp) {
+  public void blurCustom(ManiApplication cmp) {
     shipControl.blur();
   }
 
