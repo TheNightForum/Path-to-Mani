@@ -29,7 +29,7 @@ import com.pathtomani.files.HullConfigManager;
 import com.pathtomani.game.dra.Dra;
 import com.pathtomani.game.dra.RectSprite;
 import com.pathtomani.game.ship.hulls.HullConfig;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.game.dra.DraLevel;

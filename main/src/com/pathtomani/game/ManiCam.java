@@ -21,7 +21,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.planet.Planet;

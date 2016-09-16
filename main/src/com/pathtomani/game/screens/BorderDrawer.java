@@ -29,7 +29,7 @@ import com.pathtomani.game.planet.SunSingleton;
 import com.pathtomani.game.ship.FarShip;
 import com.pathtomani.game.ship.ManiShip;
 import com.pathtomani.ui.UiDrawer;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.common.ManiColor;
 
 import java.util.ArrayList;

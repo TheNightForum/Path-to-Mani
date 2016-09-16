@@ -18,7 +18,7 @@ package com.pathtomani.menu;
 
 import com.badlogic.gdx.Input;
 import com.pathtomani.ui.ManiInputManager;
-import com.pathtomani.GameOptions;
+import com.pathtomani.common.GameOptions;
 import com.pathtomani.ManiApplication;
 import com.pathtomani.ui.ManiUiControl;
 import com.pathtomani.ui.ManiUiScreen;

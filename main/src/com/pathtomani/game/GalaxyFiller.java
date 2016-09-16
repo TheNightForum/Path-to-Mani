@@ -24,7 +24,7 @@ import com.pathtomani.game.maze.Maze;
 import com.pathtomani.game.planet.*;
 import com.pathtomani.game.ship.FarShip;
 import com.pathtomani.game.ship.hulls.HullConfig;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 
 import java.util.ArrayList;
 

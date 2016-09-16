@@ -21,8 +21,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.ManiApplication;
 import com.pathtomani.ui.*;
-import com.pathtomani.Const;
-import com.pathtomani.GameOptions;
+import com.pathtomani.common.Const;
+import com.pathtomani.common.GameOptions;
 import com.pathtomani.common.ManiColor;
 
 import java.util.ArrayList;

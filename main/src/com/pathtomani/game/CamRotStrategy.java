@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.planet.Planet;
 import com.pathtomani.game.planet.ManiSystem;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 
 public interface CamRotStrategy {
   public float getRotation(Vector2 pos, ManiGame game);

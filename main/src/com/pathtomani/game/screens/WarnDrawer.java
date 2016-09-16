@@ -21,7 +21,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.ui.UiDrawer;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.ui.FontSize;
 

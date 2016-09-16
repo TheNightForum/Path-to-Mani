@@ -17,7 +17,7 @@
 package com.pathtomani.menu;
 
 
-import com.pathtomani.GameOptions;
+import com.pathtomani.common.GameOptions;
 import com.pathtomani.ui.ManiUiScreen;
 
 import java.util.List;

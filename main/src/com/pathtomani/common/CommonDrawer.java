@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pathtomani;
+package com.pathtomani.common;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -25,7 +25,6 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.pathtomani.common.ManiMath;
 import com.pathtomani.files.FileManager;
 
 public class CommonDrawer {

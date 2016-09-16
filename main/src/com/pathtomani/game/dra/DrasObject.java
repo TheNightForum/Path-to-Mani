@@ -19,7 +19,7 @@ package com.pathtomani.game.dra;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.pathtomani.game.*;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.common.Consumed;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.planet.Planet;

@@ -17,8 +17,8 @@
 package com.pathtomani.game;
 
 import com.badlogic.gdx.math.Vector2;
-import com.pathtomani.IniReader;
-import com.pathtomani.ManiFileReader;
+import com.pathtomani.common.IniReader;
+import com.pathtomani.common.ManiFileReader;
 
 public class DebugOptions {
   public static String DEV_ROOT_PATH;

@@ -24,7 +24,7 @@ import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.item.ManiItemType;
 import com.pathtomani.game.item.ManiItemTypes;
-import com.pathtomani.TextureManager;
+import com.pathtomani.common.TextureManager;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.game.item.ItemManager;
 

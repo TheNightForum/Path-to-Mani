@@ -17,7 +17,7 @@
 package com.pathtomani.game.maze;
 
 import com.badlogic.gdx.math.Vector2;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.game.HardnessCalc;
 import com.pathtomani.game.ManiCam;
 import com.pathtomani.game.ManiGame;

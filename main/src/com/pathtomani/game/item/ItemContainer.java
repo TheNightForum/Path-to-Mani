@@ -17,7 +17,7 @@
 package com.pathtomani.game.item;
 
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 
 import java.util.*;
 

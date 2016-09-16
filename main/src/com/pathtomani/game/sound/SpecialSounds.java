@@ -20,7 +20,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.game.DmgType;
 import com.pathtomani.game.ManiGame;

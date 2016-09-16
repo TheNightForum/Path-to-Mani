@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pathtomani;
+package com.pathtomani.common;
 
 import java.nio.file.Path;
 import java.util.List;

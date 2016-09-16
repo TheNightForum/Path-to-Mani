@@ -19,7 +19,7 @@ package com.pathtomani.game.screens;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.game.planet.Planet;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.planet.PlanetManager;
 import com.pathtomani.game.planet.ManiSystem;

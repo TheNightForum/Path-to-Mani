@@ -21,7 +21,7 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.planet.Planet;
 import com.pathtomani.game.ship.ManiShip;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 
 public class Mover {
   public static final float MIN_MOVE_AAD = 2f;

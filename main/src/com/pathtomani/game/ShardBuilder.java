@@ -23,7 +23,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.dra.Dra;
 import com.pathtomani.game.ship.ShipBuilder;
-import com.pathtomani.TextureManager;
+import com.pathtomani.common.TextureManager;
 import com.pathtomani.game.asteroid.AsteroidBuilder;
 import com.pathtomani.game.dra.DraLevel;
 

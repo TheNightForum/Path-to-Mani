@@ -24,7 +24,7 @@ import com.pathtomani.game.particle.EffectTypes;
 import com.pathtomani.game.projectile.ProjectileConfigs;
 import com.pathtomani.game.ship.AbilityCharge;
 import com.pathtomani.game.sound.SoundManager;
-import com.pathtomani.TextureManager;
+import com.pathtomani.common.TextureManager;
 import com.pathtomani.game.gun.GunConfig;
 
 import java.util.ArrayList;

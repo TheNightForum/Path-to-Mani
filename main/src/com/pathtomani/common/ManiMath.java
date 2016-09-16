@@ -21,7 +21,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.Pool;
-import com.pathtomani.Const;
 
 import java.util.ArrayList;
 import java.util.List;

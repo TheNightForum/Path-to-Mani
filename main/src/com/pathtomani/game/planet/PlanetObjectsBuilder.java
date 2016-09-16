@@ -21,7 +21,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.DebugOptions;
@@ -37,7 +37,7 @@ import com.pathtomani.game.input.StillGuard;
 import com.pathtomani.game.item.TradeConfig;
 import com.pathtomani.game.ship.FarShip;
 import com.pathtomani.game.ship.hulls.HullConfig;
-import com.pathtomani.TextureManager;
+import com.pathtomani.common.TextureManager;
 import com.pathtomani.game.dra.DraLevel;
 
 import java.util.ArrayList;

@@ -23,7 +23,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.game.GameColors;
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.TextureManager;
+import com.pathtomani.common.TextureManager;
 import com.pathtomani.game.dra.DraLevel;
 
 import java.util.ArrayList;

@@ -22,7 +22,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 
 import java.util.ArrayList;
 

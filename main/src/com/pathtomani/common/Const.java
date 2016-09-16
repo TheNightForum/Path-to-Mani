@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pathtomani;
+package com.pathtomani.common;
 
 public class Const {
   public static final float ATM_HEIGHT = 14f;

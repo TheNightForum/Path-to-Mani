@@ -21,7 +21,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.pathtomani.ui.ManiInputManager;
-import com.pathtomani.GameOptions;
+import com.pathtomani.common.GameOptions;
 import com.pathtomani.ManiApplication;
 import com.pathtomani.ui.ManiUiControl;
 import com.pathtomani.ui.UiDrawer;
