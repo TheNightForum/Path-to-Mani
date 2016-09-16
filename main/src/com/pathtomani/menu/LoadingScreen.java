@@ -17,7 +17,7 @@
 package com.pathtomani.menu;
 
 import com.pathtomani.ManiApplication;
-import com.pathtomani.effects.ManiColor;
+import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.ui.*;
 
 import java.util.ArrayList;
