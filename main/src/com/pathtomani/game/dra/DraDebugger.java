@@ -19,7 +19,7 @@ package com.pathtomani.game.dra;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.pathtomani.DevTextureProvider;
+import com.pathtomani.common.DevTextureProvider;
 import com.pathtomani.common.DebugCol;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.game.DebugOptions;
