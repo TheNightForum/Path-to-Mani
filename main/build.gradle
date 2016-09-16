@@ -1,6 +1,5 @@
-apply plugin: "java"
+apply from: '../config/gradle/common.gradle'
 
-sourceCompatibility = 1.8
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 dependencies {
@@ -19,11 +18,11 @@ sourceSets {
 }
 
 jar {
-    archiveName = "sol.jar"
+    archiveName = "mani.jar"
 
     doFirst {
         copy {
-            from 'src/SolAppListener.gwt.xml'
+            from 'src/ManiAppListener.gwt.xml'
             into 'build/classes/main'
         }
     }

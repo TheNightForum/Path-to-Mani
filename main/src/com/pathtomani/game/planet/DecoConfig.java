@@ -1,0 +1,62 @@
+/*
+ * Copyright 2016 BurntGameProductions
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.pathtomani.game.planet;
+
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.JsonValue;
+import com.pathtomani.common.ManiMath;
+import com.pathtomani.TextureManager;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class DecoConfig {
+  public final float density;
+  public final float szMin;
+  public final float szMax;
+  public final Vector2 orig;
+  public final boolean allowFlip;
+  public final List<TextureAtlas.AtlasRegion> texs;
+
+  public DecoConfig(float density, float szMin, float szMax, Vector2 orig, boolean allowFlip,
+    List<TextureAtlas.AtlasRegion> texs) {
+    this.density = density;
+    this.szMin = szMin;
+    this.szMax = szMax;
+    this.orig = orig;
+    this.allowFlip = allowFlip;
+    this.texs = texs;
+  }
+
+  static List<DecoConfig> load(JsonValue planetConfig, TextureManager textureManager, FileHandle configFile) {
+    ArrayList<DecoConfig> res = new ArrayList<DecoConfig>();
+    for (JsonValue deco : planetConfig.get("deco")) {
+      float density = deco.getFloat("density");
+      float szMin = deco.getFloat("szMin");
+      float szMax = deco.getFloat("szMax");
+      Vector2 orig = ManiMath.readV2(deco, "orig");
+      boolean allowFlip = deco.getBoolean("allowFlip");
+      String texName = planetConfig.getString("decoTexs") + "/" + deco.name;
+      ArrayList<TextureAtlas.AtlasRegion> texs = textureManager.getPack(texName, configFile);
+      DecoConfig c = new DecoConfig(density, szMin, szMax, orig, allowFlip, texs);
+      res.add(c);
+    }
+    return res;
+  }
+}
