@@ -19,7 +19,7 @@ package org.destinationsol.menu;
 import com.badlogic.gdx.Input;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.ui.*;
 
 import java.util.ArrayList;
@@ -83,7 +83,7 @@ public class NewShipScreen implements SolUiScreen {
 
   @Override
   public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
-    uiDrawer.drawString("This will erase your previous ship", .5f * uiDrawer.r, .3f, FontSize.MENU, true, SolColor.W);
+    uiDrawer.drawString("This will erase your previous ship", .5f * uiDrawer.r, .3f, FontSize.MENU, true, ManiColor.W);
   }
 
   @Override

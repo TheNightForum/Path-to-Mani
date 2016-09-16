@@ -23,7 +23,7 @@ import com.badlogic.gdx.math.Rectangle;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.DebugOptions;
 import org.destinationsol.game.sound.MusicManager;
 import org.destinationsol.ui.SolInputManager;
@@ -136,7 +136,7 @@ public class MainScreen implements SolUiScreen {
   @Override
   public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
     float sz = .55f;
-    if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(myTitleTex, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, SolColor.W);
+    if (!DebugOptions.PRINT_BALANCE) uiDrawer.draw(myTitleTex, sz, sz, sz/2, sz/2, uiDrawer.r/2, sz/2, 0, ManiColor.W);
   }
 
   @Override

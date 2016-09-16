@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import org.destinationsol.Const;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.FarObj;
@@ -182,9 +182,9 @@ public class MazeTileObject implements SolObject {
         tex = game.getTexMan().getFlipped(tex);
         bgTex = game.getTexMan().getFlipped(bgTex);
       }
-      RectSprite s = new RectSprite(tex, MazeBuilder.TILE_SZ, 0, 0, new Vector2(), DraLevel.GROUND, 0, 0, SolColor.W, false);
+      RectSprite s = new RectSprite(tex, MazeBuilder.TILE_SZ, 0, 0, new Vector2(), DraLevel.GROUND, 0, 0, ManiColor.W, false);
       dras.add(s);
-      RectSprite s2 = new RectSprite(bgTex, MazeBuilder.TILE_SZ, 0, 0, new Vector2(), DraLevel.DECO, 0, 0, SolColor.W, false);
+      RectSprite s2 = new RectSprite(bgTex, MazeBuilder.TILE_SZ, 0, 0, new Vector2(), DraLevel.DECO, 0, 0, ManiColor.W, false);
       dras.add(s2);
       Body body = buildBody(game, angle, pos, tile, flipped);
       MazeTileObject res = new MazeTileObject(tile, dras, body, pos, angle, flipped);

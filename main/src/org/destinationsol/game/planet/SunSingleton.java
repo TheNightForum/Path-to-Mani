@@ -21,7 +21,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.GameDrawer;
@@ -41,8 +41,8 @@ public class SunSingleton {
   public SunSingleton(TextureManager textureManager) {
     myGradTex = textureManager.getTex("planetStarCommons/grad", null);
     myWhiteTex = textureManager.getTex("planetStarCommons/whiteTex", null);
-    myGradTint = SolColor.col(1, 1);
-    myFillTint = SolColor.col(1, 1);
+    myGradTint = ManiColor.col(1, 1);
+    myFillTint = ManiColor.col(1, 1);
   }
 
 

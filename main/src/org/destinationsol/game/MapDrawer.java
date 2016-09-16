@@ -22,7 +22,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.maze.Maze;
 import org.destinationsol.game.maze.MazeBuilder;
@@ -80,8 +80,8 @@ public class MapDrawer {
     float minIconRad = MIN_ICON_RAD_PX / screenHeight;
     myIconRad = ICON_RAD < minIconRad ? minIconRad : ICON_RAD;
 
-    myAreaWarnCol = new Color(SolColor.W);
-    myAreaWarnBgCol = new Color(SolColor.UI_WARN);
+    myAreaWarnCol = new Color(ManiColor.W);
+    myAreaWarnBgCol = new Color(ManiColor.UI_WARN);
 
     myWarnAreaBg = textureManager.getTex(MAP_TEX_DIR + "warnBg", null);
     myAtmTex = textureManager.getTex(MAP_TEX_DIR + "atm", null);
@@ -142,7 +142,7 @@ public class MapDrawer {
       float outerRad = maze.getRadius();
       float rad = outerRad - MazeBuilder.BORDER;
       if (viewDist < camPos.dst(mazePos) - rad) continue;
-      drawer.draw(myMazeTex, 2 * rad, 2 * rad, rad, rad, mazePos.x, mazePos.y, 45, SolColor.W);
+      drawer.draw(myMazeTex, 2 * rad, 2 * rad, rad, rad, mazePos.x, mazePos.y, 45, ManiColor.W);
       if (HardnessCalc.isDangerous(heroDmgCap, maze.getDps())) {
         drawAreaDanger(drawer, outerRad, mazePos, 1, camAngle);
       }
@@ -159,7 +159,7 @@ public class MapDrawer {
     float vh = cam.getViewHeight(myZoom);
     for (int i3 = 0, systemsSize1 = systems.size(); i3 < systemsSize1; i3++) {
       SolSystem sys = systems.get(i3);
-      drawer.drawCircle(myLineTex, sys.getPos(), sys.getRadius(), SolColor.UI_MED, circleWidth, vh);
+      drawer.drawCircle(myLineTex, sys.getPos(), sys.getRadius(), ManiColor.UI_MED, circleWidth, vh);
     }
     for (int i2 = 0, systemsSize = systems.size(); i2 < systemsSize; i2++) {
       SolSystem sys = systems.get(i2);
@@ -167,7 +167,7 @@ public class MapDrawer {
       Vector2 sysPos = sys.getPos();
       float rad = Const.SUN_RADIUS;
       if (camPos.dst(sysPos) - rad < viewDist) {
-        drawer.draw(myStarTex, 2 * rad, 2 * rad, rad, rad, sysPos.x, sysPos.y, 0, SolColor.W);
+        drawer.draw(myStarTex, 2 * rad, 2 * rad, rad, rad, sysPos.x, sysPos.y, 0, ManiColor.W);
       }
 
       Vector2 beltIconPos = SolMath.getVec();
@@ -181,7 +181,7 @@ public class MapDrawer {
           float angle = 360f * i / beltIconCount;
           SolMath.fromAl(beltIconPos, angle, beltRad);
           beltIconPos.add(sysPos);
-          drawer.draw(myBeltTex, 2 * halfWidth, 2 * halfWidth, halfWidth, halfWidth, beltIconPos.x, beltIconPos.y, angle * 3, SolColor.W);
+          drawer.draw(myBeltTex, 2 * halfWidth, 2 * halfWidth, halfWidth, halfWidth, beltIconPos.x, beltIconPos.y, angle * 3, ManiColor.W);
         }
         float outerRad = beltRad + halfWidth;
         if (dangerRad < outerRad && HardnessCalc.isDangerous(heroDmgCap, belt.getDps())) dangerRad = outerRad;
@@ -202,15 +202,15 @@ public class MapDrawer {
       float fh = planet.getFullHeight();
       float dstToPlanetAtm = camPos.dst(planetPos) - fh;
       if (viewDist < dstToPlanetAtm) continue;
-      drawer.draw(myAtmTex, 2 * fh, 2 * fh, fh, fh, planetPos.x, planetPos.y, 0, SolColor.UI_DARK);
+      drawer.draw(myAtmTex, 2 * fh, 2 * fh, fh, fh, planetPos.x, planetPos.y, 0, ManiColor.UI_DARK);
       float gh;
       if (dstToPlanetAtm < 0) {
         gh = planet.getMinGroundHeight() + .5f;
-        drawer.draw(myPlanetCoreTex, 2 * gh, 2 * gh, gh, gh, planetPos.x, planetPos.y, planet.getAngle(), SolColor.W);
+        drawer.draw(myPlanetCoreTex, 2 * gh, 2 * gh, gh, gh, planetPos.x, planetPos.y, planet.getAngle(), ManiColor.W);
         drawNpGround(drawer, game, viewDist, np, camPos);
       } else {
         gh = planet.getGroundHeight();
-        drawer.draw(myPlanetTex, 2 * gh, 2 * gh, gh, gh, planetPos.x, planetPos.y, camAngle, SolColor.W);
+        drawer.draw(myPlanetTex, 2 * gh, 2 * gh, gh, gh, planetPos.x, planetPos.y, camAngle, ManiColor.W);
       }
       float dangerRad = HardnessCalc.isDangerous(heroDmgCap, planet.getGroundDps()) ? gh + Const.ATM_HEIGHT/2 : 0;
 //      if (dangerRad < gh && HardnessCalc.isDangerous(heroDmgCap, planet.getGroundDps())) dangerRad = gh;
@@ -284,7 +284,7 @@ public class MapDrawer {
       if (bhAction == BeaconHandler.Action.ATTACK) icon = myBeaconAttackTex;
       else if (bhAction == BeaconHandler.Action.FOLLOW) icon = myBeaconFollowTex;
       float beaconSz = iconSz * 1.5f;
-//      drawer.draw(icon, beaconSz, beaconSz, beaconSz/2, beaconSz/2, beaconPos.x, beaconPos.y, 0, SolColor.W); interleaving
+//      drawer.draw(icon, beaconSz, beaconSz, beaconSz/2, beaconSz/2, beaconPos.x, beaconPos.y, 0, ManiColor.W); interleaving
     }
   }
 
@@ -319,7 +319,7 @@ public class MapDrawer {
   private void drawStarNode(GameDrawer drawer, Planet from, Planet to, float starNodeW) {
     Vector2 pos1 = StarPort.getDesiredPos(from, to, false);
     Vector2 pos2 = StarPort.getDesiredPos(to, from, false);
-    drawer.drawLine(myWhiteTex, pos1, pos2, SolColor.UI_LIGHT, starNodeW, true);
+    drawer.drawLine(myWhiteTex, pos1, pos2, ManiColor.UI_LIGHT, starNodeW, true);
     SolMath.free(pos1);
     SolMath.free(pos2);
   }
@@ -366,12 +366,12 @@ public class MapDrawer {
 
     if (drawerHack instanceof UiDrawer) {
       UiDrawer uiDrawer = (UiDrawer) drawerHack;
-      uiDrawer.draw(myIconBg, iconSz, iconSz, iconSz/2, iconSz/2, pos.x, pos.y, 0, enemy ? SolColor.UI_WARN : SolColor.UI_LIGHT);
-      uiDrawer.draw(icon, innerIconSz, innerIconSz, innerIconSz/2, innerIconSz/2, pos.x, pos.y, angle, SolColor.W);
+      uiDrawer.draw(myIconBg, iconSz, iconSz, iconSz/2, iconSz/2, pos.x, pos.y, 0, enemy ? ManiColor.UI_WARN : ManiColor.UI_LIGHT);
+      uiDrawer.draw(icon, innerIconSz, innerIconSz, innerIconSz/2, innerIconSz/2, pos.x, pos.y, angle, ManiColor.W);
     } else {
       GameDrawer gameDrawer = (GameDrawer) drawerHack;
-      gameDrawer.draw(myIconBg, iconSz, iconSz, iconSz/2, iconSz/2, pos.x, pos.y, 0, enemy ? SolColor.UI_WARN : SolColor.UI_LIGHT);
-      gameDrawer.draw(icon, innerIconSz, innerIconSz, innerIconSz/2, innerIconSz/2, pos.x, pos.y, angle, SolColor.W);
+      gameDrawer.draw(myIconBg, iconSz, iconSz, iconSz/2, iconSz/2, pos.x, pos.y, 0, enemy ? ManiColor.UI_WARN : ManiColor.UI_LIGHT);
+      gameDrawer.draw(icon, innerIconSz, innerIconSz, innerIconSz/2, innerIconSz/2, pos.x, pos.y, angle, ManiColor.W);
     }
   }
 
@@ -397,7 +397,7 @@ public class MapDrawer {
 
   private void drawPlanetTile(Tile t, float sz, GameDrawer drawer, Vector2 p, float angle) {
     float szh = .6f * sz;
-    Color col = t.from == SurfaceDirection.UP && t.to == SurfaceDirection.UP ? SolColor.W : SolColor.UI_OPAQUE;
+    Color col = t.from == SurfaceDirection.UP && t.to == SurfaceDirection.UP ? ManiColor.W : ManiColor.UI_OPAQUE;
     if (t.from == SurfaceDirection.FWD || t.from == SurfaceDirection.UP) {
       if (t.from == SurfaceDirection.UP) drawer.draw(myWhiteTex, szh, szh, 0, 0, p.x, p.y, angle - 90, col);
       drawer.draw(myWhiteTex, szh, szh, 0, 0, p.x, p.y, angle, col);

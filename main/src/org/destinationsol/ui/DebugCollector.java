@@ -17,7 +17,7 @@
 package org.destinationsol.ui;
 
 import com.badlogic.gdx.utils.TimeUtils;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.DebugOptions;
 import org.destinationsol.game.screens.BorderDrawer;
 
@@ -34,7 +34,7 @@ public class DebugCollector {
   }
 
   public static void draw(UiDrawer drawer) {
-    drawer.drawString(myDebugStrings.toString(), .5f, BorderDrawer.TISHCH_SZ, FontSize.DEBUG, false, SolColor.W);
+    drawer.drawString(myDebugStrings.toString(), .5f, BorderDrawer.TISHCH_SZ, FontSize.DEBUG, false, ManiColor.W);
   }
 
   public static void debug(String name, String val) {

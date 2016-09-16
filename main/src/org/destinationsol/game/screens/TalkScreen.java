@@ -19,7 +19,7 @@ package org.destinationsol.game.screens;
 import com.badlogic.gdx.math.Rectangle;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.ship.SolShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
@@ -114,7 +114,7 @@ public class TalkScreen implements SolUiScreen {
 
   @Override
   public void drawBg(UiDrawer uiDrawer, ManiApplication cmp) {
-    uiDrawer.draw(myBg, SolColor.UI_BG);
+    uiDrawer.draw(myBg, ManiColor.UI_BG);
   }
 
   @Override

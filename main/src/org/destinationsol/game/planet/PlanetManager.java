@@ -21,7 +21,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.files.HullConfigManager;
 import org.destinationsol.game.*;
@@ -187,7 +187,7 @@ public class PlanetManager {
         Vector2 pos = p.getPos();
         float angle = p.getAngle();
         float fh = p.getFullHeight();
-        Color col = p == myNearestPlanet ? SolColor.W : SolColor.G;
+        Color col = p == myNearestPlanet ? ManiColor.W : ManiColor.G;
         drawer.drawCircle(drawer.debugWhiteTex, pos, p.getGroundHeight(), col, lineWidth, vh);
         drawer.drawCircle(drawer.debugWhiteTex, pos, fh, col, lineWidth, vh);
         drawer.drawLine(drawer.debugWhiteTex, pos.x, pos.y, angle, fh, col, lineWidth);

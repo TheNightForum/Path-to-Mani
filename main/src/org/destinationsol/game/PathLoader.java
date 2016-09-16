@@ -25,7 +25,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.destinationsol.Const;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.files.FileManager;
 import org.destinationsol.files.HullConfigManager;
@@ -429,7 +429,7 @@ public class PathLoader {
             String imgName = pathName;
             tex = hullConfig.getTexture();
         }
-        RectSprite s = new RectSprite(tex, scale, orig.x - .5f, orig.y - .5f, new Vector2(), level, 0, 0, SolColor.W, false);
+        RectSprite s = new RectSprite(tex, scale, orig.x - .5f, orig.y - .5f, new Vector2(), level, 0, 0, ManiColor.W, false);
         dras.add(s);
         return body;
     }
@@ -470,7 +470,7 @@ public class PathLoader {
       String imgName = texDirName + "/" + texName;
       tex = game.getTexMan().getTex(imgName, null);
     }
-    RectSprite s = new RectSprite(tex, scale, orig.x - .5f, orig.y - .5f, new Vector2(), level, 0, 0, SolColor.W, false);
+    RectSprite s = new RectSprite(tex, scale, orig.x - .5f, orig.y - .5f, new Vector2(), level, 0, 0, ManiColor.W, false);
     dras.add(s);
     return body;
   }

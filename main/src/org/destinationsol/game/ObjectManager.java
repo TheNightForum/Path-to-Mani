@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import org.destinationsol.Const;
 import org.destinationsol.common.DebugCol;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraMan;
@@ -226,13 +226,13 @@ public class ObjectManager {
     for (SolObject o : myObjs) {
       Vector2 pos = o.getPosition();
       String ds = o.toDebugString();
-      if (ds != null) drawer.drawString(ds, pos.x, pos.y, fontSize, true, SolColor.W);
+      if (ds != null) drawer.drawString(ds, pos.x, pos.y, fontSize, true, ManiColor.W);
     }
     for (FarObjData fod : myFarObjs) {
       FarObj fo = fod.fo;
       Vector2 pos = fo.getPos();
       String ds = fo.toDebugString();
-      if (ds != null) drawer.drawString(ds, pos.x, pos.y, fontSize, true, SolColor.G);
+      if (ds != null) drawer.drawString(ds, pos.x, pos.y, fontSize, true, ManiColor.G);
     }
   }
 
@@ -250,8 +250,8 @@ public class ObjectManager {
       FarObj fo = fod.fo;
       drawer.drawCircle(drawer.debugWhiteTex, fo.getPos(), fo.getRadius(), DebugCol.OBJ_FAR, lineWidth, vh);
     }
-    drawer.drawCircle(drawer.debugWhiteTex, cam.getPos(), myFarBeginDist, SolColor.W, lineWidth, vh);
-    drawer.drawCircle(drawer.debugWhiteTex, cam.getPos(), myFarEndDist, SolColor.W, lineWidth, vh);
+    drawer.drawCircle(drawer.debugWhiteTex, cam.getPos(), myFarBeginDist, ManiColor.W, lineWidth, vh);
+    drawer.drawCircle(drawer.debugWhiteTex, cam.getPos(), myFarEndDist, ManiColor.W, lineWidth, vh);
   }
 
   public List<SolObject> getObjs() {

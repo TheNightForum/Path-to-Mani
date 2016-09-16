@@ -23,7 +23,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import org.destinationsol.Const;
 import org.destinationsol.common.Bound;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
@@ -359,7 +359,7 @@ public class StarPort implements SolObject {
       mySpd = new Vector2();
       myDestPos = new Vector2();
 
-      RectSprite s = new RectSprite(game.getTexMan().getTex("smallGameObjs/transcendent", null), TRAN_SZ, .3f, 0, new Vector2(), DraLevel.PROJECTILES, 0, 0, SolColor.W, false);
+      RectSprite s = new RectSprite(game.getTexMan().getTex("smallGameObjs/transcendent", null), TRAN_SZ, .3f, 0, new Vector2(), DraLevel.PROJECTILES, 0, 0, ManiColor.W, false);
       myDras = new ArrayList<Dra>();
       myDras.add(s);
       EffectConfig eff = game.getSpecialEffects().transcendentWork;

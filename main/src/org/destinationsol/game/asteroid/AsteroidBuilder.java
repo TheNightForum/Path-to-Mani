@@ -24,7 +24,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.PathLoader;
 import org.destinationsol.game.RemoveController;
@@ -70,7 +70,7 @@ public class AsteroidBuilder {
         BodyDef.BodyType.DynamicBody, pos, angle, dras, DENSITY, DraLevel.BODIES, tex);
     } else {
       body = buildBall(game, pos, angle, sz/2, DENSITY, false);
-      RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.BODIES, 0, 0, SolColor.W, false);
+      RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.BODIES, 0, 0, ManiColor.W, false);
       dras.add(s);
     }
     body.setAngularVelocity(rotSpd);

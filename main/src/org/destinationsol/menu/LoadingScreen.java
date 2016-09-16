@@ -17,7 +17,7 @@
 package org.destinationsol.menu;
 
 import org.destinationsol.ManiApplication;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.ui.*;
 
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public class LoadingScreen implements SolUiScreen {
 
   @Override
   public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
-    uiDrawer.drawString("Loading...", uiDrawer.r/2, .5f, FontSize.MENU, true, SolColor.W);
+    uiDrawer.drawString("Loading...", uiDrawer.r/2, .5f, FontSize.MENU, true, ManiColor.W);
   }
 
   @Override

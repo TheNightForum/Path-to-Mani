@@ -18,7 +18,7 @@ package org.destinationsol.common;
 
 import com.badlogic.gdx.graphics.Color;
 
-public class SolColor {
+public class ManiColor {
   public static final Color DDG = col(.12f, 1);
   public static final Color DG = col(.25f, 1);
   public static final Color G = col(.5f, 1);

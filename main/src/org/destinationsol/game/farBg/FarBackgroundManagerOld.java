@@ -21,7 +21,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolColorUtil;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.GameDrawer;
@@ -46,7 +46,7 @@ public class FarBackgroundManagerOld {
       FarBgStar star = new FarBgStar(textureManager);
       myStars.add(star);
     }
-    myNebTint = SolColor.col(.5f, 1);
+    myNebTint = ManiColor.col(.5f, 1);
   }
 
   public void draw(GameDrawer drawer, SolCam cam, SolGame game) {

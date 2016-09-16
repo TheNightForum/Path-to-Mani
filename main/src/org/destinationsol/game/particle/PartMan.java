@@ -18,7 +18,7 @@ package org.destinationsol.game.particle;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.dra.Dra;
@@ -80,7 +80,7 @@ public class PartMan {
   public RectSprite blip(SolGame game, Vector2 pos, float angle, float sz, float fadeTime, Vector2 spd,
     TextureAtlas.AtlasRegion tex)
   {
-    RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.PART_FG_0, angle, 0, SolColor.W, true);
+    RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.PART_FG_0, angle, 0, ManiColor.W, true);
     ArrayList<Dra> dras = new ArrayList<Dra>();
     dras.add(s);
     DrasObject o = new DrasObject(dras, new Vector2(pos), new Vector2(spd), null, false, false);

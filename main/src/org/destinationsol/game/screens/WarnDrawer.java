@@ -19,7 +19,7 @@ package org.destinationsol.game.screens;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
 import org.destinationsol.Const;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.ui.FontSize;
@@ -39,9 +39,9 @@ public abstract class WarnDrawer {
   public WarnDrawer(float r, String text) {
     myWarn = rect(r);
     myText = text;
-    myBgCol = new Color(SolColor.UI_WARN);
+    myBgCol = new Color(ManiColor.UI_WARN);
     myBgOrigA = myBgCol.a;
-    myTextCol = new Color(SolColor.W);
+    myTextCol = new Color(ManiColor.W);
   }
 
   public static Rectangle rect(float r) {

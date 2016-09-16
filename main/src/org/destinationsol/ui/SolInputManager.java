@@ -29,7 +29,7 @@ import org.destinationsol.Const;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.files.FileManager;
 import org.destinationsol.game.SolGame;
@@ -89,7 +89,7 @@ public class SolInputManager {
     myScreens = new ArrayList<SolUiScreen>();
     myToRemove = new ArrayList<SolUiScreen>();
     myToAdd = new ArrayList<SolUiScreen>();
-    myWarnCol = new Color(SolColor.UI_WARN);
+    myWarnCol = new Color(ManiColor.UI_WARN);
 
     FileHandle hoverSoundFile = FileManager.getInstance().getSoundsDirectory().child("ui").child("uiHover.ogg");
     myHoverSound = Gdx.audio.newSound(hoverSoundFile);
@@ -328,7 +328,7 @@ public class SolInputManager {
     if (tutorialManager != null && getTopScreen() != game.getScreens().menuScreen) tutorialManager.draw(uiDrawer);
 
     if (myCurrCursor != null) {
-      uiDrawer.draw(myCurrCursor, CURSOR_SZ, CURSOR_SZ, CURSOR_SZ/2, CURSOR_SZ/2, myMousePos.x, myMousePos.y, 0, SolColor.W);
+      uiDrawer.draw(myCurrCursor, CURSOR_SZ, CURSOR_SZ, CURSOR_SZ/2, CURSOR_SZ/2, myMousePos.x, myMousePos.y, 0, ManiColor.W);
     }
   }
 

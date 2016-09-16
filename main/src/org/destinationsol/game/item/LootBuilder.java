@@ -22,7 +22,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
@@ -43,7 +43,7 @@ public class LootBuilder {
     List<Dra> dras = new ArrayList<Dra>();
     TextureAtlas.AtlasRegion tex = item.getIcon(game);
     float sz = item.getItemType().sz;
-    RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.GUNS, 0, 0, SolColor.W, false);
+    RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.GUNS, 0, 0, ManiColor.W, false);
     dras.add(s);
     Body b = buildBody(game, pos, sz);
     b.setLinearVelocity(spd);

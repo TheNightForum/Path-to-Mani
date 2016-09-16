@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.Color;
 import org.destinationsol.Const;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.ui.*;
 
@@ -42,7 +42,7 @@ public class CreditsScreen implements SolUiScreen {
     myCloseCtrl = new SolUiControl(MainScreen.creditsBtnRect(r), true, gameOptions.getKeyEscape());
     myCloseCtrl.setDisplayName("Close");
     myControls.add(myCloseCtrl);
-    myColor = SolColor.col(1, 1);
+    myColor = ManiColor.col(1, 1);
 
     myPages = new ArrayList<String>();
     String[][] sss = {

@@ -18,7 +18,7 @@ package org.destinationsol.game.gun;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.SolGame;
@@ -48,7 +48,7 @@ public class SolGun {
   public SolGun(SolGame game, GunItem item, Vector2 relPos, boolean underShip) {
     myItem = item;
     if (myItem.config.lightOnShot) {
-      Color lightCol = SolColor.W;
+      Color lightCol = ManiColor.W;
       ProjectileConfig projConfig = myItem.config.clipConf.projConfig;
       if (projConfig.bodyEffect != null) lightCol = projConfig.bodyEffect.tint;
       else if (projConfig.collisionEffect != null) lightCol = projConfig.collisionEffect.tint;
@@ -59,7 +59,7 @@ public class SolGun {
     myRelPos = new Vector2(relPos);
     DraLevel level = underShip ? DraLevel.U_GUNS : DraLevel.GUNS;
     float texLen = myItem.config.gunLength / myItem.config.texLenPerc * 2;
-    mySprite = new RectSprite(myItem.config.tex, texLen, 0, 0, new Vector2(relPos), level, 0, 0, SolColor.W, false);
+    mySprite = new RectSprite(myItem.config.tex, texLen, 0, 0, new Vector2(relPos), level, 0, 0, ManiColor.W, false);
     myDras = new ArrayList<Dra>();
     myDras.add(mySprite);
     if (myLightSrc != null) myLightSrc.collectDras(myDras);

@@ -21,7 +21,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.ManiApplication;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.*;
 import org.destinationsol.game.planet.Planet;
@@ -202,7 +202,7 @@ public class BorderDrawer {
       Vector2 pos = new Vector2(x, y);
       Vector2 centah = new Vector2(r / 2, .5f);
       myAngle = SolMath.angle(centah, pos, true);
-      myCol = new Color(SolColor.UI_DARK);
+      myCol = new Color(ManiColor.UI_DARK);
     }
 
     public void draw(UiDrawer drawer) {

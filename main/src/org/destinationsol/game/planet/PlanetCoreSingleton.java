@@ -19,7 +19,7 @@ package org.destinationsol.game.planet;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.SolCam;
 import org.destinationsol.game.SolGame;
@@ -42,7 +42,7 @@ public class PlanetCoreSingleton {
     float gh = p.getMinGroundHeight();
     if (toCamLen < gh + vd) {
       float sz = gh;
-      drawer.draw(myTex, sz *2, sz *2, sz, sz, pPos.x, pPos.y, p.getAngle(), SolColor.W);
+      drawer.draw(myTex, sz *2, sz *2, sz, sz, pPos.x, pPos.y, p.getAngle(), ManiColor.W);
     }
   }
 }

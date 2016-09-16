@@ -22,7 +22,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.ui.*;
 
 import java.util.ArrayList;
@@ -261,15 +261,15 @@ public class InputMapScreen implements SolUiScreen {
             float rowCenterY = rect.y + rect.height / 2;
 
             // Draw the name of in the input and the key it is mapped to
-            uiDrawer.drawString(displayName, rect.x + equiColW + imgColW + nameWidth/2, rowCenterY, FontSize.WINDOW, true, selectedIndex == groupIdx ? SolColor.W : SolColor.G);
-            uiDrawer.drawString(inputKey, rect.x + rect.width - amtWidth - priceWidth/2, rowCenterY, FontSize.WINDOW, true, SolColor.LG);
+            uiDrawer.drawString(displayName, rect.x + equiColW + imgColW + nameWidth/2, rowCenterY, FontSize.WINDOW, true, selectedIndex == groupIdx ? ManiColor.W : ManiColor.G);
+            uiDrawer.drawString(inputKey, rect.x + rect.width - amtWidth - priceWidth/2, rowCenterY, FontSize.WINDOW, true, ManiColor.LG);
         }
 
         // Draw the header title
-        uiDrawer.drawString(operations.getHeader(), listHeaderPos.x, listHeaderPos.y, FontSize.WINDOW, false, SolColor.W);
+        uiDrawer.drawString(operations.getHeader(), listHeaderPos.x, listHeaderPos.y, FontSize.WINDOW, false, ManiColor.W);
 
         // Draw the detail text
-        uiDrawer.drawString(operations.getDisplayDetail(), detailArea.x + .015f, detailArea.y + .015f, FontSize.WINDOW, false, SolColor.W);
+        uiDrawer.drawString(operations.getDisplayDetail(), detailArea.x + .015f, detailArea.y + .015f, FontSize.WINDOW, false, ManiColor.W);
     }
 
     @Override

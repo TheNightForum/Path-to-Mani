@@ -22,7 +22,7 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import org.destinationsol.Const;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.screens.MainScreen;
@@ -210,10 +210,10 @@ public class SolCam {
     ur.add(myPos);
 
     float lw = getRealLineWidth();
-    drawer.drawLine(drawer.debugWhiteTex, dr, dl, SolColor.W, lw, false);
-    drawer.drawLine(drawer.debugWhiteTex, dl, ul, SolColor.W, lw, false);
-    drawer.drawLine(drawer.debugWhiteTex, ul, ur, SolColor.W, lw, false);
-    drawer.drawLine(drawer.debugWhiteTex, ur, dr, SolColor.W, lw, false);
+    drawer.drawLine(drawer.debugWhiteTex, dr, dl, ManiColor.W, lw, false);
+    drawer.drawLine(drawer.debugWhiteTex, dl, ul, ManiColor.W, lw, false);
+    drawer.drawLine(drawer.debugWhiteTex, ul, ur, ManiColor.W, lw, false);
+    drawer.drawLine(drawer.debugWhiteTex, ur, dr, ManiColor.W, lw, false);
 
     SolMath.free(dr);
     SolMath.free(dl);

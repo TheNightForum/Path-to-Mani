@@ -18,7 +18,7 @@ package org.destinationsol.ui;
 
 import com.badlogic.gdx.math.Rectangle;
 import org.destinationsol.GameOptions;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.screens.GameScreens;
 import org.destinationsol.game.screens.MainScreen;
 import org.destinationsol.game.screens.ShipKbControl;
@@ -221,8 +221,8 @@ public class TutorialManager {
   public void draw(UiDrawer uiDrawer) {
     if (isFinished()) return;
     Step step = mySteps.get(myStepIdx);
-    uiDrawer.draw(myBg, SolColor.UI_BG);
-    uiDrawer.drawString(step.text, uiDrawer.r/2, myBg.y + myBg.height/2, FontSize.TUT, true, SolColor.W);
+    uiDrawer.draw(myBg, ManiColor.UI_BG);
+    uiDrawer.drawString(step.text, uiDrawer.r/2, myBg.y + myBg.height/2, FontSize.TUT, true, ManiColor.W);
   }
 
   public boolean isFinished() {

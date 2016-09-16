@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.*;
 import org.destinationsol.game.asteroid.FarAsteroid;
@@ -230,7 +230,7 @@ public class ChunkFiller {
       junkPos.sub(chCenter);
 
       // Create the resulting sprite and add it to the list
-      RectSprite s = new RectSprite(tex, sz, 0, 0, junkPos, draLevel, SolMath.rnd(180), rotSpd, SolColor.DDG, false);
+      RectSprite s = new RectSprite(tex, sz, 0, 0, junkPos, draLevel, SolMath.rnd(180), rotSpd, ManiColor.DDG, false);
       dras.add(s);
     }
 
@@ -270,7 +270,7 @@ public class ChunkFiller {
       float rotSpd = SolMath.rnd(JUNK_MAX_ROT_SPD);
 
       // Create the resulting sprite and add it to the list as the only element
-      RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.DECO, SolMath.rnd(180), rotSpd, SolColor.LG, false);
+      RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.DECO, SolMath.rnd(180), rotSpd, ManiColor.LG, false);
       ArrayList<Dra> dras = new ArrayList<Dra>();
       dras.add(s);
 
@@ -303,7 +303,7 @@ public class ChunkFiller {
       Vector2 dustPos = getRndPos(chCenter);
       dustPos.sub(chCenter);
       // Create the resulting sprite and add it to the list
-      RectSprite s = new RectSprite(tex, DUST_SZ, 0, 0, dustPos, DraLevel.DECO, 0, 0, SolColor.W, false);
+      RectSprite s = new RectSprite(tex, DUST_SZ, 0, 0, dustPos, DraLevel.DECO, 0, 0, ManiColor.W, false);
       dras.add(s);
     }
 

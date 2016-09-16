@@ -23,7 +23,7 @@ import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.DebugOptions;
 import org.destinationsol.game.Faction;
@@ -215,7 +215,7 @@ public class PlanetObjectsBuilder {
     relPos.sub(basePos);
     SolMath.free(basePos);
 
-    return new RectSprite(tex, sz, 0, 0, relPos, DraLevel.CLOUDS, relAngle, rotSpd, SolColor.W, false);
+    return new RectSprite(tex, sz, 0, 0, relPos, DraLevel.CLOUDS, relAngle, rotSpd, ManiColor.W, false);
   }
 
   public void createDeco(SolGame game, Planet planet) {
@@ -286,7 +286,7 @@ public class PlanetObjectsBuilder {
       TextureAtlas.AtlasRegion decoTex = SolMath.elemRnd(dc.texs);
       if (dc.allowFlip && SolMath.test(.5f)) decoTex = game.getTexMan().getFlipped(decoTex);
 
-      RectSprite s = new RectSprite(decoTex, decoSz, dc.orig.x, dc.orig.y, decoRelPos, DraLevel.DECO, decoRelAngle, 0, SolColor.W, false);
+      RectSprite s = new RectSprite(decoTex, decoSz, dc.orig.x, dc.orig.y, decoRelPos, DraLevel.DECO, decoRelAngle, 0, ManiColor.W, false);
       List<Dra> ss = collector.get(basePos);
       if (ss == null) {
         ss = new ArrayList<Dra>();

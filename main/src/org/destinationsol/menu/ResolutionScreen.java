@@ -19,7 +19,7 @@ package org.destinationsol.menu;
 import com.badlogic.gdx.Gdx;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
-import org.destinationsol.common.SolColor;
+import org.destinationsol.common.ManiColor;
 import org.destinationsol.ui.*;
 
 import java.util.ArrayList;
@@ -85,7 +85,7 @@ public class ResolutionScreen implements SolUiScreen {
 
   @Override
   public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
-    uiDrawer.drawString("Click 'Back' to apply changes", .5f * uiDrawer.r, .3f, FontSize.MENU, true, SolColor.W);
+    uiDrawer.drawString("Click 'Back' to apply changes", .5f * uiDrawer.r, .3f, FontSize.MENU, true, ManiColor.W);
   }
 
   @Override
