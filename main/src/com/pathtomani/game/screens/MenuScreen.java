@@ -16,7 +16,7 @@
 
 package com.pathtomani.game.screens;
 
-import com.pathtomani.GameOptions;
+import com.pathtomani.common.GameOptions;
 import com.pathtomani.ManiApplication;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.game.ManiGame;
