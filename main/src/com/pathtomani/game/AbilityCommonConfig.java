@@ -18,12 +18,12 @@ package com.pathtomani.game;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonValue;
-import com.pathtomani.effects.GameColors;
-import com.pathtomani.effects.particle.EffectConfig;
+import com.pathtomani.gfx.GameColors;
+import com.pathtomani.gfx.particle.EffectConfig;
 import com.pathtomani.game.sound.ManiSound;
 import com.pathtomani.game.sound.SoundManager;
-import com.pathtomani.effects.TextureManager;
-import com.pathtomani.effects.particle.EffectTypes;
+import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.gfx.particle.EffectTypes;
 
 public class AbilityCommonConfig {
   public final EffectConfig effect;
