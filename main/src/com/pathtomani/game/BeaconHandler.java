@@ -20,10 +20,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.game.dra.*;
+import com.pathtomani.managers.dra.*;
 import com.pathtomani.entities.planet.PlanetBind;
 import com.pathtomani.gfx.TextureManager;
-import com.pathtomani.game.input.Pilot;
+import com.pathtomani.managers.input.Pilot;
 import com.pathtomani.entities.ship.FarShip;
 import com.pathtomani.entities.ship.ManiShip;
 
