@@ -18,11 +18,11 @@ package org.destinationsol.ui;
 
 import com.badlogic.gdx.InputProcessor;
 
-public class SolInputProcessor implements InputProcessor {
+public class ManiInputProcessor implements InputProcessor {
 
   private final ManiInputManager myInputMan;
 
-  public SolInputProcessor(ManiInputManager inputMan) {
+  public ManiInputProcessor(ManiInputManager inputMan) {
     myInputMan = inputMan;
   }
 

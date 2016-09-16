@@ -69,7 +69,7 @@ public class ManiInputManager {
     for (int i = 0; i < POINTER_COUNT; i++) {
       myPtrs[i] = new Ptr();
     }
-    SolInputProcessor sip = new SolInputProcessor(this);
+    ManiInputProcessor sip = new ManiInputProcessor(this);
     Gdx.input.setInputProcessor(sip);
     myFlashPtr = new Ptr();
     myMousePos = new Vector2();
