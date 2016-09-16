@@ -21,7 +21,7 @@ import com.pathtomani.game.SaveManager;
 import com.pathtomani.ui.ManiInputManager;
 import com.pathtomani.ui.ManiUiScreen;
 import com.pathtomani.ui.UiDrawer;
-import com.pathtomani.GameOptions;
+import com.pathtomani.common.GameOptions;
 import com.pathtomani.ui.ManiUiControl;
 
 import java.util.ArrayList;
