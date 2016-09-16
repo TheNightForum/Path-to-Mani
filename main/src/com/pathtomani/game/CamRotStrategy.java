@@ -18,8 +18,8 @@ package com.pathtomani.game;
 
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.game.planet.Planet;
-import com.pathtomani.game.planet.ManiSystem;
+import com.pathtomani.entities.planet.Planet;
+import com.pathtomani.entities.planet.ManiSystem;
 import com.pathtomani.common.Const;
 
 public interface CamRotStrategy {
