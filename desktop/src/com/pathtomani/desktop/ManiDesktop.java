@@ -18,11 +18,11 @@ package com.pathtomani.desktop;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import org.destinationsol.GameOptions;
-import org.destinationsol.ManiApplication;
-import org.destinationsol.ManiFileReader;
-import org.destinationsol.game.DebugOptions;
-import org.destinationsol.soundtest.SoundTestListener;
+import com.pathtomani.GameOptions;
+import com.pathtomani.ManiApplication;
+import com.pathtomani.ManiFileReader;
+import com.pathtomani.game.DebugOptions;
+import com.pathtomani.soundtest.SoundTestListener;
 import org.terasology.crashreporter.CrashReporter;
 
 import java.io.BufferedReader;
