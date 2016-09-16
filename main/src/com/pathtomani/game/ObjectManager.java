@@ -24,7 +24,7 @@ import com.pathtomani.game.dra.Dra;
 import com.pathtomani.game.dra.FarDras;
 import com.pathtomani.common.Const;
 import com.pathtomani.common.DebugCol;
-import com.pathtomani.effects.ManiColor;
+import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.game.dra.DraMan;
 import com.pathtomani.entities.ship.FarShip;
 
