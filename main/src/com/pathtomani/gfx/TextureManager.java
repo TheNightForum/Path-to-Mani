@@ -28,8 +28,8 @@ import java.util.Map;
 
 public class TextureManager {
 
-  public static final String ICONS_DIR = "ui/icons/";
-  public static final String HULL_ICONS_DIR = "ui/hullIcons/";
+  public static final String ICONS_DIR = "controllers/icons/";
+  public static final String HULL_ICONS_DIR = "controllers/hullIcons/";
   private final Map<String, TextureAtlas.AtlasRegion> textureMap;
   private final Map<TextureAtlas.AtlasRegion,TextureAtlas.AtlasRegion> myFlipped;
   private final Map<String, ArrayList<TextureAtlas.AtlasRegion>> myPacks;
