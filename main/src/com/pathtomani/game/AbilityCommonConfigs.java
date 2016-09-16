@@ -19,10 +19,10 @@ package com.pathtomani.game;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import com.pathtomani.game.sound.SoundManager;
+import com.pathtomani.managers.sound.SoundManager;
 import com.pathtomani.gfx.GameColors;
 import com.pathtomani.gfx.TextureManager;
-import com.pathtomani.files.FileManager;
+import com.pathtomani.managers.files.FileManager;
 import com.pathtomani.gfx.particle.EffectTypes;
 
 public class AbilityCommonConfigs {
