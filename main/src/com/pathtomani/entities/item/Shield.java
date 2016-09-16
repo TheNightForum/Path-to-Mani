@@ -22,13 +22,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.files.FileManager;
+import com.pathtomani.managers.files.FileManager;
 import com.pathtomani.game.DmgType;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.entities.ship.ManiShip;
-import com.pathtomani.game.sound.ManiSound;
-import com.pathtomani.game.sound.SoundManager;
+import com.pathtomani.managers.sound.ManiSound;
+import com.pathtomani.managers.sound.SoundManager;
 import com.pathtomani.gfx.TextureManager;
 
 public class Shield implements ManiItem {
