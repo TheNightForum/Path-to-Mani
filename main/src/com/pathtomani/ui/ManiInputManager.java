@@ -31,7 +31,7 @@ import com.pathtomani.ManiApplication;
 import com.pathtomani.gfx.TextureManager;
 import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.files.FileManager;
+import com.pathtomani.managers.files.FileManager;
 import com.pathtomani.game.ManiGame;
 
 import java.util.ArrayList;
