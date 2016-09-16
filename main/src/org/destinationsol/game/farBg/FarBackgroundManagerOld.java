@@ -22,7 +22,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolColorUtil;
+import org.destinationsol.common.ManiColorUtil;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.SolCam;
@@ -79,7 +79,7 @@ public class FarBackgroundManagerOld {
       myTex = textureManager.getTex("deco/bigStar", null);
       mySzPerc = (small ? .01f : .04f) * SolMath.rnd(.5f, 1);
       myTint = new Color();
-      SolColorUtil.fromHSB(SolMath.rnd(0, 1), .25f, 1, .7f, myTint);
+      ManiColorUtil.fromHSB(SolMath.rnd(0, 1), .25f, 1, .7f, myTint);
     }
 
     public void draw(GameDrawer drawer, float vd, Vector2 camPos, float camAngle) {

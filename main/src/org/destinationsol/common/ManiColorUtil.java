@@ -18,7 +18,7 @@ package org.destinationsol.common;
 
 import com.badlogic.gdx.graphics.Color;
 
-public class SolColorUtil {
+public class ManiColorUtil {
   public static void fromHSB(float hue, float saturation, float brightness, float a, Color dest) {
     float r = 0, g = 0, b = 0;
     if (saturation == 0) {

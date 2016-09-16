@@ -19,7 +19,7 @@ package org.destinationsol.game.particle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import org.destinationsol.common.SolColorUtil;
+import org.destinationsol.common.ManiColorUtil;
 import org.destinationsol.common.SolMath;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.dra.Dra;
@@ -49,7 +49,7 @@ public class LightSrc {
     tex = game.getTexMan().getTex("smallGameObjs/particles/lightHalo", null);
     if (hasHalo) {
       Color haloCol = new Color(col);
-      SolColorUtil.changeBrightness(haloCol, .8f);
+      ManiColorUtil.changeBrightness(haloCol, .8f);
       myHalo = new RectSprite(tex, 0, 0, 0, new Vector2(relPos), DraLevel.PART_FG_0, 0, 0, haloCol, true);
     } else {
       myHalo = null;

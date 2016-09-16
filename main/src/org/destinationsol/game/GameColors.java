@@ -20,7 +20,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import org.destinationsol.common.SolColorUtil;
+import org.destinationsol.common.ManiColorUtil;
 import org.destinationsol.files.FileManager;
 
 import java.util.HashMap;
@@ -61,7 +61,7 @@ public class GameColors {
 
     public Color load(String s) {
         if (s.contains(" ")) {
-            return SolColorUtil.load(s);
+            return ManiColorUtil.load(s);
         }
 
         return get(s);

@@ -17,7 +17,7 @@
 package org.destinationsol.game;
 
 import com.badlogic.gdx.graphics.Color;
-import org.destinationsol.common.SolColorUtil;
+import org.destinationsol.common.ManiColorUtil;
 import org.destinationsol.common.SolMath;
 
 public class HsbSpan extends ColorSpan {
@@ -36,7 +36,7 @@ public class HsbSpan extends ColorSpan {
     float sat = midVal(1, perc);
     float br = midVal(2, perc);
     float a = midVal(3, perc);
-    SolColorUtil.fromHSB(hue, sat, br, a, col);
+    ManiColorUtil.fromHSB(hue, sat, br, a, col);
   }
 
   private float midVal(int idx, float perc) {
