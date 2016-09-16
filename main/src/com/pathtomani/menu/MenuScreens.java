@@ -17,7 +17,7 @@
 package com.pathtomani.menu;
 
 import com.pathtomani.common.GameOptions;
-import com.pathtomani.effects.TextureManager;
+import com.pathtomani.gfx.TextureManager;
 import com.pathtomani.ui.ManiLayouts;
 
 public class MenuScreens {
