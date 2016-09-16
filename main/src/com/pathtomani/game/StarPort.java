@@ -31,11 +31,11 @@ import com.pathtomani.game.dra.RectSprite;
 import com.pathtomani.game.particle.EffectConfig;
 import com.pathtomani.game.particle.LightSrc;
 import com.pathtomani.game.particle.ParticleSrc;
-import com.pathtomani.game.planet.Planet;
-import com.pathtomani.game.ship.FarShip;
-import com.pathtomani.game.ship.ForceBeacon;
-import com.pathtomani.game.ship.ManiShip;
-import com.pathtomani.game.ship.Teleport;
+import com.pathtomani.entities.planet.Planet;
+import com.pathtomani.entities.ship.FarShip;
+import com.pathtomani.entities.ship.ForceBeacon;
+import com.pathtomani.entities.ship.ManiShip;
+import com.pathtomani.entities.ship.Teleport;
 
 import java.util.ArrayList;
 import java.util.List;
