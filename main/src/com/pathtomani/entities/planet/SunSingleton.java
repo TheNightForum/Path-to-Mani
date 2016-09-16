@@ -24,8 +24,8 @@ import com.pathtomani.game.GameDrawer;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.common.Const;
-import com.pathtomani.gfx.TextureManager;
-import com.pathtomani.gfx.ManiColor;
+import com.pathtomani.common.TextureManager;
+import com.pathtomani.common.ManiColor;
 import com.pathtomani.game.DmgType;
 
 public class SunSingleton {

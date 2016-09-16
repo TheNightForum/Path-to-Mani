@@ -20,7 +20,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.files.HullConfigManager;
-import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.common.TextureManager;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.entities.item.ItemManager;
 

@@ -30,7 +30,7 @@ import com.pathtomani.entities.ship.FarShip;
 import com.pathtomani.entities.ship.ManiShip;
 import com.pathtomani.ui.UiDrawer;
 import com.pathtomani.common.Const;
-import com.pathtomani.gfx.ManiColor;
+import com.pathtomani.common.ManiColor;
 
 import java.util.ArrayList;
 import java.util.List;

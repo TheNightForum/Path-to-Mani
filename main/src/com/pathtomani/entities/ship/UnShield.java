@@ -27,7 +27,7 @@ import com.pathtomani.game.DmgType;
 import com.pathtomani.game.dra.DraLevel;
 import com.pathtomani.entities.item.ItemManager;
 import com.pathtomani.entities.item.Shield;
-import com.pathtomani.gfx.particle.ParticleSrc;
+import com.pathtomani.game.particle.ParticleSrc;
 
 public class UnShield implements ShipAbility {
   public static final int MAX_RADIUS = 6;

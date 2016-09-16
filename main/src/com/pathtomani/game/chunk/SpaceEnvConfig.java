@@ -19,7 +19,7 @@ package com.pathtomani.game.chunk;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.common.TextureManager;
 
 import java.util.ArrayList;
 

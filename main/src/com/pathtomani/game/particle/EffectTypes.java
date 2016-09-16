@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pathtomani.gfx.particle;
+package com.pathtomani.game.particle;
 
 import java.util.HashMap;
 

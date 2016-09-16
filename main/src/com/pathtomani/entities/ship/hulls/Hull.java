@@ -28,7 +28,7 @@ import com.pathtomani.entities.gun.GunMount;
 import com.pathtomani.game.input.Pilot;
 import com.pathtomani.entities.item.EngineItem;
 import com.pathtomani.entities.item.ItemContainer;
-import com.pathtomani.gfx.particle.LightSrc;
+import com.pathtomani.game.particle.LightSrc;
 import com.pathtomani.entities.planet.PlanetBind;
 import com.pathtomani.entities.ship.Door;
 import com.pathtomani.entities.ship.ManiShip;

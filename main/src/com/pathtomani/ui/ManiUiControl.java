@@ -20,7 +20,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
 import com.pathtomani.ManiApplication;
-import com.pathtomani.gfx.ManiColor;
+import com.pathtomani.common.ManiColor;
 
 public class ManiUiControl {
   private final int[] myKeys;

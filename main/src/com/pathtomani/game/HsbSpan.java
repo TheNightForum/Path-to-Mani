@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package com.pathtomani.gfx;
+package com.pathtomani.game;
 
 import com.badlogic.gdx.graphics.Color;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.gfx.ColorSpan;
-import com.pathtomani.gfx.ManiColorUtil;
+import com.pathtomani.common.ManiColorUtil;
 
 public class HsbSpan extends ColorSpan {
   private final float[] myHsbaStart;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pathtomani.gfx;
+package com.pathtomani.common;
 
 import com.badlogic.gdx.graphics.Color;
 

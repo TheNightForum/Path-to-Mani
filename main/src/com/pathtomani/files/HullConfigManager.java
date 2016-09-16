@@ -26,7 +26,7 @@ import com.pathtomani.entities.ship.*;
 import com.pathtomani.entities.ship.hulls.GunSlot;
 import com.pathtomani.entities.ship.hulls.HullConfig;
 import com.pathtomani.game.sound.SoundManager;
-import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.common.TextureManager;
 import com.pathtomani.game.AbilityCommonConfigs;
 import com.pathtomani.entities.item.ItemManager;
 

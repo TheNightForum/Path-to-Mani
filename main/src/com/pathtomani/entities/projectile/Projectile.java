@@ -24,14 +24,14 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.pathtomani.game.*;
 import com.pathtomani.game.dra.Dra;
-import com.pathtomani.gfx.particle.LightSrc;
-import com.pathtomani.gfx.ManiColor;
+import com.pathtomani.game.particle.LightSrc;
+import com.pathtomani.common.ManiColor;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.dra.DraLevel;
 import com.pathtomani.game.dra.RectSprite;
 import com.pathtomani.entities.item.Shield;
-import com.pathtomani.gfx.particle.EffectConfig;
-import com.pathtomani.gfx.particle.ParticleSrc;
+import com.pathtomani.game.particle.EffectConfig;
+import com.pathtomani.game.particle.ParticleSrc;
 import com.pathtomani.entities.ship.ManiShip;
 import com.pathtomani.game.sound.ManiSound;
 

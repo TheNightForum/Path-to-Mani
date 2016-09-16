@@ -25,11 +25,11 @@ import com.pathtomani.game.dra.Dra;
 import com.pathtomani.game.dra.RectSprite;
 import com.pathtomani.entities.item.ClipConfig;
 import com.pathtomani.entities.item.ItemContainer;
-import com.pathtomani.gfx.particle.LightSrc;
+import com.pathtomani.game.particle.LightSrc;
 import com.pathtomani.entities.planet.Planet;
 import com.pathtomani.entities.projectile.Projectile;
 import com.pathtomani.entities.projectile.ProjectileConfig;
-import com.pathtomani.gfx.ManiColor;
+import com.pathtomani.common.ManiColor;
 import com.pathtomani.game.Faction;
 import com.pathtomani.game.dra.DraLevel;
 

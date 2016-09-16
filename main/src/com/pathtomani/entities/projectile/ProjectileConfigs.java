@@ -21,13 +21,13 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.common.TextureManager;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.game.DmgType;
-import com.pathtomani.gfx.GameColors;
-import com.pathtomani.gfx.particle.EffectConfig;
-import com.pathtomani.gfx.particle.EffectTypes;
+import com.pathtomani.game.GameColors;
+import com.pathtomani.game.particle.EffectConfig;
+import com.pathtomani.game.particle.EffectTypes;
 import com.pathtomani.game.sound.ManiSound;
 import com.pathtomani.game.sound.SoundManager;
 

@@ -22,9 +22,9 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.files.HullConfigManager;
-import com.pathtomani.gfx.GameColors;
+import com.pathtomani.game.GameColors;
 import com.pathtomani.entities.item.ItemManager;
-import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.common.TextureManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;

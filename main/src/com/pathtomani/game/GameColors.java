@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.pathtomani.gfx;
+package com.pathtomani.game;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import com.pathtomani.gfx.ManiColorUtil;
+import com.pathtomani.common.ManiColorUtil;
 import com.pathtomani.files.FileManager;
 
 import java.util.HashMap;

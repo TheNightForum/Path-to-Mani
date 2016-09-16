@@ -22,8 +22,7 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.*;
 import com.pathtomani.game.dra.Dra;
 import com.pathtomani.common.Const;
-import com.pathtomani.gfx.ColorSpan;
-import com.pathtomani.gfx.ManiColor;
+import com.pathtomani.common.ManiColor;
 import com.pathtomani.game.dra.DraLevel;
 import com.pathtomani.game.dra.RectSprite;
 

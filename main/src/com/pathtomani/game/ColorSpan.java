@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.pathtomani.gfx;
+package com.pathtomani.game;
 
 import com.badlogic.gdx.graphics.Color;
+import com.pathtomani.common.ManiColorUtil;
 import com.pathtomani.common.ManiMath;
 
 public abstract class ColorSpan {

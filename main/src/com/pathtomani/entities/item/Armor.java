@@ -21,7 +21,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.game.sound.SoundManager;
-import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.common.TextureManager;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.game.DmgType;
 import com.pathtomani.game.ManiGame;
