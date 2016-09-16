@@ -19,7 +19,7 @@ package com.pathtomani.game.screens;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.common.Const;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.ship.ManiShip;
 
 public class SunWarnDrawer extends WarnDrawer {
 
