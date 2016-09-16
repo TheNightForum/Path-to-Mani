@@ -31,7 +31,7 @@ import org.destinationsol.menu.MenuScreens;
 import org.destinationsol.ui.DebugCollector;
 import org.destinationsol.ui.FontSize;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolLayouts;
+import org.destinationsol.ui.ManiLayouts;
 import org.destinationsol.ui.UiDrawer;
 
 import java.io.PrintWriter;
@@ -43,7 +43,7 @@ public class ManiApplication implements ApplicationListener {
   private UiDrawer myUiDrawer;
   private MenuScreens myMenuScreens;
   private TextureManager myTextureManager;
-  private SolLayouts myLayouts;
+  private ManiLayouts myLayouts;
   private boolean myReallyMobile;
   private GameOptions myOptions;
   private CommonDrawer myCommonDrawer;
@@ -73,7 +73,7 @@ public class ManiApplication implements ApplicationListener {
     myCommonDrawer = new CommonDrawer();
     myUiDrawer = new UiDrawer(myTextureManager, myCommonDrawer);
     myInputMan = new ManiInputManager(myTextureManager, myUiDrawer.r);
-    myLayouts = new SolLayouts(myUiDrawer.r);
+    myLayouts = new ManiLayouts(myUiDrawer.r);
     myMenuScreens = new MenuScreens(myLayouts, myTextureManager, isMobile(), myUiDrawer.r, myOptions);
 
     myInputMan.setScreen(this, myMenuScreens.main);
@@ -192,7 +192,7 @@ public class ManiApplication implements ApplicationListener {
     return myGame;
   }
 
-  public SolLayouts getLayouts() {
+  public ManiLayouts getLayouts() {
     return myLayouts;
   }
 

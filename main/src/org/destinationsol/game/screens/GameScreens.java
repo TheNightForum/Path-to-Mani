@@ -17,7 +17,7 @@
 package org.destinationsol.game.screens;
 
 import org.destinationsol.ManiApplication;
-import org.destinationsol.ui.SolLayouts;
+import org.destinationsol.ui.ManiLayouts;
 
 public class GameScreens {
   public final MainScreen mainScreen;
@@ -27,7 +27,7 @@ public class GameScreens {
   public final TalkScreen talkScreen;
 
   public GameScreens(float r, ManiApplication cmp) {
-    SolLayouts layouts = cmp.getLayouts();
+    ManiLayouts layouts = cmp.getLayouts();
     RightPaneLayout rightPaneLayout = layouts.rightPaneLayout;
     mainScreen = new MainScreen(r, rightPaneLayout, cmp);
     mapScreen = new MapScreen(rightPaneLayout, cmp.isMobile(), r, cmp.getOptions());
