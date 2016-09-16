@@ -19,12 +19,12 @@ package com.pathtomani.gfx.particle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.pathtomani.game.dra.Dra;
+import com.pathtomani.managers.dra.Dra;
 import com.pathtomani.gfx.ManiColorUtil;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.dra.DraLevel;
-import com.pathtomani.game.dra.RectSprite;
+import com.pathtomani.managers.dra.DraLevel;
+import com.pathtomani.managers.dra.RectSprite;
 
 import java.util.List;
 
