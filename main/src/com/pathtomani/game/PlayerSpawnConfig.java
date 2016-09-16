@@ -21,7 +21,7 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.files.HullConfigManager;
-import com.pathtomani.game.item.ItemManager;
+import com.pathtomani.entities.item.ItemManager;
 
 public class PlayerSpawnConfig {
   public final ShipConfig mainStation;
