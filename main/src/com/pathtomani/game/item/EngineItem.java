@@ -31,7 +31,7 @@ import com.pathtomani.game.sound.SolSound;
 
 import java.util.HashMap;
 
-public class EngineItem implements SolItem {
+public class EngineItem implements ManiItem {
   private final Config myConfig;
 
   private EngineItem(Config config) {
@@ -64,7 +64,7 @@ public class EngineItem implements SolItem {
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return item instanceof EngineItem && ((EngineItem) item).myConfig == myConfig;
   }
 

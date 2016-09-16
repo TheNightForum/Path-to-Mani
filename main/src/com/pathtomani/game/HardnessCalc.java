@@ -77,12 +77,12 @@ public class HardnessCalc {
 
   private static float getItemCfgDps(ItemConfig ic, boolean fixed) {
     float dps = 0;
-    for (SolItem e : ic.examples) {
+    for (ManiItem e : ic.examples) {
       if (!(e instanceof GunItem)) throw new AssertionError("all item options must be of the same type");
       GunItem g = (GunItem) e;
       if (g.config.fixed != fixed) {
         String items = "";
-        for (SolItem ex : ic.examples) {
+        for (ManiItem ex : ic.examples) {
           items += ex.getDisplayName() + " ";
         }
         throw new AssertionError("all gun options must have equal fixed param: " + items);
@@ -102,7 +102,7 @@ public class HardnessCalc {
 
     while(itemConfigIterator.hasNext() && !unusedGunSlots.isEmpty()) {
         ItemConfig itemConfig = itemConfigIterator.next();
-        final SolItem item = itemConfig.examples.get(0);
+        final ManiItem item = itemConfig.examples.get(0);
 
         if (item instanceof GunItem) {
             final GunItem gunItem = (GunItem) item;
@@ -129,16 +129,16 @@ public class HardnessCalc {
     float meanShieldLife = 0;
     float meanArmorPerc = 0;
     for (ItemConfig ic : parsed) {
-      SolItem item = ic.examples.get(0);
+      ManiItem item = ic.examples.get(0);
       if (meanShieldLife == 0 && item instanceof Shield) {
-        for (SolItem ex : ic.examples) {
+        for (ManiItem ex : ic.examples) {
           meanShieldLife += ((Shield) ex).getLife();
         }
         meanShieldLife /= ic.examples.size();
         meanShieldLife *= ic.chance;
       }
       if (meanArmorPerc == 0 && item instanceof Armor) {
-        for (SolItem ex : ic.examples) {
+        for (ManiItem ex : ic.examples) {
           meanArmorPerc += ((Armor) ex).getPerc();
         }
         meanArmorPerc /= ic.examples.size();

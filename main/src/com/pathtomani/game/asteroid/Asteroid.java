@@ -25,7 +25,7 @@ import com.pathtomani.game.*;
 import com.pathtomani.game.dra.Dra;
 import com.pathtomani.game.item.Loot;
 import com.pathtomani.game.item.MoneyItem;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.planet.Planet;
 import com.pathtomani.game.planet.TileObject;
 import com.pathtomani.game.particle.ParticleSrc;
@@ -196,7 +196,7 @@ public class Asteroid implements ManiObject {
     }
   }
 
-  private void throwLoot(ManiGame game, SolItem item) {
+  private void throwLoot(ManiGame game, ManiItem item) {
     float spdAngle = ManiMath.rnd(180);
     Vector2 lootSpd = new Vector2();
     ManiMath.fromAl(lootSpd, spdAngle, ManiMath.rnd(0, Loot.MAX_SPD));

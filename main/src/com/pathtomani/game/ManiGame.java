@@ -25,11 +25,10 @@ import com.pathtomani.game.gun.GunItem;
 import com.pathtomani.game.item.ItemContainer;
 import com.pathtomani.game.item.ItemManager;
 import com.pathtomani.game.item.LootBuilder;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.planet.Planet;
 import com.pathtomani.game.ship.*;
 import com.pathtomani.game.sound.SoundManager;
-import com.pathtomani.*;
 import com.pathtomani.common.DebugCol;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.files.HullConfigManager;
@@ -101,7 +100,7 @@ public class ManiGame {
   private float myTimeFactor;
   private float myRespawnMoney;
   private HullConfig myRespawnHull;
-  private final ArrayList<SolItem> myRespawnItems;
+  private final ArrayList<ManiItem> myRespawnItems;
 
   public ManiGame(ManiApplication cmp, boolean usePrevShip, TextureManager textureManager, boolean tut, CommonDrawer commonDrawer) {
     myCmp = cmp;
@@ -139,7 +138,7 @@ public class ManiGame {
     myDraDebugger = new DraDebugger();
     myBeaconHandler = new BeaconHandler(textureManager);
     myMountDetectDrawer = new MountDetectDrawer(textureManager);
-    myRespawnItems = new ArrayList<SolItem>();
+    myRespawnItems = new ArrayList<ManiItem>();
     myTimeFactor = 1;
 
     // from this point we're ready!
@@ -184,7 +183,7 @@ public class ManiGame {
     ItemContainer ic = myHero.getItemContainer();
     if (!myRespawnItems.isEmpty()) {
       for (int i1 = 0, sz = myRespawnItems.size(); i1 < sz; i1++) {
-        SolItem item = myRespawnItems.get(i1);
+        ManiItem item = myRespawnItems.get(i1);
         ic.add(item);
         // Ensure that previously equipped items stay equipped
         if (item.isEquipped() > 0) {
@@ -201,7 +200,7 @@ public class ManiGame {
     } else if (myTutorialManager != null) {
       for (int i = 0; i < 50; i++) {
         if (ic.groupCount() > 1.5f * Const.ITEM_GROUPS_PER_PAGE) break;
-        SolItem it = myItemManager.random();
+        ManiItem it = myItemManager.random();
         if (!(it instanceof GunItem) && it.getIcon(this) != null && ic.canAdd(it)) {
           ic.add(it.copy());
         }
@@ -224,13 +223,13 @@ public class ManiGame {
     if (myTutorialManager != null) return;
     HullConfig hull;
     float money;
-    ArrayList<SolItem> items;
+    ArrayList<ManiItem> items;
     if (myHero != null) {
       hull = myHero.getHull().config;
       money = myHero.getMoney();
-      items = new ArrayList<SolItem>();
-      for (List<SolItem> group : myHero.getItemContainer()) {
-        for (SolItem i : group) {
+      items = new ArrayList<ManiItem>();
+      for (List<ManiItem> group : myHero.getItemContainer()) {
+        for (ManiItem i : group) {
           items.add(0, i);
         }
       }
@@ -238,9 +237,9 @@ public class ManiGame {
       FarShip farH = myTranscendentHero.getShip();
       hull = farH.getHullConfig();
       money = farH.getMoney();
-      items = new ArrayList<SolItem>();
-      for (List<SolItem> group : farH.getIc()) {
-        for (SolItem i : group) {
+      items = new ArrayList<ManiItem>();
+      for (List<ManiItem> group : farH.getIc()) {
+        for (ManiItem i : group) {
           items.add(0, i);
         }
       }
@@ -519,7 +518,7 @@ public class ManiGame {
     setRespawnState(money, ic, myHero.getHull().config);
 
     myHero.setMoney(money - myRespawnMoney);
-    for (SolItem item : myRespawnItems) {
+    for (ManiItem item : myRespawnItems) {
       ic.remove(item);
     }
   }
@@ -528,8 +527,8 @@ public class ManiGame {
     myRespawnMoney = .75f * money;
     myRespawnHull = hullConfig;
     myRespawnItems.clear();
-    for (List<SolItem> group : ic) {
-      for (SolItem item : group) {
+    for (List<ManiItem> group : ic) {
+      for (ManiItem item : group) {
         boolean equipped = myHero == null || myHero.maybeUnequip(this, item, false);
         if (equipped || ManiMath.test(.75f)) {
           myRespawnItems.add(0, item);

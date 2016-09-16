@@ -26,7 +26,7 @@ import com.pathtomani.Const;
 import com.pathtomani.GameOptions;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.game.item.ItemContainer;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.menu.MenuLayout;
 
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ public class InventoryScreen implements ManiUiScreen {
 
   private InventoryOperations myOperations;
   private int myPage;
-  private List<SolItem> mySelected;
+  private List<ManiItem> mySelected;
   private final Vector2 myListHeaderPos;
   public static final float SMALL_GAP = .004f;
 
@@ -172,7 +172,7 @@ public class InventoryScreen implements ManiUiScreen {
       boolean ctrlEnabled = groupIdx < groupCount;
       itemCtrl.setEnabled(ctrlEnabled);
       if (!ctrlEnabled) continue;
-      List<SolItem> group = ic.getGroup(groupIdx);
+      List<ManiItem> group = ic.getGroup(groupIdx);
       if (hNew && ic.isNew(group)) itemCtrl.enableWarn();
       if (itemCtrl.isJustOff()) {
         mySelected = group;
@@ -228,8 +228,8 @@ public class InventoryScreen implements ManiUiScreen {
       int groupCount = ic.groupCount();
       if (groupCount <= groupIdx) continue;
       ManiUiControl itemCtrl = itemCtrls[i];
-      List<SolItem> group = ic.getGroup(groupIdx);
-      SolItem item = group.get(0);
+      List<ManiItem> group = ic.getGroup(groupIdx);
+      ManiItem item = group.get(0);
       TextureAtlas.AtlasRegion tex = item.getIcon(game);
       Rectangle rect = itemCtrl.getScreenArea();
       float rowCenterY = rect.y + rect.height / 2;
@@ -254,8 +254,8 @@ public class InventoryScreen implements ManiUiScreen {
       int groupCount = ic.groupCount();
       if (groupCount <= groupIdx) continue;
       ManiUiControl itemCtrl = itemCtrls[i];
-      List<SolItem> group = ic.getGroup(groupIdx);
-      SolItem item = group.get(0);
+      List<ManiItem> group = ic.getGroup(groupIdx);
+      ManiItem item = group.get(0);
       Rectangle rect = itemCtrl.getScreenArea();
       float rowCenterY = rect.y + rect.height / 2;
       if (myOperations.isUsing(game, item)) uiDrawer.drawString("using", rect.x + imgColW + equiColW/2, rowCenterY, FontSize.WINDOW, true, ManiColor.W);
@@ -274,7 +274,7 @@ public class InventoryScreen implements ManiUiScreen {
     uiDrawer.drawString(myOperations.getHeader(), myListHeaderPos.x, myListHeaderPos.y, FontSize.WINDOW, false, ManiColor.W);
     uiDrawer.drawString("Selected Item:", myDetailHeaderPos.x, myDetailHeaderPos.y, FontSize.WINDOW, false, ManiColor.W);
     if (mySelected != null && !mySelected.isEmpty()) {
-      SolItem selItem = mySelected.get(0);
+      ManiItem selItem = mySelected.get(0);
       String desc = selItem.getDisplayName() + "\n" + selItem.getDesc();
       uiDrawer.drawString(desc, myDetailArea.x + .015f, myDetailArea.y + .015f, FontSize.WINDOW, false, ManiColor.W);
     }
@@ -306,15 +306,15 @@ public class InventoryScreen implements ManiUiScreen {
     return new Rectangle(myItemCtrlArea.x, myItemCtrlArea.y + (h + SMALL_GAP) * row, myItemCtrlArea.width, h);
   }
 
-  public List<SolItem> getSelected() {
+  public List<ManiItem> getSelected() {
     return mySelected;
   }
 
-  public SolItem getSelectedItem() {
+  public ManiItem getSelectedItem() {
     return mySelected == null || mySelected.isEmpty() ? null : mySelected.get(0);
   }
 
-  public void setSelected(List<SolItem> selected) {
+  public void setSelected(List<ManiItem> selected) {
     mySelected = selected;
   }
 

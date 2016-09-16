@@ -24,7 +24,7 @@ import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.game.dra.DraLevel;
 import com.pathtomani.game.item.ItemManager;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.particle.ParticleSrc;
 
 public class KnockBack implements ShipAbility {
@@ -82,11 +82,11 @@ public class KnockBack implements ShipAbility {
 
   public static class Config implements AbilityConfig {
     public final float rechargeTime;
-    private final SolItem chargeExample;
+    private final ManiItem chargeExample;
     public final float force;
     public final AbilityCommonConfig cc;
 
-    public Config(float rechargeTime, SolItem chargeExample, float force, AbilityCommonConfig cc) {
+    public Config(float rechargeTime, ManiItem chargeExample, float force, AbilityCommonConfig cc) {
       this.rechargeTime = rechargeTime;
       this.chargeExample = chargeExample;
       this.force = force;
@@ -99,7 +99,7 @@ public class KnockBack implements ShipAbility {
     }
 
     @Override
-    public SolItem getChargeExample() {
+    public ManiItem getChargeExample() {
       return chargeExample;
     }
 
@@ -116,7 +116,7 @@ public class KnockBack implements ShipAbility {
     public static AbilityConfig load(JsonValue abNode, ItemManager itemManager, AbilityCommonConfig cc) {
       float rechargeTime = abNode.getFloat("rechargeTime");
       float force = abNode.getFloat("force");
-      SolItem chargeExample = itemManager.getExample("knockBackCharge");
+      ManiItem chargeExample = itemManager.getExample("knockBackCharge");
       return new Config(rechargeTime, chargeExample, force, cc);
     }
   }

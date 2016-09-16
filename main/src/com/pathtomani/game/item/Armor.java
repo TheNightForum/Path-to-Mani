@@ -27,7 +27,7 @@ import com.pathtomani.game.DmgType;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.sound.SolSound;
 
-public class Armor implements SolItem {
+public class Armor implements ManiItem {
   private final Config myConfig;
   private int myEquipped;
 
@@ -56,12 +56,12 @@ public class Armor implements SolItem {
   }
 
   @Override
-  public SolItem copy() {
+  public ManiItem copy() {
     return new Armor(myConfig, myEquipped);
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return false;
   }
 

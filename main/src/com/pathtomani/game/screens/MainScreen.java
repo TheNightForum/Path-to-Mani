@@ -27,7 +27,7 @@ import com.pathtomani.common.ManiColor;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.*;
 import com.pathtomani.game.gun.GunItem;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.planet.Planet;
 import com.pathtomani.game.ship.ManiShip;
 import com.pathtomani.ui.*;
@@ -383,7 +383,7 @@ public class MainScreen implements ManiUiScreen {
       if (consumed) row += ICON_SZ + V_PAD;
 
       ShipAbility ability = hero.getAbility();
-      SolItem abilityChargeEx = ability == null ? null : ability.getConfig().getChargeExample();
+      ManiItem abilityChargeEx = ability == null ? null : ability.getConfig().getChargeExample();
       if (abilityChargeEx != null) {
         int abilityChargeCount = hero.getItemContainer().count(abilityChargeEx);
         TextureAtlas.AtlasRegion icon = abilityChargeEx.getIcon(game);

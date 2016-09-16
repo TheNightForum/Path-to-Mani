@@ -21,7 +21,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.game.AbilityCommonConfig;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.dra.DraLevel;
 import com.pathtomani.game.item.ItemManager;
 import com.pathtomani.game.particle.ParticleSrc;
@@ -72,11 +72,11 @@ public class EmWave implements ShipAbility {
 
   public static class Config implements AbilityConfig {
     public final float rechargeTime;
-    private final SolItem chargeExample;
+    private final ManiItem chargeExample;
     public final float duration;
     private final AbilityCommonConfig cc;
 
-    public Config(float rechargeTime, SolItem chargeExample, float duration, AbilityCommonConfig cc) {
+    public Config(float rechargeTime, ManiItem chargeExample, float duration, AbilityCommonConfig cc) {
       this.rechargeTime = rechargeTime;
       this.chargeExample = chargeExample;
       this.duration = duration;
@@ -89,7 +89,7 @@ public class EmWave implements ShipAbility {
     }
 
     @Override
-    public SolItem getChargeExample() {
+    public ManiItem getChargeExample() {
       return chargeExample;
     }
 
@@ -106,7 +106,7 @@ public class EmWave implements ShipAbility {
     public static AbilityConfig load(JsonValue abNode, ItemManager itemManager, AbilityCommonConfig cc) {
       float rechargeTime = abNode.getFloat("rechargeTime");
       float duration = abNode.getFloat("duration");
-      SolItem chargeExample = itemManager.getExample("emWaveCharge");
+      ManiItem chargeExample = itemManager.getExample("emWaveCharge");
       return new Config(rechargeTime, chargeExample, duration, cc);
     }
   }

@@ -20,7 +20,7 @@ package com.pathtomani.game.item;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.pathtomani.game.ManiGame;
 
-public class RepairItem implements SolItem {
+public class RepairItem implements ManiItem {
   public static final int LIFE_AMT = 20;
   private final ManiItemType myItemType;
 
@@ -44,12 +44,12 @@ public class RepairItem implements SolItem {
   }
 
   @Override
-  public SolItem copy() {
+  public ManiItem copy() {
     return new RepairItem(myItemType);
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return item instanceof RepairItem;
   }
 

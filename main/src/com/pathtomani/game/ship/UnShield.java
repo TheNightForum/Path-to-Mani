@@ -22,7 +22,7 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.AbilityCommonConfig;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.DmgType;
 import com.pathtomani.game.dra.DraLevel;
 import com.pathtomani.game.item.ItemManager;
@@ -80,11 +80,11 @@ public class UnShield implements ShipAbility {
 
   public static class Config implements AbilityConfig {
     public final float rechargeTime;
-    private final SolItem chargeExample;
+    private final ManiItem chargeExample;
     public final float amount;
     private final AbilityCommonConfig cc;
 
-    public Config(float rechargeTime, SolItem chargeExample, float amount, AbilityCommonConfig cc) {
+    public Config(float rechargeTime, ManiItem chargeExample, float amount, AbilityCommonConfig cc) {
       this.rechargeTime = rechargeTime;
       this.chargeExample = chargeExample;
       this.amount = amount;
@@ -97,7 +97,7 @@ public class UnShield implements ShipAbility {
     }
 
     @Override
-    public SolItem getChargeExample() {
+    public ManiItem getChargeExample() {
       return chargeExample;
     }
 
@@ -114,7 +114,7 @@ public class UnShield implements ShipAbility {
     public static AbilityConfig load(JsonValue abNode, ItemManager itemManager, AbilityCommonConfig cc) {
       float rechargeTime = abNode.getFloat("rechargeTime");
       float amount = abNode.getFloat("amount");
-      SolItem chargeExample = itemManager.getExample("unShieldCharge");
+      ManiItem chargeExample = itemManager.getExample("unShieldCharge");
       return new Config(rechargeTime, chargeExample, amount, cc);
     }
   }

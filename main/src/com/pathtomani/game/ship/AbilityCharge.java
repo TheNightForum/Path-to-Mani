@@ -21,14 +21,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.item.ManiItemType;
 import com.pathtomani.game.item.ManiItemTypes;
 import com.pathtomani.TextureManager;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.game.item.ItemManager;
 
-public class AbilityCharge implements SolItem {
+public class AbilityCharge implements ManiItem {
   private final Config myConfig;
 
   public AbilityCharge(Config config) {
@@ -51,12 +51,12 @@ public class AbilityCharge implements SolItem {
   }
 
   @Override
-  public SolItem copy() {
+  public ManiItem copy() {
     return new AbilityCharge(myConfig);
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return item instanceof AbilityCharge && ((AbilityCharge) item).myConfig == myConfig;
   }
 

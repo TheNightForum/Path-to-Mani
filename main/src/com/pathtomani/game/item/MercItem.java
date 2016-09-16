@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ShipConfig;
 
-public class MercItem implements SolItem {
+public class MercItem implements ManiItem {
   private final ShipConfig myConfig;
   private final String myDesc;
 
@@ -45,12 +45,12 @@ public class MercItem implements SolItem {
   }
 
   @Override
-  public SolItem copy() {
+  public ManiItem copy() {
     return new MercItem(myConfig);
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return item instanceof MercItem && ((MercItem) item).myConfig == myConfig;
   }
 

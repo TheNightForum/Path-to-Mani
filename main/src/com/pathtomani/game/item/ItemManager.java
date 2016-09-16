@@ -32,8 +32,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ItemManager {
-    private final HashMap<String,SolItem> myM;
-    private final ArrayList<SolItem> myL;
+    private final HashMap<String,ManiItem> myM;
+    private final ArrayList<ManiItem> myL;
     public final ProjectileConfigs projConfigs;
     public final TextureAtlas.AtlasRegion moneyIcon;
     public final TextureAtlas.AtlasRegion medMoneyIcon;
@@ -49,7 +49,7 @@ public class ItemManager {
         medMoneyIcon = textureManager.getTex(TextureManager.ICONS_DIR + "medMoney", null);
         bigMoneyIcon = textureManager.getTex(TextureManager.ICONS_DIR + "bigMoney", null);
         repairIcon = textureManager.getTex(TextureManager.ICONS_DIR + "repairItem", null);
-        myM = new HashMap<String, SolItem>();
+        myM = new HashMap<String, ManiItem>();
 
         myTypes = new ManiItemTypes(soundManager, gameColors);
         projConfigs = new ProjectileConfigs(textureManager, soundManager, effectTypes, gameColors);
@@ -65,7 +65,7 @@ public class ItemManager {
         myRepairExample = new RepairItem(myTypes.repair);
         myM.put(myRepairExample.getCode(), myRepairExample);
 
-        myL = new ArrayList<SolItem>(myM.values());
+        myL = new ArrayList<ManiItem>(myM.values());
     }
 
     public void fillContainer(ItemContainer c, String items) {
@@ -73,7 +73,7 @@ public class ItemManager {
         for (ItemConfig ic : list) {
             for (int i = 0; i < ic.amt; i++) {
                 if (ManiMath.test(ic.chance)) {
-                    SolItem item = ManiMath.elemRnd(ic.examples).copy();
+                    ManiItem item = ManiMath.elemRnd(ic.examples).copy();
                     c.add(item);
                 }
             }
@@ -94,7 +94,7 @@ public class ItemManager {
 
             String[] names = parts[0].split("\\|");
 
-            ArrayList<SolItem> examples = new ArrayList<SolItem>();
+            ArrayList<ManiItem> examples = new ArrayList<ManiItem>();
             for (String name : names) {
                 int wasEquipped = 0;
 
@@ -106,12 +106,12 @@ public class ItemManager {
                     wasEquipped = 2;
                     name = name.substring(0, name.length()-2); // Remove equipped number
                 }
-                SolItem example = getExample(name.trim());
+                ManiItem example = getExample(name.trim());
 
                 if (example == null) {
                     throw new AssertionError("unknown item " + name + "@" + parts[0] + "@" + rec + "@" + items);
                 }
-                SolItem itemCopy = example.copy();
+                ManiItem itemCopy = example.copy();
                 itemCopy.setEquipped(wasEquipped);
 
                 examples.add(itemCopy);
@@ -142,17 +142,17 @@ public class ItemManager {
         return result;
   }
 
-    public SolItem getExample(String code) {
+    public ManiItem getExample(String code) {
         return myM.get(code);
     }
 
-    public SolItem random() {
+    public ManiItem random() {
         return myL.get(ManiMath.intRnd(myM.size())).copy();
     }
 
-    public void registerItem(SolItem example) {
+    public void registerItem(ManiItem example) {
         String code = example.getCode();
-        SolItem existing = getExample(code);
+        ManiItem existing = getExample(code);
         if (existing != null) {
             throw new AssertionError("2 item types registered for item code " + code + ":\n" + existing + " and " + example);
         }
@@ -180,14 +180,14 @@ public class ItemManager {
   }
 
   public void addAllGuns(ItemContainer ic) {
-    for (SolItem i : myM.values()) {
+    for (ManiItem i : myM.values()) {
       if (i instanceof ClipItem && !((ClipItem) i).getConfig().infinite) {
         for (int j = 0; j < 8; j++) {
           ic.add(i.copy());
         }
       }
     }
-    for (SolItem i : myM.values()) {
+    for (ManiItem i : myM.values()) {
       if (i instanceof GunItem) {
         if (ic.canAdd(i)) ic.add(i.copy());
       }

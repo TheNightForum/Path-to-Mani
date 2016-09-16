@@ -22,7 +22,7 @@ import com.pathtomani.ui.ManiInputManager;
 import com.pathtomani.ui.UiDrawer;
 import com.pathtomani.GameOptions;
 import com.pathtomani.game.item.ItemContainer;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.ship.ManiShip;
 import com.pathtomani.ui.ManiUiControl;
 
@@ -48,7 +48,7 @@ public class BuyItems implements InventoryOperations {
   }
 
   @Override
-  public boolean isUsing(ManiGame game, SolItem item) {
+  public boolean isUsing(ManiGame game, ManiItem item) {
     return false;
   }
 
@@ -78,7 +78,7 @@ public class BuyItems implements InventoryOperations {
       cmp.getInputMan().setScreen(cmp, game.getScreens().mainScreen);
       return;
     }
-    SolItem selItem = is.getSelectedItem();
+    ManiItem selItem = is.getSelectedItem();
     boolean enabled = selItem != null && hero.getMoney() >= selItem.getPrice() && hero.getItemContainer().canAdd(selItem);
     buyCtrl.setDisplayName(enabled ? "Buy" : "---");
     buyCtrl.setEnabled(enabled);

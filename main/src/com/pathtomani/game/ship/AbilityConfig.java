@@ -16,11 +16,11 @@
 
 package com.pathtomani.game.ship;
 
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 
 public interface AbilityConfig {
   public ShipAbility build();
-  public SolItem getChargeExample();
+  public ManiItem getChargeExample();
   public float getRechargeTime();
   void appendDesc(StringBuilder sb);
 }

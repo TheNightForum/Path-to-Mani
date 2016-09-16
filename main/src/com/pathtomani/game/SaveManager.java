@@ -21,7 +21,7 @@ import com.pathtomani.files.FileManager;
 import com.pathtomani.files.HullConfigManager;
 import com.pathtomani.game.gun.GunItem;
 import com.pathtomani.game.item.ItemManager;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.ship.hulls.HullConfig;
 
 import java.util.ArrayList;
@@ -30,10 +30,10 @@ public class SaveManager {
 
   public static final String FILE_NAME = "prevShip.ini";
 
-  public static void writeShip(HullConfig hull, float money, ArrayList<SolItem> items, ManiGame game) {
+  public static void writeShip(HullConfig hull, float money, ArrayList<ManiItem> items, ManiGame game) {
     String hullName = game.getHullConfigs().getName(hull);
     StringBuilder sb = new StringBuilder();
-    for (SolItem i : items) {
+    for (ManiItem i : items) {
       sb.append(i.getCode());
       if (i.isEquipped() > 0) {
         sb.append("-" + i.isEquipped());

@@ -39,7 +39,7 @@ public class Loot implements ManiObject {
   public static final float PULL_DESIRED_SPD = 1f;
   public static final float PULL_FORCE = .1f;
   public static final float MAX_OWNER_AWAIT = 4f;
-  private final SolItem myItem;
+  private final ManiItem myItem;
   private final List<Dra> myDras;
   private final LightSrc myLightSrc;
   private final Vector2 myPos;
@@ -51,7 +51,7 @@ public class Loot implements ManiObject {
   private int myLife;
   private float myAngle;
 
-  public Loot(SolItem item, Body body, int life, List<Dra> dras, LightSrc ls, ManiShip owner) {
+  public Loot(ManiItem item, Body body, int life, List<Dra> dras, LightSrc ls, ManiShip owner) {
     myBody = body;
     myLife = life;
     myItem = item;
@@ -190,7 +190,7 @@ public class Loot implements ManiObject {
     ManiMath.free(toPuller);
   }
 
-  public SolItem getItem() {
+  public ManiItem getItem() {
     return myLife > 0 ? myItem : null;
   }
 

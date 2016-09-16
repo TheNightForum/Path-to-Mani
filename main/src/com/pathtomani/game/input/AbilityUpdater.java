@@ -17,7 +17,7 @@
 package com.pathtomani.game.input;
 
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.ship.ManiShip;
 import com.pathtomani.game.ship.ShipAbility;
 
@@ -38,7 +38,7 @@ public class AbilityUpdater {
     ShipAbility ability = ship.getAbility();
     if (ability == null) return;
     if (ship.getHull().config.getMaxLife() * myAbilityUseStartPerc < ship.getLife()) return;
-    SolItem ex = ability.getConfig().getChargeExample();
+    ManiItem ex = ability.getConfig().getChargeExample();
     if (ex != null) {
       if (ship.getItemContainer().count(ex) <= myChargesToKeep) return;
     }

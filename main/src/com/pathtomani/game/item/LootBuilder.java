@@ -39,7 +39,7 @@ public class LootBuilder {
   }
 
   // set spd & rot spd
-  public Loot build(ManiGame game, Vector2 pos, SolItem item, Vector2 spd, int life, float rotSpd, ManiShip owner) {
+  public Loot build(ManiGame game, Vector2 pos, ManiItem item, Vector2 spd, int life, float rotSpd, ManiShip owner) {
     List<Dra> dras = new ArrayList<Dra>();
     TextureAtlas.AtlasRegion tex = item.getIcon(game);
     float sz = item.getItemType().sz;

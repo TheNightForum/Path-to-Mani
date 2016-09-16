@@ -36,7 +36,7 @@ import com.pathtomani.game.item.ItemContainer;
 import com.pathtomani.game.item.Shield;
 import com.pathtomani.game.item.TradeContainer;
 import com.pathtomani.game.item.Loot;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.item.MoneyItem;
 import com.pathtomani.game.item.RepairItem;
 import com.pathtomani.game.item.EngineItem;
@@ -164,7 +164,7 @@ public class ManiShip implements ManiObject {
     if (loot.getOwner() == this) {
       return false;
     }
-    SolItem i = loot.getItem();
+    ManiItem i = loot.getItem();
     if (i == null) {
       return false;
     }
@@ -186,7 +186,7 @@ public class ManiShip implements ManiObject {
     return canAdd;
   }
 
-  private boolean shouldTrade(SolItem i, ManiGame game) {
+  private boolean shouldTrade(ManiItem i, ManiGame game) {
     if (myTradeContainer == null) {
       return false;
     }
@@ -276,7 +276,7 @@ public class ManiShip implements ManiObject {
     boolean tryToUse = isControlsEnabled() && myPilot.isAbility() && canUseAbility();
     boolean used = myAbility.update(game, this, tryToUse);
     if (used) {
-      SolItem example = myAbility.getConfig().getChargeExample();
+      ManiItem example = myAbility.getConfig().getChargeExample();
       if (example != null) {
         myItemContainer.tryConsumeItem(example);
       }
@@ -312,7 +312,7 @@ public class ManiShip implements ManiObject {
     if (myAbility == null || myAbilityAwait > 0) {
       return false;
     }
-    SolItem example = myAbility.getConfig().getChargeExample();
+    ManiItem example = myAbility.getConfig().getChargeExample();
     if (example == null) {
       return true;
     }
@@ -344,8 +344,8 @@ public class ManiShip implements ManiObject {
       game.beforeHeroDeath();
     }
 
-    for (List<SolItem> group : myItemContainer) {
-      for (SolItem item : group) {
+    for (List<ManiItem> group : myItemContainer) {
+      for (ManiItem item : group) {
         float dropChance = maybeUnequip(game, item, false) ? .35f : .6f;
         if (ManiMath.test(dropChance)) {
           throwLoot(game, item, true);
@@ -354,8 +354,8 @@ public class ManiShip implements ManiObject {
     }
 
     if (myTradeContainer != null) {
-      for (List<SolItem> group : myTradeContainer.getItems()) {
-        for (SolItem item : group) {
+      for (List<ManiItem> group : myTradeContainer.getItems()) {
+        for (ManiItem item : group) {
           if (ManiMath.test(.6f)) {
             throwLoot(game, item, true);
           }
@@ -369,7 +369,7 @@ public class ManiShip implements ManiObject {
     }
   }
 
-  private void throwLoot(ManiGame game, SolItem item, boolean onDeath) {
+  private void throwLoot(ManiGame game, ManiItem item, boolean onDeath) {
     Vector2 lootSpd = new Vector2();
     float spdAngle;
     float spdLen;
@@ -476,11 +476,11 @@ public class ManiShip implements ManiObject {
     return ad/e.getMaxRotSpd();
   }
 
-  public boolean maybeEquip(ManiGame game, SolItem item, boolean equip) {
+  public boolean maybeEquip(ManiGame game, ManiItem item, boolean equip) {
     return maybeEquip(game, item, false, equip) || maybeEquip(game, item, true, equip);
   }
 
-  public boolean maybeEquip(ManiGame game, SolItem item, boolean secondarySlot, boolean equip) {
+  public boolean maybeEquip(ManiGame game, ManiItem item, boolean secondarySlot, boolean equip) {
     if (!secondarySlot) {
       if (item instanceof EngineItem) {
         if (true) {
@@ -529,11 +529,11 @@ public class ManiShip implements ManiObject {
     return false;
   }
 
-  public boolean maybeUnequip(ManiGame game, SolItem item, boolean unequip) {
+  public boolean maybeUnequip(ManiGame game, ManiItem item, boolean unequip) {
     return maybeUnequip(game, item, false, unequip) || maybeUnequip(game, item, true, unequip);
   }
 
-  public boolean maybeUnequip(ManiGame game, SolItem item, boolean secondarySlot, boolean unequip) {
+  public boolean maybeUnequip(ManiGame game, ManiItem item, boolean secondarySlot, boolean unequip) {
     if (!secondarySlot) {
       if (myHull.getEngine() == item) {
         if (true) {
@@ -609,7 +609,7 @@ public class ManiShip implements ManiObject {
     return myControlEnableAwait <= 0;
   }
 
-  public void dropItem(ManiGame game, SolItem item) {
+  public void dropItem(ManiGame game, ManiItem item) {
     myItemContainer.remove(item);
     throwLoot(game, item, false);
   }

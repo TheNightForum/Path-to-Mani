@@ -25,7 +25,7 @@ import com.pathtomani.game.ShipConfig;
 import com.pathtomani.game.input.AiPilot;
 import com.pathtomani.game.item.ItemContainer;
 import com.pathtomani.game.item.MercItem;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.planet.Planet;
 import com.pathtomani.game.ship.FarShip;
 import com.pathtomani.game.ship.ManiShip;
@@ -59,7 +59,7 @@ public class HireShips implements InventoryOperations {
   }
 
   @Override
-  public boolean isUsing(ManiGame game, SolItem item) {
+  public boolean isUsing(ManiGame game, ManiItem item) {
     return false;
   }
 
@@ -88,7 +88,7 @@ public class HireShips implements InventoryOperations {
       cmp.getInputMan().setScreen(cmp, game.getScreens().mainScreen);
       return;
     }
-    SolItem selItem = is.getSelectedItem();
+    ManiItem selItem = is.getSelectedItem();
     boolean enabled = selItem != null && hero.getMoney() >= selItem.getPrice();
     myBuyCtrl.setDisplayName(enabled ? "Hire" : "---");
     myBuyCtrl.setEnabled(enabled);

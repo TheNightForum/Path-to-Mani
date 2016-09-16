@@ -78,8 +78,8 @@ public class ShipBuilder {
 
     // For the player use new logic that better respects what was explicitly equipped
     if (pilot.isPlayer()) {
-      for (List<SolItem> group : ic) {
-        for (SolItem i : group) {
+      for (List<ManiItem> group : ic) {
+        for (ManiItem i : group) {
           if (i instanceof Shield) {
             if (i.isEquipped() > 0) {
               shield = (Shield) i;
@@ -112,8 +112,8 @@ public class ShipBuilder {
       }
     } else {
       // For NPCs use the old logic that just equips whatever
-      for (List<SolItem> group : ic) {
-        for (SolItem i : group) {
+      for (List<ManiItem> group : ic) {
+        for (ManiItem i : group) {
           if (i instanceof Shield) {
             shield = (Shield) i;
             continue;
@@ -162,7 +162,7 @@ public class ShipBuilder {
 
   private void addAbilityCharges(ItemContainer ic, HullConfig hc, Pilot pilot) {
     if (hc.getAbility() != null) {
-      SolItem ex = hc.getAbility().getChargeExample();
+      ManiItem ex = hc.getAbility().getChargeExample();
       if (ex != null) {
         int count;
         if (pilot.isPlayer()) {

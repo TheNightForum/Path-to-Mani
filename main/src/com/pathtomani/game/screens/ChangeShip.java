@@ -27,7 +27,7 @@ import com.pathtomani.ui.UiDrawer;
 import com.pathtomani.GameOptions;
 import com.pathtomani.game.item.ItemContainer;
 import com.pathtomani.game.item.ShipItem;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.ship.ManiShip;
 import com.pathtomani.game.ship.ShipRepairer;
 import com.pathtomani.game.ship.hulls.Hull;
@@ -55,7 +55,7 @@ public class ChangeShip implements InventoryOperations {
   }
 
   @Override
-  public boolean isUsing(ManiGame game, SolItem item) {
+  public boolean isUsing(ManiGame game, ManiItem item) {
     return false;
   }
 
@@ -84,7 +84,7 @@ public class ChangeShip implements InventoryOperations {
       cmp.getInputMan().setScreen(cmp, game.getScreens().mainScreen);
       return;
     }
-    SolItem selItem = is.getSelectedItem();
+    ManiItem selItem = is.getSelectedItem();
     boolean enabled = selItem != null && hero.getMoney() >= selItem.getPrice();
     myBuyCtrl.setDisplayName(enabled ? "Change" : "---");
     myBuyCtrl.setEnabled(enabled);

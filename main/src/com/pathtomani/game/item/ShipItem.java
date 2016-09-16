@@ -21,7 +21,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ship.hulls.HullConfig;
 
-public class ShipItem implements SolItem {
+public class ShipItem implements ManiItem {
 
   public static final ManiItemType EMPTY = new ManiItemType(new Color(), null, 1);
   private final HullConfig myConfig;
@@ -68,12 +68,12 @@ public class ShipItem implements SolItem {
   }
 
   @Override
-  public SolItem copy() {
+  public ManiItem copy() {
     return new ShipItem(myConfig);
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return item instanceof ShipItem && ((ShipItem) item).myConfig == myConfig;
   }
 

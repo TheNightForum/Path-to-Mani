@@ -18,10 +18,10 @@ package com.pathtomani.game.gun;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.item.ManiItemType;
 
-public class GunItem implements SolItem {
+public class GunItem implements ManiItem {
 
   public final GunConfig config;
   public int ammo;
@@ -60,7 +60,7 @@ public class GunItem implements SolItem {
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return false;
   }
 

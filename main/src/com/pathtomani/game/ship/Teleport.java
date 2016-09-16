@@ -26,7 +26,7 @@ import com.pathtomani.game.planet.Planet;
 import com.pathtomani.game.AbilityCommonConfig;
 import com.pathtomani.game.Faction;
 import com.pathtomani.game.item.ItemManager;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 
 public class Teleport implements ShipAbility {
   public static final int MAX_RADIUS = 4;
@@ -103,11 +103,11 @@ public class Teleport implements ShipAbility {
 
   public static class Config implements AbilityConfig {
     private final float angle;
-    private final SolItem chargeExample;
+    private final ManiItem chargeExample;
     private final float rechargeTime;
     private final AbilityCommonConfig cc;
 
-    public Config(float angle, SolItem chargeExample, float rechargeTime, AbilityCommonConfig cc) {
+    public Config(float angle, ManiItem chargeExample, float rechargeTime, AbilityCommonConfig cc) {
       this.angle = angle;
       this.chargeExample = chargeExample;
       this.rechargeTime = rechargeTime;
@@ -119,7 +119,7 @@ public class Teleport implements ShipAbility {
     }
 
     @Override
-    public SolItem getChargeExample() {
+    public ManiItem getChargeExample() {
       return chargeExample;
     }
 
@@ -135,7 +135,7 @@ public class Teleport implements ShipAbility {
 
     public static AbilityConfig load(JsonValue abNode, ItemManager itemManager, AbilityCommonConfig cc) {
       float angle = abNode.getFloat("angle");
-      SolItem chargeExample = itemManager.getExample("teleportCharge");
+      ManiItem chargeExample = itemManager.getExample("teleportCharge");
       float rechargeTime = abNode.getFloat("rechargeTime");
       return new Config(angle, chargeExample, rechargeTime, cc);
     }

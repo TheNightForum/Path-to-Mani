@@ -19,7 +19,7 @@ package com.pathtomani.game.item;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.pathtomani.game.ManiGame;
 
-public class MoneyItem implements SolItem {
+public class MoneyItem implements ManiItem {
   public static final int AMT = 10;
   public static final int MED_AMT = 3 * AMT;
   public static final int BIG_AMT = 10 * AMT;
@@ -53,7 +53,7 @@ public class MoneyItem implements SolItem {
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return item instanceof MoneyItem && ((MoneyItem) item).myAmt == myAmt;
   }
 

@@ -20,7 +20,7 @@ import com.pathtomani.GameOptions;
 import com.pathtomani.ManiApplication;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.item.ItemContainer;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.game.ship.ManiShip;
 import com.pathtomani.ui.ManiInputManager;
 import com.pathtomani.ui.UiDrawer;
@@ -61,7 +61,7 @@ public class ShowInventory implements InventoryOperations {
   public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     ManiGame g = cmp.getGame();
     InventoryScreen is = g.getScreens().inventoryScreen;
-    SolItem selItem = is.getSelectedItem();
+    ManiItem selItem = is.getSelectedItem();
     ManiShip hero = g.getHero();
 
     eq1Ctrl.setDisplayName("---");
@@ -145,7 +145,7 @@ public class ShowInventory implements InventoryOperations {
   }
 
   @Override
-  public boolean isUsing(ManiGame game, SolItem item) {
+  public boolean isUsing(ManiGame game, ManiItem item) {
     ManiShip h = game.getHero();
     return h != null && h.maybeUnequip(game, item, false);
   }

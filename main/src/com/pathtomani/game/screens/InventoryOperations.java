@@ -18,12 +18,12 @@ package com.pathtomani.game.screens;
 
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.item.ItemContainer;
-import com.pathtomani.game.item.SolItem;
+import com.pathtomani.game.item.ManiItem;
 import com.pathtomani.ui.ManiUiScreen;
 
 public interface InventoryOperations extends ManiUiScreen {
   ItemContainer getItems(ManiGame game);
-  boolean isUsing(ManiGame game, SolItem item);
+  boolean isUsing(ManiGame game, ManiItem item);
   float getPriceMul();
   String getHeader();
 }

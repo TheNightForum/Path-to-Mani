@@ -19,12 +19,12 @@ package com.pathtomani.game.item;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.pathtomani.game.ManiGame;
 
-public interface SolItem {
+public interface ManiItem {
   String getDisplayName();
   float getPrice();
   String getDesc();
-  SolItem copy();
-  boolean isSame(SolItem item);
+  ManiItem copy();
+  boolean isSame(ManiItem item);
   TextureAtlas.AtlasRegion getIcon(ManiGame game);
   ManiItemType getItemType();
   String getCode();

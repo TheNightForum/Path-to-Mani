@@ -31,7 +31,7 @@ import com.pathtomani.game.sound.SolSound;
 import com.pathtomani.game.sound.SoundManager;
 import com.pathtomani.TextureManager;
 
-public class Shield implements SolItem {
+public class Shield implements ManiItem {
   public static final float SIZE_PERC = .7f;
   private static final float BULLET_DMG_FACTOR = .7f;
   private final Config myConfig;
@@ -80,12 +80,12 @@ public class Shield implements SolItem {
   }
 
   @Override
-  public SolItem copy() {
+  public ManiItem copy() {
     return new Shield(myConfig, myEquipped);
   }
 
   @Override
-  public boolean isSame(SolItem item) {
+  public boolean isSame(ManiItem item) {
     return false;
   }
 
