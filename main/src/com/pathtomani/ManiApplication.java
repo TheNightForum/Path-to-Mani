@@ -24,7 +24,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.pathtomani.common.*;
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.sound.MusicManager;
+import com.pathtomani.managers.sound.MusicManager;
 import com.pathtomani.gfx.CommonDrawer;
 import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.gfx.TextureManager;
