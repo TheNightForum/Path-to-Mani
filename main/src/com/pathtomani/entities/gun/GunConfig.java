@@ -22,12 +22,12 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.gfx.TextureManager;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.files.FileManager;
+import com.pathtomani.managers.files.FileManager;
 import com.pathtomani.game.DmgType;
 import com.pathtomani.entities.item.*;
 import com.pathtomani.entities.projectile.ProjectileConfig;
-import com.pathtomani.game.sound.ManiSound;
-import com.pathtomani.game.sound.SoundManager;
+import com.pathtomani.managers.sound.ManiSound;
+import com.pathtomani.managers.sound.SoundManager;
 import com.pathtomani.game.HardnessCalc;
 
 public class GunConfig {
