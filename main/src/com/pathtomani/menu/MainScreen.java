@@ -26,8 +26,8 @@ import com.pathtomani.ui.ManiInputManager;
 import com.pathtomani.ui.ManiUiScreen;
 import com.pathtomani.ui.UiDrawer;
 import com.pathtomani.common.GameOptions;
-import com.pathtomani.gfx.TextureManager;
-import com.pathtomani.gfx.ManiColor;
+import com.pathtomani.effects.TextureManager;
+import com.pathtomani.effects.ManiColor;
 import com.pathtomani.game.DebugOptions;
 import com.pathtomani.ui.ManiUiControl;
 

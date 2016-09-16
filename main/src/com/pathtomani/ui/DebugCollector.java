@@ -17,7 +17,7 @@
 package com.pathtomani.ui;
 
 import com.badlogic.gdx.utils.TimeUtils;
-import com.pathtomani.gfx.ManiColor;
+import com.pathtomani.effects.ManiColor;
 import com.pathtomani.game.DebugOptions;
 import com.pathtomani.game.screens.BorderDrawer;
 

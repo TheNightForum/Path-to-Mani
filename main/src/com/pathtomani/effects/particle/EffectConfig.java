@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.pathtomani.gfx.particle;
+package com.pathtomani.effects.particle;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import com.pathtomani.gfx.GameColors;
-import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.effects.GameColors;
+import com.pathtomani.effects.TextureManager;
 
 import java.util.ArrayList;
 import java.util.List;

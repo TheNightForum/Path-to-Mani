@@ -22,7 +22,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.pathtomani.common.Const;
-import com.pathtomani.gfx.ManiColor;
+import com.pathtomani.effects.ManiColor;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.dra.DraLevel;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pathtomani.gfx;
+package com.pathtomani.effects;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;

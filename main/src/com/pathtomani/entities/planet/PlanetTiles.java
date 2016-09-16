@@ -20,7 +20,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.effects.TextureManager;
 import com.pathtomani.game.DebugOptions;
 import com.pathtomani.game.PathLoader;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pathtomani.gfx;
+package com.pathtomani.effects;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,7 +22,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.game.DebugOptions;
-import com.pathtomani.gfx.TextureProvider;
 
 import java.util.ArrayList;
 

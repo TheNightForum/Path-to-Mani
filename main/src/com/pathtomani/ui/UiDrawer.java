@@ -21,8 +21,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.pathtomani.gfx.CommonDrawer;
-import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.effects.CommonDrawer;
+import com.pathtomani.effects.TextureManager;
 
 public class UiDrawer {
 

@@ -20,7 +20,7 @@ import com.badlogic.gdx.Gdx;
 import com.pathtomani.common.GameOptions;
 import com.pathtomani.ManiApplication;
 import com.pathtomani.ui.*;
-import com.pathtomani.gfx.ManiColor;
+import com.pathtomani.effects.ManiColor;
 
 import java.util.ArrayList;
 import java.util.List;

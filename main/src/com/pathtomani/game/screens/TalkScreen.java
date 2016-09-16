@@ -19,7 +19,7 @@ package com.pathtomani.game.screens;
 import com.badlogic.gdx.math.Rectangle;
 import com.pathtomani.common.GameOptions;
 import com.pathtomani.ManiApplication;
-import com.pathtomani.gfx.ManiColor;
+import com.pathtomani.effects.ManiColor;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.entities.ship.ManiShip;
 import com.pathtomani.entities.ship.hulls.HullConfig;

@@ -22,14 +22,14 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.dra.Dra;
 import com.pathtomani.entities.item.EngineItem;
-import com.pathtomani.gfx.particle.LightSrc;
+import com.pathtomani.effects.particle.LightSrc;
 import com.pathtomani.game.sound.ManiSound;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.game.dra.DraLevel;
 import com.pathtomani.game.input.Pilot;
-import com.pathtomani.gfx.particle.EffectConfig;
-import com.pathtomani.gfx.particle.PartMan;
-import com.pathtomani.gfx.particle.ParticleSrc;
+import com.pathtomani.effects.particle.EffectConfig;
+import com.pathtomani.effects.particle.PartMan;
+import com.pathtomani.effects.particle.ParticleSrc;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -21,8 +21,8 @@ import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.pathtomani.gfx.CommonDrawer;
-import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.effects.CommonDrawer;
+import com.pathtomani.effects.TextureManager;
 
 public class GameDrawer {
 

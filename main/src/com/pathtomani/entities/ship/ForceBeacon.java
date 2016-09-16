@@ -23,7 +23,7 @@ import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.game.dra.Dra;
 import com.pathtomani.game.input.Pilot;
-import com.pathtomani.gfx.particle.ParticleSrc;
+import com.pathtomani.effects.particle.ParticleSrc;
 
 import java.util.List;
 

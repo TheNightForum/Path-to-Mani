@@ -24,7 +24,7 @@ import com.pathtomani.files.HullConfigManager;
 import com.pathtomani.game.PathLoader;
 import com.pathtomani.game.ShipConfig;
 import com.pathtomani.game.chunk.SpaceEnvConfig;
-import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.effects.TextureManager;
 import com.pathtomani.entities.item.ItemManager;
 
 import java.util.ArrayList;

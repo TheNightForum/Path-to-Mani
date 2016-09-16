@@ -25,7 +25,7 @@ import com.pathtomani.game.ManiObject;
 import com.pathtomani.game.dra.DraLevel;
 import com.pathtomani.entities.item.ItemManager;
 import com.pathtomani.entities.item.ManiItem;
-import com.pathtomani.gfx.particle.ParticleSrc;
+import com.pathtomani.effects.particle.ParticleSrc;
 
 public class KnockBack implements ShipAbility {
   public static final int MAX_RADIUS = 8;

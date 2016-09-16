@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.pathtomani.gfx.particle;
+package com.pathtomani.effects.particle;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.game.dra.Dra;
-import com.pathtomani.gfx.ManiColorUtil;
+import com.pathtomani.effects.ManiColorUtil;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.dra.DraLevel;
