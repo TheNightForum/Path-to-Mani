@@ -20,10 +20,10 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.files.HullConfigManager;
-import com.pathtomani.effects.GameColors;
+import com.pathtomani.gfx.GameColors;
 import com.pathtomani.game.ShipConfig;
 import com.pathtomani.entities.item.TradeConfig;
-import com.pathtomani.effects.TextureManager;
+import com.pathtomani.gfx.TextureManager;
 import com.pathtomani.entities.item.ItemManager;
 
 import java.util.ArrayList;
