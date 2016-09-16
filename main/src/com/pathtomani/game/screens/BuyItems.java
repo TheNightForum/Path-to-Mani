@@ -21,9 +21,9 @@ import com.pathtomani.game.ManiGame;
 import com.pathtomani.ui.ManiInputManager;
 import com.pathtomani.ui.UiDrawer;
 import com.pathtomani.common.GameOptions;
-import com.pathtomani.game.item.ItemContainer;
-import com.pathtomani.game.item.ManiItem;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.item.ItemContainer;
+import com.pathtomani.entities.item.ManiItem;
+import com.pathtomani.entities.ship.ManiShip;
 import com.pathtomani.ui.ManiUiControl;
 
 import java.util.ArrayList;
