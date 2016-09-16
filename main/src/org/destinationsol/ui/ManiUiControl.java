@@ -22,7 +22,7 @@ import com.badlogic.gdx.math.Rectangle;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.common.ManiColor;
 
-public class SolUiControl {
+public class ManiUiControl {
   private final int[] myKeys;
   private final Rectangle myScreenArea;
 
@@ -42,7 +42,7 @@ public class SolUiControl {
   private int myWarnCount;
   private final boolean myWithSound;
 
-  public SolUiControl(Rectangle screenArea, boolean withSound, int... keys) {
+  public ManiUiControl(Rectangle screenArea, boolean withSound, int... keys) {
     myWithSound = withSound;
     myKeys = keys == null ? new int[0] : keys;
     myScreenArea = screenArea;

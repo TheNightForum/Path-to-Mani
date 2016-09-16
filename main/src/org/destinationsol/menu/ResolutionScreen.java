@@ -27,29 +27,29 @@ import java.util.List;
 
 public class ResolutionScreen implements ManiUiScreen {
 
-  private final ArrayList<SolUiControl> myControls;
-  private final SolUiControl myCloseCtrl;
-  private final SolUiControl myResoCtrl;
-  private final SolUiControl myFsCtrl;
+  private final ArrayList<ManiUiControl> myControls;
+  private final ManiUiControl myCloseCtrl;
+  private final ManiUiControl myResoCtrl;
+  private final ManiUiControl myFsCtrl;
 
   public ResolutionScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    myResoCtrl = new SolUiControl(menuLayout.buttonRect(-1, 2), true);
+    myResoCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true);
     myResoCtrl.setDisplayName("Resolution");
     myControls.add(myResoCtrl);
 
-    myFsCtrl = new SolUiControl(menuLayout.buttonRect(-1, 3), true);
+    myFsCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true);
     myFsCtrl.setDisplayName("Fullscreen");
     myControls.add(myFsCtrl);
 
-    myCloseCtrl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+    myCloseCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
     myCloseCtrl.setDisplayName("Back");
     myControls.add(myCloseCtrl);
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

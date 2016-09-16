@@ -22,7 +22,7 @@ import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.menu.MenuLayout;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolUiControl;
+import org.destinationsol.ui.ManiUiControl;
 import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
 
@@ -30,35 +30,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuScreen implements ManiUiScreen {
-  private final List<SolUiControl> myControls;
-  private final SolUiControl myCloseCtrl;
-  private final SolUiControl myExitCtrl;
-  private final SolUiControl myRespawnCtrl;
-  private final SolUiControl mySoundVolCtrl;
-  private final SolUiControl myMusVolCtrl;
+  private final List<ManiUiControl> myControls;
+  private final ManiUiControl myCloseCtrl;
+  private final ManiUiControl myExitCtrl;
+  private final ManiUiControl myRespawnCtrl;
+  private final ManiUiControl mySoundVolCtrl;
+  private final ManiUiControl myMusVolCtrl;
 
   public MenuScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    mySoundVolCtrl = new SolUiControl(menuLayout.buttonRect(-1, 1), true);
+    mySoundVolCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true);
     mySoundVolCtrl.setDisplayName("Sound Vol");
     myControls.add(mySoundVolCtrl);
-    myMusVolCtrl = new SolUiControl(menuLayout.buttonRect(-1, 0), true);
+    myMusVolCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 0), true);
     myMusVolCtrl.setDisplayName("Music Vol");
     myControls.add(myMusVolCtrl);
-    myRespawnCtrl = new SolUiControl(menuLayout.buttonRect(-1, 2), true);
+    myRespawnCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true);
     myRespawnCtrl.setDisplayName("Respawn");
     myControls.add(myRespawnCtrl);
-    myExitCtrl = new SolUiControl(menuLayout.buttonRect(-1, 3), true);
+    myExitCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true);
     myExitCtrl.setDisplayName("Exit");
     myControls.add(myExitCtrl);
-    myCloseCtrl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyClose());
+    myCloseCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyClose());
     myCloseCtrl.setDisplayName("Resume");
     myControls.add(myCloseCtrl);
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

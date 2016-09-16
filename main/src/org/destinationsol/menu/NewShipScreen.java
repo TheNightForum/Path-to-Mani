@@ -26,23 +26,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewShipScreen implements ManiUiScreen {
-  private final List<SolUiControl> myControls;
-  private final SolUiControl myOkCtrl;
-  public final SolUiControl myCancelCtrl;
+  private final List<ManiUiControl> myControls;
+  private final ManiUiControl myOkCtrl;
+  public final ManiUiControl myCancelCtrl;
 
   public NewShipScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
-    myOkCtrl = new SolUiControl(menuLayout.buttonRect(-1, 1), true, Input.Keys.H);
+    myControls = new ArrayList<ManiUiControl>();
+    myOkCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true, Input.Keys.H);
     myOkCtrl.setDisplayName("OK");
     myControls.add(myOkCtrl);
 
-    myCancelCtrl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+    myCancelCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
     myCancelCtrl.setDisplayName("Cancel");
     myControls.add(myCancelCtrl);
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

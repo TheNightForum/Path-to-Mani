@@ -25,7 +25,7 @@ import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
 import org.destinationsol.menu.MenuLayout;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolUiControl;
+import org.destinationsol.ui.ManiUiControl;
 import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
 
@@ -35,35 +35,35 @@ import java.util.List;
 public class TalkScreen implements ManiUiScreen {
 
   public static final float MAX_TALK_DIST = 1f;
-  private final List<SolUiControl> myControls;
-  private final SolUiControl mySellCtrl;
-  public final SolUiControl buyCtrl;
-  private final SolUiControl myShipsCtrl;
-  private final SolUiControl myHireCtrl;
+  private final List<ManiUiControl> myControls;
+  private final ManiUiControl mySellCtrl;
+  public final ManiUiControl buyCtrl;
+  private final ManiUiControl myShipsCtrl;
+  private final ManiUiControl myHireCtrl;
   private final Rectangle myBg;
-  public final SolUiControl closeCtrl;
+  public final ManiUiControl closeCtrl;
   private ManiShip myTarget;
 
   public TalkScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    mySellCtrl = new SolUiControl(menuLayout.buttonRect(-1, 0), true, gameOptions.getKeySellMenu());
+    mySellCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 0), true, gameOptions.getKeySellMenu());
     mySellCtrl.setDisplayName("Sell");
     myControls.add(mySellCtrl);
 
-    buyCtrl = new SolUiControl(menuLayout.buttonRect(-1, 1), true, gameOptions.getKeyBuyMenu());
+    buyCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true, gameOptions.getKeyBuyMenu());
     buyCtrl.setDisplayName("Buy");
     myControls.add(buyCtrl);
 
-    myShipsCtrl = new SolUiControl(menuLayout.buttonRect(-1, 2), true, gameOptions.getKeyChangeShipMenu());
+    myShipsCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true, gameOptions.getKeyChangeShipMenu());
     myShipsCtrl.setDisplayName("Change Ship");
     myControls.add(myShipsCtrl);
 
-    myHireCtrl = new SolUiControl(menuLayout.buttonRect(-1, 3), true, gameOptions.getKeyHireShipMenu());
+    myHireCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true, gameOptions.getKeyHireShipMenu());
     myHireCtrl.setDisplayName("Hire");
     myControls.add(myHireCtrl);
 
-    closeCtrl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyClose());
+    closeCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyClose());
     closeCtrl.setDisplayName("Close");
     myControls.add(closeCtrl);
 
@@ -71,7 +71,7 @@ public class TalkScreen implements ManiUiScreen {
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

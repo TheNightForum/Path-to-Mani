@@ -49,17 +49,17 @@ public class InventoryScreen implements ManiUiScreen {
   public final ChangeShip changeShip;
   public final HireShips hireShips;
 
-  private final List<SolUiControl> myControls;
+  private final List<ManiUiControl> myControls;
   private final Rectangle myArea;
   private final Rectangle myListArea;
   private final Rectangle myDetailArea;
   private final Rectangle myItemCtrlArea;
-  private final SolUiControl myPrevCtrl;
-  public final SolUiControl nextCtrl;
-  public final SolUiControl[] itemCtrls;
-  public final SolUiControl closeCtrl;
-  private final SolUiControl myUpCtrl;
-  public final SolUiControl downCtrl;
+  private final ManiUiControl myPrevCtrl;
+  public final ManiUiControl nextCtrl;
+  public final ManiUiControl[] itemCtrls;
+  public final ManiUiControl closeCtrl;
+  private final ManiUiControl myUpCtrl;
+  public final ManiUiControl downCtrl;
   private final Vector2 myDetailHeaderPos;
 
   private InventoryOperations myOperations;
@@ -69,7 +69,7 @@ public class InventoryScreen implements ManiUiScreen {
   public static final float SMALL_GAP = .004f;
 
   public InventoryScreen(float r, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
     float contentW = .8f;
     float col0 = r / 2 - contentW / 2;
@@ -83,11 +83,11 @@ public class InventoryScreen implements ManiUiScreen {
     myListHeaderPos = new Vector2(col0 + HEADER_TEXT_OFFS, row + HEADER_TEXT_OFFS); // offset hack
     float listCtrlW = contentW * .15f;
     Rectangle nextArea = new Rectangle(col0 + contentW - listCtrlW, row, listCtrlW, headerH);
-    nextCtrl = new SolUiControl(nextArea, true, gameOptions.getKeyRight());
+    nextCtrl = new ManiUiControl(nextArea, true, gameOptions.getKeyRight());
     nextCtrl.setDisplayName(">");
     myControls.add(nextCtrl);
     Rectangle prevArea = new Rectangle(nextArea.x - SMALL_GAP - listCtrlW, row, listCtrlW, headerH);
-    myPrevCtrl = new SolUiControl(prevArea, true, gameOptions.getKeyLeft());
+    myPrevCtrl = new ManiUiControl(prevArea, true, gameOptions.getKeyLeft());
     myPrevCtrl.setDisplayName("<");
     myControls.add(myPrevCtrl);
     row += headerH + SMALL_GAP;
@@ -95,10 +95,10 @@ public class InventoryScreen implements ManiUiScreen {
     // list
     float itemRowH = .04f;
     float listRow0 = row;
-    itemCtrls = new SolUiControl[Const.ITEM_GROUPS_PER_PAGE];
+    itemCtrls = new ManiUiControl[Const.ITEM_GROUPS_PER_PAGE];
     for (int i = 0; i < Const.ITEM_GROUPS_PER_PAGE; i++) {
       Rectangle itemR = new Rectangle(col0, row, contentW, itemRowH);
-      SolUiControl itemCtrl = new SolUiControl(itemR, true);
+      ManiUiControl itemCtrl = new ManiUiControl(itemR, true);
       itemCtrls[i] = itemCtrl;
       myControls.add(itemCtrl);
       row += itemRowH + SMALL_GAP;
@@ -117,7 +117,7 @@ public class InventoryScreen implements ManiUiScreen {
     // whole
     myArea = new Rectangle(col0 - bgGap, row0 - bgGap, contentW + bgGap * 2, row - row0 + bgGap * 2);
 
-    closeCtrl = new SolUiControl(itemCtrl(3), true, gameOptions.getKeyClose());
+    closeCtrl = new ManiUiControl(itemCtrl(3), true, gameOptions.getKeyClose());
     closeCtrl.setDisplayName("Close");
     myControls.add(closeCtrl);
 
@@ -126,14 +126,14 @@ public class InventoryScreen implements ManiUiScreen {
     sellItems = new SellItems(this, gameOptions);
     changeShip = new ChangeShip(this, gameOptions);
     hireShips = new HireShips(this, gameOptions);
-    myUpCtrl = new SolUiControl(null, true, gameOptions.getKeyUp());
+    myUpCtrl = new ManiUiControl(null, true, gameOptions.getKeyUp());
     myControls.add(myUpCtrl);
-    downCtrl = new SolUiControl(null, true, gameOptions.getKeyDown());
+    downCtrl = new ManiUiControl(null, true, gameOptions.getKeyDown());
     myControls.add(downCtrl);
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
@@ -167,7 +167,7 @@ public class InventoryScreen implements ManiUiScreen {
     int offset = myPage * Const.ITEM_GROUPS_PER_PAGE;
     boolean hNew = showingHeroItems();
     for (int i = 0; i < itemCtrls.length; i++) {
-      SolUiControl itemCtrl = itemCtrls[i];
+      ManiUiControl itemCtrl = itemCtrls[i];
       int groupIdx = offset + i;
       boolean ctrlEnabled = groupIdx < groupCount;
       itemCtrl.setEnabled(ctrlEnabled);
@@ -227,7 +227,7 @@ public class InventoryScreen implements ManiUiScreen {
       int groupIdx = myPage * Const.ITEM_GROUPS_PER_PAGE + i;
       int groupCount = ic.groupCount();
       if (groupCount <= groupIdx) continue;
-      SolUiControl itemCtrl = itemCtrls[i];
+      ManiUiControl itemCtrl = itemCtrls[i];
       List<SolItem> group = ic.getGroup(groupIdx);
       SolItem item = group.get(0);
       TextureAtlas.AtlasRegion tex = item.getIcon(game);
@@ -253,7 +253,7 @@ public class InventoryScreen implements ManiUiScreen {
       int groupIdx = myPage * Const.ITEM_GROUPS_PER_PAGE + i;
       int groupCount = ic.groupCount();
       if (groupCount <= groupIdx) continue;
-      SolUiControl itemCtrl = itemCtrls[i];
+      ManiUiControl itemCtrl = itemCtrls[i];
       List<SolItem> group = ic.getGroup(groupIdx);
       SolItem item = group.get(0);
       Rectangle rect = itemCtrl.getScreenArea();

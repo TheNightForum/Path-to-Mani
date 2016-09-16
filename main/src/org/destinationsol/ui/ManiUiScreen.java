@@ -21,7 +21,7 @@ import org.destinationsol.ManiApplication;
 import java.util.List;
 
 public interface ManiUiScreen {
-  List<SolUiControl> getControls();
+  List<ManiUiControl> getControls();
 
   void onAdd(ManiApplication cmp);
 

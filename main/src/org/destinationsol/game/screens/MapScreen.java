@@ -22,7 +22,7 @@ import org.destinationsol.ManiApplication;
 import org.destinationsol.game.MapDrawer;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolUiControl;
+import org.destinationsol.ui.ManiUiControl;
 import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
 
@@ -30,33 +30,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MapScreen implements ManiUiScreen {
-  private final List<SolUiControl> myControls;
-  public final SolUiControl closeCtrl;
-  public final SolUiControl zoomInCtrl;
-  public final SolUiControl zoomOutCtrl;
+  private final List<ManiUiControl> myControls;
+  public final ManiUiControl closeCtrl;
+  public final ManiUiControl zoomInCtrl;
+  public final ManiUiControl zoomOutCtrl;
 
   public MapScreen(RightPaneLayout rightPaneLayout, boolean mobile, float r, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
     Rectangle closeArea = mobile ? MainScreen.btn(0, MainScreen.HELPER_ROW_1, true) : rightPaneLayout.buttonRect(1);
-    closeCtrl = new SolUiControl(closeArea, true, gameOptions.getKeyMap(), gameOptions.getKeyClose());
+    closeCtrl = new ManiUiControl(closeArea, true, gameOptions.getKeyMap(), gameOptions.getKeyClose());
     closeCtrl.setDisplayName("Close");
     myControls.add(closeCtrl);
     float row0 = 1 - MainScreen.CELL_SZ;
     float row1 = row0 - MainScreen.CELL_SZ;
     float colN = r - MainScreen.CELL_SZ;
     Rectangle zoomInArea = mobile ? MainScreen.btn(0, row1, false) : rightPaneLayout.buttonRect(2);
-    zoomInCtrl = new SolUiControl(zoomInArea, true, gameOptions.getKeyZoomIn());
+    zoomInCtrl = new ManiUiControl(zoomInArea, true, gameOptions.getKeyZoomIn());
     zoomInCtrl.setDisplayName("Zoom In");
     myControls.add(zoomInCtrl);
     Rectangle zoomOutArea = mobile ? MainScreen.btn(0, row0, false) : rightPaneLayout.buttonRect(3);
-    zoomOutCtrl = new SolUiControl(zoomOutArea, true, gameOptions.getKeyZoomOut());
+    zoomOutCtrl = new ManiUiControl(zoomOutArea, true, gameOptions.getKeyZoomOut());
     zoomOutCtrl.setDisplayName("Zoom Out");
     myControls.add(zoomOutCtrl);
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

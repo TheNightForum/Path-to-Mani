@@ -28,7 +28,7 @@ import com.badlogic.gdx.math.Vector3;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolUiControl;
+import org.destinationsol.ui.ManiUiControl;
 import org.destinationsol.ui.UiDrawer;
 
 import java.util.ArrayList;
@@ -37,14 +37,14 @@ import java.util.List;
 public class InputMapControllerScreen implements InputMapOperations {
     private static final String HEADER_TEXT = "Controller Inputs";
 
-    private final ArrayList<SolUiControl> controls;
+    private final ArrayList<ManiUiControl> controls;
     private boolean isEnterNewKey;
     private List<InputConfigItem> itemsList = new ArrayList<InputConfigItem>();
     private int selectedIndex;
     private int controllerItems;
 
     public InputMapControllerScreen(InputMapScreen inputMapScreen, GameOptions gameOptions) {
-        controls = new ArrayList<SolUiControl>();
+        controls = new ArrayList<ManiUiControl>();
     }
 
     private InputConfigItem InitItem(int axis, int button, String displayName) {
@@ -182,7 +182,7 @@ public class InputMapControllerScreen implements InputMapOperations {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<ManiUiControl> getControls() {
         return controls;
     }
 

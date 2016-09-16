@@ -23,7 +23,7 @@ import org.destinationsol.game.item.ItemContainer;
 import org.destinationsol.game.item.SolItem;
 import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolUiControl;
+import org.destinationsol.ui.ManiUiControl;
 import org.destinationsol.ui.UiDrawer;
 
 import java.util.ArrayList;
@@ -31,29 +31,29 @@ import java.util.List;
 
 public class ShowInventory implements InventoryOperations {
 
-  private final List<SolUiControl> myControls;
-  public final SolUiControl eq1Ctrl;
-  public final SolUiControl eq2Ctrl;
-  public final SolUiControl dropCtrl;
+  private final List<ManiUiControl> myControls;
+  public final ManiUiControl eq1Ctrl;
+  public final ManiUiControl eq2Ctrl;
+  public final ManiUiControl dropCtrl;
 
   public ShowInventory(InventoryScreen inventoryScreen, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    eq1Ctrl = new SolUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyEquip());
+    eq1Ctrl = new ManiUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyEquip());
     eq1Ctrl.setDisplayName("Eq");
     myControls.add(eq1Ctrl);
 
-    eq2Ctrl = new SolUiControl(inventoryScreen.itemCtrl(1), true, gameOptions.getKeyEquip2());
+    eq2Ctrl = new ManiUiControl(inventoryScreen.itemCtrl(1), true, gameOptions.getKeyEquip2());
     eq2Ctrl.setDisplayName("Eq2");
     myControls.add(eq2Ctrl);
 
-    dropCtrl = new SolUiControl(inventoryScreen.itemCtrl(2), true, gameOptions.getKeyDrop());
+    dropCtrl = new ManiUiControl(inventoryScreen.itemCtrl(2), true, gameOptions.getKeyDrop());
     dropCtrl.setDisplayName("Drop");
     myControls.add(dropCtrl);
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

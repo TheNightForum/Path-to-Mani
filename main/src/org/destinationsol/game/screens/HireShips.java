@@ -34,7 +34,7 @@ import org.destinationsol.game.ship.FarShip;
 import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolUiControl;
+import org.destinationsol.ui.ManiUiControl;
 import org.destinationsol.ui.UiDrawer;
 
 import java.util.ArrayList;
@@ -42,13 +42,13 @@ import java.util.List;
 
 public class HireShips implements InventoryOperations {
 
-  private final ArrayList<SolUiControl> myControls;
-  private final SolUiControl myBuyCtrl;
+  private final ArrayList<ManiUiControl> myControls;
+  private final ManiUiControl myBuyCtrl;
 
   public HireShips(InventoryScreen inventoryScreen, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    myBuyCtrl = new SolUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyHireShip());
+    myBuyCtrl = new ManiUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyHireShip());
     myBuyCtrl.setDisplayName("Hire");
     myControls.add(myBuyCtrl);
   }
@@ -74,7 +74,7 @@ public class HireShips implements InventoryOperations {
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

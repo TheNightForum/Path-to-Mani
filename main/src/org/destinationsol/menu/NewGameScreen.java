@@ -20,7 +20,7 @@ import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.game.SaveManager;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolUiControl;
+import org.destinationsol.ui.ManiUiControl;
 import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
 
@@ -28,30 +28,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewGameScreen implements ManiUiScreen {
-  private final ArrayList<SolUiControl> myControls;
-  private final SolUiControl myBackCtrl;
-  private final SolUiControl myPrevCtrl;
-  private final SolUiControl myNewCtrl;
+  private final ArrayList<ManiUiControl> myControls;
+  private final ManiUiControl myBackCtrl;
+  private final ManiUiControl myPrevCtrl;
+  private final ManiUiControl myNewCtrl;
 
   public NewGameScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    myPrevCtrl = new SolUiControl(menuLayout.buttonRect(-1, 1), true, gameOptions.getKeyShoot());
+    myPrevCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true, gameOptions.getKeyShoot());
     myPrevCtrl.setDisplayName("Previous Ship");
     myControls.add(myPrevCtrl);
 
-    myNewCtrl = new SolUiControl(menuLayout.buttonRect(-1, 2), true);
+    myNewCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true);
     myNewCtrl.setDisplayName("New Ship");
     myControls.add(myNewCtrl);
 
-    myBackCtrl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+    myBackCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
     myBackCtrl.setDisplayName("Cancel");
     myControls.add(myBackCtrl);
 
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

@@ -24,16 +24,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoadingScreen implements ManiUiScreen {
-  private final ArrayList<SolUiControl> myControls;
+  private final ArrayList<ManiUiControl> myControls;
   private boolean myTut;
   private boolean myUsePrevShip;
 
   public LoadingScreen() {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

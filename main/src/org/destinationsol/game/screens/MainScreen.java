@@ -47,7 +47,7 @@ public class MainScreen implements ManiUiScreen {
   public static final float H_PAD = .005f;
   public static final float V_PAD = H_PAD;
 
-  private final List<SolUiControl> myControls;
+  private final List<ManiUiControl> myControls;
   private final ZoneNameAnnouncer myZoneNameAnnouncer;
   private final BorderDrawer myBorderDrawer;
   private final TextureAtlas.AtlasRegion myLifeTex;
@@ -57,11 +57,11 @@ public class MainScreen implements ManiUiScreen {
   private final List<WarnDrawer> myWarnDrawers;
 
   public final ShipUiControl shipControl;
-  private final SolUiControl myMenuCtrl;
-  public final SolUiControl mapCtrl;
-  public final SolUiControl invCtrl;
-  public final SolUiControl talkCtrl;
-  private final SolUiControl myPauseCtrl;
+  private final ManiUiControl myMenuCtrl;
+  public final ManiUiControl mapCtrl;
+  public final ManiUiControl invCtrl;
+  public final ManiUiControl talkCtrl;
+  private final ManiUiControl myPauseCtrl;
   private final Color myCompassTint;
   private final TextPlace myLifeTp;
   private final TextPlace myRepairsExcessTp;
@@ -77,7 +77,7 @@ public class MainScreen implements ManiUiScreen {
 
 
   public MainScreen(float r, RightPaneLayout rightPaneLayout, ManiApplication cmp) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
     GameOptions gameOptions = cmp.getOptions();
 
     int ct = cmp.getOptions().controlType;
@@ -93,22 +93,22 @@ public class MainScreen implements ManiUiScreen {
     boolean mobile = cmp.isMobile();
     float lastCol = r - MainScreen.CELL_SZ;
     Rectangle menuArea = mobile ? btn(0, HELPER_ROW_2, true) : rightPaneLayout.buttonRect(0);
-    myMenuCtrl = new SolUiControl(menuArea, true, gameOptions.getKeyMenu());
+    myMenuCtrl = new ManiUiControl(menuArea, true, gameOptions.getKeyMenu());
     myMenuCtrl.setDisplayName("Menu");
     myControls.add(myMenuCtrl);
     Rectangle mapArea = mobile ? btn(0, HELPER_ROW_1, true) : rightPaneLayout.buttonRect(1);
-    mapCtrl = new SolUiControl(mapArea, true, gameOptions.getKeyMap());
+    mapCtrl = new ManiUiControl(mapArea, true, gameOptions.getKeyMap());
     mapCtrl.setDisplayName("Map");
     myControls.add(mapCtrl);
     Rectangle invArea = mobile ? btn(lastCol, HELPER_ROW_1, true) : rightPaneLayout.buttonRect(2);
-    invCtrl = new SolUiControl(invArea, true, gameOptions.getKeyInventory());
+    invCtrl = new ManiUiControl(invArea, true, gameOptions.getKeyInventory());
     invCtrl.setDisplayName("Items");
     myControls.add(invCtrl);
     Rectangle talkArea = mobile ? btn(lastCol, HELPER_ROW_2, true) : rightPaneLayout.buttonRect(3);
-    talkCtrl = new SolUiControl(talkArea, true, gameOptions.getKeyTalk());
+    talkCtrl = new ManiUiControl(talkArea, true, gameOptions.getKeyTalk());
     talkCtrl.setDisplayName("Talk");
     myControls.add(talkCtrl);
-    myPauseCtrl = new SolUiControl(null, true, gameOptions.getKeyPause());
+    myPauseCtrl = new ManiUiControl(null, true, gameOptions.getKeyPause());
     myControls.add(myPauseCtrl);
 
 
@@ -173,7 +173,7 @@ public class MainScreen implements ManiUiScreen {
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

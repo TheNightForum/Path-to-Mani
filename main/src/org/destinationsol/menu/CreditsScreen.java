@@ -29,8 +29,8 @@ import java.util.List;
 
 public class CreditsScreen implements ManiUiScreen {
   public static final float MAX_AWAIT = 6f;
-  private final ArrayList<SolUiControl> myControls;
-  private final SolUiControl myCloseCtrl;
+  private final ArrayList<ManiUiControl> myControls;
+  private final ManiUiControl myCloseCtrl;
   private final ArrayList<String> myPages;
   private final Color myColor;
 
@@ -38,8 +38,8 @@ public class CreditsScreen implements ManiUiScreen {
   private float myPerc;
 
   public CreditsScreen(float r, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
-    myCloseCtrl = new SolUiControl(MainScreen.creditsBtnRect(r), true, gameOptions.getKeyEscape());
+    myControls = new ArrayList<ManiUiControl>();
+    myCloseCtrl = new ManiUiControl(MainScreen.creditsBtnRect(r), true, gameOptions.getKeyEscape());
     myCloseCtrl.setDisplayName("Close");
     myControls.add(myCloseCtrl);
     myColor = ManiColor.col(1, 1);
@@ -112,7 +112,7 @@ public class CreditsScreen implements ManiUiScreen {
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

@@ -27,7 +27,7 @@ import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.DebugOptions;
 import org.destinationsol.game.sound.MusicManager;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolUiControl;
+import org.destinationsol.ui.ManiUiControl;
 import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
 
@@ -38,38 +38,38 @@ public class MainScreen implements ManiUiScreen {
   public static final float CREDITS_BTN_W = .15f;
   public static final float CREDITS_BTN_H = .07f;
 
-  private final ArrayList<SolUiControl> myControls;
-  private final SolUiControl myTutCtrl;
-  private final SolUiControl myOptionsCtrl;
-  private final SolUiControl myExitCtrl;
-  private final SolUiControl myNewGameCtrl;
-  private final SolUiControl myCreditsCtrl;
+  private final ArrayList<ManiUiControl> myControls;
+  private final ManiUiControl myTutCtrl;
+  private final ManiUiControl myOptionsCtrl;
+  private final ManiUiControl myExitCtrl;
+  private final ManiUiControl myNewGameCtrl;
+  private final ManiUiControl myCreditsCtrl;
   private final TextureAtlas.AtlasRegion myTitleTex;
   private final boolean isMobile;
   GameOptions gameOptions;
 
   public MainScreen(MenuLayout menuLayout, TextureManager textureManager, boolean mobile, float r, GameOptions gameOptions) {
     isMobile = mobile;
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
     this.gameOptions = gameOptions;
 
-    myTutCtrl = new SolUiControl(menuLayout.buttonRect(-1, 1), true, Input.Keys.T);
+    myTutCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true, Input.Keys.T);
     myTutCtrl.setDisplayName("Tutorial");
     myControls.add(myTutCtrl);
 
-    myNewGameCtrl = new SolUiControl(menuLayout.buttonRect(-1, 2), true, gameOptions.getKeyShoot());
+    myNewGameCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true, gameOptions.getKeyShoot());
     myNewGameCtrl.setDisplayName("New Game");
     myControls.add(myNewGameCtrl);
 
-    myOptionsCtrl = new SolUiControl(mobile ? null : menuLayout.buttonRect(-1, 3), true, Input.Keys.O);
+    myOptionsCtrl = new ManiUiControl(mobile ? null : menuLayout.buttonRect(-1, 3), true, Input.Keys.O);
     myOptionsCtrl.setDisplayName("Options");
     myControls.add(myOptionsCtrl);
 
-    myExitCtrl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+    myExitCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
     myExitCtrl.setDisplayName("Exit");
     myControls.add(myExitCtrl);
 
-    myCreditsCtrl = new SolUiControl(creditsBtnRect(r), true, Input.Keys.C);
+    myCreditsCtrl = new ManiUiControl(creditsBtnRect(r), true, Input.Keys.C);
     myCreditsCtrl.setDisplayName("Credits");
     myControls.add(myCreditsCtrl);
 
@@ -80,7 +80,7 @@ public class MainScreen implements ManiUiScreen {
     return new Rectangle(r - CREDITS_BTN_W, 1 - CREDITS_BTN_H, CREDITS_BTN_W, CREDITS_BTN_H);
   }
 
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

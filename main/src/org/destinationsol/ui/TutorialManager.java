@@ -41,12 +41,12 @@ public class TutorialManager {
 
     MainScreen main = screens.mainScreen;
     boolean mouseCtrl = main.shipControl instanceof ShipMixedControl;
-    SolUiControl shootCtrl;
+    ManiUiControl shootCtrl;
     String shootKey;
     String shootKey2;
-    SolUiControl upCtrl;
-    SolUiControl leftCtrl;
-    SolUiControl abilityCtrl;
+    ManiUiControl upCtrl;
+    ManiUiControl leftCtrl;
+    ManiUiControl abilityCtrl;
     if (mouseCtrl) {
       ShipMixedControl mixedControl = (ShipMixedControl) main.shipControl;
       shootCtrl = mixedControl.shootCtrl;
@@ -203,10 +203,10 @@ public class TutorialManager {
     s("Tutorial is complete and will exit now!\n" + shootKey2, shootCtrl);
   }
 
-  private void s(String text, SolUiControl ctrl) {
+  private void s(String text, ManiUiControl ctrl) {
     s(text, ctrl, false);
   }
-  private void s(String text, SolUiControl ctrl, boolean checkOn) {
+  private void s(String text, ManiUiControl ctrl, boolean checkOn) {
     mySteps.add(new Step(text, ctrl, checkOn));
   }
 
@@ -231,10 +231,10 @@ public class TutorialManager {
 
   public static class Step {
     public final String text;
-    public final SolUiControl ctrl;
+    public final ManiUiControl ctrl;
     public final boolean checkOn;
 
-    public Step(String text, SolUiControl ctrl, boolean checkOn) {
+    public Step(String text, ManiUiControl ctrl, boolean checkOn) {
       this.text = text;
       this.ctrl = ctrl;
       this.checkOn = checkOn;

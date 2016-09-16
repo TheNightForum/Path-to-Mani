@@ -23,7 +23,7 @@ import org.destinationsol.game.item.ItemContainer;
 import org.destinationsol.game.item.SolItem;
 import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolUiControl;
+import org.destinationsol.ui.ManiUiControl;
 import org.destinationsol.ui.UiDrawer;
 
 import java.util.ArrayList;
@@ -32,13 +32,13 @@ import java.util.List;
 public class SellItems implements InventoryOperations {
 
   public static float PERC = .8f;
-  private final ArrayList<SolUiControl> myControls;
-  public final SolUiControl sellCtrl;
+  private final ArrayList<ManiUiControl> myControls;
+  public final ManiUiControl sellCtrl;
 
   public SellItems(InventoryScreen inventoryScreen, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    sellCtrl = new SolUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeySellItem());
+    sellCtrl = new ManiUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeySellItem());
     sellCtrl.setDisplayName("Sell");
     myControls.add(sellCtrl);
   }
@@ -66,7 +66,7 @@ public class SellItems implements InventoryOperations {
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

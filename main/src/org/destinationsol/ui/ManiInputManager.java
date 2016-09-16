@@ -106,9 +106,9 @@ public class ManiInputManager {
     for (int i = 0, myScreensSize = myScreens.size(); i < myScreensSize; i++) {
       ManiUiScreen screen = myScreens.get(i);
       boolean consumed = false;
-      List<SolUiControl> controls = screen.getControls();
+      List<ManiUiControl> controls = screen.getControls();
       for (int i1 = 0, controlsSize = controls.size(); i1 < controlsSize; i1++) {
-        SolUiControl c = controls.get(i1);
+        ManiUiControl c = controls.get(i1);
         if (c.maybeFlashPressed(keyCode)) consumed = true;
       }
       if (consumed) return;
@@ -120,9 +120,9 @@ public class ManiInputManager {
     setPtrPos(myFlashPtr, x, y);
     for (int i = 0, myScreensSize = myScreens.size(); i < myScreensSize; i++) {
       ManiUiScreen screen = myScreens.get(i);
-      List<SolUiControl> controls = screen.getControls();
+      List<ManiUiControl> controls = screen.getControls();
       for (int i1 = 0, controlsSize = controls.size(); i1 < controlsSize; i1++) {
-        SolUiControl c = controls.get(i1);
+        ManiUiControl c = controls.get(i1);
         if (c.maybeFlashPressed(myFlashPtr)) return;
       }
       if (screen.isCursorOnBg(myFlashPtr)) return;
@@ -145,9 +145,9 @@ public class ManiInputManager {
 
   private void removeScreen(ManiUiScreen screen, ManiApplication cmp) {
     myToRemove.add(screen);
-    List<SolUiControl> controls = screen.getControls();
+    List<ManiUiControl> controls = screen.getControls();
     for (int i = 0, controlsSize = controls.size(); i < controlsSize; i++) {
-      SolUiControl c = controls.get(i);
+      ManiUiControl c = controls.get(i);
       c.blur();
     }
     screen.blurCustom(cmp);
@@ -187,9 +187,9 @@ public class ManiInputManager {
     for (int i = 0, myScreensSize = myScreens.size(); i < myScreensSize; i++) {
       ManiUiScreen screen = myScreens.get(i);
       boolean consumedNow = false;
-      List<SolUiControl> controls = screen.getControls();
+      List<ManiUiControl> controls = screen.getControls();
       for (int i1 = 0, controlsSize = controls.size(); i1 < controlsSize; i1++) {
-        SolUiControl c = controls.get(i1);
+        ManiUiControl c = controls.get(i1);
         c.update(myPtrs, myCurrCursor != null, !consumed, this, cmp);
         if (c.isOn() || c.isJustOff()) {
           consumedNow = true;
@@ -307,9 +307,9 @@ public class ManiInputManager {
 
       uiDrawer.setTextMode(false);
       screen.drawBg(uiDrawer, cmp);
-      List<SolUiControl> ctrls = screen.getControls();
+      List<ManiUiControl> ctrls = screen.getControls();
       for (int i1 = 0, ctrlsSize = ctrls.size(); i1 < ctrlsSize; i1++) {
-        SolUiControl ctrl = ctrls.get(i1);
+        ManiUiControl ctrl = ctrls.get(i1);
         ctrl.drawButton(uiDrawer, cmp, myWarnCol);
       }
       screen.drawImgs(uiDrawer, cmp);
@@ -317,7 +317,7 @@ public class ManiInputManager {
       uiDrawer.setTextMode(true);
       screen.drawText(uiDrawer, cmp);
       for (int i1 = 0, ctrlsSize = ctrls.size(); i1 < ctrlsSize; i1++) {
-        SolUiControl ctrl = ctrls.get(i1);
+        ManiUiControl ctrl = ctrls.get(i1);
         ctrl.drawDisplayName(uiDrawer);
       }
     }

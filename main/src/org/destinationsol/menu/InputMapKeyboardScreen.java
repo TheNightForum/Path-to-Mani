@@ -22,7 +22,7 @@ import com.badlogic.gdx.InputAdapter;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolUiControl;
+import org.destinationsol.ui.ManiUiControl;
 import org.destinationsol.ui.UiDrawer;
 
 import java.util.ArrayList;
@@ -31,13 +31,13 @@ import java.util.List;
 public class InputMapKeyboardScreen implements InputMapOperations {
     private static final String HEADER_TEXT = "Keyboard Inputs";
 
-    private final ArrayList<SolUiControl> controls;
+    private final ArrayList<ManiUiControl> controls;
     private boolean isEnterNewKey;
     private List<InputConfigItem> itemsList = new ArrayList<InputConfigItem>();
     private int selectedIndex;
 
     public InputMapKeyboardScreen(InputMapScreen inputMapScreen, GameOptions gameOptions) {
-        controls = new ArrayList<SolUiControl>();
+        controls = new ArrayList<ManiUiControl>();
     }
 
     private void InitialiseList(GameOptions gameOptions) {
@@ -176,7 +176,7 @@ public class InputMapKeyboardScreen implements InputMapOperations {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<ManiUiControl> getControls() {
         return controls;
     }
 

@@ -28,35 +28,35 @@ import org.destinationsol.game.input.Mover;
 import org.destinationsol.game.input.Shooter;
 import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolUiControl;
+import org.destinationsol.ui.ManiUiControl;
 
 import java.util.List;
 
 public class ShipMixedControl implements ShipUiControl {
-  public final SolUiControl upCtrl;
-  private final SolUiControl myDownCtrl;
+  public final ManiUiControl upCtrl;
+  private final ManiUiControl myDownCtrl;
   private final Vector2 myMouseWorldPos;
   private final TextureAtlas.AtlasRegion myCursor;
-  public final SolUiControl shootCtrl;
-  public final SolUiControl shoot2Ctrl;
-  public final SolUiControl abilityCtrl;
+  public final ManiUiControl shootCtrl;
+  public final ManiUiControl shoot2Ctrl;
+  public final ManiUiControl abilityCtrl;
 
   private boolean myRight;
   private boolean myLeft;
 
-  public ShipMixedControl(ManiApplication cmp, List<SolUiControl> controls) {
+  public ShipMixedControl(ManiApplication cmp, List<ManiUiControl> controls) {
     GameOptions gameOptions = cmp.getOptions();
     myCursor = cmp.getTexMan().getTex("ui/cursorTarget", null);
     myMouseWorldPos = new Vector2();
-    upCtrl = new SolUiControl(null, false, gameOptions.getKeyUpMouse());
+    upCtrl = new ManiUiControl(null, false, gameOptions.getKeyUpMouse());
     controls.add(upCtrl);
-    myDownCtrl = new SolUiControl(null, false, gameOptions.getKeyDownMouse());
+    myDownCtrl = new ManiUiControl(null, false, gameOptions.getKeyDownMouse());
     controls.add(myDownCtrl);
-    shootCtrl = new SolUiControl(null, false, gameOptions.getKeyShoot());
+    shootCtrl = new ManiUiControl(null, false, gameOptions.getKeyShoot());
     controls.add(shootCtrl);
-    shoot2Ctrl = new SolUiControl(null, false, gameOptions.getKeyShoot2());
+    shoot2Ctrl = new ManiUiControl(null, false, gameOptions.getKeyShoot2());
     controls.add(shoot2Ctrl);
-    abilityCtrl = new SolUiControl(null, false, gameOptions.getKeyAbility());
+    abilityCtrl = new ManiUiControl(null, false, gameOptions.getKeyAbility());
     controls.add(abilityCtrl);
   }
 

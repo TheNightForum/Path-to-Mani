@@ -23,7 +23,7 @@ import org.destinationsol.game.item.ItemContainer;
 import org.destinationsol.game.item.SolItem;
 import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolUiControl;
+import org.destinationsol.ui.ManiUiControl;
 import org.destinationsol.ui.UiDrawer;
 
 import java.util.ArrayList;
@@ -31,13 +31,13 @@ import java.util.List;
 
 public class BuyItems implements InventoryOperations {
 
-  private final ArrayList<SolUiControl> myControls;
-  public final SolUiControl buyCtrl;
+  private final ArrayList<ManiUiControl> myControls;
+  public final ManiUiControl buyCtrl;
 
   public BuyItems(InventoryScreen inventoryScreen, GameOptions gameOptions) {
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    buyCtrl = new SolUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyBuyItem());
+    buyCtrl = new ManiUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyBuyItem());
     buyCtrl.setDisplayName("Buy");
     myControls.add(buyCtrl);
   }
@@ -63,7 +63,7 @@ public class BuyItems implements InventoryOperations {
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 

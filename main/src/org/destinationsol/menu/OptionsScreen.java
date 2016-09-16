@@ -20,7 +20,7 @@ import com.badlogic.gdx.Input;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.ui.ManiInputManager;
-import org.destinationsol.ui.SolUiControl;
+import org.destinationsol.ui.ManiUiControl;
 import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
 
@@ -28,35 +28,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OptionsScreen implements ManiUiScreen {
-  private final ArrayList<SolUiControl> myControls;
-  private final SolUiControl myBackCtrl;
-  private final SolUiControl myResoCtrl;
-  private final SolUiControl myControlTypeCtrl;
-  private final SolUiControl inputMapCtrl;
+  private final ArrayList<ManiUiControl> myControls;
+  private final ManiUiControl myBackCtrl;
+  private final ManiUiControl myResoCtrl;
+  private final ManiUiControl myControlTypeCtrl;
+  private final ManiUiControl inputMapCtrl;
 
   public OptionsScreen(MenuLayout menuLayout, GameOptions gameOptions) {
 
-    myControls = new ArrayList<SolUiControl>();
+    myControls = new ArrayList<ManiUiControl>();
 
-    myResoCtrl = new SolUiControl(menuLayout.buttonRect(-1, 1), true);
+    myResoCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 1), true);
     myResoCtrl.setDisplayName("Resolution");
     myControls.add(myResoCtrl);
 
-    myControlTypeCtrl = new SolUiControl(menuLayout.buttonRect(-1, 2), true, Input.Keys.C);
+    myControlTypeCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true, Input.Keys.C);
     myControlTypeCtrl.setDisplayName("Control Type");
     myControls.add(myControlTypeCtrl);
 
-    inputMapCtrl = new SolUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.M);
+    inputMapCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.M);
     inputMapCtrl.setDisplayName("Controls");
     myControls.add(inputMapCtrl);
 
-    myBackCtrl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+    myBackCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
     myBackCtrl.setDisplayName("Back");
     myControls.add(myBackCtrl);
   }
 
   @Override
-  public List<SolUiControl> getControls() {
+  public List<ManiUiControl> getControls() {
     return myControls;
   }
 
