@@ -17,8 +17,8 @@
 package com.pathtomani.save;
 
 import com.pathtomani.game.FarObj;
-import com.pathtomani.game.planet.Planet;
-import com.pathtomani.game.planet.ManiSystem;
+import com.pathtomani.entities.planet.Planet;
+import com.pathtomani.entities.planet.ManiSystem;
 
 import java.util.ArrayList;
 import java.util.List;
