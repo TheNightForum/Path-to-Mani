@@ -17,7 +17,7 @@
 package com.pathtomani.menu;
 
 import com.badlogic.gdx.Gdx;
-import com.pathtomani.GameOptions;
+import com.pathtomani.common.GameOptions;
 import com.pathtomani.ManiApplication;
 import com.pathtomani.ui.*;
 import com.pathtomani.common.ManiColor;
