@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pathtomani.game.asteroid;
+package com.pathtomani.entities.asteroid;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
