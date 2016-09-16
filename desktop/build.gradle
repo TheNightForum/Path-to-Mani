@@ -55,7 +55,7 @@ task dist (type: Sync) {
 task distZip (type: Zip) {
     dependsOn dist
     from "$distsDir/app"
-    archiveName = "DestinationSol.zip"
+    archiveName = "PathToMani.zip"
 }
 
 // TODO: LibGDX Generated config for Eclipse. Needs adjustment for assets not being in the Android facade
