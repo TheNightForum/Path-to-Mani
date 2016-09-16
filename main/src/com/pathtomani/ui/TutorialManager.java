@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.pathtomani.game.screens.ShipKbControl;
 import com.pathtomani.game.screens.ShipMixedControl;
 import com.pathtomani.common.GameOptions;
-import com.pathtomani.effects.ManiColor;
+import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.game.screens.GameScreens;
 import com.pathtomani.game.screens.MainScreen;
 
