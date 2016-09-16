@@ -23,7 +23,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.item.SolItem;
 import com.pathtomani.game.item.SolItemType;
-import com.pathtomani.game.item.SolItemTypes;
+import com.pathtomani.game.item.ManiItemTypes;
 import com.pathtomani.TextureManager;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.game.item.ItemManager;
@@ -104,7 +104,7 @@ public class AbilityCharge implements SolItem {
       this.code = code;
     }
 
-    public static void load(ItemManager itemManager, TextureManager textureManager, SolItemTypes types) {
+    public static void load(ItemManager itemManager, TextureManager textureManager, ManiItemTypes types) {
       JsonReader r = new JsonReader();
       FileHandle configFile = FileManager.getInstance().getItemsDirectory().child("abilityCharges.json");
       JsonValue parsed = r.parse(configFile);

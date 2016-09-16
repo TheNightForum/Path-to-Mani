@@ -170,7 +170,7 @@ public class Shield implements SolItem {
       return sb.toString();
     }
 
-    public static void loadConfigs(ItemManager itemManager, SoundManager soundManager, TextureManager textureManager, SolItemTypes types) {
+    public static void loadConfigs(ItemManager itemManager, SoundManager soundManager, TextureManager textureManager, ManiItemTypes types) {
       JsonReader r = new JsonReader();
       FileHandle configFile = FileManager.getInstance().getItemsDirectory().child("shields.json");
       JsonValue parsed = r.parse(configFile);

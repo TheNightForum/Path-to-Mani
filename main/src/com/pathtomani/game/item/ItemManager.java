@@ -40,7 +40,7 @@ public class ItemManager {
     public final TextureAtlas.AtlasRegion bigMoneyIcon;
     public final TextureAtlas.AtlasRegion repairIcon;
     private final EngineItem.Configs myEngineConfigs;
-    private final SolItemTypes myTypes;
+    private final ManiItemTypes myTypes;
     private final RepairItem myRepairExample;
 
     public ItemManager(TextureManager textureManager, SoundManager soundManager, EffectTypes effectTypes, GameColors gameColors) {
@@ -51,7 +51,7 @@ public class ItemManager {
         repairIcon = textureManager.getTex(TextureManager.ICONS_DIR + "repairItem", null);
         myM = new HashMap<String, SolItem>();
 
-        myTypes = new SolItemTypes(soundManager, gameColors);
+        myTypes = new ManiItemTypes(soundManager, gameColors);
         projConfigs = new ProjectileConfigs(textureManager, soundManager, effectTypes, gameColors);
         myEngineConfigs = EngineItem.Configs.load(soundManager, textureManager, effectTypes, gameColors);
 

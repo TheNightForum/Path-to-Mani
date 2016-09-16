@@ -114,7 +114,7 @@ public class GunConfig {
     return sb.toString();
   }
 
-  public static void load(TextureManager textureManager, ItemManager itemManager, SoundManager soundManager, SolItemTypes types) {
+  public static void load(TextureManager textureManager, ItemManager itemManager, SoundManager soundManager, ManiItemTypes types) {
     JsonReader r = new JsonReader();
     FileHandle configFile = FileManager.getInstance().getItemsDirectory().child("guns.json");
     JsonValue parsed = r.parse(configFile);

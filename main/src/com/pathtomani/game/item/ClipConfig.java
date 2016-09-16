@@ -55,7 +55,7 @@ public class ClipConfig {
     this.example = new ClipItem(this);
   }
 
-  public static void load(ItemManager itemManager, TextureManager textureManager, SolItemTypes types) {
+  public static void load(ItemManager itemManager, TextureManager textureManager, ManiItemTypes types) {
     JsonReader r = new JsonReader();
     FileHandle configFile = FileManager.getInstance().getItemsDirectory().child("clips.json");
     JsonValue parsed = r.parse(configFile);

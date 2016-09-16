@@ -25,7 +25,7 @@ import com.pathtomani.files.FileManager;
 import com.pathtomani.game.GameColors;
 import com.pathtomani.game.sound.SolSound;
 
-public class SolItemTypes {
+public class ManiItemTypes {
   public final SolItemType clip;
   public final SolItemType shield;
   public final SolItemType armor;
@@ -37,7 +37,7 @@ public class SolItemTypes {
   public final SolItemType repair;
   public final SolItemType fixedGun;
 
-  public SolItemTypes(SoundManager soundManager, GameColors cols) {
+  public ManiItemTypes(SoundManager soundManager, GameColors cols) {
     JsonReader r = new JsonReader();
     FileHandle configFile = FileManager.getInstance().getItemsDirectory().child("types.json");
     JsonValue parsed = r.parse(configFile);
