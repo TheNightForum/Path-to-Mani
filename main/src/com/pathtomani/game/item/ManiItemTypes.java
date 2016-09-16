@@ -26,16 +26,16 @@ import com.pathtomani.game.GameColors;
 import com.pathtomani.game.sound.SolSound;
 
 public class ManiItemTypes {
-  public final SolItemType clip;
-  public final SolItemType shield;
-  public final SolItemType armor;
-  public final SolItemType abilityCharge;
-  public final SolItemType gun;
-  public final SolItemType money;
-  public final SolItemType medMoney;
-  public final SolItemType bigMoney;
-  public final SolItemType repair;
-  public final SolItemType fixedGun;
+  public final ManiItemType clip;
+  public final ManiItemType shield;
+  public final ManiItemType armor;
+  public final ManiItemType abilityCharge;
+  public final ManiItemType gun;
+  public final ManiItemType money;
+  public final ManiItemType medMoney;
+  public final ManiItemType bigMoney;
+  public final ManiItemType repair;
+  public final ManiItemType fixedGun;
 
   public ManiItemTypes(SoundManager soundManager, GameColors cols) {
     JsonReader r = new JsonReader();
@@ -53,11 +53,11 @@ public class ManiItemTypes {
     repair = load("repair", soundManager, configFile, parsed, cols);
   }
 
-  private SolItemType load(String name, SoundManager soundManager, FileHandle configFile, JsonValue parsed, GameColors cols) {
+  private ManiItemType load(String name, SoundManager soundManager, FileHandle configFile, JsonValue parsed, GameColors cols) {
     JsonValue node = parsed.get(name);
     Color color = cols.load(node.getString("color"));
     SolSound pickUpSound = soundManager.getSound(node.getString("pickUpSound"), configFile);
     float sz = node.getFloat("sz");
-    return new SolItemType(color, pickUpSound, sz);
+    return new ManiItemType(color, pickUpSound, sz);
   }
 }

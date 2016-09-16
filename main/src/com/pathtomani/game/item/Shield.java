@@ -95,7 +95,7 @@ public class Shield implements SolItem {
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return myConfig.itemType;
   }
 
@@ -144,11 +144,11 @@ public class Shield implements SolItem {
     public final float regenSpd;
     public final TextureAtlas.AtlasRegion icon;
     public TextureAtlas.AtlasRegion tex;
-    public final SolItemType itemType;
+    public final ManiItemType itemType;
     public final String code;
 
     private Config(int maxLife, String displayName, int price, SolSound absorbSound, SolSound regenSound,
-      TextureAtlas.AtlasRegion icon, TextureAtlas.AtlasRegion tex, SolItemType itemType, String code) {
+                   TextureAtlas.AtlasRegion icon, TextureAtlas.AtlasRegion tex, ManiItemType itemType, String code) {
       this.maxLife = maxLife;
       this.displayName = displayName;
       this.price = price;

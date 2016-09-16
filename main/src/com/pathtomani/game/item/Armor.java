@@ -71,7 +71,7 @@ public class Armor implements SolItem {
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return myConfig.itemType;
   }
 
@@ -105,11 +105,11 @@ public class Armor implements SolItem {
     public final Armor example;
     public final TextureAtlas.AtlasRegion icon;
     public final SolSound energyHitSound;
-    public final SolItemType itemType;
+    public final ManiItemType itemType;
     public final String code;
 
     private Config(String displayName, int price, float perc, SolSound bulletHitSound,
-      TextureAtlas.AtlasRegion icon, SolSound energyHitSound, SolItemType itemType, String code)
+                   TextureAtlas.AtlasRegion icon, SolSound energyHitSound, ManiItemType itemType, String code)
     {
       this.displayName = displayName;
       this.price = price;

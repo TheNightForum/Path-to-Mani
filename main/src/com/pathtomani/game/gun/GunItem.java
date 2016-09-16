@@ -19,7 +19,7 @@ package com.pathtomani.game.gun;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.item.SolItem;
-import com.pathtomani.game.item.SolItemType;
+import com.pathtomani.game.item.ManiItemType;
 
 public class GunItem implements SolItem {
 
@@ -70,7 +70,7 @@ public class GunItem implements SolItem {
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return config.itemType;
   }
 

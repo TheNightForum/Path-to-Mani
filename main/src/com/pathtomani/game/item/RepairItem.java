@@ -22,9 +22,9 @@ import com.pathtomani.game.ManiGame;
 
 public class RepairItem implements SolItem {
   public static final int LIFE_AMT = 20;
-  private final SolItemType myItemType;
+  private final ManiItemType myItemType;
 
-  public RepairItem(SolItemType itemType) {
+  public RepairItem(ManiItemType itemType) {
     myItemType = itemType;
   }
 
@@ -59,7 +59,7 @@ public class RepairItem implements SolItem {
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return myItemType;
   }
 

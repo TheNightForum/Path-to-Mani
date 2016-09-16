@@ -51,16 +51,16 @@ public class GunConfig {
   public final TextureAtlas.AtlasRegion icon;
   public final boolean fixed;
   public final float meanDps;
-  public final SolItemType itemType;
+  public final ManiItemType itemType;
   public final float texLenPerc;
   public final String code;
 
   public GunConfig(float minAngleVar, float maxAngleVar, float angleVarDamp, float angleVarPerShot,
-    float timeBetweenShots,
-    float reloadTime, float gunLength, String displayName,
-    boolean lightOnShot, int price,
-    ClipConfig clipConf, SolSound shootSound, SolSound reloadSound, TextureAtlas.AtlasRegion tex,
-    TextureAtlas.AtlasRegion icon, boolean fixed, SolItemType itemType, float texLenPerc, String code)
+                   float timeBetweenShots,
+                   float reloadTime, float gunLength, String displayName,
+                   boolean lightOnShot, int price,
+                   ClipConfig clipConf, SolSound shootSound, SolSound reloadSound, TextureAtlas.AtlasRegion tex,
+                   TextureAtlas.AtlasRegion icon, boolean fixed, ManiItemType itemType, float texLenPerc, String code)
   {
     this.shootSound = shootSound;
     this.reloadSound = reloadSound;
@@ -142,7 +142,7 @@ public class GunConfig {
       TextureAtlas.AtlasRegion icon = textureManager.getTex(TextureManager.ICONS_DIR + texName, configFile);
       boolean fixed = sh.getBoolean("fixed", false);
       String code = sh.name;
-      SolItemType itemType = fixed ? types.fixedGun : types.gun;
+      ManiItemType itemType = fixed ? types.fixedGun : types.gun;
       GunConfig c = new GunConfig(minAngleVar, maxAngleVar, angleVarDamp, angleVarPerShot, timeBetweenShots, reloadTime,
         gunLength, displayName, lightOnShot, price, clipConf, shootSound, reloadSound, tex, icon, fixed, itemType, texLenPerc, code);
       itemManager.registerItem(c.example);

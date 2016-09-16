@@ -164,7 +164,7 @@ public class ItemManager {
     }
 
   public MoneyItem moneyItem(float amt) {
-    SolItemType t;
+    ManiItemType t;
     if (amt == MoneyItem.BIG_AMT) {
       t = myTypes.bigMoney;
     } else if (amt == MoneyItem.MED_AMT) {

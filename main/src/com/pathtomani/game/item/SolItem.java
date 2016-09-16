@@ -26,7 +26,7 @@ public interface SolItem {
   SolItem copy();
   boolean isSame(SolItem item);
   TextureAtlas.AtlasRegion getIcon(ManiGame game);
-  SolItemType getItemType();
+  ManiItemType getItemType();
   String getCode();
   int isEquipped();
   void setEquipped(int equipped);

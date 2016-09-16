@@ -60,7 +60,7 @@ public class MercItem implements SolItem {
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return ShipItem.EMPTY;
   }
 

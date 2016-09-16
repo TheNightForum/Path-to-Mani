@@ -23,7 +23,7 @@ import com.pathtomani.game.ship.hulls.HullConfig;
 
 public class ShipItem implements SolItem {
 
-  public static final SolItemType EMPTY = new SolItemType(new Color(), null, 1);
+  public static final ManiItemType EMPTY = new ManiItemType(new Color(), null, 1);
   private final HullConfig myConfig;
   private final String myDesc;
 
@@ -83,7 +83,7 @@ public class ShipItem implements SolItem {
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return EMPTY;
   }
 

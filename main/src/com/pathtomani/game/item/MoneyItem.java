@@ -25,9 +25,9 @@ public class MoneyItem implements SolItem {
   public static final int BIG_AMT = 10 * AMT;
 
   private final float myAmt;
-  private final SolItemType myItemType;
+  private final ManiItemType myItemType;
 
-  public MoneyItem(float amt, SolItemType itemType) {
+  public MoneyItem(float amt, ManiItemType itemType) {
     myAmt = amt;
     myItemType = itemType;
   }
@@ -66,7 +66,7 @@ public class MoneyItem implements SolItem {
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return myItemType;
   }
 

@@ -22,7 +22,7 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.item.SolItem;
-import com.pathtomani.game.item.SolItemType;
+import com.pathtomani.game.item.ManiItemType;
 import com.pathtomani.game.item.ManiItemTypes;
 import com.pathtomani.TextureManager;
 import com.pathtomani.files.FileManager;
@@ -66,7 +66,7 @@ public class AbilityCharge implements SolItem {
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return myConfig.itemType;
   }
 
@@ -91,10 +91,10 @@ public class AbilityCharge implements SolItem {
     private final float price;
     private final String displayName;
     private final String desc;
-    public final SolItemType itemType;
+    public final ManiItemType itemType;
     public final String code;
 
-    public Config(TextureAtlas.AtlasRegion icon, float price, String displayName, String desc, SolItemType itemType,
+    public Config(TextureAtlas.AtlasRegion icon, float price, String displayName, String desc, ManiItemType itemType,
       String code) {
       this.icon = icon;
       this.price = price;

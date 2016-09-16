@@ -74,7 +74,7 @@ public class EngineItem implements SolItem {
   }
 
   @Override
-  public SolItemType getItemType() {
+  public ManiItemType getItemType() {
     return null;
   }
 

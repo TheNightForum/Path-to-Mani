@@ -34,12 +34,12 @@ public class ClipConfig {
   public final ProjectileConfig projConfig;
   public final boolean infinite;
   public final int projectilesPerShot;
-  public final SolItemType itemType;
+  public final ManiItemType itemType;
   public final String plural;
   public final String code;
 
   public ClipConfig(ProjectileConfig projConfig, boolean infinite, int price, String displayName, int size,
-    String plural, TextureAtlas.AtlasRegion icon, int projectilesPerShot, SolItemType itemType, String code)
+                    String plural, TextureAtlas.AtlasRegion icon, int projectilesPerShot, ManiItemType itemType, String code)
   {
     this.projConfig = projConfig;
     this.infinite = infinite;
