@@ -24,7 +24,7 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.entities.maze.Maze;
 import com.pathtomani.entities.planet.*;
 import com.pathtomani.entities.ship.FarShip;
-import com.pathtomani.ui.UiDrawer;
+import com.pathtomani.screens.controllers.UiDrawer;
 import com.pathtomani.common.Const;
 import com.pathtomani.gfx.TextureManager;
 import com.pathtomani.gfx.ManiColor;
@@ -124,7 +124,7 @@ public class MapDrawer {
     drawMazes(drawer, game, viewDist, np, camPos, heroDmgCap, camAngle);
     drawStarNodes(drawer, game, viewDist, camPos, starNodeW);
 
-    // using ui textures
+    // using controllers textures
     drawIcons(drawer, game, iconSz, viewDist, factionManager, hero, camPos, heroDmgCap);
   }
 
