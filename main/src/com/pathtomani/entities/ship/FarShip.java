@@ -23,7 +23,7 @@ import com.pathtomani.game.RemoveController;
 import com.pathtomani.entities.gun.GunItem;
 import com.pathtomani.entities.item.*;
 import com.pathtomani.entities.ship.hulls.HullConfig;
-import com.pathtomani.game.input.Pilot;
+import com.pathtomani.managers.input.Pilot;
 
 public class FarShip implements FarObj {
   private final Vector2 myPos;
