@@ -29,7 +29,7 @@ import com.pathtomani.game.item.SolItem;
 import com.pathtomani.game.planet.Planet;
 import com.pathtomani.game.ship.*;
 import com.pathtomani.game.sound.SoundManager;
-import org.destinationsol.*;
+import com.pathtomani.*;
 import com.pathtomani.common.DebugCol;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.files.HullConfigManager;
