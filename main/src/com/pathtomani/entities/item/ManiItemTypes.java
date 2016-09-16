@@ -22,7 +22,7 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.game.sound.SoundManager;
 import com.pathtomani.files.FileManager;
-import com.pathtomani.game.GameColors;
+import com.pathtomani.gfx.GameColors;
 import com.pathtomani.game.sound.ManiSound;
 
 public class ManiItemTypes {

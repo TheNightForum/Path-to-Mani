@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package com.pathtomani.common;
+package com.pathtomani.gfx;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.pathtomani.common.ManiMath;
 import com.pathtomani.files.FileManager;
 
 import java.util.ArrayList;

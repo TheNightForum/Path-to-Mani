@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pathtomani.common;
+package com.pathtomani.gfx;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Sprite;
