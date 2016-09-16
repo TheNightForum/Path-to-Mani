@@ -20,58 +20,51 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
-import com.pathtomani.ManiApplication;
-import com.pathtomani.game.sound.MusicManager;
-import com.pathtomani.ui.ManiInputManager;
-import com.pathtomani.ui.ManiUiScreen;
-import com.pathtomani.ui.UiDrawer;
 import com.pathtomani.GameOptions;
+import com.pathtomani.ManiApplication;
 import com.pathtomani.TextureManager;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.game.DebugOptions;
+import com.pathtomani.game.sound.MusicManager;
+import com.pathtomani.ui.ManiInputManager;
 import com.pathtomani.ui.ManiUiControl;
+import com.pathtomani.ui.ManiUiScreen;
+import com.pathtomani.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainScreen implements ManiUiScreen {
+public class PlayScreen implements ManiUiScreen {
   public static final float CREDITS_BTN_W = .15f;
   public static final float CREDITS_BTN_H = .07f;
 
   private final ArrayList<ManiUiControl> myControls;
-  //private final ManiUiControl myTutCtrl;
-  //private final ManiUiControl myOptionsCtrl;
-  //private final ManiUiControl myExitCtrl;
-  //private final ManiUiControl myNewGameCtrl;
-  //private final ManiUiControl myCreditsCtrl;
-  private final ManiUiControl myPlayCtrl;
-  private final ManiUiControl myOptionsCtrl;
-  private final ManiUiControl myCreditsCtrl;
-  private final ManiUiControl myExitCtrl;
+  private final ManiUiControl myTutCtrl;
+  private final ManiUiControl myNewCtrl;
+  private final ManiUiControl myPrevCtrl;
+  private final ManiUiControl myBackCtrl;
   private final TextureAtlas.AtlasRegion myTitleTex;
-  private final boolean isMobile;
   GameOptions gameOptions;
 
-  public MainScreen(MenuLayout menuLayout, TextureManager textureManager, boolean mobile, float r, GameOptions gameOptions) {
-    isMobile = mobile;
+  public PlayScreen(MenuLayout menuLayout, TextureManager textureManager, GameOptions gameOptions) {
     myControls = new ArrayList<ManiUiControl>();
     this.gameOptions = gameOptions;
 
-    myPlayCtrl = new ManiUiControl(menuLayout.buttonRect(-1,1), true, Input.Keys.ENTER);
-    myPlayCtrl.setDisplayName("Play");
-    myControls.add(myPlayCtrl);
+    myTutCtrl = new ManiUiControl(menuLayout.buttonRect(-1,1), true, Input.Keys.ENTER);
+    myTutCtrl.setDisplayName("Tutorial");
+    myControls.add(myTutCtrl);
 
-    myOptionsCtrl = new ManiUiControl(mobile ? null : menuLayout.buttonRect(-1, 2), true, Input.Keys.O);
-    myOptionsCtrl.setDisplayName("Options");
-    myControls.add(myOptionsCtrl);
+    myNewCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 2), true, Input.Keys.O);
+    myNewCtrl.setDisplayName("New Game");
+    myControls.add(myNewCtrl);
 
-    myCreditsCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.C);
-    myCreditsCtrl.setDisplayName("Credits");
-    myControls.add(myCreditsCtrl);
+    myPrevCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.C);
+    myPrevCtrl.setDisplayName("Load Game");
+    myControls.add(myPrevCtrl);
 
-    myExitCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
-    myExitCtrl.setDisplayName("Exit");
-    myControls.add(myExitCtrl);
+    myBackCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+    myBackCtrl.setDisplayName("Back");
+    myControls.add(myBackCtrl);
 
 
 
@@ -90,24 +83,28 @@ public class MainScreen implements ManiUiScreen {
   public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     ManiInputManager im = cmp.getInputMan();
     MenuScreens screens = cmp.getMenuScreens();
-    if (myPlayCtrl.isJustOff()) {
-      im.setScreen(cmp, screens.playScreen);
+    if (cmp.getOptions().controlType == GameOptions.CONTROL_CONTROLLER) {
+      myTutCtrl.setEnabled(false);
+    } else {
+      myTutCtrl.setEnabled(true);
+    }
+    if (myTutCtrl.isJustOff()) {
+      cmp.loadNewGame(true, false);
       return;
     }
-    if (myOptionsCtrl.isJustOff()) {
-      im.setScreen(cmp, screens.options);
-      return;
-    }
-    if (myCreditsCtrl.isJustOff()) {
-      im.setScreen(cmp, screens.credits);
-    }
-    if (myExitCtrl.isJustOff()) {
-      // Save the settings on exit, but not on mobile as settings don't exist there.
-      if (isMobile == false) {
-        cmp.getOptions().save();
+    if (myNewCtrl.isJustOff()) {
+      if (!myPrevCtrl.isEnabled()) {
+        cmp.loadNewGame(false, false);
+      } else {
+        im.setScreen(cmp, screens.newShip);
       }
-      Gdx.app.exit();
+    }
+    if (myPrevCtrl.isJustOff()) {
+      cmp.loadNewGame(false, true);
       return;
+    }
+    if (myBackCtrl.isJustOff()) {
+      im.setScreen(cmp, screens.main);
     }
   }
 

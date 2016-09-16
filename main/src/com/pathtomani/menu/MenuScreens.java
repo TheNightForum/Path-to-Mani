@@ -29,6 +29,7 @@ public class MenuScreens {
   public final LoadingScreen loading;
   public final NewGameScreen newGame;
   public final NewShipScreen newShip;
+  public final PlayScreen playScreen;
 
   public MenuScreens(ManiLayouts layouts, TextureManager textureManager, boolean mobile, float r, GameOptions gameOptions) {
     MenuLayout menuLayout = layouts.menuLayout;
@@ -40,6 +41,7 @@ public class MenuScreens {
     loading = new LoadingScreen();
     newGame = new NewGameScreen(menuLayout, gameOptions);
     newShip = new NewShipScreen(menuLayout, gameOptions);
+    playScreen = new PlayScreen(menuLayout, textureManager, gameOptions);
   }
 
 }
