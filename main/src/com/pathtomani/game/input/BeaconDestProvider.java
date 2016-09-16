@@ -21,7 +21,7 @@ import com.pathtomani.game.BeaconHandler;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ship.ManiShip;
 import com.pathtomani.game.ship.hulls.HullConfig;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 
 public class BeaconDestProvider implements MoveDestProvider {
   public static final float STOP_AWAIT = .1f;
