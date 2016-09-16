@@ -1,0 +1,78 @@
+apply from: '../config/gradle/common.gradle'
+
+sourceSets.main.java.srcDirs = [ "src/" ]
+
+project.ext.mainClassName = "org.destinationsol.desktop.SolDesktop"
+
+dependencies {
+    compile project(":main")
+    compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+    compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
+    compile "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
+    compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
+
+    compile group: 'org.terasology.crashreporter', name: 'cr-destsol', version: '4.0.0'
+}
+
+task run(type: JavaExec) {
+    dependsOn classes
+
+    main = project.mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    workingDir = project(':main').projectDir
+    ignoreExitValue = true
+}
+
+jar {
+    archiveName = "solDesktop.jar"
+
+    manifest {
+        def manifestClasspath = configurations.runtime.collect {it.getName() }.join(" ")
+        attributes 'Main-Class': project.mainClassName
+        attributes("Class-Path" : manifestClasspath)
+    }
+}
+
+task dist (type: Sync) {
+    description = "Creates an application package for distribution"
+
+    into("$distsDir/app")
+
+    from("$rootDir/launcher")
+
+    into('libs') {
+        from configurations.runtime
+        from jar
+    }
+
+    into('res') {
+        from project(':main').sourceSets.res.resources.srcDirs
+    }
+}
+
+task distZip (type: Zip) {
+    dependsOn dist
+    from "$distsDir/app"
+    archiveName = "DestinationSol.zip"
+}
+
+// TODO: LibGDX Generated config for Eclipse. Needs adjustment for assets not being in the Android facade
+eclipse {
+    project {
+        name = appName + "-desktop"
+        linkedResource name: 'assets', type: '2', location: 'PARENT-1-PROJECT_LOC/android/assets'
+    }
+}
+
+task afterEclipseImport(description: "Post processing after project generation", group: "IDE") {
+    doLast {
+        def classpath = new XmlParser().parse(file(".classpath"))
+        new Node(classpath, "classpathentry", [ kind: 'src', path: 'assets' ]);
+        def writer = new FileWriter(file(".classpath"))
+        def printer = new XmlNodePrinter(new PrintWriter(writer))
+        printer.setPreserveWhitespace(true)
+        printer.print(classpath)
+    }
+}

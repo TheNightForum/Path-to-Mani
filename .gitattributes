@@ -1,0 +1,23 @@
+* text=auto
+
+*.bat          text eol=crlf
+*.gradle       text
+*.html         text diff=html
+*.java         text diff=java
+*.json         text
+*.markdown     text
+*.MF           text
+*.properties   text
+*.sh           text eol=lf
+*.shape        text
+*.txt          text
+*.xml          text diff=html
+
+*.exe          binary
+*.jar          binary
+*.ico          binary
+*.png          binary
+
+gradlew        text eol=lf
+LICENSE        text
+NOTICE         text
