@@ -18,13 +18,13 @@ package com.pathtomani.entities.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.effects.GameColors;
+import com.pathtomani.gfx.GameColors;
 import com.pathtomani.entities.gun.GunItem;
-import com.pathtomani.effects.particle.EffectTypes;
+import com.pathtomani.gfx.particle.EffectTypes;
 import com.pathtomani.entities.projectile.ProjectileConfigs;
 import com.pathtomani.entities.ship.AbilityCharge;
 import com.pathtomani.game.sound.SoundManager;
-import com.pathtomani.effects.TextureManager;
+import com.pathtomani.gfx.TextureManager;
 import com.pathtomani.entities.gun.GunConfig;
 
 import java.util.ArrayList;
