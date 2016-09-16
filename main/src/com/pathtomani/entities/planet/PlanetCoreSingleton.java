@@ -18,8 +18,8 @@ package com.pathtomani.entities.planet;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.pathtomani.effects.TextureManager;
-import com.pathtomani.effects.ManiColor;
+import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.game.GameDrawer;
 import com.pathtomani.game.ManiCam;
 import com.pathtomani.game.ManiGame;
