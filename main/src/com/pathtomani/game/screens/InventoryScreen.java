@@ -24,7 +24,7 @@ import com.pathtomani.game.ManiGame;
 import com.pathtomani.ui.*;
 import com.pathtomani.common.Const;
 import com.pathtomani.common.GameOptions;
-import com.pathtomani.effects.ManiColor;
+import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.entities.item.ItemContainer;
 import com.pathtomani.entities.item.ManiItem;
 import com.pathtomani.menu.MenuLayout;
