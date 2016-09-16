@@ -24,7 +24,7 @@ import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.dra.DraLevel;
 import com.pathtomani.entities.item.ItemManager;
 import com.pathtomani.entities.item.ManiItem;
-import com.pathtomani.effects.particle.ParticleSrc;
+import com.pathtomani.gfx.particle.ParticleSrc;
 
 public class SloMo implements ShipAbility {
   private static final float SLO_MO_CHG_SPD = .03f;
