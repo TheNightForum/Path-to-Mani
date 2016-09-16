@@ -39,7 +39,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-public class SolDesktop {
+public class ManiDesktop {
     public static void main(String[] argv) {
         if (false) {
             new LwjglApplication(new SoundTestListener(), "sound test", 800, 600);
