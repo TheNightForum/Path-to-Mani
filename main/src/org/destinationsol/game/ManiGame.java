@@ -53,7 +53,7 @@ import org.destinationsol.ui.UiDrawer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolGame {
+public class ManiGame {
 
   private final GameScreens myScreens;
   private final SolCam myCam;
@@ -99,7 +99,7 @@ public class SolGame {
   private HullConfig myRespawnHull;
   private final ArrayList<SolItem> myRespawnItems;
 
-  public SolGame(ManiApplication cmp, boolean usePrevShip, TextureManager textureManager, boolean tut, CommonDrawer commonDrawer) {
+  public ManiGame(ManiApplication cmp, boolean usePrevShip, TextureManager textureManager, boolean tut, CommonDrawer commonDrawer) {
     myCmp = cmp;
     GameDrawer drawer = new GameDrawer(textureManager, commonDrawer);
     gameColors = new GameColors();
