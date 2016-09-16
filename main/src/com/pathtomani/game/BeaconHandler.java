@@ -21,11 +21,11 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.dra.*;
-import com.pathtomani.game.planet.PlanetBind;
+import com.pathtomani.entities.planet.PlanetBind;
 import com.pathtomani.common.TextureManager;
 import com.pathtomani.game.input.Pilot;
-import com.pathtomani.game.ship.FarShip;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.ship.FarShip;
+import com.pathtomani.entities.ship.ManiShip;
 
 import java.util.ArrayList;
 import java.util.List;
