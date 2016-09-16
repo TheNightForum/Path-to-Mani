@@ -22,10 +22,10 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.game.ObjectManager;
-import com.pathtomani.game.planet.Planet;
-import com.pathtomani.game.ship.FarShip;
-import com.pathtomani.game.ship.ManiShip;
-import com.pathtomani.game.ship.hulls.HullConfig;
+import com.pathtomani.entities.planet.Planet;
+import com.pathtomani.entities.ship.FarShip;
+import com.pathtomani.entities.ship.ManiShip;
+import com.pathtomani.entities.ship.hulls.HullConfig;
 
 import java.util.List;
 
