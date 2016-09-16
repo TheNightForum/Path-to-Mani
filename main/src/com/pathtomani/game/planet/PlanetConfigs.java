@@ -24,7 +24,7 @@ import com.pathtomani.files.FileManager;
 import com.pathtomani.files.HullConfigManager;
 import com.pathtomani.game.GameColors;
 import com.pathtomani.game.item.ItemManager;
-import com.pathtomani.TextureManager;
+import com.pathtomani.common.TextureManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
