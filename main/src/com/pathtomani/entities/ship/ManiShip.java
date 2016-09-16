@@ -40,7 +40,7 @@ import com.pathtomani.entities.item.ManiItem;
 import com.pathtomani.entities.item.MoneyItem;
 import com.pathtomani.entities.item.RepairItem;
 import com.pathtomani.entities.item.EngineItem;
-import com.pathtomani.effects.particle.ParticleSrc;
+import com.pathtomani.gfx.particle.ParticleSrc;
 import com.pathtomani.entities.ship.hulls.Hull;
 import com.pathtomani.game.sound.SpecialSounds;
 
