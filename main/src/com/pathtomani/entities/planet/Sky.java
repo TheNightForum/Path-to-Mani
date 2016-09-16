@@ -20,12 +20,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.*;
-import com.pathtomani.game.dra.Dra;
+import com.pathtomani.managers.dra.Dra;
 import com.pathtomani.common.Const;
 import com.pathtomani.gfx.ColorSpan;
 import com.pathtomani.gfx.ManiColor;
-import com.pathtomani.game.dra.DraLevel;
-import com.pathtomani.game.dra.RectSprite;
+import com.pathtomani.managers.dra.DraLevel;
+import com.pathtomani.managers.dra.RectSprite;
 
 import java.util.ArrayList;
 import java.util.List;
