@@ -22,7 +22,7 @@ import com.pathtomani.game.DebugOptions;
 import com.pathtomani.game.ManiNames;
 import com.pathtomani.game.maze.Maze;
 import com.pathtomani.game.maze.MazeConfigs;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.game.maze.MazeConfig;
 
 import java.util.ArrayList;
