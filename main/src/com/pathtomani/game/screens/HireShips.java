@@ -17,7 +17,7 @@
 package com.pathtomani.game.screens;
 
 import com.badlogic.gdx.math.Vector2;
-import com.pathtomani.GameOptions;
+import com.pathtomani.common.GameOptions;
 import com.pathtomani.ManiApplication;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
@@ -32,7 +32,7 @@ import com.pathtomani.game.ship.ManiShip;
 import com.pathtomani.game.ship.hulls.HullConfig;
 import com.pathtomani.ui.ManiInputManager;
 import com.pathtomani.ui.UiDrawer;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.game.Faction;
 import com.pathtomani.game.input.Guardian;
 import com.pathtomani.ui.ManiUiControl;
