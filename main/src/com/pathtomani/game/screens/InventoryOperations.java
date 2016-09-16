@@ -17,8 +17,8 @@
 package com.pathtomani.game.screens;
 
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.item.ItemContainer;
-import com.pathtomani.game.item.ManiItem;
+import com.pathtomani.entities.item.ItemContainer;
+import com.pathtomani.entities.item.ManiItem;
 import com.pathtomani.ui.ManiUiScreen;
 
 public interface InventoryOperations extends ManiUiScreen {
