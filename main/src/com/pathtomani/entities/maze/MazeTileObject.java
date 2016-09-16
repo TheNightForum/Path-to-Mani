@@ -26,9 +26,9 @@ import com.pathtomani.game.DmgType;
 import com.pathtomani.game.FarObj;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
-import com.pathtomani.game.dra.Dra;
-import com.pathtomani.game.dra.RectSprite;
-import com.pathtomani.game.dra.DraLevel;
+import com.pathtomani.managers.dra.Dra;
+import com.pathtomani.managers.dra.RectSprite;
+import com.pathtomani.managers.dra.DraLevel;
 
 import java.util.ArrayList;
 import java.util.List;
