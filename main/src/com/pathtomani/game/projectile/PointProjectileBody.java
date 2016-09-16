@@ -23,7 +23,7 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.game.ship.ManiShip;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 
 public class PointProjectileBody implements ProjectileBody {
   private final Vector2 myPos;
