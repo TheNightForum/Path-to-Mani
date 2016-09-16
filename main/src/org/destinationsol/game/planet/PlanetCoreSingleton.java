@@ -21,7 +21,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.GameDrawer;
-import org.destinationsol.game.SolCam;
+import org.destinationsol.game.ManiCam;
 import org.destinationsol.game.ManiGame;
 
 public class PlanetCoreSingleton {
@@ -33,7 +33,7 @@ public class PlanetCoreSingleton {
 
 
   public void draw(ManiGame game, GameDrawer drawer) {
-    SolCam cam = game.getCam();
+    ManiCam cam = game.getCam();
     Vector2 camPos = cam.getPos();
     Planet p = game.getPlanetMan().getNearestPlanet();
     Vector2 pPos = p.getPos();

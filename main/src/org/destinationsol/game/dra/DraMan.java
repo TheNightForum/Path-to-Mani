@@ -92,7 +92,7 @@ public class DraMan {
       return;
     }
 
-    SolCam cam = game.getCam();
+    ManiCam cam = game.getCam();
     myDrawer.updateMtx(game);
     game.getFarBgManOld().draw(myDrawer, cam, game);
     Vector2 camPos = cam.getPos();
@@ -171,7 +171,7 @@ public class DraMan {
   }
 
   private void drawDebug(GameDrawer drawer, ManiGame game, Dra dra) {
-    SolCam cam = game.getCam();
+    ManiCam cam = game.getCam();
     float lineWidth = cam.getRealLineWidth();
     Color col = myInCam.contains(dra) ? DebugCol.DRA : DebugCol.DRA_OUT;
     Vector2 pos = dra.getPos();

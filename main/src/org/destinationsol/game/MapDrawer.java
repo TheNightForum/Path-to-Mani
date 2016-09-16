@@ -107,7 +107,7 @@ public class MapDrawer {
   }
 
   public void draw(GameDrawer drawer, ManiGame game) {
-    SolCam cam = game.getCam();
+    ManiCam cam = game.getCam();
     float iconSz = getIconRadius(cam) * 2;
     float starNodeW = cam.getViewHeight(myZoom) * STAR_NODE_SZ;
     float viewDist = cam.getViewDist(myZoom);
@@ -128,7 +128,7 @@ public class MapDrawer {
     drawIcons(drawer, game, iconSz, viewDist, factionManager, hero, camPos, heroDmgCap);
   }
 
-  public float getIconRadius(SolCam cam) {
+  public float getIconRadius(ManiCam cam) {
     return cam.getViewHeight(myZoom) * myIconRad;
   }
 
@@ -154,7 +154,7 @@ public class MapDrawer {
                            float camAngle)
   {
     ArrayList<SolSystem> systems = game.getPlanetMan().getSystems();
-    SolCam cam = game.getCam();
+    ManiCam cam = game.getCam();
     float circleWidth = cam.getRealLineWidth() * 6;
     float vh = cam.getViewHeight(myZoom);
     for (int i3 = 0, systemsSize1 = systems.size(); i3 < systemsSize1; i3++) {

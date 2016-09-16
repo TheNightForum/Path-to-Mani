@@ -180,7 +180,7 @@ public class PlanetManager {
 
   public void drawDebug(GameDrawer drawer, ManiGame game) {
     if (DebugOptions.DRAW_PLANET_BORDERS) {
-      SolCam cam = game.getCam();
+      ManiCam cam = game.getCam();
       float lineWidth = cam.getRealLineWidth();
       float vh = cam.getViewHeight();
       for (Planet p : myPlanets) {

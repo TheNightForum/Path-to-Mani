@@ -73,7 +73,7 @@ public class BorderDrawer {
 
   public void draw(UiDrawer drawer, ManiApplication cmp) {
     ManiGame g = cmp.getGame();
-    SolCam cam = g.getCam();
+    ManiCam cam = g.getCam();
     Vector2 camPos = cam.getPos();
     ManiShip hero = g.getHero();
     drawTishches(drawer, g, cam, camPos);
@@ -114,7 +114,7 @@ public class BorderDrawer {
     }
   }
 
-  private void maybeDrawIcon(UiDrawer drawer, Vector2 pos, SolCam cam, float objSize,
+  private void maybeDrawIcon(UiDrawer drawer, Vector2 pos, ManiCam cam, float objSize,
                              float objAngle, MapDrawer mapDrawer, FactionManager factionManager, ManiShip hero,
                              Faction objFac, Object shipHack, float heroDmgCap, TextureAtlas.AtlasRegion icon)
   {
@@ -141,7 +141,7 @@ public class BorderDrawer {
     mapDrawer.drawObjIcon(sz, myTmpVec, objAngle - camAngle, factionManager, hero, objFac, heroDmgCap, shipHack, icon, drawer);
   }
 
-  private void drawTishches(UiDrawer drawer, ManiGame g, SolCam cam, Vector2 camPos) {
+  private void drawTishches(UiDrawer drawer, ManiGame g, ManiCam cam, Vector2 camPos) {
     PlanetManager pMan = g.getPlanetMan();
     Planet np = pMan.getNearestPlanet();
     if (np != null && np.getPos().dst(camPos) < np.getFullHeight()) return;

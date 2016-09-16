@@ -28,7 +28,7 @@ import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.screens.MainScreen;
 import org.destinationsol.game.ship.ManiShip;
 
-public class SolCam {
+public class ManiCam {
   private static final float VIEWPORT_HEIGHT = 5f;
   private static final float MAX_ZOOM_SPD = 5f;
   private static final float MED_ZOOM_SPD = 3f;
@@ -49,7 +49,7 @@ public class SolCam {
   private float myZoom;
   private Vector2 myPos;
 
-  public SolCam(float r) {
+  public ManiCam(float r) {
     myCamRotStrategy = new CamRotStrategy.ToPlanet();
     myCam = new OrthographicCamera(VIEWPORT_HEIGHT * r, -VIEWPORT_HEIGHT);
     myZoom = calcZoom(Const.CAM_VIEW_DIST_GROUND);

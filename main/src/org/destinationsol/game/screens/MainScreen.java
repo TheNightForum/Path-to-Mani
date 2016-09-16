@@ -144,7 +144,7 @@ public class MainScreen implements SolUiScreen {
   public void maybeDrawHeight(UiDrawer drawer, ManiApplication cmp) {
     ManiGame game = cmp.getGame();
     Planet np = game.getPlanetMan().getNearestPlanet();
-    SolCam cam = game.getCam();
+    ManiCam cam = game.getCam();
     Vector2 camPos = cam.getPos();
     if (np != null && np.getPos().dst(camPos) < np.getFullHeight()) {
       drawHeight(drawer, np, camPos, cam.getAngle());
@@ -514,7 +514,7 @@ public class MainScreen implements SolUiScreen {
       float heroCap = HardnessCalc.getShipDmgCap(h);
       List<ManiObject> objs = game.getObjMan().getObjs();
       FactionManager fm = game.getFactionMan();
-      SolCam cam = game.getCam();
+      ManiCam cam = game.getCam();
       float viewDist = cam.getViewDist();
       float dps = 0;
       for (int i = 0, sz = objs.size(); i < sz; i++) {

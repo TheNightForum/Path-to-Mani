@@ -28,7 +28,7 @@ public class GridDrawer {
   }
 
   public void draw(GameDrawer drawer, ManiGame game, float gridSz, TextureAtlas.AtlasRegion tex) {
-    SolCam cam = game.getCam();
+    ManiCam cam = game.getCam();
     float lw = 4 * cam.getRealLineWidth();
     Vector2 camPos = cam.getPos();
     float viewDist = cam.getViewDist(cam.getRealZoom());

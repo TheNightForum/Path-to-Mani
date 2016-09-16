@@ -67,7 +67,7 @@ public class Sky implements ManiObject {
     updatePos(game);
 
     Vector2 planetPos = myPlanet.getPos();
-    SolCam cam = game.getCam();
+    ManiCam cam = game.getCam();
     Vector2 camPos = cam.getPos();
     float distPerc = 1 - (planetPos.dst(camPos) - myPlanet.getGroundHeight()) / Const.MAX_SKY_HEIGHT_FROM_GROUND;
     if (distPerc < 0) return;

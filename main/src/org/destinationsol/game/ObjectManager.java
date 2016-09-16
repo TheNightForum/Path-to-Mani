@@ -77,7 +77,7 @@ public class ObjectManager {
     float ts = game.getTimeStep();
     myWorld.step(ts, 6, 2);
 
-    SolCam cam = game.getCam();
+    ManiCam cam = game.getCam();
     Vector2 camPos = cam.getPos();
     myFarEndDist = 1.5f * cam.getViewDist();
     myFarBeginDist = 1.33f * myFarEndDist;
@@ -237,7 +237,7 @@ public class ObjectManager {
   }
 
   private void drawDebug0(GameDrawer drawer, ManiGame game) {
-    SolCam cam = game.getCam();
+    ManiCam cam = game.getCam();
     float lineWidth = cam.getRealLineWidth();
     float vh = cam.getViewHeight();
     for (ManiObject o : myObjs) {

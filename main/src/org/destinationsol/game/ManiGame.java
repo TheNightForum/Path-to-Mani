@@ -56,7 +56,7 @@ import java.util.List;
 public class ManiGame {
 
   private final GameScreens myScreens;
-  private final SolCam myCam;
+  private final ManiCam myCam;
   private final ObjectManager myObjectManager;
   private final ManiApplication myCmp;
   private final DraMan myDraMan;
@@ -106,7 +106,7 @@ public class ManiGame {
     mySoundManager = new SoundManager();
     mySpecialSounds = new SpecialSounds(mySoundManager);
     myDraMan = new DraMan(drawer);
-    myCam = new SolCam(drawer.r);
+    myCam = new ManiCam(drawer.r);
     myScreens = new GameScreens(drawer.r, cmp);
     myTutorialManager = tut ? new TutorialManager(commonDrawer.r, myScreens, cmp.isMobile(), cmp.getOptions()) : null;
     myTextureManager = textureManager;
@@ -329,7 +329,7 @@ public class ManiGame {
     return myTimeStep;
   }
 
-  public SolCam getCam() {
+  public ManiCam getCam() {
     return myCam;
   }
 
