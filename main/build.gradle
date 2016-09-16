@@ -18,11 +18,11 @@ sourceSets {
 }
 
 jar {
-    archiveName = "sol.jar"
+    archiveName = "mani.jar"
 
     doFirst {
         copy {
-            from 'src/SolAppListener.gwt.xml'
+            from 'src/ManiAppListener.gwt.xml'
             into 'build/classes/main'
         }
     }
