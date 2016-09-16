@@ -25,7 +25,7 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.managers.files.FileManager;
 import com.pathtomani.managers.files.HullConfigManager;
 import com.pathtomani.game.ShipConfig;
-import com.pathtomani.game.chunk.SpaceEnvConfig;
+import com.pathtomani.managers.chunk.SpaceEnvConfig;
 import com.pathtomani.entities.item.ItemManager;
 
 import java.util.ArrayList;
