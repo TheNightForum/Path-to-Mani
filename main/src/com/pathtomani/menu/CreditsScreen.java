@@ -17,11 +17,11 @@
 package com.pathtomani.menu;
 
 import com.badlogic.gdx.graphics.Color;
-import com.pathtomani.GameOptions;
+import com.pathtomani.common.GameOptions;
 import com.pathtomani.ManiApplication;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.ui.*;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.common.ManiColor;
 
 import java.util.ArrayList;
