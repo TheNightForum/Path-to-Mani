@@ -28,7 +28,7 @@ import com.pathtomani.game.GameDrawer;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.game.dra.Dra;
-import com.pathtomani.game.planet.Planet;
+import com.pathtomani.entities.planet.Planet;
 import com.pathtomani.game.dra.DraLevel;
 
 public class ParticleSrc implements Dra {
