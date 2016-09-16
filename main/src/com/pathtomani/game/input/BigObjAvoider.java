@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.Const;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.planet.Planet;
+import com.pathtomani.entities.planet.Planet;
 
 public class BigObjAvoider {
 
