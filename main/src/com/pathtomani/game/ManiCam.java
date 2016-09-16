@@ -24,9 +24,9 @@ import com.badlogic.gdx.math.Vector3;
 import com.pathtomani.common.Const;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.game.planet.Planet;
+import com.pathtomani.entities.planet.Planet;
 import com.pathtomani.game.screens.MainScreen;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.ship.ManiShip;
 
 public class ManiCam {
   private static final float VIEWPORT_HEIGHT = 5f;
