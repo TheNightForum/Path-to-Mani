@@ -17,7 +17,7 @@
 package com.pathtomani.game;
 
 import com.badlogic.gdx.utils.JsonValue;
-import com.pathtomani.files.HullConfigManager;
+import com.pathtomani.managers.files.HullConfigManager;
 import com.pathtomani.entities.item.ItemManager;
 import com.pathtomani.entities.ship.hulls.HullConfig;
 
