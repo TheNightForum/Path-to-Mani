@@ -19,10 +19,10 @@ package com.pathtomani.game;
 import com.pathtomani.common.IniReader;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.files.HullConfigManager;
-import com.pathtomani.game.gun.GunItem;
-import com.pathtomani.game.item.ItemManager;
-import com.pathtomani.game.item.ManiItem;
-import com.pathtomani.game.ship.hulls.HullConfig;
+import com.pathtomani.entities.gun.GunItem;
+import com.pathtomani.entities.item.ItemManager;
+import com.pathtomani.entities.item.ManiItem;
+import com.pathtomani.entities.ship.hulls.HullConfig;
 
 import java.util.ArrayList;
 
