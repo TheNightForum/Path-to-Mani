@@ -30,7 +30,7 @@ import com.pathtomani.game.dra.Dra;
 import com.pathtomani.game.dra.RectSprite;
 import com.pathtomani.entities.ship.hulls.HullConfig;
 import com.pathtomani.common.Const;
-import com.pathtomani.common.ManiColor;
+import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.game.dra.DraLevel;
 

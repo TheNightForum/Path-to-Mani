@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.pathtomani.common.Const;
-import com.pathtomani.common.ManiColor;
+import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.DmgType;
 import com.pathtomani.game.FarObj;

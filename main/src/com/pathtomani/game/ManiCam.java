@@ -22,7 +22,7 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.pathtomani.common.Const;
-import com.pathtomani.common.ManiColor;
+import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.entities.planet.Planet;
 import com.pathtomani.game.screens.MainScreen;

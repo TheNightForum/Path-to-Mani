@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pathtomani.game.particle;
+package com.pathtomani.gfx.particle;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
@@ -23,7 +23,7 @@ import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.dra.Dra;
 import com.pathtomani.game.dra.DrasObject;
 import com.pathtomani.game.dra.RectSprite;
-import com.pathtomani.common.ManiColor;
+import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.game.dra.DraLevel;
 import com.pathtomani.entities.item.Shield;
 import com.pathtomani.entities.ship.hulls.Hull;

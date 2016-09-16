@@ -18,7 +18,7 @@ package com.pathtomani.entities.planet;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonValue;
-import com.pathtomani.game.GameColors;
+import com.pathtomani.gfx.GameColors;
 
 public class SkyConfig {
   public final Color dawn;
