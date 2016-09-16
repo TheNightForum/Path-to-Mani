@@ -25,8 +25,8 @@ import com.pathtomani.game.dra.DrasObject;
 import com.pathtomani.game.dra.RectSprite;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.game.dra.DraLevel;
-import com.pathtomani.game.item.Shield;
-import com.pathtomani.game.ship.hulls.Hull;
+import com.pathtomani.entities.item.Shield;
+import com.pathtomani.entities.ship.hulls.Hull;
 
 import java.util.ArrayList;
 
