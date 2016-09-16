@@ -28,7 +28,7 @@ import com.pathtomani.entities.item.MoneyItem;
 import com.pathtomani.entities.item.ManiItem;
 import com.pathtomani.entities.planet.Planet;
 import com.pathtomani.entities.planet.TileObject;
-import com.pathtomani.effects.particle.ParticleSrc;
+import com.pathtomani.gfx.particle.ParticleSrc;
 
 import java.util.ArrayList;
 import java.util.List;
