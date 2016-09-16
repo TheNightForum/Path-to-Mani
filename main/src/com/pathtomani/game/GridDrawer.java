@@ -19,8 +19,8 @@ package com.pathtomani.game;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.pathtomani.common.TextureManager;
-import com.pathtomani.common.ManiColor;
+import com.pathtomani.gfx.TextureManager;
+import com.pathtomani.gfx.ManiColor;
 
 public class GridDrawer {
 

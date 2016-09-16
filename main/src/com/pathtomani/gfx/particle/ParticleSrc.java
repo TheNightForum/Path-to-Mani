@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pathtomani.game.particle;
+package com.pathtomani.gfx.particle;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;

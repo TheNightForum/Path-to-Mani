@@ -22,7 +22,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.dra.*;
 import com.pathtomani.entities.planet.PlanetBind;
-import com.pathtomani.common.TextureManager;
+import com.pathtomani.gfx.TextureManager;
 import com.pathtomani.game.input.Pilot;
 import com.pathtomani.entities.ship.FarShip;
 import com.pathtomani.entities.ship.ManiShip;

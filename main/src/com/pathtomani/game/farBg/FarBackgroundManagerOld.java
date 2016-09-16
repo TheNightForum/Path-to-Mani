@@ -20,13 +20,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.Const;
-import com.pathtomani.common.ManiColor;
-import com.pathtomani.common.ManiColorUtil;
+import com.pathtomani.gfx.ManiColor;
+import com.pathtomani.gfx.ManiColorUtil;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.GameDrawer;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.entities.planet.Planet;
-import com.pathtomani.common.TextureManager;
+import com.pathtomani.gfx.TextureManager;
 import com.pathtomani.game.ManiCam;
 
 import java.util.ArrayList;
