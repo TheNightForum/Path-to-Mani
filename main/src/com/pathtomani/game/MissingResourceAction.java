@@ -16,7 +16,7 @@
 
 package com.pathtomani.game;
 
-import com.pathtomani.ui.DebugCollector;
+import com.pathtomani.screens.controllers.DebugCollector;
 
 public enum MissingResourceAction {
   IGNORE("ignore"), WARN("warn"), FAIL("fail");
