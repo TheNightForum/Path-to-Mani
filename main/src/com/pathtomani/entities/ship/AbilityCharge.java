@@ -25,7 +25,7 @@ import com.pathtomani.entities.item.ManiItem;
 import com.pathtomani.entities.item.ManiItemType;
 import com.pathtomani.entities.item.ManiItemTypes;
 import com.pathtomani.gfx.TextureManager;
-import com.pathtomani.files.FileManager;
+import com.pathtomani.managers.files.FileManager;
 import com.pathtomani.entities.item.ItemManager;
 
 public class AbilityCharge implements ManiItem {
