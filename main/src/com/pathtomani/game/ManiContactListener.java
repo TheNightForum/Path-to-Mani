@@ -22,7 +22,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.game.projectile.Projectile;
+import com.pathtomani.entities.projectile.Projectile;
 
 public class ManiContactListener implements ContactListener {
   private final ManiGame myGame;
