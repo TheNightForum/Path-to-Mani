@@ -25,8 +25,8 @@ import com.pathtomani.common.Const;
 import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.dra.DraLevel;
-import com.pathtomani.game.dra.RectSprite;
+import com.pathtomani.managers.dra.DraLevel;
+import com.pathtomani.managers.dra.RectSprite;
 
 import java.util.ArrayList;
 import java.util.List;
