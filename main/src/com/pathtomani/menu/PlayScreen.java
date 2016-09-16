@@ -16,13 +16,12 @@
 
 package com.pathtomani.menu;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
-import com.pathtomani.GameOptions;
+import com.pathtomani.common.GameOptions;
 import com.pathtomani.ManiApplication;
-import com.pathtomani.TextureManager;
+import com.pathtomani.common.TextureManager;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.game.DebugOptions;
 import com.pathtomani.game.sound.MusicManager;
