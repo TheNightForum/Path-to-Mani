@@ -20,12 +20,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.game.dra.Dra;
-import com.pathtomani.game.dra.FarDras;
+import com.pathtomani.managers.dra.Dra;
+import com.pathtomani.managers.dra.FarDras;
 import com.pathtomani.common.Const;
 import com.pathtomani.common.DebugCol;
 import com.pathtomani.gfx.ManiColor;
-import com.pathtomani.game.dra.DraMan;
+import com.pathtomani.managers.dra.DraMan;
 import com.pathtomani.entities.ship.FarShip;
 
 import java.util.ArrayList;
