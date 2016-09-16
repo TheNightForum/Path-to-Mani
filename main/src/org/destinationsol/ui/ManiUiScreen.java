@@ -25,9 +25,9 @@ public interface ManiUiScreen {
 
   void onAdd(ManiApplication cmp);
 
-  void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside);
+  void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside);
 
-  boolean isCursorOnBg(SolInputManager.Ptr ptr);
+  boolean isCursorOnBg(ManiInputManager.Ptr ptr);
 
   void blurCustom(ManiApplication cmp);
 

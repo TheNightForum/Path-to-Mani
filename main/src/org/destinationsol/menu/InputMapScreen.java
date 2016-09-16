@@ -140,9 +140,9 @@ public class InputMapScreen implements ManiUiScreen {
     }
 
     @Override
-    public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
         GameOptions gameOptions = cmp.getOptions();
-        SolInputManager im = cmp.getInputMan();
+        ManiInputManager im = cmp.getInputMan();
         MenuScreens screens = cmp.getMenuScreens();
 
         // Save - saves new settings and returns to the options screen
@@ -278,7 +278,7 @@ public class InputMapScreen implements ManiUiScreen {
     }
 
     @Override
-    public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+    public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
         return false;
     }
 

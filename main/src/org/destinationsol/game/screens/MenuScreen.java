@@ -21,7 +21,7 @@ import org.destinationsol.ManiApplication;
 import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.menu.MenuLayout;
-import org.destinationsol.ui.SolInputManager;
+import org.destinationsol.ui.ManiInputManager;
 import org.destinationsol.ui.SolUiControl;
 import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
@@ -63,10 +63,10 @@ public class MenuScreen implements ManiUiScreen {
   }
 
   @Override
-  public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     ManiGame g = cmp.getGame();
     g.setPaused(true);
-    SolInputManager im = cmp.getInputMan();
+    ManiInputManager im = cmp.getInputMan();
     GameOptions options = cmp.getOptions();
     mySoundVolCtrl.setDisplayName("Sound Volume: " + getVolName(options));
     if (mySoundVolCtrl.isJustOff()) {
@@ -125,7 +125,7 @@ public class MenuScreen implements ManiUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return true;
   }
 

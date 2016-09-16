@@ -30,7 +30,7 @@ import org.destinationsol.game.sound.MusicManager;
 import org.destinationsol.menu.MenuScreens;
 import org.destinationsol.ui.DebugCollector;
 import org.destinationsol.ui.FontSize;
-import org.destinationsol.ui.SolInputManager;
+import org.destinationsol.ui.ManiInputManager;
 import org.destinationsol.ui.SolLayouts;
 import org.destinationsol.ui.UiDrawer;
 
@@ -39,7 +39,7 @@ import java.io.StringWriter;
 
 public class ManiApplication implements ApplicationListener {
 
-  private SolInputManager myInputMan;
+  private ManiInputManager myInputMan;
   private UiDrawer myUiDrawer;
   private MenuScreens myMenuScreens;
   private TextureManager myTextureManager;
@@ -72,7 +72,7 @@ public class ManiApplication implements ApplicationListener {
     myTextureManager = new TextureManager();
     myCommonDrawer = new CommonDrawer();
     myUiDrawer = new UiDrawer(myTextureManager, myCommonDrawer);
-    myInputMan = new SolInputManager(myTextureManager, myUiDrawer.r);
+    myInputMan = new ManiInputManager(myTextureManager, myUiDrawer.r);
     myLayouts = new SolLayouts(myUiDrawer.r);
     myMenuScreens = new MenuScreens(myLayouts, myTextureManager, isMobile(), myUiDrawer.r, myOptions);
 
@@ -173,7 +173,7 @@ public class ManiApplication implements ApplicationListener {
     MusicManager.getInstance().PlayGameMusic(myOptions);
   }
 
-  public SolInputManager getInputMan() {
+  public ManiInputManager getInputMan() {
     return myInputMan;
   }
 

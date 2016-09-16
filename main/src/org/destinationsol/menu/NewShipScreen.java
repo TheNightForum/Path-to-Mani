@@ -51,7 +51,7 @@ public class NewShipScreen implements ManiUiScreen {
   }
 
   @Override
-  public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     if (myCancelCtrl.isJustOff()) {
       cmp.getInputMan().setScreen(cmp, cmp.getMenuScreens().newGame);
       return;
@@ -62,7 +62,7 @@ public class NewShipScreen implements ManiUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 

@@ -178,13 +178,13 @@ public class MainScreen implements ManiUiScreen {
   }
 
   @Override
-  public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     if (DebugOptions.PRINT_BALANCE) {
       cmp.finishGame();
       return;
     }
     ManiGame game = cmp.getGame();
-    SolInputManager inputMan = cmp.getInputMan();
+    ManiInputManager inputMan = cmp.getInputMan();
     GameScreens screens = game.getScreens();
     ManiShip hero = game.getHero();
 
@@ -255,7 +255,7 @@ public class MainScreen implements ManiUiScreen {
     if (talkCtrl.isJustOff()) {
       TalkScreen talkScreen = game.getScreens().talkScreen;
       ManiApplication cmp = game.getCmp();
-      SolInputManager inputMan = cmp.getInputMan();
+      ManiInputManager inputMan = cmp.getInputMan();
       boolean isOn = inputMan.isScreenOn(talkScreen);
       inputMan.setScreen(cmp, this);
       if (!isOn) {
@@ -327,7 +327,7 @@ public class MainScreen implements ManiUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 

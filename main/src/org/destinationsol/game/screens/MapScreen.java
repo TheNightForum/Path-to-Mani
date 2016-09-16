@@ -21,7 +21,7 @@ import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.game.MapDrawer;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.ui.SolInputManager;
+import org.destinationsol.ui.ManiInputManager;
 import org.destinationsol.ui.SolUiControl;
 import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
@@ -61,13 +61,13 @@ public class MapScreen implements ManiUiScreen {
   }
 
   @Override
-  public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     ManiGame g = cmp.getGame();
     GameOptions gameOptions = cmp.getOptions();
     boolean justClosed = closeCtrl.isJustOff();
     MapDrawer mapDrawer = g.getMapDrawer();
     mapDrawer.setToggled(!justClosed);
-    SolInputManager im = cmp.getInputMan();
+    ManiInputManager im = cmp.getInputMan();
     if (justClosed) {
       im.setScreen(cmp, g.getScreens().mainScreen);
     }
@@ -109,7 +109,7 @@ public class MapScreen implements ManiUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 

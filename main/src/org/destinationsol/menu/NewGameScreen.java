@@ -19,7 +19,7 @@ package org.destinationsol.menu;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.game.SaveManager;
-import org.destinationsol.ui.SolInputManager;
+import org.destinationsol.ui.ManiInputManager;
 import org.destinationsol.ui.SolUiControl;
 import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
@@ -61,9 +61,9 @@ public class NewGameScreen implements ManiUiScreen {
   }
 
   @Override
-  public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     MenuScreens screens = cmp.getMenuScreens();
-    SolInputManager im = cmp.getInputMan();
+    ManiInputManager im = cmp.getInputMan();
     if (myBackCtrl.isJustOff()) {
       im.setScreen(cmp, screens.main);
       return;
@@ -82,7 +82,7 @@ public class NewGameScreen implements ManiUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return true;
   }
 

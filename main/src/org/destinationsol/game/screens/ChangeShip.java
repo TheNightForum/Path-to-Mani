@@ -29,7 +29,7 @@ import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.ShipRepairer;
 import org.destinationsol.game.ship.hulls.Hull;
 import org.destinationsol.game.ship.hulls.HullConfig;
-import org.destinationsol.ui.SolInputManager;
+import org.destinationsol.ui.ManiInputManager;
 import org.destinationsol.ui.SolUiControl;
 import org.destinationsol.ui.UiDrawer;
 
@@ -75,7 +75,7 @@ public class ChangeShip implements InventoryOperations {
   }
 
   @Override
-  public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     ManiGame game = cmp.getGame();
     InventoryScreen is = game.getScreens().inventoryScreen;
     ManiShip hero = game.getHero();
@@ -109,7 +109,7 @@ public class ChangeShip implements InventoryOperations {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 

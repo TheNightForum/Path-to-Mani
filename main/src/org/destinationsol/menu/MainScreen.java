@@ -26,7 +26,7 @@ import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.DebugOptions;
 import org.destinationsol.game.sound.MusicManager;
-import org.destinationsol.ui.SolInputManager;
+import org.destinationsol.ui.ManiInputManager;
 import org.destinationsol.ui.SolUiControl;
 import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
@@ -85,7 +85,7 @@ public class MainScreen implements ManiUiScreen {
   }
 
   @Override
-  public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     if (cmp.getOptions().controlType == GameOptions.CONTROL_CONTROLLER) {
       myTutCtrl.setEnabled(false);
     } else {
@@ -96,7 +96,7 @@ public class MainScreen implements ManiUiScreen {
       cmp.loadNewGame(true, false);
       return;
     }
-    SolInputManager im = cmp.getInputMan();
+    ManiInputManager im = cmp.getInputMan();
     MenuScreens screens = cmp.getMenuScreens();
     if (myNewGameCtrl.isJustOff()) {
       im.setScreen(cmp, screens.newGame);
@@ -120,7 +120,7 @@ public class MainScreen implements ManiUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 

@@ -27,7 +27,7 @@ import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
-import org.destinationsol.ui.SolInputManager;
+import org.destinationsol.ui.ManiInputManager;
 import org.destinationsol.ui.SolUiControl;
 import org.destinationsol.ui.UiDrawer;
 
@@ -187,7 +187,7 @@ public class InputMapControllerScreen implements InputMapOperations {
     }
 
     @Override
-    public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     }
 
     /**
@@ -353,7 +353,7 @@ public class InputMapControllerScreen implements InputMapOperations {
     }
 
     @Override
-    public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+    public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
         return false;
     }
 

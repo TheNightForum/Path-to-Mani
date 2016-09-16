@@ -37,7 +37,7 @@ import org.destinationsol.game.ManiGame;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolInputManager {
+public class ManiInputManager {
 
   private static final int POINTER_COUNT = 4;
   private static final float CURSOR_SHOW_TIME = 3;
@@ -64,7 +64,7 @@ public class SolInputManager {
   private boolean myWarnPercGrows;
   private Boolean myScrolledUp;
 
-  public SolInputManager(TextureManager textureManager, float r) {
+  public ManiInputManager(TextureManager textureManager, float r) {
     myPtrs = new Ptr[POINTER_COUNT];
     for (int i = 0; i < POINTER_COUNT; i++) {
       myPtrs[i] = new Ptr();

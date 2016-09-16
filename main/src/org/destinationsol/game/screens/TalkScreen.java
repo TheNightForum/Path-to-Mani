@@ -24,7 +24,7 @@ import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
 import org.destinationsol.menu.MenuLayout;
-import org.destinationsol.ui.SolInputManager;
+import org.destinationsol.ui.ManiInputManager;
 import org.destinationsol.ui.SolUiControl;
 import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
@@ -76,14 +76,14 @@ public class TalkScreen implements ManiUiScreen {
   }
 
   @Override
-  public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
     if (clickedOutside) {
       closeCtrl.maybeFlashPressed(cmp.getOptions().getKeyClose());
       return;
     }
     ManiGame g = cmp.getGame();
     ManiShip hero = g.getHero();
-    SolInputManager inputMan = cmp.getInputMan();
+    ManiInputManager inputMan = cmp.getInputMan();
     if (closeCtrl.isJustOff() || isTargetFar(hero))
     {
       inputMan.setScreen(cmp, g.getScreens().mainScreen);
@@ -132,7 +132,7 @@ public class TalkScreen implements ManiUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return myBg.contains(ptr.x, ptr.y);
   }
 

@@ -23,7 +23,7 @@ import org.destinationsol.ManiApplication;
 import org.destinationsol.game.BeaconHandler;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.ship.ManiShip;
-import org.destinationsol.ui.SolInputManager;
+import org.destinationsol.ui.ManiInputManager;
 
 public class ShipMouseControl implements ShipUiControl {
   private final TextureAtlas.AtlasRegion myMoveCursor;
@@ -48,7 +48,7 @@ public class ShipMouseControl implements ShipUiControl {
     if (h != null) {
       myMouseWorldPos.set(Gdx.input.getX(), Gdx.input.getY());
       g.getCam().screenToWorld(myMouseWorldPos);
-      SolInputManager im = cmp.getInputMan();
+      ManiInputManager im = cmp.getInputMan();
       boolean clicked = im.getPtrs()[0].pressed;
       boolean onMap = im.isScreenOn(g.getScreens().mapScreen);
       BeaconHandler.Action a = g.getBeaconHandler().processMouse(g, myMouseWorldPos, clicked, onMap);

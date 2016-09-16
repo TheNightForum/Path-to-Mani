@@ -19,7 +19,7 @@ package org.destinationsol.menu;
 import com.badlogic.gdx.Input;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
-import org.destinationsol.ui.SolInputManager;
+import org.destinationsol.ui.ManiInputManager;
 import org.destinationsol.ui.SolUiControl;
 import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
@@ -61,8 +61,8 @@ public class OptionsScreen implements ManiUiScreen {
   }
 
   @Override
-  public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolInputManager im = cmp.getInputMan();
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    ManiInputManager im = cmp.getInputMan();
     MenuScreens screens = cmp.getMenuScreens();
     if (myResoCtrl.isJustOff()) {
       im.setScreen(cmp, screens.resolutionScreen);
@@ -114,7 +114,7 @@ public class OptionsScreen implements ManiUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 

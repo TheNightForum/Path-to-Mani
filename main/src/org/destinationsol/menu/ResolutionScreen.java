@@ -54,8 +54,8 @@ public class ResolutionScreen implements ManiUiScreen {
   }
 
   @Override
-  public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolInputManager im = cmp.getInputMan();
+  public void updateCustom(ManiApplication cmp, ManiInputManager.Ptr[] ptrs, boolean clickedOutside) {
+    ManiInputManager im = cmp.getInputMan();
     if (myCloseCtrl.isJustOff()) {
       GameOptions options = cmp.getOptions();
       Gdx.graphics.setDisplayMode(options.x, options.y, options.fullscreen);
@@ -94,7 +94,7 @@ public class ResolutionScreen implements ManiUiScreen {
   }
 
   @Override
-  public boolean isCursorOnBg(SolInputManager.Ptr ptr) {
+  public boolean isCursorOnBg(ManiInputManager.Ptr ptr) {
     return false;
   }
 
