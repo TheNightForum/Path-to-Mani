@@ -19,7 +19,7 @@ package com.pathtomani.game;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.pathtomani.common.Nullable;
-import com.pathtomani.game.dra.Dra;
+import com.pathtomani.managers.dra.Dra;
 
 import java.util.List;
 
