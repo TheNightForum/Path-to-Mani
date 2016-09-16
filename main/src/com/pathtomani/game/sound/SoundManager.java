@@ -29,8 +29,8 @@ import com.pathtomani.game.DebugOptions;
 import com.pathtomani.game.GameDrawer;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
-import com.pathtomani.game.planet.Planet;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.planet.Planet;
+import com.pathtomani.entities.ship.ManiShip;
 
 import java.util.*;
 
