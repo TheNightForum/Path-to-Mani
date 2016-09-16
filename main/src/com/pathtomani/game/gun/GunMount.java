@@ -34,7 +34,7 @@ import java.util.List;
 public class GunMount {
   private final Vector2 myRelPos;
   private final boolean myFixed;
-  private SolGun myGun;
+  private ManiGun myGun;
   private boolean myDetected;
   private float myRelGunAngle;
 
@@ -89,7 +89,7 @@ public class GunMount {
     }
     if (gunItem != null) {
       if (gunItem.config.fixed != myFixed) throw new AssertionError("tried to set gun to incompatible mount");
-      myGun = new SolGun(game, gunItem, myRelPos, underShip);
+      myGun = new ManiGun(game, gunItem, myRelPos, underShip);
       myGun.getItem().setEquipped(slotNr);
       List<Dra> dras1 = myGun.getDras();
       dras.addAll(dras1);

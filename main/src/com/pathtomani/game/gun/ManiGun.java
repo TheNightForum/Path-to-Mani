@@ -36,7 +36,7 @@ import com.pathtomani.game.dra.DraLevel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolGun {
+public class ManiGun {
   private final LightSrc myLightSrc;
   private final Vector2 myRelPos;
   private final RectSprite mySprite;
@@ -45,7 +45,7 @@ public class SolGun {
   private float myCoolDown;
   private float myCurrAngleVar;
 
-  public SolGun(ManiGame game, GunItem item, Vector2 relPos, boolean underShip) {
+  public ManiGun(ManiGame game, GunItem item, Vector2 relPos, boolean underShip) {
     myItem = item;
     if (myItem.config.lightOnShot) {
       Color lightCol = ManiColor.W;
