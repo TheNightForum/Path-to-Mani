@@ -22,7 +22,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.dra.Dra;
 import com.pathtomani.game.dra.FarDras;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.common.DebugCol;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.game.dra.DraMan;
