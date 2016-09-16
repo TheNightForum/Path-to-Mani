@@ -17,7 +17,7 @@
 package com.pathtomani.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
-import com.pathtomani.Const;
+import com.pathtomani.common.Const;
 import com.pathtomani.game.FarObj;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
