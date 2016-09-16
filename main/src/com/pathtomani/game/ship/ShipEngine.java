@@ -23,7 +23,7 @@ import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.dra.Dra;
 import com.pathtomani.game.item.EngineItem;
 import com.pathtomani.game.particle.LightSrc;
-import com.pathtomani.game.sound.SolSound;
+import com.pathtomani.game.sound.ManiSound;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.game.dra.DraLevel;
 import com.pathtomani.game.input.Pilot;
@@ -79,7 +79,7 @@ public class ShipEngine {
     myLightSrc1.update(working, angle, game);
     myLightSrc2.update(working, angle, game);
     if (working) {
-      SolSound sound = myItem.getWorkSound();
+      ManiSound sound = myItem.getWorkSound();
       game.getSoundMan().play(game, sound, myFlameSrc1.getPos(), owner); // hack with pos
     }
   }

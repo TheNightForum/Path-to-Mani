@@ -27,7 +27,7 @@ import com.pathtomani.game.GameColors;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.particle.EffectConfig;
 import com.pathtomani.game.particle.EffectTypes;
-import com.pathtomani.game.sound.SolSound;
+import com.pathtomani.game.sound.ManiSound;
 
 import java.util.HashMap;
 
@@ -93,7 +93,7 @@ public class EngineItem implements ManiItem {
 
   }
 
-  public SolSound getWorkSound() {
+  public ManiSound getWorkSound() {
     return myConfig.workSound;
   }
 
@@ -110,13 +110,13 @@ public class EngineItem implements ManiItem {
     public final float acc;
     public final float maxRotSpd;
     public final boolean big;
-    public final SolSound workSound;
+    public final ManiSound workSound;
     public final EngineItem example;
     public final TextureAtlas.AtlasRegion icon;
     public final EffectConfig effectConfig;
 
     private Config(String displayName, int price, String desc, float rotAcc, float acc, float maxRotSpd, boolean big,
-      SolSound workSound, TextureAtlas.AtlasRegion icon, EffectConfig effectConfig)
+                   ManiSound workSound, TextureAtlas.AtlasRegion icon, EffectConfig effectConfig)
     {
       this.displayName = displayName;
       this.price = price;
@@ -139,7 +139,7 @@ public class EngineItem implements ManiItem {
       float acc = 2f;
       float maxRotSpd = big ? 40f : 230f;
       String workSoundDir = sh.getString("workSound");
-      SolSound workSound = soundManager.getLoopedSound(workSoundDir, configFile);
+      ManiSound workSound = soundManager.getLoopedSound(workSoundDir, configFile);
       EffectConfig effectConfig = EffectConfig.load(sh.get("effect"), effectTypes, textureManager, configFile, cols);
       return new Config(null, 0, null, rotAcc, acc, maxRotSpd, big, workSound, null, effectConfig);
     }

@@ -33,7 +33,7 @@ import com.pathtomani.game.item.Shield;
 import com.pathtomani.game.particle.EffectConfig;
 import com.pathtomani.game.particle.ParticleSrc;
 import com.pathtomani.game.ship.ManiShip;
-import com.pathtomani.game.sound.SolSound;
+import com.pathtomani.game.sound.ManiSound;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,7 +115,7 @@ public class
     }
     if (myLightSrc != null) myLightSrc.update(true, myBody.getAngle(), game);
     maybeGuide(game);
-    SolSound ws = myConfig.workSound;
+    ManiSound ws = myConfig.workSound;
     game.getSoundMan().play(game, ws, null, this);
   }
 

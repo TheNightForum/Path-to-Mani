@@ -28,7 +28,7 @@ import com.pathtomani.game.DmgType;
 import com.pathtomani.game.GameColors;
 import com.pathtomani.game.particle.EffectConfig;
 import com.pathtomani.game.particle.EffectTypes;
-import com.pathtomani.game.sound.SolSound;
+import com.pathtomani.game.sound.ManiSound;
 import com.pathtomani.game.sound.SoundManager;
 
 import java.util.HashMap;
@@ -52,7 +52,7 @@ public class ProjectileConfigs {
       boolean stretch = sh.getBoolean("stretch", false);
       DmgType dmgType = DmgType.forName(sh.getString("dmgType"));
       String collisionSoundPath = sh.getString("collisionSound", "");
-      SolSound collisionSound = collisionSoundPath.isEmpty() ? null : soundManager.getSound(collisionSoundPath, configFile);
+      ManiSound collisionSound = collisionSoundPath.isEmpty() ? null : soundManager.getSound(collisionSoundPath, configFile);
       float lightSz = sh.getFloat("lightSz", 0);
       EffectConfig trailEffect = EffectConfig.load(sh.get("trailEffect"), effectTypes, textureManager, configFile, cols);
       EffectConfig bodyEffect = EffectConfig.load(sh.get("bodyEffect"), effectTypes, textureManager, configFile, cols);
@@ -63,7 +63,7 @@ public class ProjectileConfigs {
       Vector2 origin = ManiMath.readV2(sh.getString("texOrig", "0 0"));
       float acc = sh.getFloat("acceleration", 0);
       String workSoundDir = sh.getString("workSound", "");
-      SolSound workSound = workSoundDir.isEmpty() ? null : soundManager.getLoopedSound(workSoundDir, configFile);
+      ManiSound workSound = workSoundDir.isEmpty() ? null : soundManager.getLoopedSound(workSoundDir, configFile);
       boolean bodyless = sh.getBoolean("massless", false);
       float density = sh.getFloat("density", -1);
       float dmg = sh.getFloat("dmg");

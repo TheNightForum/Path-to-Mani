@@ -19,16 +19,16 @@ package com.pathtomani.game;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.game.particle.EffectConfig;
-import com.pathtomani.game.sound.SolSound;
+import com.pathtomani.game.sound.ManiSound;
 import com.pathtomani.game.sound.SoundManager;
 import com.pathtomani.TextureManager;
 import com.pathtomani.game.particle.EffectTypes;
 
 public class AbilityCommonConfig {
   public final EffectConfig effect;
-  public final SolSound activatedSound;
+  public final ManiSound activatedSound;
 
-  public AbilityCommonConfig(EffectConfig effect, SolSound activatedSound) {
+  public AbilityCommonConfig(EffectConfig effect, ManiSound activatedSound) {
     this.effect = effect;
     this.activatedSound = activatedSound;
   }
@@ -37,7 +37,7 @@ public class AbilityCommonConfig {
     FileHandle configFile, SoundManager soundManager)
   {
     EffectConfig ec = EffectConfig.load(node.get("effect"), types, textureManager, configFile, cols);
-    SolSound activatedSound = soundManager.getSound(node.getString("activatedSound"), configFile);
+    ManiSound activatedSound = soundManager.getSound(node.getString("activatedSound"), configFile);
     return new AbilityCommonConfig(ec, activatedSound);
   }
 }

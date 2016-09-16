@@ -26,7 +26,7 @@ import com.pathtomani.game.*;
 import com.pathtomani.game.dra.Dra;
 import com.pathtomani.game.gun.GunItem;
 import com.pathtomani.game.ship.hulls.HullConfig;
-import com.pathtomani.game.sound.SolSound;
+import com.pathtomani.game.sound.ManiSound;
 import com.pathtomani.game.sound.SoundManager;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.game.gun.GunMount;
@@ -425,7 +425,7 @@ public class ManiShip implements ManiObject {
 
   private void playHitSound(ManiGame game, Vector2 pos, DmgType dmgType) {
     if (myArmor != null) {
-      SolSound sound = myArmor.getHitSound(dmgType);
+      ManiSound sound = myArmor.getHitSound(dmgType);
       game.getSoundMan().play(game, sound, pos, this);
     } else {
       game.getSpecialSounds().playHit(game, this, pos, dmgType);

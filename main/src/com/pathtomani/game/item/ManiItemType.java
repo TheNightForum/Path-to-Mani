@@ -17,15 +17,15 @@
 package com.pathtomani.game.item;
 
 import com.badlogic.gdx.graphics.Color;
-import com.pathtomani.game.sound.SolSound;
+import com.pathtomani.game.sound.ManiSound;
 
 public class ManiItemType {
   public final Color color;
-  public final SolSound pickUpSound;
+  public final ManiSound pickUpSound;
   public final Color uiColor;
   public final float sz;
 
-  public ManiItemType(Color color, SolSound pickUpSound, float sz) {
+  public ManiItemType(Color color, ManiSound pickUpSound, float sz) {
     this.color = color;
     this.sz = sz;
     uiColor = new Color(color);

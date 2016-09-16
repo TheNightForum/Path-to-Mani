@@ -28,25 +28,25 @@ import com.pathtomani.game.ManiObject;
 
 public class SpecialSounds {
 
-  public final SolSound metalColl;
-  public final SolSound metalBulletHit;
-  public final SolSound metalEnergyHit;
-  public final SolSound rockColl;
-  public final SolSound rockBulletHit;
-  public final SolSound rockEnergyHit;
-  public final SolSound asteroidCrack;
-  public final SolSound shipExplosion;
-  public final SolSound burning;
-  public final SolSound forceBeaconWork;
-  public final SolSound doorMove;
-  public final SolSound abilityRecharged;
-  public final SolSound abilityRefused;
-  public final SolSound controlDisabled;
-  public final SolSound controlEnabled;
-  public final SolSound lootThrow;
-  public final SolSound transcendentCreated;
-  public final SolSound transcendentFinished;
-  public final SolSound transcendentMove;
+  public final ManiSound metalColl;
+  public final ManiSound metalBulletHit;
+  public final ManiSound metalEnergyHit;
+  public final ManiSound rockColl;
+  public final ManiSound rockBulletHit;
+  public final ManiSound rockEnergyHit;
+  public final ManiSound asteroidCrack;
+  public final ManiSound shipExplosion;
+  public final ManiSound burning;
+  public final ManiSound forceBeaconWork;
+  public final ManiSound doorMove;
+  public final ManiSound abilityRecharged;
+  public final ManiSound abilityRefused;
+  public final ManiSound controlDisabled;
+  public final ManiSound controlEnabled;
+  public final ManiSound lootThrow;
+  public final ManiSound transcendentCreated;
+  public final ManiSound transcendentFinished;
+  public final ManiSound transcendentMove;
 
   public SpecialSounds(SoundManager soundManager) {
     JsonReader r = new JsonReader();
@@ -73,7 +73,7 @@ public class SpecialSounds {
     transcendentMove = soundManager.getLoopedSound(node.getString("transcendentMove"), configFile);
   }
 
-  public SolSound hitSound(boolean forMetal, DmgType dmgType) {
+  public ManiSound hitSound(boolean forMetal, DmgType dmgType) {
     if (dmgType == DmgType.ENERGY) {
       return forMetal ? metalEnergyHit : rockEnergyHit;
     }
@@ -87,7 +87,7 @@ public class SpecialSounds {
     if (o == null) return;
     Boolean metal = o.isMetal();
     if (metal == null) return;
-    SolSound sound = hitSound(metal, dmgType);
+    ManiSound sound = hitSound(metal, dmgType);
     if (sound == null) return;
     game.getSoundMan().play(game, sound, pos, o);
   }

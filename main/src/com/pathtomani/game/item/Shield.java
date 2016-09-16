@@ -27,7 +27,7 @@ import com.pathtomani.game.DmgType;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.game.ship.ManiShip;
-import com.pathtomani.game.sound.SolSound;
+import com.pathtomani.game.sound.ManiSound;
 import com.pathtomani.game.sound.SoundManager;
 import com.pathtomani.TextureManager;
 
@@ -136,8 +136,8 @@ public class Shield implements ManiItem {
     public final String displayName;
     public final int price;
     public final String desc;
-    public final SolSound absorbSound;
-    public final SolSound regenSound;
+    public final ManiSound absorbSound;
+    public final ManiSound regenSound;
     public final Shield example;
     public final float maxLife;
     public final float myMaxIdleTime = 2;
@@ -147,7 +147,7 @@ public class Shield implements ManiItem {
     public final ManiItemType itemType;
     public final String code;
 
-    private Config(int maxLife, String displayName, int price, SolSound absorbSound, SolSound regenSound,
+    private Config(int maxLife, String displayName, int price, ManiSound absorbSound, ManiSound regenSound,
                    TextureAtlas.AtlasRegion icon, TextureAtlas.AtlasRegion tex, ManiItemType itemType, String code) {
       this.maxLife = maxLife;
       this.displayName = displayName;
@@ -180,9 +180,9 @@ public class Shield implements ManiItem {
         int price = sh.getInt("price");
         String soundDir = sh.getString("absorbSound");
         float absorbPitch = sh.getFloat("absorbSoundPitch", 1);
-        SolSound absorbSound = soundManager.getPitchedSound(soundDir, configFile, absorbPitch);
+        ManiSound absorbSound = soundManager.getPitchedSound(soundDir, configFile, absorbPitch);
         soundDir = sh.getString("regenSound");
-        SolSound regenSound = soundManager.getSound(soundDir, configFile);
+        ManiSound regenSound = soundManager.getSound(soundDir, configFile);
         TextureAtlas.AtlasRegion icon = textureManager.getTex(TextureManager.ICONS_DIR + sh.getString("icon"), configFile);
         TextureAtlas.AtlasRegion tex = textureManager.getTex(sh.getString("tex"), configFile);
         String code = sh.name;

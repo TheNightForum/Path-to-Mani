@@ -25,7 +25,7 @@ import com.pathtomani.TextureManager;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.game.DmgType;
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.sound.SolSound;
+import com.pathtomani.game.sound.ManiSound;
 
 public class Armor implements ManiItem {
   private final Config myConfig;
@@ -84,7 +84,7 @@ public class Armor implements ManiItem {
     return myConfig.perc;
   }
 
-  public SolSound getHitSound(DmgType dmgType) {
+  public ManiSound getHitSound(DmgType dmgType) {
     switch (dmgType) {
       case BULLET: return myConfig.bulletHitSound;
       case ENERGY: return myConfig.energyHitSound;
@@ -101,15 +101,15 @@ public class Armor implements ManiItem {
     public final int price;
     public final float perc;
     public final String desc;
-    public final SolSound bulletHitSound;
+    public final ManiSound bulletHitSound;
     public final Armor example;
     public final TextureAtlas.AtlasRegion icon;
-    public final SolSound energyHitSound;
+    public final ManiSound energyHitSound;
     public final ManiItemType itemType;
     public final String code;
 
-    private Config(String displayName, int price, float perc, SolSound bulletHitSound,
-                   TextureAtlas.AtlasRegion icon, SolSound energyHitSound, ManiItemType itemType, String code)
+    private Config(String displayName, int price, float perc, ManiSound bulletHitSound,
+                   TextureAtlas.AtlasRegion icon, ManiSound energyHitSound, ManiItemType itemType, String code)
     {
       this.displayName = displayName;
       this.price = price;
@@ -135,8 +135,8 @@ public class Armor implements ManiItem {
         String bulletDmgSoundDir = sh.getString("bulletHitSound");
         String energyDmgSoundDir = sh.getString("energyHitSound");
         float basePitch = sh.getFloat("baseSoundPitch", 1);
-        SolSound bulletDmgSound = soundManager.getPitchedSound(bulletDmgSoundDir, configFile, basePitch);
-        SolSound energyDmgSound = soundManager.getPitchedSound(energyDmgSoundDir, configFile, basePitch);
+        ManiSound bulletDmgSound = soundManager.getPitchedSound(bulletDmgSoundDir, configFile, basePitch);
+        ManiSound energyDmgSound = soundManager.getPitchedSound(energyDmgSoundDir, configFile, basePitch);
         TextureAtlas.AtlasRegion icon = textureManager.getTex(TextureManager.ICONS_DIR + sh.getString("icon"), configFile);
         String code = sh.name;
         Config config = new Config(displayName, price, perc, bulletDmgSound, icon, energyDmgSound, types.armor, code);

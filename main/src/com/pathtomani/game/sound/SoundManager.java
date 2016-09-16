@@ -37,34 +37,34 @@ import java.util.*;
 public class SoundManager {
   public static final String DIR = "res/sounds/";
 
-  private final HashMap<String, SolSound> mySounds;
+  private final HashMap<String, ManiSound> mySounds;
   private final DebugHintDrawer myHintDrawer;
-  private final Map<ManiObject, Map<SolSound, Float>> myLoopedSounds;
+  private final Map<ManiObject, Map<ManiSound, Float>> myLoopedSounds;
 
   private float myLoopAwait;
 
   public SoundManager() {
-    mySounds = new HashMap<String, SolSound>();
+    mySounds = new HashMap<String, ManiSound>();
     myHintDrawer = new DebugHintDrawer();
-    myLoopedSounds = new HashMap<ManiObject, Map<SolSound, Float>>();
+    myLoopedSounds = new HashMap<ManiObject, Map<ManiSound, Float>>();
   }
 
-  public SolSound getLoopedSound(String relPath, @Nullable FileHandle configFile) {
+  public ManiSound getLoopedSound(String relPath, @Nullable FileHandle configFile) {
     return getSound0(relPath, configFile, true, 1);
   }
 
-  public SolSound getSound(String relPath, @Nullable FileHandle configFile) {
+  public ManiSound getSound(String relPath, @Nullable FileHandle configFile) {
     return getPitchedSound(relPath, configFile, 1);
   }
 
-  public SolSound getPitchedSound(String relPath, @Nullable FileHandle configFile, float basePitch) {
+  public ManiSound getPitchedSound(String relPath, @Nullable FileHandle configFile, float basePitch) {
     return getSound0(relPath, configFile, false, basePitch);
   }
 
-  private SolSound getSound0(String relPath, @Nullable FileHandle configFile, boolean looped, float basePitch) {
+  private ManiSound getSound0(String relPath, @Nullable FileHandle configFile, boolean looped, float basePitch) {
     if (relPath.isEmpty()) return null;
     String key = relPath + "#" + basePitch;
-    SolSound res = mySounds.get(key);
+    ManiSound res = mySounds.get(key);
     if (res != null) return res;
 
     String definedBy = configFile == null ? "hardcoded" : configFile.path();
@@ -78,7 +78,7 @@ public class SoundManager {
     boolean[] emptyDirArr = {false};
     fillSounds(sounds, dir, emptyDirArr);
     boolean emptyDir = emptyDirArr[0];
-    res = new SolSound(dir.toString(), definedBy, loopTime, baseVolume, basePitch, sounds, emptyDir);
+    res = new ManiSound(dir.toString(), definedBy, loopTime, baseVolume, basePitch, sounds, emptyDir);
     mySounds.put(key, res);
     if (!emptyDir && looped && loopTime == 0) throw new AssertionError("please specify loopTime value in " + paramsPath);
     if (emptyDir) {
@@ -121,7 +121,7 @@ public class SoundManager {
    * @param source bearer of a sound. Must not be null for looped sounds
    * @param volMul multiplier for sound volume
    */
-  public void play(ManiGame game, SolSound sound, @Nullable Vector2 pos, @Nullable ManiObject source, float volMul) {
+  public void play(ManiGame game, ManiSound sound, @Nullable Vector2 pos, @Nullable ManiObject source, float volMul) {
     if (source == null && pos == null) throw new AssertionError("pass either pos or source");
     if (source == null && sound.loopTime > 0) throw new AssertionError("looped sound without source object: " + sound.dir);
     if (sound == null) return;
@@ -164,16 +164,16 @@ public class SoundManager {
  * @param pos position of a sound. If null, source.getPosition() will be used
  * @param source bearer of a sound. Must not be null for looped sounds
  */
-  public void play(ManiGame game, SolSound sound, @Nullable Vector2 pos, @Nullable ManiObject source){
+  public void play(ManiGame game, ManiSound sound, @Nullable Vector2 pos, @Nullable ManiObject source){
     this.play(game, sound, pos, source, 1f);
   }
 
-  private boolean skipLooped(ManiObject source, SolSound sound, float time) {
+  private boolean skipLooped(ManiObject source, ManiSound sound, float time) {
     if (sound.loopTime == 0) return false;
     boolean playing;
-    Map<SolSound, Float> looped = myLoopedSounds.get(source);
+    Map<ManiSound, Float> looped = myLoopedSounds.get(source);
     if (looped == null) {
-      looped = new HashMap<SolSound, Float>();
+      looped = new HashMap<ManiSound, Float>();
       myLoopedSounds.put(source, looped);
       playing = false;
     } else {
@@ -210,7 +210,7 @@ public class SoundManager {
   }
 
   public void dispose() {
-    for (SolSound ss : mySounds.values()) {
+    for (ManiSound ss : mySounds.values()) {
       for (Sound s : ss.sounds) {
         s.dispose();
       }

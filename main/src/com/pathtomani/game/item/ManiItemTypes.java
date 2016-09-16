@@ -23,7 +23,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.game.sound.SoundManager;
 import com.pathtomani.files.FileManager;
 import com.pathtomani.game.GameColors;
-import com.pathtomani.game.sound.SolSound;
+import com.pathtomani.game.sound.ManiSound;
 
 public class ManiItemTypes {
   public final ManiItemType clip;
@@ -56,7 +56,7 @@ public class ManiItemTypes {
   private ManiItemType load(String name, SoundManager soundManager, FileHandle configFile, JsonValue parsed, GameColors cols) {
     JsonValue node = parsed.get(name);
     Color color = cols.load(node.getString("color"));
-    SolSound pickUpSound = soundManager.getSound(node.getString("pickUpSound"), configFile);
+    ManiSound pickUpSound = soundManager.getSound(node.getString("pickUpSound"), configFile);
     float sz = node.getFloat("sz");
     return new ManiItemType(color, pickUpSound, sz);
   }

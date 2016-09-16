@@ -21,7 +21,7 @@ import com.badlogic.gdx.audio.Sound;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolSound {
+public class ManiSound {
   public final List<Sound> sounds;
   public final String dir;
   public final String definedBy;
@@ -30,8 +30,8 @@ public class SolSound {
   public float basePitch;
   public final boolean emptyDir;
 
-  public SolSound(String dir, String definedBy, float loopTime, float baseVolume, float basePitch,
-    ArrayList<Sound> sounds, boolean emptyDir)
+  public ManiSound(String dir, String definedBy, float loopTime, float baseVolume, float basePitch,
+                   ArrayList<Sound> sounds, boolean emptyDir)
   {
     this.dir = dir;
     this.definedBy = definedBy;

@@ -26,7 +26,7 @@ import com.pathtomani.files.FileManager;
 import com.pathtomani.game.DmgType;
 import com.pathtomani.game.item.*;
 import com.pathtomani.game.projectile.ProjectileConfig;
-import com.pathtomani.game.sound.SolSound;
+import com.pathtomani.game.sound.ManiSound;
 import com.pathtomani.game.sound.SoundManager;
 import com.pathtomani.game.HardnessCalc;
 
@@ -46,8 +46,8 @@ public class GunConfig {
   public final float dps;
   public final GunItem example;
   public final ClipConfig clipConf;
-  public final SolSound shootSound;
-  public final SolSound reloadSound;
+  public final ManiSound shootSound;
+  public final ManiSound reloadSound;
   public final TextureAtlas.AtlasRegion icon;
   public final boolean fixed;
   public final float meanDps;
@@ -59,7 +59,7 @@ public class GunConfig {
                    float timeBetweenShots,
                    float reloadTime, float gunLength, String displayName,
                    boolean lightOnShot, int price,
-                   ClipConfig clipConf, SolSound shootSound, SolSound reloadSound, TextureAtlas.AtlasRegion tex,
+                   ClipConfig clipConf, ManiSound shootSound, ManiSound reloadSound, TextureAtlas.AtlasRegion tex,
                    TextureAtlas.AtlasRegion icon, boolean fixed, ManiItemType itemType, float texLenPerc, String code)
   {
     this.shootSound = shootSound;
@@ -134,10 +134,10 @@ public class GunConfig {
       String clipName = sh.getString("clipName");
       ClipConfig clipConf = clipName.isEmpty() ? null : ((ClipItem) itemManager.getExample(clipName)).getConfig();
       String reloadSoundPath = sh.getString("reloadSound");
-      SolSound reloadSound = soundManager.getSound(reloadSoundPath, configFile);
+      ManiSound reloadSound = soundManager.getSound(reloadSoundPath, configFile);
       String shootSoundPath = sh.getString("shootSound");
       float shootPitch = sh.getFloat("shootSoundPitch", 1);
-      SolSound shootSound = soundManager.getPitchedSound(shootSoundPath, configFile, shootPitch);
+      ManiSound shootSound = soundManager.getPitchedSound(shootSoundPath, configFile, shootPitch);
       TextureAtlas.AtlasRegion tex = textureManager.getTex("smallGameObjs/guns/" + texName, configFile);
       TextureAtlas.AtlasRegion icon = textureManager.getTex(TextureManager.ICONS_DIR + texName, configFile);
       boolean fixed = sh.getBoolean("fixed", false);
