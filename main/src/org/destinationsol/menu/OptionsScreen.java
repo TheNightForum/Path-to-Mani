@@ -21,13 +21,13 @@ import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.ui.SolInputManager;
 import org.destinationsol.ui.SolUiControl;
-import org.destinationsol.ui.SolUiScreen;
+import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OptionsScreen implements SolUiScreen {
+public class OptionsScreen implements ManiUiScreen {
   private final ArrayList<SolUiControl> myControls;
   private final SolUiControl myBackCtrl;
   private final SolUiControl myResoCtrl;

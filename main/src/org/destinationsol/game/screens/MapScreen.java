@@ -23,13 +23,13 @@ import org.destinationsol.game.MapDrawer;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.ui.SolInputManager;
 import org.destinationsol.ui.SolUiControl;
-import org.destinationsol.ui.SolUiScreen;
+import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapScreen implements SolUiScreen {
+public class MapScreen implements ManiUiScreen {
   private final List<SolUiControl> myControls;
   public final SolUiControl closeCtrl;
   public final SolUiControl zoomInCtrl;

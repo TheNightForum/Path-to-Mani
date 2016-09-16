@@ -32,7 +32,7 @@ import java.util.List;
  * <h1>Config Screen to Change Input Mapping</h1>
  * The input mapping screen is based on the inventory screen used within the game.
  */
-public class InputMapScreen implements SolUiScreen {
+public class InputMapScreen implements ManiUiScreen {
     public final InputMapKeyboardScreen inputMapKeyboardScreen;
     public final InputMapControllerScreen inputMapControllerScreen;
     public final InputMapMixedScreen inputMapMixedScreen;

@@ -20,7 +20,7 @@ import org.destinationsol.ManiApplication;
 
 import java.util.List;
 
-public interface SolUiScreen {
+public interface ManiUiScreen {
   List<SolUiControl> getControls();
 
   void onAdd(ManiApplication cmp);

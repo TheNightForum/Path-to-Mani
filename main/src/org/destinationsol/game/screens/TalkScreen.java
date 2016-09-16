@@ -26,13 +26,13 @@ import org.destinationsol.game.ship.hulls.HullConfig;
 import org.destinationsol.menu.MenuLayout;
 import org.destinationsol.ui.SolInputManager;
 import org.destinationsol.ui.SolUiControl;
-import org.destinationsol.ui.SolUiScreen;
+import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TalkScreen implements SolUiScreen {
+public class TalkScreen implements ManiUiScreen {
 
   public static final float MAX_TALK_DIST = 1f;
   private final List<SolUiControl> myControls;

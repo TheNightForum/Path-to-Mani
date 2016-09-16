@@ -39,7 +39,7 @@ import org.destinationsol.ui.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainScreen implements SolUiScreen {
+public class MainScreen implements ManiUiScreen {
   public static final float ICON_SZ = .03f;
   public static final float BAR_SZ = ICON_SZ * 5;
   public static final int MAX_ICON_COUNT = 3;

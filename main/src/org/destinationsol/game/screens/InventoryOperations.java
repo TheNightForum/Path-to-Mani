@@ -19,9 +19,9 @@ package org.destinationsol.game.screens;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.item.ItemContainer;
 import org.destinationsol.game.item.SolItem;
-import org.destinationsol.ui.SolUiScreen;
+import org.destinationsol.ui.ManiUiScreen;
 
-public interface InventoryOperations extends SolUiScreen {
+public interface InventoryOperations extends ManiUiScreen {
   ItemContainer getItems(ManiGame game);
   boolean isUsing(ManiGame game, SolItem item);
   float getPriceMul();

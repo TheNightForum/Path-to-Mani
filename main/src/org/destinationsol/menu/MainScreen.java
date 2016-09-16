@@ -28,13 +28,13 @@ import org.destinationsol.game.DebugOptions;
 import org.destinationsol.game.sound.MusicManager;
 import org.destinationsol.ui.SolInputManager;
 import org.destinationsol.ui.SolUiControl;
-import org.destinationsol.ui.SolUiScreen;
+import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainScreen implements SolUiScreen {
+public class MainScreen implements ManiUiScreen {
   public static final float CREDITS_BTN_W = .15f;
   public static final float CREDITS_BTN_H = .07f;
 

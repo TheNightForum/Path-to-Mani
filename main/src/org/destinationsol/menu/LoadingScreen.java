@@ -23,7 +23,7 @@ import org.destinationsol.ui.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoadingScreen implements SolUiScreen {
+public class LoadingScreen implements ManiUiScreen {
   private final ArrayList<SolUiControl> myControls;
   private boolean myTut;
   private boolean myUsePrevShip;

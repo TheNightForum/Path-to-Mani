@@ -25,7 +25,7 @@ import org.destinationsol.ui.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResolutionScreen implements SolUiScreen {
+public class ResolutionScreen implements ManiUiScreen {
 
   private final ArrayList<SolUiControl> myControls;
   private final SolUiControl myCloseCtrl;

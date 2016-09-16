@@ -18,11 +18,11 @@ package org.destinationsol.menu;
 
 
 import org.destinationsol.GameOptions;
-import org.destinationsol.ui.SolUiScreen;
+import org.destinationsol.ui.ManiUiScreen;
 
 import java.util.List;
 
-public interface InputMapOperations extends SolUiScreen {
+public interface InputMapOperations extends ManiUiScreen {
     /**
      * Get the header title to display on the input mapping screen.
      * @return String The header title

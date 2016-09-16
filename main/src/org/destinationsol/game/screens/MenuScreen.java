@@ -23,13 +23,13 @@ import org.destinationsol.game.ManiGame;
 import org.destinationsol.menu.MenuLayout;
 import org.destinationsol.ui.SolInputManager;
 import org.destinationsol.ui.SolUiControl;
-import org.destinationsol.ui.SolUiScreen;
+import org.destinationsol.ui.ManiUiScreen;
 import org.destinationsol.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuScreen implements SolUiScreen {
+public class MenuScreen implements ManiUiScreen {
   private final List<SolUiControl> myControls;
   private final SolUiControl myCloseCtrl;
   private final SolUiControl myExitCtrl;

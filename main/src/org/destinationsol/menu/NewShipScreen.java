@@ -25,7 +25,7 @@ import org.destinationsol.ui.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewShipScreen implements SolUiScreen {
+public class NewShipScreen implements ManiUiScreen {
   private final List<SolUiControl> myControls;
   private final SolUiControl myOkCtrl;
   public final SolUiControl myCancelCtrl;

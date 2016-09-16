@@ -27,7 +27,7 @@ import org.destinationsol.ui.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreditsScreen implements SolUiScreen {
+public class CreditsScreen implements ManiUiScreen {
   public static final float MAX_AWAIT = 6f;
   private final ArrayList<SolUiControl> myControls;
   private final SolUiControl myCloseCtrl;

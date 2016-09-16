@@ -32,7 +32,7 @@ import org.destinationsol.ui.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InventoryScreen implements SolUiScreen {
+public class InventoryScreen implements ManiUiScreen {
   public static final ItemContainer EMPTY_CONTAINER = new ItemContainer();
   private static final int BTN_ROWS = 4;
 
