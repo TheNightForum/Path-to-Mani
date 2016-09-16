@@ -19,7 +19,7 @@ package com.pathtomani.common;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Input;
-import com.pathtomani.game.sound.MusicManager;
+import com.pathtomani.managers.sound.MusicManager;
 
 import java.util.Iterator;
 import java.util.SortedSet;
