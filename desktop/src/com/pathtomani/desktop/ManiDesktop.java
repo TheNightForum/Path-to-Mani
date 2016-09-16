@@ -20,7 +20,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
-import org.destinationsol.SolFileReader;
+import org.destinationsol.ManiFileReader;
 import org.destinationsol.game.DebugOptions;
 import org.destinationsol.soundtest.SoundTestListener;
 import org.terasology.crashreporter.CrashReporter;
@@ -103,7 +103,7 @@ public class ManiDesktop {
         new LwjglApplication(new ManiApplication(), c);
     }
 
-    private static class MyReader implements SolFileReader {
+    private static class MyReader implements ManiFileReader {
         @Override
         public Path create(String fileName, List<String> lines) {
             if (DebugOptions.DEV_ROOT_PATH != null) {

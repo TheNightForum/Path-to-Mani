@@ -19,7 +19,7 @@ package org.destinationsol;
 import java.nio.file.Path;
 import java.util.List;
 
-public interface SolFileReader {
+public interface ManiFileReader {
     Path create(String fileName, List<String> lines);
 
     List<String> read(String fileName);

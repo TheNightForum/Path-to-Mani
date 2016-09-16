@@ -18,7 +18,7 @@ package org.destinationsol.game;
 
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.IniReader;
-import org.destinationsol.SolFileReader;
+import org.destinationsol.ManiFileReader;
 
 public class DebugOptions {
   public static String DEV_ROOT_PATH;
@@ -61,7 +61,7 @@ public class DebugOptions {
   public static MissingResourceAction MISSING_PHYSICS_ACTION;
 
 
-  public static void read(SolFileReader reader) {
+  public static void read(ManiFileReader reader) {
     IniReader r = new IniReader("debugOptions.ini", reader, true);
 
     EMULATE_MOBILE = r.getBoolean("emulateMobile", EMULATE_MOBILE);

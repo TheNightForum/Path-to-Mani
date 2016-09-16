@@ -108,7 +108,7 @@ public class GameOptions {
   private SortedSet<String> supportedResolutions = new TreeSet<String>();
   private Iterator<String> resolutionIterator = null;
 
-  public GameOptions(boolean mobile, SolFileReader reader) {
+  public GameOptions(boolean mobile, ManiFileReader reader) {
     IniReader r = new IniReader(FILE_NAME, reader, false);
     x = r.getInt("x", 800);
     y = r.getInt("y", 600);
