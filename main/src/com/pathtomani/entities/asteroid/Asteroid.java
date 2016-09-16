@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pathtomani.game.asteroid;
+package com.pathtomani.entities.asteroid;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
@@ -23,11 +23,11 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.*;
 import com.pathtomani.game.dra.Dra;
-import com.pathtomani.game.item.Loot;
-import com.pathtomani.game.item.MoneyItem;
-import com.pathtomani.game.item.ManiItem;
-import com.pathtomani.game.planet.Planet;
-import com.pathtomani.game.planet.TileObject;
+import com.pathtomani.entities.item.Loot;
+import com.pathtomani.entities.item.MoneyItem;
+import com.pathtomani.entities.item.ManiItem;
+import com.pathtomani.entities.planet.Planet;
+import com.pathtomani.entities.planet.TileObject;
 import com.pathtomani.game.particle.ParticleSrc;
 
 import java.util.ArrayList;
