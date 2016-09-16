@@ -22,7 +22,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.*;
-import com.pathtomani.game.dra.Dra;
+import com.pathtomani.managers.dra.Dra;
 import com.pathtomani.entities.item.Loot;
 import com.pathtomani.entities.item.MoneyItem;
 import com.pathtomani.entities.item.ManiItem;
