@@ -17,7 +17,7 @@
 package org.destinationsol.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.SolGame;
 
 public class PlanetBind {
@@ -29,12 +29,12 @@ public class PlanetBind {
     myPlanet = planet;
     myRelPos = new Vector2();
     float planetAngle = planet.getAngle();
-    SolMath.toRel(pos, myRelPos, planetAngle, planet.getPos());
+    ManiMath.toRel(pos, myRelPos, planetAngle, planet.getPos());
     myRelAngle = angle - planetAngle;
   }
 
   public void setDiff(Vector2 diff, Vector2 pos, boolean precise) {
-    SolMath.toWorld(diff, myRelPos, myPlanet.getAngle(), myPlanet.getPos(), precise);
+    ManiMath.toWorld(diff, myRelPos, myPlanet.getAngle(), myPlanet.getPos(), precise);
     diff.sub(pos);
   }
 

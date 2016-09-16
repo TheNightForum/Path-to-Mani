@@ -23,7 +23,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.maze.Maze;
 import org.destinationsol.game.maze.MazeBuilder;
 import org.destinationsol.game.planet.*;
@@ -170,7 +170,7 @@ public class MapDrawer {
         drawer.draw(myStarTex, 2 * rad, 2 * rad, rad, rad, sysPos.x, sysPos.y, 0, ManiColor.W);
       }
 
-      Vector2 beltIconPos = SolMath.getVec();
+      Vector2 beltIconPos = ManiMath.getVec();
       ArrayList<SystemBelt> belts = sys.getBelts();
       for (int i1 = 0, beltsSize = belts.size(); i1 < beltsSize; i1++) {
         SystemBelt belt = belts.get(i1);
@@ -179,14 +179,14 @@ public class MapDrawer {
         int beltIconCount = (int) (.12f * beltRad);
         for (int i = 0; i < beltIconCount; i++) {
           float angle = 360f * i / beltIconCount;
-          SolMath.fromAl(beltIconPos, angle, beltRad);
+          ManiMath.fromAl(beltIconPos, angle, beltRad);
           beltIconPos.add(sysPos);
           drawer.draw(myBeltTex, 2 * halfWidth, 2 * halfWidth, halfWidth, halfWidth, beltIconPos.x, beltIconPos.y, angle * 3, ManiColor.W);
         }
         float outerRad = beltRad + halfWidth;
         if (dangerRad < outerRad && HardnessCalc.isDangerous(heroDmgCap, belt.getDps())) dangerRad = outerRad;
       }
-      SolMath.free(beltIconPos);
+      ManiMath.free(beltIconPos);
       if (dangerRad < sys.getInnerRad() && HardnessCalc.isDangerous(heroDmgCap, sys.getInnerDps())) {
         dangerRad = sys.getInnerRad();
       }
@@ -223,8 +223,8 @@ public class MapDrawer {
   private void drawAreaDanger(GameDrawer drawer, float rad, Vector2 pos, float transpMul, float angle) {
     float perc = 2 * myAreaSkullTime / MAX_AREA_SKULL_TIME;
     if (perc > 1) perc = 2 - perc;
-    perc = SolMath.clamp((perc - .5f) * 2 + .5f);
-    float a = SolMath.clamp(perc * transpMul);
+    perc = ManiMath.clamp((perc - .5f) * 2 + .5f);
+    float a = ManiMath.clamp(perc * transpMul);
     myAreaWarnBgCol.a = a;
     myAreaWarnCol.a = a;
     drawer.draw(myWarnAreaBg, rad *2, rad *2, rad, rad, pos.x, pos.y, 0, myAreaWarnBgCol);
@@ -289,10 +289,10 @@ public class MapDrawer {
   }
 
   public void drawStarPortIcon(GameDrawer drawer, float iconSz, Planet from, Planet to) {
-    float angle = SolMath.angle(from.getPos(), to.getPos());
+    float angle = ManiMath.angle(from.getPos(), to.getPos());
     Vector2 pos = StarPort.getDesiredPos(from, to, false);
     drawObjIcon(iconSz, pos, angle, null, null, null, -1, null, myStarPortTex, drawer);
-    SolMath.free(pos);
+    ManiMath.free(pos);
   }
 
   private void drawStarNodes(GameDrawer drawer, SolGame game, float viewDist, Vector2 camPos, float starNodeW)
@@ -320,8 +320,8 @@ public class MapDrawer {
     Vector2 pos1 = StarPort.getDesiredPos(from, to, false);
     Vector2 pos2 = StarPort.getDesiredPos(to, from, false);
     drawer.drawLine(myWhiteTex, pos1, pos2, ManiColor.UI_LIGHT, starNodeW, true);
-    SolMath.free(pos1);
-    SolMath.free(pos2);
+    ManiMath.free(pos1);
+    ManiMath.free(pos2);
   }
 
   private void drawNpGround(GameDrawer drawer, SolGame game, float viewDist, Planet np, Vector2 camPos) {
@@ -381,7 +381,7 @@ public class MapDrawer {
 
   public void changeZoom(boolean zoomIn) {
     if (zoomIn) myZoom /= MUL_FACTOR; else myZoom *= MUL_FACTOR;
-    myZoom = SolMath.clamp(myZoom, MIN_ZOOM, MAX_ZOOM);
+    myZoom = ManiMath.clamp(myZoom, MIN_ZOOM, MAX_ZOOM);
   }
 
   public float getZoom() {

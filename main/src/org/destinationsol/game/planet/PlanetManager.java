@@ -22,7 +22,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.files.HullConfigManager;
 import org.destinationsol.game.*;
 import org.destinationsol.game.item.ItemManager;
@@ -133,7 +133,7 @@ public class PlanetManager {
         continue;
       }
 
-      Vector2 grav = SolMath.getVec(srcPos);
+      Vector2 grav = ManiMath.getVec(srcPos);
       grav.sub(objPos);
       float len = grav.len();
       grav.nor();
@@ -143,7 +143,7 @@ public class PlanetManager {
       float g = gravConst / len / len;
       grav.scl(g);
       obj.receiveForce(grav, game, true);
-      SolMath.free(grav);
+      ManiMath.free(grav);
       if (!onPlanet) {
         mySunSingleton.doDmg(game, obj, toSys);
       }
@@ -159,7 +159,7 @@ public class PlanetManager {
     if (hull.config.getType() == HullConfig.Type.STATION) return false;
     float fh = myNearestPlanet.getFullHeight();
     Vector2 npPos = myNearestPlanet.getPos();
-    Vector2 toShip = SolMath.distVec(npPos, ship.getPosition());
+    Vector2 toShip = ManiMath.distVec(npPos, ship.getPosition());
     float len = toShip.len();
     if (len == 0) {
       toShip.set(0, fh);
@@ -170,7 +170,7 @@ public class PlanetManager {
     Body body = hull.getBody();
     body.setTransform(toShip, 0);
     body.setLinearVelocity(Vector2.Zero);
-    SolMath.free(toShip);
+    ManiMath.free(toShip);
     return true;
   }
 

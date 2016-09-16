@@ -17,7 +17,7 @@
 package org.destinationsol.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.FarObj;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.SolObject;
@@ -36,7 +36,7 @@ public class FarTileObject implements FarObj {
     myToPlanetAngle = toPlanetAngle;
     myDist = dist;
     mySize = size;
-    myRadius = SolMath.sqrt(2) * mySize;
+    myRadius = ManiMath.sqrt(2) * mySize;
     myTile = tile;
     myPos = new Vector2();
   }
@@ -54,7 +54,7 @@ public class FarTileObject implements FarObj {
   @Override
   public void update(SolGame game) {
     if (game.getPlanetMan().getNearestPlanet() == myPlanet) {
-      SolMath.fromAl(myPos, myPlanet.getAngle() + myToPlanetAngle, myDist);
+      ManiMath.fromAl(myPos, myPlanet.getAngle() + myToPlanetAngle, myDist);
       myPos.add(myPlanet.getPos());
     }
   }

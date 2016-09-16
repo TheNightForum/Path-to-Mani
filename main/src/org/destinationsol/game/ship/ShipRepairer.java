@@ -16,7 +16,7 @@
 
 package org.destinationsol.game.ship;
 
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.item.ItemContainer;
 import org.destinationsol.game.item.RepairItem;
@@ -44,7 +44,7 @@ public class ShipRepairer {
       float inc = REPAIR_SPD * ts;
       if (myRepairPoints < inc) inc = myRepairPoints;
       myRepairPoints -= inc;
-      return SolMath.approach(life, inc, config.getMaxLife());
+      return ManiMath.approach(life, inc, config.getMaxLife());
     }
     return 0;
   }

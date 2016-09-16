@@ -21,7 +21,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.Consumed;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.SolObject;
@@ -88,9 +88,9 @@ public class RectSprite implements Dra {
     myOrigX = myTexSzX / 2 + texSz * myOrigPercX;
     myOrigY = myTexSzY / 2 + texSz * myOrigPercY;
 
-    float rx = myTexSzX / 2 + texSz * SolMath.abs(myOrigPercX);
-    float ry = myTexSzY / 2 + texSz * SolMath.abs(myOrigPercY);
-    myRadius = SolMath.sqrt(rx * rx + ry * ry);
+    float rx = myTexSzX / 2 + texSz * ManiMath.abs(myOrigPercX);
+    float ry = myTexSzY / 2 + texSz * ManiMath.abs(myOrigPercY);
+    myRadius = ManiMath.sqrt(rx * rx + ry * ry);
   }
 
   public Texture getTex0() {
@@ -113,7 +113,7 @@ public class RectSprite implements Dra {
   public void prepare(SolObject o) {
     float baseAngle = o.getAngle();
     Vector2 basePos = o.getPosition();
-    SolMath.toWorld(myPos, relPos, baseAngle, basePos, false);
+    ManiMath.toWorld(myPos, relPos, baseAngle, basePos, false);
     myAngle = relAngle + baseAngle;
   }
 

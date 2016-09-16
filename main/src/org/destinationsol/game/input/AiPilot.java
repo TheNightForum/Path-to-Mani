@@ -17,17 +17,15 @@
 package org.destinationsol.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.gun.GunItem;
-import org.destinationsol.game.gun.GunMount;
 import org.destinationsol.game.item.*;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.planet.PlanetBind;
 import org.destinationsol.game.ship.FarShip;
 import org.destinationsol.game.ship.SolShip;
-import org.destinationsol.game.ship.hulls.Hull;
 import org.destinationsol.game.ship.hulls.HullConfig;
 
 public class AiPilot implements Pilot {
@@ -234,27 +232,27 @@ public class AiPilot implements Pilot {
         spd.set(myDestProvider.getDestSpd());
         desiredAngle = angle; // can be improved
       } else {
-        desiredAngle = SolMath.angle(shipPos, dest);
+        desiredAngle = ManiMath.angle(shipPos, dest);
         if (myDestProvider.shouldAvoidBigObjs()) {
           desiredAngle = myMover.getBigObjAvoider().avoid(game, shipPos, dest, desiredAngle);
         }
         float desiredSpdLen = myDestProvider.getDesiredSpdLen();
         float spdLenDiff = engine.getAcc() * ts;
-        float spdLen = SolMath.approach(spd.len(), desiredSpdLen, spdLenDiff);
+        float spdLen = ManiMath.approach(spd.len(), desiredSpdLen, spdLenDiff);
         if (toDestLen < spdLen) spdLen = toDestLen;
-        SolMath.fromAl(spd, desiredAngle, spdLen);
+        ManiMath.fromAl(spd, desiredAngle, spdLen);
       }
-      angle = SolMath.approachAngle(angle, desiredAngle, engine.getMaxRotSpd() * ts);
+      angle = ManiMath.approachAngle(angle, desiredAngle, engine.getMaxRotSpd() * ts);
     }
 
     farShip.setSpd(spd);
     farShip.setAngle(angle);
 
-    Vector2 newPos = SolMath.getVec(spd);
+    Vector2 newPos = ManiMath.getVec(spd);
     newPos.scl(ts);
     newPos.add(shipPos);
     farShip.setPos(newPos);
-    SolMath.free(newPos);
+    ManiMath.free(newPos);
   }
 
   @Override

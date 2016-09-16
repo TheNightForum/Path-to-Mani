@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.*;
 import org.destinationsol.common.DebugCol;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.files.FileManager;
 import org.destinationsol.files.HullConfigManager;
 import org.destinationsol.game.asteroid.AsteroidBuilder;
@@ -143,7 +143,7 @@ public class SolGame {
     myGalaxyFiller.fill(this);
     ShipConfig startingShip = usePrevShip ? SaveManager.readShip(hullConfigManager, myItemManager) : null;
     createPlayer(startingShip);
-    SolMath.checkVectorsTaken(null);
+    ManiMath.checkVectorsTaken(null);
   }
 
   // uh, this needs refactoring
@@ -527,7 +527,7 @@ public class SolGame {
     for (List<SolItem> group : ic) {
       for (SolItem item : group) {
         boolean equipped = myHero == null || myHero.maybeUnequip(this, item, false);
-        if (equipped || SolMath.test(.75f)) {
+        if (equipped || ManiMath.test(.75f)) {
           myRespawnItems.add(0, item);
         }
       }

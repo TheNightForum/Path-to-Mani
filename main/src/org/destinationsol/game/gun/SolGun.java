@@ -19,7 +19,7 @@ package org.destinationsol.game.gun;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.SolObject;
@@ -81,11 +81,11 @@ public class SolGun {
       }
     }
 
-    myCurrAngleVar = SolMath.approach(myCurrAngleVar, myItem.config.maxAngleVar, myItem.config.angleVarPerShot);
+    myCurrAngleVar = ManiMath.approach(myCurrAngleVar, myItem.config.maxAngleVar, myItem.config.angleVarPerShot);
     boolean multiple = cc.projectilesPerShot > 1;
     for (int i = 0; i < cc.projectilesPerShot; i++) {
       float bulletAngle = gunAngle;
-      if(myCurrAngleVar > 0) bulletAngle += SolMath.rnd(myCurrAngleVar);
+      if(myCurrAngleVar > 0) bulletAngle += ManiMath.rnd(myCurrAngleVar);
       Projectile proj = new Projectile(game, bulletAngle, muzzlePos, baseSpd, faction, cc.projConfig, multiple);
       game.getObjMan().addObjDelayed(proj);
     }
@@ -99,11 +99,11 @@ public class SolGun {
     Vector2 basePos = creator.getPosition();
     float gunRelAngle = gunAngle - baseAngle;
     mySprite.relAngle = gunRelAngle;
-    Vector2 muzzleRelPos = SolMath.fromAl(gunRelAngle, myItem.config.gunLength);
+    Vector2 muzzleRelPos = ManiMath.fromAl(gunRelAngle, myItem.config.gunLength);
     muzzleRelPos.add(myRelPos);
     if (myLightSrc != null) myLightSrc.setRelPos(muzzleRelPos);
-    Vector2 muzzlePos = SolMath.toWorld(muzzleRelPos, baseAngle, basePos);
-    SolMath.free(muzzleRelPos);
+    Vector2 muzzlePos = ManiMath.toWorld(muzzleRelPos, baseAngle, basePos);
+    ManiMath.free(muzzleRelPos);
 
     float ts = game.getTimeStep();
     if (myItem.ammo <= 0 && myItem.reloadAwait <= 0) {
@@ -125,10 +125,10 @@ public class SolGun {
       Vector2 gunSpd = creator.getSpd();
       shoot(gunSpd, game, gunAngle, muzzlePos, faction, creator);
     } else {
-      myCurrAngleVar = SolMath.approach(myCurrAngleVar, myItem.config.minAngleVar, myItem.config.angleVarDamp * ts);
+      myCurrAngleVar = ManiMath.approach(myCurrAngleVar, myItem.config.minAngleVar, myItem.config.angleVarDamp * ts);
     }
     if (myLightSrc != null) myLightSrc.update(shot, baseAngle, game);
-    SolMath.free(muzzlePos);
+    ManiMath.free(muzzlePos);
   }
 
 

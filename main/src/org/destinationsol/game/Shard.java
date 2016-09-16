@@ -19,7 +19,7 @@ package org.destinationsol.game;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.dra.Dra;
 
 import java.util.ArrayList;
@@ -96,7 +96,7 @@ public class Shard implements SolObject {
 
   private void setParamsFromBody() {
     myPos.set(myBody.getPosition());
-    myAngle = myBody.getAngle() * SolMath.radDeg;
+    myAngle = myBody.getAngle() * ManiMath.radDeg;
   }
 
   @Override

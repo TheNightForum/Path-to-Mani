@@ -22,7 +22,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.files.FileManager;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.SolGame;
@@ -54,7 +54,7 @@ public class Shield implements SolItem {
     if (myIdleTime >= myConfig.myMaxIdleTime) {
       if (myLife < myConfig.maxLife) {
         float regen = myConfig.regenSpd * ts;
-        myLife = SolMath.approach(myLife, myConfig.maxLife, regen);
+        myLife = ManiMath.approach(myLife, myConfig.maxLife, regen);
       }
     } else {
       myIdleTime += ts;
@@ -123,7 +123,7 @@ public class Shield implements SolItem {
     myLife -= myLife < dmg ? myLife : dmg;
 
     game.getPartMan().shieldSpark(game, pos, ship.getHull(), myConfig.tex, dmg / myConfig.maxLife);
-    float volMul = SolMath.clamp(4 * dmg / myConfig.maxLife);
+    float volMul = ManiMath.clamp(4 * dmg / myConfig.maxLife);
     game.getSoundMan().play(game, myConfig.absorbSound, null, ship, volMul);
 
   }
@@ -165,7 +165,7 @@ public class Shield implements SolItem {
 
     private String makeDesc() {
       StringBuilder sb = new StringBuilder();
-      sb.append("Takes ").append(SolMath.nice(maxLife)).append(" dmg\n");
+      sb.append("Takes ").append(ManiMath.nice(maxLife)).append(" dmg\n");
       sb.append("Strong against bullets\n");
       return sb.toString();
     }

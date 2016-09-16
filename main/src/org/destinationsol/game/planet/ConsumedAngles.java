@@ -16,7 +16,7 @@
 
 package org.destinationsol.game.planet;
 
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class ConsumedAngles {
     for (int i = 0; i < sz; i++) {
       Float a = myAngles.get(i);
       Float hw = myHalfWidths.get(i);
-      if (SolMath.angleDiff(angle, a) < hw + objAngularHalfWidth) return true;
+      if (ManiMath.angleDiff(angle, a) < hw + objAngularHalfWidth) return true;
     }
     return false;
   }

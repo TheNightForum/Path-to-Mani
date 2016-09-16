@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.projectile.Projectile;
 
 public class SolContactListener implements ContactListener {
@@ -73,7 +73,7 @@ public class SolContactListener implements ContactListener {
     float[] normImpulses = impulse.getNormalImpulses();
     for (int i = 0; i < pointCount; i++) {
       float normImpulse = normImpulses[i];
-      normImpulse = SolMath.abs(normImpulse);
+      normImpulse = ManiMath.abs(normImpulse);
       if (absImpulse < normImpulse) absImpulse = normImpulse;
     }
     return absImpulse;

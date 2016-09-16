@@ -18,7 +18,7 @@ package org.destinationsol.game.input;
 
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.ObjectManager;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.SolObject;
@@ -117,9 +117,9 @@ public class Guardian implements MoveDestProvider {
     Planet np = game.getPlanetMan().getNearestPlanet(targetPos);
     float desiredAngle = myRelAngle;
     if (np.isNearGround(targetPos)) {
-      desiredAngle = SolMath.angle(np.getPos(), targetPos);
+      desiredAngle = ManiMath.angle(np.getPos(), targetPos);
     }
-    SolMath.fromAl(myDest, desiredAngle, targetApproxRad + DIST + hullConfig.getApproxRadius());
+    ManiMath.fromAl(myDest, desiredAngle, targetApproxRad + DIST + hullConfig.getApproxRadius());
     myDest.add(targetPos);
   }
 

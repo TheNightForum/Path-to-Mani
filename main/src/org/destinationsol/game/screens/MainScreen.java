@@ -25,7 +25,7 @@ import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.*;
 import org.destinationsol.game.gun.GunItem;
 import org.destinationsol.game.item.ItemManager;
@@ -159,7 +159,7 @@ public class MainScreen implements SolUiScreen {
     float sz = .08f;
     float maxY = 1 - sz/2;
     float y = 1 - perc;
-    myCompassTint.a = SolMath.clamp(1.5f * y);
+    myCompassTint.a = ManiMath.clamp(1.5f * y);
     if (maxY < y) y = maxY;
     float angle = np.getAngle() - camAngle;
     drawer.draw(myCompassTex, sz, sz, sz/2, sz/2, sz/2, y, angle, myCompassTint);
@@ -388,7 +388,7 @@ public class MainScreen implements SolUiScreen {
         int abilityChargeCount = hero.getItemContainer().count(abilityChargeEx);
         TextureAtlas.AtlasRegion icon = abilityChargeEx.getIcon(game);
         uiDrawer.draw(icon, ICON_SZ, ICON_SZ, 0, 0, col0, row, 0, ManiColor.W);
-        float chargePerc = 1 - SolMath.clamp(hero.getAbilityAwait() / ability.getConfig().getRechargeTime());
+        float chargePerc = 1 - ManiMath.clamp(hero.getAbilityAwait() / ability.getConfig().getRechargeTime());
         drawBar(uiDrawer, col1, row, chargePerc, 1, null);
         if (chargePerc < 1) drawWait(uiDrawer, col1, row);
         drawIcons(uiDrawer, col2, row, abilityChargeCount, icon, myChargesExcessTp);

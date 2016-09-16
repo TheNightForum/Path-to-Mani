@@ -17,7 +17,7 @@
 package org.destinationsol.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.ship.SolShip;
@@ -37,7 +37,7 @@ public class OrbiterDestProvider implements MoveDestProvider {
     myPlanet = planet;
     myHeight = height;
     myCw = cw;
-    myDesiredSpd = SolMath.sqrt(myPlanet.getGravConst() / myHeight);
+    myDesiredSpd = ManiMath.sqrt(myPlanet.getGravConst() / myHeight);
     myDest = new Vector2();
   }
 
@@ -64,8 +64,8 @@ public class OrbiterDestProvider implements MoveDestProvider {
   @Override
   public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
     Vector2 pPos = myPlanet.getPos();
-    float destAngle = SolMath.angle(pPos, shipPos) + 5 * SolMath.toInt(myCw);
-    SolMath.fromAl(myDest, destAngle, myHeight);
+    float destAngle = ManiMath.angle(pPos, shipPos) + 5 * ManiMath.toInt(myCw);
+    ManiMath.fromAl(myDest, destAngle, myHeight);
     myDest.add(pPos);
   }
 

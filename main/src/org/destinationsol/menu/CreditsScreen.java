@@ -21,7 +21,7 @@ import org.destinationsol.Const;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.ui.*;
 
 import java.util.ArrayList;
@@ -138,7 +138,7 @@ public class CreditsScreen implements SolUiScreen {
     float a = myPerc * 2;
     if (a > 1) a = 2 - a;
     a *= 3;
-    myColor.a = SolMath.clamp(a);
+    myColor.a = ManiMath.clamp(a);
   }
 
   @Override

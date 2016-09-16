@@ -23,7 +23,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.screens.MainScreen;
 import org.destinationsol.game.ship.SolShip;
@@ -84,13 +84,13 @@ public class SolCam {
         myPos.set(heroPos);
         game.getObjMan().resetDelays();
       } else {
-        Vector2 moveDiff = SolMath.getVec(hero.getSpd());
+        Vector2 moveDiff = ManiMath.getVec(hero.getSpd());
         moveDiff.scl(ts);
         myPos.add(moveDiff);
-        SolMath.free(moveDiff);
+        ManiMath.free(moveDiff);
         float moveSpd = MOVE_SPD * ts;
-        myPos.x = SolMath.approach(myPos.x, heroPos.x, moveSpd);
-        myPos.y = SolMath.approach(myPos.y, heroPos.y, moveSpd);
+        myPos.x = ManiMath.approach(myPos.x, heroPos.x, moveSpd);
+        myPos.y = ManiMath.approach(myPos.y, heroPos.y, moveSpd);
       }
       life = hero.getLife();
 
@@ -108,30 +108,30 @@ public class SolCam {
 
     if (life < myPrevHeroLife) {
       float shakeDiff = .1f * MAX_SHAKE * (myPrevHeroLife - life);
-      myShake = SolMath.approach(myShake, MAX_SHAKE, shakeDiff);
+      myShake = ManiMath.approach(myShake, MAX_SHAKE, shakeDiff);
     } else {
-      myShake = SolMath.approach(myShake, 0, SHAKE_DAMP * ts);
+      myShake = ManiMath.approach(myShake, 0, SHAKE_DAMP * ts);
     }
     myPrevHeroLife = life;
 
-    Vector2 pos = SolMath.fromAl(SolMath.rnd(180), myShake);
+    Vector2 pos = ManiMath.fromAl(ManiMath.rnd(180), myShake);
     pos.add(myPos);
     applyPos(pos.x, pos.y);
-    SolMath.free(pos);
+    ManiMath.free(pos);
 
     float desiredAngle = myCamRotStrategy.getRotation(myPos, game);
     float rotSpd = CAM_ROT_SPD * ts;
-    myAngle = SolMath.approachAngle(myAngle, desiredAngle, rotSpd);
+    myAngle = ManiMath.approachAngle(myAngle, desiredAngle, rotSpd);
     applyAngle();
 
     float desiredZoom = calcZoom(desiredVd);
-    myZoom = SolMath.approach(myZoom, desiredZoom, ZOOM_CHG_SPD * ts);
+    myZoom = ManiMath.approach(myZoom, desiredZoom, ZOOM_CHG_SPD * ts);
     applyZoom(game.getMapDrawer());
     myCam.update();
   }
 
   private float calcZoom(float vd) {
-    float h = vd * SolMath.sqrt(2);
+    float h = vd * ManiMath.sqrt(2);
     return h / VIEWPORT_HEIGHT;
   }
 
@@ -157,20 +157,20 @@ public class SolCam {
     boolean u = s.isUp();
     boolean l = s.isLeft();
     boolean r = s.isRight();
-    Vector2 v = SolMath.getVec();
-    if (l != r) v.x = SolMath.toInt(r);
-    if (d != u) v.y = SolMath.toInt(d);
+    Vector2 v = ManiMath.getVec();
+    if (l != r) v.x = ManiMath.toInt(r);
+    if (d != u) v.y = ManiMath.toInt(d);
     v.scl(MOVE_SPD * game.getTimeStep());
-    SolMath.rotate(v, myAngle);
+    ManiMath.rotate(v, myAngle);
     myPos.add(v);
-    SolMath.free(v);
+    ManiMath.free(v);
   }
 
   private void applyAngle() {
-    Vector2 v = SolMath.getVec(0, 1);
-    SolMath.rotate(v, myAngle);
+    Vector2 v = ManiMath.getVec(0, 1);
+    ManiMath.rotate(v, myAngle);
     myCam.up.set(v.x, v.y, 0); // up is actually down, fcuk!!
-    SolMath.free(v);
+    ManiMath.free(v);
   }
 
   public float getViewDist() {
@@ -179,7 +179,7 @@ public class SolCam {
 
   public float getViewDist(float zoom) {
     float r = myCam.viewportWidth / myCam.viewportHeight;
-    return .5f * VIEWPORT_HEIGHT * SolMath.sqrt(1 + r * r) * zoom;
+    return .5f * VIEWPORT_HEIGHT * ManiMath.sqrt(1 + r * r) * zoom;
   }
 
   /**
@@ -196,13 +196,13 @@ public class SolCam {
   public void drawDebug(GameDrawer drawer) {
     float hOver2 = VIEWPORT_HEIGHT * myZoom / 2;
     float wOver2 = hOver2 * drawer.r;
-    Vector2 dr = SolMath.getVec(wOver2, hOver2);
-    SolMath.rotate(dr, myAngle);
-    Vector2 dl = SolMath.getVec(-wOver2, hOver2);
-    SolMath.rotate(dl, myAngle);
-    Vector2 ul = SolMath.getVec(dr);
+    Vector2 dr = ManiMath.getVec(wOver2, hOver2);
+    ManiMath.rotate(dr, myAngle);
+    Vector2 dl = ManiMath.getVec(-wOver2, hOver2);
+    ManiMath.rotate(dl, myAngle);
+    Vector2 ul = ManiMath.getVec(dr);
     ul.scl(-1);
-    Vector2 ur = SolMath.getVec(dl);
+    Vector2 ur = ManiMath.getVec(dl);
     ur.scl(-1);
     dr.add(myPos);
     dl.add(myPos);
@@ -215,10 +215,10 @@ public class SolCam {
     drawer.drawLine(drawer.debugWhiteTex, ul, ur, ManiColor.W, lw, false);
     drawer.drawLine(drawer.debugWhiteTex, ur, dr, ManiColor.W, lw, false);
 
-    SolMath.free(dr);
-    SolMath.free(dl);
-    SolMath.free(ul);
-    SolMath.free(ur);
+    ManiMath.free(dr);
+    ManiMath.free(dl);
+    ManiMath.free(ul);
+    ManiMath.free(ur);
   }
 
   public float getRealLineWidth() {
@@ -250,17 +250,17 @@ public class SolCam {
   }
 
   public boolean isVisible(Vector2 pos) {
-    Vector2 rp = SolMath.toRel(pos, myAngle, myPos);
+    Vector2 rp = ManiMath.toRel(pos, myAngle, myPos);
     boolean res = isRelVisible(rp);
-    SolMath.free(rp);
+    ManiMath.free(rp);
     return res;
   }
 
   public boolean isRelVisible(Vector2 rp) {
     float wHalf = getViewWidth()/2;
-    if (wHalf < SolMath.abs(rp.x)) return false;
+    if (wHalf < ManiMath.abs(rp.x)) return false;
     float hHalf = getViewHeight()/2;
-    if (hHalf < SolMath.abs(rp.y)) return false;
+    if (hHalf < ManiMath.abs(rp.y)) return false;
     return true;
   }
 

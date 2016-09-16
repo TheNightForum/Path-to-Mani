@@ -18,7 +18,7 @@ package org.destinationsol.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DebugOptions;
 import org.destinationsol.game.SolNames;
 import org.destinationsol.game.maze.Maze;
@@ -46,7 +46,7 @@ public class SystemsBuilder {
     int mazesLeft = MAZE_COUNT;
     while (sysLeft > 0 || mazesLeft > 0) {
       boolean createSys = sysLeft > 0;
-      if (createSys && mazesLeft > 0 && !systems.isEmpty()) createSys = SolMath.test(.5f);
+      if (createSys && mazesLeft > 0 && !systems.isEmpty()) createSys = ManiMath.test(.5f);
       if (createSys) {
         List<Float> ghs = generatePlanetGhs();
         float sysRadius = calcSysRadius(ghs);
@@ -55,8 +55,8 @@ public class SystemsBuilder {
         systems.add(s);
         sysLeft--;
       } else {
-        MazeConfig mc = SolMath.elemRnd(mazeConfigs.configs);
-        float mazeRadius = SolMath.rnd(.7f, 1) * MAX_MAZE_RADIUS;
+        MazeConfig mc = ManiMath.elemRnd(mazeConfigs.configs);
+        float mazeRadius = ManiMath.rnd(.7f, 1) * MAX_MAZE_RADIUS;
         Vector2 pos = getBodyPos(systems, mazes, mazeRadius + MAZE_GAP);
         Maze m = new Maze(mc, pos, mazeRadius);
         mazes.add(m);
@@ -70,10 +70,10 @@ public class SystemsBuilder {
     ArrayList<Float> res = new ArrayList<Float>();
     boolean beltCreated = false;
     for (int i = 0; i < PLANET_COUNT; i++) {
-      boolean createBelt = !beltCreated && 0 < i && i < .5f * PLANET_COUNT && SolMath.test(.6f);
+      boolean createBelt = !beltCreated && 0 < i && i < .5f * PLANET_COUNT && ManiMath.test(.6f);
       float gh;
       if (!createBelt) {
-        gh = SolMath.rnd(.5f, 1) * Const.MAX_GROUND_HEIGHT;
+        gh = ManiMath.rnd(.5f, 1) * Const.MAX_GROUND_HEIGHT;
       } else {
         gh = -BELT_HALF_WIDTH;
         beltCreated = true;
@@ -107,8 +107,8 @@ public class SystemsBuilder {
     float dist = 0;
     while (true) {
       for (int i = 0; i < 20; i++) {
-        float angle = SolMath.rnd(180);
-        SolMath.fromAl(res, angle, dist);
+        float angle = ManiMath.rnd(180);
+        ManiMath.fromAl(res, angle, dist);
         boolean good = true;
         for (SolSystem system : systems) {
           if (system.getPos().dst(res) < system.getRadius() + bodyRadius) {
@@ -140,7 +140,7 @@ public class SystemsBuilder {
     } else {
       sysConfig = sysConfigs.getConfig(st);
     }
-    String name = firstSys ? SolMath.elemRnd(names.systems) : "Sol"; //hack
+    String name = firstSys ? ManiMath.elemRnd(names.systems) : "Sol"; //hack
     SolSystem s = new SolSystem(sysPos, sysConfig, name, sysRadius);
     float planetDist = Const.SUN_RADIUS;
     for (int idx = 0, sz = ghs.size(); idx < sz; idx++) {
@@ -172,16 +172,16 @@ public class SystemsBuilder {
       }
       planetDist += reserved;
     }
-    if (SolMath.abs(sysRadius - planetDist) > .1f) throw new AssertionError(sysRadius + " " + planetDist);
+    if (ManiMath.abs(sysRadius - planetDist) > .1f) throw new AssertionError(sysRadius + " " + planetDist);
     return s;
   }
 
   private Planet createPlanet(float planetDist, SolSystem s, float groundHeight, PlanetConfig planetConfig,
     SolNames names) {
-    float toSysRotSpd = SolMath.arcToAngle(PLANET_SPD, planetDist) * SolMath.toInt(SolMath.test(.5f));
-    float rotSpd = SolMath.arcToAngle(GROUND_SPD, groundHeight)  * SolMath.toInt(SolMath.test(.5f));
-    String name = SolMath.elemRnd(names.planets);
-    return new Planet(s, SolMath.rnd(180), planetDist, SolMath.rnd(180), toSysRotSpd, rotSpd, groundHeight, false, planetConfig, name);
+    float toSysRotSpd = ManiMath.arcToAngle(PLANET_SPD, planetDist) * ManiMath.toInt(ManiMath.test(.5f));
+    float rotSpd = ManiMath.arcToAngle(GROUND_SPD, groundHeight)  * ManiMath.toInt(ManiMath.test(.5f));
+    String name = ManiMath.elemRnd(names.planets);
+    return new Planet(s, ManiMath.rnd(180), planetDist, ManiMath.rnd(180), toSysRotSpd, rotSpd, groundHeight, false, planetConfig, name);
   }
 
 }

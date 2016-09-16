@@ -23,7 +23,7 @@ import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DebugOptions;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.sound.MusicManager;
@@ -134,7 +134,7 @@ public class ManiApplication implements ApplicationListener {
       myGame.update();
     }
 
-    SolMath.checkVectorsTaken(null);
+    ManiMath.checkVectorsTaken(null);
   }
 
   private void draw() {

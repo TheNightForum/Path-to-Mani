@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.ui.FontSize;
 import org.destinationsol.ui.UiDrawer;
@@ -51,7 +51,7 @@ public abstract class WarnDrawer {
   public void update(SolGame game) {
     show = shouldWarn(game);
     if (show) drawPerc = 1;
-    else drawPerc = SolMath.approach(drawPerc, 0, Const.REAL_TIME_STEP / FADE_TIME);
+    else drawPerc = ManiMath.approach(drawPerc, 0, Const.REAL_TIME_STEP / FADE_TIME);
     myBgCol.a = myBgOrigA * drawPerc;
     myTextCol.a = drawPerc;
   }

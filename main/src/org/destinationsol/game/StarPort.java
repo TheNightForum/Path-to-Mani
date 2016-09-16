@@ -24,7 +24,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import org.destinationsol.Const;
 import org.destinationsol.common.Bound;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.dra.RectSprite;
@@ -76,9 +76,9 @@ public class StarPort implements SolObject {
     spd = adjustDesiredPos(game, this, spd);
     spd.sub(myPos).scl(fps/4);
     myBody.setLinearVelocity(spd);
-    SolMath.free(spd);
-    float desiredAngle = SolMath.angle(myFrom.getPos(), myTo.getPos());
-    myBody.setAngularVelocity((desiredAngle - myAngle) * SolMath.degRad * fps/4);
+    ManiMath.free(spd);
+    float desiredAngle = ManiMath.angle(myFrom.getPos(), myTo.getPos());
+    myBody.setAngularVelocity((desiredAngle - myAngle) * ManiMath.degRad * fps/4);
 
     SolShip ship = ForceBeacon.pullShips(game, this, myPos, null, null, .4f * SIZE);
     if (ship != null && ship.getMoney() >= FARE && ship.getPosition().dst(myPos) < .05f * SIZE) {
@@ -100,7 +100,7 @@ public class StarPort implements SolObject {
   private static void blip(SolGame game, SolShip ship) {
     TextureAtlas.AtlasRegion tex = game.getTexMan().getTex(Teleport.TEX_PATH, null);
     float blipSz = ship.getHull().config.getApproxRadius() * 10;
-    game.getPartMan().blip(game, ship.getPosition(), SolMath.rnd(180), blipSz, 1, Vector2.Zero, tex);
+    game.getPartMan().blip(game, ship.getPosition(), ManiMath.rnd(180), blipSz, 1, Vector2.Zero, tex);
   }
 
   public boolean isSecondary() {
@@ -182,15 +182,15 @@ public class StarPort implements SolObject {
 
   private void setParamsFromBody() {
     myPos.set(myBody.getPosition());
-    myAngle = myBody.getAngle() * SolMath.radDeg;
+    myAngle = myBody.getAngle() * ManiMath.radDeg;
   }
 
   @Bound
   public static Vector2 getDesiredPos(Planet from, Planet to, boolean percise) {
     Vector2 fromPos = from.getPos();
-    float angle = SolMath.angle(fromPos, to.getPos(), percise);
-    Vector2 pos = SolMath.getVec();
-    SolMath.fromAl(pos, angle, from.getFullHeight() + DIST_FROM_PLANET);
+    float angle = ManiMath.angle(fromPos, to.getPos(), percise);
+    Vector2 pos = ManiMath.getVec();
+    ManiMath.fromAl(pos, angle, from.getFullHeight() + DIST_FROM_PLANET);
     pos.add(fromPos);
     return pos;
   }
@@ -203,15 +203,15 @@ public class StarPort implements SolObject {
         StarPort sp = (StarPort)o;
         // Check if the positions overlap
         Vector2 fromPos = sp.getPosition();
-        Vector2 distVec = SolMath.distVec(fromPos, desired);
-        float distance = SolMath.hypotenuse(distVec.x, distVec.y);
+        Vector2 distVec = ManiMath.distVec(fromPos, desired);
+        float distance = ManiMath.hypotenuse(distVec.x, distVec.y);
         if (distance <= (float)StarPort.SIZE) {
           distVec.scl((StarPort.SIZE + .5f) / distance);
           newPos = fromPos.cpy().add(distVec);
-          Vector2 d2 = SolMath.distVec(fromPos, newPos);
-          SolMath.free(d2);
+          Vector2 d2 = ManiMath.distVec(fromPos, newPos);
+          ManiMath.free(d2);
         }
-        SolMath.free(distVec);
+        ManiMath.free(distVec);
       }
     }
     return newPos;
@@ -234,14 +234,14 @@ public class StarPort implements SolObject {
     }
 
     public StarPort build(SolGame game, Planet from, Planet to, boolean secondary) {
-      float angle = SolMath.angle(from.getPos(), to.getPos());
+      float angle = ManiMath.angle(from.getPos(), to.getPos());
       Vector2 pos = getDesiredPos(from, to, false);
       // Adjust position so that StarPorts are not overlapping
       pos = adjustDesiredPos(game, null, pos);
       ArrayList<Dra> dras = new ArrayList<Dra>();
       Body body = myLoader.getBodyAndSprite(game, "smallGameObjs", "starPort", SIZE,
         BodyDef.BodyType.KinematicBody, new Vector2(pos), angle, dras, 10f, DraLevel.BIG_BODIES, null);
-      SolMath.free(pos);
+      ManiMath.free(pos);
       ArrayList<LightSrc> lights = new ArrayList<LightSrc>();
       addFlow(game, pos, dras, 0, lights);
       addFlow(game, pos, dras, 90, lights);
@@ -257,7 +257,7 @@ public class StarPort implements SolObject {
     private void addFlow(SolGame game, Vector2 pos, ArrayList<Dra> dras, float angle, ArrayList<LightSrc> lights) {
       EffectConfig flow = game.getSpecialEffects().starPortFlow;
       Vector2 relPos = new Vector2();
-      SolMath.fromAl(relPos, angle, -FLOW_DIST);
+      ManiMath.fromAl(relPos, angle, -FLOW_DIST);
       ParticleSrc f1 = new ParticleSrc(flow, FLOW_DIST, DraLevel.PART_BG_0, relPos, false, game, pos, Vector2.Zero, angle);
       f1.setWorking(true);
       dras.add(f1);
@@ -296,8 +296,8 @@ public class StarPort implements SolObject {
 
       Vector2 dp = getDesiredPos(myFrom, myTo, false);
       myPos.set(dp);
-      SolMath.free(dp);
-      myAngle = SolMath.angle(myFrom.getPos(), myTo.getPos());
+      ManiMath.free(dp);
+      myAngle = ManiMath.angle(myFrom.getPos(), myTo.getPos());
     }
 
     @Override
@@ -380,10 +380,10 @@ public class StarPort implements SolObject {
       setDependentParams();
 
       float ts = game.getTimeStep();
-      Vector2 moveDiff = SolMath.getVec(mySpd);
+      Vector2 moveDiff = ManiMath.getVec(mySpd);
       moveDiff.scl(ts);
       myPos.add(moveDiff);
-      SolMath.free(moveDiff);
+      ManiMath.free(moveDiff);
 
       if (myPos.dst(myDestPos) < .5f) {
         ObjectManager objectManager = game.getObjMan();
@@ -403,11 +403,11 @@ public class StarPort implements SolObject {
 
     private void setDependentParams() {
       Vector2 toPos = myTo.getPos();
-      float nodeAngle = SolMath.angle(toPos, myFrom.getPos());
-      SolMath.fromAl(myDestPos, nodeAngle, myTo.getFullHeight() + DIST_FROM_PLANET + SIZE/2);
+      float nodeAngle = ManiMath.angle(toPos, myFrom.getPos());
+      ManiMath.fromAl(myDestPos, nodeAngle, myTo.getFullHeight() + DIST_FROM_PLANET + SIZE/2);
       myDestPos.add(toPos);
-      myAngle = SolMath.angle(myPos, myDestPos);
-      SolMath.fromAl(mySpd, myAngle, Const.MAX_MOVE_SPD * 2); //hack again : (
+      myAngle = ManiMath.angle(myPos, myDestPos);
+      ManiMath.fromAl(mySpd, myAngle, Const.MAX_MOVE_SPD * 2); //hack again : (
     }
 
     @Override

@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.dra.*;
 import org.destinationsol.game.input.Pilot;
 import org.destinationsol.game.planet.PlanetBind;
@@ -86,10 +86,10 @@ public class BeaconHandler {
       myPlanetBind = PlanetBind.tryBind(game, beaconPos, 0);
       return;
     }
-    Vector2 vec = SolMath.getVec();
+    Vector2 vec = ManiMath.getVec();
     myPlanetBind.setDiff(vec, beaconPos, false);
     beaconPos.add(vec);
-    SolMath.free(vec);
+    ManiMath.free(vec);
     myPlanetBind.getPlanet().calcSpdAtPos(mySpd, beaconPos);
   }
 
@@ -98,7 +98,7 @@ public class BeaconHandler {
     if (myTargetPilot == null) return false;
     Vector2 beaconPos = getPos0();
     if (myTarget != null) {
-      SolMath.toWorld(beaconPos, myTargetRelPos, myTarget.getAngle(), myTarget.getPosition(), false);
+      ManiMath.toWorld(beaconPos, myTargetRelPos, myTarget.getAngle(), myTarget.getPosition(), false);
       mySpd.set(myTarget.getSpd());
     } else {
       beaconPos.set(myFarTarget.getPos());
@@ -188,7 +188,7 @@ public class BeaconHandler {
           if (myTarget == null) {
             myTargetRelPos.set(0, 0);
           } else {
-            SolMath.toRel(pos, myTargetRelPos, myTarget.getAngle(), myTarget.getPosition());
+            ManiMath.toRel(pos, myTargetRelPos, myTarget.getAngle(), myTarget.getPosition());
           }
         }
       }

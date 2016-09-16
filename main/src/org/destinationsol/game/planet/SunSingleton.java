@@ -22,7 +22,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.SolGame;
@@ -49,20 +49,20 @@ public class SunSingleton {
   public void draw(SolGame game, GameDrawer drawer) {
     Vector2 camPos = game.getCam().getPos();
     SolSystem sys = game.getPlanetMan().getNearestSystem(camPos);
-    Vector2 toCam = SolMath.getVec(camPos);
+    Vector2 toCam = ManiMath.getVec(camPos);
     toCam.sub(sys.getPos());
     float toCamLen = toCam.len();
     if (toCamLen < Const.SUN_RADIUS) {
       float closeness = 1 - toCamLen / Const.SUN_RADIUS;
-      myGradTint.a = SolMath.clamp(closeness * 4, 0, 1);
-      myFillTint.a = SolMath.clamp((closeness - .25f) * 4, 0, 1);
+      myGradTint.a = ManiMath.clamp(closeness * 4, 0, 1);
+      myFillTint.a = ManiMath.clamp((closeness - .25f) * 4, 0, 1);
 
       float sz = 2 * game.getCam().getViewDist();
-      float gradAngle = SolMath.angle(toCam) + 90;
+      float gradAngle = ManiMath.angle(toCam) + 90;
       drawer.draw(myWhiteTex, sz*2, sz*2, sz, sz, camPos.x, camPos.y, 0, myFillTint);
       drawer.draw(myGradTex, sz*2, sz*2, sz, sz, camPos.x, camPos.y, gradAngle, myGradTint);
     }
-    SolMath.free(toCam);
+    ManiMath.free(toCam);
   }
 
   public void doDmg(SolGame game, SolObject obj, float toSys) {

@@ -30,7 +30,7 @@ import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.files.FileManager;
 import org.destinationsol.game.SolGame;
 
@@ -232,10 +232,10 @@ public class SolInputManager {
   }
 
   private void updateWarnPerc() {
-    float dif = SolMath.toInt(myWarnPercGrows) * Const.REAL_TIME_STEP / WARN_PERC_GROWTH_TIME;
+    float dif = ManiMath.toInt(myWarnPercGrows) * Const.REAL_TIME_STEP / WARN_PERC_GROWTH_TIME;
     myWarnPerc += dif;
     if (myWarnPerc < 0 || 1 < myWarnPerc) {
-      myWarnPerc = SolMath.clamp(myWarnPerc);
+      myWarnPerc = ManiMath.clamp(myWarnPerc);
       myWarnPercGrows = !myWarnPercGrows;
     }
     myWarnCol.a = myWarnPerc * .5f;
@@ -285,8 +285,8 @@ public class SolInputManager {
     int mouseY = Gdx.input.getY();
     int w = Gdx.graphics.getWidth();
     int h = Gdx.graphics.getHeight();
-    mouseX = (int)SolMath.clamp(mouseX, 0, w);
-    mouseY = (int)SolMath.clamp(mouseY, 0, h);
+    mouseX = (int) ManiMath.clamp(mouseX, 0, w);
+    mouseY = (int) ManiMath.clamp(mouseY, 0, h);
     Gdx.input.setCursorPosition(mouseX, mouseY);
   }
 

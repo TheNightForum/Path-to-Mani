@@ -21,7 +21,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.*;
 import org.destinationsol.game.asteroid.FarAsteroid;
 import org.destinationsol.game.dra.Dra;
@@ -165,13 +165,13 @@ public class ChunkFiller {
                                  ShipConfig enemyConf) {
     if (pos == null) return null;
     Vector2 spd = new Vector2();
-    SolMath.fromAl(spd, SolMath.rnd(180), SolMath.rnd(0, ENEMY_MAX_SPD));
-    float rotSpd = SolMath.rnd(ENEMY_MAX_ROT_SPD);
+    ManiMath.fromAl(spd, ManiMath.rnd(180), ManiMath.rnd(0, ENEMY_MAX_SPD));
+    float rotSpd = ManiMath.rnd(ENEMY_MAX_ROT_SPD);
     MoveDestProvider dp = new StillGuard(pos, game, enemyConf);
     Pilot provider = new AiPilot(dp, false, Faction.EHAR, true, null, Const.AI_DET_DIST);
     HullConfig config = enemyConf.hull;
     int money = enemyConf.money;
-    float angle = SolMath.rnd(180);
+    float angle = ManiMath.rnd(180);
     return game.getShipBuilder().buildNewFar(game, pos, spd, angle, rotSpd, provider, enemyConf.items, config,
           remover, false, money, null, true);
   }
@@ -185,9 +185,9 @@ public class ChunkFiller {
       if (asteroidPos == null) continue;
       float minSz = forBelt ? MIN_BELT_A_SZ : MIN_SYS_A_SZ;
       float maxSz = forBelt ? MAX_BELT_A_SZ : MAX_SYS_A_SZ;
-      float sz = SolMath.rnd(minSz, maxSz);
+      float sz = ManiMath.rnd(minSz, maxSz);
       Vector2 spd = new Vector2();
-      SolMath.fromAl(spd, SolMath.rnd(180), MAX_A_SPD);
+      ManiMath.fromAl(spd, ManiMath.rnd(180), MAX_A_SPD);
 
       FarAsteroid a = game.getAsteroidBuilder().buildNewFar(asteroidPos, spd, sz, remover);
       game.getObjMan().addFarObjNow(a);
@@ -218,19 +218,19 @@ public class ChunkFiller {
 
     for (int i = 0; i < count; i++) {
       // Select a random far junk texture
-      TextureAtlas.AtlasRegion tex = SolMath.elemRnd(conf.farJunkTexs);
+      TextureAtlas.AtlasRegion tex = ManiMath.elemRnd(conf.farJunkTexs);
       // Flip texture for every other piece of junk
-      if (SolMath.test(.5f)) tex = textureManager.getFlipped(tex);
+      if (ManiMath.test(.5f)) tex = textureManager.getFlipped(tex);
       // Choose a random size (within a range)
-      float sz = SolMath.rnd(.3f, 1) * FAR_JUNK_MAX_SZ;
+      float sz = ManiMath.rnd(.3f, 1) * FAR_JUNK_MAX_SZ;
       // Apply a random rotation speed
-      float rotSpd = SolMath.rnd(FAR_JUNK_MAX_ROT_SPD);
+      float rotSpd = ManiMath.rnd(FAR_JUNK_MAX_ROT_SPD);
       // Select a random position in the chunk centered around chCenter, relative to the position of the chunk.
       Vector2 junkPos = getRndPos(chCenter);
       junkPos.sub(chCenter);
 
       // Create the resulting sprite and add it to the list
-      RectSprite s = new RectSprite(tex, sz, 0, 0, junkPos, draLevel, SolMath.rnd(180), rotSpd, ManiColor.DDG, false);
+      RectSprite s = new RectSprite(tex, sz, 0, 0, junkPos, draLevel, ManiMath.rnd(180), rotSpd, ManiColor.DDG, false);
       dras.add(s);
     }
 
@@ -261,22 +261,22 @@ public class ChunkFiller {
       Vector2 junkPos = getRndPos(chCenter);
 
       // Select a random junk texture
-      TextureAtlas.AtlasRegion tex = SolMath.elemRnd(conf.junkTexs);
+      TextureAtlas.AtlasRegion tex = ManiMath.elemRnd(conf.junkTexs);
       // Flip texture for every other piece of junk
-      if (SolMath.test(.5f)) tex = game.getTexMan().getFlipped(tex);
+      if (ManiMath.test(.5f)) tex = game.getTexMan().getFlipped(tex);
       // Choose a random size (within a range)
-      float sz = SolMath.rnd(.3f, 1) * JUNK_MAX_SZ;
+      float sz = ManiMath.rnd(.3f, 1) * JUNK_MAX_SZ;
       // Apply a random rotation speed
-      float rotSpd = SolMath.rnd(JUNK_MAX_ROT_SPD);
+      float rotSpd = ManiMath.rnd(JUNK_MAX_ROT_SPD);
 
       // Create the resulting sprite and add it to the list as the only element
-      RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.DECO, SolMath.rnd(180), rotSpd, ManiColor.LG, false);
+      RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.DECO, ManiMath.rnd(180), rotSpd, ManiColor.LG, false);
       ArrayList<Dra> dras = new ArrayList<Dra>();
       dras.add(s);
 
       // Create a FarDras instance for this piece of junk and only allow it to be drawn when it's not hidden by a planet
       Vector2 spd = new Vector2();
-      SolMath.fromAl(spd, SolMath.rnd(180), SolMath.rnd(JUNK_MAX_SPD_LEN));
+      ManiMath.fromAl(spd, ManiMath.rnd(180), ManiMath.rnd(JUNK_MAX_SPD_LEN));
       FarDras so = new FarDras(dras, junkPos, spd, remover, true);
       // Add the object to the object manager
       game.getObjMan().addFarObjNow(so);
@@ -338,8 +338,8 @@ public class ChunkFiller {
    */
   private Vector2 getRndPos(Vector2 chCenter) {
     Vector2 pos = new Vector2(chCenter);
-    pos.x += SolMath.rnd(Const.CHUNK_SIZE / 2);
-    pos.y += SolMath.rnd(Const.CHUNK_SIZE / 2);
+    pos.x += ManiMath.rnd(Const.CHUNK_SIZE / 2);
+    pos.y += ManiMath.rnd(Const.CHUNK_SIZE / 2);
     return pos;
   }
 
@@ -353,7 +353,7 @@ public class ChunkFiller {
   private int getEntityCount(float density) {
     float amt = Const.CHUNK_SIZE * Const.CHUNK_SIZE * density;
     if (amt >= 1) return (int) amt;
-    return SolMath.test(amt) ? 1 : 0;
+    return ManiMath.test(amt) ? 1 : 0;
   }
 
 }

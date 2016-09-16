@@ -19,7 +19,7 @@ package org.destinationsol.game.particle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
@@ -50,10 +50,10 @@ public class PartMan {
     int count = (int) (SZ_TO_BLINK_COUNT * sz * sz);
     for (int i = 0; i < count; i++) {
       Vector2 lightPos = new Vector2();
-      SolMath.fromAl(lightPos, SolMath.rnd(180), SolMath.rnd(0, sz / 2));
+      ManiMath.fromAl(lightPos, ManiMath.rnd(180), ManiMath.rnd(0, sz / 2));
       lightPos.add(pos);
-      float lightSz = SolMath.rnd(.5f, 1) * EXPL_LIGHT_MAX_SZ;
-      float fadeTime = SolMath.rnd(.5f, 1) * EXPL_LIGHT_MAX_FADE_TIME;
+      float lightSz = ManiMath.rnd(.5f, 1) * EXPL_LIGHT_MAX_SZ;
+      float fadeTime = ManiMath.rnd(.5f, 1) * EXPL_LIGHT_MAX_FADE_TIME;
       LightObject light = new LightObject(game, lightSz, true, 1, lightPos, fadeTime, game.getCols().fire);
       game.getObjMan().addObjDelayed(light);
     }
@@ -62,7 +62,7 @@ public class PartMan {
   public void shieldSpark(SolGame game, Vector2 collPos, Hull hull, TextureAtlas.AtlasRegion shieldTex, float perc) {
     if (perc <= 0) return;
     Vector2 pos = hull.getPos();
-    float angle = SolMath.angle(pos, collPos);
+    float angle = ManiMath.angle(pos, collPos);
     float sz = hull.config.getSize() * Shield.SIZE_PERC * 2;
     float alphaSum = perc * 3;
     RectSprite s = null;
@@ -70,7 +70,7 @@ public class PartMan {
     for (int i = 0; i < count; i++) {
       s = blip(game, pos, angle, sz, .5f, hull.getSpd(), shieldTex);
     }
-    float lastTint = SolMath.clamp(alphaSum - (int) alphaSum);
+    float lastTint = ManiMath.clamp(alphaSum - (int) alphaSum);
     if (s != null) {
       s.tint.a = lastTint;
       s.baseAlpha = lastTint;

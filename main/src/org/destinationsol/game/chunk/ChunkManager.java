@@ -19,7 +19,7 @@ package org.destinationsol.game.chunk;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.RemoveController;
 import org.destinationsol.game.SolGame;
 
@@ -99,14 +99,14 @@ public class ChunkManager {
   }
 
   private void maybeAddChunk(Set<Vector2> chunks, int oX, int oY, SolGame game) {
-    Vector2 v = SolMath.getVec(myX + oX, myY + oY);
+    Vector2 v = ManiMath.getVec(myX + oX, myY + oY);
     if (!chunks.contains(v)) {
       Vector2 chunk = new Vector2(v);
       chunks.add(chunk);
       boolean bg = chunks == myBgFilledChunks;
       myFiller.fill(game, chunk, bg ? myBgRemover : myRemover, bg);
     }
-    SolMath.free(v);
+    ManiMath.free(v);
   }
 
   public boolean isInactive(Vector2 pos, int dist) {

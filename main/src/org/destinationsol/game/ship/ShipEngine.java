@@ -18,7 +18,7 @@ package org.destinationsol.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.dra.Dra;
@@ -87,25 +87,25 @@ public class ShipEngine {
   private boolean applyInput(SolGame cmp, float shipAngle, Pilot provider, Body body, Vector2 spd,
     boolean controlsEnabled, float mass)
   {
-    boolean spdOk = SolMath.canAccelerate(shipAngle, spd);
+    boolean spdOk = ManiMath.canAccelerate(shipAngle, spd);
     boolean working = controlsEnabled && provider.isUp() && spdOk;
 
     EngineItem e = myItem;
     if (working) {
-      Vector2 v = SolMath.fromAl(shipAngle, mass * e.getAcc());
+      Vector2 v = ManiMath.fromAl(shipAngle, mass * e.getAcc());
       body.applyForceToCenter(v, true);
-      SolMath.free(v);
+      ManiMath.free(v);
     }
 
     float ts = cmp.getTimeStep();
-    float rotSpd = body.getAngularVelocity() * SolMath.radDeg;
+    float rotSpd = body.getAngularVelocity() * ManiMath.radDeg;
     float desiredRotSpd = 0;
     float rotAcc = e.getRotAcc();
     boolean l = controlsEnabled && provider.isLeft();
     boolean r = controlsEnabled && provider.isRight();
-    float absRotSpd = SolMath.abs(rotSpd);
+    float absRotSpd = ManiMath.abs(rotSpd);
     if (absRotSpd < e.getMaxRotSpd() && l != r) {
-      desiredRotSpd = SolMath.toInt(r) * e.getMaxRotSpd();
+      desiredRotSpd = ManiMath.toInt(r) * e.getMaxRotSpd();
       if (absRotSpd < MAX_RECOVER_ROT_SPD) {
         if (myRecoverAwait > 0) myRecoverAwait -= ts;
         if (myRecoverAwait <= 0) rotAcc *= RECOVER_MUL;
@@ -113,7 +113,7 @@ public class ShipEngine {
     } else {
       myRecoverAwait = RECOVER_AWAIT;
     }
-    body.setAngularVelocity(SolMath.degRad * SolMath.approach(rotSpd, desiredRotSpd, rotAcc * ts));
+    body.setAngularVelocity(ManiMath.degRad * ManiMath.approach(rotSpd, desiredRotSpd, rotAcc * ts));
     return working;
   }
 

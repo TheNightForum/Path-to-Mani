@@ -18,7 +18,7 @@ package org.destinationsol.game.gun;
 
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.SolObject;
@@ -58,7 +58,7 @@ public class GunMount {
       float dst = creatorPos.dst(nePos) - creator.getHull().config.getApproxRadius() - nearestEnemy.getHull().config.getApproxRadius();
       float detDst = game.getPlanetMan().getNearestPlanet().isNearGround(creatorPos) ? Const.AUTO_SHOOT_GROUND : Const.AUTO_SHOOT_SPACE;
       if (dst < detDst) {
-        Vector2 mountPos = SolMath.toWorld(myRelPos, shipAngle, creatorPos);
+        Vector2 mountPos = ManiMath.toWorld(myRelPos, shipAngle, creatorPos);
         boolean player = creator.getPilot().isPlayer();
         float shootAngle = Shooter.calcShootAngle(mountPos, creator.getSpd(), nePos, nearestEnemy.getSpd(), myGun.getConfig().clipConf.projConfig.spdLen, player);
         if (shootAngle == shootAngle) {
@@ -66,7 +66,7 @@ public class GunMount {
           myDetected = true;
           if (player) game.getMountDetectDrawer().setNe(nearestEnemy);
         }
-        SolMath.free(mountPos);
+        ManiMath.free(mountPos);
       }
     }
 

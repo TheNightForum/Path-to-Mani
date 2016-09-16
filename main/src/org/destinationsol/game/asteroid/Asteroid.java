@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.*;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.item.Loot;
@@ -152,7 +152,7 @@ public class Asteroid implements SolObject {
   private void setParamsFromBody() {
     myPos.set(myBody.getPosition());
     mySpd.set(myBody.getLinearVelocity());
-    myAngle = myBody.getAngle() * SolMath.radDeg;
+    myAngle = myBody.getAngle() * ManiMath.radDeg;
   }
 
   @Override
@@ -167,7 +167,7 @@ public class Asteroid implements SolObject {
     myBody.getWorld().destroyBody(myBody);
     if (myLife <= 0) {
       game.getSpecialEffects().asteroidDust(game, myPos, mySpd, mySize);
-      float vol = SolMath.clamp(mySize/.5f);
+      float vol = ManiMath.clamp(mySize/.5f);
       game.getSoundMan().play(game, game.getSpecialSounds().asteroidCrack, null, this, vol);
       maybeSplit(game);
     }
@@ -177,19 +177,19 @@ public class Asteroid implements SolObject {
     if (MIN_SPLIT_SZ > mySize) return;
     float sclSum = 0;
     while (sclSum < .7f * mySize * mySize) {
-      float spdAngle = SolMath.rnd(180);
+      float spdAngle = ManiMath.rnd(180);
       Vector2 spd = new Vector2();
-      SolMath.fromAl(spd, spdAngle, SolMath.rnd(0, .5f) *MAX_SPLIT_SPD);
+      ManiMath.fromAl(spd, spdAngle, ManiMath.rnd(0, .5f) *MAX_SPLIT_SPD);
       spd.add(mySpd);
       Vector2 newPos = new Vector2();
-      SolMath.fromAl(newPos, spdAngle, SolMath.rnd(0, mySize / 2));
+      ManiMath.fromAl(newPos, spdAngle, ManiMath.rnd(0, mySize / 2));
       newPos.add(myPos);
-      float sz = mySize * SolMath.rnd(.25f,.5f);
+      float sz = mySize * ManiMath.rnd(.25f,.5f);
       Asteroid a = game.getAsteroidBuilder().buildNew(game, newPos, spd, sz, myRemoveController);
       game.getObjMan().addObjDelayed(a);
       sclSum += a.mySize * a.mySize;
     }
-    float thrMoney = mySize * 40f * SolMath.rnd(.3f, 1);
+    float thrMoney = mySize * 40f * ManiMath.rnd(.3f, 1);
     List<MoneyItem> moneyItems = game.getItemMan().moneyToItems(thrMoney);
     for (MoneyItem mi : moneyItems) {
       throwLoot(game, mi);
@@ -197,14 +197,14 @@ public class Asteroid implements SolObject {
   }
 
   private void throwLoot(SolGame game, SolItem item) {
-    float spdAngle = SolMath.rnd(180);
+    float spdAngle = ManiMath.rnd(180);
     Vector2 lootSpd = new Vector2();
-    SolMath.fromAl(lootSpd, spdAngle, SolMath.rnd(0, Loot.MAX_SPD));
+    ManiMath.fromAl(lootSpd, spdAngle, ManiMath.rnd(0, Loot.MAX_SPD));
     lootSpd.add(mySpd);
     Vector2 pos = new Vector2();
-    SolMath.fromAl(pos, spdAngle, SolMath.rnd(0, mySize / 2));
+    ManiMath.fromAl(pos, spdAngle, ManiMath.rnd(0, mySize / 2));
     pos.add(myPos);
-    Loot l = game.getLootBuilder().build(game, pos, item, lootSpd, Loot.MAX_LIFE, SolMath.rnd(Loot.MAX_ROT_SPD), null);
+    Loot l = game.getLootBuilder().build(game, pos, item, lootSpd, Loot.MAX_LIFE, ManiMath.rnd(Loot.MAX_ROT_SPD), null);
     game.getObjMan().addObjDelayed(l);
   }
 

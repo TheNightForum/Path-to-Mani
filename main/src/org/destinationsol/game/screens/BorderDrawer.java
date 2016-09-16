@@ -22,7 +22,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.*;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.planet.PlanetManager;
@@ -122,7 +122,7 @@ public class BorderDrawer {
     float closeness = 1 - pos.dst(camPos) / MAX_ICON_DIST;
     if (closeness < 0) return;
     float camAngle = cam.getAngle();
-    SolMath.toRel(pos, myTmpVec, camAngle, camPos);
+    ManiMath.toRel(pos, myTmpVec, camAngle, camPos);
     float len = myTmpVec.len();
     float newLen = len - .25f * objSize;
     myTmpVec.scl(newLen / len);
@@ -133,8 +133,8 @@ public class BorderDrawer {
     float prefX = drawer.r / 2 - sz/2;
     float prefY = .5f - sz/2;
     float r = prefX / prefY;
-    boolean prefXAxis = myTmpVec.y == 0 || r < SolMath.abs(myTmpVec.x / myTmpVec.y);
-    float mul = SolMath.abs(prefXAxis ? (prefX / myTmpVec.x) : (prefY / myTmpVec.y));
+    boolean prefXAxis = myTmpVec.y == 0 || r < ManiMath.abs(myTmpVec.x / myTmpVec.y);
+    float mul = ManiMath.abs(prefXAxis ? (prefX / myTmpVec.x) : (prefY / myTmpVec.y));
     myTmpVec.scl(mul);
     myTmpVec.add(drawer.r/2, .5f);
 
@@ -170,8 +170,8 @@ public class BorderDrawer {
     float dst = objPos.dst(camPos);
     float distPerc = (dst - objRad) / MAX_DRAW_DIST;
     if (distPerc < 1) {
-      float relAngle = SolMath.angle(camPos, objPos) - camAngle;
-      float angularWHalf = SolMath.angularWidthOfSphere(objRad, dst);
+      float relAngle = ManiMath.angle(camPos, objPos) - camAngle;
+      float angularWHalf = ManiMath.angularWidthOfSphere(objRad, dst);
       apply(distPerc, angularWHalf, relAngle);
     }
   }
@@ -179,7 +179,7 @@ public class BorderDrawer {
   private void apply(float distPerc, float angularWHalf, float relAngle) {
     for (int i = 0, myTishchesSize = myTishches.size(); i < myTishchesSize; i++) {
       Tishch t = myTishches.get(i);
-      if (SolMath.angleDiff(t.myAngle, relAngle) < angularWHalf) {
+      if (ManiMath.angleDiff(t.myAngle, relAngle) < angularWHalf) {
         t.setDistPerc(distPerc);
       }
     }
@@ -201,7 +201,7 @@ public class BorderDrawer {
       myMaxSz = maxSz * .9f;
       Vector2 pos = new Vector2(x, y);
       Vector2 centah = new Vector2(r / 2, .5f);
-      myAngle = SolMath.angle(centah, pos, true);
+      myAngle = ManiMath.angle(centah, pos, true);
       myCol = new Color(ManiColor.UI_DARK);
     }
 

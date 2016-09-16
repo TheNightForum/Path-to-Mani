@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.ManiColorUtil;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
@@ -62,11 +62,11 @@ public class LightSrc {
     if (working) {
       myWorkPerc = 1f;
     } else {
-      myWorkPerc = SolMath.approach(myWorkPerc, 0, game.getTimeStep() / myFadeTime);
+      myWorkPerc = ManiMath.approach(myWorkPerc, 0, game.getTimeStep() / myFadeTime);
     }
-    float baseA = SolMath.rnd(.5f, 1) * myWorkPerc * myIntensity;
+    float baseA = ManiMath.rnd(.5f, 1) * myWorkPerc * myIntensity;
     myCircle.tint.a = baseA * A_RATIO;
-    float sz = (1 + SolMath.rnd(.2f * myIntensity)) * mySz;
+    float sz = (1 + ManiMath.rnd(.2f * myIntensity)) * mySz;
     myCircle.setTexSz(SZ_RATIO * sz);
     if (myHalo != null) {
       myHalo.tint.a = baseA;

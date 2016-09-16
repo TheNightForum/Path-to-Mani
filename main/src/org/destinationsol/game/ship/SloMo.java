@@ -18,7 +18,7 @@ package org.destinationsol.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.AbilityCommonConfig;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.dra.DraLevel;
@@ -62,7 +62,7 @@ public class SloMo implements ShipAbility {
       return true;
     }
     float ts = game.getTimeStep();
-    myFactor = SolMath.approach(myFactor, 1, SLO_MO_CHG_SPD * ts);
+    myFactor = ManiMath.approach(myFactor, 1, SLO_MO_CHG_SPD * ts);
     return false;
   }
 

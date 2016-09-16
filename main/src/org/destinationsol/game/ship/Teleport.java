@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.JsonValue;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.AbilityCommonConfig;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.SolGame;
@@ -55,8 +55,8 @@ public class Teleport implements ShipAbility {
     for (int i = 0; i < 5; i++) {
       myNewPos.set(pos);
       myNewPos.sub(nePos);
-      myAngle = myConfig.angle * SolMath.rnd(.5f, 1) * SolMath.toInt(SolMath.test(.5f));
-      SolMath.rotate(myNewPos, myAngle);
+      myAngle = myConfig.angle * ManiMath.rnd(.5f, 1) * ManiMath.toInt(ManiMath.test(.5f));
+      ManiMath.rotate(myNewPos, myAngle);
       myNewPos.add(nePos);
       if (game.isPlaceEmpty(myNewPos, false)) {
         myShouldTeleport = true;
@@ -87,18 +87,18 @@ public class Teleport implements ShipAbility {
 
     TextureAtlas.AtlasRegion tex = game.getTexMan().getTex(TEX_PATH, null);
     float blipSz = owner.getHull().config.getApproxRadius() * 3;
-    game.getPartMan().blip(game, owner.getPosition(), SolMath.rnd(180), blipSz, 1, Vector2.Zero, tex);
-    game.getPartMan().blip(game, myNewPos, SolMath.rnd(180), blipSz, 1, Vector2.Zero, tex);
+    game.getPartMan().blip(game, owner.getPosition(), ManiMath.rnd(180), blipSz, 1, Vector2.Zero, tex);
+    game.getPartMan().blip(game, myNewPos, ManiMath.rnd(180), blipSz, 1, Vector2.Zero, tex);
 
     float newAngle = owner.getAngle() + myAngle;
-    Vector2 newSpd = SolMath.getVec(owner.getSpd());
-    SolMath.rotate(newSpd, myAngle);
+    Vector2 newSpd = ManiMath.getVec(owner.getSpd());
+    ManiMath.rotate(newSpd, myAngle);
 
     Body body = owner.getHull().getBody();
-    body.setTransform(myNewPos, newAngle * SolMath.degRad);
+    body.setTransform(myNewPos, newAngle * ManiMath.degRad);
     body.setLinearVelocity(newSpd);
 
-    SolMath.free(newSpd);
+    ManiMath.free(newSpd);
   }
 
   public static class Config implements AbilityConfig {

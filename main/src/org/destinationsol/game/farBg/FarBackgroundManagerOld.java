@@ -23,7 +23,7 @@ import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.ManiColorUtil;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.SolCam;
 import org.destinationsol.game.SolGame;
@@ -39,8 +39,8 @@ public class FarBackgroundManagerOld {
   private final Color myNebTint;
 
   public FarBackgroundManagerOld(TextureManager textureManager) {
-    myNebTex = textureManager.getTex("farBgBig/nebulae2", SolMath.test(.5f), null);
-    myNebAngle = SolMath.rnd(180);
+    myNebTex = textureManager.getTex("farBgBig/nebulae2", ManiMath.test(.5f), null);
+    myNebAngle = ManiMath.rnd(180);
     myStars = new ArrayList<FarBgStar>();
     for (int i = 0; i < 400; i++) {
       FarBgStar star = new FarBgStar(textureManager);
@@ -53,7 +53,7 @@ public class FarBackgroundManagerOld {
     Planet np = game.getPlanetMan().getNearestPlanet();
     Vector2 camPos = cam.getPos();
     float nebPerc = (camPos.dst(np.getPos()) - np.getGroundHeight()) / (4 * Const.ATM_HEIGHT);
-    nebPerc = SolMath.clamp(nebPerc, 0, 1);
+    nebPerc = ManiMath.clamp(nebPerc, 0, 1);
     myNebTint.a = nebPerc;
 
     float vd = cam.getViewDist();
@@ -73,13 +73,13 @@ public class FarBackgroundManagerOld {
     private final Vector2 myPos;
 
     private FarBgStar(TextureManager textureManager) {
-      myShiftPerc = new Vector2(SolMath.rnd(1), SolMath.rnd(1));
+      myShiftPerc = new Vector2(ManiMath.rnd(1), ManiMath.rnd(1));
       myPos = new Vector2();
-      boolean small = SolMath.test(.8f);
+      boolean small = ManiMath.test(.8f);
       myTex = textureManager.getTex("deco/bigStar", null);
-      mySzPerc = (small ? .01f : .04f) * SolMath.rnd(.5f, 1);
+      mySzPerc = (small ? .01f : .04f) * ManiMath.rnd(.5f, 1);
       myTint = new Color();
-      ManiColorUtil.fromHSB(SolMath.rnd(0, 1), .25f, 1, .7f, myTint);
+      ManiColorUtil.fromHSB(ManiMath.rnd(0, 1), .25f, 1, .7f, myTint);
     }
 
     public void draw(GameDrawer drawer, float vd, Vector2 camPos, float camAngle) {

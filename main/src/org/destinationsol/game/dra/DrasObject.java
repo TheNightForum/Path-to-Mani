@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import org.destinationsol.Const;
 import org.destinationsol.common.Consumed;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.*;
 import org.destinationsol.game.planet.Planet;
 
@@ -69,7 +69,7 @@ public class DrasObject implements SolObject {
         Vector2 draPos = dra.getPos();
         float gradSz = .25f * Const.ATM_HEIGHT;
         float distPerc = (draPos.dst(npPos) - npgh - Const.ATM_HEIGHT) / gradSz;
-        distPerc = SolMath.clamp(distPerc);
+        distPerc = ManiMath.clamp(distPerc);
         ((RectSprite) dra).tint.a = distPerc;
       }
     } else if (myMaxFadeTime > 0) {
@@ -79,7 +79,7 @@ public class DrasObject implements SolObject {
         Dra dra = myDras.get(i);
         if (!(dra instanceof RectSprite)) continue;
         RectSprite rs = (RectSprite) dra;
-        rs.tint.a = SolMath.clamp(tintPerc * rs.baseAlpha);
+        rs.tint.a = ManiMath.clamp(tintPerc * rs.baseAlpha);
       }
 
     }

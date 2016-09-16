@@ -22,7 +22,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.input.Mover;
 import org.destinationsol.game.input.Shooter;
@@ -71,7 +71,7 @@ public class ShipMixedControl implements ShipUiControl {
     if (h != null) {
       myMouseWorldPos.set(Gdx.input.getX(), Gdx.input.getY());
       g.getCam().screenToWorld(myMouseWorldPos);
-      float desiredAngle = SolMath.angle(h.getPosition(), myMouseWorldPos);
+      float desiredAngle = ManiMath.angle(h.getPosition(), myMouseWorldPos);
       Boolean ntt = Mover.needsToTurn(h.getAngle(), desiredAngle, h.getRotSpd(), h.getRotAcc(), Shooter.MIN_SHOOT_AAD);
       if (ntt != null) {
         if (ntt) myRight = true; else myLeft = true;

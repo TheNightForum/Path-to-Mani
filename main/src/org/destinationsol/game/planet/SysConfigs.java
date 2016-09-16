@@ -20,7 +20,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.files.FileManager;
 import org.destinationsol.files.HullConfigManager;
 import org.destinationsol.game.ShipConfig;
@@ -75,7 +75,7 @@ public class SysConfigs {
 
   public SysConfig getRandomBelt(boolean hard) {
     Map<String, SysConfig> config = hard ? myHardBeltConfigs : myBeltConfigs;
-    return SolMath.elemRnd(new ArrayList<SysConfig>(config.values()));
+    return ManiMath.elemRnd(new ArrayList<SysConfig>(config.values()));
   }
 
   public SysConfig getConfig(String name) {
@@ -86,7 +86,7 @@ public class SysConfigs {
 
   public SysConfig getRandomCfg(boolean hard) {
     Map<String, SysConfig> config = hard ? myHardConfigs : myConfigs;
-    return SolMath.elemRnd(new ArrayList<SysConfig>(config.values()));
+    return ManiMath.elemRnd(new ArrayList<SysConfig>(config.values()));
   }
 
   public void addAllConfigs(ArrayList<ShipConfig> l) {

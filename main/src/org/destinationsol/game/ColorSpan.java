@@ -18,7 +18,7 @@ package org.destinationsol.game;
 
 import com.badlogic.gdx.graphics.Color;
 import org.destinationsol.common.ManiColorUtil;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 
 public abstract class ColorSpan {
 
@@ -55,7 +55,7 @@ public abstract class ColorSpan {
 
     @Override
     public void set(float perc, Color col) {
-      perc = SolMath.clamp(perc, 0, 1);
+      perc = ManiMath.clamp(perc, 0, 1);
       col.r = midVal(myStart.r, myEnd.r, perc);
       col.g = midVal(myStart.g, myEnd.g, perc);
       col.b = midVal(myStart.b, myEnd.b, perc);

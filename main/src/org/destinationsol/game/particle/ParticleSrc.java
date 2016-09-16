@@ -23,7 +23,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.SolObject;
@@ -145,7 +145,7 @@ public class ParticleSrc implements Dra {
     maybeSwitchRelPos(game);
     Vector2 basePos = o.getPosition();
     float baseAngle = o.getAngle();
-    SolMath.toWorld(myPos, myRelPos, baseAngle, basePos, false);
+    ManiMath.toWorld(myPos, myRelPos, baseAngle, basePos, false);
     float ts = game.getTimeStep();
     fixSpeedBug(ts);
     myEmitter.setPosition(myPos.x, myPos.y);
@@ -176,7 +176,7 @@ public class ParticleSrc implements Dra {
     Planet np = game.getPlanetMan().getNearestPlanet();
     Vector2 spd = np.getAdjustedEffectSpd(basePos, baseSpd);
     setSpd(spd);
-    SolMath.free(spd);
+    ManiMath.free(spd);
   }
 
   private void maybeSwitchRelPos(SolGame game) {
@@ -185,7 +185,7 @@ public class ParticleSrc implements Dra {
     myTimeSincePosChange += ts;
     if (!myWorking || myTimeSincePosChange < MAX_TIME_BETWEEN_POS_CHANGE) return;
     myTimeSincePosChange = 0;
-    SolMath.fromAl(myRelPos, SolMath.rnd(180), SolMath.rnd(0, myAreaSz));
+    ManiMath.fromAl(myRelPos, ManiMath.rnd(180), ManiMath.rnd(0, myAreaSz));
     myRelPos.add(myOrigRelPos);
   }
 

@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.joints.PrismaticJoint;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.FactionManager;
 import org.destinationsol.game.SolGame;
@@ -63,7 +63,7 @@ public class Door {
 
     Vector2 shipPos = ship.getPosition();
     float shipAngle = ship.getAngle();
-    SolMath.toRel(doorPos, myS.getRelPos(), shipAngle, shipPos);
+    ManiMath.toRel(doorPos, myS.getRelPos(), shipAngle, shipPos);
   }
 
   private boolean shouldOpen(SolGame game, SolShip ship, Vector2 doorPos) {

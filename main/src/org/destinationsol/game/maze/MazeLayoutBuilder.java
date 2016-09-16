@@ -16,7 +16,7 @@
 
 package org.destinationsol.game.maze;
 
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 
 public class MazeLayoutBuilder {
   public static final float HOLE_PERC = .2f;
@@ -42,8 +42,8 @@ public class MazeLayoutBuilder {
         boolean inner = myInners[col][row];
         boolean rInner = col < mySz - 1 && myInners[col + 1][row];
         boolean dInner = row < mySz - 1 && myInners[col][row + 1];
-        myRight[col][row] = (inner || rInner) && SolMath.test(WALL_PERC);
-        myDown[col][row] = (inner || dInner) && SolMath.test(WALL_PERC);
+        myRight[col][row] = (inner || rInner) && ManiMath.test(WALL_PERC);
+        myDown[col][row] = (inner || dInner) && ManiMath.test(WALL_PERC);
       }
     }
     makeAllAccessible();
@@ -87,7 +87,7 @@ public class MazeLayoutBuilder {
     float[][] vals = new float[mySz][mySz];
     for (int i = 0; i < mySz; i++) {
       for (int j = 0; j < mySz; j++) {
-        vals[i][j] = SolMath.rnd(0, 1);
+        vals[i][j] = ManiMath.rnd(0, 1);
       }
     }
     smooth(vals);
@@ -123,9 +123,9 @@ public class MazeLayoutBuilder {
     float p1 = 1f * v1 / mySz / mySz;
     float p2 = 1f * v2 / mySz / mySz;
     float p3 = 1f * v3 / mySz / mySz;
-    p1 = SolMath.abs(p1 - HOLE_PERC);
-    p2 = SolMath.abs(p2 - HOLE_PERC);
-    p3 = SolMath.abs(p3 - HOLE_PERC);
+    p1 = ManiMath.abs(p1 - HOLE_PERC);
+    p2 = ManiMath.abs(p2 - HOLE_PERC);
+    p3 = ManiMath.abs(p3 - HOLE_PERC);
     float cutoff;
     if (p1 < p2) {
       cutoff = p1 < p3 ? c1 : c3;
@@ -155,7 +155,7 @@ public class MazeLayoutBuilder {
   private boolean isOk(int i, int j) {
     int ii = i - mySz / 2;
     int jj = j - mySz / 2;
-    float dist = SolMath.sqrt(ii * ii + jj * jj);
+    float dist = ManiMath.sqrt(ii * ii + jj * jj);
     return dist < mySz/2;
   }
 }

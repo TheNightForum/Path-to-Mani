@@ -18,7 +18,7 @@ package org.destinationsol.game.input;
 
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.ShipConfig;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.planet.PlanetBind;
@@ -62,10 +62,10 @@ public class StillGuard implements MoveDestProvider {
   @Override
   public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
     if (myPlanetBind != null) {
-      Vector2 diff = SolMath.getVec();
+      Vector2 diff = ManiMath.getVec();
       myPlanetBind.setDiff(diff, myDest, false);
       myDest.add(diff);
-      SolMath.free(diff);
+      ManiMath.free(diff);
       myPlanetBind.getPlanet().calcSpdAtPos(myDestSpd, myDest);
     }
   }

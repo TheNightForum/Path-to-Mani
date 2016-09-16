@@ -19,7 +19,7 @@ package org.destinationsol.game.planet;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.SolGame;
 
 public class FlatPlaceFinder {
@@ -33,7 +33,7 @@ public class FlatPlaceFinder {
         return -1;
       }
       myVec.set(point);
-      myDeviation = SolMath.abs(SolMath.angle(normal) + 90);
+      myDeviation = ManiMath.abs(ManiMath.angle(normal) + 90);
       return fraction;
     }
   };
@@ -44,13 +44,13 @@ public class FlatPlaceFinder {
     Vector2 res = new Vector2(pPos);
     float minDeviation = 90;
     float resAngle = 0;
-    float objAngularHalfWidth = SolMath.angularWidthOfSphere(objHalfWidth, p.getGroundHeight());
+    float objAngularHalfWidth = ManiMath.angularWidthOfSphere(objHalfWidth, p.getGroundHeight());
 
     for (int i = 0; i < 20; i++) {
-      float angle = SolMath.rnd(180);
+      float angle = ManiMath.rnd(180);
       if (takenAngles != null && takenAngles.isConsumed(angle, objAngularHalfWidth)) continue;
       myDeviation = angle;
-      SolMath.fromAl(myVec, angle, p.getFullHeight());
+      ManiMath.fromAl(myVec, angle, p.getFullHeight());
       myVec.add(pPos);
       game.getObjMan().getWorld().rayCast(myRayBack, myVec, pPos);
       if (myDeviation < minDeviation) {
@@ -62,7 +62,7 @@ public class FlatPlaceFinder {
 
     if (takenAngles != null) takenAngles.add(resAngle, objAngularHalfWidth);
     res.sub(pPos);
-    SolMath.rotate(res, -p.getAngle());
+    ManiMath.rotate(res, -p.getAngle());
     return res;
   }
 }

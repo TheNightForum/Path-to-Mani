@@ -23,7 +23,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.IniReader;
 import org.destinationsol.common.Nullable;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.files.FileManager;
 import org.destinationsol.game.DebugOptions;
 import org.destinationsol.game.GameDrawer;
@@ -136,26 +136,26 @@ public class SoundManager {
     Planet np = game.getPlanetMan().getNearestPlanet();
     if (np.getConfig().skyConfig != null) {
       float camToAtmDst = camPos.dst(np.getPos()) - np.getGroundHeight() - Const.ATM_HEIGHT/2;
-      airPerc = SolMath.clamp(1 - camToAtmDst / (Const.ATM_HEIGHT / 2));
+      airPerc = ManiMath.clamp(1 - camToAtmDst / (Const.ATM_HEIGHT / 2));
     }
     if (DebugOptions.SOUND_IN_SPACE) airPerc = 1;
     float maxSoundDist = 1 + 1.5f * Const.CAM_VIEW_DIST_GROUND * airPerc;
     SolShip hero = game.getHero();
     float fullSoundRad = hero == null ? 0 : hero.getHull().config.getApproxRadius();
     float dst = pos.dst(camPos) - fullSoundRad;
-    float distMul = SolMath.clamp(1 - dst / maxSoundDist);
+    float distMul = ManiMath.clamp(1 - dst / maxSoundDist);
     float vol = sound.baseVolume * volMul * distMul * globalVolMul;
     if (vol <= 0) return;
 
     //pitch
-    float pitch = SolMath.rnd(.97f, 1.03f) * game.getTimeFactor() * sound.basePitch;
+    float pitch = ManiMath.rnd(.97f, 1.03f) * game.getTimeFactor() * sound.basePitch;
 
     if (skipLooped(source, sound, game.getTime())) return;
     if (DebugOptions.SOUND_INFO) {
       myHintDrawer.add(source, pos, sound.getDebugString());
     }
     if (sound.sounds.isEmpty()) return;
-    Sound sound0 = SolMath.elemRnd(sound.sounds);
+    Sound sound0 = ManiMath.elemRnd(sound.sounds);
     sound0.play(vol, pitch, 0);
   }
 

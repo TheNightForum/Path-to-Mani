@@ -21,7 +21,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.RemoveController;
 import org.destinationsol.game.SolGame;
@@ -113,7 +113,7 @@ public class SolShip implements SolObject {
 
   @Override
   public FarShip toFarObj() {
-    float rotSpd = myHull.getBody().getAngularVelocity() * SolMath.radDeg;
+    float rotSpd = myHull.getBody().getAngularVelocity() * ManiMath.radDeg;
     return new FarShip(myHull.getPos(), myHull.getSpd(), myHull.getAngle(), rotSpd, myPilot, myItemContainer, myHull.config, myHull.life,
       myHull.getGun(false), myHull.getGun(true), myRemoveController, myHull.getEngine(), myRepairer, myMoney, myTradeContainer, myShield, myArmor);
   }
@@ -350,7 +350,7 @@ public class SolShip implements SolObject {
     for (List<SolItem> group : myItemContainer) {
       for (SolItem item : group) {
         float dropChance = maybeUnequip(game, item, false) ? .35f : .6f;
-        if (SolMath.test(dropChance)) {
+        if (ManiMath.test(dropChance)) {
           throwLoot(game, item, true);
         }
       }
@@ -359,13 +359,13 @@ public class SolShip implements SolObject {
     if (myTradeContainer != null) {
       for (List<SolItem> group : myTradeContainer.getItems()) {
         for (SolItem item : group) {
-          if (SolMath.test(.6f)) {
+          if (ManiMath.test(.6f)) {
             throwLoot(game, item, true);
           }
         }
       }
     }
-    float thrMoney = myMoney * SolMath.rnd(.2f, 1);
+    float thrMoney = myMoney * ManiMath.rnd(.2f, 1);
     List<MoneyItem> moneyItems = game.getItemMan().moneyToItems(thrMoney);
     for (MoneyItem mi : moneyItems) {
       throwLoot(game, mi, true);
@@ -378,19 +378,19 @@ public class SolShip implements SolObject {
     float spdLen;
     Vector2 pos = new Vector2();
     if (onDeath) {
-      spdAngle = SolMath.rnd(180);
-      spdLen = SolMath.rnd(0, Loot.MAX_SPD);
+      spdAngle = ManiMath.rnd(180);
+      spdLen = ManiMath.rnd(0, Loot.MAX_SPD);
       // TODO: This statement previously caused a crash as getApproxRadius returned 0 - where is it meant to be set / loaded from?
-      SolMath.fromAl(pos, spdAngle, SolMath.rnd(myHull.config.getApproxRadius()));
+      ManiMath.fromAl(pos, spdAngle, ManiMath.rnd(myHull.config.getApproxRadius()));
     } else {
       spdAngle = getAngle();
       spdLen = 1f;
-      SolMath.fromAl(pos, spdAngle, myHull.config.getApproxRadius());
+      ManiMath.fromAl(pos, spdAngle, myHull.config.getApproxRadius());
     }
-    SolMath.fromAl(lootSpd, spdAngle, spdLen);
+    ManiMath.fromAl(lootSpd, spdAngle, spdLen);
     lootSpd.add(myHull.getSpd());
     pos.add(myHull.getPos());
-    Loot l = game.getLootBuilder().build(game, pos, item, lootSpd, Loot.MAX_LIFE, SolMath.rnd(Loot.MAX_ROT_SPD), this);
+    Loot l = game.getLootBuilder().build(game, pos, item, lootSpd, Loot.MAX_LIFE, ManiMath.rnd(Loot.MAX_ROT_SPD), this);
     game.getObjMan().addObjDelayed(l);
     if (!onDeath) {
       game.getSoundMan().play(game, game.getSpecialSounds().lootThrow, pos, this);
@@ -475,7 +475,7 @@ public class SolShip implements SolObject {
   public float calcTimeToTurn(float destAngle) {
     float angle = myHull.getAngle();
     EngineItem e = myHull.getEngine();
-    float ad = SolMath.angleDiff(angle, destAngle);
+    float ad = ManiMath.angleDiff(angle, destAngle);
     return ad/e.getMaxRotSpd();
   }
 

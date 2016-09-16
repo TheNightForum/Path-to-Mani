@@ -18,7 +18,7 @@ package org.destinationsol.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.FarObj;
 import org.destinationsol.game.SolGame;
@@ -55,7 +55,7 @@ public class PlanetSprites implements SolObject {
 
   private void setDependentParams() {
     float angleToPlanet = myPlanet.getAngle() + myRelAngleToPlanet;
-    SolMath.fromAl(myPos, angleToPlanet, myDist, true);
+    ManiMath.fromAl(myPos, angleToPlanet, myDist, true);
     myPos.add(myPlanet.getPos());
     myAngle = angleToPlanet + 90;
   }

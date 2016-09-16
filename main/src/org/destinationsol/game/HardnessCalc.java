@@ -16,7 +16,7 @@
 
 package org.destinationsol.game;
 
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.gun.GunConfig;
 import org.destinationsol.game.gun.GunItem;
 import org.destinationsol.game.item.*;
@@ -53,7 +53,7 @@ public class HardnessCalc {
     } else {
       projHitChance = (pc.spdLen + pc.acc) / 6;
       if (pc.physSize > 0) projHitChance += pc.physSize;
-      projHitChance = SolMath.clamp(projHitChance, .1f, 1);
+      projHitChance = ManiMath.clamp(projHitChance, .1f, 1);
       if (gc.fixed) {
         projHitChance *= .3f;
       }

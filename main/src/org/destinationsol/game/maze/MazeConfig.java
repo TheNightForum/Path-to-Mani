@@ -20,7 +20,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.files.HullConfigManager;
 import org.destinationsol.game.PathLoader;
 import org.destinationsol.game.ShipConfig;
@@ -89,7 +89,7 @@ public class MazeConfig {
   {
     for (TextureAtlas.AtlasRegion tex : texs) {
       String pathEntry = tex.name + "_" + tex.index + ".png";
-      TextureAtlas.AtlasRegion bgTex = SolMath.elemRnd(bgTexs);
+      TextureAtlas.AtlasRegion bgTex = ManiMath.elemRnd(bgTexs);
       MazeTile iw = MazeTile.load(tex, paths, wall, pathEntry, metal, bgTex);
       list.add(iw);
     }

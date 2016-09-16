@@ -19,7 +19,7 @@ package org.destinationsol.game.item;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.FarObj;
 import org.destinationsol.game.SolGame;
@@ -93,7 +93,7 @@ public class Loot implements SolObject {
 
   private void setParamsFromBody() {
     myPos.set(myBody.getPosition());
-    myAngle = myBody.getAngle() * SolMath.radDeg;
+    myAngle = myBody.getAngle() * ManiMath.radDeg;
   }
 
   @Override
@@ -173,21 +173,21 @@ public class Loot implements SolObject {
 
   public void maybePulled(SolShip ship, Vector2 pullerPos, float radius) {
     if (ship == myOwner) return;
-    Vector2 toPuller = SolMath.getVec(pullerPos);
+    Vector2 toPuller = ManiMath.getVec(pullerPos);
     toPuller.sub(getPosition());
     float pullerDist = toPuller.len();
     if (0 < pullerDist && pullerDist < radius) {
       toPuller.scl(PULL_DESIRED_SPD /pullerDist);
       Vector2 spd = myBody.getLinearVelocity();
-      Vector2 spdDiff = SolMath.distVec(spd, toPuller);
+      Vector2 spdDiff = ManiMath.distVec(spd, toPuller);
       float spdDiffLen = spdDiff.len();
       if (spdDiffLen > 0) {
         spdDiff.scl(PULL_FORCE / spdDiffLen);
         myBody.applyForceToCenter(spdDiff, true);
       }
-      SolMath.free(spdDiff);
+      ManiMath.free(spdDiff);
     }
-    SolMath.free(toPuller);
+    ManiMath.free(toPuller);
   }
 
   public SolItem getItem() {

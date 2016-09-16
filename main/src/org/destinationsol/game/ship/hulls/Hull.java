@@ -19,7 +19,7 @@ package org.destinationsol.game.ship.hulls;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.dra.Dra;
@@ -133,21 +133,21 @@ public class Hull {
     }
 
     if (myPlanetBind != null) {
-      Vector2 spd = SolMath.getVec();
+      Vector2 spd = ManiMath.getVec();
       myPlanetBind.setDiff(spd, myPos, true);
       float fps = 1 / game.getTimeStep();
       spd.scl(fps);
       myBody.setLinearVelocity(spd);
-      SolMath.free(spd);
+      ManiMath.free(spd);
       float angleDiff = myPlanetBind.getDesiredAngle() - myAngle;
-      myBody.setAngularVelocity(angleDiff * SolMath.degRad * fps);
+      myBody.setAngularVelocity(angleDiff * ManiMath.degRad * fps);
     }
   }
 
   private void setParamsFromBody() {
     myPos.set(myBody.getPosition());
-    myAngle = myBody.getAngle() * SolMath.radDeg;
-    myRotSpd = myBody.getAngularVelocity() * SolMath.radDeg;
+    myAngle = myBody.getAngle() * ManiMath.radDeg;
+    myRotSpd = myBody.getAngularVelocity() * ManiMath.radDeg;
     mySpd.set(myBody.getLinearVelocity());
   }
 

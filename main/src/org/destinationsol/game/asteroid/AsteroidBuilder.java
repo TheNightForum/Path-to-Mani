@@ -25,7 +25,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import org.destinationsol.Const;
 import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.PathLoader;
 import org.destinationsol.game.RemoveController;
 import org.destinationsol.game.SolGame;
@@ -50,14 +50,14 @@ public class AsteroidBuilder {
 
   // doesn't consume pos
   public Asteroid buildNew(SolGame game, Vector2 pos, Vector2 spd, float sz, RemoveController removeController) {
-    float rotSpd = SolMath.rnd(MAX_A_ROT_SPD);
-    return build(game, pos, SolMath.elemRnd(myTexs), sz, SolMath.rnd(180), rotSpd, spd, removeController);
+    float rotSpd = ManiMath.rnd(MAX_A_ROT_SPD);
+    return build(game, pos, ManiMath.elemRnd(myTexs), sz, ManiMath.rnd(180), rotSpd, spd, removeController);
   }
 
   // doesn't consume pos
   public FarAsteroid buildNewFar(Vector2 pos, Vector2 spd, float sz, RemoveController removeController) {
-    float rotSpd = SolMath.rnd(MAX_A_ROT_SPD);
-    return new FarAsteroid(SolMath.elemRnd(myTexs), new Vector2(pos), SolMath.rnd(180), removeController, sz, new Vector2(spd), rotSpd);
+    float rotSpd = ManiMath.rnd(MAX_A_ROT_SPD);
+    return new FarAsteroid(ManiMath.elemRnd(myTexs), new Vector2(pos), ManiMath.rnd(180), removeController, sz, new Vector2(spd), rotSpd);
   }
 
   // doesn't consume pos
@@ -89,7 +89,7 @@ public class AsteroidBuilder {
   public static Body buildBall(SolGame game, Vector2 pos, float angle, float rad, float density, boolean sensor) {
     BodyDef bd = new BodyDef();
     bd.type = BodyDef.BodyType.DynamicBody;
-    bd.angle = angle * SolMath.degRad;
+    bd.angle = angle * ManiMath.degRad;
     bd.angularDamping = 0;
     bd.position.set(pos);
     bd.linearDamping = 0;

@@ -19,7 +19,7 @@ package org.destinationsol.game.planet;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.FarObj;
 import org.destinationsol.game.SolGame;
@@ -67,20 +67,20 @@ public class TileObject implements SolObject {
 
     if (myBody != null) {
       float ts = game.getTimeStep();
-      Vector2 spd = SolMath.getVec(myPos);
+      Vector2 spd = ManiMath.getVec(myPos);
       spd.sub(myBody.getPosition());
       spd.scl(1f / ts);
       myBody.setLinearVelocity(spd);
-      SolMath.free(spd);
-      float bodyAngle = myBody.getAngle() * SolMath.radDeg;
-      float av = SolMath.norm(myAngle - bodyAngle) * SolMath.degRad / ts;
+      ManiMath.free(spd);
+      float bodyAngle = myBody.getAngle() * ManiMath.radDeg;
+      float av = ManiMath.norm(myAngle - bodyAngle) * ManiMath.degRad / ts;
       myBody.setAngularVelocity(av);
     }
   }
 
   private void setDependentParams() {
     float toPlanetAngle = myPlanet.getAngle() + myToPlanetRelAngle;
-    SolMath.fromAl(myPos, toPlanetAngle, myDist, true);
+    ManiMath.fromAl(myPos, toPlanetAngle, myDist, true);
     myPos.add(myPlanet.getPos());
     myAngle = toPlanetAngle + 90;
   }

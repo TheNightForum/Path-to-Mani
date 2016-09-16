@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.SolGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.planet.Planet;
@@ -47,7 +47,7 @@ public class SmallObjAvoider {
     float raycastLen = shipSpdLen * (ttt + MANEUVER_TIME);
     if (raycastLen < MIN_RAYCAST_LEN) raycastLen = MIN_RAYCAST_LEN;
 
-    SolMath.fromAl(myDest, toDestAngle, raycastLen);
+    ManiMath.fromAl(myDest, toDestAngle, raycastLen);
     myDest.add(shipPos);
     myCollided = false;
     World w = game.getObjMan().getWorld();
@@ -55,21 +55,21 @@ public class SmallObjAvoider {
     if (!myCollided) return toDestAngle;
 
     toDestAngle += 45;
-    SolMath.fromAl(myDest, toDestAngle, raycastLen);
+    ManiMath.fromAl(myDest, toDestAngle, raycastLen);
     myDest.add(shipPos);
     myCollided = false;
     w.rayCast(myRayBack, shipPos, myDest);
     if (!myCollided) return toDestAngle;
 
     toDestAngle -= 90;
-    SolMath.fromAl(myDest, toDestAngle, raycastLen);
+    ManiMath.fromAl(myDest, toDestAngle, raycastLen);
     myDest.add(shipPos);
     myCollided = false;
     w.rayCast(myRayBack, shipPos, myDest);
     if (!myCollided) return toDestAngle;
 
     if (np.getFullHeight() < np.getPos().dst(shipPos)) return toDestAngle - 45;
-    return SolMath.angle(np.getPos(), shipPos);
+    return ManiMath.angle(np.getPos(), shipPos);
   }
 
   private class MyRayBack implements RayCastCallback {

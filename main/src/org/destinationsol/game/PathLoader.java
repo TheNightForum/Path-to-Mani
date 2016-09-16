@@ -26,7 +26,7 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.files.FileManager;
 import org.destinationsol.files.HullConfigManager;
 import org.destinationsol.game.dra.Dra;
@@ -406,7 +406,7 @@ public class PathLoader {
 
         BodyDef bd = new BodyDef();
         bd.type = type;
-        bd.angle = angle * SolMath.degRad;
+        bd.angle = angle * ManiMath.degRad;
         bd.angularDamping = 0;
         bd.position.set(pos);
         bd.linearDamping = 0;
@@ -446,7 +446,7 @@ public class PathLoader {
   {
     BodyDef bd = new BodyDef();
     bd.type = type;
-    bd.angle = angle * SolMath.degRad;
+    bd.angle = angle * ManiMath.degRad;
     bd.angularDamping = 0;
     bd.position.set(pos);
     bd.linearDamping = 0;

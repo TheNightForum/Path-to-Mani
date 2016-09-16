@@ -18,7 +18,7 @@ package org.destinationsol.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.GameColors;
 import org.destinationsol.game.gun.GunConfig;
 import org.destinationsol.game.gun.GunItem;
@@ -72,8 +72,8 @@ public class ItemManager {
         List<ItemConfig> list = parseItems(items);
         for (ItemConfig ic : list) {
             for (int i = 0; i < ic.amt; i++) {
-                if (SolMath.test(ic.chance)) {
-                    SolItem item = SolMath.elemRnd(ic.examples).copy();
+                if (ManiMath.test(ic.chance)) {
+                    SolItem item = ManiMath.elemRnd(ic.examples).copy();
                     c.add(item);
                 }
             }
@@ -147,7 +147,7 @@ public class ItemManager {
     }
 
     public SolItem random() {
-        return myL.get(SolMath.intRnd(myM.size())).copy();
+        return myL.get(ManiMath.intRnd(myM.size())).copy();
     }
 
     public void registerItem(SolItem example) {

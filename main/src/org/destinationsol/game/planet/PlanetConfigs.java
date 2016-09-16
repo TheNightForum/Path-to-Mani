@@ -20,7 +20,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.destinationsol.TextureManager;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.files.FileManager;
 import org.destinationsol.files.HullConfigManager;
 import org.destinationsol.game.GameColors;
@@ -61,7 +61,7 @@ public class PlanetConfigs {
 
   public PlanetConfig getRandom(boolean easy, boolean hard) {
     List<PlanetConfig> cfg = easy ? myEasy : hard ? myHard : myMedium;
-    return SolMath.elemRnd(cfg);
+    return ManiMath.elemRnd(cfg);
   }
 
   public Map<String, PlanetConfig> getAllConfigs() {

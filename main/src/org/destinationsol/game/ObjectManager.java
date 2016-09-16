@@ -22,7 +22,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import org.destinationsol.Const;
 import org.destinationsol.common.DebugCol;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.common.SolMath;
+import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraMan;
 import org.destinationsol.game.dra.FarDras;
@@ -93,7 +93,7 @@ public class ObjectManager {
     for (int i1 = 0, myObjsSize = myObjs.size(); i1 < myObjsSize; i1++) {
       SolObject o = myObjs.get(i1);
       o.update(game);
-      SolMath.checkVectorsTaken(o);
+      ManiMath.checkVectorsTaken(o);
       List<Dra> dras = o.getDras();
       for (int i = 0, drasSize = dras.size(); i < drasSize; i++) {
         Dra dra = dras.get(i);
@@ -117,7 +117,7 @@ public class ObjectManager {
       FarObjData fod = it.next();
       FarObj fo = fod.fo;
       fo.update(game);
-      SolMath.checkVectorsTaken(fo);
+      ManiMath.checkVectorsTaken(fo);
       if (fo.shouldBeRemoved(game)) {
         removeFo(it, fo);
         continue;
