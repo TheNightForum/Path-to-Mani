@@ -17,7 +17,7 @@
 package com.pathtomani.entities.item;
 
 import com.badlogic.gdx.graphics.Color;
-import com.pathtomani.game.sound.ManiSound;
+import com.pathtomani.managers.sound.ManiSound;
 
 public class ManiItemType {
   public final Color color;
