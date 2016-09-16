@@ -22,9 +22,9 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.Faction;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ShipConfig;
-import com.pathtomani.game.input.AiPilot;
-import com.pathtomani.game.input.Pilot;
-import com.pathtomani.game.input.StillGuard;
+import com.pathtomani.managers.input.AiPilot;
+import com.pathtomani.managers.input.Pilot;
+import com.pathtomani.managers.input.StillGuard;
 import com.pathtomani.entities.ship.FarShip;
 import com.pathtomani.entities.ship.ShipBuilder;
 

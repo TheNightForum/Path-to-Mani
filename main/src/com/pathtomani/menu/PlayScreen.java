@@ -24,7 +24,7 @@ import com.pathtomani.ManiApplication;
 import com.pathtomani.gfx.TextureManager;
 import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.game.DebugOptions;
-import com.pathtomani.game.sound.MusicManager;
+import com.pathtomani.managers.sound.MusicManager;
 import com.pathtomani.ui.ManiInputManager;
 import com.pathtomani.ui.ManiUiControl;
 import com.pathtomani.ui.ManiUiScreen;

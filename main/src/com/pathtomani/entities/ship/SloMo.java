@@ -21,7 +21,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.AbilityCommonConfig;
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.dra.DraLevel;
+import com.pathtomani.managers.dra.DraLevel;
 import com.pathtomani.entities.item.ItemManager;
 import com.pathtomani.entities.item.ManiItem;
 import com.pathtomani.gfx.particle.ParticleSrc;

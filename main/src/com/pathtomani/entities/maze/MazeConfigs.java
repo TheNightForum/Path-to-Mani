@@ -19,9 +19,9 @@ package com.pathtomani.entities.maze;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import com.pathtomani.files.HullConfigManager;
+import com.pathtomani.managers.files.HullConfigManager;
 import com.pathtomani.gfx.TextureManager;
-import com.pathtomani.files.FileManager;
+import com.pathtomani.managers.files.FileManager;
 import com.pathtomani.entities.item.ItemManager;
 
 import java.util.ArrayList;

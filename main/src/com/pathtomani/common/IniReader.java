@@ -17,7 +17,7 @@
 package com.pathtomani.common;
 
 import com.badlogic.gdx.files.FileHandle;
-import com.pathtomani.files.FileManager;
+import com.pathtomani.managers.files.FileManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;

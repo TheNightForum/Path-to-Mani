@@ -18,7 +18,7 @@ package com.pathtomani.gfx.particle;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
-import com.pathtomani.files.FileManager;
+import com.pathtomani.managers.files.FileManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -26,7 +26,7 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.files.FileManager;
+import com.pathtomani.managers.files.FileManager;
 
 public class CommonDrawer {
   public final float w;

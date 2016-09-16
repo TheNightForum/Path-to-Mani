@@ -20,11 +20,11 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import com.pathtomani.files.FileManager;
+import com.pathtomani.managers.files.FileManager;
 import com.pathtomani.gfx.GameColors;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.gfx.TextureManager;
-import com.pathtomani.game.dra.DraLevel;
+import com.pathtomani.managers.dra.DraLevel;
 
 import java.util.ArrayList;
 import java.util.List;

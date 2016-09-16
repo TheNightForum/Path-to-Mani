@@ -20,10 +20,10 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import com.pathtomani.game.sound.SoundManager;
-import com.pathtomani.files.FileManager;
+import com.pathtomani.managers.sound.SoundManager;
+import com.pathtomani.managers.files.FileManager;
 import com.pathtomani.gfx.GameColors;
-import com.pathtomani.game.sound.ManiSound;
+import com.pathtomani.managers.sound.ManiSound;
 
 public class ManiItemTypes {
   public final ManiItemType clip;

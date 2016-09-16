@@ -27,9 +27,9 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.GameDrawer;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
-import com.pathtomani.game.dra.Dra;
+import com.pathtomani.managers.dra.Dra;
 import com.pathtomani.entities.planet.Planet;
-import com.pathtomani.game.dra.DraLevel;
+import com.pathtomani.managers.dra.DraLevel;
 
 public class ParticleSrc implements Dra {
   public static final float JUMP_SPD_TRESH = .9f;

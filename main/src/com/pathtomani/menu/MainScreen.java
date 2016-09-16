@@ -21,7 +21,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.pathtomani.ManiApplication;
-import com.pathtomani.game.sound.MusicManager;
+import com.pathtomani.managers.sound.MusicManager;
 import com.pathtomani.ui.ManiInputManager;
 import com.pathtomani.ui.ManiUiScreen;
 import com.pathtomani.ui.UiDrawer;

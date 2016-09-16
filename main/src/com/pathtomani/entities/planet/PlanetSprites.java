@@ -23,7 +23,7 @@ import com.pathtomani.game.DmgType;
 import com.pathtomani.game.FarObj;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
-import com.pathtomani.game.dra.Dra;
+import com.pathtomani.managers.dra.Dra;
 
 import java.util.List;
 

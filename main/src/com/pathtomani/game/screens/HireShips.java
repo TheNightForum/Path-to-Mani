@@ -22,7 +22,7 @@ import com.pathtomani.ManiApplication;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ShipConfig;
-import com.pathtomani.game.input.AiPilot;
+import com.pathtomani.managers.input.AiPilot;
 import com.pathtomani.entities.item.ItemContainer;
 import com.pathtomani.entities.item.MercItem;
 import com.pathtomani.entities.item.ManiItem;
@@ -34,7 +34,7 @@ import com.pathtomani.ui.ManiInputManager;
 import com.pathtomani.ui.UiDrawer;
 import com.pathtomani.common.Const;
 import com.pathtomani.game.Faction;
-import com.pathtomani.game.input.Guardian;
+import com.pathtomani.managers.input.Guardian;
 import com.pathtomani.ui.ManiUiControl;
 
 import java.util.ArrayList;

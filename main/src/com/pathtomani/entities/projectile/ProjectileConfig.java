@@ -19,7 +19,7 @@ package com.pathtomani.entities.projectile;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.gfx.particle.EffectConfig;
-import com.pathtomani.game.sound.ManiSound;
+import com.pathtomani.managers.sound.ManiSound;
 import com.pathtomani.game.DmgType;
 
 public class ProjectileConfig {

@@ -19,7 +19,7 @@ package com.pathtomani.entities.planet;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import com.pathtomani.files.HullConfigManager;
+import com.pathtomani.managers.files.HullConfigManager;
 import com.pathtomani.gfx.GameColors;
 import com.pathtomani.game.ShipConfig;
 import com.pathtomani.entities.item.TradeConfig;

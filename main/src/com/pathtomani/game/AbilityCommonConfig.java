@@ -20,8 +20,8 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.gfx.GameColors;
 import com.pathtomani.gfx.particle.EffectConfig;
-import com.pathtomani.game.sound.ManiSound;
-import com.pathtomani.game.sound.SoundManager;
+import com.pathtomani.managers.sound.ManiSound;
+import com.pathtomani.managers.sound.SoundManager;
 import com.pathtomani.gfx.TextureManager;
 import com.pathtomani.gfx.particle.EffectTypes;
 

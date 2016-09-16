@@ -22,7 +22,7 @@ import com.pathtomani.game.AbilityCommonConfig;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.entities.item.ManiItem;
-import com.pathtomani.game.dra.DraLevel;
+import com.pathtomani.managers.dra.DraLevel;
 import com.pathtomani.entities.item.ItemManager;
 import com.pathtomani.gfx.particle.ParticleSrc;
 
