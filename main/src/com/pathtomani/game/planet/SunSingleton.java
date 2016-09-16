@@ -48,7 +48,7 @@ public class SunSingleton {
 
   public void draw(ManiGame game, GameDrawer drawer) {
     Vector2 camPos = game.getCam().getPos();
-    SolSystem sys = game.getPlanetMan().getNearestSystem(camPos);
+    ManiSystem sys = game.getPlanetMan().getNearestSystem(camPos);
     Vector2 toCam = ManiMath.getVec(camPos);
     toCam.sub(sys.getPos());
     float toCamLen = toCam.len();

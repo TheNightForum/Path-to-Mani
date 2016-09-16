@@ -19,7 +19,7 @@ package com.pathtomani.game;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.planet.Planet;
-import com.pathtomani.game.planet.SolSystem;
+import com.pathtomani.game.planet.ManiSystem;
 import com.pathtomani.Const;
 
 public interface CamRotStrategy {
@@ -40,7 +40,7 @@ public interface CamRotStrategy {
       if (npPos.dst(pos) < fh) {
         return ManiMath.angle(pos, npPos, true) - 90;
       }
-      SolSystem sys = game.getPlanetMan().getNearestSystem(pos);
+      ManiSystem sys = game.getPlanetMan().getNearestSystem(pos);
       Vector2 sysPos = sys.getPos();
       if (sysPos.dst(pos) < Const.SUN_RADIUS) {
         return ManiMath.angle(pos, sysPos, true) - 90;

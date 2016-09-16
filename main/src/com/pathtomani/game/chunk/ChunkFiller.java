@@ -102,7 +102,7 @@ public class ChunkFiller {
   private SpaceEnvConfig getConfig(ManiGame game, Vector2 chCenter, float[] densityMul,
                                    RemoveController remover, boolean farBg) {
     PlanetManager pm = game.getPlanetMan();
-    SolSystem sys = pm.getNearestSystem(chCenter);
+    ManiSystem sys = pm.getNearestSystem(chCenter);
     float toSys = sys.getPos().dst(chCenter);
     if (toSys < sys.getRadius()) {
       if (toSys < Const.SUN_RADIUS) return null;
@@ -137,7 +137,7 @@ public class ChunkFiller {
     return null;
   }
 
-  private void fillForSys(ManiGame game, Vector2 chCenter, RemoveController remover, SolSystem sys) {
+  private void fillForSys(ManiGame game, Vector2 chCenter, RemoveController remover, ManiSystem sys) {
     SysConfig conf = sys.getConfig();
     Vector2 mainStationPos = game.getGalaxyFiller().getMainStationPos();
     Vector2 startPos = mainStationPos == null ? new Vector2() : mainStationPos;

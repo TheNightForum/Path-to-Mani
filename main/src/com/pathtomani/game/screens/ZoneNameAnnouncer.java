@@ -22,7 +22,7 @@ import com.pathtomani.game.planet.Planet;
 import com.pathtomani.Const;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.planet.PlanetManager;
-import com.pathtomani.game.planet.SolSystem;
+import com.pathtomani.game.planet.ManiSystem;
 import com.pathtomani.ui.FontSize;
 import com.pathtomani.ui.UiDrawer;
 
@@ -42,7 +42,7 @@ public class ZoneNameAnnouncer {
       zone = p.getName();
       pref = "Planet";
     } else {
-      SolSystem s = pm.getNearestSystem(camPos);
+      ManiSystem s = pm.getNearestSystem(camPos);
       if (s.getPos().dst(camPos) < s.getRadius()) {
         zone = s.getName();
         pref = "System";

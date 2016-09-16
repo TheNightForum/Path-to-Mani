@@ -24,7 +24,7 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.*;
 import com.pathtomani.game.planet.Planet;
 import com.pathtomani.game.planet.PlanetManager;
-import com.pathtomani.game.planet.SolSystem;
+import com.pathtomani.game.planet.ManiSystem;
 import com.pathtomani.game.planet.SunSingleton;
 import com.pathtomani.game.ship.FarShip;
 import com.pathtomani.game.ship.ManiShip;
@@ -158,7 +158,7 @@ public class BorderDrawer {
       float objRad = p.getFullHeight();
       apply0(camPos, camAngle, objPos, objRad);
     }
-    SolSystem sys = pMan.getNearestSystem(camPos);
+    ManiSystem sys = pMan.getNearestSystem(camPos);
     apply0(camPos, camAngle, sys.getPos(), SunSingleton.SUN_HOT_RAD);
     for (int i = 0, myTishchesSize = myTishches.size(); i < myTishchesSize; i++) {
       Tishch t = myTishches.get(i);

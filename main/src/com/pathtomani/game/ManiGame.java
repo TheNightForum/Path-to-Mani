@@ -44,7 +44,7 @@ import com.pathtomani.game.particle.EffectTypes;
 import com.pathtomani.game.particle.PartMan;
 import com.pathtomani.game.particle.SpecialEffects;
 import com.pathtomani.game.planet.PlanetManager;
-import com.pathtomani.game.planet.SolSystem;
+import com.pathtomani.game.planet.ManiSystem;
 import com.pathtomani.game.planet.SunSingleton;
 import com.pathtomani.game.screens.GameScreens;
 import com.pathtomani.game.ship.hulls.HullConfig;
@@ -415,7 +415,7 @@ public class ManiGame {
       boolean inPlanet = np.getPos().dst(pos) < np.getFullHeight();
       if (inPlanet) return false;
     }
-    SolSystem ns = myPlanetManager.getNearestSystem(pos);
+    ManiSystem ns = myPlanetManager.getNearestSystem(pos);
     if (ns.getPos().dst(pos) < SunSingleton.SUN_HOT_RAD) return false;
     List<ManiObject> objs = myObjectManager.getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {

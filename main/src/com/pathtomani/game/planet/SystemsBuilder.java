@@ -38,9 +38,9 @@ public class SystemsBuilder {
   private static final float MAZE_GAP = 10f;
   private static final float BELT_HALF_WIDTH = 20f;
 
-  public List<SolSystem> build(List<SolSystem> systems, List<Planet> planets, ArrayList<SystemBelt> belts,
-                               PlanetConfigs planetConfigs,
-                               MazeConfigs mazeConfigs, ArrayList<Maze> mazes, SysConfigs sysConfigs, ManiNames names)
+  public List<ManiSystem> build(List<ManiSystem> systems, List<Planet> planets, ArrayList<SystemBelt> belts,
+                                PlanetConfigs planetConfigs,
+                                MazeConfigs mazeConfigs, ArrayList<Maze> mazes, SysConfigs sysConfigs, ManiNames names)
   {
     int sysLeft = SYS_COUNT;
     int mazesLeft = MAZE_COUNT;
@@ -51,7 +51,7 @@ public class SystemsBuilder {
         List<Float> ghs = generatePlanetGhs();
         float sysRadius = calcSysRadius(ghs);
         Vector2 pos = getBodyPos(systems, mazes, sysRadius);
-        SolSystem s = createSystem(ghs, pos, planets, belts, planetConfigs, sysRadius, sysConfigs, names, systems.isEmpty());
+        ManiSystem s = createSystem(ghs, pos, planets, belts, planetConfigs, sysRadius, sysConfigs, names, systems.isEmpty());
         systems.add(s);
         sysLeft--;
       } else {
@@ -102,7 +102,7 @@ public class SystemsBuilder {
     return r;
   }
 
-  private Vector2 getBodyPos(List<SolSystem> systems, ArrayList<Maze> mazes, float bodyRadius) {
+  private Vector2 getBodyPos(List<ManiSystem> systems, ArrayList<Maze> mazes, float bodyRadius) {
     Vector2 res = new Vector2();
     float dist = 0;
     while (true) {
@@ -110,7 +110,7 @@ public class SystemsBuilder {
         float angle = ManiMath.rnd(180);
         ManiMath.fromAl(res, angle, dist);
         boolean good = true;
-        for (SolSystem system : systems) {
+        for (ManiSystem system : systems) {
           if (system.getPos().dst(res) < system.getRadius() + bodyRadius) {
             good = false;
             break;
@@ -128,9 +128,9 @@ public class SystemsBuilder {
     }
   }
 
-  private SolSystem createSystem(List<Float> ghs, Vector2 sysPos, List<Planet> planets, ArrayList<SystemBelt> belts,
-                                 PlanetConfigs planetConfigs,
-                                 float sysRadius, SysConfigs sysConfigs, ManiNames names, boolean firstSys)
+  private ManiSystem createSystem(List<Float> ghs, Vector2 sysPos, List<Planet> planets, ArrayList<SystemBelt> belts,
+                                  PlanetConfigs planetConfigs,
+                                  float sysRadius, SysConfigs sysConfigs, ManiNames names, boolean firstSys)
   {
     boolean hard = !firstSys;
     String st = DebugOptions.FORCE_SYSTEM_TYPE;
@@ -141,7 +141,7 @@ public class SystemsBuilder {
       sysConfig = sysConfigs.getConfig(st);
     }
     String name = firstSys ? ManiMath.elemRnd(names.systems) : "Sol"; //hack
-    SolSystem s = new SolSystem(sysPos, sysConfig, name, sysRadius);
+    ManiSystem s = new ManiSystem(sysPos, sysConfig, name, sysRadius);
     float planetDist = Const.SUN_RADIUS;
     for (int idx = 0, sz = ghs.size(); idx < sz; idx++) {
       Float gh = ghs.get(idx);
@@ -176,8 +176,8 @@ public class SystemsBuilder {
     return s;
   }
 
-  private Planet createPlanet(float planetDist, SolSystem s, float groundHeight, PlanetConfig planetConfig,
-    ManiNames names) {
+  private Planet createPlanet(float planetDist, ManiSystem s, float groundHeight, PlanetConfig planetConfig,
+                              ManiNames names) {
     float toSysRotSpd = ManiMath.arcToAngle(PLANET_SPD, planetDist) * ManiMath.toInt(ManiMath.test(.5f));
     float rotSpd = ManiMath.arcToAngle(GROUND_SPD, groundHeight)  * ManiMath.toInt(ManiMath.test(.5f));
     String name = ManiMath.elemRnd(names.planets);

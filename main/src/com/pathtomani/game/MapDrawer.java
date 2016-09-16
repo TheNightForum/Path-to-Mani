@@ -153,16 +153,16 @@ public class MapDrawer {
   private void drawPlanets(GameDrawer drawer, ManiGame game, float viewDist, Planet np, Vector2 camPos, float heroDmgCap,
                            float camAngle)
   {
-    ArrayList<SolSystem> systems = game.getPlanetMan().getSystems();
+    ArrayList<ManiSystem> systems = game.getPlanetMan().getSystems();
     ManiCam cam = game.getCam();
     float circleWidth = cam.getRealLineWidth() * 6;
     float vh = cam.getViewHeight(myZoom);
     for (int i3 = 0, systemsSize1 = systems.size(); i3 < systemsSize1; i3++) {
-      SolSystem sys = systems.get(i3);
+      ManiSystem sys = systems.get(i3);
       drawer.drawCircle(myLineTex, sys.getPos(), sys.getRadius(), ManiColor.UI_MED, circleWidth, vh);
     }
     for (int i2 = 0, systemsSize = systems.size(); i2 < systemsSize; i2++) {
-      SolSystem sys = systems.get(i2);
+      ManiSystem sys = systems.get(i2);
       float dangerRad = HardnessCalc.isDangerous(heroDmgCap, sys.getDps()) ? sys.getRadius() : 0;
       Vector2 sysPos = sys.getPos();
       float rad = Const.SUN_RADIUS;

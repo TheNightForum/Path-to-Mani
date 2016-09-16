@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Planet {
-  private final SolSystem mySys;
+  private final ManiSystem mySys;
   private final Vector2 myPos;
   private final float myDist;
   private final float myToSysRotSpd;
@@ -46,8 +46,8 @@ public class Planet {
   private float myMinGroundHeight;
   private Vector2 mySpd;
 
-  public Planet(SolSystem sys, float angleToSys, float dist, float angle, float toSysRotSpd, float rotSpd,
-    float groundHeight, boolean objsCreated, PlanetConfig config, String name)
+  public Planet(ManiSystem sys, float angleToSys, float dist, float angle, float toSysRotSpd, float rotSpd,
+                float groundHeight, boolean objsCreated, PlanetConfig config, String name)
   {
     mySys = sys;
     myAngleToSys = angleToSys;
@@ -115,7 +115,7 @@ public class Planet {
     return myGroundHeight;
   }
 
-  public SolSystem getSys() {
+  public ManiSystem getSys() {
     return mySys;
   }
 

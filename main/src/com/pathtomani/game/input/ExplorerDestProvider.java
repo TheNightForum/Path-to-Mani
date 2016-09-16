@@ -21,7 +21,7 @@ import com.pathtomani.Const;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.planet.Planet;
-import com.pathtomani.game.planet.SolSystem;
+import com.pathtomani.game.planet.ManiSystem;
 import com.pathtomani.game.ship.ManiShip;
 import com.pathtomani.game.ship.hulls.HullConfig;
 
@@ -37,14 +37,14 @@ public class ExplorerDestProvider implements MoveDestProvider {
   private final Vector2 myDest;
   private final boolean myAggressive;
   private final float myDesiredSpdLen;
-  private final SolSystem mySys;
+  private final ManiSystem mySys;
   private Vector2 myRelDest;
   private Planet myPlanet;
   private float myAwaitOnPlanet;
   private boolean myDestIsLanding;
   private Vector2 myDestSpd;
 
-  public ExplorerDestProvider(ManiGame game, Vector2 pos, boolean aggressive, HullConfig config, SolSystem sys)
+  public ExplorerDestProvider(ManiGame game, Vector2 pos, boolean aggressive, HullConfig config, ManiSystem sys)
   {
     mySys = sys;
     myDest = new Vector2();

@@ -36,7 +36,7 @@ public class GalaxyFiller {
   public GalaxyFiller() {
   }
 
-  private Vector2 getPosForStation(SolSystem sys, boolean mainStation, ConsumedAngles angles) {
+  private Vector2 getPosForStation(ManiSystem sys, boolean mainStation, ConsumedAngles angles) {
     Planet p;
     ArrayList<Planet> planets = sys.getPlanets();
     float angleToSun;
@@ -60,7 +60,7 @@ public class GalaxyFiller {
     return stationPos;
   }
 
-  private FarShip build(ManiGame game, ShipConfig cfg, Faction faction, boolean mainStation, SolSystem sys,
+  private FarShip build(ManiGame game, ShipConfig cfg, Faction faction, boolean mainStation, ManiSystem sys,
                         ConsumedAngles angles)
   {
     HullConfig hullConf = cfg.hull;
@@ -111,7 +111,7 @@ public class GalaxyFiller {
   public void fill(ManiGame game) {
     if (DebugOptions.NO_OBJS) return;
     createStarPorts(game);
-    ArrayList<SolSystem> systems = game.getPlanetMan().getSystems();
+    ArrayList<ManiSystem> systems = game.getPlanetMan().getSystems();
 
     ShipConfig mainStationCfg = game.getPlayerSpawnConfig().mainStation;
     ConsumedAngles angles = new ConsumedAngles();
@@ -119,7 +119,7 @@ public class GalaxyFiller {
     myMainStationPos = new Vector2(mainStation.getPos());
     myMainStationHc = mainStation.getHullConfig();
 
-    for (SolSystem sys : systems) {
+    for (ManiSystem sys : systems) {
       SysConfig sysConfig = sys.getConfig();
       for (ShipConfig shipConfig : sysConfig.constAllies) {
         int count = (int)(shipConfig.density);
@@ -140,7 +140,7 @@ public class GalaxyFiller {
   private void createStarPorts(ManiGame game) {
     PlanetManager planetManager = game.getPlanetMan();
     ArrayList<Planet> biggest = new ArrayList<Planet>();
-    for (SolSystem s : planetManager.getSystems()) {
+    for (ManiSystem s : planetManager.getSystems()) {
       float minH = 0;
       Planet biggestP = null;
       int bi = -1;
@@ -190,7 +190,7 @@ public class GalaxyFiller {
     game.getObjMan().addFarObjNow(e);
   }
 
-  private Vector2 getEmptySpace(ManiGame game, SolSystem s) {
+  private Vector2 getEmptySpace(ManiGame game, ManiSystem s) {
     Vector2 res = new Vector2();
     Vector2 sPos = s.getPos();
     float sRadius = s.getConfig().hard ? s.getRadius() : s.getInnerRad();

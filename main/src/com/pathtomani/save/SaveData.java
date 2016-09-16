@@ -18,19 +18,19 @@ package com.pathtomani.save;
 
 import com.pathtomani.game.FarObj;
 import com.pathtomani.game.planet.Planet;
-import com.pathtomani.game.planet.SolSystem;
+import com.pathtomani.game.planet.ManiSystem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SaveData {
   public final List<FarObj> farObjs;
-  public final List<SolSystem> systems;
+  public final List<ManiSystem> systems;
   public final List<Planet> planets;
 
   public SaveData() {
     farObjs = new ArrayList<FarObj>();
     planets = new ArrayList<Planet>();
-    systems = new ArrayList<SolSystem>();
+    systems = new ArrayList<ManiSystem>();
   }
 }

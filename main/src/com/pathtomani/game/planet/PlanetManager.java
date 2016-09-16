@@ -37,7 +37,7 @@ import java.util.List;
 
 public class PlanetManager {
 
-  private final ArrayList<SolSystem> mySystems;
+  private final ArrayList<ManiSystem> mySystems;
   private final ArrayList<Planet> myPlanets;
   private final ArrayList<SystemBelt> myBelts;
   private final FlatPlaceFinder myFlatPlaceFinder;
@@ -54,7 +54,7 @@ public class PlanetManager {
     mySysConfigs = new SysConfigs(textureManager, hullConfigs, itemManager);
     myMazeConfigs = new MazeConfigs(textureManager, hullConfigs, itemManager);
 
-    mySystems = new ArrayList<SolSystem>();
+    mySystems = new ArrayList<ManiSystem>();
     myMazes = new ArrayList<Maze>();
     myPlanets = new ArrayList<Planet>();
     myBelts = new ArrayList<SystemBelt>();
@@ -80,7 +80,7 @@ public class PlanetManager {
 
     myNearestPlanet = getNearestPlanet(camPos);
 
-    SolSystem nearestSys = getNearestSystem(camPos);
+    ManiSystem nearestSys = getNearestSystem(camPos);
     applyGrav(game, nearestSys);
   }
 
@@ -98,7 +98,7 @@ public class PlanetManager {
     return res;
   }
 
-  private void applyGrav(ManiGame game, SolSystem nearestSys) {
+  private void applyGrav(ManiGame game, ManiSystem nearestSys) {
     float npGh = myNearestPlanet.getGroundHeight();
     float npFh = myNearestPlanet.getFullHeight();
     float npMinH = myNearestPlanet.getMinGroundHeight();
@@ -204,7 +204,7 @@ public class PlanetManager {
     return myBelts;
   }
 
-  public ArrayList<SolSystem> getSystems() {
+  public ArrayList<ManiSystem> getSystems() {
     return mySystems;
   }
 
@@ -217,11 +217,11 @@ public class PlanetManager {
     return myMazes;
   }
 
-  public SolSystem getNearestSystem(Vector2 pos) {
+  public ManiSystem getNearestSystem(Vector2 pos) {
     float minDst = Float.MAX_VALUE;
-    SolSystem res = null;
+    ManiSystem res = null;
     for (int i = 0, mySystemsSize = mySystems.size(); i < mySystemsSize; i++) {
-      SolSystem s = mySystems.get(i);
+      ManiSystem s = mySystems.get(i);
       float dst = pos.dst(s.getPos());
       if (dst < minDst) {
         minDst = dst;
