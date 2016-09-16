@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.game.ship.ManiShip;
-import com.pathtomani.TextureManager;
+import com.pathtomani.common.TextureManager;
 
 public class MountDetectDrawer {
   private final Vector2 myNePos;
