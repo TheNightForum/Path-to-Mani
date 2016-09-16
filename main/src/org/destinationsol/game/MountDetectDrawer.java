@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 public class MountDetectDrawer {
   private final Vector2 myNePos;
@@ -45,7 +45,7 @@ public class MountDetectDrawer {
     if (myAngle > 180) myAngle -= 360;
   }
 
-  public void setNe(SolShip ne) {
+  public void setNe(ManiShip ne) {
     myNePos.set(ne.getPosition());
     myBaseRad = ne.getHull().config.getApproxRadius();
     myShouldDraw = true;

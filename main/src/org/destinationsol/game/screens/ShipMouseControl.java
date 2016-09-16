@@ -22,7 +22,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.game.BeaconHandler;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.ui.SolInputManager;
 
 public class ShipMouseControl implements ShipUiControl {
@@ -43,7 +43,7 @@ public class ShipMouseControl implements ShipUiControl {
   @Override
   public void update(ManiApplication cmp, boolean enabled) {
     ManiGame g = cmp.getGame();
-    SolShip h = g.getHero();
+    ManiShip h = g.getHero();
     myCursor = null;
     if (h != null) {
       myMouseWorldPos.set(Gdx.input.getX(), Gdx.input.getY());

@@ -25,7 +25,7 @@ import org.destinationsol.game.item.*;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.planet.PlanetBind;
 import org.destinationsol.game.ship.FarShip;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
 
 public class AiPilot implements Pilot {
@@ -68,7 +68,7 @@ public class AiPilot implements Pilot {
   }
 
   @Override
-  public void update(ManiGame game, SolShip ship, SolShip nearestEnemy) {
+  public void update(ManiGame game, ManiShip ship, ManiShip nearestEnemy) {
     myAbilityUpdater.update(ship, nearestEnemy);
     myPlanetBind = null;
     Vector2 shipPos = ship.getPosition();
@@ -131,7 +131,7 @@ public class AiPilot implements Pilot {
     return maxIdleDist;
   }
 
-  private Boolean canShoot0(SolShip ship) {
+  private Boolean canShoot0(ManiShip ship) {
     GunItem g1 = ship.getHull().getGun(false);
     if (g1 != null && g1.canShoot()) return !g1.config.fixed ? null : true;
     GunItem g2 = ship.getHull().getGun(true);

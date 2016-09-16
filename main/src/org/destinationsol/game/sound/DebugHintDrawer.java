@@ -20,22 +20,22 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.Nullable;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 public class DebugHintDrawer {
-  private final Map<SolObject, DebugHint> myTracedNotes;
+  private final Map<ManiObject, DebugHint> myTracedNotes;
   private final Map<Vector2, DebugHint> myFreeNotes;
 
   public DebugHintDrawer() {
-    myTracedNotes = new HashMap<SolObject, DebugHint>();
+    myTracedNotes = new HashMap<ManiObject, DebugHint>();
     myFreeNotes = new HashMap<Vector2, DebugHint>();
   }
 
-  public void add(@Nullable SolObject owner, Vector2 pos, String value) {
+  public void add(@Nullable ManiObject owner, Vector2 pos, String value) {
     DebugHint dh;
     if (owner == null) {
       dh = myFreeNotes.get(pos);

@@ -19,12 +19,12 @@ package org.destinationsol.game.input;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiMath;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.ObjectManager;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.ship.FarShip;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
 
 import java.util.List;
@@ -39,7 +39,7 @@ public class Guardian implements MoveDestProvider {
   private final Vector2 myDest;
   private final float myRelAngle;
 
-  private SolShip myTarget;
+  private ManiShip myTarget;
   private FarShip myFarTarget;
 
   public Guardian(ManiGame game, HullConfig hullConfig, Pilot targetPilot, Vector2 targetPos, HullConfig targetHc,
@@ -72,7 +72,7 @@ public class Guardian implements MoveDestProvider {
   }
 
   @Override
-  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, ManiShip nearestEnemy) {
     updateTarget(game);
     myDest.set(shipPos);
     Vector2 targetPos;
@@ -90,7 +90,7 @@ public class Guardian implements MoveDestProvider {
 
   public void updateTarget(ManiGame game) {
     ObjectManager om = game.getObjMan();
-    List<SolObject> objs = om.getObjs();
+    List<ManiObject> objs = om.getObjs();
     if (myTarget != null && objs.contains(myTarget)) return;
     myTarget = null;
     List<FarShip> farShips = om.getFarShips();
@@ -98,9 +98,9 @@ public class Guardian implements MoveDestProvider {
     myFarTarget = null;
 
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject o = objs.get(i);
-      if (!(o instanceof SolShip)) continue;
-      SolShip other = (SolShip) o;
+      ManiObject o = objs.get(i);
+      if (!(o instanceof ManiShip)) continue;
+      ManiShip other = (ManiShip) o;
       if (other.getPilot() != myTargetPilot) continue;
       myTarget = other;
       return;
@@ -124,7 +124,7 @@ public class Guardian implements MoveDestProvider {
   }
 
   @Override
-  public Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround) {
+  public Boolean shouldManeuver(boolean canShoot, ManiShip nearestEnemy, boolean nearGround) {
     if (!canShoot) return null;
     Vector2 targetPos = null;
     if (myTarget != null) {

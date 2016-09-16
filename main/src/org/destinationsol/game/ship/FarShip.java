@@ -89,7 +89,7 @@ public class FarShip implements FarObj {
   }
 
   @Override
-  public SolShip toObj(ManiGame game) {
+  public ManiShip toObj(ManiGame game) {
     return game.getShipBuilder().build(game, myPos, mySpd, myAngle, myRotSpd, myPilot, myContainer, myHullConfig, myLife, myGun1,
       myGun2, myRemoveController, myEngine, myRepairer, myMoney, myTradeContainer, myShield, myArmor);
   }

@@ -23,14 +23,14 @@ import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.FarObj;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.particle.LightSrc;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 import java.util.List;
 
-public class Loot implements SolObject {
+public class Loot implements ManiObject {
 
   public static final int MAX_ROT_SPD = 4;
   public static final float MAX_SPD = .2f;
@@ -46,12 +46,12 @@ public class Loot implements SolObject {
   private final Body myBody;
   private final float myMass;
 
-  private SolShip myOwner;
+  private ManiShip myOwner;
   private float myOwnerAwait;
   private int myLife;
   private float myAngle;
 
-  public Loot(SolItem item, Body body, int life, List<Dra> dras, LightSrc ls, SolShip owner) {
+  public Loot(SolItem item, Body body, int life, List<Dra> dras, LightSrc ls, ManiShip owner) {
     myBody = body;
     myLife = life;
     myItem = item;
@@ -72,13 +72,13 @@ public class Loot implements SolObject {
       myOwnerAwait -= game.getTimeStep();
       if (myOwnerAwait <= 0) myOwner = null;
     }
-    SolShip puller = null;
+    ManiShip puller = null;
     float minDist = Float.MAX_VALUE;
-    List<SolObject> objs = game.getObjMan().getObjs();
+    List<ManiObject> objs = game.getObjMan().getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject o = objs.get(i);
-      if (!(o instanceof SolShip)) continue;
-      SolShip ship = (SolShip) o;
+      ManiObject o = objs.get(i);
+      if (!(o instanceof ManiShip)) continue;
+      ManiShip ship = (ManiShip) o;
       if (!ship.getPilot().collectsItems()) continue;
       if (!(myItem instanceof MoneyItem) && !ship.getItemContainer().canAdd(myItem)) continue;
       float dst = ship.getPosition().dst(myPos);
@@ -149,7 +149,7 @@ public class Loot implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
                             ManiGame game, Vector2 collPos)
   {
     float dmg = absImpulse / myMass / DURABILITY;
@@ -171,7 +171,7 @@ public class Loot implements SolObject {
     return true;
   }
 
-  public void maybePulled(SolShip ship, Vector2 pullerPos, float radius) {
+  public void maybePulled(ManiShip ship, Vector2 pullerPos, float radius) {
     if (ship == myOwner) return;
     Vector2 toPuller = ManiMath.getVec(pullerPos);
     toPuller.sub(getPosition());
@@ -198,11 +198,11 @@ public class Loot implements SolObject {
     myLife = life;
   }
 
-  public SolShip getOwner() {
+  public ManiShip getOwner() {
     return myOwner;
   }
 
-  public void pickedUp(ManiGame game, SolShip ship) {
+  public void pickedUp(ManiGame game, ManiShip ship) {
     myLife = 0;
     Vector2 spd = new Vector2(ship.getPosition());
     spd.sub(myPos);

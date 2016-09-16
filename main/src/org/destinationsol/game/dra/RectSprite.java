@@ -24,7 +24,7 @@ import org.destinationsol.common.Consumed;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 
 public class RectSprite implements Dra {
 
@@ -106,11 +106,11 @@ public class RectSprite implements Dra {
     return myLevel;
   }
 
-  public void update(ManiGame game, SolObject o) {
+  public void update(ManiGame game, ManiObject o) {
     relAngle += myRotSpd * game.getTimeStep();
   }
 
-  public void prepare(SolObject o) {
+  public void prepare(ManiObject o) {
     float baseAngle = o.getAngle();
     Vector2 basePos = o.getPosition();
     ManiMath.toWorld(myPos, relPos, baseAngle, basePos, false);

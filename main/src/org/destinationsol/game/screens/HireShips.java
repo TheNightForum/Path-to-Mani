@@ -31,7 +31,7 @@ import org.destinationsol.game.item.MercItem;
 import org.destinationsol.game.item.SolItem;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.ship.FarShip;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
 import org.destinationsol.ui.SolInputManager;
 import org.destinationsol.ui.SolUiControl;
@@ -82,7 +82,7 @@ public class HireShips implements InventoryOperations {
   public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
     ManiGame game = cmp.getGame();
     InventoryScreen is = game.getScreens().inventoryScreen;
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     TalkScreen talkScreen = game.getScreens().talkScreen;
     if (talkScreen.isTargetFar(hero)) {
       cmp.getInputMan().setScreen(cmp, game.getScreens().mainScreen);
@@ -99,7 +99,7 @@ public class HireShips implements InventoryOperations {
     }
   }
 
-  private boolean hireShip(ManiGame game, SolShip hero, MercItem selected) {
+  private boolean hireShip(ManiGame game, ManiShip hero, MercItem selected) {
     ShipConfig config = selected.getConfig();
     Guardian dp = new Guardian(game, config.hull, hero.getPilot(), hero.getPosition(), hero.getHull().config, ManiMath.rnd(180));
     AiPilot pilot = new AiPilot(dp, true, Faction.LAANI, false, "Merc", Const.AI_DET_DIST);
@@ -110,7 +110,7 @@ public class HireShips implements InventoryOperations {
     return true;
   }
 
-  private Vector2 getPos(ManiGame game, SolShip hero, HullConfig hull) {
+  private Vector2 getPos(ManiGame game, ManiShip hero, HullConfig hull) {
     Vector2 pos = new Vector2();
     float dist = hero.getHull().config.getApproxRadius() + Guardian.DIST + hull.getApproxRadius();
     Vector2 heroPos = hero.getPosition();

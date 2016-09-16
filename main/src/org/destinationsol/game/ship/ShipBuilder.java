@@ -176,14 +176,14 @@ public class ShipBuilder {
     }
   }
 
-  public SolShip build(ManiGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
-                       ItemContainer container, HullConfig hullConfig, float life,
-                       GunItem gun1, GunItem gun2, RemoveController removeController,
-                       EngineItem engine, ShipRepairer repairer, float money, TradeContainer tradeContainer, Shield shield, Armor armor)
+  public ManiShip build(ManiGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
+                        ItemContainer container, HullConfig hullConfig, float life,
+                        GunItem gun1, GunItem gun2, RemoveController removeController,
+                        EngineItem engine, ShipRepairer repairer, float money, TradeContainer tradeContainer, Shield shield, Armor armor)
   {
     ArrayList<Dra> dras = new ArrayList<Dra>();
     Hull hull = buildHull(game, pos, spd, angle, rotSpd, hullConfig, life, dras);
-    SolShip ship = new SolShip(game, pilot, hull, removeController, dras, container, repairer, money, tradeContainer, shield, armor);
+    ManiShip ship = new ManiShip(game, pilot, hull, removeController, dras, container, repairer, money, tradeContainer, shield, armor);
     hull.getBody().setUserData(ship);
     for (Door door : hull.getDoors()) door.getBody().setUserData(ship);
 

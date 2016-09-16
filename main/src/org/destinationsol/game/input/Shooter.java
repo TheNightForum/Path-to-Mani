@@ -21,7 +21,7 @@ import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.gun.GunItem;
 import org.destinationsol.game.gun.GunMount;
 import org.destinationsol.game.projectile.ProjectileConfig;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 public class Shooter {
 
@@ -35,8 +35,8 @@ public class Shooter {
   public Shooter() {
   }
 
-  public void update(SolShip ship, Vector2 enemyPos, boolean dontRotate, boolean canShoot, Vector2 enemySpd,
-    float enemyApproxRad)
+  public void update(ManiShip ship, Vector2 enemyPos, boolean dontRotate, boolean canShoot, Vector2 enemySpd,
+                     float enemyApproxRad)
   {
     myLeft = false;
     myRight = false;
@@ -95,7 +95,7 @@ public class Shooter {
   }
   
   // returns gun if it's fixed & can shoot
-  private GunItem processGun(SolShip ship, boolean second) {
+  private GunItem processGun(ManiShip ship, boolean second) {
     GunMount mount = ship.getHull().getGunMount(second);
     if (mount == null) return null;
     GunItem g = mount.getGun();

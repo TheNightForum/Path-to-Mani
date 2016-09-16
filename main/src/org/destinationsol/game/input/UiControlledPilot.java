@@ -22,7 +22,7 @@ import org.destinationsol.game.Faction;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.screens.MainScreen;
 import org.destinationsol.game.ship.FarShip;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 public class UiControlledPilot implements Pilot {
 
@@ -33,7 +33,7 @@ public class UiControlledPilot implements Pilot {
   }
 
   @Override
-  public void update(ManiGame game, SolShip ship, SolShip nearestEnemy) {
+  public void update(ManiGame game, ManiShip ship, ManiShip nearestEnemy) {
   }
 
   @Override

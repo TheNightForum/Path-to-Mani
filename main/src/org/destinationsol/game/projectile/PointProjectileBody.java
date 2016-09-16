@@ -22,8 +22,8 @@ import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ManiObject;
+import org.destinationsol.game.ship.ManiShip;
 
 public class PointProjectileBody implements ProjectileBody {
   private final Vector2 myPos;
@@ -91,7 +91,7 @@ public class PointProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public float getDesiredAngle(SolShip ne) {
+  public float getDesiredAngle(ManiShip ne) {
     return ManiMath.angle(myPos, ne.getPosition());
   }
 
@@ -108,7 +108,7 @@ public class PointProjectileBody implements ProjectileBody {
 
     @Override
     public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
-      SolObject o = (SolObject) fixture.getBody().getUserData();
+      ManiObject o = (ManiObject) fixture.getBody().getUserData();
       boolean oIsMassless = o instanceof Projectile && ((Projectile) o).isMassless();
       if (!oIsMassless && myProjectile.shouldCollide(o, fixture, myGame.getFactionMan())) {
         myPos.set(point);

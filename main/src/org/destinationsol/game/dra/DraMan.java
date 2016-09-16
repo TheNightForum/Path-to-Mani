@@ -43,7 +43,7 @@ public class DraMan {
     myInCam = new HashSet<Dra>();
   }
 
-  public void objRemoved(SolObject o) {
+  public void objRemoved(ManiObject o) {
     List<Dra> dras = o.getDras();
     removeAll(dras);
   }
@@ -61,7 +61,7 @@ public class DraMan {
     }
   }
 
-  public void objAdded(SolObject o) {
+  public void objAdded(ManiObject o) {
     List<Dra> dras = o.getDras();
     addAll(dras);
   }
@@ -99,9 +99,9 @@ public class DraMan {
     float viewDist = cam.getViewDist();
 
     ObjectManager objectManager = game.getObjMan();
-    List<SolObject> objs = objectManager.getObjs();
+    List<ManiObject> objs = objectManager.getObjs();
     for (int i1 = 0, objsSize = objs.size(); i1 < objsSize; i1++) {
-      SolObject o = objs.get(i1);
+      ManiObject o = objs.get(i1);
       Vector2 objPos = o.getPosition();
       float r = objectManager.getPresenceRadius(o);
       List<Dra> dras = o.getDras();

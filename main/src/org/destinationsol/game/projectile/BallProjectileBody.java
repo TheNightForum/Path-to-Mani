@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.asteroid.AsteroidBuilder;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 public class BallProjectileBody implements ProjectileBody {
   private final Body myBody;
@@ -101,7 +101,7 @@ public class BallProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public float getDesiredAngle(SolShip ne) {
+  public float getDesiredAngle(ManiShip ne) {
     float spdLen = mySpd.len();
     if (spdLen < 3) spdLen = 3;
     float toNe = ManiMath.angle(myPos, ne.getPosition());

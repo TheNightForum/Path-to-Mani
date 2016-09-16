@@ -26,7 +26,7 @@ import com.badlogic.gdx.math.collision.BoundingBox;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.planet.Planet;
@@ -141,7 +141,7 @@ public class ParticleSrc implements Dra {
     return myEmitter.isComplete();
   }
 
-  public void update(ManiGame game, SolObject o) {
+  public void update(ManiGame game, ManiObject o) {
     maybeSwitchRelPos(game);
     Vector2 basePos = o.getPosition();
     float baseAngle = o.getAngle();
@@ -215,7 +215,7 @@ public class ParticleSrc implements Dra {
   }
 
   @Override
-  public void prepare(SolObject o) {
+  public void prepare(ManiObject o) {
   }
 
   @Override

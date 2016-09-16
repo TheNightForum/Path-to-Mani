@@ -23,7 +23,7 @@ import org.destinationsol.game.dra.Dra;
 
 import java.util.List;
 
-public interface SolObject {
+public interface ManiObject {
   void update(ManiGame game);
   boolean shouldBeRemoved(ManiGame game);
   void onRemove(ManiGame game);
@@ -35,8 +35,8 @@ public interface SolObject {
   List<Dra> getDras();
   float getAngle();
   Vector2 getSpd();
-  void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse, ManiGame game,
-    Vector2 collPos);
+  void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse, ManiGame game,
+                     Vector2 collPos);
   String toDebugString();
   Boolean isMetal();
   boolean hasBody();

@@ -21,7 +21,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.AbilityCommonConfig;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.item.ItemManager;
 import org.destinationsol.game.item.SolItem;
@@ -51,10 +51,10 @@ public class KnockBack implements ShipAbility {
   }
 
   @Override
-  public boolean update(ManiGame game, SolShip owner, boolean tryToUse) {
+  public boolean update(ManiGame game, ManiShip owner, boolean tryToUse) {
     if (!tryToUse) return false;
     Vector2 ownerPos = owner.getPosition();
-    for (SolObject o : game.getObjMan().getObjs()) {
+    for (ManiObject o : game.getObjMan().getObjs()) {
       if (o == owner || !o.receivesGravity()) continue;
       Vector2 oPos = o.getPosition();
       float dst = oPos.dst(ownerPos);

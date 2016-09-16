@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Shard implements SolObject {
+public class Shard implements ManiObject {
 
   private final Body myBody;
   private final Vector2 myPos;
@@ -69,7 +69,7 @@ public class Shard implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
                             ManiGame game, Vector2 collPos)
   {
   }

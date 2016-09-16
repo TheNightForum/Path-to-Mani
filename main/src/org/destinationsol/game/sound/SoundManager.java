@@ -28,9 +28,9 @@ import org.destinationsol.files.FileManager;
 import org.destinationsol.game.DebugOptions;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.planet.Planet;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 import java.util.*;
 
@@ -39,14 +39,14 @@ public class SoundManager {
 
   private final HashMap<String, SolSound> mySounds;
   private final DebugHintDrawer myHintDrawer;
-  private final Map<SolObject, Map<SolSound, Float>> myLoopedSounds;
+  private final Map<ManiObject, Map<SolSound, Float>> myLoopedSounds;
 
   private float myLoopAwait;
 
   public SoundManager() {
     mySounds = new HashMap<String, SolSound>();
     myHintDrawer = new DebugHintDrawer();
-    myLoopedSounds = new HashMap<SolObject, Map<SolSound, Float>>();
+    myLoopedSounds = new HashMap<ManiObject, Map<SolSound, Float>>();
   }
 
   public SolSound getLoopedSound(String relPath, @Nullable FileHandle configFile) {
@@ -121,7 +121,7 @@ public class SoundManager {
    * @param source bearer of a sound. Must not be null for looped sounds
    * @param volMul multiplier for sound volume
    */
-  public void play(ManiGame game, SolSound sound, @Nullable Vector2 pos, @Nullable SolObject source, float volMul) {
+  public void play(ManiGame game, SolSound sound, @Nullable Vector2 pos, @Nullable ManiObject source, float volMul) {
     if (source == null && pos == null) throw new AssertionError("pass either pos or source");
     if (source == null && sound.loopTime > 0) throw new AssertionError("looped sound without source object: " + sound.dir);
     if (sound == null) return;
@@ -140,7 +140,7 @@ public class SoundManager {
     }
     if (DebugOptions.SOUND_IN_SPACE) airPerc = 1;
     float maxSoundDist = 1 + 1.5f * Const.CAM_VIEW_DIST_GROUND * airPerc;
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     float fullSoundRad = hero == null ? 0 : hero.getHull().config.getApproxRadius();
     float dst = pos.dst(camPos) - fullSoundRad;
     float distMul = ManiMath.clamp(1 - dst / maxSoundDist);
@@ -164,11 +164,11 @@ public class SoundManager {
  * @param pos position of a sound. If null, source.getPosition() will be used
  * @param source bearer of a sound. Must not be null for looped sounds
  */
-  public void play(ManiGame game, SolSound sound, @Nullable Vector2 pos, @Nullable SolObject source){
+  public void play(ManiGame game, SolSound sound, @Nullable Vector2 pos, @Nullable ManiObject source){
     this.play(game, sound, pos, source, 1f);
   }
 
-  private boolean skipLooped(SolObject source, SolSound sound, float time) {
+  private boolean skipLooped(ManiObject source, SolSound sound, float time) {
     if (sound.loopTime == 0) return false;
     boolean playing;
     Map<SolSound, Float> looped = myLoopedSounds.get(source);
@@ -202,9 +202,9 @@ public class SoundManager {
   }
 
   private void cleanLooped(ManiGame game) {
-    Iterator<SolObject> it = myLoopedSounds.keySet().iterator();
+    Iterator<ManiObject> it = myLoopedSounds.keySet().iterator();
     while (it.hasNext()) {
-      SolObject o = it.next();
+      ManiObject o = it.next();
       if (o.shouldBeRemoved(game)) it.remove();
     }
   }

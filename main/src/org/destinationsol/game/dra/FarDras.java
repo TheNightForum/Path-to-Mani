@@ -18,9 +18,9 @@ package org.destinationsol.game.dra;
 
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.game.FarObj;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.RemoveController;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class FarDras implements FarObj {
   }
 
   @Override
-  public SolObject toObj(ManiGame game) {
+  public ManiObject toObj(ManiGame game) {
     return new DrasObject(myDras, myPos, mySpd, myRemoveController, false, myHideOnPlanet);
   }
 

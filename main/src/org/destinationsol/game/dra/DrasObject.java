@@ -26,7 +26,7 @@ import org.destinationsol.game.planet.Planet;
 
 import java.util.List;
 
-public class DrasObject implements SolObject {
+public class DrasObject implements ManiObject {
   private final Vector2 myPos;
   private final Vector2 mySpd;
   private final RemoveController myRemoveController;
@@ -145,7 +145,7 @@ public class DrasObject implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
                             ManiGame game, Vector2 collPos)
   {
   }

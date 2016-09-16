@@ -26,7 +26,7 @@ import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 
 public class SunSingleton {
   private static final float SUN_DMG = 4f;
@@ -65,7 +65,7 @@ public class SunSingleton {
     ManiMath.free(toCam);
   }
 
-  public void doDmg(ManiGame game, SolObject obj, float toSys) {
+  public void doDmg(ManiGame game, ManiObject obj, float toSys) {
     float dmg = SUN_DMG * game.getTimeStep();
     if (SUN_HOT_RAD < toSys) return;
     obj.receiveDmg(dmg, game, null, DmgType.FIRE);

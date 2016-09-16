@@ -18,7 +18,7 @@ package org.destinationsol.game.input;
 
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
 
 public interface MoveDestProvider {
@@ -30,7 +30,7 @@ public interface MoveDestProvider {
    */
   float getDesiredSpdLen();
   boolean shouldStopNearDest();
-  void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy);
+  void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, ManiShip nearestEnemy);
 
   /**
    * if true is returned, the ship will move in battle pattern around the enemy and try to face enemy with guns
@@ -38,7 +38,7 @@ public interface MoveDestProvider {
    * if null is returned, the ship will move as if there's no enemy near
    * note that the ship will always shoot if there's enemy ahead of it (or if it has unfixed gun)
    */
-  Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround);
+  Boolean shouldManeuver(boolean canShoot, ManiShip nearestEnemy, boolean nearGround);
 
   Vector2 getDestSpd();
 }

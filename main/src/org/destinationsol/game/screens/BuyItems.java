@@ -21,7 +21,7 @@ import org.destinationsol.ManiApplication;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.item.ItemContainer;
 import org.destinationsol.game.item.SolItem;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.ui.SolInputManager;
 import org.destinationsol.ui.SolUiControl;
 import org.destinationsol.ui.UiDrawer;
@@ -71,9 +71,9 @@ public class BuyItems implements InventoryOperations {
   public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
     ManiGame game = cmp.getGame();
     InventoryScreen is = game.getScreens().inventoryScreen;
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     TalkScreen talkScreen = game.getScreens().talkScreen;
-    SolShip target = talkScreen.getTarget();
+    ManiShip target = talkScreen.getTarget();
     if (talkScreen.isTargetFar(hero)) {
       cmp.getInputMan().setScreen(cmp, game.getScreens().mainScreen);
       return;

@@ -29,7 +29,7 @@ import org.destinationsol.game.planet.PlanetManager;
 import org.destinationsol.game.planet.SolSystem;
 import org.destinationsol.game.planet.SunSingleton;
 import org.destinationsol.game.ship.FarShip;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.ui.UiDrawer;
 
 import java.util.ArrayList;
@@ -75,17 +75,17 @@ public class BorderDrawer {
     ManiGame g = cmp.getGame();
     SolCam cam = g.getCam();
     Vector2 camPos = cam.getPos();
-    SolShip hero = g.getHero();
+    ManiShip hero = g.getHero();
     drawTishches(drawer, g, cam, camPos);
     MapDrawer mapDrawer = g.getMapDrawer();
     FactionManager factionManager = g.getFactionMan();
     float heroDmgCap = hero == null ? Float.MAX_VALUE : HardnessCalc.getShipDmgCap(hero);
 
-    List<SolObject> objs = g.getObjMan().getObjs();
+    List<ManiObject> objs = g.getObjMan().getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject o = objs.get(i);
-      if ((o instanceof SolShip)) {
-        SolShip ship = (SolShip) o;
+      ManiObject o = objs.get(i);
+      if ((o instanceof ManiShip)) {
+        ManiShip ship = (ManiShip) o;
         Vector2 shipPos = ship.getPosition();
         Faction shipFaction = ship.getPilot().getFaction();
         float shipSize = ship.getHull().config.getSize();
@@ -115,7 +115,7 @@ public class BorderDrawer {
   }
 
   private void maybeDrawIcon(UiDrawer drawer, Vector2 pos, SolCam cam, float objSize,
-                             float objAngle, MapDrawer mapDrawer, FactionManager factionManager, SolShip hero,
+                             float objAngle, MapDrawer mapDrawer, FactionManager factionManager, ManiShip hero,
                              Faction objFac, Object shipHack, float heroDmgCap, TextureAtlas.AtlasRegion icon)
   {
     Vector2 camPos = cam.getPos();

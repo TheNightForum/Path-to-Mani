@@ -22,7 +22,7 @@ import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.dra.RectSprite;
@@ -69,7 +69,7 @@ public class SolGun {
     return myDras;
   }
 
-  private void shoot(Vector2 gunSpd, ManiGame game, float gunAngle, Vector2 muzzlePos, Faction faction, SolObject creator) {
+  private void shoot(Vector2 gunSpd, ManiGame game, float gunAngle, Vector2 muzzlePos, Faction faction, ManiObject creator) {
     Vector2 baseSpd = gunSpd;
     ClipConfig cc = myItem.config.clipConf;
     if (cc.projConfig.zeroAbsSpd) {
@@ -94,7 +94,7 @@ public class SolGun {
     game.getSoundMan().play(game, myItem.config.shootSound, muzzlePos, creator);
   }
 
-  public void update(ItemContainer ic, ManiGame game, float gunAngle, SolObject creator, boolean shouldShoot, Faction faction) {
+  public void update(ItemContainer ic, ManiGame game, float gunAngle, ManiObject creator, boolean shouldShoot, Faction faction) {
     float baseAngle = creator.getAngle();
     Vector2 basePos = creator.getPosition();
     float gunRelAngle = gunAngle - baseAngle;

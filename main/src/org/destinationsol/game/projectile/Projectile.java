@@ -32,14 +32,14 @@ import org.destinationsol.game.item.Shield;
 import org.destinationsol.game.particle.EffectConfig;
 import org.destinationsol.game.particle.LightSrc;
 import org.destinationsol.game.particle.ParticleSrc;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.sound.SolSound;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class
-  Projectile implements SolObject {
+  Projectile implements ManiObject {
 
   private static final float MIN_ANGLE_TO_GUIDE = 2f;
   private final ArrayList<Dra> myDras;
@@ -51,7 +51,7 @@ public class
   private final ProjectileConfig myConfig;
 
   private boolean myShouldRemove;
-  private SolObject myObstacle;
+  private ManiObject myObstacle;
   private boolean myDamageDealt;
 
   public Projectile(ManiGame game, float angle, Vector2 muzzlePos, Vector2 gunSpd, Faction faction,
@@ -109,7 +109,7 @@ public class
         myDamageDealt = true;
       } else {
         collided(game);
-        if (myConfig.emTime > 0 && myObstacle instanceof SolShip) ((SolShip) myObstacle).disableControls(myConfig.emTime, game);
+        if (myConfig.emTime > 0 && myObstacle instanceof ManiShip) ((ManiShip) myObstacle).disableControls(myConfig.emTime, game);
         return;
       }
     }
@@ -122,7 +122,7 @@ public class
   private void maybeGuide(ManiGame game) {
     if (myConfig.guideRotSpd == 0) return;
     float ts = game.getTimeStep();
-    SolShip ne = game.getFactionMan().getNearestEnemy(game, this);
+    ManiShip ne = game.getFactionMan().getNearestEnemy(game, this);
     if (ne == null) return;
     float desiredAngle = myBody.getDesiredAngle(ne);
     float angle = getAngle();
@@ -199,7 +199,7 @@ public class
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
                             ManiGame game, Vector2 collPos)
   {
   }
@@ -223,9 +223,9 @@ public class
     return myFaction;
   }
 
-  public boolean shouldCollide(SolObject o, Fixture f, FactionManager factionManager) {
-    if (o instanceof SolShip) {
-      SolShip s = (SolShip) o;
+  public boolean shouldCollide(ManiObject o, Fixture f, FactionManager factionManager) {
+    if (o instanceof ManiShip) {
+      ManiShip s = (ManiShip) o;
       if (!factionManager.areEnemies(s.getPilot().getFaction(), myFaction)) return false;
       if (s.getHull().getShieldFixture() == f) {
         if (myConfig.density > 0) return false;
@@ -240,7 +240,7 @@ public class
     return true;
   }
 
-  public void setObstacle(SolObject o, ManiGame game) {
+  public void setObstacle(ManiObject o, ManiGame game) {
     if (!shouldCollide(o, null, game.getFactionMan())) return; // happens for some reason when projectile is just created
     myObstacle = o;
   }
@@ -281,11 +281,11 @@ public class
     }
 
     @Override
-    public void update(ManiGame game, SolObject o) {
+    public void update(ManiGame game, ManiObject o) {
     }
 
     @Override
-    public void prepare(SolObject o) {
+    public void prepare(ManiObject o) {
     }
 
     @Override

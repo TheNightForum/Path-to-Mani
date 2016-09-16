@@ -26,7 +26,7 @@ import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.screens.MainScreen;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 public class SolCam {
   private static final float VIEWPORT_HEIGHT = 5f;
@@ -66,7 +66,7 @@ public class SolCam {
     float desiredVd = Const.CAM_VIEW_DIST_GROUND;
     float life = 0;
 
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     float ts = game.getTimeStep();
     if (hero == null) {
       StarPort.Transcendent trans = game.getTranscendentHero();

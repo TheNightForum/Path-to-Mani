@@ -29,7 +29,7 @@ import org.destinationsol.game.dra.RectSprite;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sky implements SolObject {
+public class Sky implements ManiObject {
 
   private final Planet myPlanet;
   private final RectSprite myFill;
@@ -146,7 +146,7 @@ public class Sky implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
                             ManiGame game, Vector2 collPos)
   {
   }

@@ -32,8 +32,8 @@ import org.destinationsol.game.particle.LightSrc;
 import org.destinationsol.game.planet.PlanetBind;
 import org.destinationsol.game.ship.Door;
 import org.destinationsol.game.ship.ForceBeacon;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.ShipEngine;
-import org.destinationsol.game.ship.SolShip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,7 +101,7 @@ public class Hull {
     return m.getGun();
   }
 
-  public void update(ManiGame game, ItemContainer container, Pilot provider, SolShip ship, SolShip nearestEnemy) {
+  public void update(ManiGame game, ItemContainer container, Pilot provider, ManiShip ship, ManiShip nearestEnemy) {
     setParamsFromBody();
     boolean controlsEnabled = ship.isControlsEnabled();
 
@@ -158,7 +158,7 @@ public class Hull {
 
   }
 
-  public void setEngine(ManiGame game, SolShip ship, EngineItem ei) {
+  public void setEngine(ManiGame game, ManiShip ship, EngineItem ei) {
     List<Dra> dras = ship.getDras();
     if (myEngine != null) {
       List<Dra> dras1 = myEngine.getDras();

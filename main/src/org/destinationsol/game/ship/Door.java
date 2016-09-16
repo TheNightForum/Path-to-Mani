@@ -24,7 +24,7 @@ import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.FactionManager;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.RectSprite;
 import org.destinationsol.game.input.Pilot;
@@ -46,7 +46,7 @@ public class Door {
     myS = s;
   }
 
-  public void update(ManiGame game, SolShip ship) {
+  public void update(ManiGame game, ManiShip ship) {
     Vector2 doorPos = getBody().getPosition();
     boolean open = myOpenAwait <= 0 && shouldOpen(game, ship, doorPos);
     if (open) {
@@ -66,15 +66,15 @@ public class Door {
     ManiMath.toRel(doorPos, myS.getRelPos(), shipAngle, shipPos);
   }
 
-  private boolean shouldOpen(ManiGame game, SolShip ship, Vector2 doorPos) {
+  private boolean shouldOpen(ManiGame game, ManiShip ship, Vector2 doorPos) {
     Faction faction = ship.getPilot().getFaction();
     FactionManager factionManager = game.getFactionMan();
-    List<SolObject> objs = game.getObjMan().getObjs();
+    List<ManiObject> objs = game.getObjMan().getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject o = objs.get(i);
+      ManiObject o = objs.get(i);
       if (o == ship) continue;
-      if (!(o instanceof SolShip)) continue;
-      SolShip ship2 = (SolShip) o;
+      if (!(o instanceof ManiShip)) continue;
+      ManiShip ship2 = (ManiShip) o;
       Pilot pilot2 = ship2.getPilot();
       if (!pilot2.isUp()) continue;
       if (factionManager.areEnemies(pilot2.getFaction(), faction)) continue;

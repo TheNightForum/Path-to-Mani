@@ -35,24 +35,24 @@ import java.util.List;
 
 public class ObjectManager {
   private static final float MAX_RADIUS_RECALC_AWAIT = 1f;
-  private final List<SolObject> myObjs;
-  private final List<SolObject> myToRemove;
-  private final List<SolObject> myToAdd;
+  private final List<ManiObject> myObjs;
+  private final List<ManiObject> myToRemove;
+  private final List<ManiObject> myToAdd;
   private final List<FarObjData> myFarObjs;
   private final List<FarShip> myFarShips;
   private final List<StarPort.MyFar> myFarPorts;
   private final World myWorld;
   private final Box2DDebugRenderer myDr;
-  private final HashMap<SolObject, Float> myRadii;
+  private final HashMap<ManiObject, Float> myRadii;
 
   private float myFarEndDist;
   private float myFarBeginDist;
   private float myRadiusRecalcAwait;
 
-  public ObjectManager(SolContactListener contactListener, FactionManager factionManager) {
-    myObjs = new ArrayList<SolObject>();
-    myToRemove = new ArrayList<SolObject>();
-    myToAdd = new ArrayList<SolObject>();
+  public ObjectManager(ManiContactListener contactListener, FactionManager factionManager) {
+    myObjs = new ArrayList<ManiObject>();
+    myToRemove = new ArrayList<ManiObject>();
+    myToAdd = new ArrayList<ManiObject>();
     myFarObjs = new ArrayList<FarObjData>();
     myFarShips = new ArrayList<FarShip>();
     myFarPorts = new ArrayList<StarPort.MyFar>();
@@ -60,7 +60,7 @@ public class ObjectManager {
     myWorld.setContactListener(contactListener);
     myWorld.setContactFilter(new SolContactFilter(factionManager));
     myDr = new Box2DDebugRenderer();
-    myRadii = new HashMap<SolObject, Float>();
+    myRadii = new HashMap<ManiObject, Float>();
   }
 
   public boolean containsFarObj(FarObj fo) {
@@ -91,7 +91,7 @@ public class ObjectManager {
     }
 
     for (int i1 = 0, myObjsSize = myObjs.size(); i1 < myObjsSize; i1++) {
-      SolObject o = myObjs.get(i1);
+      ManiObject o = myObjs.get(i1);
       o.update(game);
       ManiMath.checkVectorsTaken(o);
       List<Dra> dras = o.getDras();
@@ -123,7 +123,7 @@ public class ObjectManager {
         continue;
       }
       if (isNear(fod, camPos, ts)) {
-        SolObject o = fo.toObj(game);
+        ManiObject o = fo.toObj(game);
         // Ensure that StarPorts are added straight away so that we can see if they overlap
         if (o instanceof StarPort)
           addObjNow(game, o);
@@ -141,17 +141,17 @@ public class ObjectManager {
     if (fo instanceof StarPort.MyFar) myFarPorts.remove(fo);
   }
 
-  private void recalcRadius(SolObject o) {
+  private void recalcRadius(ManiObject o) {
     float rad = DraMan.radiusFromDras(o.getDras());
     myRadii.put(o, rad);
   }
 
-  public float getPresenceRadius(SolObject o) {
+  public float getPresenceRadius(ManiObject o) {
     Float res = getRadius(o);
     return res + Const.MAX_MOVE_SPD * (MAX_RADIUS_RECALC_AWAIT - myRadiusRecalcAwait);
   }
 
-  public Float getRadius(SolObject o) {
+  public Float getRadius(ManiObject o) {
     Float res = myRadii.get(o);
     if (res == null) throw new AssertionError("no radius for " + o);
     return res;
@@ -159,26 +159,26 @@ public class ObjectManager {
 
   private void addRemove(ManiGame game) {
     for (int i = 0, myToRemoveSize = myToRemove.size(); i < myToRemoveSize; i++) {
-      SolObject o = myToRemove.get(i);
+      ManiObject o = myToRemove.get(i);
       removeObjNow(game, o);
     }
     myToRemove.clear();
 
     for (int i = 0, myToAddSize = myToAdd.size(); i < myToAddSize; i++) {
-      SolObject o = myToAdd.get(i);
+      ManiObject o = myToAdd.get(i);
       addObjNow(game, o);
     }
     myToAdd.clear();
   }
 
-  private void removeObjNow(ManiGame game, SolObject o) {
+  private void removeObjNow(ManiGame game, ManiObject o) {
     myObjs.remove(o);
     myRadii.remove(o);
     o.onRemove(game);
     game.getDraMan().objRemoved(o);
   }
 
-  public void addObjNow(ManiGame game, SolObject o) {
+  public void addObjNow(ManiGame game, ManiObject o) {
     if (DebugOptions.ASSERTIONS && myObjs.contains(o)) throw new AssertionError();
     myObjs.add(o);
     recalcRadius(o);
@@ -198,7 +198,7 @@ public class ObjectManager {
     return false;
   }
 
-  private boolean isFar(SolObject o, Vector2 camPos) {
+  private boolean isFar(ManiObject o, Vector2 camPos) {
     float r = getPresenceRadius(o);
     List<Dra> dras = o.getDras();
     if (dras != null && dras.size() > 0) r *= dras.get(0).getLevel().depth;
@@ -223,7 +223,7 @@ public class ObjectManager {
 
   private void drawDebugStrings(GameDrawer drawer, ManiGame game) {
     float fontSize = game.getCam().getDebugFontSize();
-    for (SolObject o : myObjs) {
+    for (ManiObject o : myObjs) {
       Vector2 pos = o.getPosition();
       String ds = o.toDebugString();
       if (ds != null) drawer.drawString(ds, pos.x, pos.y, fontSize, true, ManiColor.W);
@@ -240,7 +240,7 @@ public class ObjectManager {
     SolCam cam = game.getCam();
     float lineWidth = cam.getRealLineWidth();
     float vh = cam.getViewHeight();
-    for (SolObject o : myObjs) {
+    for (ManiObject o : myObjs) {
       Vector2 pos = o.getPosition();
       float r = getRadius(o);
       drawer.drawCircle(drawer.debugWhiteTex, pos, r, DebugCol.OBJ, lineWidth, vh);
@@ -254,17 +254,17 @@ public class ObjectManager {
     drawer.drawCircle(drawer.debugWhiteTex, cam.getPos(), myFarEndDist, ManiColor.W, lineWidth, vh);
   }
 
-  public List<SolObject> getObjs() {
+  public List<ManiObject> getObjs() {
     return myObjs;
   }
 
 
-  public void addObjDelayed(SolObject p) {
+  public void addObjDelayed(ManiObject p) {
     if (DebugOptions.ASSERTIONS && myToAdd.contains(p)) throw new AssertionError();
     myToAdd.add(p);
   }
 
-  public void removeObjDelayed(SolObject obj) {
+  public void removeObjDelayed(ManiObject obj) {
     if (DebugOptions.ASSERTIONS && myToRemove.contains(obj)) throw new AssertionError();
     myToRemove.add(obj);
   }

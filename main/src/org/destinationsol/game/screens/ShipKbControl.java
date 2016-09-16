@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.game.gun.GunItem;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.ui.SolUiControl;
 
 import java.util.List;
@@ -77,7 +77,7 @@ public class ShipKbControl implements ShipUiControl {
       abilityCtrl.setEnabled(false);
       return;
     }
-    SolShip hero = cmp.getGame().getHero();
+    ManiShip hero = cmp.getGame().getHero();
     boolean hasEngine = hero != null && hero.getHull().getEngine() != null;
     upCtrl.setEnabled(hasEngine);
     leftCtrl.setEnabled(hasEngine);

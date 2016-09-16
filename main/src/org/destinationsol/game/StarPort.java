@@ -34,13 +34,13 @@ import org.destinationsol.game.particle.ParticleSrc;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.ship.FarShip;
 import org.destinationsol.game.ship.ForceBeacon;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.Teleport;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StarPort implements SolObject {
+public class StarPort implements ManiObject {
 
   public static final float DIST_FROM_PLANET = Const.PLANET_GAP * .5f;
   public static final int SIZE = 8;
@@ -80,7 +80,7 @@ public class StarPort implements SolObject {
     float desiredAngle = ManiMath.angle(myFrom.getPos(), myTo.getPos());
     myBody.setAngularVelocity((desiredAngle - myAngle) * ManiMath.degRad * fps/4);
 
-    SolShip ship = ForceBeacon.pullShips(game, this, myPos, null, null, .4f * SIZE);
+    ManiShip ship = ForceBeacon.pullShips(game, this, myPos, null, null, .4f * SIZE);
     if (ship != null && ship.getMoney() >= FARE && ship.getPosition().dst(myPos) < .05f * SIZE) {
       ship.setMoney(ship.getMoney() - FARE);
       Transcendent t = new Transcendent(ship, myFrom, myTo, game);
@@ -97,7 +97,7 @@ public class StarPort implements SolObject {
 
   }
 
-  private static void blip(ManiGame game, SolShip ship) {
+  private static void blip(ManiGame game, ManiShip ship) {
     TextureAtlas.AtlasRegion tex = game.getTexMan().getTex(Teleport.TEX_PATH, null);
     float blipSz = ship.getHull().config.getApproxRadius() * 10;
     game.getPartMan().blip(game, ship.getPosition(), ManiMath.rnd(180), blipSz, 1, Vector2.Zero, tex);
@@ -159,7 +159,7 @@ public class StarPort implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
                             ManiGame game, Vector2 collPos)
   {
 
@@ -197,8 +197,8 @@ public class StarPort implements SolObject {
 
   private static Vector2 adjustDesiredPos(ManiGame game, StarPort myPort, Vector2 desired) {
     Vector2 newPos = desired;
-    List<SolObject> objs = game.getObjMan().getObjs();
-    for (SolObject o : objs) {
+    List<ManiObject> objs = game.getObjMan().getObjs();
+    for (ManiObject o : objs) {
       if (o instanceof StarPort && o != myPort) {
         StarPort sp = (StarPort)o;
         // Check if the positions overlap
@@ -287,7 +287,7 @@ public class StarPort implements SolObject {
     }
 
     @Override
-    public SolObject toObj(ManiGame game) {
+    public ManiObject toObj(ManiGame game) {
       return game.getStarPortBuilder().build(game, myFrom, myTo, mySecondary);
     }
 
@@ -337,7 +337,7 @@ public class StarPort implements SolObject {
     }
   }
 
-  public static class Transcendent implements SolObject {
+  public static class Transcendent implements ManiObject {
     private static final float TRAN_SZ = 1f;
     private final Planet myFrom;
     private final Planet myTo;
@@ -351,7 +351,7 @@ public class StarPort implements SolObject {
     private float myAngle;
     private final ParticleSrc myEff;
 
-    public Transcendent(SolShip ship, Planet from, Planet to, ManiGame game) {
+    public Transcendent(ManiShip ship, Planet from, Planet to, ManiGame game) {
       myShip = ship.toFarObj();
       myFrom = from;
       myTo = to;
@@ -390,7 +390,7 @@ public class StarPort implements SolObject {
         objectManager.removeObjDelayed(this);
         myShip.setPos(myPos);
         myShip.setSpd(new Vector2());
-        SolShip ship = myShip.toObj(game);
+        ManiShip ship = myShip.toObj(game);
         objectManager.addObjDelayed(ship);
         blip(game, ship);
         game.getSoundMan().play(game, game.getSpecialSounds().transcendentFinished, null, this);
@@ -460,7 +460,7 @@ public class StarPort implements SolObject {
     }
 
     @Override
-    public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+    public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
                               ManiGame game, Vector2 collPos)
     {
     }

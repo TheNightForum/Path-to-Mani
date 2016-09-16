@@ -19,7 +19,7 @@ package org.destinationsol.game.input;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.item.SolItem;
 import org.destinationsol.game.ship.ShipAbility;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 public class AbilityUpdater {
   private final float myAbilityUseStartPerc;
@@ -32,7 +32,7 @@ public class AbilityUpdater {
     myChargesToKeep = ManiMath.intRnd(1, 2);
   }
 
-  public void update(SolShip ship, SolShip nearestEnemy) {
+  public void update(ManiShip ship, ManiShip nearestEnemy) {
     myAbility = false;
     if (nearestEnemy == null) return;
     ShipAbility ability = ship.getAbility();

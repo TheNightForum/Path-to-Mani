@@ -21,7 +21,7 @@ import org.destinationsol.Const;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.planet.Planet;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 public class Mover {
   public static final float MIN_MOVE_AAD = 2f;
@@ -43,7 +43,7 @@ public class Mover {
     myDesiredSpd = new Vector2();
   }
 
-  public void update(ManiGame game, SolShip ship, Vector2 dest, Planet np,
+  public void update(ManiGame game, ManiShip ship, Vector2 dest, Planet np,
                      float maxIdleDist, boolean hasEngine, boolean avoidBigObjs, float desiredSpdLen, boolean stopNearDest,
                      Vector2 destSpd) {
     myUp = false;
@@ -80,7 +80,7 @@ public class Mover {
     }
   }
 
-  private void updateDesiredSpd(ManiGame game, SolShip ship, Vector2 dest, float toDestLen, boolean stopNearDest,
+  private void updateDesiredSpd(ManiGame game, ManiShip ship, Vector2 dest, float toDestLen, boolean stopNearDest,
                                 Planet np, boolean avoidBigObjs, float desiredSpdLen, Vector2 destSpd)
   {
     float toDestAngle = getToDestAngle(game, ship, dest, avoidBigObjs, np);
@@ -97,7 +97,7 @@ public class Mover {
     ManiMath.fromAl(myDesiredSpd, toDestAngle, desiredSpdLen);
   }
 
-  public void rotateOnIdle(SolShip ship, Planet np, Vector2 dest, boolean stopNearDest, float maxIdleDist) {
+  public void rotateOnIdle(ManiShip ship, Planet np, Vector2 dest, boolean stopNearDest, float maxIdleDist) {
     if (isActive() || dest == null) return;
     Vector2 shipPos = ship.getPosition();
     float shipAngle = ship.getAngle();
@@ -124,7 +124,7 @@ public class Mover {
     }
   }
 
-  private float getToDestAngle(ManiGame game, SolShip ship, Vector2 dest, boolean avoidBigObjs, Planet np) {
+  private float getToDestAngle(ManiGame game, ManiShip ship, Vector2 dest, boolean avoidBigObjs, Planet np) {
     Vector2 shipPos = ship.getPosition();
     float toDestAngle = ManiMath.angle(shipPos, dest);
     if (avoidBigObjs) {

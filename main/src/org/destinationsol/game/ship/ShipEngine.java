@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.input.Pilot;
@@ -47,7 +47,7 @@ public class ShipEngine {
   private final List<Dra> myDras;
   private float myRecoverAwait;
 
-  public ShipEngine(ManiGame game, EngineItem ei, Vector2 e1RelPos, Vector2 e2RelPos, SolShip ship) {
+  public ShipEngine(ManiGame game, EngineItem ei, Vector2 e1RelPos, Vector2 e2RelPos, ManiShip ship) {
     myItem = ei;
     myDras = new ArrayList<Dra>();
     EffectConfig ec = myItem.getEffectConfig();
@@ -68,7 +68,7 @@ public class ShipEngine {
     return myDras;
   }
 
-  public void update(float angle, ManiGame game, Pilot provider, Body body, Vector2 spd, SolObject owner,
+  public void update(float angle, ManiGame game, Pilot provider, Body body, Vector2 spd, ManiObject owner,
                      boolean controlsEnabled, float mass)
   {
     boolean working = applyInput(game, angle, provider, body, spd, controlsEnabled, mass);

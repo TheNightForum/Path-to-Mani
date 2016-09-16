@@ -28,7 +28,7 @@ import org.destinationsol.game.*;
 import org.destinationsol.game.item.ItemManager;
 import org.destinationsol.game.maze.Maze;
 import org.destinationsol.game.maze.MazeConfigs;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.hulls.Hull;
 import org.destinationsol.game.ship.hulls.HullConfig;
 
@@ -106,9 +106,9 @@ public class PlanetManager {
     Vector2 sysPos = nearestSys.getPos();
     float npGravConst = myNearestPlanet.getGravConst();
 
-    List<SolObject> objs = game.getObjMan().getObjs();
+    List<ManiObject> objs = game.getObjMan().getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject obj = objs.get(i);
+      ManiObject obj = objs.get(i);
       if (!obj.receivesGravity()) continue;
 
       Vector2 objPos = obj.getPosition();
@@ -151,10 +151,10 @@ public class PlanetManager {
 
   }
 
-  private boolean recoverObj(SolObject obj, float toNp, float npMinH) {
+  private boolean recoverObj(ManiObject obj, float toNp, float npMinH) {
     if (npMinH < toNp) return false;
-    if (!(obj instanceof SolShip)) return false;
-    SolShip ship = (SolShip) obj;
+    if (!(obj instanceof ManiShip)) return false;
+    ManiShip ship = (ManiShip) obj;
     Hull hull = ship.getHull();
     if (hull.config.getType() == HullConfig.Type.STATION) return false;
     float fh = myNearestPlanet.getFullHeight();

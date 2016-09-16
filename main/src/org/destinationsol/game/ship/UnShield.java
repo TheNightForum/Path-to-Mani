@@ -22,7 +22,7 @@ import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.AbilityCommonConfig;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.item.ItemManager;
 import org.destinationsol.game.item.Shield;
@@ -53,12 +53,12 @@ public class UnShield implements ShipAbility {
   }
 
   @Override
-  public boolean update(ManiGame game, SolShip owner, boolean tryToUse) {
+  public boolean update(ManiGame game, ManiShip owner, boolean tryToUse) {
     if (!tryToUse) return false;
     Vector2 ownerPos = owner.getPosition();
-    for (SolObject o : game.getObjMan().getObjs()) {
-      if (!(o instanceof SolShip) || o == owner) continue;
-      SolShip oShip = (SolShip) o;
+    for (ManiObject o : game.getObjMan().getObjs()) {
+      if (!(o instanceof ManiShip) || o == owner) continue;
+      ManiShip oShip = (ManiShip) o;
       Shield shield = oShip.getShield();
       if (shield == null) continue;
       float shieldLife = shield.getLife();

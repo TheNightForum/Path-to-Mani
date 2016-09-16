@@ -22,15 +22,15 @@ import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.planet.Planet;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 public class SmallObjAvoider {
   public static final float MANEUVER_TIME = 2f;
   public static final float MIN_RAYCAST_LEN = .5f;
   private final RayCastCallback myRayBack;
-  private SolShip myShip;
+  private ManiShip myShip;
   private boolean myCollided;
   private final Vector2 myDest;
 
@@ -39,7 +39,7 @@ public class SmallObjAvoider {
     myDest = new Vector2();
   }
 
-  public float avoid(ManiGame game, SolShip ship, float toDestAngle, Planet np) {
+  public float avoid(ManiGame game, ManiShip ship, float toDestAngle, Planet np) {
     myShip = ship;
     Vector2 shipPos = ship.getPosition();
     float shipSpdLen = ship.getSpd().len();
@@ -75,7 +75,7 @@ public class SmallObjAvoider {
   private class MyRayBack implements RayCastCallback {
     @Override
     public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
-      SolObject o = (SolObject) fixture.getBody().getUserData();
+      ManiObject o = (ManiObject) fixture.getBody().getUserData();
       if (myShip == o) {
         return -1;
       }

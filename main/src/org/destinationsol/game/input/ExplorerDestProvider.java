@@ -22,7 +22,7 @@ import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.planet.SolSystem;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
 
 import java.util.ArrayList;
@@ -97,7 +97,7 @@ public class ExplorerDestProvider implements MoveDestProvider {
   }
 
   @Override
-  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, ManiShip nearestEnemy) {
     if (myDest.dst(shipPos) < maxIdleDist) {
       if (myAwaitOnPlanet > 0) {
         myAwaitOnPlanet -= game.getTimeStep();
@@ -119,7 +119,7 @@ public class ExplorerDestProvider implements MoveDestProvider {
   }
 
   @Override
-  public Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround) {
+  public Boolean shouldManeuver(boolean canShoot, ManiShip nearestEnemy, boolean nearGround) {
     if (myAggressive && canShoot) return true;
     return null;
   }

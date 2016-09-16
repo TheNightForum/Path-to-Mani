@@ -17,7 +17,7 @@
 package org.destinationsol.game.screens;
 
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 public class DmgWarnDrawer extends WarnDrawer {
 
@@ -27,7 +27,7 @@ public class DmgWarnDrawer extends WarnDrawer {
 
   @Override
   protected boolean shouldWarn(ManiGame game) {
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     if (hero == null) return false;
     float l = hero.getLife();
     int ml = hero.getHull().config.getMaxLife();

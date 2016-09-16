@@ -19,10 +19,10 @@ package org.destinationsol.game.input;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.ship.FarShip;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 public interface Pilot {
-  void update(ManiGame game, SolShip ship, SolShip nearestEnemy);
+  void update(ManiGame game, ManiShip ship, ManiShip nearestEnemy);
   boolean isUp();
   boolean isLeft();
   boolean isRight();

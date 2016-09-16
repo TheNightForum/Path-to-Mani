@@ -22,11 +22,8 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import org.destinationsol.common.ManiMath;
-import org.destinationsol.game.DmgType;
-import org.destinationsol.game.RemoveController;
-import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
-import org.destinationsol.game.AbilityCommonConfig;
+import org.destinationsol.game.*;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.gun.GunItem;
 import org.destinationsol.game.gun.GunMount;
@@ -49,7 +46,7 @@ import org.destinationsol.game.sound.SpecialSounds;
 
 import java.util.List;
 
-public class SolShip implements SolObject {
+public class ManiShip implements ManiObject {
   public static final float BASE_DUR_MOD = .3f;
   public static final float PULL_DIST = 2f;
   public static final float SMOKE_PERC = .6f;
@@ -78,9 +75,9 @@ public class SolShip implements SolObject {
   private float myAbilityAwait;
   private float myControlEnableAwait;
 
-  public SolShip(ManiGame game, Pilot pilot, Hull hull, RemoveController removeController, List<Dra> dras,
-                 ItemContainer container, ShipRepairer repairer, float money, TradeContainer tradeContainer, Shield shield,
-                 Armor armor)
+  public ManiShip(ManiGame game, Pilot pilot, Hull hull, RemoveController removeController, List<Dra> dras,
+                  ItemContainer container, ShipRepairer repairer, float money, TradeContainer tradeContainer, Shield shield,
+                  Armor armor)
   {
     myRemoveController = removeController;
     myDras = dras;
@@ -124,7 +121,7 @@ public class SolShip implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
                             ManiGame game, Vector2 collPos)
   {
     if (tryCollectLoot(other, game)) {
@@ -156,7 +153,7 @@ public class SolShip implements SolObject {
     return true;
   }
 
-  private boolean tryCollectLoot(SolObject obj, ManiGame game) {
+  private boolean tryCollectLoot(ManiObject obj, ManiGame game) {
     if (!(obj instanceof Loot)) {
       return false;
     }
@@ -222,7 +219,7 @@ public class SolShip implements SolObject {
 
   @Override
   public void update(ManiGame game) {
-    SolShip nearestEnemy = game.getFactionMan().getNearestEnemy(game, this);
+    ManiShip nearestEnemy = game.getFactionMan().getNearestEnemy(game, this);
     myPilot.update(game, this, nearestEnemy);
     myHull.update(game, myItemContainer, myPilot, this, nearestEnemy);
 
@@ -487,7 +484,7 @@ public class SolShip implements SolObject {
     if (!secondarySlot) {
       if (item instanceof EngineItem) {
         if (true) {
-          Gdx.app.log("SolShip", "maybeEquip called for an engine item, can't do that!");
+          Gdx.app.log("ManiShip", "maybeEquip called for an engine item, can't do that!");
           //throw new AssertionError("engine items not supported");
         }
         EngineItem ei = (EngineItem) item;
@@ -540,7 +537,7 @@ public class SolShip implements SolObject {
     if (!secondarySlot) {
       if (myHull.getEngine() == item) {
         if (true) {
-          Gdx.app.log("SolShip", "maybeUnequip called for an engine item, can't do that!");
+          Gdx.app.log("ManiShip", "maybeUnequip called for an engine item, can't do that!");
           //throw new AssertionError("engine items not supported");
         }
         if (unequip) {

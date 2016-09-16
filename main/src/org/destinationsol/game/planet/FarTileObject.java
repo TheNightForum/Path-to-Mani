@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.FarObj;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 
 public class FarTileObject implements FarObj {
   private final Planet myPlanet;
@@ -47,7 +47,7 @@ public class FarTileObject implements FarObj {
   }
 
   @Override
-  public SolObject toObj(ManiGame game) {
+  public ManiObject toObj(ManiGame game) {
     return new TileObjBuilder().build(game, mySize, myToPlanetAngle, myDist, myTile, myPlanet);
   }
 

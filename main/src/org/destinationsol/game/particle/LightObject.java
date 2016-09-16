@@ -22,13 +22,13 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.FarObj;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.dra.Dra;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LightObject implements SolObject {
+public class LightObject implements ManiObject {
 
   private final LightSrc myLightSrc;
   private final ArrayList<Dra> myDras;
@@ -97,7 +97,7 @@ public class LightObject implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
                             ManiGame game, Vector2 collPos)
   {
   }

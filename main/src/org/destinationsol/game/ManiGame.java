@@ -88,7 +88,7 @@ public class ManiGame {
   private final MountDetectDrawer myMountDetectDrawer;
   private final TutorialManager myTutorialManager;
 
-  private SolShip myHero;
+  private ManiShip myHero;
   private float myTimeStep;
   private float myTime;
   private boolean myPaused;
@@ -119,7 +119,7 @@ public class ManiGame {
     hullConfigManager = new HullConfigManager(myShipBuilder, FileManager.getInstance(), textureManager, myItemManager, myAbilityCommonConfigs, mySoundManager);
     myNames = new ManiNames();
     myPlanetManager = new PlanetManager(myTextureManager, hullConfigManager, gameColors, myItemManager);
-    SolContactListener contactListener = new SolContactListener(this);
+    ManiContactListener contactListener = new ManiContactListener(this);
     myFactionManager = new FactionManager();
     myObjectManager = new ObjectManager(contactListener, myFactionManager);
     myGridDrawer = new GridDrawer(textureManager);
@@ -280,11 +280,11 @@ public class ManiGame {
 
     myHero = null;
     myTranscendentHero = null;
-    List<SolObject> objs = myObjectManager.getObjs();
+    List<ManiObject> objs = myObjectManager.getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject obj = objs.get(i);
-      if ((obj instanceof SolShip)) {
-        SolShip ship = (SolShip) obj;
+      ManiObject obj = objs.get(i);
+      if ((obj instanceof ManiShip)) {
+        ManiShip ship = (ManiShip) obj;
         Pilot prov = ship.getPilot();
         if (prov.isPlayer()) {
           myHero = ship;
@@ -365,7 +365,7 @@ public class ManiGame {
     return myLootBuilder;
   }
 
-  public SolShip getHero() {
+  public ManiShip getHero() {
     return myHero;
   }
 
@@ -414,9 +414,9 @@ public class ManiGame {
     }
     SolSystem ns = myPlanetManager.getNearestSystem(pos);
     if (ns.getPos().dst(pos) < SunSingleton.SUN_HOT_RAD) return false;
-    List<SolObject> objs = myObjectManager.getObjs();
+    List<ManiObject> objs = myObjectManager.getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject o = objs.get(i);
+      ManiObject o = objs.get(i);
       if (!o.hasBody()) continue;
       if (pos.dst(o.getPosition()) < myObjectManager.getRadius(o)) {
         return false;

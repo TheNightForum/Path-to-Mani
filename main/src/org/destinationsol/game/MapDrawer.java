@@ -28,7 +28,7 @@ import org.destinationsol.game.maze.Maze;
 import org.destinationsol.game.maze.MazeBuilder;
 import org.destinationsol.game.planet.*;
 import org.destinationsol.game.ship.FarShip;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.ui.UiDrawer;
 
 import java.util.ArrayList;
@@ -112,7 +112,7 @@ public class MapDrawer {
     float starNodeW = cam.getViewHeight(myZoom) * STAR_NODE_SZ;
     float viewDist = cam.getViewDist(myZoom);
     FactionManager factionManager = game.getFactionMan();
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     Planet np = game.getPlanetMan().getNearestPlanet();
     Vector2 camPos = cam.getPos();
     float camAngle = cam.getAngle();
@@ -233,15 +233,15 @@ public class MapDrawer {
   }
 
   private void drawIcons(GameDrawer drawer, ManiGame game, float iconSz, float viewDist, FactionManager factionManager,
-                         SolShip hero, Vector2 camPos, float heroDmgCap)
+                         ManiShip hero, Vector2 camPos, float heroDmgCap)
   {
-    List<SolObject> objs = game.getObjMan().getObjs();
+    List<ManiObject> objs = game.getObjMan().getObjs();
     for (int i1 = 0, objsSize = objs.size(); i1 < objsSize; i1++) {
-      SolObject o = objs.get(i1);
+      ManiObject o = objs.get(i1);
       Vector2 oPos = o.getPosition();
       if (viewDist < camPos.dst(oPos)) continue;
-      if ((o instanceof SolShip)) {
-        SolShip ship = (SolShip) o;
+      if ((o instanceof ManiShip)) {
+        ManiShip ship = (ManiShip) o;
         String hint = ship.getPilot().getMapHint();
         if (hint == null && !DebugOptions.DETAILED_MAP) continue;
         drawObjIcon(iconSz, oPos, ship.getAngle(), factionManager, hero, ship.getPilot().getFaction(), heroDmgCap, o, ship.getHull().config.getIcon(), drawer);
@@ -297,9 +297,9 @@ public class MapDrawer {
 
   private void drawStarNodes(GameDrawer drawer, ManiGame game, float viewDist, Vector2 camPos, float starNodeW)
   {
-    List<SolObject> objs = game.getObjMan().getObjs();
+    List<ManiObject> objs = game.getObjMan().getObjs();
     for (int i1 = 0, objsSize = objs.size(); i1 < objsSize; i1++) {
-      SolObject o = objs.get(i1);
+      ManiObject o = objs.get(i1);
       if (!(o instanceof StarPort)) continue;
       Vector2 oPos = o.getPosition();
       if (viewDist < camPos.dst(oPos)) continue;
@@ -326,9 +326,9 @@ public class MapDrawer {
 
   private void drawNpGround(GameDrawer drawer, ManiGame game, float viewDist, Planet np, Vector2 camPos) {
     ObjectManager objectManager = game.getObjMan();
-    List<SolObject> objs = objectManager.getObjs();
+    List<ManiObject> objs = objectManager.getObjs();
     for (int i1 = 0, objsSize = objs.size(); i1 < objsSize; i1++) {
-      SolObject o = objs.get(i1);
+      ManiObject o = objs.get(i1);
       if (!(o instanceof TileObject)) continue;
       TileObject to = (TileObject) o;
       if (to.getPlanet() != np) continue;
@@ -353,7 +353,7 @@ public class MapDrawer {
   }
 
   public void drawObjIcon(float iconSz, Vector2 pos, float objAngle,
-                          FactionManager factionManager, SolShip hero, Faction objFac, float heroDmgCap,
+                          FactionManager factionManager, ManiShip hero, Faction objFac, float heroDmgCap,
                           Object shipHack, TextureAtlas.AtlasRegion icon, Object drawerHack)
   {
     boolean enemy = hero != null && factionManager.areEnemies(objFac, hero.getPilot().getFaction());

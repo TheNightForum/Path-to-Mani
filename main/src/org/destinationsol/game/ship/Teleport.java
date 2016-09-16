@@ -42,12 +42,12 @@ public class Teleport implements ShipAbility {
   }
 
   @Override
-  public boolean update(ManiGame game, SolShip owner, boolean tryToUse) {
+  public boolean update(ManiGame game, ManiShip owner, boolean tryToUse) {
     myShouldTeleport = false;
     if (!tryToUse) return false;
     Vector2 pos = owner.getPosition();
     Faction faction = owner.getPilot().getFaction();
-    SolShip ne = game.getFactionMan().getNearestEnemy(game, MAX_RADIUS, faction, pos);
+    ManiShip ne = game.getFactionMan().getNearestEnemy(game, MAX_RADIUS, faction, pos);
     if (ne == null) return false;
     Vector2 nePos = ne.getPosition();
     Planet np = game.getPlanetMan().getNearestPlanet();
@@ -82,7 +82,7 @@ public class Teleport implements ShipAbility {
   }
 
   // can be performed in update
-  public void maybeTeleport(ManiGame game, SolShip owner) {
+  public void maybeTeleport(ManiGame game, ManiShip owner) {
     if (!myShouldTeleport) return;
 
     TextureAtlas.AtlasRegion tex = game.getTexMan().getTex(TEX_PATH, null);

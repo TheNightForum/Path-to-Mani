@@ -19,7 +19,7 @@ package org.destinationsol.game.screens;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 public class SunWarnDrawer extends WarnDrawer {
 
@@ -28,7 +28,7 @@ public class SunWarnDrawer extends WarnDrawer {
   }
 
   public boolean shouldWarn(ManiGame game) {
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     if (hero == null) return false;
     Vector2 pos = hero.getPosition();
     float toCenter = game.getPlanetMan().getNearestSystem(pos).getPos().dst(pos);

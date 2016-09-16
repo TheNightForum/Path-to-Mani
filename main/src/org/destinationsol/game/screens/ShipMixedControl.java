@@ -26,7 +26,7 @@ import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.input.Mover;
 import org.destinationsol.game.input.Shooter;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.ui.SolInputManager;
 import org.destinationsol.ui.SolUiControl;
 
@@ -67,7 +67,7 @@ public class ShipMixedControl implements ShipUiControl {
     if (!enabled) return;
     SolInputManager im = cmp.getInputMan();
     ManiGame g = cmp.getGame();
-    SolShip h = g.getHero();
+    ManiShip h = g.getHero();
     if (h != null) {
       myMouseWorldPos.set(Gdx.input.getX(), Gdx.input.getY());
       g.getCam().screenToWorld(myMouseWorldPos);

@@ -25,7 +25,7 @@ import org.destinationsol.game.dra.*;
 import org.destinationsol.game.input.Pilot;
 import org.destinationsol.game.planet.PlanetBind;
 import org.destinationsol.game.ship.FarShip;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class BeaconHandler {
   private DrasObject myD;
   private FarDras myFarD;
   private Pilot myTargetPilot;
-  private SolShip myTarget;
+  private ManiShip myTarget;
   private FarShip myFarTarget;
   private Action myCurrAction;
   private PlanetBind myPlanetBind;
@@ -109,7 +109,7 @@ public class BeaconHandler {
   private void updateTarget(ManiGame game) {
     if (myTargetPilot == null) return;
     ObjectManager om = game.getObjMan();
-    List<SolObject> objs = om.getObjs();
+    List<ManiObject> objs = om.getObjs();
     List<FarShip> farShips = om.getFarShips();
     if (myTarget != null) {
       if (objs.contains(myTarget)) return;
@@ -125,9 +125,9 @@ public class BeaconHandler {
     if (myFarTarget == null) throw new AssertionError();
     if (om.getFarShips().contains(myFarTarget)) return;
     myFarTarget = null;
-    for (SolObject o : objs) {
-      if ((o instanceof SolShip)) {
-        SolShip ship = (SolShip) o;
+    for (ManiObject o : objs) {
+      if ((o instanceof ManiShip)) {
+        ManiShip ship = (ManiShip) o;
         if (ship.getPilot() != myTargetPilot) continue;
         myTarget = ship;
         return;
@@ -138,7 +138,7 @@ public class BeaconHandler {
 
   private void updateD(ManiGame game) {
     ObjectManager om = game.getObjMan();
-    List<SolObject> objs = om.getObjs();
+    List<ManiObject> objs = om.getObjs();
     List<FarObjData> farObjs = om.getFarObjs();
 
     if (myD != null) {
@@ -159,7 +159,7 @@ public class BeaconHandler {
     if (myFarD == null) throw new AssertionError();
     if (om.containsFarObj(myFarD)) return;
     myFarD = null;
-    for (SolObject o : objs) {
+    for (ManiObject o : objs) {
       if ((o instanceof DrasObject)) {
         List<Dra> dras = o.getDras();
         if (dras.size() != 3) continue;
@@ -219,11 +219,11 @@ public class BeaconHandler {
 
   private Pilot findPilotInPos(ManiGame g, Vector2 pos, boolean onMap, boolean clicked) {
     ObjectManager om = g.getObjMan();
-    SolShip h = g.getHero();
+    ManiShip h = g.getHero();
     float iconRad = onMap ? g.getMapDrawer().getIconRadius(g.getCam()) : 0;
-    for (SolObject o : om.getObjs()) {
-      if (o == h || !(o instanceof SolShip)) continue;
-      SolShip s = (SolShip) o;
+    for (ManiObject o : om.getObjs()) {
+      if (o == h || !(o instanceof ManiShip)) continue;
+      ManiShip s = (ManiShip) o;
       Pilot pilot = s.getPilot();
       if (onMap && pilot.getMapHint() == null) continue;
       float dst = o.getPosition().dst(pos);

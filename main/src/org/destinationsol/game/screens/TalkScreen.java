@@ -21,7 +21,7 @@ import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
 import org.destinationsol.menu.MenuLayout;
 import org.destinationsol.ui.SolInputManager;
@@ -42,7 +42,7 @@ public class TalkScreen implements SolUiScreen {
   private final SolUiControl myHireCtrl;
   private final Rectangle myBg;
   public final SolUiControl closeCtrl;
-  private SolShip myTarget;
+  private ManiShip myTarget;
 
   public TalkScreen(MenuLayout menuLayout, GameOptions gameOptions) {
     myControls = new ArrayList<SolUiControl>();
@@ -82,7 +82,7 @@ public class TalkScreen implements SolUiScreen {
       return;
     }
     ManiGame g = cmp.getGame();
-    SolShip hero = g.getHero();
+    ManiShip hero = g.getHero();
     SolInputManager inputMan = cmp.getInputMan();
     if (closeCtrl.isJustOff() || isTargetFar(hero))
     {
@@ -106,7 +106,7 @@ public class TalkScreen implements SolUiScreen {
     }
   }
 
-  public boolean isTargetFar(SolShip hero) {
+  public boolean isTargetFar(ManiShip hero) {
     if (hero == null || myTarget == null || myTarget.getLife() <= 0) return true;
     float dst = myTarget.getPosition().dst(hero.getPosition()) - hero.getHull().config.getApproxRadius() - myTarget.getHull().config.getApproxRadius();
     return MAX_TALK_DIST < dst;
@@ -145,11 +145,11 @@ public class TalkScreen implements SolUiScreen {
 
   }
 
-  public void setTarget(SolShip target) {
+  public void setTarget(ManiShip target) {
     myTarget = target;
   }
 
-  public SolShip getTarget() {
+  public ManiShip getTarget() {
     return myTarget;
   }
 }

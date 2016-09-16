@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.FarObj;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraMan;
 
@@ -52,7 +52,7 @@ public class FarPlanetSprites implements FarObj {
   }
 
   @Override
-  public SolObject toObj(ManiGame game) {
+  public ManiObject toObj(ManiGame game) {
     return new PlanetSprites(myPlanet, myRelAngleToPlanet, myDist, myDras, myToPlanetRotSpd);
   }
 

@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Asteroid implements SolObject {
+public class Asteroid implements ManiObject {
 
   public static final float MIN_SPLIT_SZ = .25f;
   public static final float MIN_BURN_SZ = .3f;
@@ -103,7 +103,7 @@ public class Asteroid implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
                             ManiGame game, Vector2 collPos)
   {
     float dmg;

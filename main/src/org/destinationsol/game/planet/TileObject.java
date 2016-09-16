@@ -23,14 +23,14 @@ import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.FarObj;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.RectSprite;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileObject implements SolObject {
+public class TileObject implements ManiObject {
 
   private final Planet myPlanet;
   private final float myToPlanetRelAngle;
@@ -135,7 +135,7 @@ public class TileObject implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
                             ManiGame game, Vector2 collPos)
   {
   }

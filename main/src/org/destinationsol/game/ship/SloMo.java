@@ -53,7 +53,7 @@ public class SloMo implements ShipAbility {
   }
 
   @Override
-  public boolean update(ManiGame game, SolShip owner, boolean tryToUse) {
+  public boolean update(ManiGame game, ManiShip owner, boolean tryToUse) {
     if (tryToUse) {
       myFactor = myConfig.factor;
       Vector2 pos = owner.getPosition();

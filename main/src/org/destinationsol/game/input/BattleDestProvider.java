@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.planet.Planet;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 public class BattleDestProvider {
   public static final float MIN_DIR_CHANGE_AWAIT = 10f;
@@ -36,8 +36,8 @@ public class BattleDestProvider {
     myCw = ManiMath.test(.5f);
   }
 
-  public Vector2 getDest(SolShip ship, SolShip enemy, Planet np, boolean battle, float ts,
-    boolean canShootUnfixed, boolean nearGround) {
+  public Vector2 getDest(ManiShip ship, ManiShip enemy, Planet np, boolean battle, float ts,
+                         boolean canShootUnfixed, boolean nearGround) {
     myDirChangeAwait -= ts;
     if (myDirChangeAwait <= 0) {
       int rnd = ManiMath.intRnd(0, 2);

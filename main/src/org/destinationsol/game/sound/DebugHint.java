@@ -21,7 +21,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import org.destinationsol.common.DebugCol;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,10 +32,10 @@ public class DebugHint {
   private final Vector2 myPos;
   private final Map<String, Long> myMsgs;
 
-  private SolObject myOwner;
+  private ManiObject myOwner;
   private String myMsg;
 
-  public DebugHint(SolObject owner, Vector2 pos) {
+  public DebugHint(ManiObject owner, Vector2 pos) {
     myOwner = owner;
     myPos = new Vector2(pos);
     myMsgs = new HashMap<String, Long>();

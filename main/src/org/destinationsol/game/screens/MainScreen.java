@@ -32,8 +32,8 @@ import org.destinationsol.game.item.ItemManager;
 import org.destinationsol.game.item.Shield;
 import org.destinationsol.game.item.SolItem;
 import org.destinationsol.game.planet.Planet;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.ShipAbility;
-import org.destinationsol.game.ship.SolShip;
 import org.destinationsol.ui.*;
 
 import java.util.ArrayList;
@@ -186,7 +186,7 @@ public class MainScreen implements SolUiScreen {
     ManiGame game = cmp.getGame();
     SolInputManager inputMan = cmp.getInputMan();
     GameScreens screens = game.getScreens();
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
 
     for (int i = 0, sz = myWarnDrawers.size(); i < sz; i++) {
       WarnDrawer wd = myWarnDrawers.get(i);
@@ -228,21 +228,21 @@ public class MainScreen implements SolUiScreen {
   }
 
   private void updateTalk(ManiGame game) {
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     if (hero == null) {
       talkCtrl.setEnabled(false);
       return;
     }
     FactionManager factionManager = game.getFactionMan();
 
-    SolShip target = null;
+    ManiShip target = null;
     float minDist = TalkScreen.MAX_TALK_DIST;
     float har = hero.getHull().config.getApproxRadius();
-    List<SolObject> objs = game.getObjMan().getObjs();
+    List<ManiObject> objs = game.getObjMan().getObjs();
     for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-      SolObject o = objs.get(i);
-      if (!(o instanceof SolShip)) continue;
-      SolShip ship = (SolShip) o;
+      ManiObject o = objs.get(i);
+      if (!(o instanceof ManiShip)) continue;
+      ManiShip ship = (ManiShip) o;
       if (factionManager.areEnemies(hero, ship)) continue;
       if (ship.getTradeContainer() == null) continue;
       float dst = ship.getPosition().dst(hero.getPosition());
@@ -265,8 +265,8 @@ public class MainScreen implements SolUiScreen {
     }
   }
 
-  private boolean drawGunStat(UiDrawer uiDrawer, SolShip hero, boolean secondary, float col0, float col1,
-    float col2, float y)
+  private boolean drawGunStat(UiDrawer uiDrawer, ManiShip hero, boolean secondary, float col0, float col1,
+                              float col2, float y)
   {
     GunItem g = hero.getHull().getGun(secondary);
     if (g == null) return false;
@@ -356,7 +356,7 @@ public class MainScreen implements SolUiScreen {
     myBorderDrawer.draw(uiDrawer, cmp);
 
     ManiGame game = cmp.getGame();
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     if (hero != null) {
       float row = BorderDrawer.TISHCH_SZ + V_PAD;
       float col0 = BorderDrawer.TISHCH_SZ + H_PAD;
@@ -487,7 +487,7 @@ public class MainScreen implements SolUiScreen {
       super(r, "No Shield");
     }
     protected boolean shouldWarn(ManiGame game) {
-      SolShip h = game.getHero();
+      ManiShip h = game.getHero();
       if (h == null) return false;
       return h.getShield() == null;
     }
@@ -498,7 +498,7 @@ public class MainScreen implements SolUiScreen {
       super(r, "No Armor");
     }
     protected boolean shouldWarn(ManiGame game) {
-      SolShip h = game.getHero();
+      ManiShip h = game.getHero();
       if (h == null) return false;
       return h.getArmor() == null;
     }
@@ -509,18 +509,18 @@ public class MainScreen implements SolUiScreen {
       super(r, "Dangerous\nEnemy");
     }
     protected boolean shouldWarn(ManiGame game) {
-      SolShip h = game.getHero();
+      ManiShip h = game.getHero();
       if (h == null) return false;
       float heroCap = HardnessCalc.getShipDmgCap(h);
-      List<SolObject> objs = game.getObjMan().getObjs();
+      List<ManiObject> objs = game.getObjMan().getObjs();
       FactionManager fm = game.getFactionMan();
       SolCam cam = game.getCam();
       float viewDist = cam.getViewDist();
       float dps = 0;
       for (int i = 0, sz = objs.size(); i < sz; i++) {
-        SolObject o = objs.get(i);
-        if (!(o instanceof SolShip)) continue;
-        SolShip ship = (SolShip) o;
+        ManiObject o = objs.get(i);
+        if (!(o instanceof ManiShip)) continue;
+        ManiShip ship = (ManiShip) o;
         if (viewDist < ship.getPosition().dst(h.getPosition())) continue;
         if (!fm.areEnemies(h, ship)) continue;
         dps += HardnessCalc.getShipDps(ship);

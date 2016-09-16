@@ -21,7 +21,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 
 //TODO Dra?
 public interface Dra {
@@ -29,9 +29,9 @@ public interface Dra {
   TextureAtlas.AtlasRegion getTex();
   DraLevel getLevel();
   // called on every update from manager
-  void update(ManiGame game, SolObject o);
+  void update(ManiGame game, ManiObject o);
   // called on every draw from manager. after that, this dra should be able to return correct pos & radius
-  void prepare(SolObject o);
+  void prepare(ManiObject o);
   Vector2 getPos();
   Vector2 getRelPos();
   float getRadius();

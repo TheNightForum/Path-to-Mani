@@ -18,7 +18,7 @@ package org.destinationsol.game.projectile;
 
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 public interface ProjectileBody {
   void update(ManiGame game);
@@ -28,5 +28,5 @@ public interface ProjectileBody {
   void onRemove(ManiGame game);
   float getAngle();
   void changeAngle(float diff);
-  float getDesiredAngle(SolShip ne);
+  float getDesiredAngle(ManiShip ne);
 }

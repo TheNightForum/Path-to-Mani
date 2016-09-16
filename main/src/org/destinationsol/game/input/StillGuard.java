@@ -22,7 +22,7 @@ import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.ShipConfig;
 import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.planet.PlanetBind;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
 
 public class StillGuard implements MoveDestProvider {
@@ -60,7 +60,7 @@ public class StillGuard implements MoveDestProvider {
   }
 
   @Override
-  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, ManiShip nearestEnemy) {
     if (myPlanetBind != null) {
       Vector2 diff = ManiMath.getVec();
       myPlanetBind.setDiff(diff, myDest, false);
@@ -71,7 +71,7 @@ public class StillGuard implements MoveDestProvider {
   }
 
   @Override
-  public Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround) {
+  public Boolean shouldManeuver(boolean canShoot, ManiShip nearestEnemy, boolean nearGround) {
     return true;
   }
 

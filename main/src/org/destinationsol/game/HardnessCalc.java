@@ -25,7 +25,7 @@ import org.destinationsol.game.planet.PlanetConfig;
 import org.destinationsol.game.planet.SysConfig;
 import org.destinationsol.game.projectile.ProjectileConfig;
 import org.destinationsol.game.ship.FarShip;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.hulls.GunSlot;
 import org.destinationsol.game.ship.hulls.Hull;
 import org.destinationsol.game.ship.hulls.HullConfig;
@@ -188,7 +188,7 @@ public class HardnessCalc {
     return g.config.meanDps;
   }
 
-  public static float getShipDps(SolShip s) {
+  public static float getShipDps(ManiShip s) {
     Hull h = s.getHull();
     return getGunDps(h.getGun(false)) + getGunDps(h.getGun(true));
   }
@@ -197,7 +197,7 @@ public class HardnessCalc {
     return getGunDps(s.getGun(false)) + getGunDps(s.getGun(true));
   }
 
-  public static float getShipDmgCap(SolShip s) {
+  public static float getShipDmgCap(ManiShip s) {
     return getDmgCap(s.getHull().config, s.getArmor(), s.getShield());
   }
 
@@ -223,6 +223,6 @@ public class HardnessCalc {
   }
 
   public static float getShipObjDps(Object srcObj) {
-    return srcObj instanceof SolShip ? getShipDps((SolShip) srcObj) : getFarShipDps((FarShip) srcObj);
+    return srcObj instanceof ManiShip ? getShipDps((ManiShip) srcObj) : getFarShipDps((FarShip) srcObj);
   }
 }

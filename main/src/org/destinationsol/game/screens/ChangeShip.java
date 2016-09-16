@@ -25,8 +25,8 @@ import org.destinationsol.game.item.EngineItem;
 import org.destinationsol.game.item.ItemContainer;
 import org.destinationsol.game.item.ShipItem;
 import org.destinationsol.game.item.SolItem;
+import org.destinationsol.game.ship.ManiShip;
 import org.destinationsol.game.ship.ShipRepairer;
-import org.destinationsol.game.ship.SolShip;
 import org.destinationsol.game.ship.hulls.Hull;
 import org.destinationsol.game.ship.hulls.HullConfig;
 import org.destinationsol.ui.SolInputManager;
@@ -78,7 +78,7 @@ public class ChangeShip implements InventoryOperations {
   public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
     ManiGame game = cmp.getGame();
     InventoryScreen is = game.getScreens().inventoryScreen;
-    SolShip hero = game.getHero();
+    ManiShip hero = game.getHero();
     TalkScreen talkScreen = game.getScreens().talkScreen;
     if (talkScreen.isTargetFar(hero)) {
       cmp.getInputMan().setScreen(cmp, game.getScreens().mainScreen);
@@ -95,13 +95,13 @@ public class ChangeShip implements InventoryOperations {
     }
   }
 
-  private void changeShip(ManiGame game, SolShip hero, ShipItem selected) {
+  private void changeShip(ManiGame game, ManiShip hero, ShipItem selected) {
     HullConfig newConfig = selected.getConfig();
     Hull hull = hero.getHull();
     EngineItem.Config ec = newConfig.getEngineConfig();
     EngineItem ei = ec == null ? null : ec.example.copy();
     GunItem g2 = hull.getGun(true);
-    SolShip newHero = game.getShipBuilder().build(game, hero.getPosition(), new Vector2(), hero.getAngle(), 0, hero.getPilot(),
+    ManiShip newHero = game.getShipBuilder().build(game, hero.getPosition(), new Vector2(), hero.getAngle(), 0, hero.getPilot(),
       hero.getItemContainer(), newConfig, newConfig.getMaxLife(), hull.getGun(false), g2, null,
       ei, new ShipRepairer(), hero.getMoney(), hero.getTradeContainer(), hero.getShield(), hero.getArmor());
     game.getObjMan().removeObjDelayed(hero);

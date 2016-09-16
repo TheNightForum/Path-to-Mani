@@ -28,7 +28,7 @@ import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.dra.RectSprite;
 import org.destinationsol.game.particle.LightSrc;
-import org.destinationsol.game.ship.SolShip;
+import org.destinationsol.game.ship.ManiShip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class LootBuilder {
   }
 
   // set spd & rot spd
-  public Loot build(ManiGame game, Vector2 pos, SolItem item, Vector2 spd, int life, float rotSpd, SolShip owner) {
+  public Loot build(ManiGame game, Vector2 pos, SolItem item, Vector2 spd, int life, float rotSpd, ManiShip owner) {
     List<Dra> dras = new ArrayList<Dra>();
     TextureAtlas.AtlasRegion tex = item.getIcon(game);
     float sz = item.getItemType().sz;

@@ -25,7 +25,7 @@ import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.FarObj;
 import org.destinationsol.game.ManiGame;
-import org.destinationsol.game.SolObject;
+import org.destinationsol.game.ManiObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.dra.RectSprite;
@@ -33,7 +33,7 @@ import org.destinationsol.game.dra.RectSprite;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MazeTileObject implements SolObject {
+public class MazeTileObject implements ManiObject {
   private final List<Dra> myDras;
   private final Body myBody;
   private final Vector2 myPos;
@@ -104,7 +104,7 @@ public class MazeTileObject implements SolObject {
   }
 
   @Override
-  public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+  public void handleContact(ManiObject other, ContactImpulse impulse, boolean isA, float absImpulse,
                             ManiGame game, Vector2 collPos)
   {
   }
@@ -144,7 +144,7 @@ public class MazeTileObject implements SolObject {
     }
 
     @Override
-    public SolObject toObj(ManiGame game) {
+    public ManiObject toObj(ManiGame game) {
       return new Builder().build(game, myTile, myPos, myAngle, myFlipped);
     }
 
