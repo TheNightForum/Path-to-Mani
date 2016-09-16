@@ -37,10 +37,10 @@ public class CreditsScreen implements ManiUiScreen {
   private int myIdx;
   private float myPerc;
 
-  public CreditsScreen(float r, GameOptions gameOptions) {
+  public CreditsScreen(MenuLayout menuLayout,float r, GameOptions gameOptions) {
     myControls = new ArrayList<ManiUiControl>();
-    myCloseCtrl = new ManiUiControl(MainScreen.creditsBtnRect(r), true, gameOptions.getKeyEscape());
-    myCloseCtrl.setDisplayName("Close");
+    myCloseCtrl = new ManiUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+    myCloseCtrl.setDisplayName("Back");
     myControls.add(myCloseCtrl);
     myColor = ManiColor.col(1, 1);
 

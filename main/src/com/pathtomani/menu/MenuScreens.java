@@ -37,7 +37,7 @@ public class MenuScreens {
     options = new OptionsScreen(menuLayout, gameOptions);
     inputMapScreen = new InputMapScreen(r, gameOptions);
     resolutionScreen = new ResolutionScreen(menuLayout, gameOptions);
-    credits = new CreditsScreen(r, gameOptions);
+    credits = new CreditsScreen(menuLayout, r, gameOptions);
     loading = new LoadingScreen();
     newGame = new NewGameScreen(menuLayout, gameOptions);
     newShip = new NewShipScreen(menuLayout, gameOptions);
