@@ -19,8 +19,8 @@ package com.pathtomani.game.input;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.common.Const;
-import com.pathtomani.game.ship.ManiShip;
-import com.pathtomani.game.ship.hulls.HullConfig;
+import com.pathtomani.entities.ship.ManiShip;
+import com.pathtomani.entities.ship.hulls.HullConfig;
 
 /**
  * Just stays wherever it is, but maneuvers
