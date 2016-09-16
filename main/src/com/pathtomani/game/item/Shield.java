@@ -29,7 +29,7 @@ import com.pathtomani.game.ManiObject;
 import com.pathtomani.game.ship.ManiShip;
 import com.pathtomani.game.sound.ManiSound;
 import com.pathtomani.game.sound.SoundManager;
-import com.pathtomani.TextureManager;
+import com.pathtomani.common.TextureManager;
 
 public class Shield implements ManiItem {
   public static final float SIZE_PERC = .7f;
