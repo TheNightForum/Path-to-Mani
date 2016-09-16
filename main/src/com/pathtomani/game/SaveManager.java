@@ -17,8 +17,8 @@
 package com.pathtomani.game;
 
 import com.pathtomani.common.IniReader;
-import com.pathtomani.files.FileManager;
-import com.pathtomani.files.HullConfigManager;
+import com.pathtomani.managers.files.FileManager;
+import com.pathtomani.managers.files.HullConfigManager;
 import com.pathtomani.entities.gun.GunItem;
 import com.pathtomani.entities.item.ItemManager;
 import com.pathtomani.entities.item.ManiItem;
