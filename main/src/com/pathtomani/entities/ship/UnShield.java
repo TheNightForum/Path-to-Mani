@@ -24,7 +24,7 @@ import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
 import com.pathtomani.entities.item.ManiItem;
 import com.pathtomani.game.DmgType;
-import com.pathtomani.game.dra.DraLevel;
+import com.pathtomani.managers.dra.DraLevel;
 import com.pathtomani.entities.item.ItemManager;
 import com.pathtomani.entities.item.Shield;
 import com.pathtomani.gfx.particle.ParticleSrc;
