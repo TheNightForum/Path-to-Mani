@@ -21,8 +21,8 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.Faction;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
-import com.pathtomani.game.dra.Dra;
-import com.pathtomani.game.input.Pilot;
+import com.pathtomani.managers.dra.Dra;
+import com.pathtomani.managers.input.Pilot;
 import com.pathtomani.gfx.particle.ParticleSrc;
 
 import java.util.List;
