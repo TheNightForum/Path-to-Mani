@@ -18,10 +18,10 @@ package com.pathtomani.game.input;
 
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.game.gun.GunItem;
-import com.pathtomani.game.projectile.ProjectileConfig;
-import com.pathtomani.game.ship.ManiShip;
-import com.pathtomani.game.gun.GunMount;
+import com.pathtomani.entities.gun.GunItem;
+import com.pathtomani.entities.projectile.ProjectileConfig;
+import com.pathtomani.entities.ship.ManiShip;
+import com.pathtomani.entities.gun.GunMount;
 
 public class Shooter {
 

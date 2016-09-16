@@ -22,7 +22,7 @@ import com.pathtomani.game.*;
 import com.pathtomani.common.Const;
 import com.pathtomani.common.Consumed;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.game.planet.Planet;
+import com.pathtomani.entities.planet.Planet;
 
 import java.util.List;
 

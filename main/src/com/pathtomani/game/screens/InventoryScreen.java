@@ -25,8 +25,8 @@ import com.pathtomani.ui.*;
 import com.pathtomani.common.Const;
 import com.pathtomani.common.GameOptions;
 import com.pathtomani.common.ManiColor;
-import com.pathtomani.game.item.ItemContainer;
-import com.pathtomani.game.item.ManiItem;
+import com.pathtomani.entities.item.ItemContainer;
+import com.pathtomani.entities.item.ManiItem;
 import com.pathtomani.menu.MenuLayout;
 
 import java.util.ArrayList;

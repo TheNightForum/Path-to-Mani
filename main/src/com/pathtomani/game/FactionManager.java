@@ -20,8 +20,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.pathtomani.game.input.Pilot;
-import com.pathtomani.game.projectile.Projectile;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.projectile.Projectile;
+import com.pathtomani.entities.ship.ManiShip;
 
 import java.util.List;
 

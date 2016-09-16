@@ -17,18 +17,18 @@
 package com.pathtomani.game;
 
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.game.gun.GunConfig;
-import com.pathtomani.game.gun.GunItem;
-import com.pathtomani.game.item.*;
-import com.pathtomani.game.maze.MazeConfig;
-import com.pathtomani.game.planet.PlanetConfig;
-import com.pathtomani.game.planet.SysConfig;
-import com.pathtomani.game.projectile.ProjectileConfig;
-import com.pathtomani.game.ship.FarShip;
-import com.pathtomani.game.ship.ManiShip;
-import com.pathtomani.game.ship.hulls.GunSlot;
-import com.pathtomani.game.ship.hulls.Hull;
-import com.pathtomani.game.ship.hulls.HullConfig;
+import com.pathtomani.entities.gun.GunConfig;
+import com.pathtomani.entities.gun.GunItem;
+import com.pathtomani.entities.item.*;
+import com.pathtomani.entities.maze.MazeConfig;
+import com.pathtomani.entities.planet.PlanetConfig;
+import com.pathtomani.entities.planet.SysConfig;
+import com.pathtomani.entities.projectile.ProjectileConfig;
+import com.pathtomani.entities.ship.FarShip;
+import com.pathtomani.entities.ship.ManiShip;
+import com.pathtomani.entities.ship.hulls.GunSlot;
+import com.pathtomani.entities.ship.hulls.Hull;
+import com.pathtomani.entities.ship.hulls.HullConfig;
 
 import java.util.Iterator;
 import java.util.List;

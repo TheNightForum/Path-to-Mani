@@ -25,7 +25,7 @@ import com.pathtomani.common.ManiColorUtil;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.GameDrawer;
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.planet.Planet;
+import com.pathtomani.entities.planet.Planet;
 import com.pathtomani.common.TextureManager;
 import com.pathtomani.game.ManiCam;
 

@@ -20,10 +20,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ShipConfig;
-import com.pathtomani.game.planet.PlanetBind;
-import com.pathtomani.game.ship.hulls.HullConfig;
+import com.pathtomani.entities.planet.PlanetBind;
+import com.pathtomani.entities.ship.hulls.HullConfig;
 import com.pathtomani.common.Const;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.ship.ManiShip;
 
 public class StillGuard implements MoveDestProvider {
 

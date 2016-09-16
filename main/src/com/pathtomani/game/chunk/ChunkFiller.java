@@ -22,20 +22,20 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.*;
 import com.pathtomani.game.dra.Dra;
 import com.pathtomani.game.dra.FarDras;
-import com.pathtomani.game.maze.Maze;
-import com.pathtomani.game.planet.*;
-import com.pathtomani.game.ship.hulls.HullConfig;
+import com.pathtomani.entities.maze.Maze;
+import com.pathtomani.entities.planet.*;
+import com.pathtomani.entities.ship.hulls.HullConfig;
 import com.pathtomani.common.Const;
 import com.pathtomani.common.TextureManager;
 import com.pathtomani.common.ManiColor;
-import com.pathtomani.game.asteroid.FarAsteroid;
+import com.pathtomani.entities.asteroid.FarAsteroid;
 import com.pathtomani.game.dra.DraLevel;
 import com.pathtomani.game.dra.RectSprite;
 import com.pathtomani.game.input.AiPilot;
 import com.pathtomani.game.input.MoveDestProvider;
 import com.pathtomani.game.input.Pilot;
 import com.pathtomani.game.input.StillGuard;
-import com.pathtomani.game.ship.FarShip;
+import com.pathtomani.entities.ship.FarShip;
 
 import java.util.ArrayList;
 

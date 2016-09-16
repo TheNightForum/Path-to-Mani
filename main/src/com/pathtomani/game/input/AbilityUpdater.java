@@ -17,9 +17,9 @@
 package com.pathtomani.game.input;
 
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.game.item.ManiItem;
-import com.pathtomani.game.ship.ManiShip;
-import com.pathtomani.game.ship.ShipAbility;
+import com.pathtomani.entities.item.ManiItem;
+import com.pathtomani.entities.ship.ManiShip;
+import com.pathtomani.entities.ship.ShipAbility;
 
 public class AbilityUpdater {
   private final float myAbilityUseStartPerc;

@@ -22,7 +22,7 @@ import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.ship.ManiShip;
 
 public class CollisionWarnDrawer extends WarnDrawer {
   private final MyRayBack myWarnCallback = new MyRayBack();

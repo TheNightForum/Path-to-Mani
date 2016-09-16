@@ -27,7 +27,7 @@ import com.pathtomani.ui.ManiInputManager;
 import com.pathtomani.common.GameOptions;
 import com.pathtomani.game.input.Mover;
 import com.pathtomani.game.input.Shooter;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.ship.ManiShip;
 import com.pathtomani.ui.ManiUiControl;
 
 import java.util.List;

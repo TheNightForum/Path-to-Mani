@@ -19,11 +19,11 @@ package com.pathtomani.game;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.input.*;
-import com.pathtomani.game.item.TradeConfig;
-import com.pathtomani.game.maze.Maze;
-import com.pathtomani.game.planet.*;
-import com.pathtomani.game.ship.FarShip;
-import com.pathtomani.game.ship.hulls.HullConfig;
+import com.pathtomani.entities.item.TradeConfig;
+import com.pathtomani.entities.maze.Maze;
+import com.pathtomani.entities.planet.*;
+import com.pathtomani.entities.ship.FarShip;
+import com.pathtomani.entities.ship.hulls.HullConfig;
 import com.pathtomani.common.Const;
 
 import java.util.ArrayList;

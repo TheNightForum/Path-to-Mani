@@ -23,8 +23,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
-import com.pathtomani.game.planet.Planet;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.planet.Planet;
+import com.pathtomani.entities.ship.ManiShip;
 
 public class SmallObjAvoider {
   public static final float MANEUVER_TIME = 2f;

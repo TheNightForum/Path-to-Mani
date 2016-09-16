@@ -18,11 +18,11 @@ package com.pathtomani.game.input;
 
 
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.ship.FarShip;
+import com.pathtomani.entities.ship.FarShip;
 import com.pathtomani.common.Const;
 import com.pathtomani.game.Faction;
 import com.pathtomani.game.screens.MainScreen;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.ship.ManiShip;
 
 public class UiControlledPilot implements Pilot {
 

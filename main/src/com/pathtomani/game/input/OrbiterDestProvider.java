@@ -19,9 +19,9 @@ package com.pathtomani.game.input;
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.planet.Planet;
-import com.pathtomani.game.ship.ManiShip;
-import com.pathtomani.game.ship.hulls.HullConfig;
+import com.pathtomani.entities.planet.Planet;
+import com.pathtomani.entities.ship.ManiShip;
+import com.pathtomani.entities.ship.hulls.HullConfig;
 
 /**
  * Flies in the planet orbit

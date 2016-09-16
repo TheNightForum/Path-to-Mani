@@ -26,7 +26,7 @@ import com.pathtomani.common.Const;
 import com.pathtomani.common.DebugCol;
 import com.pathtomani.common.ManiColor;
 import com.pathtomani.game.dra.DraMan;
-import com.pathtomani.game.ship.FarShip;
+import com.pathtomani.entities.ship.FarShip;
 
 import java.util.ArrayList;
 import java.util.HashMap;

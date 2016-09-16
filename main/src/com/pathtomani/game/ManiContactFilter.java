@@ -18,7 +18,7 @@ package com.pathtomani.game;
 
 import com.badlogic.gdx.physics.box2d.ContactFilter;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.pathtomani.game.projectile.Projectile;
+import com.pathtomani.entities.projectile.Projectile;
 
 public class ManiContactFilter implements ContactFilter {
   private final FactionManager myFactionManager;

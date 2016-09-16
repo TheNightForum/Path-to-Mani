@@ -23,7 +23,7 @@ import com.pathtomani.ManiApplication;
 import com.pathtomani.game.BeaconHandler;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.ui.ManiInputManager;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.ship.ManiShip;
 
 public class ShipMouseControl implements ShipUiControl {
   private final TextureAtlas.AtlasRegion myMoveCursor;

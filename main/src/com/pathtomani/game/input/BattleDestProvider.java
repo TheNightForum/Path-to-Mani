@@ -18,9 +18,9 @@ package com.pathtomani.game.input;
 
 import com.badlogic.gdx.math.Vector2;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.game.planet.Planet;
+import com.pathtomani.entities.planet.Planet;
 import com.pathtomani.common.Const;
-import com.pathtomani.game.ship.ManiShip;
+import com.pathtomani.entities.ship.ManiShip;
 
 public class BattleDestProvider {
   public static final float MIN_DIR_CHANGE_AWAIT = 10f;
