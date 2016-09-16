@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.FarObj;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.dra.Dra;
 
@@ -48,7 +48,7 @@ public class PlanetSprites implements SolObject {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     setDependentParams();
     myRelAngleToPlanet += myToPlanetRotSpd * game.getTimeStep();
   }
@@ -61,16 +61,16 @@ public class PlanetSprites implements SolObject {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return false;
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
   }
 
   @Override
-  public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+  public void receiveDmg(float dmg, ManiGame game, Vector2 pos, DmgType dmgType) {
   }
 
   @Override
@@ -79,7 +79,7 @@ public class PlanetSprites implements SolObject {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
   }
 
   @Override
@@ -109,7 +109,7 @@ public class PlanetSprites implements SolObject {
 
   @Override
   public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-    SolGame game, Vector2 collPos)
+                            ManiGame game, Vector2 collPos)
   {
   }
 

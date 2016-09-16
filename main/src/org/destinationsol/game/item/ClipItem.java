@@ -17,7 +17,7 @@
 package org.destinationsol.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 
 public class ClipItem implements SolItem {
   private final ClipConfig myConfig;
@@ -56,7 +56,7 @@ public class ClipItem implements SolItem {
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return myConfig.icon;
   }
 

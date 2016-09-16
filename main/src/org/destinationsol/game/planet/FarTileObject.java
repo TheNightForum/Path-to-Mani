@@ -19,7 +19,7 @@ package org.destinationsol.game.planet;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.FarObj;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 
 public class FarTileObject implements FarObj {
@@ -42,17 +42,17 @@ public class FarTileObject implements FarObj {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return false;
   }
 
   @Override
-  public SolObject toObj(SolGame game) {
+  public SolObject toObj(ManiGame game) {
     return new TileObjBuilder().build(game, mySize, myToPlanetAngle, myDist, myTile, myPlanet);
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     if (game.getPlanetMan().getNearestPlanet() == myPlanet) {
       ManiMath.fromAl(myPos, myPlanet.getAngle() + myToPlanetAngle, myDist);
       myPos.add(myPlanet.getPos());

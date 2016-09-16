@@ -71,7 +71,7 @@ public class ObjectManager {
     return false;
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     addRemove(game);
 
     float ts = game.getTimeStep();
@@ -157,7 +157,7 @@ public class ObjectManager {
     return res;
   }
 
-  private void addRemove(SolGame game) {
+  private void addRemove(ManiGame game) {
     for (int i = 0, myToRemoveSize = myToRemove.size(); i < myToRemoveSize; i++) {
       SolObject o = myToRemove.get(i);
       removeObjNow(game, o);
@@ -171,14 +171,14 @@ public class ObjectManager {
     myToAdd.clear();
   }
 
-  private void removeObjNow(SolGame game, SolObject o) {
+  private void removeObjNow(ManiGame game, SolObject o) {
     myObjs.remove(o);
     myRadii.remove(o);
     o.onRemove(game);
     game.getDraMan().objRemoved(o);
   }
 
-  public void addObjNow(SolGame game, SolObject o) {
+  public void addObjNow(ManiGame game, SolObject o) {
     if (DebugOptions.ASSERTIONS && myObjs.contains(o)) throw new AssertionError();
     myObjs.add(o);
     recalcRadius(o);
@@ -206,7 +206,7 @@ public class ObjectManager {
     return myFarBeginDist < dst;
   }
 
-  public void drawDebug(GameDrawer drawer, SolGame game) {
+  public void drawDebug(GameDrawer drawer, ManiGame game) {
     if (DebugOptions.DRAW_OBJ_BORDERS) {
       drawDebug0(drawer, game);
     }
@@ -221,7 +221,7 @@ public class ObjectManager {
     }
   }
 
-  private void drawDebugStrings(GameDrawer drawer, SolGame game) {
+  private void drawDebugStrings(GameDrawer drawer, ManiGame game) {
     float fontSize = game.getCam().getDebugFontSize();
     for (SolObject o : myObjs) {
       Vector2 pos = o.getPosition();
@@ -236,7 +236,7 @@ public class ObjectManager {
     }
   }
 
-  private void drawDebug0(GameDrawer drawer, SolGame game) {
+  private void drawDebug0(GameDrawer drawer, ManiGame game) {
     SolCam cam = game.getCam();
     float lineWidth = cam.getRealLineWidth();
     float vh = cam.getViewHeight();

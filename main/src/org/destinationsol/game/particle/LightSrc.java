@@ -21,7 +21,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.ManiColorUtil;
 import org.destinationsol.common.ManiMath;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.dra.RectSprite;
@@ -42,7 +42,7 @@ public class LightSrc {
 
   /** doesn't consume relPos
    */
-  public LightSrc(SolGame game, float sz, boolean hasHalo, float intensity, Vector2 relPos, Color col) {
+  public LightSrc(ManiGame game, float sz, boolean hasHalo, float intensity, Vector2 relPos, Color col) {
     TextureAtlas.AtlasRegion tex = game.getTexMan().getTex("smallGameObjs/particles/lightCircle", null);
     mySz = sz;
     myCircle = new RectSprite(tex, 0, 0, 0, new Vector2(relPos), DraLevel.PART_BG_0, 0, 0, col, true);
@@ -58,7 +58,7 @@ public class LightSrc {
     myFadeTime = DEFAULT_FADE_TIME;
   }
 
-  public void update(boolean working, float baseAngle, SolGame game) {
+  public void update(boolean working, float baseAngle, ManiGame game) {
     if (working) {
       myWorkPerc = 1f;
     } else {

@@ -18,7 +18,7 @@ package org.destinationsol.game.screens;
 
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.item.ItemContainer;
 import org.destinationsol.game.item.SolItem;
 import org.destinationsol.game.ship.SolShip;
@@ -43,12 +43,12 @@ public class BuyItems implements InventoryOperations {
   }
 
   @Override
-  public ItemContainer getItems(SolGame game) {
+  public ItemContainer getItems(ManiGame game) {
     return game.getScreens().talkScreen.getTarget().getTradeContainer().getItems();
   }
 
   @Override
-  public boolean isUsing(SolGame game, SolItem item) {
+  public boolean isUsing(ManiGame game, SolItem item) {
     return false;
   }
 
@@ -69,7 +69,7 @@ public class BuyItems implements InventoryOperations {
 
   @Override
   public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
     InventoryScreen is = game.getScreens().inventoryScreen;
     SolShip hero = game.getHero();
     TalkScreen talkScreen = game.getScreens().talkScreen;

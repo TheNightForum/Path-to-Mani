@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.ManiMath;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.dra.DrasObject;
@@ -38,7 +38,7 @@ public class PartMan {
   public PartMan() {
   }
 
-  public void finish(SolGame game, ParticleSrc src, Vector2 basePos) {
+  public void finish(ManiGame game, ParticleSrc src, Vector2 basePos) {
     if (src.isContinuous()) src.setWorking(false);
     ArrayList<Dra> dras = new ArrayList<Dra>();
     dras.add(src);
@@ -46,7 +46,7 @@ public class PartMan {
     game.getObjMan().addObjDelayed(o);
   }
 
-  public void blinks(Vector2 pos, SolGame game, float sz) {
+  public void blinks(Vector2 pos, ManiGame game, float sz) {
     int count = (int) (SZ_TO_BLINK_COUNT * sz * sz);
     for (int i = 0; i < count; i++) {
       Vector2 lightPos = new Vector2();
@@ -59,7 +59,7 @@ public class PartMan {
     }
   }
 
-  public void shieldSpark(SolGame game, Vector2 collPos, Hull hull, TextureAtlas.AtlasRegion shieldTex, float perc) {
+  public void shieldSpark(ManiGame game, Vector2 collPos, Hull hull, TextureAtlas.AtlasRegion shieldTex, float perc) {
     if (perc <= 0) return;
     Vector2 pos = hull.getPos();
     float angle = ManiMath.angle(pos, collPos);
@@ -77,8 +77,8 @@ public class PartMan {
     }
   }
 
-  public RectSprite blip(SolGame game, Vector2 pos, float angle, float sz, float fadeTime, Vector2 spd,
-    TextureAtlas.AtlasRegion tex)
+  public RectSprite blip(ManiGame game, Vector2 pos, float angle, float sz, float fadeTime, Vector2 spd,
+                         TextureAtlas.AtlasRegion tex)
   {
     RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.PART_FG_0, angle, 0, ManiColor.W, true);
     ArrayList<Dra> dras = new ArrayList<Dra>();

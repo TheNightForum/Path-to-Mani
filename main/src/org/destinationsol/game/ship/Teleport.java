@@ -23,7 +23,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.AbilityCommonConfig;
 import org.destinationsol.game.Faction;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.item.ItemManager;
 import org.destinationsol.game.item.SolItem;
 import org.destinationsol.game.planet.Planet;
@@ -42,7 +42,7 @@ public class Teleport implements ShipAbility {
   }
 
   @Override
-  public boolean update(SolGame game, SolShip owner, boolean tryToUse) {
+  public boolean update(ManiGame game, SolShip owner, boolean tryToUse) {
     myShouldTeleport = false;
     if (!tryToUse) return false;
     Vector2 pos = owner.getPosition();
@@ -82,7 +82,7 @@ public class Teleport implements ShipAbility {
   }
 
   // can be performed in update
-  public void maybeTeleport(SolGame game, SolShip owner) {
+  public void maybeTeleport(ManiGame game, SolShip owner) {
     if (!myShouldTeleport) return;
 
     TextureAtlas.AtlasRegion tex = game.getTexMan().getTex(TEX_PATH, null);

@@ -25,7 +25,7 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DebugOptions;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.sound.MusicManager;
 import org.destinationsol.menu.MenuScreens;
 import org.destinationsol.ui.DebugCollector;
@@ -53,7 +53,7 @@ public class ManiApplication implements ApplicationListener {
   private String myFatalErrorTrace;
 
   private float myAccum = 0;
-  private SolGame myGame;
+  private ManiGame myGame;
 
   public ManiApplication() {
     // Initiate Box2D to make sure natives are loaded early enough
@@ -168,7 +168,7 @@ public class ManiApplication implements ApplicationListener {
   }
 
   public void startNewGame(boolean tut, boolean usePrevShip) {
-    myGame = new SolGame(this, usePrevShip, myTextureManager, tut, myCommonDrawer);
+    myGame = new ManiGame(this, usePrevShip, myTextureManager, tut, myCommonDrawer);
     myInputMan.setScreen(this, myGame.getScreens().mainScreen);
     MusicManager.getInstance().PlayGameMusic(myOptions);
   }
@@ -188,7 +188,7 @@ public class ManiApplication implements ApplicationListener {
     myInputMan.dispose();
   }
 
-  public SolGame getGame() {
+  public ManiGame getGame() {
     return myGame;
   }
 

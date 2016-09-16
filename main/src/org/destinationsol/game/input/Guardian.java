@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.ObjectManager;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.ship.FarShip;
@@ -42,8 +42,8 @@ public class Guardian implements MoveDestProvider {
   private SolShip myTarget;
   private FarShip myFarTarget;
 
-  public Guardian(SolGame game, HullConfig hullConfig, Pilot targetPilot, Vector2 targetPos, HullConfig targetHc,
-    float relAngle)
+  public Guardian(ManiGame game, HullConfig hullConfig, Pilot targetPilot, Vector2 targetPos, HullConfig targetHc,
+                  float relAngle)
   {
     myTargetPilot = targetPilot;
     myDest = new Vector2();
@@ -72,7 +72,7 @@ public class Guardian implements MoveDestProvider {
   }
 
   @Override
-  public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
     updateTarget(game);
     myDest.set(shipPos);
     Vector2 targetPos;
@@ -88,7 +88,7 @@ public class Guardian implements MoveDestProvider {
     setDest(game, targetPos, targetApproxRad, hullConfig);
   }
 
-  public void updateTarget(SolGame game) {
+  public void updateTarget(ManiGame game) {
     ObjectManager om = game.getObjMan();
     List<SolObject> objs = om.getObjs();
     if (myTarget != null && objs.contains(myTarget)) return;
@@ -113,7 +113,7 @@ public class Guardian implements MoveDestProvider {
     }
   }
 
-  private void setDest(SolGame game, Vector2 targetPos, float targetApproxRad, HullConfig hullConfig) {
+  private void setDest(ManiGame game, Vector2 targetPos, float targetApproxRad, HullConfig hullConfig) {
     Planet np = game.getPlanetMan().getNearestPlanet(targetPos);
     float desiredAngle = myRelAngle;
     if (np.isNearGround(targetPos)) {

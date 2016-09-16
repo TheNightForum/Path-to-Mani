@@ -17,7 +17,7 @@
 package org.destinationsol.game.gun;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.item.SolItem;
 import org.destinationsol.game.item.SolItemType;
 
@@ -65,7 +65,7 @@ public class GunItem implements SolItem {
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return config.icon;
   }
 

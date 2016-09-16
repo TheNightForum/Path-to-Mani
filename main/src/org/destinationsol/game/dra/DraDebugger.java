@@ -23,7 +23,7 @@ import org.destinationsol.DevTextureProvider;
 import org.destinationsol.common.DebugCol;
 import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.DebugOptions;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.ui.FontSize;
 import org.destinationsol.ui.UiDrawer;
 
@@ -39,12 +39,12 @@ public class DraDebugger {
     myCollector = new HashSet<TextureAtlas.AtlasRegion>();
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     if (!DebugOptions.TEX_INFO) return;
     maybeCollectTexs(game);
   }
 
-  private void maybeCollectTexs(SolGame game) {
+  private void maybeCollectTexs(ManiGame game) {
     if (!Gdx.input.isTouched()) return;
     myCollector.clear();
     Vector2 cursorPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
@@ -52,7 +52,7 @@ public class DraDebugger {
     game.getDraMan().collectTexs(myCollector, cursorPos);
   }
 
-  public void draw(UiDrawer uiDrawer, SolGame game) {
+  public void draw(UiDrawer uiDrawer, ManiGame game) {
     if (!DebugOptions.TEX_INFO) return;
     float y = GAP;
     for (TextureAtlas.AtlasRegion tex : myCollector) {

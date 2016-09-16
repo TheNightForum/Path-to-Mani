@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiMath;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.ship.SolShip;
 
@@ -32,7 +32,7 @@ public class PointProjectileBody implements ProjectileBody {
   private final float myAcc;
 
   public PointProjectileBody(float angle, Vector2 muzzlePos, Vector2 gunSpd, float spdLen,
-    Projectile projectile, SolGame game, float acc)
+                             Projectile projectile, ManiGame game, float acc)
   {
     myPos = new Vector2(muzzlePos);
     mySpd = new Vector2();
@@ -43,7 +43,7 @@ public class PointProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     if (myAcc > 0 && ManiMath.canAccelerate(myAcc, mySpd)) {
       float spdLen = mySpd.len();
       if (spdLen < Const.MAX_MOVE_SPD) {
@@ -65,7 +65,7 @@ public class PointProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
     force.scl(game.getTimeStep());
     if (!acc) force.scl(10f);
     mySpd.add(force);
@@ -77,7 +77,7 @@ public class PointProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
   }
 
   @Override
@@ -99,9 +99,9 @@ public class PointProjectileBody implements ProjectileBody {
   private class MyRayBack implements RayCastCallback {
 
     private final Projectile myProjectile;
-    private final SolGame myGame;
+    private final ManiGame myGame;
 
-    private MyRayBack(Projectile projectile, SolGame game) {
+    private MyRayBack(Projectile projectile, ManiGame game) {
       myProjectile = projectile;
       myGame = game;
     }

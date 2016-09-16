@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Rectangle;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.game.MapDrawer;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.ui.SolInputManager;
 import org.destinationsol.ui.SolUiControl;
 import org.destinationsol.ui.SolUiScreen;
@@ -62,7 +62,7 @@ public class MapScreen implements SolUiScreen {
 
   @Override
   public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolGame g = cmp.getGame();
+    ManiGame g = cmp.getGame();
     GameOptions gameOptions = cmp.getOptions();
     boolean justClosed = closeCtrl.isJustOff();
     MapDrawer mapDrawer = g.getMapDrawer();

@@ -66,7 +66,7 @@ public class StarPort implements SolObject {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     setParamsFromBody();
 
     float fps = 1 / game.getTimeStep();
@@ -97,7 +97,7 @@ public class StarPort implements SolObject {
 
   }
 
-  private static void blip(SolGame game, SolShip ship) {
+  private static void blip(ManiGame game, SolShip ship) {
     TextureAtlas.AtlasRegion tex = game.getTexMan().getTex(Teleport.TEX_PATH, null);
     float blipSz = ship.getHull().config.getApproxRadius() * 10;
     game.getPartMan().blip(game, ship.getPosition(), ManiMath.rnd(180), blipSz, 1, Vector2.Zero, tex);
@@ -108,18 +108,18 @@ public class StarPort implements SolObject {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return false;
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
     myBody.getWorld().destroyBody(myBody);
 
   }
 
   @Override
-  public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+  public void receiveDmg(float dmg, ManiGame game, Vector2 pos, DmgType dmgType) {
     game.getSpecialSounds().playHit(game, this, pos, dmgType);
   }
 
@@ -129,7 +129,7 @@ public class StarPort implements SolObject {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
 
   }
 
@@ -160,7 +160,7 @@ public class StarPort implements SolObject {
 
   @Override
   public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-    SolGame game, Vector2 collPos)
+                            ManiGame game, Vector2 collPos)
   {
 
   }
@@ -195,7 +195,7 @@ public class StarPort implements SolObject {
     return pos;
   }
 
-  private static Vector2 adjustDesiredPos(SolGame game, StarPort myPort, Vector2 desired) {
+  private static Vector2 adjustDesiredPos(ManiGame game, StarPort myPort, Vector2 desired) {
     Vector2 newPos = desired;
     List<SolObject> objs = game.getObjMan().getObjs();
     for (SolObject o : objs) {
@@ -233,7 +233,7 @@ public class StarPort implements SolObject {
       myLoader = new PathLoader("misc");
     }
 
-    public StarPort build(SolGame game, Planet from, Planet to, boolean secondary) {
+    public StarPort build(ManiGame game, Planet from, Planet to, boolean secondary) {
       float angle = ManiMath.angle(from.getPos(), to.getPos());
       Vector2 pos = getDesiredPos(from, to, false);
       // Adjust position so that StarPorts are not overlapping
@@ -254,7 +254,7 @@ public class StarPort implements SolObject {
       body.setUserData(sp);
       return sp;
     }
-    private void addFlow(SolGame game, Vector2 pos, ArrayList<Dra> dras, float angle, ArrayList<LightSrc> lights) {
+    private void addFlow(ManiGame game, Vector2 pos, ArrayList<Dra> dras, float angle, ArrayList<LightSrc> lights) {
       EffectConfig flow = game.getSpecialEffects().starPortFlow;
       Vector2 relPos = new Vector2();
       ManiMath.fromAl(relPos, angle, -FLOW_DIST);
@@ -282,17 +282,17 @@ public class StarPort implements SolObject {
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(ManiGame game) {
       return false;
     }
 
     @Override
-    public SolObject toObj(SolGame game) {
+    public SolObject toObj(ManiGame game) {
       return game.getStarPortBuilder().build(game, myFrom, myTo, mySecondary);
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(ManiGame game) {
 
       Vector2 dp = getDesiredPos(myFrom, myTo, false);
       myPos.set(dp);
@@ -351,7 +351,7 @@ public class StarPort implements SolObject {
     private float myAngle;
     private final ParticleSrc myEff;
 
-    public Transcendent(SolShip ship, Planet from, Planet to, SolGame game) {
+    public Transcendent(SolShip ship, Planet from, Planet to, ManiGame game) {
       myShip = ship.toFarObj();
       myFrom = from;
       myTo = to;
@@ -376,7 +376,7 @@ public class StarPort implements SolObject {
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(ManiGame game) {
       setDependentParams();
 
       float ts = game.getTimeStep();
@@ -411,17 +411,17 @@ public class StarPort implements SolObject {
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(ManiGame game) {
       return false;
     }
 
     @Override
-    public void onRemove(SolGame game) {
+    public void onRemove(ManiGame game) {
       game.getPartMan().finish(game, myEff, myPos);
     }
 
     @Override
-    public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+    public void receiveDmg(float dmg, ManiGame game, Vector2 pos, DmgType dmgType) {
       game.getSpecialSounds().playHit(game, this, pos, dmgType);
     }
 
@@ -431,7 +431,7 @@ public class StarPort implements SolObject {
     }
 
     @Override
-    public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+    public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
     }
 
     @Override
@@ -461,7 +461,7 @@ public class StarPort implements SolObject {
 
     @Override
     public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-      SolGame game, Vector2 collPos)
+                              ManiGame game, Vector2 collPos)
     {
     }
 

@@ -17,7 +17,7 @@
 package org.destinationsol.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 
 public class MoneyItem implements SolItem {
   public static final int AMT = 10;
@@ -58,7 +58,7 @@ public class MoneyItem implements SolItem {
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     ItemManager im = game.getItemMan();
     if (myAmt == BIG_AMT) return im.bigMoneyIcon;
     if (myAmt == MED_AMT) return im.medMoneyIcon;

@@ -19,7 +19,7 @@ package org.destinationsol.game.ship;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.game.FarObj;
 import org.destinationsol.game.RemoveController;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.gun.GunItem;
 import org.destinationsol.game.input.Pilot;
 import org.destinationsol.game.item.*;
@@ -84,18 +84,18 @@ public class FarShip implements FarObj {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return myRemoveController != null && myRemoveController.shouldRemove(myPos);
   }
 
   @Override
-  public SolShip toObj(SolGame game) {
+  public SolShip toObj(ManiGame game) {
     return game.getShipBuilder().build(game, myPos, mySpd, myAngle, myRotSpd, myPilot, myContainer, myHullConfig, myLife, myGun1,
       myGun2, myRemoveController, myEngine, myRepairer, myMoney, myTradeContainer, myShield, myArmor);
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     myPilot.updateFar(game, this);
     if (myTradeContainer != null) myTradeContainer.update(game);
     if (myRepairer != null) myLife += myRepairer.tryRepair(game, myContainer, myLife, myHullConfig);

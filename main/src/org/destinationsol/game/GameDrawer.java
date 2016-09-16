@@ -42,7 +42,7 @@ public class GameDrawer {
     myDrawer.begin();
   }
 
-  public void updateMtx(SolGame game) {
+  public void updateMtx(ManiGame game) {
     myDrawer.setMtx(game.getCam().getMtx());
   }
 

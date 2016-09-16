@@ -19,7 +19,7 @@ package org.destinationsol.game.input;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiMath;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.planet.Planet;
 
 public class BigObjAvoider {
@@ -31,7 +31,7 @@ public class BigObjAvoider {
     myProj = new Vector2();
   }
 
-  public float avoid(SolGame game, Vector2 from, Vector2 dest, float toDestAngle) {
+  public float avoid(ManiGame game, Vector2 from, Vector2 dest, float toDestAngle) {
     float toDestLen = from.dst(dest);
     if (toDestLen > MAX_DIST_LEN) toDestLen = MAX_DIST_LEN;
     float res = toDestAngle;

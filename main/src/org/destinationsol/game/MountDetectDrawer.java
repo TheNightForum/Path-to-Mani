@@ -36,7 +36,7 @@ public class MountDetectDrawer {
     myTex = textureManager.getTex("smallGameObjs/targetDetected", null);
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     myShouldDraw = false;
     float ts = game.getTimeStep();
     myAnimPerc += ts / 2f;

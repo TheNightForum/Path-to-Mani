@@ -19,7 +19,7 @@ package org.destinationsol.game.screens;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.gun.GunItem;
 import org.destinationsol.game.item.EngineItem;
 import org.destinationsol.game.item.ItemContainer;
@@ -50,12 +50,12 @@ public class ChangeShip implements InventoryOperations {
   }
 
   @Override
-  public ItemContainer getItems(SolGame game) {
+  public ItemContainer getItems(ManiGame game) {
     return game.getScreens().talkScreen.getTarget().getTradeContainer().getShips();
   }
 
   @Override
-  public boolean isUsing(SolGame game, SolItem item) {
+  public boolean isUsing(ManiGame game, SolItem item) {
     return false;
   }
 
@@ -76,7 +76,7 @@ public class ChangeShip implements InventoryOperations {
 
   @Override
   public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
     InventoryScreen is = game.getScreens().inventoryScreen;
     SolShip hero = game.getHero();
     TalkScreen talkScreen = game.getScreens().talkScreen;
@@ -95,7 +95,7 @@ public class ChangeShip implements InventoryOperations {
     }
   }
 
-  private void changeShip(SolGame game, SolShip hero, ShipItem selected) {
+  private void changeShip(ManiGame game, SolShip hero, ShipItem selected) {
     HullConfig newConfig = selected.getConfig();
     Hull hull = hero.getHull();
     EngineItem.Config ec = newConfig.getEngineConfig();

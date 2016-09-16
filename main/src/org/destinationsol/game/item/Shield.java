@@ -25,7 +25,7 @@ import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.files.FileManager;
 import org.destinationsol.game.DmgType;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.ship.SolShip;
 import org.destinationsol.game.sound.SolSound;
@@ -49,7 +49,7 @@ public class Shield implements SolItem {
     myEquipped = equipped;
   }
 
-  public void update(SolGame game, SolObject owner) {
+  public void update(ManiGame game, SolObject owner) {
     float ts = game.getTimeStep();
     if (myIdleTime >= myConfig.myMaxIdleTime) {
       if (myLife < myConfig.maxLife) {
@@ -90,7 +90,7 @@ public class Shield implements SolItem {
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return myConfig.icon;
   }
 
@@ -116,7 +116,7 @@ public class Shield implements SolItem {
     return myLife > 0 && dmgType != DmgType.FIRE && dmgType != DmgType.CRASH;
   }
 
-  public void absorb(SolGame game, float dmg, Vector2 pos, SolShip ship, DmgType dmgType) {
+  public void absorb(ManiGame game, float dmg, Vector2 pos, SolShip ship, DmgType dmgType) {
     if (!canAbsorb(dmgType) || dmg <= 0) throw new AssertionError("illegal call to absorb");
     myIdleTime = 0f;
     if (dmgType == DmgType.BULLET) dmg *= BULLET_DMG_FACTOR;

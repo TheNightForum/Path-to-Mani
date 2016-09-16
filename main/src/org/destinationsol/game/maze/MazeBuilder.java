@@ -21,7 +21,7 @@ import org.destinationsol.Const;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.ShipConfig;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.input.AiPilot;
 import org.destinationsol.game.input.Pilot;
 import org.destinationsol.game.input.StillGuard;
@@ -38,7 +38,7 @@ public class MazeBuilder {
   private float myMazeAngle;
   private float myInnerRad;
 
-  public void build(SolGame game, Maze maze) {
+  public void build(ManiGame game, Maze maze) {
     myInnerRad = maze.getRadius() - BORDER;
     mySz = (int) (myInnerRad * 2 / TILE_SZ);
     myMazePos = maze.getPos();
@@ -48,7 +48,7 @@ public class MazeBuilder {
     buildEnemies(game, maze, layout);
   }
 
-  public MazeLayout buildMaze(SolGame game, Maze maze) {
+  public MazeLayout buildMaze(ManiGame game, Maze maze) {
     MazeLayout layout = new MazeLayoutBuilder(mySz).build();
     MazeTileObject.Builder builder = new MazeTileObject.Builder();
     MazeConfig config = maze.getConfig();
@@ -102,7 +102,7 @@ public class MazeBuilder {
     return res;
   }
 
-  private void buildEnemies(SolGame game, Maze maze, MazeLayout layout) {
+  private void buildEnemies(ManiGame game, Maze maze, MazeLayout layout) {
     MazeConfig config = maze.getConfig();
     float dist = maze.getRadius() - BORDER / 2;
     float circleLen = dist * ManiMath.PI * 2;
@@ -143,7 +143,7 @@ public class MazeBuilder {
     return null;
   }
 
-  private void buildEnemy(Vector2 pos, SolGame game, ShipConfig e, boolean inner) {
+  private void buildEnemy(Vector2 pos, ManiGame game, ShipConfig e, boolean inner) {
     float angle = ManiMath.rnd(180);
     ShipBuilder sb = game.getShipBuilder();
     float viewDist = Const.AI_DET_DIST;

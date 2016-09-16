@@ -19,7 +19,7 @@ package org.destinationsol.game.screens;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.menu.MenuLayout;
 import org.destinationsol.ui.SolInputManager;
 import org.destinationsol.ui.SolUiControl;
@@ -64,7 +64,7 @@ public class MenuScreen implements SolUiScreen {
 
   @Override
   public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolGame g = cmp.getGame();
+    ManiGame g = cmp.getGame();
     g.setPaused(true);
     SolInputManager im = cmp.getInputMan();
     GameOptions options = cmp.getOptions();

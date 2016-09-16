@@ -23,7 +23,7 @@ import org.destinationsol.ManiApplication;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.ShipConfig;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.input.AiPilot;
 import org.destinationsol.game.input.Guardian;
 import org.destinationsol.game.item.ItemContainer;
@@ -54,12 +54,12 @@ public class HireShips implements InventoryOperations {
   }
 
   @Override
-  public ItemContainer getItems(SolGame game) {
+  public ItemContainer getItems(ManiGame game) {
     return game.getScreens().talkScreen.getTarget().getTradeContainer().getMercs();
   }
 
   @Override
-  public boolean isUsing(SolGame game, SolItem item) {
+  public boolean isUsing(ManiGame game, SolItem item) {
     return false;
   }
 
@@ -80,7 +80,7 @@ public class HireShips implements InventoryOperations {
 
   @Override
   public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
     InventoryScreen is = game.getScreens().inventoryScreen;
     SolShip hero = game.getHero();
     TalkScreen talkScreen = game.getScreens().talkScreen;
@@ -99,7 +99,7 @@ public class HireShips implements InventoryOperations {
     }
   }
 
-  private boolean hireShip(SolGame game, SolShip hero, MercItem selected) {
+  private boolean hireShip(ManiGame game, SolShip hero, MercItem selected) {
     ShipConfig config = selected.getConfig();
     Guardian dp = new Guardian(game, config.hull, hero.getPilot(), hero.getPosition(), hero.getHull().config, ManiMath.rnd(180));
     AiPilot pilot = new AiPilot(dp, true, Faction.LAANI, false, "Merc", Const.AI_DET_DIST);
@@ -110,7 +110,7 @@ public class HireShips implements InventoryOperations {
     return true;
   }
 
-  private Vector2 getPos(SolGame game, SolShip hero, HullConfig hull) {
+  private Vector2 getPos(ManiGame game, SolShip hero, HullConfig hull) {
     Vector2 pos = new Vector2();
     float dist = hero.getHull().config.getApproxRadius() + Guardian.DIST + hull.getApproxRadius();
     Vector2 heroPos = hero.getPosition();

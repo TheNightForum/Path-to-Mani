@@ -18,7 +18,7 @@ package org.destinationsol.game.input;
 
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.ManiMath;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.ship.SolShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
@@ -62,7 +62,7 @@ public class OrbiterDestProvider implements MoveDestProvider {
   }
 
   @Override
-  public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
     Vector2 pPos = myPlanet.getPos();
     float destAngle = ManiMath.angle(pPos, shipPos) + 5 * ManiMath.toInt(myCw);
     ManiMath.fromAl(myDest, destAngle, myHeight);

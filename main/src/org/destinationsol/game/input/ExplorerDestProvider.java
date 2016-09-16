@@ -19,7 +19,7 @@ package org.destinationsol.game.input;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiMath;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.planet.SolSystem;
 import org.destinationsol.game.ship.SolShip;
@@ -44,7 +44,7 @@ public class ExplorerDestProvider implements MoveDestProvider {
   private boolean myDestIsLanding;
   private Vector2 myDestSpd;
 
-  public ExplorerDestProvider(SolGame game, Vector2 pos, boolean aggressive, HullConfig config, SolSystem sys)
+  public ExplorerDestProvider(ManiGame game, Vector2 pos, boolean aggressive, HullConfig config, SolSystem sys)
   {
     mySys = sys;
     myDest = new Vector2();
@@ -97,7 +97,7 @@ public class ExplorerDestProvider implements MoveDestProvider {
   }
 
   @Override
-  public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
     if (myDest.dst(shipPos) < maxIdleDist) {
       if (myAwaitOnPlanet > 0) {
         myAwaitOnPlanet -= game.getTimeStep();

@@ -54,8 +54,8 @@ public class
   private SolObject myObstacle;
   private boolean myDamageDealt;
 
-  public Projectile(SolGame game, float angle, Vector2 muzzlePos, Vector2 gunSpd, Faction faction,
-    ProjectileConfig config, boolean varySpd)
+  public Projectile(ManiGame game, float angle, Vector2 muzzlePos, Vector2 gunSpd, Faction faction,
+                    ProjectileConfig config, boolean varySpd)
   {
     myDras = new ArrayList<Dra>();
     myConfig = config;
@@ -87,7 +87,7 @@ public class
     }
   }
 
-  private ParticleSrc buildEffect(SolGame game, EffectConfig ec, DraLevel draLevel, Vector2 pos, boolean inheritsSpd) {
+  private ParticleSrc buildEffect(ManiGame game, EffectConfig ec, DraLevel draLevel, Vector2 pos, boolean inheritsSpd) {
     if (ec == null) return null;
     ParticleSrc res = new ParticleSrc(ec, -1, draLevel, new Vector2(), inheritsSpd, game, pos, myBody.getSpd(), 0);
     if (res.isContinuous()) {
@@ -100,7 +100,7 @@ public class
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     myBody.update(game);
     if (myObstacle != null) {
       if (!myDamageDealt) myObstacle.receiveDmg(myConfig.dmg, game, myBody.getPos(), myConfig.dmgType);
@@ -119,7 +119,7 @@ public class
     game.getSoundMan().play(game, ws, null, this);
   }
 
-  private void maybeGuide(SolGame game) {
+  private void maybeGuide(ManiGame game) {
     if (myConfig.guideRotSpd == 0) return;
     float ts = game.getTimeStep();
     SolShip ne = game.getFactionMan().getNearestEnemy(game, this);
@@ -133,7 +133,7 @@ public class
     myBody.changeAngle(diffAngle);
   }
 
-  private void collided(SolGame game) {
+  private void collided(ManiGame game) {
     myShouldRemove = true;
     Vector2 pos = myBody.getPos();
     buildEffect(game, myConfig.collisionEffect, DraLevel.PART_FG_1, pos, false);
@@ -145,12 +145,12 @@ public class
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return myShouldRemove;
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
     Vector2 pos = myBody.getPos();
     if (myBodyEffect != null) game.getPartMan().finish(game, myBodyEffect, pos);
     if (myTrailEffect != null) game.getPartMan().finish(game, myTrailEffect, pos);
@@ -158,7 +158,7 @@ public class
   }
 
   @Override
-  public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+  public void receiveDmg(float dmg, ManiGame game, Vector2 pos, DmgType dmgType) {
     if (myConfig.density > 0) return;
     collided(game);
   }
@@ -169,7 +169,7 @@ public class
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
     myBody.receiveForce(force, game, acc);
   }
 
@@ -200,7 +200,7 @@ public class
 
   @Override
   public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-    SolGame game, Vector2 collPos)
+                            ManiGame game, Vector2 collPos)
   {
   }
 
@@ -240,7 +240,7 @@ public class
     return true;
   }
 
-  public void setObstacle(SolObject o, SolGame game) {
+  public void setObstacle(SolObject o, ManiGame game) {
     if (!shouldCollide(o, null, game.getFactionMan())) return; // happens for some reason when projectile is just created
     myObstacle = o;
   }
@@ -281,7 +281,7 @@ public class
     }
 
     @Override
-    public void update(SolGame game, SolObject o) {
+    public void update(ManiGame game, SolObject o) {
     }
 
     @Override
@@ -304,7 +304,7 @@ public class
     }
 
     @Override
-    public void draw(GameDrawer drawer, SolGame game) {
+    public void draw(GameDrawer drawer, ManiGame game) {
       float h = myWidth;
       float minH = game.getCam().getRealLineWidth() * 3;
       if (h < minH) h = minH;

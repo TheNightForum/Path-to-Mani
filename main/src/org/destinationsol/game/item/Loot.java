@@ -22,7 +22,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.FarObj;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.particle.LightSrc;
@@ -65,7 +65,7 @@ public class Loot implements SolObject {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     setParamsFromBody();
     myLightSrc.update(true, myAngle, game);
     if (myOwnerAwait > 0) {
@@ -97,17 +97,17 @@ public class Loot implements SolObject {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return myLife <= 0;
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
     myBody.getWorld().destroyBody(myBody);
   }
 
   @Override
-  public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+  public void receiveDmg(float dmg, ManiGame game, Vector2 pos, DmgType dmgType) {
     myLife -= dmg;
     game.getSpecialSounds().playHit(game, this, pos, dmgType);
   }
@@ -118,7 +118,7 @@ public class Loot implements SolObject {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
     if (acc) force.scl(myMass);
     myBody.applyForceToCenter(force, true);
   }
@@ -150,7 +150,7 @@ public class Loot implements SolObject {
 
   @Override
   public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-    SolGame game, Vector2 collPos)
+                            ManiGame game, Vector2 collPos)
   {
     float dmg = absImpulse / myMass / DURABILITY;
     receiveDmg((int) dmg, game, collPos, DmgType.CRASH);
@@ -202,7 +202,7 @@ public class Loot implements SolObject {
     return myOwner;
   }
 
-  public void pickedUp(SolGame game, SolShip ship) {
+  public void pickedUp(ManiGame game, SolShip ship) {
     myLife = 0;
     Vector2 spd = new Vector2(ship.getPosition());
     spd.sub(myPos);

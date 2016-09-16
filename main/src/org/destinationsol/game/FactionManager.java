@@ -39,7 +39,7 @@ public class FactionManager {
      * @param ship the ship to find enemies for
      * @return the nearest Enemy ship
      */
-    public SolShip getNearestEnemy(SolGame game, SolShip ship) {
+    public SolShip getNearestEnemy(ManiGame game, SolShip ship) {
         Pilot pilot = ship.getPilot();
         float detectionDist = pilot.getDetectionDist();
         if (detectionDist <= 0) return null;
@@ -54,7 +54,7 @@ public class FactionManager {
      * @param projectile  the target seeking projectile
      * @return the nearest Enemy ship
      */
-    public SolShip getNearestEnemy(SolGame game, Projectile projectile) {
+    public SolShip getNearestEnemy(ManiGame game, Projectile projectile) {
         return getNearestEnemy(game, game.getCam().getViewDist(), projectile.getFaction(), projectile.getPosition());
     }
 
@@ -66,7 +66,7 @@ public class FactionManager {
      * @param position the position of the entity
      * @return the nearest Enemy ship
      */
-    public SolShip getNearestEnemy(SolGame game, float detectionDist, Faction faction, Vector2 position) {
+    public SolShip getNearestEnemy(ManiGame game, float detectionDist, Faction faction, Vector2 position) {
         SolShip nearestEnemyShip = null;
         float minimumDistance = detectionDist;
         List<SolObject> objects = game.getObjMan().getObjs();
@@ -88,7 +88,7 @@ public class FactionManager {
         return nearestEnemyShip;
     }
 
-    private boolean hasObstacles(SolGame game, SolShip shipFrom, SolShip shipTo) {
+    private boolean hasObstacles(ManiGame game, SolShip shipFrom, SolShip shipTo) {
         myRayBack.shipFrom = shipFrom;
         myRayBack.shipTo = shipTo;
         myRayBack.hasObstacle = false;

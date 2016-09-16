@@ -27,7 +27,7 @@ import org.destinationsol.common.ManiMath;
 import org.destinationsol.files.FileManager;
 import org.destinationsol.game.DebugOptions;
 import org.destinationsol.game.GameDrawer;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.ship.SolShip;
@@ -121,7 +121,7 @@ public class SoundManager {
    * @param source bearer of a sound. Must not be null for looped sounds
    * @param volMul multiplier for sound volume
    */
-  public void play(SolGame game, SolSound sound, @Nullable Vector2 pos, @Nullable SolObject source, float volMul) {
+  public void play(ManiGame game, SolSound sound, @Nullable Vector2 pos, @Nullable SolObject source, float volMul) {
     if (source == null && pos == null) throw new AssertionError("pass either pos or source");
     if (source == null && sound.loopTime > 0) throw new AssertionError("looped sound without source object: " + sound.dir);
     if (sound == null) return;
@@ -164,7 +164,7 @@ public class SoundManager {
  * @param pos position of a sound. If null, source.getPosition() will be used
  * @param source bearer of a sound. Must not be null for looped sounds
  */
-  public void play(SolGame game, SolSound sound, @Nullable Vector2 pos, @Nullable SolObject source){
+  public void play(ManiGame game, SolSound sound, @Nullable Vector2 pos, @Nullable SolObject source){
     this.play(game, sound, pos, source, 1f);
   }
 
@@ -188,11 +188,11 @@ public class SoundManager {
     return playing;
   }
 
-  public void drawDebug(GameDrawer drawer, SolGame game) {
+  public void drawDebug(GameDrawer drawer, ManiGame game) {
     if (DebugOptions.SOUND_INFO) myHintDrawer.draw(drawer, game);
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     if (DebugOptions.SOUND_INFO) myHintDrawer.update(game);
     myLoopAwait -= game.getTimeStep();
     if (myLoopAwait <= 0) {
@@ -201,7 +201,7 @@ public class SoundManager {
     }
   }
 
-  private void cleanLooped(SolGame game) {
+  private void cleanLooped(ManiGame game) {
     Iterator<SolObject> it = myLoopedSounds.keySet().iterator();
     while (it.hasNext()) {
       SolObject o = it.next();

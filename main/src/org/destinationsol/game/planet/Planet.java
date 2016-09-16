@@ -21,7 +21,7 @@ import org.destinationsol.Const;
 import org.destinationsol.common.Bound;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.HardnessCalc;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +70,7 @@ public class Planet {
     setSecondaryParams();
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     float ts = game.getTimeStep();
     myAngleToSys += myToSysRotSpd * ts;
     myAngle += myRotSpd * ts;
@@ -92,7 +92,7 @@ public class Planet {
     ManiMath.fromAl(mySpd, spdAngle, spdLen);
   }
 
-  private void fillLangingPlaces(SolGame game) {
+  private void fillLangingPlaces(ManiGame game) {
     for (int i = 0; i < 10; i++) {
       Vector2 lp = game.getPlanetMan().findFlatPlace(game, this, null, 0);
       myLps.add(lp);

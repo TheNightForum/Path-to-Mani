@@ -23,7 +23,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.dra.RectSprite;
@@ -39,7 +39,7 @@ public class LootBuilder {
   }
 
   // set spd & rot spd
-  public Loot build(SolGame game, Vector2 pos, SolItem item, Vector2 spd, int life, float rotSpd, SolShip owner) {
+  public Loot build(ManiGame game, Vector2 pos, SolItem item, Vector2 spd, int life, float rotSpd, SolShip owner) {
     List<Dra> dras = new ArrayList<Dra>();
     TextureAtlas.AtlasRegion tex = item.getIcon(game);
     float sz = item.getItemType().sz;
@@ -56,7 +56,7 @@ public class LootBuilder {
     return loot;
   }
 
-  private Body buildBody(SolGame game, Vector2 pos, float sz) {
+  private Body buildBody(ManiGame game, Vector2 pos, float sz) {
     BodyDef bd = new BodyDef();
     bd.type = BodyDef.BodyType.DynamicBody;
     bd.angle = 0;

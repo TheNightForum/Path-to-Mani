@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.gun.GunItem;
 import org.destinationsol.game.gun.GunMount;
@@ -59,7 +59,7 @@ public class Hull {
   private float myRotSpd;
   private ShipEngine myEngine;
 
-  public Hull(SolGame game, HullConfig hullConfig, Body body, GunMount gunMount1, GunMount gunMount2, Fixture base,
+  public Hull(ManiGame game, HullConfig hullConfig, Body body, GunMount gunMount1, GunMount gunMount2, Fixture base,
               List<LightSrc> lightSrcs, float life, ArrayList<ForceBeacon> forceBeacons,
               ArrayList<Door> doors, Fixture shieldFixture)
   {
@@ -101,7 +101,7 @@ public class Hull {
     return m.getGun();
   }
 
-  public void update(SolGame game, ItemContainer container, Pilot provider, SolShip ship, SolShip nearestEnemy) {
+  public void update(ManiGame game, ItemContainer container, Pilot provider, SolShip ship, SolShip nearestEnemy) {
     setParamsFromBody();
     boolean controlsEnabled = ship.isControlsEnabled();
 
@@ -151,14 +151,14 @@ public class Hull {
     mySpd.set(myBody.getLinearVelocity());
   }
 
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
     for (Door door : myDoors) door.onRemove(game);
     myBody.getWorld().destroyBody(myBody);
     if (myEngine != null) myEngine.onRemove(game, myPos);
 
   }
 
-  public void setEngine(SolGame game, SolShip ship, EngineItem ei) {
+  public void setEngine(ManiGame game, SolShip ship, EngineItem ei) {
     List<Dra> dras = ship.getDras();
     if (myEngine != null) {
       List<Dra> dras1 = myEngine.getDras();

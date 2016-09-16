@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import org.destinationsol.common.ManiMath;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.ship.SolShip;
 
@@ -32,7 +32,7 @@ public class CollisionWarnDrawer extends WarnDrawer {
     super(r, "Object Near");
   }
 
-  public boolean shouldWarn(SolGame game) {
+  public boolean shouldWarn(ManiGame game) {
     myHero = game.getHero();
     if (myHero == null) return false;
     Vector2 pos = myHero.getPosition();

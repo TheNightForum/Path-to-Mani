@@ -23,7 +23,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import org.destinationsol.TextureManager;
 import org.destinationsol.files.FileManager;
 import org.destinationsol.game.DmgType;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.sound.SolSound;
 import org.destinationsol.game.sound.SoundManager;
 
@@ -66,7 +66,7 @@ public class Armor implements SolItem {
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return myConfig.icon;
   }
 

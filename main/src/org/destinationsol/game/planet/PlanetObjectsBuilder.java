@@ -28,7 +28,7 @@ import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DebugOptions;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.ShipConfig;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.dra.RectSprite;
@@ -60,7 +60,7 @@ public class PlanetObjectsBuilder {
   private static final float DECO_PACK_ANGULAR_WIDTH = 360 * DECO_PACK_SZ / (2 * ManiMath.PI * Const.MAX_GROUND_HEIGHT);
 
 
-  public float createPlanetObjs(SolGame game, Planet planet) {
+  public float createPlanetObjs(ManiGame game, Planet planet) {
     if (DebugOptions.NO_OBJS) return 0;
     float minR = createGround(game, planet);
     createClouds(game, planet);
@@ -73,7 +73,7 @@ public class PlanetObjectsBuilder {
     return minR;
   }
 
-  private void createShips(SolGame game, Planet planet) {
+  private void createShips(ManiGame game, Planet planet) {
     ConsumedAngles takenAngles = new ConsumedAngles();
 
     ShipConfig cfg = planet.getConfig().stationConfig;
@@ -97,8 +97,8 @@ public class PlanetObjectsBuilder {
     buildOrbitEnemies(game, planet, gh, .1f, .6f, config.highOrbitEnemies, Const.AI_DET_DIST);
   }
 
-  private void buildOrbitEnemies(SolGame game, Planet planet, float gh, float offsetPerc, float atmPerc,
-    List<ShipConfig> configs, float detDist)
+  private void buildOrbitEnemies(ManiGame game, Planet planet, float gh, float offsetPerc, float atmPerc,
+                                 List<ShipConfig> configs, float detDist)
   {
     if (configs.isEmpty()) return;
     HashMap<ShipConfig, Integer> counts = new HashMap<ShipConfig, Integer>();
@@ -120,7 +120,7 @@ public class PlanetObjectsBuilder {
     }
   }
 
-  private float createGround(SolGame game, Planet planet) {
+  private float createGround(ManiGame game, Planet planet) {
     // helper values
     float maxR = planet.getGroundHeight() - TOP_TILE_SZ / 2;
     int cols = (int)(2 * ManiMath.PI * maxR / TOP_TILE_SZ);
@@ -162,7 +162,7 @@ public class PlanetObjectsBuilder {
     return minR;
   }
 
-  private void createClouds(SolGame game, Planet planet) {
+  private void createClouds(ManiGame game, Planet planet) {
     ArrayList<TextureAtlas.AtlasRegion> cloudTexs = planet.getConfig().cloudTexs;
     if (cloudTexs.isEmpty()) return;
     int cloudCount = ManiMath.intRnd(.7f, (int) (CLOUD_DENSITY * Const.ATM_HEIGHT * planet.getGroundHeight()));
@@ -218,7 +218,7 @@ public class PlanetObjectsBuilder {
     return new RectSprite(tex, sz, 0, 0, relPos, DraLevel.CLOUDS, relAngle, rotSpd, ManiColor.W, false);
   }
 
-  public void createDeco(SolGame game, Planet planet) {
+  public void createDeco(ManiGame game, Planet planet) {
     float groundHeight = planet.getGroundHeight();
     Vector2 planetPos = planet.getPos();
     float planetAngle = planet.getAngle();
@@ -238,8 +238,8 @@ public class PlanetObjectsBuilder {
     }
   }
 
-  private void addDeco0(SolGame game, float groundHeight, Vector2 planetPos,
-    Map<Vector2, List<Dra>> collector, DecoConfig dc)
+  private void addDeco0(ManiGame game, float groundHeight, Vector2 planetPos,
+                        Map<Vector2, List<Dra>> collector, DecoConfig dc)
   {
     World w = game.getObjMan().getWorld();
     ConsumedAngles consumed = new ConsumedAngles();
@@ -297,9 +297,9 @@ public class PlanetObjectsBuilder {
     }
   }
 
-  public FarShip buildGroundShip(SolGame game, Planet planet, ShipConfig ge,
-    TradeConfig tc,
-    Faction faction, ConsumedAngles takenAngles, String mapHint)
+  public FarShip buildGroundShip(ManiGame game, Planet planet, ShipConfig ge,
+                                 TradeConfig tc,
+                                 Faction faction, ConsumedAngles takenAngles, String mapHint)
   {
     Vector2 pos = game.getPlanetMan().findFlatPlace(game, planet, takenAngles, ge.hull.getApproxRadius());
     boolean station = ge.hull.getType() == HullConfig.Type.STATION;
@@ -329,7 +329,7 @@ public class PlanetObjectsBuilder {
       null, hasRepairer, money, tc, true);
   }
 
-  public FarShip buildOrbitEnemy(SolGame game, Planet planet, float heightPerc, ShipConfig oe, float detDist) {
+  public FarShip buildOrbitEnemy(ManiGame game, Planet planet, float heightPerc, ShipConfig oe, float detDist) {
     float height = planet.getGroundHeight() + heightPerc * Const.ATM_HEIGHT;
     Vector2 pos = new Vector2();
     ManiMath.fromAl(pos, ManiMath.rnd(180), height);

@@ -23,17 +23,17 @@ import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.planet.SolSystem;
 
 public interface CamRotStrategy {
-  public float getRotation(Vector2 pos, SolGame game);
+  public float getRotation(Vector2 pos, ManiGame game);
 
   public static class Static implements CamRotStrategy {
-    public float getRotation(Vector2 pos, SolGame game) {
+    public float getRotation(Vector2 pos, ManiGame game) {
       return 0;
     }
   }
 
   public static class ToPlanet implements CamRotStrategy {
 
-    public float getRotation(Vector2 pos, SolGame game) {
+    public float getRotation(Vector2 pos, ManiGame game) {
       Planet np = game.getPlanetMan().getNearestPlanet();
       float fh = np.getFullHeight();
       Vector2 npPos = np.getPos();

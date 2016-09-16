@@ -16,7 +16,7 @@
 
 package org.destinationsol.game.item;
 
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class TradeContainer {
     myItems = new ItemContainer();
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     if (0 < myAwait) {
       myAwait -= game.getTimeStep();
       return;

@@ -25,9 +25,9 @@ import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.projectile.Projectile;
 
 public class SolContactListener implements ContactListener {
-  private final SolGame myGame;
+  private final ManiGame myGame;
 
-  public SolContactListener(SolGame game) {
+  public SolContactListener(ManiGame game) {
     myGame = game;
   }
 

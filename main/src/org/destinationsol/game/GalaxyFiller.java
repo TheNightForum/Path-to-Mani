@@ -60,8 +60,8 @@ public class GalaxyFiller {
     return stationPos;
   }
 
-  private FarShip build(SolGame game, ShipConfig cfg, Faction faction, boolean mainStation, SolSystem sys,
-    ConsumedAngles angles)
+  private FarShip build(ManiGame game, ShipConfig cfg, Faction faction, boolean mainStation, SolSystem sys,
+                        ConsumedAngles angles)
   {
     HullConfig hullConf = cfg.hull;
 
@@ -108,7 +108,7 @@ public class GalaxyFiller {
     return s;
   }
 
-  public void fill(SolGame game) {
+  public void fill(ManiGame game) {
     if (DebugOptions.NO_OBJS) return;
     createStarPorts(game);
     ArrayList<SolSystem> systems = game.getPlanetMan().getSystems();
@@ -137,7 +137,7 @@ public class GalaxyFiller {
     }
   }
 
-  private void createStarPorts(SolGame game) {
+  private void createStarPorts(ManiGame game) {
     PlanetManager planetManager = game.getPlanetMan();
     ArrayList<Planet> biggest = new ArrayList<Planet>();
     for (SolSystem s : planetManager.getSystems()) {
@@ -168,7 +168,7 @@ public class GalaxyFiller {
 
   }
 
-  private void link(SolGame game, Planet a, Planet b) {
+  private void link(ManiGame game, Planet a, Planet b) {
     if (a == b) throw new AssertionError("Linking planet to itself");
     Vector2 aPos = StarPort.getDesiredPos(a, b, false);
     StarPort.MyFar sp = new StarPort.MyFar(a, b, aPos, false);
@@ -180,7 +180,7 @@ public class GalaxyFiller {
     game.getObjMan().addFarObjNow(sp);
   }
 
-  private void createGuard(SolGame game, FarShip target, ShipConfig guardConf, Faction faction, float guardRelAngle) {
+  private void createGuard(ManiGame game, FarShip target, ShipConfig guardConf, Faction faction, float guardRelAngle) {
     Guardian dp = new Guardian(game, guardConf.hull, target.getPilot(), target.getPos(), target.getHullConfig(), guardRelAngle);
     Pilot pilot = new AiPilot(dp, true, faction, false, null, Const.AI_DET_DIST);
     boolean hasRepairer = faction == Faction.LAANI;
@@ -190,7 +190,7 @@ public class GalaxyFiller {
     game.getObjMan().addFarObjNow(e);
   }
 
-  private Vector2 getEmptySpace(SolGame game, SolSystem s) {
+  private Vector2 getEmptySpace(ManiGame game, SolSystem s) {
     Vector2 res = new Vector2();
     Vector2 sPos = s.getPos();
     float sRadius = s.getConfig().hard ? s.getRadius() : s.getInnerRad();
@@ -203,7 +203,7 @@ public class GalaxyFiller {
     throw new AssertionError("could not generate ship position");
   }
 
-  public Vector2 getPlayerSpawnPos(SolGame game) {
+  public Vector2 getPlayerSpawnPos(ManiGame game) {
     Vector2 pos = new Vector2(Const.SUN_RADIUS * 2, 0);
 
     if ("planet".equals(DebugOptions.SPAWN_PLACE)) {

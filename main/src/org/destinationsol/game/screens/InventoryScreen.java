@@ -23,7 +23,7 @@ import org.destinationsol.Const;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.item.ItemContainer;
 import org.destinationsol.game.item.SolItem;
 import org.destinationsol.menu.MenuLayout;
@@ -214,7 +214,7 @@ public class InventoryScreen implements SolUiScreen {
 
   @Override
   public void drawImgs(UiDrawer uiDrawer, ManiApplication cmp) {
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
     ItemContainer ic = myOperations.getItems(game);
     if (ic == null) ic = EMPTY_CONTAINER;
 
@@ -240,7 +240,7 @@ public class InventoryScreen implements SolUiScreen {
 
   @Override
   public void drawText(UiDrawer uiDrawer, ManiApplication cmp) {
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
     ItemContainer ic = myOperations.getItems(game);
     if (ic == null) ic = EMPTY_CONTAINER;
 
@@ -288,7 +288,7 @@ public class InventoryScreen implements SolUiScreen {
   @Override
   public void blurCustom(ManiApplication cmp) {
     if (!showingHeroItems()) return;
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
     ItemContainer items = myOperations.getItems(game);
     if (items != null) items.seenAll();
   }

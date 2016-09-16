@@ -67,7 +67,7 @@ public class PlanetManager {
     new SystemsBuilder().build(mySystems, myPlanets, myBelts, myPlanetConfigs, myMazeConfigs, myMazes, mySysConfigs, names);
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     Vector2 camPos = game.getCam().getPos();
     for (int i = 0, myPlanetsSize = myPlanets.size(); i < myPlanetsSize; i++) {
       Planet p = myPlanets.get(i);
@@ -98,7 +98,7 @@ public class PlanetManager {
     return res;
   }
 
-  private void applyGrav(SolGame game, SolSystem nearestSys) {
+  private void applyGrav(ManiGame game, SolSystem nearestSys) {
     float npGh = myNearestPlanet.getGroundHeight();
     float npFh = myNearestPlanet.getFullHeight();
     float npMinH = myNearestPlanet.getMinGroundHeight();
@@ -178,7 +178,7 @@ public class PlanetManager {
     return myNearestPlanet;
   }
 
-  public void drawDebug(GameDrawer drawer, SolGame game) {
+  public void drawDebug(GameDrawer drawer, ManiGame game) {
     if (DebugOptions.DRAW_PLANET_BORDERS) {
       SolCam cam = game.getCam();
       float lineWidth = cam.getRealLineWidth();
@@ -208,8 +208,8 @@ public class PlanetManager {
     return mySystems;
   }
 
-  public Vector2 findFlatPlace(SolGame game, Planet p, ConsumedAngles takenAngles,
-    float objHalfWidth) {
+  public Vector2 findFlatPlace(ManiGame game, Planet p, ConsumedAngles takenAngles,
+                               float objHalfWidth) {
     return myFlatPlaceFinder.find(game, p, takenAngles, objHalfWidth);
   }
 
@@ -245,11 +245,11 @@ public class PlanetManager {
     return res;
   }
 
-  public void drawSunHack(SolGame game, GameDrawer drawer) {
+  public void drawSunHack(ManiGame game, GameDrawer drawer) {
     mySunSingleton.draw(game, drawer);
   }
 
-  public void drawPlanetCoreHack(SolGame game, GameDrawer drawer) {
+  public void drawPlanetCoreHack(ManiGame game, GameDrawer drawer) {
     myPlanetCore.draw(game, drawer);
   }
 }

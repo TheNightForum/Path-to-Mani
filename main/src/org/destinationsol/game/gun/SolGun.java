@@ -21,7 +21,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
@@ -45,7 +45,7 @@ public class SolGun {
   private float myCoolDown;
   private float myCurrAngleVar;
 
-  public SolGun(SolGame game, GunItem item, Vector2 relPos, boolean underShip) {
+  public SolGun(ManiGame game, GunItem item, Vector2 relPos, boolean underShip) {
     myItem = item;
     if (myItem.config.lightOnShot) {
       Color lightCol = ManiColor.W;
@@ -69,7 +69,7 @@ public class SolGun {
     return myDras;
   }
 
-  private void shoot(Vector2 gunSpd, SolGame game, float gunAngle, Vector2 muzzlePos, Faction faction, SolObject creator) {
+  private void shoot(Vector2 gunSpd, ManiGame game, float gunAngle, Vector2 muzzlePos, Faction faction, SolObject creator) {
     Vector2 baseSpd = gunSpd;
     ClipConfig cc = myItem.config.clipConf;
     if (cc.projConfig.zeroAbsSpd) {
@@ -94,7 +94,7 @@ public class SolGun {
     game.getSoundMan().play(game, myItem.config.shootSound, muzzlePos, creator);
   }
 
-  public void update(ItemContainer ic, SolGame game, float gunAngle, SolObject creator, boolean shouldShoot, Faction faction) {
+  public void update(ItemContainer ic, ManiGame game, float gunAngle, SolObject creator, boolean shouldShoot, Faction faction) {
     float baseAngle = creator.getAngle();
     Vector2 basePos = creator.getPosition();
     float gunRelAngle = gunAngle - baseAngle;

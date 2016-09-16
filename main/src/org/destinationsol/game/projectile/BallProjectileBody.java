@@ -19,7 +19,7 @@ package org.destinationsol.game.projectile;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import org.destinationsol.common.ManiMath;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.asteroid.AsteroidBuilder;
 import org.destinationsol.game.ship.SolShip;
 
@@ -32,8 +32,8 @@ public class BallProjectileBody implements ProjectileBody {
 
   private float myAngle;
 
-  public BallProjectileBody(SolGame game, Vector2 pos, float angle, Projectile projectile,
-    Vector2 gunSpd, float spdLen, ProjectileConfig config)
+  public BallProjectileBody(ManiGame game, Vector2 pos, float angle, Projectile projectile,
+                            Vector2 gunSpd, float spdLen, ProjectileConfig config)
   {
     float density = config.density == -1 ? 1 : config.density;
     myBody = AsteroidBuilder.buildBall(game, pos, angle, config.physSize / 2, density, config.massless);
@@ -58,7 +58,7 @@ public class BallProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     setParamsFromBody();
     if (myAcc > 0 && ManiMath.canAccelerate(myAngle, mySpd)) {
       Vector2 force = ManiMath.fromAl(myAngle, myAcc * myMass);
@@ -78,13 +78,13 @@ public class BallProjectileBody implements ProjectileBody {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
     if (acc) force.scl(myMass);
     myBody.applyForceToCenter(force, true);
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
     myBody.getWorld().destroyBody(myBody);
   }
 

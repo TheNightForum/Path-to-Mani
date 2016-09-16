@@ -70,7 +70,7 @@ public class Shard implements SolObject {
 
   @Override
   public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-    SolGame game, Vector2 collPos)
+                            ManiGame game, Vector2 collPos)
   {
   }
 
@@ -90,7 +90,7 @@ public class Shard implements SolObject {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     setParamsFromBody();
   }
 
@@ -100,17 +100,17 @@ public class Shard implements SolObject {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return false;
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
     myBody.getWorld().destroyBody(myBody);
   }
 
   @Override
-  public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+  public void receiveDmg(float dmg, ManiGame game, Vector2 pos, DmgType dmgType) {
   }
 
   @Override
@@ -119,7 +119,7 @@ public class Shard implements SolObject {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
     if (acc) force.scl(myMass);
     myBody.applyForceToCenter(force, true);
   }

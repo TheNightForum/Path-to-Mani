@@ -24,7 +24,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.DmgType;
 import org.destinationsol.game.RemoveController;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.AbilityCommonConfig;
 import org.destinationsol.game.dra.Dra;
@@ -78,7 +78,7 @@ public class SolShip implements SolObject {
   private float myAbilityAwait;
   private float myControlEnableAwait;
 
-  public SolShip(SolGame game, Pilot pilot, Hull hull, RemoveController removeController, List<Dra> dras,
+  public SolShip(ManiGame game, Pilot pilot, Hull hull, RemoveController removeController, List<Dra> dras,
                  ItemContainer container, ShipRepairer repairer, float money, TradeContainer tradeContainer, Shield shield,
                  Armor armor)
   {
@@ -125,7 +125,7 @@ public class SolShip implements SolObject {
 
   @Override
   public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-    SolGame game, Vector2 collPos)
+                            ManiGame game, Vector2 collPos)
   {
     if (tryCollectLoot(other, game)) {
       ((Loot)other).pickedUp(game, this);
@@ -156,7 +156,7 @@ public class SolShip implements SolObject {
     return true;
   }
 
-  private boolean tryCollectLoot(SolObject obj, SolGame game) {
+  private boolean tryCollectLoot(SolObject obj, ManiGame game) {
     if (!(obj instanceof Loot)) {
       return false;
     }
@@ -189,7 +189,7 @@ public class SolShip implements SolObject {
     return canAdd;
   }
 
-  private boolean shouldTrade(SolItem i, SolGame game) {
+  private boolean shouldTrade(SolItem i, ManiGame game) {
     if (myTradeContainer == null) {
       return false;
     }
@@ -221,7 +221,7 @@ public class SolShip implements SolObject {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     SolShip nearestEnemy = game.getFactionMan().getNearestEnemy(game, this);
     myPilot.update(game, this, nearestEnemy);
     myHull.update(game, myItemContainer, myPilot, this, nearestEnemy);
@@ -264,7 +264,7 @@ public class SolShip implements SolObject {
     }
   }
 
-  private void updateAbility(SolGame game) {
+  private void updateAbility(ManiGame game) {
     if (myAbility == null) {
       return;
     }
@@ -292,7 +292,7 @@ public class SolShip implements SolObject {
     }
   }
 
-  private void updateShield(SolGame game) {
+  private void updateShield(ManiGame game) {
     if (myShield != null) {
       if (myItemContainer.contains(myShield)) {
         myShield.update(game, this);
@@ -302,7 +302,7 @@ public class SolShip implements SolObject {
     }
   }
 
-  private void updateIdleTime(SolGame game) {
+  private void updateIdleTime(ManiGame game) {
     float ts = game.getTimeStep();
     if (Pilot.Utils.isIdle(myPilot)) {
       myIdleTime += ts;
@@ -327,12 +327,12 @@ public class SolShip implements SolObject {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return myHull.life <= 0 || myRemoveController != null && myRemoveController.shouldRemove(myHull.getPos());
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
     if (myHull.life <= 0) {
       game.getShardBuilder().buildExplosionShards(game, myHull.getPos(), myHull.getSpd(), myHull.config.getSize());
       throwAllLoot(game);
@@ -342,7 +342,7 @@ public class SolShip implements SolObject {
     game.getPartMan().finish(game, myFireSrc, myHull.getPos());
   }
 
-  private void throwAllLoot(SolGame game) {
+  private void throwAllLoot(ManiGame game) {
     if (myPilot.isPlayer()) {
       game.beforeHeroDeath();
     }
@@ -372,7 +372,7 @@ public class SolShip implements SolObject {
     }
   }
 
-  private void throwLoot(SolGame game, SolItem item, boolean onDeath) {
+  private void throwLoot(ManiGame game, SolItem item, boolean onDeath) {
     Vector2 lootSpd = new Vector2();
     float spdAngle;
     float spdLen;
@@ -398,7 +398,7 @@ public class SolShip implements SolObject {
   }
 
   @Override
-  public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+  public void receiveDmg(float dmg, ManiGame game, Vector2 pos, DmgType dmgType) {
     if (dmg <= 0) {
       return;
     }
@@ -426,7 +426,7 @@ public class SolShip implements SolObject {
     }
   }
 
-  private void playHitSound(SolGame game, Vector2 pos, DmgType dmgType) {
+  private void playHitSound(ManiGame game, Vector2 pos, DmgType dmgType) {
     if (myArmor != null) {
       SolSound sound = myArmor.getHitSound(dmgType);
       game.getSoundMan().play(game, sound, pos, this);
@@ -441,7 +441,7 @@ public class SolShip implements SolObject {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
     Body body = myHull.getBody();
     if (acc) {
       force.scl(myHull.getMass());
@@ -479,11 +479,11 @@ public class SolShip implements SolObject {
     return ad/e.getMaxRotSpd();
   }
 
-  public boolean maybeEquip(SolGame game, SolItem item, boolean equip) {
+  public boolean maybeEquip(ManiGame game, SolItem item, boolean equip) {
     return maybeEquip(game, item, false, equip) || maybeEquip(game, item, true, equip);
   }
 
-  public boolean maybeEquip(SolGame game, SolItem item, boolean secondarySlot, boolean equip) {
+  public boolean maybeEquip(ManiGame game, SolItem item, boolean secondarySlot, boolean equip) {
     if (!secondarySlot) {
       if (item instanceof EngineItem) {
         if (true) {
@@ -532,11 +532,11 @@ public class SolShip implements SolObject {
     return false;
   }
 
-  public boolean maybeUnequip(SolGame game, SolItem item, boolean unequip) {
+  public boolean maybeUnequip(ManiGame game, SolItem item, boolean unequip) {
     return maybeUnequip(game, item, false, unequip) || maybeUnequip(game, item, true, unequip);
   }
 
-  public boolean maybeUnequip(SolGame game, SolItem item, boolean secondarySlot, boolean unequip) {
+  public boolean maybeUnequip(ManiGame game, SolItem item, boolean secondarySlot, boolean unequip) {
     if (!secondarySlot) {
       if (myHull.getEngine() == item) {
         if (true) {
@@ -601,7 +601,7 @@ public class SolShip implements SolObject {
     return myAbility;
   }
 
-  public void disableControls(float duration, SolGame game) {
+  public void disableControls(float duration, ManiGame game) {
     if (myControlEnableAwait <= 0) {
       game.getSoundMan().play(game, game.getSpecialSounds().controlDisabled, null, this);
     }
@@ -612,7 +612,7 @@ public class SolShip implements SolObject {
     return myControlEnableAwait <= 0;
   }
 
-  public void dropItem(SolGame game, SolItem item) {
+  public void dropItem(ManiGame game, SolItem item) {
     myItemContainer.remove(item);
     throwLoot(game, item, false);
   }

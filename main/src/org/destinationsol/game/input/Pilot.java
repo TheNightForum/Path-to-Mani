@@ -17,12 +17,12 @@
 package org.destinationsol.game.input;
 
 import org.destinationsol.game.Faction;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.ship.FarShip;
 import org.destinationsol.game.ship.SolShip;
 
 public interface Pilot {
-  void update(SolGame game, SolShip ship, SolShip nearestEnemy);
+  void update(ManiGame game, SolShip ship, SolShip nearestEnemy);
   boolean isUp();
   boolean isLeft();
   boolean isRight();
@@ -34,7 +34,7 @@ public interface Pilot {
   boolean shootsAtObstacles();
   float getDetectionDist();
   String getMapHint();
-  void updateFar(SolGame game, FarShip farShip);
+  void updateFar(ManiGame game, FarShip farShip);
   String toDebugString();
   boolean isPlayer();
 

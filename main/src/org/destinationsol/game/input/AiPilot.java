@@ -19,7 +19,7 @@ package org.destinationsol.game.input;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.gun.GunItem;
 import org.destinationsol.game.item.*;
 import org.destinationsol.game.planet.Planet;
@@ -68,7 +68,7 @@ public class AiPilot implements Pilot {
   }
 
   @Override
-  public void update(SolGame game, SolShip ship, SolShip nearestEnemy) {
+  public void update(ManiGame game, SolShip ship, SolShip nearestEnemy) {
     myAbilityUpdater.update(ship, nearestEnemy);
     myPlanetBind = null;
     Vector2 shipPos = ship.getPosition();
@@ -199,7 +199,7 @@ public class AiPilot implements Pilot {
   }
 
   @Override
-  public void updateFar(SolGame game, FarShip farShip) {
+  public void updateFar(ManiGame game, FarShip farShip) {
     Vector2 shipPos = farShip.getPos();
     HullConfig hullConfig = farShip.getHullConfig();
     float maxIdleDist = getMaxIdleDist(hullConfig);

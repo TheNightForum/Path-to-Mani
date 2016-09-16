@@ -19,7 +19,7 @@ package org.destinationsol.game.ship;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.input.Pilot;
@@ -34,7 +34,7 @@ public class ForceBeacon {
   private final Vector2 myPrevPos;
   private final ParticleSrc myEffect;
 
-  public ForceBeacon(SolGame game, Vector2 relPos, Vector2 basePos, Vector2 baseSpd) {
+  public ForceBeacon(ManiGame game, Vector2 relPos, Vector2 basePos, Vector2 baseSpd) {
     myRelPos = relPos;
     myEffect = game.getSpecialEffects().buildForceBeacon(.6f, game, relPos, basePos, baseSpd);
     myEffect.setWorking(true);
@@ -45,7 +45,7 @@ public class ForceBeacon {
     dras.add(myEffect);
   }
 
-  public void update(SolGame game, Vector2 basePos, float baseAngle, SolShip ship) {
+  public void update(ManiGame game, Vector2 basePos, float baseAngle, SolShip ship) {
     Vector2 pos = ManiMath.toWorld(myRelPos, baseAngle, basePos);
     Vector2 spd = ManiMath.distVec(myPrevPos, pos).scl(1 / game.getTimeStep());
     Faction faction = ship.getPilot().getFaction();
@@ -55,8 +55,8 @@ public class ForceBeacon {
     ManiMath.free(pos);
   }
 
-  public static SolShip pullShips(SolGame game, SolObject owner, Vector2 ownPos, Vector2 ownSpd, Faction faction,
-    float maxPullDist)
+  public static SolShip pullShips(ManiGame game, SolObject owner, Vector2 ownPos, Vector2 ownSpd, Faction faction,
+                                  float maxPullDist)
   {
     SolShip res = null;
     float minLen = Float.MAX_VALUE;

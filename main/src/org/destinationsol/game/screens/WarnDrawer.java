@@ -21,7 +21,7 @@ import com.badlogic.gdx.math.Rectangle;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.ManiMath;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.ui.FontSize;
 import org.destinationsol.ui.UiDrawer;
 
@@ -48,7 +48,7 @@ public abstract class WarnDrawer {
     return new Rectangle(.4f * r, 0, .2f * r, .1f);
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     show = shouldWarn(game);
     if (show) drawPerc = 1;
     else drawPerc = ManiMath.approach(drawPerc, 0, Const.REAL_TIME_STEP / FADE_TIME);
@@ -56,7 +56,7 @@ public abstract class WarnDrawer {
     myTextCol.a = drawPerc;
   }
 
-  protected abstract boolean shouldWarn(SolGame game);
+  protected abstract boolean shouldWarn(ManiGame game);
 
   public void draw(UiDrawer uiDrawer) {
     uiDrawer.draw(myWarn, myBgCol);

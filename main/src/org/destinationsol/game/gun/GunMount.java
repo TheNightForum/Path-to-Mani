@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.input.Shooter;
@@ -43,7 +43,7 @@ public class GunMount {
     myFixed = !gunSlot.allowsRotation();
   }
 
-  public void update(ItemContainer ic, SolGame game, float shipAngle, SolShip creator, boolean shouldShoot, SolShip nearestEnemy, Faction faction) {
+  public void update(ItemContainer ic, ManiGame game, float shipAngle, SolShip creator, boolean shouldShoot, SolShip nearestEnemy, Faction faction) {
     if (myGun == null) return;
     if (!ic.contains(myGun.getItem())) {
       setGun(game, creator, null, false, 0);
@@ -78,7 +78,7 @@ public class GunMount {
     return myGun == null ? null : myGun.getItem();
   }
 
-  public void setGun(SolGame game, SolObject o, GunItem gunItem, boolean underShip, int slotNr) {
+  public void setGun(ManiGame game, SolObject o, GunItem gunItem, boolean underShip, int slotNr) {
     List<Dra> dras = o.getDras();
     if (myGun != null) {
       List<Dra> dras1 = myGun.getDras();

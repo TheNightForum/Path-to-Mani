@@ -30,7 +30,7 @@ public class SaveManager {
 
   public static final String FILE_NAME = "prevShip.ini";
 
-  public static void writeShip(HullConfig hull, float money, ArrayList<SolItem> items, SolGame game) {
+  public static void writeShip(HullConfig hull, float money, ArrayList<SolItem> items, ManiGame game) {
     String hullName = game.getHullConfigs().getName(hull);
     StringBuilder sb = new StringBuilder();
     for (SolItem i : items) {

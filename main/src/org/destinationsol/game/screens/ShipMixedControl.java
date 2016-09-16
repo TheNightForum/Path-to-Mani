@@ -23,7 +23,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.common.ManiMath;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.input.Mover;
 import org.destinationsol.game.input.Shooter;
 import org.destinationsol.game.ship.SolShip;
@@ -66,7 +66,7 @@ public class ShipMixedControl implements ShipUiControl {
     blur();
     if (!enabled) return;
     SolInputManager im = cmp.getInputMan();
-    SolGame g = cmp.getGame();
+    ManiGame g = cmp.getGame();
     SolShip h = g.getHero();
     if (h != null) {
       myMouseWorldPos.set(Gdx.input.getX(), Gdx.input.getY());

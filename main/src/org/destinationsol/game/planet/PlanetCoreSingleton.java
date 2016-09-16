@@ -22,7 +22,7 @@ import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
 import org.destinationsol.game.GameDrawer;
 import org.destinationsol.game.SolCam;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 
 public class PlanetCoreSingleton {
   private final TextureAtlas.AtlasRegion myTex;
@@ -32,7 +32,7 @@ public class PlanetCoreSingleton {
   }
 
 
-  public void draw(SolGame game, GameDrawer drawer) {
+  public void draw(ManiGame game, GameDrawer drawer) {
     SolCam cam = game.getCam();
     Vector2 camPos = cam.getPos();
     Planet p = game.getPlanetMan().getNearestPlanet();

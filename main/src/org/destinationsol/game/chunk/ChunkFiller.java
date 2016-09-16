@@ -70,12 +70,12 @@ public class ChunkFiller {
   /**
    * Fill the background of a given chunk with floating junk.
    *
-   * @param game    The {@link SolGame} instance to work with
+   * @param game    The {@link ManiGame} instance to work with
    * @param chunk   The coordinates of the chunk
    * @param remover
    * @param farBg   Determines which of the background layers should be filled. <code>true</code> fills the layers furthest away, <code>false</code> fills the closer one.
    */
-  public void fill(SolGame game, Vector2 chunk, RemoveController remover, boolean farBg) {
+  public void fill(ManiGame game, Vector2 chunk, RemoveController remover, boolean farBg) {
     if (DebugOptions.NO_OBJS) return;
 
     // Determine the center of the chunk by multiplying the chunk coordinates with the chunk size and adding half a chunk's size
@@ -99,7 +99,7 @@ public class ChunkFiller {
     }
   }
 
-  private SpaceEnvConfig getConfig(SolGame game, Vector2 chCenter, float[] densityMul,
+  private SpaceEnvConfig getConfig(ManiGame game, Vector2 chCenter, float[] densityMul,
                                    RemoveController remover, boolean farBg) {
     PlanetManager pm = game.getPlanetMan();
     SolSystem sys = pm.getNearestSystem(chCenter);
@@ -137,7 +137,7 @@ public class ChunkFiller {
     return null;
   }
 
-  private void fillForSys(SolGame game, Vector2 chCenter, RemoveController remover, SolSystem sys) {
+  private void fillForSys(ManiGame game, Vector2 chCenter, RemoveController remover, SolSystem sys) {
     SysConfig conf = sys.getConfig();
     Vector2 mainStationPos = game.getGalaxyFiller().getMainStationPos();
     Vector2 startPos = mainStationPos == null ? new Vector2() : mainStationPos;
@@ -151,7 +151,7 @@ public class ChunkFiller {
     }
   }
 
-  private void fillEnemies(SolGame game, RemoveController remover, ShipConfig enemyConf, Vector2 chCenter) {
+  private void fillEnemies(ManiGame game, RemoveController remover, ShipConfig enemyConf, Vector2 chCenter) {
     int count = getEntityCount(enemyConf.density);
     if (count == 0) return;
     for (int i = 0; i < count; i++) {
@@ -161,7 +161,7 @@ public class ChunkFiller {
     }
   }
 
-  public FarShip buildSpaceEnemy(SolGame game, Vector2 pos, RemoveController remover,
+  public FarShip buildSpaceEnemy(ManiGame game, Vector2 pos, RemoveController remover,
                                  ShipConfig enemyConf) {
     if (pos == null) return null;
     Vector2 spd = new Vector2();
@@ -176,7 +176,7 @@ public class ChunkFiller {
           remover, false, money, null, true);
   }
 
-  private void fillAsteroids(SolGame game, RemoveController remover, boolean forBelt, Vector2 chCenter) {
+  private void fillAsteroids(ManiGame game, RemoveController remover, boolean forBelt, Vector2 chCenter) {
     float density = forBelt ? BELT_A_DENSITY : ASTEROID_DENSITY;
     int count = getEntityCount(density);
     if (count == 0) return;
@@ -200,14 +200,14 @@ public class ChunkFiller {
    * This type of junk does not move on its own, it merely changes position as the camera moves, simulating different
    * depths relative to the camera.
    *
-   * @param game       The {@link SolGame} instance to work with
+   * @param game       The {@link ManiGame} instance to work with
    * @param chCenter   The center of the chunk
    * @param remover
    * @param draLevel   The depth of the junk
    * @param conf       The environment configuration
    * @param densityMul A density multiplier. This will be multiplied with the density defined in the environment configuration
    */
-  private void fillFarJunk(SolGame game, Vector2 chCenter, RemoveController remover, DraLevel draLevel,
+  private void fillFarJunk(ManiGame game, Vector2 chCenter, RemoveController remover, DraLevel draLevel,
                            SpaceEnvConfig conf, float densityMul) {
     if (conf == null) return;
     int count = getEntityCount(conf.farJunkDensity * densityMul);
@@ -246,12 +246,12 @@ public class ChunkFiller {
    * This type of junk moves at the same speed as the camera (similar to the dust) but additionally has its own floating
    * direction and angle for every individual piece of junk.
    *
-   * @param game     The {@link SolGame} instance to work with
+   * @param game     The {@link ManiGame} instance to work with
    * @param remover
    * @param conf     The environment configuration
    * @param chCenter The center of the chunk
    */
-  private void fillJunk(SolGame game, RemoveController remover, SpaceEnvConfig conf, Vector2 chCenter) {
+  private void fillJunk(ManiGame game, RemoveController remover, SpaceEnvConfig conf, Vector2 chCenter) {
     if (conf == null) return;
     int count = getEntityCount(conf.junkDensity);
     if (count == 0) return;
@@ -288,11 +288,11 @@ public class ChunkFiller {
    * <p/>
    * Dust is fixed in the world and therefore moves opposite to the cameras movement.
    *
-   * @param game     The {@link SolGame} instance to work with
+   * @param game     The {@link ManiGame} instance to work with
    * @param chCenter The center of the chunk
    * @param remover
    */
-  private void fillDust(SolGame game, Vector2 chCenter, RemoveController remover) {
+  private void fillDust(ManiGame game, Vector2 chCenter, RemoveController remover) {
     ArrayList<Dra> dras = new ArrayList<Dra>();
     int count = getEntityCount(DUST_DENSITY);
     if (count == 0) return;
@@ -318,11 +318,11 @@ public class ChunkFiller {
    * <p/>
    * Up to 100 tries will be made to find an unoccupied position; if by then none has been found, <code>null</code> will be returned.
    *
-   * @param g        The {@link SolGame} instance to work with
+   * @param g        The {@link ManiGame} instance to work with
    * @param chCenter The center of a chunk in which a random position should be found
    * @return A random, unoccupied position in a chunk centered around chCenter, relative to the entire map, or <code>null</code> if within 100 tries no unoccupied position has been found
    */
-  private Vector2 getFreeRndPos(SolGame g, Vector2 chCenter) {
+  private Vector2 getFreeRndPos(ManiGame g, Vector2 chCenter) {
     for (int i = 0; i < 100; i++) {
       Vector2 pos = getRndPos(new Vector2(chCenter));
       if (g.isPlaceEmpty(pos, true)) return pos;

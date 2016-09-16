@@ -18,7 +18,7 @@ package org.destinationsol.game.input;
 
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.ship.SolShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
 
@@ -51,7 +51,7 @@ public class NoDestProvider implements MoveDestProvider {
   }
 
   @Override
-  public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
   }
 
   @Override

@@ -19,7 +19,7 @@ package org.destinationsol.game.dra;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.game.FarObj;
 import org.destinationsol.game.RemoveController;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 
 import java.util.List;
@@ -43,17 +43,17 @@ public class FarDras implements FarObj {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return myRemoveController != null && myRemoveController.shouldRemove(myPos);
   }
 
   @Override
-  public SolObject toObj(SolGame game) {
+  public SolObject toObj(ManiGame game) {
     return new DrasObject(myDras, myPos, mySpd, myRemoveController, false, myHideOnPlanet);
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
   }
 
   @Override

@@ -18,7 +18,7 @@ package org.destinationsol.game.screens;
 
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.item.ItemContainer;
 import org.destinationsol.game.item.SolItem;
 import org.destinationsol.game.ship.SolShip;
@@ -59,7 +59,7 @@ public class ShowInventory implements InventoryOperations {
 
   @Override
   public void updateCustom(ManiApplication cmp, SolInputManager.Ptr[] ptrs, boolean clickedOutside) {
-    SolGame g = cmp.getGame();
+    ManiGame g = cmp.getGame();
     InventoryScreen is = g.getScreens().inventoryScreen;
     SolItem selItem = is.getSelectedItem();
     SolShip hero = g.getHero();
@@ -139,13 +139,13 @@ public class ShowInventory implements InventoryOperations {
   }
 
   @Override
-  public ItemContainer getItems(SolGame game) {
+  public ItemContainer getItems(ManiGame game) {
     SolShip h = game.getHero();
     return h == null ? null : h.getItemContainer();
   }
 
   @Override
-  public boolean isUsing(SolGame game, SolItem item) {
+  public boolean isUsing(ManiGame game, SolItem item) {
     SolShip h = game.getHero();
     return h != null && h.maybeUnequip(game, item, false);
   }

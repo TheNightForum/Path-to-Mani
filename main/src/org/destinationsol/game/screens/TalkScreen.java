@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Rectangle;
 import org.destinationsol.GameOptions;
 import org.destinationsol.ManiApplication;
 import org.destinationsol.common.ManiColor;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.ship.SolShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
 import org.destinationsol.menu.MenuLayout;
@@ -81,7 +81,7 @@ public class TalkScreen implements SolUiScreen {
       closeCtrl.maybeFlashPressed(cmp.getOptions().getKeyClose());
       return;
     }
-    SolGame g = cmp.getGame();
+    ManiGame g = cmp.getGame();
     SolShip hero = g.getHero();
     SolInputManager inputMan = cmp.getInputMan();
     if (closeCtrl.isJustOff() || isTargetFar(hero))

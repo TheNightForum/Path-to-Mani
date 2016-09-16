@@ -85,7 +85,7 @@ public class DraMan {
     }
   }
 
-  public void draw(SolGame game) {
+  public void draw(ManiGame game) {
     MapDrawer mapDrawer = game.getMapDrawer();
     if (mapDrawer.isToggled()) {
       mapDrawer.draw(myDrawer, game);
@@ -170,7 +170,7 @@ public class DraMan {
     myDrawer.maybeChangeAdditive(false);
   }
 
-  private void drawDebug(GameDrawer drawer, SolGame game, Dra dra) {
+  private void drawDebug(GameDrawer drawer, ManiGame game, Dra dra) {
     SolCam cam = game.getCam();
     float lineWidth = cam.getRealLineWidth();
     Color col = myInCam.contains(dra) ? DebugCol.DRA : DebugCol.DRA_OUT;
@@ -182,7 +182,7 @@ public class DraMan {
     return camPos.dst(pos) - viewDist < r;
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
   }
 
   public static float radiusFromDras(List<Dra> dras) {

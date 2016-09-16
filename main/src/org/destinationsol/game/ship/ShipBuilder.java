@@ -31,7 +31,7 @@ import org.destinationsol.files.HullConfigManager;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.PathLoader;
 import org.destinationsol.game.RemoveController;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.dra.RectSprite;
@@ -58,10 +58,10 @@ public class ShipBuilder {
     myPathLoader = new PathLoader();
   }
 
-  public FarShip buildNewFar(SolGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
-    String items, HullConfig hullConfig,
-    RemoveController removeController,
-    boolean hasRepairer, float money, TradeConfig tradeConfig, boolean giveAmmo)
+  public FarShip buildNewFar(ManiGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
+                             String items, HullConfig hullConfig,
+                             RemoveController removeController,
+                             boolean hasRepairer, float money, TradeConfig tradeConfig, boolean giveAmmo)
   {
 
     if (spd == null) spd = new Vector2();
@@ -176,10 +176,10 @@ public class ShipBuilder {
     }
   }
 
-  public SolShip build(SolGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
-    ItemContainer container, HullConfig hullConfig, float life,
-    GunItem gun1, GunItem gun2, RemoveController removeController,
-    EngineItem engine, ShipRepairer repairer, float money, TradeContainer tradeContainer, Shield shield, Armor armor)
+  public SolShip build(ManiGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
+                       ItemContainer container, HullConfig hullConfig, float life,
+                       GunItem gun1, GunItem gun2, RemoveController removeController,
+                       EngineItem engine, ShipRepairer repairer, float money, TradeContainer tradeContainer, Shield shield, Armor armor)
   {
     ArrayList<Dra> dras = new ArrayList<Dra>();
     Hull hull = buildHull(game, pos, spd, angle, rotSpd, hullConfig, life, dras);
@@ -207,8 +207,8 @@ public class ShipBuilder {
     return ship;
   }
 
-  private Hull buildHull(SolGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, HullConfig hullConfig,
-    float life, ArrayList<Dra> dras)
+  private Hull buildHull(ManiGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, HullConfig hullConfig,
+                         float life, ArrayList<Dra> dras)
   {
       //TODO: This logic belongs in the HullConfigManager/HullConfig
       FileHandle hullPropertiesFile =  FileManager.getInstance().getHullsDirectory().child(hullConfig.getInternalName()).child(HullConfigManager.PROPERTIES_FILE_NAME);
@@ -267,7 +267,7 @@ public class ShipBuilder {
     return shieldFixture;
   }
 
-  private Door createDoor(SolGame game, Vector2 pos, float angle, Body body, Vector2 doorRelPos) {
+  private Door createDoor(ManiGame game, Vector2 pos, float angle, Body body, Vector2 doorRelPos) {
     World w = game.getObjMan().getWorld();
     TextureAtlas.AtlasRegion tex = game.getTexMan().getTex("smallGameObjs/door", null);
     PrismaticJoint joint = createDoorJoint(body, w, pos, doorRelPos, angle);

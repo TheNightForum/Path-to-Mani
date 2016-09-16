@@ -62,7 +62,7 @@ public class BeaconHandler {
     mySpd = new Vector2();
   }
 
-  public void init(SolGame game, Vector2 pos) {
+  public void init(ManiGame game, Vector2 pos) {
     ArrayList<Dra> dras = new ArrayList<Dra>();
     dras.add(myAttackSprite);
     dras.add(myFollowSprite);
@@ -72,7 +72,7 @@ public class BeaconHandler {
     myInitialized = true;
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     if (!myInitialized) return;
     updateD(game);
     mySpd.set(0, 0);
@@ -80,7 +80,7 @@ public class BeaconHandler {
     maybeUpdatePlanetPos(game);
   }
 
-  private void maybeUpdatePlanetPos(SolGame game) {
+  private void maybeUpdatePlanetPos(ManiGame game) {
     Vector2 beaconPos = getPos0();
     if (myPlanetBind == null) {
       myPlanetBind = PlanetBind.tryBind(game, beaconPos, 0);
@@ -93,7 +93,7 @@ public class BeaconHandler {
     myPlanetBind.getPlanet().calcSpdAtPos(mySpd, beaconPos);
   }
 
-  private boolean maybeUpdateTargetPos(SolGame game) {
+  private boolean maybeUpdateTargetPos(ManiGame game) {
     updateTarget(game);
     if (myTargetPilot == null) return false;
     Vector2 beaconPos = getPos0();
@@ -106,7 +106,7 @@ public class BeaconHandler {
     return true;
   }
 
-  private void updateTarget(SolGame game) {
+  private void updateTarget(ManiGame game) {
     if (myTargetPilot == null) return;
     ObjectManager om = game.getObjMan();
     List<SolObject> objs = om.getObjs();
@@ -136,7 +136,7 @@ public class BeaconHandler {
     applyAction(Action.MOVE);
   }
 
-  private void updateD(SolGame game) {
+  private void updateD(ManiGame game) {
     ObjectManager om = game.getObjMan();
     List<SolObject> objs = om.getObjs();
     List<FarObjData> farObjs = om.getFarObjs();
@@ -172,7 +172,7 @@ public class BeaconHandler {
     throw new AssertionError();
   }
 
-  public Action processMouse(SolGame g, Vector2 pos, boolean clicked, boolean onMap) {
+  public Action processMouse(ManiGame g, Vector2 pos, boolean clicked, boolean onMap) {
     Action action;
     Pilot targetPilot = findPilotInPos(g, pos, onMap, clicked);
     if (targetPilot != null) {
@@ -217,7 +217,7 @@ public class BeaconHandler {
     }
   }
 
-  private Pilot findPilotInPos(SolGame g, Vector2 pos, boolean onMap, boolean clicked) {
+  private Pilot findPilotInPos(ManiGame g, Vector2 pos, boolean onMap, boolean clicked) {
     ObjectManager om = g.getObjMan();
     SolShip h = g.getHero();
     float iconRad = onMap ? g.getMapDrawer().getIconRadius(g.getCam()) : 0;

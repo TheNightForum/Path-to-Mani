@@ -38,7 +38,7 @@ public class Sky implements SolObject {
   private final ColorSpan mySkySpan;
   private final Vector2 myPos;
 
-  public Sky(SolGame game, Planet planet) {
+  public Sky(ManiGame game, Planet planet) {
     myPlanet = planet;
     myDras = new ArrayList<Dra>();
 
@@ -52,7 +52,7 @@ public class Sky implements SolObject {
     updatePos(game);
   }
 
-  private void updatePos(SolGame game) {
+  private void updatePos(ManiGame game) {
     Vector2 camPos = game.getCam().getPos();
     Vector2 planetPos = myPlanet.getPos();
     if (planetPos.dst(camPos) < myPlanet.getGroundHeight() + Const.MAX_SKY_HEIGHT_FROM_GROUND) {
@@ -63,7 +63,7 @@ public class Sky implements SolObject {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     updatePos(game);
 
     Vector2 planetPos = myPlanet.getPos();
@@ -99,16 +99,16 @@ public class Sky implements SolObject {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return false;
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
   }
 
   @Override
-  public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+  public void receiveDmg(float dmg, ManiGame game, Vector2 pos, DmgType dmgType) {
   }
 
   @Override
@@ -117,7 +117,7 @@ public class Sky implements SolObject {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
   }
 
   @Override
@@ -147,7 +147,7 @@ public class Sky implements SolObject {
 
   @Override
   public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-    SolGame game, Vector2 collPos)
+                            ManiGame game, Vector2 collPos)
   {
   }
 

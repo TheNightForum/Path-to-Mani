@@ -23,7 +23,7 @@ import com.badlogic.gdx.physics.box2d.joints.PrismaticJoint;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.Faction;
 import org.destinationsol.game.FactionManager;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.dra.Dra;
 import org.destinationsol.game.dra.RectSprite;
@@ -46,7 +46,7 @@ public class Door {
     myS = s;
   }
 
-  public void update(SolGame game, SolShip ship) {
+  public void update(ManiGame game, SolShip ship) {
     Vector2 doorPos = getBody().getPosition();
     boolean open = myOpenAwait <= 0 && shouldOpen(game, ship, doorPos);
     if (open) {
@@ -66,7 +66,7 @@ public class Door {
     ManiMath.toRel(doorPos, myS.getRelPos(), shipAngle, shipPos);
   }
 
-  private boolean shouldOpen(SolGame game, SolShip ship, Vector2 doorPos) {
+  private boolean shouldOpen(ManiGame game, SolShip ship, Vector2 doorPos) {
     Faction faction = ship.getPilot().getFaction();
     FactionManager factionManager = game.getFactionMan();
     List<SolObject> objs = game.getObjMan().getObjs();
@@ -91,7 +91,7 @@ public class Door {
     return myJoint.getBodyB();
   }
 
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
     World w = game.getObjMan().getWorld();
     Body doorBody = getBody();
     w.destroyJoint(myJoint);

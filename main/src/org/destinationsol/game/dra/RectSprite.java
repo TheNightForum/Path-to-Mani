@@ -23,7 +23,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.Consumed;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.GameDrawer;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 
 public class RectSprite implements Dra {
@@ -106,7 +106,7 @@ public class RectSprite implements Dra {
     return myLevel;
   }
 
-  public void update(SolGame game, SolObject o) {
+  public void update(ManiGame game, SolObject o) {
     relAngle += myRotSpd * game.getTimeStep();
   }
 
@@ -130,7 +130,7 @@ public class RectSprite implements Dra {
     return myRadius;
   }
 
-  public void draw(GameDrawer drawer, SolGame game) {
+  public void draw(GameDrawer drawer, ManiGame game) {
     float x = myPos.x;
     float y = myPos.y;
     if (myLevel.depth != 1) {

@@ -23,7 +23,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import org.destinationsol.Const;
 import org.destinationsol.files.FileManager;
 import org.destinationsol.game.DmgType;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 
 public class SpecialSounds {
@@ -83,7 +83,7 @@ public class SpecialSounds {
     return null;
   }
 
-  public void playHit(SolGame game, SolObject o, Vector2 pos, DmgType dmgType) {
+  public void playHit(ManiGame game, SolObject o, Vector2 pos, DmgType dmgType) {
     if (o == null) return;
     Boolean metal = o.isMetal();
     if (metal == null) return;
@@ -92,7 +92,7 @@ public class SpecialSounds {
     game.getSoundMan().play(game, sound, pos, o);
   }
 
-  public void playColl(SolGame game, float absImpulse, SolObject o, Vector2 pos) {
+  public void playColl(ManiGame game, float absImpulse, SolObject o, Vector2 pos) {
     if (o == null || absImpulse < .1f) return;
     Boolean metal = o.isMetal();
     if (metal == null) return;

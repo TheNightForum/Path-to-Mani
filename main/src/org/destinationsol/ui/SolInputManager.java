@@ -32,7 +32,7 @@ import org.destinationsol.TextureManager;
 import org.destinationsol.common.ManiColor;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.files.FileManager;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -167,7 +167,7 @@ public class SolInputManager {
 
   public void update(ManiApplication cmp) {
     boolean mobile = cmp.isMobile();
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
 
     // This keeps the mouse within the window, but only when playing the game with the mouse.
     // All other times the mouse can freely leave and return.
@@ -258,7 +258,7 @@ public class SolInputManager {
 
   private void updateCursor(ManiApplication cmp) {
     if (cmp.isMobile()) return;
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
 
     myMousePos.set(myPtrs[0].x, myPtrs[0].y);
     if (cmp.getOptions().controlType == GameOptions.CONTROL_MIXED || cmp.getOptions().controlType == GameOptions.CONTROL_MOUSE) {
@@ -323,7 +323,7 @@ public class SolInputManager {
     }
     uiDrawer.setTextMode(null);
 
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
     TutorialManager tutorialManager = game == null ? null : game.getTutMan();
     if (tutorialManager != null && getTopScreen() != game.getScreens().menuScreen) tutorialManager.draw(uiDrawer);
 

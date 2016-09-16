@@ -52,7 +52,7 @@ public class DrasObject implements SolObject {
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     myMoveDiff.set(mySpd);
     float ts = game.getTimeStep();
     myMoveDiff.scl(ts);
@@ -86,7 +86,7 @@ public class DrasObject implements SolObject {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     if (myMaxFadeTime > 0 && myFadeTime <= 0) return true;
     if (myTemporary) {
       boolean rem = true;
@@ -103,11 +103,11 @@ public class DrasObject implements SolObject {
   }
 
   @Override
-  public void onRemove(SolGame game) {
+  public void onRemove(ManiGame game) {
   }
 
   @Override
-  public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+  public void receiveDmg(float dmg, ManiGame game, Vector2 pos, DmgType dmgType) {
   }
 
   @Override
@@ -116,7 +116,7 @@ public class DrasObject implements SolObject {
   }
 
   @Override
-  public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+  public void receiveForce(Vector2 force, ManiGame game, boolean acc) {
   }
 
   @Override
@@ -146,7 +146,7 @@ public class DrasObject implements SolObject {
 
   @Override
   public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-    SolGame game, Vector2 collPos)
+                            ManiGame game, Vector2 collPos)
   {
   }
 

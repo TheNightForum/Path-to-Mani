@@ -19,7 +19,7 @@ package org.destinationsol.game.planet;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.game.FarObj;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 
 public class FarSky implements FarObj {
@@ -30,17 +30,17 @@ public class FarSky implements FarObj {
   }
 
   @Override
-  public boolean shouldBeRemoved(SolGame game) {
+  public boolean shouldBeRemoved(ManiGame game) {
     return false;
   }
 
   @Override
-  public SolObject toObj(SolGame game) {
+  public SolObject toObj(ManiGame game) {
     return new Sky(game, myPlanet);
   }
 
   @Override
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
   }
 
   @Override

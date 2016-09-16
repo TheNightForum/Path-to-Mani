@@ -19,7 +19,7 @@ package org.destinationsol.game.ship;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import org.destinationsol.game.AbilityCommonConfig;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.item.ItemManager;
@@ -50,7 +50,7 @@ public class EmWave implements ShipAbility {
   }
 
   @Override
-  public boolean update(SolGame game, SolShip owner, boolean tryToUse) {
+  public boolean update(ManiGame game, SolShip owner, boolean tryToUse) {
     if (!tryToUse) return false;
     Vector2 ownerPos = owner.getPosition();
     for (SolObject o : game.getObjMan().getObjs()) {

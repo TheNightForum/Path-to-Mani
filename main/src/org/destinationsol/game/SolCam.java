@@ -61,7 +61,7 @@ public class SolCam {
     return myCam.combined;
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
 
     float desiredVd = Const.CAM_VIEW_DIST_GROUND;
     float life = 0;
@@ -151,7 +151,7 @@ public class SolCam {
     myCam.position.set(posX, posY, 0);
   }
 
-  private void applyInput(SolGame game) {
+  private void applyInput(ManiGame game) {
     MainScreen s = game.getScreens().mainScreen;
     boolean d = s.isDown();
     boolean u = s.isUp();

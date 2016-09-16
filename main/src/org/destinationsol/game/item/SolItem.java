@@ -17,7 +17,7 @@
 package org.destinationsol.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 
 public interface SolItem {
   String getDisplayName();
@@ -25,7 +25,7 @@ public interface SolItem {
   String getDesc();
   SolItem copy();
   boolean isSame(SolItem item);
-  TextureAtlas.AtlasRegion getIcon(SolGame game);
+  TextureAtlas.AtlasRegion getIcon(ManiGame game);
   SolItemType getItemType();
   String getCode();
   int isEquipped();

@@ -18,7 +18,7 @@ package org.destinationsol.game.item;
 
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 
 public class RepairItem implements SolItem {
   public static final int LIFE_AMT = 20;
@@ -54,7 +54,7 @@ public class RepairItem implements SolItem {
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return game.getItemMan().repairIcon;
   }
 

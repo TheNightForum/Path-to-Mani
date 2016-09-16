@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import org.destinationsol.common.DebugCol;
 import org.destinationsol.game.GameDrawer;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 
 import java.util.HashMap;
@@ -55,7 +55,7 @@ public class DebugHint {
     myMsg = sb.toString();
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     if (myOwner != null) {
       if (myOwner.shouldBeRemoved(game)) {
         myOwner = null;
@@ -81,7 +81,7 @@ public class DebugHint {
     return myMsgs.isEmpty();
   }
 
-  public void draw(GameDrawer drawer, SolGame game) {
+  public void draw(GameDrawer drawer, ManiGame game) {
     float fontSz = game.getCam().getDebugFontSize();
     drawer.drawString(myMsg, myPos.x, myPos.y, fontSz, false, DebugCol.HINT);
   }

@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.ShipConfig;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.planet.PlanetBind;
 import org.destinationsol.game.ship.SolShip;
 import org.destinationsol.game.ship.hulls.HullConfig;
@@ -32,7 +32,7 @@ public class StillGuard implements MoveDestProvider {
   private Vector2 myDest;
   private Vector2 myDestSpd;
 
-  public StillGuard(Vector2 target, SolGame game, ShipConfig sc) {
+  public StillGuard(Vector2 target, ManiGame game, ShipConfig sc) {
     myDest = new Vector2(target);
     myPlanetBind = PlanetBind.tryBind(game, myDest, 0);
     myDesiredSpdLen = sc.hull.getType() == HullConfig.Type.BIG ? Const.BIG_AI_SPD : Const.DEFAULT_AI_SPD;
@@ -60,7 +60,7 @@ public class StillGuard implements MoveDestProvider {
   }
 
   @Override
-  public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+  public void update(ManiGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
     if (myPlanetBind != null) {
       Vector2 diff = ManiMath.getVec();
       myPlanetBind.setDiff(diff, myDest, false);

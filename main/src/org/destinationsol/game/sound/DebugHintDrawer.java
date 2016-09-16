@@ -19,7 +19,7 @@ package org.destinationsol.game.sound;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.common.Nullable;
 import org.destinationsol.game.GameDrawer;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.SolObject;
 
 import java.util.HashMap;
@@ -53,12 +53,12 @@ public class DebugHintDrawer {
     dh.add(value);
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     updateEach(game, myTracedNotes.values().iterator());
     updateEach(game, myFreeNotes.values().iterator());
   }
 
-  private void updateEach(SolGame game, Iterator<DebugHint> it) {
+  private void updateEach(ManiGame game, Iterator<DebugHint> it) {
     while (it.hasNext()) {
       DebugHint n = it.next();
       n.update(game);
@@ -66,7 +66,7 @@ public class DebugHintDrawer {
     }
   }
 
-  public void draw(GameDrawer drawer, SolGame game) {
+  public void draw(GameDrawer drawer, ManiGame game) {
     for (DebugHint n : myTracedNotes.values()) n.draw(drawer, game);
     for (DebugHint n : myFreeNotes.values()) n.draw(drawer, game);
   }

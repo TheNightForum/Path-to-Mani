@@ -19,7 +19,7 @@ package org.destinationsol.game.screens;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.planet.Planet;
 import org.destinationsol.game.planet.PlanetManager;
 import org.destinationsol.game.planet.SolSystem;
@@ -32,7 +32,7 @@ public class ZoneNameAnnouncer {
   private final Color myCol = new Color(1, 1, 1, 1);
   private String myText;
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     PlanetManager pm = game.getPlanetMan();
     String zone = null;
     String pref = null;

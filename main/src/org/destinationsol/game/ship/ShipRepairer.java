@@ -17,7 +17,7 @@
 package org.destinationsol.game.ship;
 
 import org.destinationsol.common.ManiMath;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.item.ItemContainer;
 import org.destinationsol.game.item.RepairItem;
 import org.destinationsol.game.ship.hulls.HullConfig;
@@ -30,7 +30,7 @@ public class ShipRepairer {
   public ShipRepairer() {
   }
 
-  public float tryRepair(SolGame game, ItemContainer ic, float life, HullConfig config) {
+  public float tryRepair(ManiGame game, ItemContainer ic, float life, HullConfig config) {
     // Don't attempt to repair if already at full health
     if (life == config.getMaxLife()) {
       return 0;

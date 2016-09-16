@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import org.destinationsol.common.ManiMath;
 import org.destinationsol.game.AbilityCommonConfig;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.dra.DraLevel;
 import org.destinationsol.game.item.ItemManager;
 import org.destinationsol.game.item.SolItem;
@@ -53,7 +53,7 @@ public class SloMo implements ShipAbility {
   }
 
   @Override
-  public boolean update(SolGame game, SolShip owner, boolean tryToUse) {
+  public boolean update(ManiGame game, SolShip owner, boolean tryToUse) {
     if (tryToUse) {
       myFactor = myConfig.factor;
       Vector2 pos = owner.getPosition();

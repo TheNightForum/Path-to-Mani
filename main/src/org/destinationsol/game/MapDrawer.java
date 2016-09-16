@@ -106,7 +106,7 @@ public class MapDrawer {
     return myToggled;
   }
 
-  public void draw(GameDrawer drawer, SolGame game) {
+  public void draw(GameDrawer drawer, ManiGame game) {
     SolCam cam = game.getCam();
     float iconSz = getIconRadius(cam) * 2;
     float starNodeW = cam.getViewHeight(myZoom) * STAR_NODE_SZ;
@@ -132,8 +132,8 @@ public class MapDrawer {
     return cam.getViewHeight(myZoom) * myIconRad;
   }
 
-  private void drawMazes(GameDrawer drawer, SolGame game, float viewDist, Planet np, Vector2 camPos, float heroDmgCap,
-    float camAngle)
+  private void drawMazes(GameDrawer drawer, ManiGame game, float viewDist, Planet np, Vector2 camPos, float heroDmgCap,
+                         float camAngle)
   {
     ArrayList<Maze> mazes = game.getPlanetMan().getMazes();
     for (int i = 0, mazesSize = mazes.size(); i < mazesSize; i++) {
@@ -150,8 +150,8 @@ public class MapDrawer {
 
   }
 
-  private void drawPlanets(GameDrawer drawer, SolGame game, float viewDist, Planet np, Vector2 camPos, float heroDmgCap,
-    float camAngle)
+  private void drawPlanets(GameDrawer drawer, ManiGame game, float viewDist, Planet np, Vector2 camPos, float heroDmgCap,
+                           float camAngle)
   {
     ArrayList<SolSystem> systems = game.getPlanetMan().getSystems();
     SolCam cam = game.getCam();
@@ -232,8 +232,8 @@ public class MapDrawer {
     drawer.draw(mySkullBigTex, rad *2, rad *2, rad, rad, pos.x, pos.y, angle, myAreaWarnCol);
   }
 
-  private void drawIcons(GameDrawer drawer, SolGame game, float iconSz, float viewDist, FactionManager factionManager,
-    SolShip hero, Vector2 camPos, float heroDmgCap)
+  private void drawIcons(GameDrawer drawer, ManiGame game, float iconSz, float viewDist, FactionManager factionManager,
+                         SolShip hero, Vector2 camPos, float heroDmgCap)
   {
     List<SolObject> objs = game.getObjMan().getObjs();
     for (int i1 = 0, objsSize = objs.size(); i1 < objsSize; i1++) {
@@ -295,7 +295,7 @@ public class MapDrawer {
     ManiMath.free(pos);
   }
 
-  private void drawStarNodes(GameDrawer drawer, SolGame game, float viewDist, Vector2 camPos, float starNodeW)
+  private void drawStarNodes(GameDrawer drawer, ManiGame game, float viewDist, Vector2 camPos, float starNodeW)
   {
     List<SolObject> objs = game.getObjMan().getObjs();
     for (int i1 = 0, objsSize = objs.size(); i1 < objsSize; i1++) {
@@ -324,7 +324,7 @@ public class MapDrawer {
     ManiMath.free(pos2);
   }
 
-  private void drawNpGround(GameDrawer drawer, SolGame game, float viewDist, Planet np, Vector2 camPos) {
+  private void drawNpGround(GameDrawer drawer, ManiGame game, float viewDist, Planet np, Vector2 camPos) {
     ObjectManager objectManager = game.getObjMan();
     List<SolObject> objs = objectManager.getObjs();
     for (int i1 = 0, objsSize = objs.size(); i1 < objsSize; i1++) {
@@ -388,7 +388,7 @@ public class MapDrawer {
     return myZoom;
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     mySkullTime += game.getTimeStep();
     if (mySkullTime > MAX_SKULL_TIME) mySkullTime = -MAX_SKULL_TIME;
     myAreaSkullTime += game.getTimeStep();

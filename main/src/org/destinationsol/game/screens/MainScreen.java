@@ -142,7 +142,7 @@ public class MainScreen implements SolUiScreen {
   }
 
   public void maybeDrawHeight(UiDrawer drawer, ManiApplication cmp) {
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
     Planet np = game.getPlanetMan().getNearestPlanet();
     SolCam cam = game.getCam();
     Vector2 camPos = cam.getPos();
@@ -183,7 +183,7 @@ public class MainScreen implements SolUiScreen {
       cmp.finishGame();
       return;
     }
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
     SolInputManager inputMan = cmp.getInputMan();
     GameScreens screens = game.getScreens();
     SolShip hero = game.getHero();
@@ -227,7 +227,7 @@ public class MainScreen implements SolUiScreen {
     }
   }
 
-  private void updateTalk(SolGame game) {
+  private void updateTalk(ManiGame game) {
     SolShip hero = game.getHero();
     if (hero == null) {
       talkCtrl.setEnabled(false);
@@ -355,7 +355,7 @@ public class MainScreen implements SolUiScreen {
     maybeDrawHeight(uiDrawer, cmp);
     myBorderDrawer.draw(uiDrawer, cmp);
 
-    SolGame game = cmp.getGame();
+    ManiGame game = cmp.getGame();
     SolShip hero = game.getHero();
     if (hero != null) {
       float row = BorderDrawer.TISHCH_SZ + V_PAD;
@@ -486,7 +486,7 @@ public class MainScreen implements SolUiScreen {
     public NoShieldWarn(float r) {
       super(r, "No Shield");
     }
-    protected boolean shouldWarn(SolGame game) {
+    protected boolean shouldWarn(ManiGame game) {
       SolShip h = game.getHero();
       if (h == null) return false;
       return h.getShield() == null;
@@ -497,7 +497,7 @@ public class MainScreen implements SolUiScreen {
     public NoArmorWarn(float r) {
       super(r, "No Armor");
     }
-    protected boolean shouldWarn(SolGame game) {
+    protected boolean shouldWarn(ManiGame game) {
       SolShip h = game.getHero();
       if (h == null) return false;
       return h.getArmor() == null;
@@ -508,7 +508,7 @@ public class MainScreen implements SolUiScreen {
     public EnemyWarn(float r) {
       super(r, "Dangerous\nEnemy");
     }
-    protected boolean shouldWarn(SolGame game) {
+    protected boolean shouldWarn(ManiGame game) {
       SolShip h = game.getHero();
       if (h == null) return false;
       float heroCap = HardnessCalc.getShipDmgCap(h);

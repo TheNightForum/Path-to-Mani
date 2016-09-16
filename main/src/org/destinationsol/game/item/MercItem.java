@@ -18,7 +18,7 @@ package org.destinationsol.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import org.destinationsol.game.ShipConfig;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 
 public class MercItem implements SolItem {
   private final ShipConfig myConfig;
@@ -55,7 +55,7 @@ public class MercItem implements SolItem {
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return myConfig.hull.getIcon();
   }
 

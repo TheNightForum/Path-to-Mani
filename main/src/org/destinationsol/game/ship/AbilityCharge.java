@@ -22,7 +22,7 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import org.destinationsol.TextureManager;
 import org.destinationsol.files.FileManager;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 import org.destinationsol.game.item.ItemManager;
 import org.destinationsol.game.item.SolItem;
 import org.destinationsol.game.item.SolItemType;
@@ -61,7 +61,7 @@ public class AbilityCharge implements SolItem {
   }
 
   @Override
-  public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+  public TextureAtlas.AtlasRegion getIcon(ManiGame game) {
     return myConfig.icon;
   }
 

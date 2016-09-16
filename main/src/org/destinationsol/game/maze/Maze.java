@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import org.destinationsol.Const;
 import org.destinationsol.game.HardnessCalc;
 import org.destinationsol.game.SolCam;
-import org.destinationsol.game.SolGame;
+import org.destinationsol.game.ManiGame;
 
 public class Maze {
 
@@ -37,7 +37,7 @@ public class Maze {
     myDps = HardnessCalc.getMazeDps(config);
   }
 
-  public void update(SolGame game) {
+  public void update(ManiGame game) {
     SolCam cam = game.getCam();
     Vector2 camPos = cam.getPos();
     if (!myObjsCreated && camPos.dst(myPos) < myRadius + Const.CAM_VIEW_DIST_JOURNEY * 2) {
