@@ -23,7 +23,7 @@ import com.pathtomani.entities.gun.GunItem;
 import com.pathtomani.gfx.particle.EffectTypes;
 import com.pathtomani.entities.projectile.ProjectileConfigs;
 import com.pathtomani.entities.ship.AbilityCharge;
-import com.pathtomani.game.sound.SoundManager;
+import com.pathtomani.managers.sound.SoundManager;
 import com.pathtomani.gfx.TextureManager;
 import com.pathtomani.entities.gun.GunConfig;
 
