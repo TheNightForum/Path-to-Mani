@@ -21,13 +21,13 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.joints.PrismaticJoint;
 import com.pathtomani.game.FactionManager;
-import com.pathtomani.game.dra.Dra;
+import com.pathtomani.managers.dra.Dra;
 import com.pathtomani.common.ManiMath;
 import com.pathtomani.game.Faction;
 import com.pathtomani.game.ManiGame;
 import com.pathtomani.game.ManiObject;
-import com.pathtomani.game.dra.RectSprite;
-import com.pathtomani.game.input.Pilot;
+import com.pathtomani.managers.dra.RectSprite;
+import com.pathtomani.managers.input.Pilot;
 
 import java.util.ArrayList;
 import java.util.List;
