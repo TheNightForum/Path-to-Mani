@@ -20,7 +20,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
 import com.pathtomani.common.ManiMath;
-import com.pathtomani.files.HullConfigManager;
+import com.pathtomani.managers.files.HullConfigManager;
 import com.pathtomani.game.PathLoader;
 import com.pathtomani.game.ShipConfig;
 import com.pathtomani.game.chunk.SpaceEnvConfig;
