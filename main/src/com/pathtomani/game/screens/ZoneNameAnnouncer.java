@@ -18,11 +18,11 @@ package com.pathtomani.game.screens;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-import com.pathtomani.game.planet.Planet;
+import com.pathtomani.entities.planet.Planet;
 import com.pathtomani.common.Const;
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.game.planet.PlanetManager;
-import com.pathtomani.game.planet.ManiSystem;
+import com.pathtomani.entities.planet.PlanetManager;
+import com.pathtomani.entities.planet.ManiSystem;
 import com.pathtomani.ui.FontSize;
 import com.pathtomani.ui.UiDrawer;
 
