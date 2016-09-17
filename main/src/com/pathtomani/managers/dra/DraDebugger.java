@@ -24,8 +24,8 @@ import com.pathtomani.common.DebugCol;
 import com.pathtomani.gfx.ManiColor;
 import com.pathtomani.game.DebugOptions;
 import com.pathtomani.game.ManiGame;
-import com.pathtomani.ui.FontSize;
-import com.pathtomani.ui.UiDrawer;
+import com.pathtomani.screens.controllers.FontSize;
+import com.pathtomani.screens.controllers.UiDrawer;
 
 import java.util.HashSet;
 import java.util.Set;
