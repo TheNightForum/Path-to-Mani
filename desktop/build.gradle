@@ -2,7 +2,7 @@ apply from: '../config/gradle/common.gradle'
 
 sourceSets.main.java.srcDirs = [ "src/" ]
 
-project.ext.mainClassName = "ManiDesktop"
+project.ext.mainClassName = "com.pathtomani.desktop.ManiDesktop"
 
 dependencies {
     compile project(":main")
