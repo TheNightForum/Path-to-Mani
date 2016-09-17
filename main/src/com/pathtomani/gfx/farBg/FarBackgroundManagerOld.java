@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pathtomani.game.farBg;
+package com.pathtomani.gfx.farBg;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
