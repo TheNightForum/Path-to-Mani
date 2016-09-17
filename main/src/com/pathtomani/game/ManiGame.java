@@ -34,7 +34,7 @@ import com.pathtomani.managers.files.HullConfigManager;
 import com.pathtomani.entities.asteroid.AsteroidBuilder;
 import com.pathtomani.managers.chunk.ChunkManager;
 import com.pathtomani.managers.dra.DraMan;
-import com.pathtomani.game.farBg.FarBackgroundManagerOld;
+import com.pathtomani.gfx.farBg.FarBackgroundManagerOld;
 import com.pathtomani.managers.input.AiPilot;
 import com.pathtomani.managers.input.BeaconDestProvider;
 import com.pathtomani.managers.input.Pilot;
