@@ -23,7 +23,7 @@ import com.pathtomani.common.ManiMath;
 import com.pathtomani.managers.files.HullConfigManager;
 import com.pathtomani.game.PathLoader;
 import com.pathtomani.game.ShipConfig;
-import com.pathtomani.game.chunk.SpaceEnvConfig;
+import com.pathtomani.managers.chunk.SpaceEnvConfig;
 import com.pathtomani.gfx.TextureManager;
 import com.pathtomani.entities.item.ItemManager;
 

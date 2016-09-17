@@ -21,7 +21,7 @@ import com.pathtomani.game.ManiGame;
 import com.pathtomani.entities.ship.FarShip;
 import com.pathtomani.common.Const;
 import com.pathtomani.game.Faction;
-import com.pathtomani.game.screens.MainScreen;
+import com.pathtomani.screens.game.MainScreen;
 import com.pathtomani.entities.ship.ManiShip;
 
 public class UiControlledPilot implements Pilot {
