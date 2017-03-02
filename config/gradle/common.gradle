@@ -18,7 +18,7 @@ dependencies {
 
 version = '1.4.2'
 ext {
-    appName = 'PathToMani'
+    appName = 'DestinationSol'
     gdxVersion = '1.7.0'
     roboVMVersion = '1.8.0'
 }
