@@ -18,7 +18,7 @@ allprojects {
 
     version = '1.4.2'
     ext {
-        appName = 'PathToMani'
+        appName = 'DestinationSol'
         gdxVersion = '1.7.0'
         roboVMVersion = '1.8.0'
     }
@@ -93,7 +93,7 @@ idea {
 }
 
 cleanIdea.doLast {
-    new File('PathToMani.iws').delete()
+    new File('DestinationSol.iws').delete()
     new File('config/metrics').deleteDir()
     println "Cleaned root - don't forget to re-extract code metrics config! 'gradlew extractConfig' will do so, or 'gradlew idea' (or eclipse)"
 }
