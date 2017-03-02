@@ -16,9 +16,9 @@ dependencies {
     // the FindBugs version is set in the configuration
 }
 
-version = '1.4.2'
+version = '2.0.0'
 ext {
-    appName = 'PathToMani'
+    appName = 'DestinationSol'
     gdxVersion = '1.7.0'
     roboVMVersion = '1.8.0'
 }

@@ -33,27 +33,27 @@ ext {
     ideaActivateCopyright = { Node iprNode ->
         // Setup copyright statement injection
         def copyrightManager = iprNode.find { it.@name == 'CopyrightManager' }
-        copyrightManager.@default = "TerasologyEngine"
+        copyrightManager.@default = "TheNightForum"
         def copyright = copyrightManager.appendNode("copyright")
-        copyright.appendNode("option", [name : "notice", value : 'Copyright 2016 BurntGameProductions\n\nLicensed under the Apache License, Version 2.0 (the "License");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n     http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an "AS IS" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.'])
-        copyright.appendNode("option", [name : "keyword", value : "Copyright"])
-        copyright.appendNode("option", [name : "allowReplaceKeyword", value : ""])
-        copyright.appendNode("option", [name : "myName", value : "TerasologyEngine"])
-        copyright.appendNode("option", [name : "myLocal", value : "true"])
-        def langOptions = copyrightManager.appendNode("LanguageOptions", [name : "__TEMPLATE__"])
-        langOptions.appendNode("option", [name : "addBlankAfter", value : "false"])
+        copyright.appendNode("option", [name: "notice", value: 'Copyright 2017 TheNightForum\n\nLicensed under the Apache License, Version 2.0 (the "License");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n     http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an "AS IS" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.'])
+        copyright.appendNode("option", [name: "keyword", value: "Copyright"])
+        copyright.appendNode("option", [name: "allowReplaceKeyword", value: ""])
+        copyright.appendNode("option", [name: "myName", value: "TheNightForum"])
+        copyright.appendNode("option", [name: "myLocal", value: "true"])
+        def langOptions = copyrightManager.appendNode("LanguageOptions", [name: "__TEMPLATE__"])
+        langOptions.appendNode("option", [name: "addBlankAfter", value: "false"])
     }
 
     // Activate special cases for annotations
     ideaActivateAnnotations = { Node iprNode ->
         // Setup knowledge of certain annotations being entry points (so don't mark annotated items as unused)
-        def entryPointsManager = iprNode.appendNode('component', [name : "EntryPointsManager"])
-        def entryPoints = entryPointsManager.appendNode('entry_points', [version : '2.0'])
-        def entryPointsList = entryPointsManager.appendNode('list', [size : '3'])
-        entryPointsList.appendNode('item', [index : '0', class : 'java.lang.String', itemvalue : 'org.terasology.entitySystem.event.ReceiveEvent'])
-        entryPointsList.appendNode('item', [index : '1', class : 'java.lang.String', itemvalue : 'org.terasology.registry.In'])
-        entryPointsList.appendNode('item', [index : '2', class : 'java.lang.String', itemvalue : 'org.terasology.entitySystem.systems.RegisterSystem'])
-        entryPointsList.appendNode('item', [index : '3', class : 'java.lang.String', itemvalue : 'org.terasology.logic.console.Command'])
+        def entryPointsManager = iprNode.appendNode('component', [name: "EntryPointsManager"])
+        def entryPoints = entryPointsManager.appendNode('entry_points', [version: '2.0'])
+        def entryPointsList = entryPointsManager.appendNode('list', [size: '3'])
+        entryPointsList.appendNode('item', [index: '0', class: 'java.lang.String', itemvalue: 'org.terasology.entitySystem.event.ReceiveEvent'])
+        entryPointsList.appendNode('item', [index: '1', class: 'java.lang.String', itemvalue: 'org.terasology.registry.In'])
+        entryPointsList.appendNode('item', [index: '2', class: 'java.lang.String', itemvalue: 'org.terasology.entitySystem.systems.RegisterSystem'])
+        entryPointsList.appendNode('item', [index: '3', class: 'java.lang.String', itemvalue: 'org.terasology.logic.console.Command'])
     }
 
     // Activate Git for the root + appropriate sub projects (may add more later)
@@ -80,7 +80,7 @@ ext {
         // Slowly realizing the XML stuff is smart enough to not insert dupes even without an if, but .. scary!
         if (compilerWsConf == null) {
             compilerWsConf = iwsNode.appendNode('component', [name: 'CompilerWorkspaceConfiguration'])
-            compilerWsConf.appendNode("option", [name : "MAKE_PROJECT_ON_SAVE", value : "true"])
+            compilerWsConf.appendNode("option", [name: "MAKE_PROJECT_ON_SAVE", value: "true"])
         }
     }
 
@@ -91,14 +91,14 @@ ext {
         def runManager = iwsNode.find { it.@name == 'RunManager' }
         // TODO: Probably should make these run config blocks generic already ...
         runManager.append(new XmlParser().parseText('''
-            <configuration default="false" name="PathToMani" type="Application" factoryName="Application">
+            <configuration default="false" name="PTM" type="Application" factoryName="Application">
               <extension name="coverage" enabled="false" merge="false" runner="idea">
                 <pattern>
-                  <option name="PATTERN" value="com.pathtomani.desktop.*"/>
+                  <option name="PATTERN" value="com.tnf.ptm.desktop.*"/>
                   <option name="ENABLED" value="true"/>
                 </pattern>
               </extension>
-              <option name="MAIN_CLASS_NAME" value="com.pathtomani.desktop.ManiDesktop"/>
+              <option name="MAIN_CLASS_NAME" value="com.tnf.ptm.desktop.SolDesktop"/>
               <option name="VM_PARAMETERS" value="-Xms256m -Xmx1024m"/>
               <option name="PROGRAM_PARAMETERS" value=""/>
               <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$"/>
@@ -124,12 +124,12 @@ ext {
         // This part puts the added run config into the actual "Run" drop-down
         runManager.append(new XmlParser().parseText('''
         <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.PathToMani"/>
+        <item index="0" class="java.lang.String" itemvalue="Application.Ptm"/>
         </list>
         '''))
 
         // Makes the added run config the selected item
         def runManagerTag = iwsNode.component.find { it.@name == 'RunManager' }
-        runManagerTag.@selected = 'Application.PathToMani'
+        runManagerTag.@selected = 'Application.Ptm'
     }
 }
