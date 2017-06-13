@@ -26,16 +26,15 @@ import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
 import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
+import com.tnf.ptm.handler.Logger;
 import com.tnf.ptm.screens.controlers.PtmUiControl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class InputMapControllerScreen implements InputMapOperations {
     private static final String HEADER_TEXT = "Controller Inputs";
-    private static Logger logger = LoggerFactory.getLogger(InputMapControllerScreen.class);
+    private static Logger logger = new Logger();
     private final ArrayList<PtmUiControl> controls = new ArrayList<>();
     private boolean isEnterNewKey;
     private List<InputConfigItem> itemsList = new ArrayList<>();
@@ -295,7 +294,7 @@ public class InputMapControllerScreen implements InputMapOperations {
 
                 @Override
                 public boolean buttonUp(Controller controller, int buttonIndex) {
-                    logger.debug("#{}, button  {} up", indexOf(controller), buttonIndex);
+                    logger.printDebug(String.format("#{}, button  {} up", indexOf(controller), buttonIndex));
 
                     if (selectedIndex < controllerItems) {
                         removeDuplicateButtons(buttonIndex);
@@ -315,7 +314,7 @@ public class InputMapControllerScreen implements InputMapOperations {
 
                 @Override
                 public boolean axisMoved(Controller controller, int axisIndex, float value) {
-                    logger.debug("#{}, axis {}: {}", indexOf(controller), axisIndex, value);
+                    logger.printDebug(String.format("#{}, axis {}: {}", indexOf(controller), axisIndex, value));
 
                     if (value > 0.5f || value < -0.5f) {
                         if (selectedIndex < controllerItems) {
