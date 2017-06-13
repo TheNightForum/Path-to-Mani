@@ -22,9 +22,8 @@ import com.tnf.ptm.common.PtmFileReader;
 import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
 import com.tnf.ptm.common.DebugOptions;
+import com.tnf.ptm.handler.Logger;
 import com.tnf.ptm.sound.SoundTestListener;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -34,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SolDesktop {
-    private static Logger logger = LoggerFactory.getLogger(SolDesktop.class);
+    private static Logger logger = new Logger();
     public static void main(String[] argv) {
         if (false) {
             new LwjglApplication(new SoundTestListener(), "sound test", 800, 600);
@@ -102,7 +101,7 @@ public class SolDesktop {
             try {
                 java.nio.file.Files.write(file, lines, Charset.forName("UTF-8"));
             } catch (IOException e) {
-                logger.error("Failed to write to file",e);
+                logger.printLine("Failed to write to file",e);
             }
             return file;
         }
