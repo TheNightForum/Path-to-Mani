@@ -17,7 +17,7 @@ package old.tnf.ptm.game.maze;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import old.tnf.ptm.TextureManager;
+import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.files.HullConfigManager;
 import old.tnf.ptm.game.CollisionMeshLoader;

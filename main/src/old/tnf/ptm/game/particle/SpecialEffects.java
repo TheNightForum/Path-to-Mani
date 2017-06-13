@@ -17,11 +17,11 @@ package old.tnf.ptm.game.particle;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import old.tnf.ptm.TextureManager;
+import com.tnf.ptm.gfx.TextureManager;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.game.dra.DraLevel;
-import old.tnf.ptm.assets.Assets;
-import old.tnf.ptm.assets.json.Json;
+import com.tnf.ptm.assets.Assets;
+import com.tnf.ptm.assets.json.Json;
 import old.tnf.ptm.game.GameColors;
 import org.terasology.assets.ResourceUrn;
 

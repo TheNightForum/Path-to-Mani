@@ -19,7 +19,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import old.tnf.ptm.CommonDrawer;
 import old.tnf.ptm.Const;
-import old.tnf.ptm.TextureManager;
+import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.files.HullConfigManager;
 import old.tnf.ptm.game.dra.DraMan;

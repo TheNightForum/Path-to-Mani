@@ -30,8 +30,8 @@ import old.tnf.ptm.game.dra.Dra;
 import old.tnf.ptm.game.dra.DraLevel;
 import old.tnf.ptm.game.dra.RectSprite;
 import old.tnf.ptm.game.ship.hulls.HullConfig;
-import old.tnf.ptm.assets.Assets;
-import old.tnf.ptm.assets.json.Json;
+import com.tnf.ptm.assets.Assets;
+import com.tnf.ptm.assets.json.Json;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

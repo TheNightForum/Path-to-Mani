@@ -16,7 +16,7 @@
 package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import old.tnf.ptm.TextureManager;
+import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.GameColors;
 import old.tnf.ptm.game.particle.EffectTypes;

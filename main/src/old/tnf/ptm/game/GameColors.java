@@ -18,8 +18,8 @@ package old.tnf.ptm.game;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.common.PtmColorUtil;
-import old.tnf.ptm.assets.Assets;
-import old.tnf.ptm.assets.json.Json;
+import com.tnf.ptm.assets.Assets;
+import com.tnf.ptm.assets.json.Json;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.HashMap;

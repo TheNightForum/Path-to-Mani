@@ -18,16 +18,16 @@ package old.tnf.ptm.game.item;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import old.tnf.ptm.assets.audio.OggSound;
-import old.tnf.ptm.assets.audio.PlayableSound;
+import com.tnf.ptm.assets.audio.OggSound;
+import com.tnf.ptm.assets.audio.PlayableSound;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.DmgType;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.game.PtmObject;
 import old.tnf.ptm.game.ship.PtmShip;
 import old.tnf.ptm.game.sound.OggSoundManager;
-import old.tnf.ptm.assets.Assets;
-import old.tnf.ptm.assets.json.Json;
+import com.tnf.ptm.assets.Assets;
+import com.tnf.ptm.assets.json.Json;
 import org.terasology.assets.ResourceUrn;
 
 public class Shield implements PtmItem {

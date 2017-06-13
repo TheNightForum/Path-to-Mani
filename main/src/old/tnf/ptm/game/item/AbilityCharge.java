@@ -18,8 +18,8 @@ package old.tnf.ptm.game.item;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
 import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.assets.Assets;
-import old.tnf.ptm.assets.json.Json;
+import com.tnf.ptm.assets.Assets;
+import com.tnf.ptm.assets.json.Json;
 import org.terasology.assets.ResourceUrn;
 
 public class AbilityCharge implements PtmItem {

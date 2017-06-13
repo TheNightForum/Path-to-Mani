@@ -16,8 +16,8 @@
 package old.tnf.ptm.game;
 
 import com.badlogic.gdx.utils.JsonValue;
-import old.tnf.ptm.assets.Assets;
-import old.tnf.ptm.assets.json.Json;
+import com.tnf.ptm.assets.Assets;
+import com.tnf.ptm.assets.json.Json;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

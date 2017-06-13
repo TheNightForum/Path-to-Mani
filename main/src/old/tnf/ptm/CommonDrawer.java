@@ -25,7 +25,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.assets.Assets;
+import com.tnf.ptm.gfx.TextAlignment;
+import com.tnf.ptm.assets.Assets;
 import com.tnf.ptm.common.PtmMath;
 import org.terasology.assets.ResourceUrn;
 

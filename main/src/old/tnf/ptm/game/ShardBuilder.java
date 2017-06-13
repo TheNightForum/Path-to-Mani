@@ -19,7 +19,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import old.tnf.ptm.TextureManager;
+import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.asteroid.AsteroidBuilder;
 import old.tnf.ptm.game.dra.Dra;

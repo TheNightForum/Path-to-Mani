@@ -16,15 +16,15 @@
 package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.utils.JsonValue;
-import old.tnf.ptm.TextureManager;
+import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.files.HullConfigManager;
 import old.tnf.ptm.game.ShipConfig;
 import old.tnf.ptm.game.chunk.SpaceEnvConfig;
 import old.tnf.ptm.game.item.ItemManager;
 import old.tnf.ptm.game.item.TradeConfig;
-import old.tnf.ptm.assets.Assets;
-import old.tnf.ptm.assets.json.Json;
+import com.tnf.ptm.assets.Assets;
+import com.tnf.ptm.assets.json.Json;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

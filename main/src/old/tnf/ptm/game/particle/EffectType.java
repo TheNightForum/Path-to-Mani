@@ -16,7 +16,7 @@
 package old.tnf.ptm.game.particle;
 
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
-import old.tnf.ptm.assets.Assets;
+import com.tnf.ptm.assets.Assets;
 import org.terasology.assets.ResourceUrn;
 
 public class EffectType {

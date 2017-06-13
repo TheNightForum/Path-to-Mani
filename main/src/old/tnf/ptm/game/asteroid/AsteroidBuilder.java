@@ -22,7 +22,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import old.tnf.ptm.Const;
-import old.tnf.ptm.TextureManager;
+import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.RemoveController;

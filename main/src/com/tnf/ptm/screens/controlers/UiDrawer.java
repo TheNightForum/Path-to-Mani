@@ -21,8 +21,8 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import old.tnf.ptm.CommonDrawer;
-import old.tnf.ptm.TextureManager;
-import old.tnf.ptm.TextAlignment;
+import com.tnf.ptm.gfx.TextureManager;
+import com.tnf.ptm.gfx.TextAlignment;
 
 public class UiDrawer {
 

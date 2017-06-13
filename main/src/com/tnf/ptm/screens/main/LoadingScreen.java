@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.tnf.ptm.PtmApplication;
 import com.tnf.ptm.common.PtmColor;
-import old.tnf.ptm.assets.Assets;
+import com.tnf.ptm.assets.Assets;
 import com.tnf.ptm.screens.controlers.FontSize;
 import com.tnf.ptm.screens.controlers.PtmInputManager;
 import com.tnf.ptm.screens.controlers.PtmUiControl;

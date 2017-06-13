@@ -16,9 +16,9 @@
 package old.tnf.ptm.game;
 
 import com.badlogic.gdx.utils.JsonValue;
-import old.tnf.ptm.TextureManager;
-import old.tnf.ptm.assets.Assets;
-import old.tnf.ptm.assets.json.Json;
+import com.tnf.ptm.gfx.TextureManager;
+import com.tnf.ptm.assets.Assets;
+import com.tnf.ptm.assets.json.Json;
 import old.tnf.ptm.game.particle.EffectTypes;
 import old.tnf.ptm.game.sound.OggSoundManager;
 import org.terasology.assets.ResourceUrn;

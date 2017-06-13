@@ -16,7 +16,7 @@
 package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.graphics.Color;
-import old.tnf.ptm.assets.audio.PlayableSound;
+import com.tnf.ptm.assets.audio.PlayableSound;
 
 public class PtmItemType {
     public final Color color;

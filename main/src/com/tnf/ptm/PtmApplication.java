@@ -21,6 +21,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.physics.box2d.Box2D;
+import com.tnf.ptm.gfx.TextAlignment;
+import com.tnf.ptm.gfx.TextureManager;
 import old.tnf.ptm.*;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;

@@ -18,7 +18,7 @@ package old.tnf.ptm.game.particle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import old.tnf.ptm.TextureManager;
+import com.tnf.ptm.gfx.TextureManager;
 import old.tnf.ptm.game.GameColors;
 import org.terasology.assets.ResourceUrn;
 

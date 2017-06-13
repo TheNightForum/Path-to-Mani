@@ -16,9 +16,9 @@
 package old.tnf.ptm.game;
 
 import com.badlogic.gdx.utils.JsonValue;
-import old.tnf.ptm.TextureManager;
-import old.tnf.ptm.assets.audio.PlayableSound;
-import old.tnf.ptm.assets.audio.OggSound;
+import com.tnf.ptm.gfx.TextureManager;
+import com.tnf.ptm.assets.audio.PlayableSound;
+import com.tnf.ptm.assets.audio.OggSound;
 import old.tnf.ptm.game.particle.EffectConfig;
 import old.tnf.ptm.game.particle.EffectTypes;
 import old.tnf.ptm.game.sound.OggSoundManager;

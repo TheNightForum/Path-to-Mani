@@ -29,7 +29,7 @@ import com.tnf.ptm.screens.controlers.PtmUiControl;
 import com.tnf.ptm.screens.controlers.PtmUiScreen;
 import com.tnf.ptm.screens.controlers.UiDrawer;
 import old.tnf.ptm.GameOptions;
-import old.tnf.ptm.TextAlignment;
+import com.tnf.ptm.gfx.TextAlignment;
 import com.tnf.ptm.screens.main.MenuLayout;
 import com.tnf.ptm.screens.controlers.FontSize;
 

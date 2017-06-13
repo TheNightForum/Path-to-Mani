@@ -16,14 +16,14 @@
 package old.tnf.ptm;
 
 import com.google.common.collect.Sets;
-import old.tnf.ptm.assets.atlas.Atlas;
-import old.tnf.ptm.assets.AssetHelper;
-import old.tnf.ptm.assets.Assets;
-import old.tnf.ptm.assets.audio.OggMusic;
-import old.tnf.ptm.assets.audio.OggSound;
-import old.tnf.ptm.assets.emitters.Emitter;
-import old.tnf.ptm.assets.json.Json;
-import old.tnf.ptm.assets.textures.DSTexture;
+import com.tnf.ptm.assets.atlas.Atlas;
+import com.tnf.ptm.assets.AssetHelper;
+import com.tnf.ptm.assets.Assets;
+import com.tnf.ptm.assets.audio.OggMusic;
+import com.tnf.ptm.assets.audio.OggSound;
+import com.tnf.ptm.assets.emitters.Emitter;
+import com.tnf.ptm.assets.json.Json;
+import com.tnf.ptm.assets.textures.DSTexture;
 import old.tnf.ptm.game.DebugOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
