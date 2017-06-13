@@ -16,7 +16,7 @@
 
 package old.tnf.ptm.game;
 
-import old.tnf.ptm.ui.DebugCollector;
+import com.tnf.ptm.screens.controlers.DebugCollector;
 
 public enum MissingResourceAction {
     IGNORE("ignore"), WARN("warn"), FAIL("fail");

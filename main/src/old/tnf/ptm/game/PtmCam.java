@@ -24,7 +24,7 @@ import old.tnf.ptm.Const;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.planet.Planet;
-import old.tnf.ptm.game.screens.MainScreen;
+import com.tnf.ptm.screens.game.MainScreen;
 import old.tnf.ptm.game.ship.PtmShip;
 
 public class PtmCam {

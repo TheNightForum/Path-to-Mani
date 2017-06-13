@@ -34,7 +34,7 @@ import old.tnf.ptm.game.planet.FarTileObject;
 import old.tnf.ptm.game.planet.SurfaceDirection;
 import old.tnf.ptm.game.planet.Tile;
 import old.tnf.ptm.game.planet.TileObject;
-import old.tnf.ptm.ui.UiDrawer;
+import com.tnf.ptm.screens.controlers.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -21,8 +21,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.common.PtmColor;
 import old.tnf.ptm.game.DebugOptions;
 import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.ui.FontSize;
-import old.tnf.ptm.ui.UiDrawer;
+import com.tnf.ptm.screens.controlers.FontSize;
+import com.tnf.ptm.screens.controlers.UiDrawer;
 import com.tnf.ptm.common.DebugCol;
 
 import java.util.HashSet;
