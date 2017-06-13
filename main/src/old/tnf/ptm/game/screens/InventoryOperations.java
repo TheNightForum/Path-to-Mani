@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.item.ItemContainer;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.ui.SolUiScreen;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.item.ItemContainer;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.ui.PtmUiScreen;
 
-public interface InventoryOperations extends SolUiScreen {
-    ItemContainer getItems(SolGame game);
+public interface InventoryOperations extends PtmUiScreen {
+    ItemContainer getItems(PtmGame game);
 
-    default boolean isUsing(SolGame game, SolItem item) {
+    default boolean isUsing(PtmGame game, PtmItem item) {
         return false;
     }
 

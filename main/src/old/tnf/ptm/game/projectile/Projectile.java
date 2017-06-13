@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.projectile;
+package old.tnf.ptm.game.projectile;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -21,28 +21,23 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.dra.RectSprite;
-import com.tnf.ptm.game.item.Shield;
-import com.tnf.ptm.game.particle.EffectConfig;
-import com.tnf.ptm.game.particle.LightSrc;
-import com.tnf.ptm.game.particle.ParticleSrc;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.FactionManager;
-import com.tnf.ptm.game.FarObj;
-import com.tnf.ptm.game.GameDrawer;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.*;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.game.item.Shield;
+import old.tnf.ptm.game.particle.EffectConfig;
+import old.tnf.ptm.game.particle.LightSrc;
+import old.tnf.ptm.game.particle.ParticleSrc;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.PtmObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Projectile implements SolObject {
+public class Projectile implements PtmObject {
 
     private static final float MIN_ANGLE_TO_GUIDE = 2f;
     private final ArrayList<Dra> myDras;
@@ -54,10 +49,10 @@ public class Projectile implements SolObject {
     private final ProjectileConfig myConfig;
 
     private boolean myShouldRemove;
-    private SolObject myObstacle;
+    private PtmObject myObstacle;
     private boolean myDamageDealt;
 
-    public Projectile(SolGame game, float angle, Vector2 muzzlePos, Vector2 gunSpd, Faction faction,
+    public Projectile(PtmGame game, float angle, Vector2 muzzlePos, Vector2 gunSpd, Faction faction,
                       ProjectileConfig config, boolean varySpd) {
         myDras = new ArrayList<Dra>();
         myConfig = config;
@@ -66,12 +61,12 @@ public class Projectile implements SolObject {
         if (myConfig.stretch) {
             dra = new MyDra(this, myConfig.tex, myConfig.texSz);
         } else {
-            dra = new RectSprite(myConfig.tex, myConfig.texSz, myConfig.origin.x, myConfig.origin.y, new Vector2(), DraLevel.PROJECTILES, 0, 0, SolColor.WHITE, false);
+            dra = new RectSprite(myConfig.tex, myConfig.texSz, myConfig.origin.x, myConfig.origin.y, new Vector2(), DraLevel.PROJECTILES, 0, 0, PtmColor.WHITE, false);
         }
         myDras.add(dra);
         float spdLen = myConfig.spdLen;
         if (varySpd) {
-            spdLen *= SolMath.rnd(.9f, 1.1f);
+            spdLen *= PtmMath.rnd(.9f, 1.1f);
         }
         if (myConfig.physSize > 0) {
             myBody = new BallProjectileBody(game, muzzlePos, angle, this, gunSpd, spdLen, myConfig);
@@ -82,7 +77,7 @@ public class Projectile implements SolObject {
         myBodyEffect = buildEffect(game, myConfig.bodyEffect, DraLevel.PART_BG_0, null, true);
         myTrailEffect = buildEffect(game, myConfig.trailEffect, DraLevel.PART_BG_0, null, false);
         if (myConfig.lightSz > 0) {
-            Color col = SolColor.WHITE;
+            Color col = PtmColor.WHITE;
             if (myBodyEffect != null) {
                 col = myConfig.bodyEffect.tint;
             }
@@ -93,7 +88,7 @@ public class Projectile implements SolObject {
         }
     }
 
-    private ParticleSrc buildEffect(SolGame game, EffectConfig ec, DraLevel draLevel, Vector2 pos, boolean inheritsSpd) {
+    private ParticleSrc buildEffect(PtmGame game, EffectConfig ec, DraLevel draLevel, Vector2 pos, boolean inheritsSpd) {
         if (ec == null) {
             return null;
         }
@@ -108,7 +103,7 @@ public class Projectile implements SolObject {
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         myBody.update(game);
         if (myObstacle != null) {
             if (!myDamageDealt) {
@@ -119,8 +114,8 @@ public class Projectile implements SolObject {
                 myDamageDealt = true;
             } else {
                 collided(game);
-                if (myConfig.emTime > 0 && myObstacle instanceof SolShip) {
-                    ((SolShip) myObstacle).disableControls(myConfig.emTime, game);
+                if (myConfig.emTime > 0 && myObstacle instanceof PtmShip) {
+                    ((PtmShip) myObstacle).disableControls(myConfig.emTime, game);
                 }
                 return;
             }
@@ -132,27 +127,27 @@ public class Projectile implements SolObject {
         game.getSoundManager().play(game, myConfig.workSound, null, this);
     }
 
-    private void maybeGuide(SolGame game) {
+    private void maybeGuide(PtmGame game) {
         if (myConfig.guideRotSpd == 0) {
             return;
         }
         float ts = game.getTimeStep();
-        SolShip ne = game.getFactionMan().getNearestEnemy(game, this);
+        PtmShip ne = game.getFactionMan().getNearestEnemy(game, this);
         if (ne == null) {
             return;
         }
         float desiredAngle = myBody.getDesiredAngle(ne);
         float angle = getAngle();
-        float diffAngle = SolMath.norm(desiredAngle - angle);
-        if (SolMath.abs(diffAngle) < MIN_ANGLE_TO_GUIDE) {
+        float diffAngle = PtmMath.norm(desiredAngle - angle);
+        if (PtmMath.abs(diffAngle) < MIN_ANGLE_TO_GUIDE) {
             return;
         }
         float rot = ts * myConfig.guideRotSpd;
-        diffAngle = SolMath.clamp(diffAngle, -rot, rot);
+        diffAngle = PtmMath.clamp(diffAngle, -rot, rot);
         myBody.changeAngle(diffAngle);
     }
 
-    private void collided(SolGame game) {
+    private void collided(PtmGame game) {
         myShouldRemove = true;
         Vector2 pos = myBody.getPos();
         buildEffect(game, myConfig.collisionEffect, DraLevel.PART_FG_1, pos, false);
@@ -164,12 +159,12 @@ public class Projectile implements SolObject {
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(PtmGame game) {
         return myShouldRemove;
     }
 
     @Override
-    public void onRemove(SolGame game) {
+    public void onRemove(PtmGame game) {
         Vector2 pos = myBody.getPos();
         if (myBodyEffect != null) {
             game.getPartMan().finish(game, myBodyEffect, pos);
@@ -181,7 +176,7 @@ public class Projectile implements SolObject {
     }
 
     @Override
-    public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+    public void receiveDmg(float dmg, PtmGame game, Vector2 pos, DmgType dmgType) {
         if (myConfig.density > 0) {
             return;
         }
@@ -194,7 +189,7 @@ public class Projectile implements SolObject {
     }
 
     @Override
-    public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+    public void receiveForce(Vector2 force, PtmGame game, boolean acc) {
         myBody.receiveForce(force, game, acc);
     }
 
@@ -224,8 +219,8 @@ public class Projectile implements SolObject {
     }
 
     @Override
-    public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-                              SolGame game, Vector2 collPos) {
+    public void handleContact(PtmObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+                              PtmGame game, Vector2 collPos) {
     }
 
     @Override
@@ -247,9 +242,9 @@ public class Projectile implements SolObject {
         return myFaction;
     }
 
-    public boolean shouldCollide(SolObject o, Fixture f, FactionManager factionManager) {
-        if (o instanceof SolShip) {
-            SolShip s = (SolShip) o;
+    public boolean shouldCollide(PtmObject o, Fixture f, FactionManager factionManager) {
+        if (o instanceof PtmShip) {
+            PtmShip s = (PtmShip) o;
             if (!factionManager.areEnemies(s.getPilot().getFaction(), myFaction)) {
                 return false;
             }
@@ -272,7 +267,7 @@ public class Projectile implements SolObject {
         return true;
     }
 
-    public void setObstacle(SolObject o, SolGame game) {
+    public void setObstacle(PtmObject o, PtmGame game) {
         if (!shouldCollide(o, null, game.getFactionMan())) {
             return; // happens for some reason when projectile is just created
         }
@@ -314,11 +309,11 @@ public class Projectile implements SolObject {
         }
 
         @Override
-        public void update(SolGame game, SolObject o) {
+        public void update(PtmGame game, PtmObject o) {
         }
 
         @Override
-        public void prepare(SolObject o) {
+        public void prepare(PtmObject o) {
         }
 
         @Override
@@ -337,7 +332,7 @@ public class Projectile implements SolObject {
         }
 
         @Override
-        public void draw(GameDrawer drawer, SolGame game) {
+        public void draw(GameDrawer drawer, PtmGame game) {
             float h = myWidth;
             float minH = game.getCam().getRealLineWidth() * 3;
             if (h < minH) {
@@ -348,7 +343,7 @@ public class Projectile implements SolObject {
             if (w < 4 * h) {
                 w = 4 * h;
             }
-            drawer.draw(myTex, w, h, w, h / 2, pos.x, pos.y, SolMath.angle(myProjectile.getSpd()), SolColor.LG);
+            drawer.draw(myTex, w, h, w, h / 2, pos.x, pos.y, PtmMath.angle(myProjectile.getSpd()), PtmColor.LG);
         }
 
         @Override

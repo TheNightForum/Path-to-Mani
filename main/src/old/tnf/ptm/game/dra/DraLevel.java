@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.dra;
+package old.tnf.ptm.game.dra;
 
 public enum DraLevel {
     NEBULAE(11), STARS(10),

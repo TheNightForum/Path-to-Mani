@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.common;
+package old.tnf.ptm.common;
 
 import com.badlogic.gdx.graphics.Color;
 
-public class SolColorUtil {
+public class PtmColorUtil {
     public static void fromHSB(float hue, float saturation, float brightness, float a, Color dest) {
         float r = 0, g = 0, b = 0;
         if (saturation == 0) {

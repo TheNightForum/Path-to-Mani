@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.particle;
+package old.tnf.ptm.game.particle;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
@@ -22,13 +22,13 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.GameDrawer;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.GameDrawer;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.planet.Planet;
 
 public class ParticleSrc implements Dra {
     public static final float JUMP_SPD_TRESH = .9f;
@@ -53,7 +53,7 @@ public class ParticleSrc implements Dra {
     private float myBbRecalcAwait;
 
     public ParticleSrc(EffectConfig config, float sz, DraLevel draLevel, Vector2 relPos, boolean inheritsSpd,
-                       SolGame game, Vector2 basePos, Vector2 baseSpd, float relAngle) {
+                       PtmGame game, Vector2 basePos, Vector2 baseSpd, float relAngle) {
         myConfig = config;
         myEmitter = myConfig.effectType.newEmitter();
         myDraLevel = draLevel;
@@ -134,11 +134,11 @@ public class ParticleSrc implements Dra {
         return myEmitter.isComplete();
     }
 
-    public void update(SolGame game, SolObject o) {
+    public void update(PtmGame game, PtmObject o) {
         maybeSwitchRelPos(game);
         Vector2 basePos = o.getPosition();
         float baseAngle = o.getAngle();
-        SolMath.toWorld(myPos, myRelPos, baseAngle, basePos, false);
+        PtmMath.toWorld(myPos, myRelPos, baseAngle, basePos, false);
         float ts = game.getTimeStep();
         fixSpeedBug(ts);
         myEmitter.setPosition(myPos.x, myPos.y);
@@ -154,7 +154,7 @@ public class ParticleSrc implements Dra {
         }
     }
 
-    private void updateSpd(SolGame game, Vector2 baseSpd, Vector2 basePos) {
+    private void updateSpd(PtmGame game, Vector2 baseSpd, Vector2 basePos) {
         if (isContinuous()) {
             if (!isWorking()) {
                 return;
@@ -175,10 +175,10 @@ public class ParticleSrc implements Dra {
         Planet np = game.getPlanetMan().getNearestPlanet();
         Vector2 spd = np.getAdjustedEffectSpd(basePos, baseSpd);
         setSpd(spd);
-        SolMath.free(spd);
+        PtmMath.free(spd);
     }
 
-    private void maybeSwitchRelPos(SolGame game) {
+    private void maybeSwitchRelPos(PtmGame game) {
         if (myAreaSz == 0) {
             return;
         }
@@ -188,7 +188,7 @@ public class ParticleSrc implements Dra {
             return;
         }
         myTimeSincePosChange = 0;
-        SolMath.fromAl(myRelPos, SolMath.rnd(180), SolMath.rnd(0, myAreaSz));
+        PtmMath.fromAl(myRelPos, PtmMath.rnd(180), PtmMath.rnd(0, myAreaSz));
         myRelPos.add(myOrigRelPos);
     }
 
@@ -218,7 +218,7 @@ public class ParticleSrc implements Dra {
     }
 
     @Override
-    public void prepare(SolObject o) {
+    public void prepare(PtmObject o) {
     }
 
     @Override
@@ -241,7 +241,7 @@ public class ParticleSrc implements Dra {
     }
 
     @Override
-    public void draw(GameDrawer drawer, SolGame game) {
+    public void draw(GameDrawer drawer, PtmGame game) {
         drawer.draw(myEmitter, myConfig.tex, myConfig.effectType.additive);
     }
 

@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.item;
+package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.assets.audio.PlayableSound;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.sound.OggSoundSet;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.game.sound.OggSoundManager;
+import old.tnf.ptm.assets.audio.PlayableSound;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.sound.OggSoundSet;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.game.DmgType;
+import old.tnf.ptm.game.sound.OggSoundManager;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class Armor implements SolItem {
+public class Armor implements PtmItem {
     private final Config myConfig;
     private int myEquipped;
 
@@ -58,22 +58,22 @@ public class Armor implements SolItem {
     }
 
     @Override
-    public SolItem copy() {
+    public PtmItem copy() {
         return new Armor(myConfig, myEquipped);
     }
 
     @Override
-    public boolean isSame(SolItem item) {
+    public boolean isSame(PtmItem item) {
         return false;
     }
 
     @Override
-    public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+    public TextureAtlas.AtlasRegion getIcon(PtmGame game) {
         return myConfig.icon;
     }
 
     @Override
-    public SolItemType getItemType() {
+    public PtmItemType getItemType() {
         return myConfig.itemType;
     }
 
@@ -112,12 +112,12 @@ public class Armor implements SolItem {
         public final PlayableSound bulletHitSound;
         public final TextureAtlas.AtlasRegion icon;
         public final PlayableSound energyHitSound;
-        public final SolItemType itemType;
+        public final PtmItemType itemType;
         public final String code;
         public final Armor example;
 
         private Config(String displayName, int price, float perc, PlayableSound bulletHitSound,
-                       TextureAtlas.AtlasRegion icon, PlayableSound energyHitSound, SolItemType itemType, String code) {
+                       TextureAtlas.AtlasRegion icon, PlayableSound energyHitSound, PtmItemType itemType, String code) {
             this.displayName = displayName;
             this.price = price;
             this.perc = perc;
@@ -130,7 +130,7 @@ public class Armor implements SolItem {
             this.example = new Armor(this);
         }
 
-        public static void load(ResourceUrn armorName, ItemManager itemManager, OggSoundManager soundManager, SolItemTypes types) {
+        public static void load(ResourceUrn armorName, ItemManager itemManager, OggSoundManager soundManager, PtmItemTypes types) {
             Json json = Assets.getJson(armorName);
             JsonValue rootNode = json.getJsonValue();
 

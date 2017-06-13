@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.chunk;
+package old.tnf.ptm.game.chunk;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.TextureManager;
+import old.tnf.ptm.TextureManager;
 
 import java.util.ArrayList;
 

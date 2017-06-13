@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.assets.textures;
+package old.tnf.ptm.assets.textures;
 
 import com.badlogic.gdx.graphics.Texture;
 import org.terasology.assets.AssetData;

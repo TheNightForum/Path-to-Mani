@@ -13,27 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.tnf.ptm.common.Nullable;
-import com.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.common.Nullable;
+import old.tnf.ptm.game.dra.Dra;
 
 import java.util.List;
 
-public interface SolObject {
-    void update(SolGame game);
+public interface PtmObject {
+    void update(PtmGame game);
 
-    boolean shouldBeRemoved(SolGame game);
+    boolean shouldBeRemoved(PtmGame game);
 
-    void onRemove(SolGame game);
+    void onRemove(PtmGame game);
 
-    void receiveDmg(float dmg, SolGame game, @Nullable Vector2 pos, DmgType dmgType);
+    void receiveDmg(float dmg, PtmGame game, @Nullable Vector2 pos, DmgType dmgType);
 
     boolean receivesGravity();
 
-    void receiveForce(Vector2 force, SolGame game, boolean acc);
+    void receiveForce(Vector2 force, PtmGame game, boolean acc);
 
     Vector2 getPosition();
 
@@ -45,7 +45,7 @@ public interface SolObject {
 
     Vector2 getSpd();
 
-    void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse, SolGame game,
+    void handleContact(PtmObject other, ContactImpulse impulse, boolean isA, float absImpulse, PtmGame game,
                        Vector2 collPos);
 
     String toDebugString();

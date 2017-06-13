@@ -13,22 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.dra.DrasObject;
-import com.tnf.ptm.game.dra.RectSprite;
-import com.tnf.ptm.game.planet.PlanetBind;
-import com.tnf.ptm.game.ship.FarShip;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.dra.FarDras;
-import com.tnf.ptm.game.input.Pilot;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.dra.DrasObject;
+import old.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.game.planet.PlanetBind;
+import old.tnf.ptm.game.ship.FarShip;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.dra.FarDras;
+import old.tnf.ptm.game.input.Pilot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +46,7 @@ public class BeaconHandler {
     private DrasObject myD;
     private FarDras myFarD;
     private Pilot myTargetPilot;
-    private SolShip myTarget;
+    private PtmShip myTarget;
     private FarShip myFarTarget;
     private Action myCurrAction;
     private PlanetBind myPlanetBind;
@@ -65,7 +65,7 @@ public class BeaconHandler {
         mySpd = new Vector2();
     }
 
-    public void init(SolGame game, Vector2 pos) {
+    public void init(PtmGame game, Vector2 pos) {
         ArrayList<Dra> dras = new ArrayList<Dra>();
         dras.add(myAttackSprite);
         dras.add(myFollowSprite);
@@ -75,7 +75,7 @@ public class BeaconHandler {
         myInitialized = true;
     }
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         if (!myInitialized) {
             return;
         }
@@ -87,27 +87,27 @@ public class BeaconHandler {
         maybeUpdatePlanetPos(game);
     }
 
-    private void maybeUpdatePlanetPos(SolGame game) {
+    private void maybeUpdatePlanetPos(PtmGame game) {
         Vector2 beaconPos = getPos0();
         if (myPlanetBind == null) {
             myPlanetBind = PlanetBind.tryBind(game, beaconPos, 0);
             return;
         }
-        Vector2 vec = SolMath.getVec();
+        Vector2 vec = PtmMath.getVec();
         myPlanetBind.setDiff(vec, beaconPos, false);
         beaconPos.add(vec);
-        SolMath.free(vec);
+        PtmMath.free(vec);
         myPlanetBind.getPlanet().calcSpdAtPos(mySpd, beaconPos);
     }
 
-    private boolean maybeUpdateTargetPos(SolGame game) {
+    private boolean maybeUpdateTargetPos(PtmGame game) {
         updateTarget(game);
         if (myTargetPilot == null) {
             return false;
         }
         Vector2 beaconPos = getPos0();
         if (myTarget != null) {
-            SolMath.toWorld(beaconPos, myTargetRelPos, myTarget.getAngle(), myTarget.getPosition(), false);
+            PtmMath.toWorld(beaconPos, myTargetRelPos, myTarget.getAngle(), myTarget.getPosition(), false);
             mySpd.set(myTarget.getSpd());
         } else {
             beaconPos.set(myFarTarget.getPos());
@@ -115,12 +115,12 @@ public class BeaconHandler {
         return true;
     }
 
-    private void updateTarget(SolGame game) {
+    private void updateTarget(PtmGame game) {
         if (myTargetPilot == null) {
             return;
         }
         ObjectManager om = game.getObjMan();
-        List<SolObject> objs = om.getObjs();
+        List<PtmObject> objs = om.getObjs();
         List<FarShip> farShips = om.getFarShips();
         if (myTarget != null) {
             if (objs.contains(myTarget)) {
@@ -144,9 +144,9 @@ public class BeaconHandler {
             return;
         }
         myFarTarget = null;
-        for (SolObject o : objs) {
-            if ((o instanceof SolShip)) {
-                SolShip ship = (SolShip) o;
+        for (PtmObject o : objs) {
+            if ((o instanceof PtmShip)) {
+                PtmShip ship = (PtmShip) o;
                 if (ship.getPilot() != myTargetPilot) {
                     continue;
                 }
@@ -157,9 +157,9 @@ public class BeaconHandler {
         applyAction(Action.MOVE);
     }
 
-    private void updateD(SolGame game) {
+    private void updateD(PtmGame game) {
         ObjectManager om = game.getObjMan();
-        List<SolObject> objs = om.getObjs();
+        List<PtmObject> objs = om.getObjs();
         List<FarObjData> farObjs = om.getFarObjs();
 
         if (myD != null) {
@@ -192,7 +192,7 @@ public class BeaconHandler {
             return;
         }
         myFarD = null;
-        for (SolObject o : objs) {
+        for (PtmObject o : objs) {
             if ((o instanceof DrasObject)) {
                 List<Dra> dras = o.getDras();
                 if (dras.size() != 3) {
@@ -209,7 +209,7 @@ public class BeaconHandler {
         throw new AssertionError();
     }
 
-    public Action processMouse(SolGame g, Vector2 pos, boolean clicked, boolean onMap) {
+    public Action processMouse(PtmGame g, Vector2 pos, boolean clicked, boolean onMap) {
         Action action;
         Pilot targetPilot = findPilotInPos(g, pos, onMap, clicked);
         if (targetPilot != null) {
@@ -225,7 +225,7 @@ public class BeaconHandler {
                     if (myTarget == null) {
                         myTargetRelPos.set(0, 0);
                     } else {
-                        SolMath.toRel(pos, myTargetRelPos, myTarget.getAngle(), myTarget.getPosition());
+                        PtmMath.toRel(pos, myTargetRelPos, myTarget.getAngle(), myTarget.getPosition());
                     }
                 }
             }
@@ -254,15 +254,15 @@ public class BeaconHandler {
         }
     }
 
-    private Pilot findPilotInPos(SolGame g, Vector2 pos, boolean onMap, boolean clicked) {
+    private Pilot findPilotInPos(PtmGame g, Vector2 pos, boolean onMap, boolean clicked) {
         ObjectManager om = g.getObjMan();
-        SolShip h = g.getHero();
+        PtmShip h = g.getHero();
         float iconRad = onMap ? g.getMapDrawer().getIconRadius(g.getCam()) : 0;
-        for (SolObject o : om.getObjs()) {
-            if (o == h || !(o instanceof SolShip)) {
+        for (PtmObject o : om.getObjs()) {
+            if (o == h || !(o instanceof PtmShip)) {
                 continue;
             }
-            SolShip s = (SolShip) o;
+            PtmShip s = (PtmShip) o;
             Pilot pilot = s.getPilot();
             if (onMap && pilot.getMapHint() == null) {
                 continue;

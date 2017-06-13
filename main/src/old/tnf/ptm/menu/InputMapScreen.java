@@ -13,22 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.menu;
+package old.tnf.ptm.menu;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.ui.SolUiScreen;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.ui.FontSize;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.ui.PtmUiScreen;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.ui.FontSize;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.UiDrawer;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ import java.util.List;
  * <h1>Config Screen to Change Input Mapping</h1>
  * The input mapping screen is based on the inventory screen used within the game.
  */
-public class InputMapScreen implements SolUiScreen {
+public class InputMapScreen implements PtmUiScreen {
     private static final float IMG_COL_PERC = .1f;
     private static final float EQUI_COL_PERC = .1f;
     private static final float PRICE_COL_PERC = .1f;
@@ -50,15 +50,15 @@ public class InputMapScreen implements SolUiScreen {
     final InputMapControllerScreen inputMapControllerScreen;
     final InputMapMixedScreen inputMapMixedScreen;
     private final TextureAtlas.AtlasRegion bgTex;
-    private final List<SolUiControl> controls = new ArrayList<>();
-    private final SolUiControl[] itemControls;
-    private final SolUiControl previousControl;
-    private final SolUiControl nextControl;
-    private final SolUiControl cancelControl;
-    private final SolUiControl saveControl;
-    private final SolUiControl defaultsControl;
-    private final SolUiControl upControl;
-    private final SolUiControl downControl;
+    private final List<PtmUiControl> controls = new ArrayList<>();
+    private final PtmUiControl[] itemControls;
+    private final PtmUiControl previousControl;
+    private final PtmUiControl nextControl;
+    private final PtmUiControl cancelControl;
+    private final PtmUiControl saveControl;
+    private final PtmUiControl defaultsControl;
+    private final PtmUiControl upControl;
+    private final PtmUiControl downControl;
 
     private final Vector2 listHeaderPos;
     private final Rectangle listArea;
@@ -79,11 +79,11 @@ public class InputMapScreen implements SolUiScreen {
         listHeaderPos = new Vector2(col0 + HEADER_TEXT_OFFSET, row + HEADER_TEXT_OFFSET); // offset hack
         float listCtrlW = contentW * .15f;
         Rectangle nextArea = new Rectangle(col0 + contentW - listCtrlW, row, listCtrlW, headerH);
-        nextControl = new SolUiControl(nextArea, true, gameOptions.getKeyRight());
+        nextControl = new PtmUiControl(nextArea, true, gameOptions.getKeyRight());
         nextControl.setDisplayName(">");
         controls.add(nextControl);
         Rectangle prevArea = new Rectangle(nextArea.x - SMALL_GAP - listCtrlW, row, listCtrlW, headerH);
-        previousControl = new SolUiControl(prevArea, true, gameOptions.getKeyLeft());
+        previousControl = new PtmUiControl(prevArea, true, gameOptions.getKeyLeft());
         previousControl.setDisplayName("<");
         controls.add(previousControl);
         row += headerH + SMALL_GAP;
@@ -91,10 +91,10 @@ public class InputMapScreen implements SolUiScreen {
         // List
         float itemRowH = .04f;
         float listRow0 = row;
-        itemControls = new SolUiControl[Const.ITEM_GROUPS_PER_PAGE];
+        itemControls = new PtmUiControl[Const.ITEM_GROUPS_PER_PAGE];
         for (int i = 0; i < Const.ITEM_GROUPS_PER_PAGE; i++) {
             Rectangle itemR = new Rectangle(col0, row, contentW, itemRowH);
-            SolUiControl itemCtrl = new SolUiControl(itemR, true);
+            PtmUiControl itemCtrl = new PtmUiControl(itemR, true);
             itemControls[i] = itemCtrl;
             controls.add(itemCtrl);
             row += itemRowH + SMALL_GAP;
@@ -110,21 +110,21 @@ public class InputMapScreen implements SolUiScreen {
         // row += detailsArea.height;
 
         // Add the buttons and controls
-        cancelControl = new SolUiControl(itemControlRectangle(3), true, gameOptions.getKeyClose());
+        cancelControl = new PtmUiControl(itemControlRectangle(3), true, gameOptions.getKeyClose());
         cancelControl.setDisplayName("Cancel");
         controls.add(cancelControl);
 
-        saveControl = new SolUiControl(itemControlRectangle(2), true);
+        saveControl = new PtmUiControl(itemControlRectangle(2), true);
         saveControl.setDisplayName("Save");
         controls.add(saveControl);
 
-        defaultsControl = new SolUiControl(itemControlRectangle(1), true);
+        defaultsControl = new PtmUiControl(itemControlRectangle(1), true);
         defaultsControl.setDisplayName("Defaults");
         controls.add(defaultsControl);
 
-        upControl = new SolUiControl(null, true, gameOptions.getKeyUp());
+        upControl = new PtmUiControl(null, true, gameOptions.getKeyUp());
         controls.add(upControl);
-        downControl = new SolUiControl(null, true, gameOptions.getKeyDown());
+        downControl = new PtmUiControl(null, true, gameOptions.getKeyDown());
         controls.add(downControl);
 
         // Create the input screens
@@ -136,14 +136,14 @@ public class InputMapScreen implements SolUiScreen {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void updateCustom(SolApplication cmp, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+    public void updateCustom(PtmApplication cmp, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
         GameOptions gameOptions = cmp.getOptions();
-        SolInputManager im = cmp.getInputMan();
+        PtmInputManager im = cmp.getInputMan();
         MenuScreens screens = cmp.getMenuScreens();
 
         // Save - saves new settings and returns to the options screen
@@ -168,14 +168,14 @@ public class InputMapScreen implements SolUiScreen {
             nextControl.setEnabled(false);
             upControl.setEnabled(false);
             downControl.setEnabled(false);
-            for (SolUiControl itemControl : itemControls) {
+            for (PtmUiControl itemControl : itemControls) {
                 itemControl.setEnabled(false);
             }
             return;
         } else {
             upControl.setEnabled(true);
             downControl.setEnabled(true);
-            for (SolUiControl itemControl : itemControls) {
+            for (PtmUiControl itemControl : itemControls) {
                 itemControl.setEnabled(true);
             }
         }
@@ -193,7 +193,7 @@ public class InputMapScreen implements SolUiScreen {
         // Select the item the mouse clicked
         int offset = page * Const.ITEM_GROUPS_PER_PAGE;
         for (int i = 0; i < itemControls.length; i++) {
-            SolUiControl itemCtrl = itemControls[i];
+            PtmUiControl itemCtrl = itemControls[i];
             if (itemCtrl.isJustOff()) {
                 selectedIndex = i + offset;
                 operations.setEnterNewKey(true);
@@ -251,18 +251,18 @@ public class InputMapScreen implements SolUiScreen {
         operations.setSelectedIndex(selectedIndex);
     }
 
-    public void drawBg(UiDrawer uiDrawer, SolApplication solApplication) {
-        uiDrawer.draw(bgTex, uiDrawer.r, 1, uiDrawer.r / 2, 0.5f, uiDrawer.r / 2, 0.5f, 0, SolColor.WHITE);
+    public void drawBg(UiDrawer uiDrawer, PtmApplication ptmApplication) {
+        uiDrawer.draw(bgTex, uiDrawer.r, 1, uiDrawer.r / 2, 0.5f, uiDrawer.r / 2, 0.5f, 0, PtmColor.WHITE);
     }
 
     @Override
-    public void drawImgs(UiDrawer uiDrawer, SolApplication solApplication) {
+    public void drawImgs(UiDrawer uiDrawer, PtmApplication ptmApplication) {
 
     }
 
     @Override
-    public void drawText(UiDrawer uiDrawer, SolApplication solApplication) {
-        GameOptions gameOptions = solApplication.getOptions();
+    public void drawText(UiDrawer uiDrawer, PtmApplication ptmApplication) {
+        GameOptions gameOptions = ptmApplication.getOptions();
         List<InputConfigItem> list = operations.getItems(gameOptions);
 
         float imgColW = listArea.width * IMG_COL_PERC;
@@ -278,22 +278,22 @@ public class InputMapScreen implements SolUiScreen {
             if (groupCount <= groupIdx) {
                 continue;
             }
-            SolUiControl itemCtrl = itemControls[i];
+            PtmUiControl itemCtrl = itemControls[i];
             String displayName = list.get(groupIdx).getDisplayName();
             String inputKey = list.get(groupIdx).getInputKey();
             Rectangle rect = itemCtrl.getScreenArea();
             float rowCenterY = rect.y + rect.height / 2;
 
             // Draw the name of in the input and the key it is mapped to
-            uiDrawer.drawString(displayName, rect.x + equiColW + imgColW + nameWidth / 2, rowCenterY, FontSize.WINDOW, true, selectedIndex == groupIdx ? SolColor.WHITE : SolColor.G);
-            uiDrawer.drawString(inputKey, rect.x + rect.width - amtWidth - priceWidth / 2, rowCenterY, FontSize.WINDOW, true, SolColor.LG);
+            uiDrawer.drawString(displayName, rect.x + equiColW + imgColW + nameWidth / 2, rowCenterY, FontSize.WINDOW, true, selectedIndex == groupIdx ? PtmColor.WHITE : PtmColor.G);
+            uiDrawer.drawString(inputKey, rect.x + rect.width - amtWidth - priceWidth / 2, rowCenterY, FontSize.WINDOW, true, PtmColor.LG);
         }
 
         // Draw the header title
-        uiDrawer.drawString(operations.getHeader(), listHeaderPos.x, listHeaderPos.y, FontSize.WINDOW, false, SolColor.WHITE);
+        uiDrawer.drawString(operations.getHeader(), listHeaderPos.x, listHeaderPos.y, FontSize.WINDOW, false, PtmColor.WHITE);
 
         // Draw the detail text
-        uiDrawer.drawString(operations.getDisplayDetail(), detailsArea.x + .015f, detailsArea.y + .015f, FontSize.WINDOW, false, SolColor.WHITE);
+        uiDrawer.drawString(operations.getDisplayDetail(), detailsArea.x + .015f, detailsArea.y + .015f, FontSize.WINDOW, false, PtmColor.WHITE);
     }
 
     @Override
@@ -302,15 +302,15 @@ public class InputMapScreen implements SolUiScreen {
     }
 
     @Override
-    public boolean isCursorOnBg(SolInputManager.InputPointer inputPointer) {
+    public boolean isCursorOnBg(PtmInputManager.InputPointer inputPointer) {
         return false;
     }
 
     @Override
-    public void onAdd(SolApplication solApplication) {
+    public void onAdd(PtmApplication ptmApplication) {
         // Add any extra screen information as required by the input screens. E.g. buttons
         if (operations != null) {
-            solApplication.getInputMan().addScreen(solApplication, operations);
+            ptmApplication.getInputMan().addScreen(ptmApplication, operations);
         }
 
         page = 0;
@@ -318,7 +318,7 @@ public class InputMapScreen implements SolUiScreen {
     }
 
     @Override
-    public void blurCustom(SolApplication cmp) {
+    public void blurCustom(PtmApplication cmp) {
     }
 
     private Rectangle itemControlRectangle(int row) {

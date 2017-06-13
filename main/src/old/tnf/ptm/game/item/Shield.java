@@ -13,24 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.item;
+package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.assets.audio.OggSound;
-import com.tnf.ptm.assets.audio.PlayableSound;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.sound.OggSoundManager;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.assets.audio.OggSound;
+import old.tnf.ptm.assets.audio.PlayableSound;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.DmgType;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.sound.OggSoundManager;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
 import org.terasology.assets.ResourceUrn;
 
-public class Shield implements SolItem {
+public class Shield implements PtmItem {
     public static final float SIZE_PERC = .7f;
     private static final float BULLET_DMG_FACTOR = .7f;
     private final Config myConfig;
@@ -48,12 +48,12 @@ public class Shield implements SolItem {
         myEquipped = equipped;
     }
 
-    public void update(SolGame game, SolObject owner) {
+    public void update(PtmGame game, PtmObject owner) {
         float ts = game.getTimeStep();
         if (myIdleTime >= myConfig.myMaxIdleTime) {
             if (myLife < myConfig.maxLife) {
                 float regen = myConfig.regenSpd * ts;
-                myLife = SolMath.approach(myLife, myConfig.maxLife, regen);
+                myLife = PtmMath.approach(myLife, myConfig.maxLife, regen);
             }
         } else {
             myIdleTime += ts;
@@ -79,22 +79,22 @@ public class Shield implements SolItem {
     }
 
     @Override
-    public SolItem copy() {
+    public PtmItem copy() {
         return new Shield(myConfig, myEquipped);
     }
 
     @Override
-    public boolean isSame(SolItem item) {
+    public boolean isSame(PtmItem item) {
         return false;
     }
 
     @Override
-    public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+    public TextureAtlas.AtlasRegion getIcon(PtmGame game) {
         return myConfig.icon;
     }
 
     @Override
-    public SolItemType getItemType() {
+    public PtmItemType getItemType() {
         return myConfig.itemType;
     }
 
@@ -115,7 +115,7 @@ public class Shield implements SolItem {
         return myLife > 0 && dmgType != DmgType.FIRE && dmgType != DmgType.CRASH;
     }
 
-    public void absorb(SolGame game, float dmg, Vector2 pos, SolShip ship, DmgType dmgType) {
+    public void absorb(PtmGame game, float dmg, Vector2 pos, PtmShip ship, DmgType dmgType) {
         if (!canAbsorb(dmgType) || dmg <= 0) {
             throw new AssertionError("illegal call to absorb");
         }
@@ -126,7 +126,7 @@ public class Shield implements SolItem {
         myLife -= myLife < dmg ? myLife : dmg;
 
         game.getPartMan().shieldSpark(game, pos, ship.getHull(), myConfig.tex, dmg / myConfig.maxLife);
-        float volMul = SolMath.clamp(4 * dmg / myConfig.maxLife);
+        float volMul = PtmMath.clamp(4 * dmg / myConfig.maxLife);
         game.getSoundManager().play(game, myConfig.absorbSound, null, ship, volMul);
 
     }
@@ -150,12 +150,12 @@ public class Shield implements SolItem {
         public final float myMaxIdleTime = 2;
         public final float regenSpd;
         public final TextureAtlas.AtlasRegion icon;
-        public final SolItemType itemType;
+        public final PtmItemType itemType;
         public final String code;
         public TextureAtlas.AtlasRegion tex;
 
         private Config(int maxLife, String displayName, int price, PlayableSound absorbSound, PlayableSound regenSound,
-                       TextureAtlas.AtlasRegion icon, TextureAtlas.AtlasRegion tex, SolItemType itemType, String code) {
+                       TextureAtlas.AtlasRegion icon, TextureAtlas.AtlasRegion tex, PtmItemType itemType, String code) {
             this.maxLife = maxLife;
             this.displayName = displayName;
             this.price = price;
@@ -170,7 +170,7 @@ public class Shield implements SolItem {
             this.desc = makeDesc();
         }
 
-        public static void load(ResourceUrn shieldName, ItemManager itemManager, OggSoundManager soundManager, SolItemTypes types) {
+        public static void load(ResourceUrn shieldName, ItemManager itemManager, OggSoundManager soundManager, PtmItemTypes types) {
             Json json = Assets.getJson(shieldName);
             JsonValue rootNode = json.getJsonValue();
 
@@ -194,7 +194,7 @@ public class Shield implements SolItem {
 
         private String makeDesc() {
             StringBuilder sb = new StringBuilder();
-            sb.append("Takes ").append(SolMath.nice(maxLife)).append(" dmg\n");
+            sb.append("Takes ").append(PtmMath.nice(maxLife)).append(" dmg\n");
             sb.append("Strong against bullets\n");
             return sb.toString();
         }

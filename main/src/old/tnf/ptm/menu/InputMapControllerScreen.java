@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.menu;
+package old.tnf.ptm.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -24,9 +24,9 @@ import com.badlogic.gdx.controllers.ControllerListener;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.ui.SolUiControl;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.ui.PtmUiControl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +36,7 @@ import java.util.List;
 public class InputMapControllerScreen implements InputMapOperations {
     private static final String HEADER_TEXT = "Controller Inputs";
     private static Logger logger = LoggerFactory.getLogger(InputMapControllerScreen.class);
-    private final ArrayList<SolUiControl> controls = new ArrayList<>();
+    private final ArrayList<PtmUiControl> controls = new ArrayList<>();
     private boolean isEnterNewKey;
     private List<InputConfigItem> itemsList = new ArrayList<>();
     private int selectedIndex;
@@ -176,7 +176,7 @@ public class InputMapControllerScreen implements InputMapOperations {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
@@ -208,8 +208,8 @@ public class InputMapControllerScreen implements InputMapOperations {
     }
 
     @Override
-    public void onAdd(SolApplication solApplication) {
-        InitialiseList(solApplication.getOptions());
+    public void onAdd(PtmApplication ptmApplication) {
+        InitialiseList(ptmApplication.getOptions());
         Controllers.clearListeners();
         isEnterNewKey = false;
         selectedIndex = 0;

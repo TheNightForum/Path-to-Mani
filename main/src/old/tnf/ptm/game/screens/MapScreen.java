@@ -13,58 +13,58 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.math.Rectangle;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.game.MapDrawer;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.ui.SolUiScreen;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.game.MapDrawer;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.ui.PtmUiScreen;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapScreen implements SolUiScreen {
-    private final List<SolUiControl> controls = new ArrayList<>();
-    private final SolUiControl zoomOutControl;
-    public final SolUiControl closeControl;
-    public final SolUiControl zoomInControl;
+public class MapScreen implements PtmUiScreen {
+    private final List<PtmUiControl> controls = new ArrayList<>();
+    private final PtmUiControl zoomOutControl;
+    public final PtmUiControl closeControl;
+    public final PtmUiControl zoomInControl;
 
     MapScreen(RightPaneLayout rightPaneLayout, boolean mobile, float r, GameOptions gameOptions) {
         Rectangle closeArea = mobile ? MainScreen.btn(0, MainScreen.HELPER_ROW_1, true) : rightPaneLayout.buttonRect(1);
-        closeControl = new SolUiControl(closeArea, true, gameOptions.getKeyMap(), gameOptions.getKeyClose());
+        closeControl = new PtmUiControl(closeArea, true, gameOptions.getKeyMap(), gameOptions.getKeyClose());
         closeControl.setDisplayName("Close");
         controls.add(closeControl);
         float row0 = 1 - MainScreen.CELL_SZ;
         float row1 = row0 - MainScreen.CELL_SZ;
         Rectangle zoomInArea = mobile ? MainScreen.btn(0, row1, false) : rightPaneLayout.buttonRect(2);
-        zoomInControl = new SolUiControl(zoomInArea, true, gameOptions.getKeyZoomIn());
+        zoomInControl = new PtmUiControl(zoomInArea, true, gameOptions.getKeyZoomIn());
         zoomInControl.setDisplayName("Zoom In");
         controls.add(zoomInControl);
         Rectangle zoomOutArea = mobile ? MainScreen.btn(0, row0, false) : rightPaneLayout.buttonRect(3);
-        zoomOutControl = new SolUiControl(zoomOutArea, true, gameOptions.getKeyZoomOut());
+        zoomOutControl = new PtmUiControl(zoomOutArea, true, gameOptions.getKeyZoomOut());
         zoomOutControl.setDisplayName("Zoom Out");
         controls.add(zoomOutControl);
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void updateCustom(SolApplication solApplication, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
-        SolGame game = solApplication.getGame();
-        GameOptions gameOptions = solApplication.getOptions();
+    public void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+        PtmGame game = ptmApplication.getGame();
+        GameOptions gameOptions = ptmApplication.getOptions();
         boolean justClosed = closeControl.isJustOff();
         MapDrawer mapDrawer = game.getMapDrawer();
         mapDrawer.setToggled(!justClosed);
-        SolInputManager im = solApplication.getInputMan();
+        PtmInputManager im = ptmApplication.getInputMan();
         if (justClosed) {
-            im.setScreen(solApplication, game.getScreens().mainScreen);
+            im.setScreen(ptmApplication, game.getScreens().mainScreen);
         }
         boolean zoomIn = zoomInControl.isJustOff();
         if (zoomIn || zoomOutControl.isJustOff()) {
@@ -75,7 +75,7 @@ public class MapScreen implements SolUiScreen {
         zoomOutControl.setEnabled(mapZoom != MapDrawer.MAX_ZOOM);
         ShipUiControl sc = game.getScreens().mainScreen.shipControl;
         if (sc instanceof ShipMouseControl) {
-            sc.update(solApplication, true);
+            sc.update(ptmApplication, true);
         }
         Boolean scrolledUp = im.getScrolledUp();
         if (scrolledUp != null) {

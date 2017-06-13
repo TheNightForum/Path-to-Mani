@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.graphics.Color;
-import com.tnf.ptm.common.SolColorUtil;
-import com.tnf.ptm.common.SolMath;
+import old.tnf.ptm.common.PtmColorUtil;
+import old.tnf.ptm.common.PtmMath;
 
 public class HsbSpan extends ColorSpan {
     private final float[] myHsbaStart;
@@ -30,12 +30,12 @@ public class HsbSpan extends ColorSpan {
 
     @Override
     public void set(float perc, Color col) {
-        perc = SolMath.clamp(perc, 0, 1);
+        perc = PtmMath.clamp(perc, 0, 1);
         float hue = midVal(0, perc);
         float sat = midVal(1, perc);
         float br = midVal(2, perc);
         float a = midVal(3, perc);
-        SolColorUtil.fromHSB(hue, sat, br, a, col);
+        PtmColorUtil.fromHSB(hue, sat, br, a, col);
     }
 
     private float midVal(int idx, float perc) {

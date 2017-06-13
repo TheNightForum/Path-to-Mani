@@ -13,28 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.particle;
+package old.tnf.ptm.game.particle;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.game.FarObj;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.DmgType;
+import old.tnf.ptm.game.FarObj;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LightObject implements SolObject {
+public class LightObject implements PtmObject {
 
     private final LightSrc myLightSrc;
     private final ArrayList<Dra> myDras;
     private final Vector2 myPos;
 
     // consumes pos
-    public LightObject(SolGame game, float sz, boolean hasHalo, float intensity, Vector2 pos, float fadeTime, Color col) {
+    public LightObject(PtmGame game, float sz, boolean hasHalo, float intensity, Vector2 pos, float fadeTime, Color col) {
         myPos = pos;
         myLightSrc = new LightSrc(game, sz, hasHalo, intensity, new Vector2(), col);
         myLightSrc.setFadeTime(fadeTime);
@@ -44,21 +44,21 @@ public class LightObject implements SolObject {
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         myLightSrc.update(false, 0, game);
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(PtmGame game) {
         return myLightSrc.isFinished();
     }
 
     @Override
-    public void onRemove(SolGame game) {
+    public void onRemove(PtmGame game) {
     }
 
     @Override
-    public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+    public void receiveDmg(float dmg, PtmGame game, Vector2 pos, DmgType dmgType) {
     }
 
     @Override
@@ -67,7 +67,7 @@ public class LightObject implements SolObject {
     }
 
     @Override
-    public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+    public void receiveForce(Vector2 force, PtmGame game, boolean acc) {
     }
 
     @Override
@@ -96,8 +96,8 @@ public class LightObject implements SolObject {
     }
 
     @Override
-    public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-                              SolGame game, Vector2 collPos) {
+    public void handleContact(PtmObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+                              PtmGame game, Vector2 collPos) {
     }
 
     @Override

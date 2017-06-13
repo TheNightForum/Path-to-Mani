@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.ship;
+package old.tnf.ptm.game.ship;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
@@ -28,31 +28,31 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.joints.PrismaticJoint;
 import com.badlogic.gdx.physics.box2d.joints.PrismaticJointDef;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.CollisionMeshLoader;
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.RemoveController;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.dra.RectSprite;
-import com.tnf.ptm.game.gun.GunMount;
-import com.tnf.ptm.game.input.Pilot;
-import com.tnf.ptm.game.particle.LightSrc;
-import com.tnf.ptm.game.ship.hulls.Hull;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
-import com.tnf.ptm.game.item.Armor;
-import com.tnf.ptm.game.item.Clip;
-import com.tnf.ptm.game.item.Engine;
-import com.tnf.ptm.game.item.Gun;
-import com.tnf.ptm.game.item.ItemContainer;
-import com.tnf.ptm.game.item.Shield;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.item.TradeConfig;
-import com.tnf.ptm.game.item.TradeContainer;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.CollisionMeshLoader;
+import old.tnf.ptm.game.Faction;
+import old.tnf.ptm.game.RemoveController;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.game.gun.GunMount;
+import old.tnf.ptm.game.input.Pilot;
+import old.tnf.ptm.game.particle.LightSrc;
+import old.tnf.ptm.game.ship.hulls.Hull;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.game.item.Armor;
+import old.tnf.ptm.game.item.Clip;
+import old.tnf.ptm.game.item.Engine;
+import old.tnf.ptm.game.item.Gun;
+import old.tnf.ptm.game.item.ItemContainer;
+import old.tnf.ptm.game.item.Shield;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.game.item.TradeConfig;
+import old.tnf.ptm.game.item.TradeContainer;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -74,7 +74,7 @@ public class ShipBuilder {
             return null;
         }
         Fixture base = null;
-        Vector2 v = SolMath.getVec();
+        Vector2 v = PtmMath.getVec();
         float lowestX = Float.MAX_VALUE;
         for (Fixture f : body.getFixtureList()) {
             Shape s = f.getShape();
@@ -91,11 +91,11 @@ public class ShipBuilder {
                 }
             }
         }
-        SolMath.free(v);
+        PtmMath.free(v);
         return base;
     }
 
-    public FarShip buildNewFar(SolGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
+    public FarShip buildNewFar(PtmGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
                                String items, HullConfig hullConfig,
                                RemoveController removeController,
                                boolean hasRepairer, float money, TradeConfig tradeConfig, boolean giveAmmo) {
@@ -116,8 +116,8 @@ public class ShipBuilder {
 
         // For the player use new logic that better respects what was explicitly equipped
         if (pilot.isPlayer()) {
-            for (List<SolItem> group : ic) {
-                for (SolItem i : group) {
+            for (List<PtmItem> group : ic) {
+                for (PtmItem i : group) {
                     if (i instanceof Shield) {
                         if (i.isEquipped() > 0) {
                             shield = (Shield) i;
@@ -150,8 +150,8 @@ public class ShipBuilder {
             }
         } else {
             // For NPCs use the old logic that just equips whatever
-            for (List<SolItem> group : ic) {
-                for (SolItem i : group) {
+            for (List<PtmItem> group : ic) {
+                for (PtmItem i : group) {
                     if (i instanceof Shield) {
                         shield = (Shield) i;
                         continue;
@@ -196,7 +196,7 @@ public class ShipBuilder {
         }
         float clipUseTime = cc.size * gc.timeBetweenShots + gc.reloadTime;
         float lifeTime = pilot.getFaction() == Faction.LAANI ? AVG_ALLY_LIFE_TIME : AVG_BATTLE_TIME;
-        int count = 1 + (int) (lifeTime / clipUseTime) + SolMath.intRnd(0, 2);
+        int count = 1 + (int) (lifeTime / clipUseTime) + PtmMath.intRnd(0, 2);
         for (int i = 0; i < count; i++) {
             if (ic.canAdd(cc.example)) {
                 ic.add(cc.example.copy());
@@ -206,14 +206,14 @@ public class ShipBuilder {
 
     private void addAbilityCharges(ItemContainer ic, HullConfig hc, Pilot pilot) {
         if (hc.getAbility() != null) {
-            SolItem ex = hc.getAbility().getChargeExample();
+            PtmItem ex = hc.getAbility().getChargeExample();
             if (ex != null) {
                 int count;
                 if (pilot.isPlayer()) {
                     count = 3;
                 } else {
                     float lifeTime = pilot.getFaction() == Faction.LAANI ? AVG_ALLY_LIFE_TIME : AVG_BATTLE_TIME;
-                    count = (int) (lifeTime / hc.getAbility().getRechargeTime() * SolMath.rnd(.3f, 1));
+                    count = (int) (lifeTime / hc.getAbility().getRechargeTime() * PtmMath.rnd(.3f, 1));
                 }
                 for (int i = 0; i < count; i++) {
                     ic.add(ex.copy());
@@ -222,14 +222,14 @@ public class ShipBuilder {
         }
     }
 
-    public SolShip build(SolGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
+    public PtmShip build(PtmGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, Pilot pilot,
                          ItemContainer container, HullConfig hullConfig, float life, Gun gun1,
                          Gun gun2, RemoveController removeController, Engine engine,
                          ShipRepairer repairer, float money, TradeContainer tradeContainer, Shield shield,
                          Armor armor) {
         ArrayList<Dra> dras = new ArrayList<>();
         Hull hull = buildHull(game, pos, spd, angle, rotSpd, hullConfig, life, dras);
-        SolShip ship = new SolShip(game, pilot, hull, removeController, dras, container, repairer, money, tradeContainer, shield, armor);
+        PtmShip ship = new PtmShip(game, pilot, hull, removeController, dras, container, repairer, money, tradeContainer, shield, armor);
         hull.getBody().setUserData(ship);
         for (Door door : hull.getDoors()) {
             door.getBody().setUserData(ship);
@@ -255,7 +255,7 @@ public class ShipBuilder {
         return ship;
     }
 
-    private Hull buildHull(SolGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, HullConfig hullConfig,
+    private Hull buildHull(PtmGame game, Vector2 pos, Vector2 spd, float angle, float rotSpd, HullConfig hullConfig,
                            float life, ArrayList<Dra> dras) {
         //TODO: This logic belongs in the HullConfigManager/HullConfig
         String shipName = hullConfig.getInternalName();
@@ -303,7 +303,7 @@ public class ShipBuilder {
         Fixture base = getBase(hullConfig.hasBase(), body);
         Hull hull = new Hull(game, hullConfig, body, gunMount0, gunMount1, base, lCs, life, beacons, doors, shieldFixture);
         body.setLinearVelocity(spd);
-        body.setAngularVelocity(rotSpd * SolMath.degRad);
+        body.setAngularVelocity(rotSpd * PtmMath.degRad);
         return hull;
     }
 
@@ -318,11 +318,11 @@ public class ShipBuilder {
         return shieldFixture;
     }
 
-    private Door createDoor(SolGame game, Vector2 pos, float angle, Body body, Vector2 doorRelPos) {
+    private Door createDoor(PtmGame game, Vector2 pos, float angle, Body body, Vector2 doorRelPos) {
         World w = game.getObjMan().getWorld();
         TextureAtlas.AtlasRegion tex = game.getTexMan().getTexture("smallGameObjects/door");
         PrismaticJoint joint = createDoorJoint(body, w, pos, doorRelPos, angle);
-        RectSprite s = new RectSprite(tex, Door.DOOR_LEN, 0, 0, new Vector2(doorRelPos), DraLevel.BODIES, 0, 0, SolColor.WHITE, false);
+        RectSprite s = new RectSprite(tex, Door.DOOR_LEN, 0, 0, new Vector2(doorRelPos), DraLevel.BODIES, 0, 0, PtmColor.WHITE, false);
         return new Door(joint, s);
     }
 
@@ -343,10 +343,10 @@ public class ShipBuilder {
     private Body createDoorBody(World world, Vector2 shipPos, Vector2 doorRelPos, float shipAngle) {
         BodyDef bd = new BodyDef();
         bd.type = BodyDef.BodyType.DynamicBody;
-        bd.angle = shipAngle * SolMath.degRad;
+        bd.angle = shipAngle * PtmMath.degRad;
         bd.angularDamping = 0;
         bd.linearDamping = 0;
-        SolMath.toWorld(bd.position, doorRelPos, shipAngle, shipPos, false);
+        PtmMath.toWorld(bd.position, doorRelPos, shipAngle, shipPos, false);
         Body body = world.createBody(bd);
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(Door.DOOR_LEN / 2, .03f);

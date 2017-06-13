@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.dra;
+package old.tnf.ptm.game.dra;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,14 +22,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.OrderedMap;
-import com.tnf.ptm.game.ObjectManager;
-import com.tnf.ptm.common.DebugCol;
-import com.tnf.ptm.game.DebugOptions;
-import com.tnf.ptm.game.GameDrawer;
-import com.tnf.ptm.game.MapDrawer;
-import com.tnf.ptm.game.SolCam;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
+import old.tnf.ptm.game.*;
+import old.tnf.ptm.common.DebugCol;
+import old.tnf.ptm.game.PtmObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,7 +60,7 @@ public class DraMan {
         return r;
     }
 
-    public void objRemoved(SolObject o) {
+    public void objRemoved(PtmObject o) {
         List<Dra> dras = o.getDras();
         removeAll(dras);
     }
@@ -85,7 +80,7 @@ public class DraMan {
         }
     }
 
-    public void objAdded(SolObject o) {
+    public void objAdded(PtmObject o) {
         List<Dra> dras = o.getDras();
         addAll(dras);
     }
@@ -109,23 +104,23 @@ public class DraMan {
         }
     }
 
-    public void draw(SolGame game) {
+    public void draw(PtmGame game) {
         MapDrawer mapDrawer = game.getMapDrawer();
         if (mapDrawer.isToggled()) {
             mapDrawer.draw(myDrawer, game);
             return;
         }
 
-        SolCam cam = game.getCam();
+        PtmCam cam = game.getCam();
         myDrawer.updateMtx(game);
         game.getFarBgManOld().draw(myDrawer, cam, game);
         Vector2 camPos = cam.getPos();
         float viewDist = cam.getViewDist();
 
         ObjectManager objectManager = game.getObjMan();
-        List<SolObject> objs = objectManager.getObjs();
+        List<PtmObject> objs = objectManager.getObjs();
         for (int i1 = 0, objsSize = objs.size(); i1 < objsSize; i1++) {
-            SolObject o = objs.get(i1);
+            PtmObject o = objs.get(i1);
             Vector2 objPos = o.getPosition();
             float r = objectManager.getPresenceRadius(o);
             List<Dra> dras = o.getDras();
@@ -197,8 +192,8 @@ public class DraMan {
         myDrawer.maybeChangeAdditive(false);
     }
 
-    private void drawDebug(GameDrawer drawer, SolGame game, Dra dra) {
-        SolCam cam = game.getCam();
+    private void drawDebug(GameDrawer drawer, PtmGame game, Dra dra) {
+        PtmCam cam = game.getCam();
         float lineWidth = cam.getRealLineWidth();
         Color col = myInCam.contains(dra) ? DebugCol.DRA : DebugCol.DRA_OUT;
         Vector2 pos = dra.getPos();
@@ -209,7 +204,7 @@ public class DraMan {
         return camPos.dst(pos) - viewDist < r;
     }
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
     }
 
     public boolean isInCam(Dra dra) {

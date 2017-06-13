@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.sound;
+package old.tnf.ptm.game.sound;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.tnf.ptm.game.GameDrawer;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.common.DebugCol;
+import old.tnf.ptm.game.GameDrawer;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.common.DebugCol;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -31,10 +31,10 @@ public class DebugHint {
     private final Vector2 myPos;
     private final Map<String, Long> myMsgs;
 
-    private SolObject myOwner;
+    private PtmObject myOwner;
     private String myMsg;
 
-    public DebugHint(SolObject owner, Vector2 pos) {
+    public DebugHint(PtmObject owner, Vector2 pos) {
         myOwner = owner;
         myPos = new Vector2(pos);
         myMsgs = new HashMap<String, Long>();
@@ -56,7 +56,7 @@ public class DebugHint {
         myMsg = sb.toString();
     }
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         if (myOwner != null) {
             if (myOwner.shouldBeRemoved(game)) {
                 myOwner = null;
@@ -84,7 +84,7 @@ public class DebugHint {
         return myMsgs.isEmpty();
     }
 
-    public void draw(GameDrawer drawer, SolGame game) {
+    public void draw(GameDrawer drawer, PtmGame game) {
         float fontSz = game.getCam().getDebugFontSize();
         drawer.drawString(myMsg, myPos.x, myPos.y, fontSz, false, DebugCol.HINT);
     }

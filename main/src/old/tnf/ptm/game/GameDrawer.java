@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.CommonDrawer;
-import com.tnf.ptm.TextureManager;
+import old.tnf.ptm.CommonDrawer;
+import old.tnf.ptm.TextureManager;
 
 public class GameDrawer {
 
@@ -41,7 +41,7 @@ public class GameDrawer {
         myDrawer.begin();
     }
 
-    public void updateMtx(SolGame game) {
+    public void updateMtx(PtmGame game) {
         myDrawer.setMtx(game.getCam().getMtx());
     }
 

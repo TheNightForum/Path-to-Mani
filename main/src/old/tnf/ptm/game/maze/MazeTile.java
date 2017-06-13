@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.maze;
+package old.tnf.ptm.game.maze;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.game.CollisionMeshLoader;
-import com.tnf.ptm.game.DebugOptions;
-import com.tnf.ptm.game.asteroid.AsteroidBuilder;
+import old.tnf.ptm.game.CollisionMeshLoader;
+import old.tnf.ptm.game.DebugOptions;
+import old.tnf.ptm.game.asteroid.AsteroidBuilder;
 
 import java.util.ArrayList;
 import java.util.List;

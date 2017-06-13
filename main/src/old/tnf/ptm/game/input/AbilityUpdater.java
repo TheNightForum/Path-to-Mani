@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.ship.ShipAbility;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.ship.ShipAbility;
 
 public class AbilityUpdater {
     private final float myAbilityUseStartPerc;
@@ -28,11 +28,11 @@ public class AbilityUpdater {
     private boolean myAbility;
 
     public AbilityUpdater() {
-        myAbilityUseStartPerc = SolMath.rnd(.3f, .7f);
-        myChargesToKeep = SolMath.intRnd(1, 2);
+        myAbilityUseStartPerc = PtmMath.rnd(.3f, .7f);
+        myChargesToKeep = PtmMath.intRnd(1, 2);
     }
 
-    public void update(SolShip ship, SolShip nearestEnemy) {
+    public void update(PtmShip ship, PtmShip nearestEnemy) {
         myAbility = false;
         if (nearestEnemy == null) {
             return;
@@ -44,7 +44,7 @@ public class AbilityUpdater {
         if (ship.getHull().config.getMaxLife() * myAbilityUseStartPerc < ship.getLife()) {
             return;
         }
-        SolItem ex = ability.getConfig().getChargeExample();
+        PtmItem ex = ability.getConfig().getChargeExample();
         if (ex != null) {
             if (ship.getItemContainer().count(ex) <= myChargesToKeep) {
                 return;

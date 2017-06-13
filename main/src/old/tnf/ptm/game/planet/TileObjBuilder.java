@@ -13,27 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.tnf.ptm.game.dra.RectSprite;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.DraLevel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TileObjBuilder {
-    public TileObject build(SolGame game, float sz, float toPlanetRelAngle, float dist, Tile tile, Planet planet) {
+    public TileObject build(PtmGame game, float sz, float toPlanetRelAngle, float dist, Tile tile, Planet planet) {
         float spriteSz = sz * 2;
-        RectSprite sprite = new RectSprite(tile.tex, spriteSz, 0, 0, new Vector2(), DraLevel.GROUND, 0, 0f, SolColor.WHITE, false);
+        RectSprite sprite = new RectSprite(tile.tex, spriteSz, 0, 0, new Vector2(), DraLevel.GROUND, 0, 0f, PtmColor.WHITE, false);
         Body body = null;
         if (tile.points.size() > 0) {
             body = buildBody(game, toPlanetRelAngle, dist, tile, planet, spriteSz);
@@ -45,13 +45,13 @@ public class TileObjBuilder {
         return res;
     }
 
-    private Body buildBody(SolGame game, float toPlanetRelAngle, float dist, Tile tile, Planet planet, float spriteSz) {
+    private Body buildBody(PtmGame game, float toPlanetRelAngle, float dist, Tile tile, Planet planet, float spriteSz) {
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.KinematicBody;
         float toPlanetAngle = planet.getAngle() + toPlanetRelAngle;
-        SolMath.fromAl(def.position, toPlanetAngle, dist, true);
+        PtmMath.fromAl(def.position, toPlanetAngle, dist, true);
         def.position.add(planet.getPos());
-        def.angle = (toPlanetAngle + 90) * SolMath.degRad;
+        def.angle = (toPlanetAngle + 90) * PtmMath.degRad;
         def.angularDamping = 0;
         Body body = game.getObjMan().getWorld().createBody(def);
         ChainShape shape = new ChainShape();

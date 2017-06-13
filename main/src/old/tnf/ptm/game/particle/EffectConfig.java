@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.particle;
+package old.tnf.ptm.game.particle;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.game.GameColors;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.game.GameColors;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

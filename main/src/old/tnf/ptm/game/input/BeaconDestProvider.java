@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.game.BeaconHandler;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.game.BeaconHandler;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
 
 public class BeaconDestProvider implements MoveDestProvider {
     public static final float STOP_AWAIT = .1f;
@@ -37,7 +37,7 @@ public class BeaconDestProvider implements MoveDestProvider {
     }
 
     @Override
-    public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+    public void update(PtmGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, PtmShip nearestEnemy) {
         BeaconHandler bh = game.getBeaconHandler();
         myDest.set(bh.getPos());
         myShouldManeuver = null;
@@ -57,7 +57,7 @@ public class BeaconDestProvider implements MoveDestProvider {
     }
 
     @Override
-    public Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround) {
+    public Boolean shouldManeuver(boolean canShoot, PtmShip nearestEnemy, boolean nearGround) {
         return myShouldManeuver;
     }
 

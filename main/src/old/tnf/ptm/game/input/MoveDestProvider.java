@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
 
 public interface MoveDestProvider {
     Vector2 getDest();
@@ -33,7 +33,7 @@ public interface MoveDestProvider {
 
     boolean shouldStopNearDest();
 
-    void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy);
+    void update(PtmGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, PtmShip nearestEnemy);
 
     /**
      * if true is returned, the ship will move in battle pattern around the enemy and try to face enemy with guns
@@ -41,7 +41,7 @@ public interface MoveDestProvider {
      * if null is returned, the ship will move as if there's no enemy near
      * note that the ship will always shoot if there's enemy ahead of it (or if it has unfixed gun)
      */
-    Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround);
+    Boolean shouldManeuver(boolean canShoot, PtmShip nearestEnemy, boolean nearGround);
 
     Vector2 getDestSpd();
 }

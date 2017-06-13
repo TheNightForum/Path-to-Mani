@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
-import com.tnf.ptm.common.SolMath;
+import old.tnf.ptm.common.PtmMath;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class ConsumedAngles {
         for (int i = 0; i < sz; i++) {
             Float a = myAngles.get(i);
             Float hw = myHalfWidths.get(i);
-            if (SolMath.angleDiff(angle, a) < hw + objAngularHalfWidth) {
+            if (PtmMath.angleDiff(angle, a) < hw + objAngularHalfWidth) {
                 return true;
             }
         }

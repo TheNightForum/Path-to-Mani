@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.dra;
+package old.tnf.ptm.game.dra;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.game.GameDrawer;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
+import old.tnf.ptm.game.GameDrawer;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.PtmObject;
 
 //TODO Dra?
 public interface Dra {
@@ -32,10 +32,10 @@ public interface Dra {
     DraLevel getLevel();
 
     // called on every update from manager
-    void update(SolGame game, SolObject o);
+    void update(PtmGame game, PtmObject o);
 
     // called on every draw from manager. after that, this dra should be able to return correct pos & radius
-    void prepare(SolObject o);
+    void prepare(PtmObject o);
 
     Vector2 getPos();
 
@@ -43,7 +43,7 @@ public interface Dra {
 
     float getRadius();
 
-    void draw(GameDrawer drawer, SolGame game);
+    void draw(GameDrawer drawer, PtmGame game);
 
     boolean isEnabled();
 

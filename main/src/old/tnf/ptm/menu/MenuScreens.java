@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.menu;
+package old.tnf.ptm.menu;
 
-import com.tnf.ptm.ui.SolLayouts;
-import com.tnf.ptm.GameOptions;
+import old.tnf.ptm.ui.PtmLayouts;
+import old.tnf.ptm.GameOptions;
 
 public class MenuScreens {
     public final MainScreen main;
@@ -28,7 +28,7 @@ public class MenuScreens {
     public final NewGameScreen newGame;
     public final NewShipScreen newShip;
 
-    public MenuScreens(SolLayouts layouts, boolean mobile, float resolutionRatio, GameOptions gameOptions) {
+    public MenuScreens(PtmLayouts layouts, boolean mobile, float resolutionRatio, GameOptions gameOptions) {
         MenuLayout menuLayout = layouts.menuLayout;
         main = new MainScreen(menuLayout, mobile, resolutionRatio, gameOptions);
         options = new OptionsScreen(menuLayout, gameOptions);

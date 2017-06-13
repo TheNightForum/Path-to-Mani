@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.assets.emitters;
+package old.tnf.ptm.assets.emitters;
 
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import org.terasology.assets.AssetData;

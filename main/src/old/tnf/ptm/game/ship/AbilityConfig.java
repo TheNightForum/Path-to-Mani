@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.ship;
+package old.tnf.ptm.game.ship;
 
-import com.tnf.ptm.game.item.SolItem;
+import old.tnf.ptm.game.item.PtmItem;
 
 public interface AbilityConfig {
     public ShipAbility build();
 
-    public SolItem getChargeExample();
+    public PtmItem getChargeExample();
 
     public float getRechargeTime();
 

@@ -14,42 +14,42 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.menu;
+package old.tnf.ptm.menu;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.ui.SolUiScreen;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.game.SaveManager;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.ui.PtmUiScreen;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.game.SaveManager;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.UiDrawer;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewGameScreen implements SolUiScreen {
+public class NewGameScreen implements PtmUiScreen {
     private final TextureAtlas.AtlasRegion bgTex;
 
-    private final ArrayList<SolUiControl> controls = new ArrayList<>();
-    private final SolUiControl backControl;
-    private final SolUiControl previousControl;
-    private final SolUiControl newControl;
+    private final ArrayList<PtmUiControl> controls = new ArrayList<>();
+    private final PtmUiControl backControl;
+    private final PtmUiControl previousControl;
+    private final PtmUiControl newControl;
 
     NewGameScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-        previousControl = new SolUiControl(menuLayout.buttonRect(-1, 1), true, gameOptions.getKeyShoot());
+        previousControl = new PtmUiControl(menuLayout.buttonRect(-1, 1), true, gameOptions.getKeyShoot());
         previousControl.setDisplayName("Previous Ship");
         controls.add(previousControl);
 
-        newControl = new SolUiControl(menuLayout.buttonRect(-1, 2), true);
+        newControl = new PtmUiControl(menuLayout.buttonRect(-1, 2), true);
         newControl.setDisplayName("New Ship");
         controls.add(newControl);
 
-        backControl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+        backControl = new PtmUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
         backControl.setDisplayName("Cancel");
         controls.add(backControl);
 
@@ -57,43 +57,43 @@ public class NewGameScreen implements SolUiScreen {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void onAdd(SolApplication solApplication) {
+    public void onAdd(PtmApplication ptmApplication) {
         previousControl.setEnabled(SaveManager.hasPrevShip());
     }
 
     @Override
-    public void updateCustom(SolApplication solApplication, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
-        MenuScreens screens = solApplication.getMenuScreens();
-        SolInputManager im = solApplication.getInputMan();
+    public void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+        MenuScreens screens = ptmApplication.getMenuScreens();
+        PtmInputManager im = ptmApplication.getInputMan();
         if (backControl.isJustOff()) {
-            im.setScreen(solApplication, screens.main);
+            im.setScreen(ptmApplication, screens.main);
             return;
         }
         if (previousControl.isJustOff()) {
-            solApplication.loadNewGame(false, true);
+            ptmApplication.loadNewGame(false, true);
             return;
         }
         if (newControl.isJustOff()) {
             if (!previousControl.isEnabled()) {
-                solApplication.loadNewGame(false, false);
+                ptmApplication.loadNewGame(false, false);
             } else {
-                im.setScreen(solApplication, screens.newShip);
+                im.setScreen(ptmApplication, screens.newShip);
             }
         }
     }
 
     @Override
-    public boolean isCursorOnBg(SolInputManager.InputPointer inputPointer) {
+    public boolean isCursorOnBg(PtmInputManager.InputPointer inputPointer) {
         return true;
     }
 
     @Override
-    public void drawBg(UiDrawer uiDrawer, SolApplication solApplication) {
-        uiDrawer.draw(bgTex, uiDrawer.r, 1, uiDrawer.r / 2, 0.5f, uiDrawer.r / 2, 0.5f, 0, SolColor.WHITE);
+    public void drawBg(UiDrawer uiDrawer, PtmApplication ptmApplication) {
+        uiDrawer.draw(bgTex, uiDrawer.r, 1, uiDrawer.r / 2, 0.5f, uiDrawer.r / 2, 0.5f, 0, PtmColor.WHITE);
     }
 }

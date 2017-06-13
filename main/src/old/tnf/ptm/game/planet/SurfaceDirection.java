@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 public enum SurfaceDirection {
     UP("u"), DOWN("d"), FWD("f");

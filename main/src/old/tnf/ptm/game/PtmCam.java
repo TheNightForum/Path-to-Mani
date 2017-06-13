@@ -13,21 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.screens.MainScreen;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.screens.MainScreen;
+import old.tnf.ptm.game.ship.PtmShip;
 
-public class SolCam {
+public class PtmCam {
     public static final float CAM_ROT_SPD = 90f;
     private static final float VIEWPORT_HEIGHT = 5f;
     private static final float MAX_ZOOM_SPD = 5f;
@@ -46,7 +46,7 @@ public class SolCam {
     private float myZoom;
     private Vector2 myPos;
 
-    public SolCam(float r) {
+    public PtmCam(float r) {
         myCamRotStrategy = new CamRotStrategy.ToPlanet();
         myCam = new OrthographicCamera(VIEWPORT_HEIGHT * r, -VIEWPORT_HEIGHT);
         myZoom = calcZoom(Const.CAM_VIEW_DIST_GROUND);
@@ -58,10 +58,10 @@ public class SolCam {
         return myCam.combined;
     }
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         float life = 0;
 
-        SolShip hero = game.getHero();
+        PtmShip hero = game.getHero();
         float ts = game.getTimeStep();
         if (hero == null) {
             StarPort.Transcendent trans = game.getTranscendentHero();
@@ -78,49 +78,49 @@ public class SolCam {
                 myPos.set(heroPos);
                 game.getObjMan().resetDelays();
             } else {
-                Vector2 moveDiff = SolMath.getVec(hero.getSpd());
+                Vector2 moveDiff = PtmMath.getVec(hero.getSpd());
                 moveDiff.scl(ts);
                 myPos.add(moveDiff);
-                SolMath.free(moveDiff);
+                PtmMath.free(moveDiff);
                 float moveSpd = MOVE_SPD * ts;
-                myPos.x = SolMath.approach(myPos.x, heroPos.x, moveSpd);
-                myPos.y = SolMath.approach(myPos.y, heroPos.y, moveSpd);
+                myPos.x = PtmMath.approach(myPos.x, heroPos.x, moveSpd);
+                myPos.y = PtmMath.approach(myPos.y, heroPos.y, moveSpd);
             }
             life = hero.getLife();
         }
 
         if (life < myPrevHeroLife) {
             float shakeDiff = .1f * MAX_SHAKE * (myPrevHeroLife - life);
-            myShake = SolMath.approach(myShake, MAX_SHAKE, shakeDiff);
+            myShake = PtmMath.approach(myShake, MAX_SHAKE, shakeDiff);
         } else {
-            myShake = SolMath.approach(myShake, 0, SHAKE_DAMP * ts);
+            myShake = PtmMath.approach(myShake, 0, SHAKE_DAMP * ts);
         }
         myPrevHeroLife = life;
 
-        Vector2 pos = SolMath.fromAl(SolMath.rnd(180), myShake);
+        Vector2 pos = PtmMath.fromAl(PtmMath.rnd(180), myShake);
         pos.add(myPos);
         applyPos(pos.x, pos.y);
-        SolMath.free(pos);
+        PtmMath.free(pos);
 
         float desiredAngle = myCamRotStrategy.getRotation(myPos, game);
         float rotSpd = CAM_ROT_SPD * ts;
-        myAngle = SolMath.approachAngle(myAngle, desiredAngle, rotSpd);
+        myAngle = PtmMath.approachAngle(myAngle, desiredAngle, rotSpd);
         applyAngle();
 
         updateMap(game);
     }
 
-    public void updateMap(SolGame game) {
+    public void updateMap(PtmGame game) {
         float ts = game.getTimeStep();
         float desiredViewDistance = getDesiredViewDistance(game);
         float desiredZoom = calcZoom(desiredViewDistance);
-        myZoom = SolMath.approach(myZoom, desiredZoom, ZOOM_CHG_SPD * ts);
+        myZoom = PtmMath.approach(myZoom, desiredZoom, ZOOM_CHG_SPD * ts);
         applyZoom(game.getMapDrawer());
         myCam.update();
     }
 
-    private float getDesiredViewDistance(SolGame game) {
-        SolShip hero = game.getHero();
+    private float getDesiredViewDistance(PtmGame game) {
+        PtmShip hero = game.getHero();
         if (hero == null && game.getTranscendentHero() != null) { // hero is in transcendent state
             return Const.CAM_VIEW_DIST_SPACE;
         } else if (hero == null && game.getTranscendentHero() == null) {
@@ -140,7 +140,7 @@ public class SolCam {
     }
 
     private float calcZoom(float vd) {
-        float h = vd * SolMath.sqrt(2);
+        float h = vd * PtmMath.sqrt(2);
         return h / VIEWPORT_HEIGHT;
     }
 
@@ -160,30 +160,30 @@ public class SolCam {
         myCam.position.set(posX, posY, 0);
     }
 
-    private void applyInput(SolGame game) {
+    private void applyInput(PtmGame game) {
         MainScreen s = game.getScreens().mainScreen;
         boolean d = s.isDown();
         boolean u = s.isUp();
         boolean l = s.isLeft();
         boolean r = s.isRight();
-        Vector2 v = SolMath.getVec();
+        Vector2 v = PtmMath.getVec();
         if (l != r) {
-            v.x = SolMath.toInt(r);
+            v.x = PtmMath.toInt(r);
         }
         if (d != u) {
-            v.y = SolMath.toInt(d);
+            v.y = PtmMath.toInt(d);
         }
         v.scl(MOVE_SPD * game.getTimeStep());
-        SolMath.rotate(v, myAngle);
+        PtmMath.rotate(v, myAngle);
         myPos.add(v);
-        SolMath.free(v);
+        PtmMath.free(v);
     }
 
     private void applyAngle() {
-        Vector2 v = SolMath.getVec(0, 1);
-        SolMath.rotate(v, myAngle);
+        Vector2 v = PtmMath.getVec(0, 1);
+        PtmMath.rotate(v, myAngle);
         myCam.up.set(v.x, v.y, 0); // up is actually down, fcuk!!
-        SolMath.free(v);
+        PtmMath.free(v);
     }
 
     public float getViewDist() {
@@ -192,7 +192,7 @@ public class SolCam {
 
     public float getViewDist(float zoom) {
         float r = myCam.viewportWidth / myCam.viewportHeight;
-        return .5f * VIEWPORT_HEIGHT * SolMath.sqrt(1 + r * r) * zoom;
+        return .5f * VIEWPORT_HEIGHT * PtmMath.sqrt(1 + r * r) * zoom;
     }
 
     /**
@@ -213,13 +213,13 @@ public class SolCam {
     public void drawDebug(GameDrawer drawer) {
         float hOver2 = VIEWPORT_HEIGHT * myZoom / 2;
         float wOver2 = hOver2 * drawer.r;
-        Vector2 dr = SolMath.getVec(wOver2, hOver2);
-        SolMath.rotate(dr, myAngle);
-        Vector2 dl = SolMath.getVec(-wOver2, hOver2);
-        SolMath.rotate(dl, myAngle);
-        Vector2 ul = SolMath.getVec(dr);
+        Vector2 dr = PtmMath.getVec(wOver2, hOver2);
+        PtmMath.rotate(dr, myAngle);
+        Vector2 dl = PtmMath.getVec(-wOver2, hOver2);
+        PtmMath.rotate(dl, myAngle);
+        Vector2 ul = PtmMath.getVec(dr);
         ul.scl(-1);
-        Vector2 ur = SolMath.getVec(dl);
+        Vector2 ur = PtmMath.getVec(dl);
         ur.scl(-1);
         dr.add(myPos);
         dl.add(myPos);
@@ -227,15 +227,15 @@ public class SolCam {
         ur.add(myPos);
 
         float lw = getRealLineWidth();
-        drawer.drawLine(drawer.debugWhiteTex, dr, dl, SolColor.WHITE, lw, false);
-        drawer.drawLine(drawer.debugWhiteTex, dl, ul, SolColor.WHITE, lw, false);
-        drawer.drawLine(drawer.debugWhiteTex, ul, ur, SolColor.WHITE, lw, false);
-        drawer.drawLine(drawer.debugWhiteTex, ur, dr, SolColor.WHITE, lw, false);
+        drawer.drawLine(drawer.debugWhiteTex, dr, dl, PtmColor.WHITE, lw, false);
+        drawer.drawLine(drawer.debugWhiteTex, dl, ul, PtmColor.WHITE, lw, false);
+        drawer.drawLine(drawer.debugWhiteTex, ul, ur, PtmColor.WHITE, lw, false);
+        drawer.drawLine(drawer.debugWhiteTex, ur, dr, PtmColor.WHITE, lw, false);
 
-        SolMath.free(dr);
-        SolMath.free(dl);
-        SolMath.free(ul);
-        SolMath.free(ur);
+        PtmMath.free(dr);
+        PtmMath.free(dl);
+        PtmMath.free(ul);
+        PtmMath.free(ur);
     }
 
     public float getRealLineWidth() {
@@ -267,19 +267,19 @@ public class SolCam {
     }
 
     public boolean isVisible(Vector2 pos) {
-        Vector2 rp = SolMath.toRel(pos, myAngle, myPos);
+        Vector2 rp = PtmMath.toRel(pos, myAngle, myPos);
         boolean res = isRelVisible(rp);
-        SolMath.free(rp);
+        PtmMath.free(rp);
         return res;
     }
 
     public boolean isRelVisible(Vector2 rp) {
         float wHalf = getViewWidth() / 2;
-        if (wHalf < SolMath.abs(rp.x)) {
+        if (wHalf < PtmMath.abs(rp.x)) {
             return false;
         }
         float hHalf = getViewHeight() / 2;
-        if (hHalf < SolMath.abs(rp.y)) {
+        if (hHalf < PtmMath.abs(rp.y)) {
             return false;
         }
         return true;

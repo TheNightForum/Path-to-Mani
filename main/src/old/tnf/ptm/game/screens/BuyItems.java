@@ -14,32 +14,32 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.item.ItemContainer;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.ui.SolInputManager;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.item.ItemContainer;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.ui.PtmInputManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BuyItems implements InventoryOperations {
-    public final SolUiControl buyControl;
-    private final ArrayList<SolUiControl> controls = new ArrayList<>();
+    public final PtmUiControl buyControl;
+    private final ArrayList<PtmUiControl> controls = new ArrayList<>();
 
     BuyItems(InventoryScreen inventoryScreen, GameOptions gameOptions) {
-        buyControl = new SolUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyBuyItem());
+        buyControl = new PtmUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyBuyItem());
         buyControl.setDisplayName("Buy");
         controls.add(buyControl);
     }
 
     @Override
-    public ItemContainer getItems(SolGame game) {
+    public ItemContainer getItems(PtmGame game) {
         return game.getScreens().talkScreen.getTarget().getTradeContainer().getItems();
     }
 
@@ -49,22 +49,22 @@ public class BuyItems implements InventoryOperations {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void updateCustom(SolApplication solApplication, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
-        SolGame game = solApplication.getGame();
+    public void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+        PtmGame game = ptmApplication.getGame();
         InventoryScreen is = game.getScreens().inventoryScreen;
-        SolShip hero = game.getHero();
+        PtmShip hero = game.getHero();
         TalkScreen talkScreen = game.getScreens().talkScreen;
-        SolShip target = talkScreen.getTarget();
+        PtmShip target = talkScreen.getTarget();
         if (talkScreen.isTargetFar(hero)) {
-            solApplication.getInputMan().setScreen(solApplication, game.getScreens().mainScreen);
+            ptmApplication.getInputMan().setScreen(ptmApplication, game.getScreens().mainScreen);
             return;
         }
-        SolItem selItem = is.getSelectedItem();
+        PtmItem selItem = is.getSelectedItem();
         boolean enabled = selItem != null && hero.getMoney() >= selItem.getPrice() && hero.getItemContainer().canAdd(selItem);
         buyControl.setDisplayName(enabled ? "Buy" : "---");
         buyControl.setEnabled(enabled);

@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.particle;
+package old.tnf.ptm.game.particle;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.SolColorUtil;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.common.PtmColorUtil;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.dra.RectSprite;
 
 import java.util.List;
 
@@ -42,14 +42,14 @@ public class LightSrc {
     /**
      * doesn't consume relPos
      */
-    public LightSrc(SolGame game, float sz, boolean hasHalo, float intensity, Vector2 relPos, Color col) {
+    public LightSrc(PtmGame game, float sz, boolean hasHalo, float intensity, Vector2 relPos, Color col) {
         TextureAtlas.AtlasRegion tex = game.getTexMan().getTexture("smallGameObjects/particles/lightCircle");
         mySz = sz;
         myCircle = new RectSprite(tex, 0, 0, 0, new Vector2(relPos), DraLevel.PART_BG_0, 0, 0, col, true);
         tex = game.getTexMan().getTexture("smallGameObjects/particles/lightHalo");
         if (hasHalo) {
             Color haloCol = new Color(col);
-            SolColorUtil.changeBrightness(haloCol, .8f);
+            PtmColorUtil.changeBrightness(haloCol, .8f);
             myHalo = new RectSprite(tex, 0, 0, 0, new Vector2(relPos), DraLevel.PART_FG_0, 0, 0, haloCol, true);
         } else {
             myHalo = null;
@@ -58,15 +58,15 @@ public class LightSrc {
         myFadeTime = DEFAULT_FADE_TIME;
     }
 
-    public void update(boolean working, float baseAngle, SolGame game) {
+    public void update(boolean working, float baseAngle, PtmGame game) {
         if (working) {
             myWorkPerc = 1f;
         } else {
-            myWorkPerc = SolMath.approach(myWorkPerc, 0, game.getTimeStep() / myFadeTime);
+            myWorkPerc = PtmMath.approach(myWorkPerc, 0, game.getTimeStep() / myFadeTime);
         }
-        float baseA = SolMath.rnd(.5f, 1) * myWorkPerc * myIntensity;
+        float baseA = PtmMath.rnd(.5f, 1) * myWorkPerc * myIntensity;
         myCircle.tint.a = baseA * A_RATIO;
-        float sz = (1 + SolMath.rnd(.2f * myIntensity)) * mySz;
+        float sz = (1 + PtmMath.rnd(.2f * myIntensity)) * mySz;
         myCircle.setTexSz(SZ_RATIO * sz);
         if (myHalo != null) {
             myHalo.tint.a = baseA;

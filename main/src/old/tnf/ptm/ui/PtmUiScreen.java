@@ -15,38 +15,38 @@
  */
 package old.tnf.ptm.ui;
 
-import old.tnf.ptm.SolApplication;
+import old.tnf.ptm.PtmApplication;
 
 import java.util.List;
 
-public interface SolUiScreen {
-    List<SolUiControl> getControls();
+public interface PtmUiScreen {
+    List<PtmUiControl> getControls();
 
-    default void onAdd(SolApplication solApplication) {
+    default void onAdd(PtmApplication ptmApplication) {
         // Intentionally left blank
     }
 
-    default void updateCustom(SolApplication solApplication, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+    default void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
         // Intentionally left blank
     }
 
-    default boolean isCursorOnBg(SolInputManager.InputPointer inputPointer) {
+    default boolean isCursorOnBg(PtmInputManager.InputPointer inputPointer) {
         return false;
     }
 
-    default void blurCustom(SolApplication solApplication) {
+    default void blurCustom(PtmApplication ptmApplication) {
         // Intentionally left blank
     }
 
-    default void drawBg(UiDrawer uiDrawer, SolApplication solApplication) {
+    default void drawBg(UiDrawer uiDrawer, PtmApplication ptmApplication) {
         // Intentionally left blank
     }
 
-    default void drawImgs(UiDrawer uiDrawer, SolApplication solApplication) {
+    default void drawImgs(UiDrawer uiDrawer, PtmApplication ptmApplication) {
         // Intentionally left blank
     }
 
-    default void drawText(UiDrawer uiDrawer, SolApplication solApplication) {
+    default void drawText(UiDrawer uiDrawer, PtmApplication ptmApplication) {
         // Intentionally left blank
     }
 

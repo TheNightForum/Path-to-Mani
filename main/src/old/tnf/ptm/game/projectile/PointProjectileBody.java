@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.projectile;
+package old.tnf.ptm.game.projectile;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.PtmGame;
 
 public class PointProjectileBody implements ProjectileBody {
     private final Vector2 myPos;
@@ -31,30 +31,30 @@ public class PointProjectileBody implements ProjectileBody {
     private final float myAcc;
 
     public PointProjectileBody(float angle, Vector2 muzzlePos, Vector2 gunSpd, float spdLen,
-                               Projectile projectile, SolGame game, float acc) {
+                               Projectile projectile, PtmGame game, float acc) {
         myPos = new Vector2(muzzlePos);
         mySpd = new Vector2();
-        SolMath.fromAl(mySpd, angle, spdLen);
+        PtmMath.fromAl(mySpd, angle, spdLen);
         mySpd.add(gunSpd);
         myRayBack = new MyRayBack(projectile, game);
         myAcc = acc;
     }
 
     @Override
-    public void update(SolGame game) {
-        if (myAcc > 0 && SolMath.canAccelerate(myAcc, mySpd)) {
+    public void update(PtmGame game) {
+        if (myAcc > 0 && PtmMath.canAccelerate(myAcc, mySpd)) {
             float spdLen = mySpd.len();
             if (spdLen < Const.MAX_MOVE_SPD) {
                 mySpd.scl((spdLen + myAcc) / spdLen);
             }
         }
-        Vector2 prevPos = SolMath.getVec(myPos);
-        Vector2 diff = SolMath.getVec(mySpd);
+        Vector2 prevPos = PtmMath.getVec(myPos);
+        Vector2 diff = PtmMath.getVec(mySpd);
         diff.scl(game.getTimeStep());
         myPos.add(diff);
-        SolMath.free(diff);
+        PtmMath.free(diff);
         game.getObjMan().getWorld().rayCast(myRayBack, prevPos, myPos);
-        SolMath.free(prevPos);
+        PtmMath.free(prevPos);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class PointProjectileBody implements ProjectileBody {
     }
 
     @Override
-    public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+    public void receiveForce(Vector2 force, PtmGame game, boolean acc) {
         force.scl(game.getTimeStep());
         if (!acc) {
             force.scl(10f);
@@ -77,37 +77,37 @@ public class PointProjectileBody implements ProjectileBody {
     }
 
     @Override
-    public void onRemove(SolGame game) {
+    public void onRemove(PtmGame game) {
     }
 
     @Override
     public float getAngle() {
-        return SolMath.angle(mySpd);
+        return PtmMath.angle(mySpd);
     }
 
     @Override
     public void changeAngle(float diff) {
-        SolMath.rotate(mySpd, diff);
+        PtmMath.rotate(mySpd, diff);
     }
 
     @Override
-    public float getDesiredAngle(SolShip ne) {
-        return SolMath.angle(myPos, ne.getPosition());
+    public float getDesiredAngle(PtmShip ne) {
+        return PtmMath.angle(myPos, ne.getPosition());
     }
 
     private class MyRayBack implements RayCastCallback {
 
         private final Projectile myProjectile;
-        private final SolGame myGame;
+        private final PtmGame myGame;
 
-        private MyRayBack(Projectile projectile, SolGame game) {
+        private MyRayBack(Projectile projectile, PtmGame game) {
             myProjectile = projectile;
             myGame = game;
         }
 
         @Override
         public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
-            SolObject o = (SolObject) fixture.getBody().getUserData();
+            PtmObject o = (PtmObject) fixture.getBody().getUserData();
             boolean oIsMassless = o instanceof Projectile && ((Projectile) o).isMassless();
             if (!oIsMassless && myProjectile.shouldCollide(o, fixture, myGame.getFactionMan())) {
                 myPos.set(point);

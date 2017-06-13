@@ -14,28 +14,28 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.gun;
+package old.tnf.ptm.game.gun;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.input.Shooter;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.item.Gun;
-import com.tnf.ptm.game.item.ItemContainer;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.ship.hulls.GunSlot;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.input.Shooter;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.game.Faction;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.item.Gun;
+import old.tnf.ptm.game.item.ItemContainer;
+import old.tnf.ptm.game.ship.hulls.GunSlot;
 
 import java.util.List;
 
 public class GunMount {
     private final Vector2 myRelPos;
     private final boolean myFixed;
-    private SolGun myGun;
+    private PtmGun myGun;
     private boolean myDetected;
     private float myRelGunAngle;
 
@@ -44,7 +44,7 @@ public class GunMount {
         myFixed = !gunSlot.allowsRotation();
     }
 
-    public void update(ItemContainer ic, SolGame game, float shipAngle, SolShip creator, boolean shouldShoot, SolShip nearestEnemy, Faction faction) {
+    public void update(ItemContainer ic, PtmGame game, float shipAngle, PtmShip creator, boolean shouldShoot, PtmShip nearestEnemy, Faction faction) {
         if (myGun == null) {
             return;
         }
@@ -63,7 +63,7 @@ public class GunMount {
             float dst = creatorPos.dst(nePos) - creator.getHull().config.getApproxRadius() - nearestEnemy.getHull().config.getApproxRadius();
             float detDst = game.getPlanetMan().getNearestPlanet().isNearGround(creatorPos) ? Const.AUTO_SHOOT_GROUND : Const.AUTO_SHOOT_SPACE;
             if (dst < detDst) {
-                Vector2 mountPos = SolMath.toWorld(myRelPos, shipAngle, creatorPos);
+                Vector2 mountPos = PtmMath.toWorld(myRelPos, shipAngle, creatorPos);
                 boolean player = creator.getPilot().isPlayer();
                 float shootAngle = Shooter.calcShootAngle(mountPos, creator.getSpd(), nePos, nearestEnemy.getSpd(), myGun.getConfig().clipConf.projConfig.spdLen, player);
                 if (shootAngle == shootAngle) {
@@ -73,7 +73,7 @@ public class GunMount {
                         game.getMountDetectDrawer().setNe(nearestEnemy);
                     }
                 }
-                SolMath.free(mountPos);
+                PtmMath.free(mountPos);
             }
         }
 
@@ -85,7 +85,7 @@ public class GunMount {
         return myGun == null ? null : myGun.getItem();
     }
 
-    public void setGun(SolGame game, SolObject o, Gun gun, boolean underShip, int slotNr) {
+    public void setGun(PtmGame game, PtmObject o, Gun gun, boolean underShip, int slotNr) {
         List<Dra> dras = o.getDras();
         if (myGun != null) {
             List<Dra> dras1 = myGun.getDras();
@@ -98,7 +98,7 @@ public class GunMount {
             if (gun.config.fixed != myFixed) {
                 throw new AssertionError("tried to set gun to incompatible mount");
             }
-            myGun = new SolGun(game, gun, myRelPos, underShip);
+            myGun = new PtmGun(game, gun, myRelPos, underShip);
             myGun.getItem().setEquipped(slotNr);
             List<Dra> dras1 = myGun.getDras();
             dras.addAll(dras1);

@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.game.GameColors;
+import old.tnf.ptm.game.GameColors;
 
 public class SkyConfig {
     public final Color dawn;

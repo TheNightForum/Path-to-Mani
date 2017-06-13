@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
 
 public class FlatPlaceFinder {
     private final Vector2 myVec = new Vector2();
@@ -32,26 +32,26 @@ public class FlatPlaceFinder {
                 return -1;
             }
             myVec.set(point);
-            myDeviation = SolMath.abs(SolMath.angle(normal) + 90);
+            myDeviation = PtmMath.abs(PtmMath.angle(normal) + 90);
             return fraction;
         }
     };
 
-    public Vector2 find(SolGame game, Planet p, ConsumedAngles takenAngles, float objHalfWidth) {
+    public Vector2 find(PtmGame game, Planet p, ConsumedAngles takenAngles, float objHalfWidth) {
         Vector2 pPos = p.getPos();
 
         Vector2 res = new Vector2(pPos);
         float minDeviation = 90;
         float resAngle = 0;
-        float objAngularHalfWidth = SolMath.angularWidthOfSphere(objHalfWidth, p.getGroundHeight());
+        float objAngularHalfWidth = PtmMath.angularWidthOfSphere(objHalfWidth, p.getGroundHeight());
 
         for (int i = 0; i < 20; i++) {
-            float angle = SolMath.rnd(180);
+            float angle = PtmMath.rnd(180);
             if (takenAngles != null && takenAngles.isConsumed(angle, objAngularHalfWidth)) {
                 continue;
             }
             myDeviation = angle;
-            SolMath.fromAl(myVec, angle, p.getFullHeight());
+            PtmMath.fromAl(myVec, angle, p.getFullHeight());
             myVec.add(pPos);
             game.getObjMan().getWorld().rayCast(myRayBack, myVec, pPos);
             if (myDeviation < minDeviation) {
@@ -65,7 +65,7 @@ public class FlatPlaceFinder {
             takenAngles.add(resAngle, objAngularHalfWidth);
         }
         res.sub(pPos);
-        SolMath.rotate(res, -p.getAngle());
+        PtmMath.rotate(res, -p.getAngle());
         return res;
     }
 }

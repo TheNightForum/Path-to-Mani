@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.planet.Planet;
 
 public class BigObjAvoider {
 
@@ -30,7 +30,7 @@ public class BigObjAvoider {
         myProj = new Vector2();
     }
 
-    public float avoid(SolGame game, Vector2 from, Vector2 dest, float toDestAngle) {
+    public float avoid(PtmGame game, Vector2 from, Vector2 dest, float toDestAngle) {
         float toDestLen = from.dst(dest);
         if (toDestLen > MAX_DIST_LEN) {
             toDestLen = MAX_DIST_LEN;
@@ -44,21 +44,21 @@ public class BigObjAvoider {
         }
         myProj.set(pPos);
         myProj.sub(from);
-        SolMath.rotate(myProj, -toDestAngle);
+        PtmMath.rotate(myProj, -toDestAngle);
         if (0 < myProj.x && myProj.x < toDestLen) {
-            if (SolMath.abs(myProj.y) < pRad) {
+            if (PtmMath.abs(myProj.y) < pRad) {
                 toDestLen = myProj.x;
-                res = toDestAngle + 45 * SolMath.toInt(myProj.y < 0);
+                res = toDestAngle + 45 * PtmMath.toInt(myProj.y < 0);
             }
         }
         Vector2 sunPos = p.getSys().getPos();
         float sunRad = Const.SUN_RADIUS;
         myProj.set(sunPos);
         myProj.sub(from);
-        SolMath.rotate(myProj, -toDestAngle);
+        PtmMath.rotate(myProj, -toDestAngle);
         if (0 < myProj.x && myProj.x < toDestLen) {
-            if (SolMath.abs(myProj.y) < sunRad) {
-                res = toDestAngle + 45 * SolMath.toInt(myProj.y < 0);
+            if (PtmMath.abs(myProj.y) < sunRad) {
+                res = toDestAngle + 45 * PtmMath.toInt(myProj.y < 0);
             }
         }
         return res;

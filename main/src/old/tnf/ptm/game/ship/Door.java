@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.ship;
+package old.tnf.ptm.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.joints.PrismaticJoint;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.FactionManager;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.RectSprite;
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.input.Pilot;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.FactionManager;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.game.Faction;
+import old.tnf.ptm.game.input.Pilot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +46,7 @@ public class Door {
         myS = s;
     }
 
-    public void update(SolGame game, SolShip ship) {
+    public void update(PtmGame game, PtmShip ship) {
         Vector2 doorPos = getBody().getPosition();
         boolean open = myOpenAwait <= 0 && shouldOpen(game, ship, doorPos);
         if (open) {
@@ -63,22 +63,22 @@ public class Door {
 
         Vector2 shipPos = ship.getPosition();
         float shipAngle = ship.getAngle();
-        SolMath.toRel(doorPos, myS.getRelPos(), shipAngle, shipPos);
+        PtmMath.toRel(doorPos, myS.getRelPos(), shipAngle, shipPos);
     }
 
-    private boolean shouldOpen(SolGame game, SolShip ship, Vector2 doorPos) {
+    private boolean shouldOpen(PtmGame game, PtmShip ship, Vector2 doorPos) {
         Faction faction = ship.getPilot().getFaction();
         FactionManager factionManager = game.getFactionMan();
-        List<SolObject> objs = game.getObjMan().getObjs();
+        List<PtmObject> objs = game.getObjMan().getObjs();
         for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-            SolObject o = objs.get(i);
+            PtmObject o = objs.get(i);
             if (o == ship) {
                 continue;
             }
-            if (!(o instanceof SolShip)) {
+            if (!(o instanceof PtmShip)) {
                 continue;
             }
-            SolShip ship2 = (SolShip) o;
+            PtmShip ship2 = (PtmShip) o;
             Pilot pilot2 = ship2.getPilot();
             if (!pilot2.isUp()) {
                 continue;
@@ -101,7 +101,7 @@ public class Door {
         return myJoint.getBodyB();
     }
 
-    public void onRemove(SolGame game) {
+    public void onRemove(PtmGame game) {
         World w = game.getObjMan().getWorld();
         Body doorBody = getBody();
         w.destroyJoint(myJoint);

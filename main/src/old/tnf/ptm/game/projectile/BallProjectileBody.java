@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.projectile;
+package old.tnf.ptm.game.projectile;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.asteroid.AsteroidBuilder;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.asteroid.AsteroidBuilder;
+import old.tnf.ptm.game.ship.PtmShip;
 
 public class BallProjectileBody implements ProjectileBody {
     private final Body myBody;
@@ -31,16 +31,16 @@ public class BallProjectileBody implements ProjectileBody {
 
     private float myAngle;
 
-    public BallProjectileBody(SolGame game, Vector2 pos, float angle, Projectile projectile,
+    public BallProjectileBody(PtmGame game, Vector2 pos, float angle, Projectile projectile,
                               Vector2 gunSpd, float spdLen, ProjectileConfig config) {
         float density = config.density == -1 ? 1 : config.density;
         myBody = AsteroidBuilder.buildBall(game, pos, angle, config.physSize / 2, density, config.massless);
         if (config.zeroAbsSpd) {
-            myBody.setAngularVelocity(15f * SolMath.degRad);
+            myBody.setAngularVelocity(15f * PtmMath.degRad);
         }
 
         mySpd = new Vector2();
-        SolMath.fromAl(mySpd, angle, spdLen);
+        PtmMath.fromAl(mySpd, angle, spdLen);
         mySpd.add(gunSpd);
         myBody.setLinearVelocity(mySpd);
         myBody.setUserData(projectile);
@@ -53,17 +53,17 @@ public class BallProjectileBody implements ProjectileBody {
 
     private void setParamsFromBody() {
         myPos.set(myBody.getPosition());
-        myAngle = myBody.getAngle() * SolMath.radDeg;
+        myAngle = myBody.getAngle() * PtmMath.radDeg;
         mySpd.set(myBody.getLinearVelocity());
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         setParamsFromBody();
-        if (myAcc > 0 && SolMath.canAccelerate(myAngle, mySpd)) {
-            Vector2 force = SolMath.fromAl(myAngle, myAcc * myMass);
+        if (myAcc > 0 && PtmMath.canAccelerate(myAngle, mySpd)) {
+            Vector2 force = PtmMath.fromAl(myAngle, myAcc * myMass);
             myBody.applyForceToCenter(force, true);
-            SolMath.free(force);
+            PtmMath.free(force);
         }
     }
 
@@ -78,7 +78,7 @@ public class BallProjectileBody implements ProjectileBody {
     }
 
     @Override
-    public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+    public void receiveForce(Vector2 force, PtmGame game, boolean acc) {
         if (acc) {
             force.scl(myMass);
         }
@@ -86,7 +86,7 @@ public class BallProjectileBody implements ProjectileBody {
     }
 
     @Override
-    public void onRemove(SolGame game) {
+    public void onRemove(PtmGame game) {
         myBody.getWorld().destroyBody(myBody);
     }
 
@@ -98,21 +98,21 @@ public class BallProjectileBody implements ProjectileBody {
     @Override
     public void changeAngle(float diff) {
         myAngle += diff;
-        myBody.setTransform(myPos, myAngle * SolMath.degRad);
+        myBody.setTransform(myPos, myAngle * PtmMath.degRad);
         myBody.setAngularVelocity(0);
     }
 
     @Override
-    public float getDesiredAngle(SolShip ne) {
+    public float getDesiredAngle(PtmShip ne) {
         float spdLen = mySpd.len();
         if (spdLen < 3) {
             spdLen = 3;
         }
-        float toNe = SolMath.angle(myPos, ne.getPosition());
-        Vector2 desiredSpd = SolMath.fromAl(toNe, spdLen);
+        float toNe = PtmMath.angle(myPos, ne.getPosition());
+        Vector2 desiredSpd = PtmMath.fromAl(toNe, spdLen);
         desiredSpd.add(ne.getSpd());
-        float res = SolMath.angle(mySpd, desiredSpd);
-        SolMath.free(desiredSpd);
+        float res = PtmMath.angle(mySpd, desiredSpd);
+        PtmMath.free(desiredSpd);
         return res;
     }
 }

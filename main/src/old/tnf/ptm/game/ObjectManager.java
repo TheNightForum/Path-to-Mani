@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.DebugCol;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraMan;
-import com.tnf.ptm.game.dra.FarDras;
-import com.tnf.ptm.game.ship.FarShip;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.DebugCol;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraMan;
+import old.tnf.ptm.game.dra.FarDras;
+import old.tnf.ptm.game.ship.FarShip;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,32 +34,32 @@ import java.util.List;
 
 public class ObjectManager {
     private static final float MAX_RADIUS_RECALC_AWAIT = 1f;
-    private final List<SolObject> myObjs;
-    private final List<SolObject> myToRemove;
-    private final List<SolObject> myToAdd;
+    private final List<PtmObject> myObjs;
+    private final List<PtmObject> myToRemove;
+    private final List<PtmObject> myToAdd;
     private final List<FarObjData> myFarObjs;
     private final List<FarShip> myFarShips;
     private final List<StarPort.MyFar> myFarPorts;
     private final World myWorld;
     private final Box2DDebugRenderer myDr;
-    private final HashMap<SolObject, Float> myRadii;
+    private final HashMap<PtmObject, Float> myRadii;
 
     private float myFarEndDist;
     private float myFarBeginDist;
     private float myRadiusRecalcAwait;
 
-    public ObjectManager(SolContactListener contactListener, FactionManager factionManager) {
-        myObjs = new ArrayList<SolObject>();
-        myToRemove = new ArrayList<SolObject>();
-        myToAdd = new ArrayList<SolObject>();
+    public ObjectManager(PtmContactListener contactListener, FactionManager factionManager) {
+        myObjs = new ArrayList<PtmObject>();
+        myToRemove = new ArrayList<PtmObject>();
+        myToAdd = new ArrayList<PtmObject>();
         myFarObjs = new ArrayList<FarObjData>();
         myFarShips = new ArrayList<FarShip>();
         myFarPorts = new ArrayList<StarPort.MyFar>();
         myWorld = new World(new Vector2(0, 0), true);
         myWorld.setContactListener(contactListener);
-        myWorld.setContactFilter(new SolContactFilter(factionManager));
+        myWorld.setContactFilter(new PtmContactFilter(factionManager));
         myDr = new Box2DDebugRenderer();
-        myRadii = new HashMap<SolObject, Float>();
+        myRadii = new HashMap<PtmObject, Float>();
     }
 
     public boolean containsFarObj(FarObj fo) {
@@ -72,13 +72,13 @@ public class ObjectManager {
         return false;
     }
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         addRemove(game);
 
         float ts = game.getTimeStep();
         myWorld.step(ts, 6, 2);
 
-        SolCam cam = game.getCam();
+        PtmCam cam = game.getCam();
         Vector2 camPos = cam.getPos();
         myFarEndDist = 1.5f * cam.getViewDist();
         myFarBeginDist = 1.33f * myFarEndDist;
@@ -92,9 +92,9 @@ public class ObjectManager {
         }
 
         for (int i1 = 0, myObjsSize = myObjs.size(); i1 < myObjsSize; i1++) {
-            SolObject o = myObjs.get(i1);
+            PtmObject o = myObjs.get(i1);
             o.update(game);
-            SolMath.checkVectorsTaken(o);
+            PtmMath.checkVectorsTaken(o);
             List<Dra> dras = o.getDras();
             for (int i = 0, drasSize = dras.size(); i < drasSize; i++) {
                 Dra dra = dras.get(i);
@@ -122,13 +122,13 @@ public class ObjectManager {
             FarObjData fod = it.next();
             FarObj fo = fod.fo;
             fo.update(game);
-            SolMath.checkVectorsTaken(fo);
+            PtmMath.checkVectorsTaken(fo);
             if (fo.shouldBeRemoved(game)) {
                 removeFo(it, fo);
                 continue;
             }
             if (isNear(fod, camPos, ts)) {
-                SolObject o = fo.toObj(game);
+                PtmObject o = fo.toObj(game);
                 // Ensure that StarPorts are added straight away so that we can see if they overlap
                 if (o instanceof StarPort) {
                     addObjNow(game, o);
@@ -151,17 +151,17 @@ public class ObjectManager {
         }
     }
 
-    private void recalcRadius(SolObject o) {
+    private void recalcRadius(PtmObject o) {
         float rad = DraMan.radiusFromDras(o.getDras());
         myRadii.put(o, rad);
     }
 
-    public float getPresenceRadius(SolObject o) {
+    public float getPresenceRadius(PtmObject o) {
         Float res = getRadius(o);
         return res + Const.MAX_MOVE_SPD * (MAX_RADIUS_RECALC_AWAIT - myRadiusRecalcAwait);
     }
 
-    public Float getRadius(SolObject o) {
+    public Float getRadius(PtmObject o) {
         Float res = myRadii.get(o);
         if (res == null) {
             throw new AssertionError("no radius for " + o);
@@ -169,28 +169,28 @@ public class ObjectManager {
         return res;
     }
 
-    private void addRemove(SolGame game) {
+    private void addRemove(PtmGame game) {
         for (int i = 0, myToRemoveSize = myToRemove.size(); i < myToRemoveSize; i++) {
-            SolObject o = myToRemove.get(i);
+            PtmObject o = myToRemove.get(i);
             removeObjNow(game, o);
         }
         myToRemove.clear();
 
         for (int i = 0, myToAddSize = myToAdd.size(); i < myToAddSize; i++) {
-            SolObject o = myToAdd.get(i);
+            PtmObject o = myToAdd.get(i);
             addObjNow(game, o);
         }
         myToAdd.clear();
     }
 
-    private void removeObjNow(SolGame game, SolObject o) {
+    private void removeObjNow(PtmGame game, PtmObject o) {
         myObjs.remove(o);
         myRadii.remove(o);
         o.onRemove(game);
         game.getDraMan().objRemoved(o);
     }
 
-    public void addObjNow(SolGame game, SolObject o) {
+    public void addObjNow(PtmGame game, PtmObject o) {
         if (DebugOptions.ASSERTIONS && myObjs.contains(o)) {
             throw new AssertionError();
         }
@@ -214,7 +214,7 @@ public class ObjectManager {
         return false;
     }
 
-    private boolean isFar(SolObject o, Vector2 camPos) {
+    private boolean isFar(PtmObject o, Vector2 camPos) {
         float r = getPresenceRadius(o);
         List<Dra> dras = o.getDras();
         if (dras != null && dras.size() > 0) {
@@ -224,7 +224,7 @@ public class ObjectManager {
         return myFarBeginDist < dst;
     }
 
-    public void drawDebug(GameDrawer drawer, SolGame game) {
+    public void drawDebug(GameDrawer drawer, PtmGame game) {
         if (DebugOptions.DRAW_OBJ_BORDERS) {
             drawDebug0(drawer, game);
         }
@@ -239,13 +239,13 @@ public class ObjectManager {
         }
     }
 
-    private void drawDebugStrings(GameDrawer drawer, SolGame game) {
+    private void drawDebugStrings(GameDrawer drawer, PtmGame game) {
         float fontSize = game.getCam().getDebugFontSize();
-        for (SolObject o : myObjs) {
+        for (PtmObject o : myObjs) {
             Vector2 pos = o.getPosition();
             String ds = o.toDebugString();
             if (ds != null) {
-                drawer.drawString(ds, pos.x, pos.y, fontSize, true, SolColor.WHITE);
+                drawer.drawString(ds, pos.x, pos.y, fontSize, true, PtmColor.WHITE);
             }
         }
         for (FarObjData fod : myFarObjs) {
@@ -253,16 +253,16 @@ public class ObjectManager {
             Vector2 pos = fo.getPos();
             String ds = fo.toDebugString();
             if (ds != null) {
-                drawer.drawString(ds, pos.x, pos.y, fontSize, true, SolColor.G);
+                drawer.drawString(ds, pos.x, pos.y, fontSize, true, PtmColor.G);
             }
         }
     }
 
-    private void drawDebug0(GameDrawer drawer, SolGame game) {
-        SolCam cam = game.getCam();
+    private void drawDebug0(GameDrawer drawer, PtmGame game) {
+        PtmCam cam = game.getCam();
         float lineWidth = cam.getRealLineWidth();
         float vh = cam.getViewHeight();
-        for (SolObject o : myObjs) {
+        for (PtmObject o : myObjs) {
             Vector2 pos = o.getPosition();
             float r = getRadius(o);
             drawer.drawCircle(drawer.debugWhiteTex, pos, r, DebugCol.OBJ, lineWidth, vh);
@@ -272,22 +272,22 @@ public class ObjectManager {
             FarObj fo = fod.fo;
             drawer.drawCircle(drawer.debugWhiteTex, fo.getPos(), fo.getRadius(), DebugCol.OBJ_FAR, lineWidth, vh);
         }
-        drawer.drawCircle(drawer.debugWhiteTex, cam.getPos(), myFarBeginDist, SolColor.WHITE, lineWidth, vh);
-        drawer.drawCircle(drawer.debugWhiteTex, cam.getPos(), myFarEndDist, SolColor.WHITE, lineWidth, vh);
+        drawer.drawCircle(drawer.debugWhiteTex, cam.getPos(), myFarBeginDist, PtmColor.WHITE, lineWidth, vh);
+        drawer.drawCircle(drawer.debugWhiteTex, cam.getPos(), myFarEndDist, PtmColor.WHITE, lineWidth, vh);
     }
 
-    public List<SolObject> getObjs() {
+    public List<PtmObject> getObjs() {
         return myObjs;
     }
 
-    public void addObjDelayed(SolObject p) {
+    public void addObjDelayed(PtmObject p) {
         if (DebugOptions.ASSERTIONS && myToAdd.contains(p)) {
             throw new AssertionError();
         }
         myToAdd.add(p);
     }
 
-    public void removeObjDelayed(SolObject obj) {
+    public void removeObjDelayed(PtmObject obj) {
         if (DebugOptions.ASSERTIONS && myToRemove.contains(obj)) {
             throw new AssertionError();
         }

@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.input.Pilot;
-import com.tnf.ptm.game.projectile.Projectile;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.input.Pilot;
+import old.tnf.ptm.game.projectile.Projectile;
 
 import java.util.List;
 
@@ -33,13 +33,13 @@ public class FactionManager {
     }
 
     /**
-     * Finds the nearest Enemy @{link SolShip} for the given ship
+     * Finds the nearest Enemy @{link PtmShip} for the given ship
      *
      * @param game the game object
      * @param ship the ship to find enemies for
      * @return the nearest Enemy ship
      */
-    public SolShip getNearestEnemy(SolGame game, SolShip ship) {
+    public PtmShip getNearestEnemy(PtmGame game, PtmShip ship) {
         Pilot pilot = ship.getPilot();
         float detectionDist = pilot.getDetectionDist();
         if (detectionDist <= 0) {
@@ -57,12 +57,12 @@ public class FactionManager {
      * @param projectile the target seeking projectile
      * @return the nearest Enemy ship
      */
-    public SolShip getNearestEnemy(SolGame game, Projectile projectile) {
+    public PtmShip getNearestEnemy(PtmGame game, Projectile projectile) {
         return getNearestEnemy(game, game.getCam().getViewDist(), projectile.getFaction(), projectile.getPosition());
     }
 
     /**
-     * Finds the nearest Enemy @{link SolShip}
+     * Finds the nearest Enemy @{link PtmShip}
      *
      * @param game          the game object
      * @param detectionDist the maximum distance allowed for detection
@@ -70,16 +70,16 @@ public class FactionManager {
      * @param position      the position of the entity
      * @return the nearest Enemy ship
      */
-    public SolShip getNearestEnemy(SolGame game, float detectionDist, Faction faction, Vector2 position) {
-        SolShip nearestEnemyShip = null;
+    public PtmShip getNearestEnemy(PtmGame game, float detectionDist, Faction faction, Vector2 position) {
+        PtmShip nearestEnemyShip = null;
         float minimumDistance = detectionDist;
-        List<SolObject> objects = game.getObjMan().getObjs();
+        List<PtmObject> objects = game.getObjMan().getObjs();
         for (int i = 0, objectsSize = objects.size(); i < objectsSize; i++) {
-            SolObject solObject = objects.get(i);
-            if (!(solObject instanceof SolShip)) {
+            PtmObject ptmObject = objects.get(i);
+            if (!(ptmObject instanceof PtmShip)) {
                 continue;
             }
-            SolShip potentialEnemyShip = (SolShip) solObject;
+            PtmShip potentialEnemyShip = (PtmShip) ptmObject;
             if (!areEnemies(faction, potentialEnemyShip.getPilot().getFaction())) {
                 continue;
             }
@@ -93,7 +93,7 @@ public class FactionManager {
         return nearestEnemyShip;
     }
 
-    private boolean hasObstacles(SolGame game, SolShip shipFrom, SolShip shipTo) {
+    private boolean hasObstacles(PtmGame game, PtmShip shipFrom, PtmShip shipTo) {
         myRayBack.shipFrom = shipFrom;
         myRayBack.shipTo = shipTo;
         myRayBack.hasObstacle = false;
@@ -101,7 +101,7 @@ public class FactionManager {
         return myRayBack.hasObstacle;
     }
 
-    public boolean areEnemies(SolShip s1, SolShip s2) {
+    public boolean areEnemies(PtmShip s1, PtmShip s2) {
         Faction f1 = s1.getPilot().getFaction();
         Faction f2 = s2.getPilot().getFaction();
         return areEnemies(f1, f2);
@@ -112,13 +112,13 @@ public class FactionManager {
     }
 
     private static class MyRayBack implements RayCastCallback {
-        public SolShip shipFrom;
-        public SolShip shipTo;
+        public PtmShip shipFrom;
+        public PtmShip shipTo;
         public boolean hasObstacle;
 
         @Override
         public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
-            SolObject o = (SolObject) fixture.getBody().getUserData();
+            PtmObject o = (PtmObject) fixture.getBody().getUserData();
             if (o == shipFrom || o == shipTo) {
                 return -1;
             }

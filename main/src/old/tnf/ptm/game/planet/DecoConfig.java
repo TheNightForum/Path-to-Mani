@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolMath;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmMath;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class DecoConfig {
             float density = deco.getFloat("density");
             float szMin = deco.getFloat("szMin");
             float szMax = deco.getFloat("szMax");
-            Vector2 orig = SolMath.readV2(deco, "orig");
+            Vector2 orig = PtmMath.readV2(deco, "orig");
             boolean allowFlip = deco.getBoolean("allowFlip");
             String texName = planetConfig.getString("decorationTexs") + "/" + deco.name;
             ArrayList<TextureAtlas.AtlasRegion> texs = textureManager.getPack("decorations/" + texName);

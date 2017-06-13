@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
@@ -23,15 +23,15 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.dra.RectSprite;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -246,13 +246,13 @@ public class CollisionMeshLoader {
      * @param dras a atlas will be added here
      * @param tex  pass if you already have a atlas.. So hacky!
      */
-    public Body getBodyAndSprite(SolGame game, HullConfig hullConfig, float scale, BodyDef.BodyType type,
+    public Body getBodyAndSprite(PtmGame game, HullConfig hullConfig, float scale, BodyDef.BodyType type,
                                  Vector2 pos, float angle, List<Dra> dras, float density, DraLevel level, TextureAtlas.AtlasRegion tex) {
         final String name = hullConfig.getInternalName();
 
         BodyDef bd = new BodyDef();
         bd.type = type;
-        bd.angle = angle * SolMath.degRad;
+        bd.angle = angle * PtmMath.degRad;
         bd.angularDamping = 0;
         bd.position.set(pos);
         bd.linearDamping = 0;
@@ -274,7 +274,7 @@ public class CollisionMeshLoader {
         if (tex == null) {
             tex = hullConfig.getTexture();
         }
-        RectSprite s = new RectSprite(tex, scale, orig.x - .5f, orig.y - .5f, new Vector2(), level, 0, 0, SolColor.WHITE, false);
+        RectSprite s = new RectSprite(tex, scale, orig.x - .5f, orig.y - .5f, new Vector2(), level, 0, 0, PtmColor.WHITE, false);
         dras.add(s);
         return body;
     }
@@ -287,11 +287,11 @@ public class CollisionMeshLoader {
      * @param dras       a atlas will be added here
      * @param tex        pass if you already have a atlas.. So hacky!
      */
-    public Body getBodyAndSprite(SolGame game, String texDirName, String texName, float scale, BodyDef.BodyType type,
+    public Body getBodyAndSprite(PtmGame game, String texDirName, String texName, float scale, BodyDef.BodyType type,
                                  Vector2 pos, float angle, List<Dra> dras, float density, DraLevel level, TextureAtlas.AtlasRegion tex) {
         BodyDef bd = new BodyDef();
         bd.type = type;
-        bd.angle = angle * SolMath.degRad;
+        bd.angle = angle * PtmMath.degRad;
         bd.angularDamping = 0;
         bd.position.set(pos);
         bd.linearDamping = 0;
@@ -315,7 +315,7 @@ public class CollisionMeshLoader {
             String imgName = texDirName + "/" + texName;
             tex = game.getTexMan().getTexture(imgName);
         }
-        RectSprite s = new RectSprite(tex, scale, orig.x - .5f, orig.y - .5f, new Vector2(), level, 0, 0, SolColor.WHITE, false);
+        RectSprite s = new RectSprite(tex, scale, orig.x - .5f, orig.y - .5f, new Vector2(), level, 0, 0, PtmColor.WHITE, false);
         dras.add(s);
         return body;
     }

@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.ship.PtmShip;
 
 public class SunWarnDrawer extends WarnDrawer {
 
@@ -26,8 +26,8 @@ public class SunWarnDrawer extends WarnDrawer {
         super(r, "Sun Near");
     }
 
-    public boolean shouldWarn(SolGame game) {
-        SolShip hero = game.getHero();
+    public boolean shouldWarn(PtmGame game) {
+        PtmShip hero = game.getHero();
         if (hero == null) {
             return false;
         }

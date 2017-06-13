@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.ship;
+package old.tnf.ptm.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.AbilityCommonConfig;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.item.ItemManager;
-import com.tnf.ptm.game.particle.ParticleSrc;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.AbilityCommonConfig;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.game.item.ItemManager;
+import old.tnf.ptm.game.particle.ParticleSrc;
 
 public class SloMo implements ShipAbility {
     private static final float SLO_MO_CHG_SPD = .03f;
@@ -53,7 +53,7 @@ public class SloMo implements ShipAbility {
     }
 
     @Override
-    public boolean update(SolGame game, SolShip owner, boolean tryToUse) {
+    public boolean update(PtmGame game, PtmShip owner, boolean tryToUse) {
         if (tryToUse) {
             myFactor = myConfig.factor;
             Vector2 pos = owner.getPosition();
@@ -62,7 +62,7 @@ public class SloMo implements ShipAbility {
             return true;
         }
         float ts = game.getTimeStep();
-        myFactor = SolMath.approach(myFactor, 1, SLO_MO_CHG_SPD * ts);
+        myFactor = PtmMath.approach(myFactor, 1, SLO_MO_CHG_SPD * ts);
         return false;
     }
 
@@ -73,10 +73,10 @@ public class SloMo implements ShipAbility {
     public static class Config implements AbilityConfig {
         public final float factor;
         public final float rechargeTime;
-        private final SolItem chargeExample;
+        private final PtmItem chargeExample;
         private final AbilityCommonConfig cc;
 
-        public Config(float factor, float rechargeTime, SolItem chargeExample, AbilityCommonConfig cc) {
+        public Config(float factor, float rechargeTime, PtmItem chargeExample, AbilityCommonConfig cc) {
             this.factor = factor;
             this.rechargeTime = rechargeTime;
             this.chargeExample = chargeExample;
@@ -86,7 +86,7 @@ public class SloMo implements ShipAbility {
         public static AbilityConfig load(JsonValue abNode, ItemManager itemManager, AbilityCommonConfig cc) {
             float factor = abNode.getFloat("factor");
             float rechargeTime = abNode.getFloat("rechargeTime");
-            SolItem chargeExample = itemManager.getExample("sloMoCharge");
+            PtmItem chargeExample = itemManager.getExample("sloMoCharge");
             return new Config(factor, rechargeTime, chargeExample, cc);
         }
 
@@ -96,7 +96,7 @@ public class SloMo implements ShipAbility {
         }
 
         @Override
-        public SolItem getChargeExample() {
+        public PtmItem getChargeExample() {
             return chargeExample;
         }
 

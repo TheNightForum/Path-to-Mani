@@ -13,13 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package old.tnf.ptm;
+package old.tnf.ptm.ui;
 
-import java.nio.file.Path;
-import java.util.List;
+import old.tnf.ptm.game.screens.RightPaneLayout;
+import old.tnf.ptm.menu.MenuLayout;
 
-public interface SolFileReader {
-    Path create(String fileName, List<String> lines);
+public class PtmLayouts {
+    public final RightPaneLayout rightPaneLayout;
+    public final MenuLayout menuLayout;
 
-    List<String> read(String fileName);
+    public PtmLayouts(float r) {
+        rightPaneLayout = new RightPaneLayout(r);
+        menuLayout = new MenuLayout(r);
+    }
 }

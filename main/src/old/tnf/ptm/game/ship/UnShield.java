@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.ship;
+package old.tnf.ptm.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.AbilityCommonConfig;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.item.ItemManager;
-import com.tnf.ptm.game.item.Shield;
-import com.tnf.ptm.game.particle.ParticleSrc;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.AbilityCommonConfig;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.game.DmgType;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.item.ItemManager;
+import old.tnf.ptm.game.item.Shield;
+import old.tnf.ptm.game.particle.ParticleSrc;
 
 public class UnShield implements ShipAbility {
     public static final int MAX_RADIUS = 6;
@@ -53,16 +53,16 @@ public class UnShield implements ShipAbility {
     }
 
     @Override
-    public boolean update(SolGame game, SolShip owner, boolean tryToUse) {
+    public boolean update(PtmGame game, PtmShip owner, boolean tryToUse) {
         if (!tryToUse) {
             return false;
         }
         Vector2 ownerPos = owner.getPosition();
-        for (SolObject o : game.getObjMan().getObjs()) {
-            if (!(o instanceof SolShip) || o == owner) {
+        for (PtmObject o : game.getObjMan().getObjs()) {
+            if (!(o instanceof PtmShip) || o == owner) {
                 continue;
             }
-            SolShip oShip = (SolShip) o;
+            PtmShip oShip = (PtmShip) o;
             Shield shield = oShip.getShield();
             if (shield == null) {
                 continue;
@@ -94,10 +94,10 @@ public class UnShield implements ShipAbility {
     public static class Config implements AbilityConfig {
         public final float rechargeTime;
         public final float amount;
-        private final SolItem chargeExample;
+        private final PtmItem chargeExample;
         private final AbilityCommonConfig cc;
 
-        public Config(float rechargeTime, SolItem chargeExample, float amount, AbilityCommonConfig cc) {
+        public Config(float rechargeTime, PtmItem chargeExample, float amount, AbilityCommonConfig cc) {
             this.rechargeTime = rechargeTime;
             this.chargeExample = chargeExample;
             this.amount = amount;
@@ -107,7 +107,7 @@ public class UnShield implements ShipAbility {
         public static AbilityConfig load(JsonValue abNode, ItemManager itemManager, AbilityCommonConfig cc) {
             float rechargeTime = abNode.getFloat("rechargeTime");
             float amount = abNode.getFloat("amount");
-            SolItem chargeExample = itemManager.getExample("unShieldCharge");
+            PtmItem chargeExample = itemManager.getExample("unShieldCharge");
             return new Config(rechargeTime, chargeExample, amount, cc);
         }
 
@@ -117,7 +117,7 @@ public class UnShield implements ShipAbility {
         }
 
         @Override
-        public SolItem getChargeExample() {
+        public PtmItem getChargeExample() {
             return chargeExample;
         }
 
@@ -128,7 +128,7 @@ public class UnShield implements ShipAbility {
 
         @Override
         public void appendDesc(StringBuilder sb) {
-            sb.append("Deal ").append(SolMath.nice(amount)).append(" dmg to enemy shields\n");
+            sb.append("Deal ").append(PtmMath.nice(amount)).append(" dmg to enemy shields\n");
         }
     }
 }

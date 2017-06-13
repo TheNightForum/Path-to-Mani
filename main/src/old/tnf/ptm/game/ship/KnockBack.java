@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.ship;
+package old.tnf.ptm.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.AbilityCommonConfig;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.item.ItemManager;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.particle.ParticleSrc;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.AbilityCommonConfig;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.item.ItemManager;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.game.particle.ParticleSrc;
 
 public class KnockBack implements ShipAbility {
     public static final int MAX_RADIUS = 8;
@@ -62,12 +62,12 @@ public class KnockBack implements ShipAbility {
     }
 
     @Override
-    public boolean update(SolGame game, SolShip owner, boolean tryToUse) {
+    public boolean update(PtmGame game, PtmShip owner, boolean tryToUse) {
         if (!tryToUse) {
             return false;
         }
         Vector2 ownerPos = owner.getPosition();
-        for (SolObject o : game.getObjMan().getObjs()) {
+        for (PtmObject o : game.getObjMan().getObjs()) {
             if (o == owner || !o.receivesGravity()) {
                 continue;
             }
@@ -80,11 +80,11 @@ public class KnockBack implements ShipAbility {
             if (perc <= 0) {
                 continue;
             }
-            Vector2 toO = SolMath.distVec(ownerPos, oPos);
+            Vector2 toO = PtmMath.distVec(ownerPos, oPos);
             float accLen = myConfig.force * perc;
             toO.scl(accLen / dst);
             o.receiveForce(toO, game, false);
-            SolMath.free(toO);
+            PtmMath.free(toO);
         }
         ParticleSrc src = new ParticleSrc(myConfig.cc.effect, MAX_RADIUS, DraLevel.PART_BG_0, new Vector2(), true, game, ownerPos, Vector2.Zero, 0);
         game.getPartMan().finish(game, src, ownerPos);
@@ -95,9 +95,9 @@ public class KnockBack implements ShipAbility {
         public final float rechargeTime;
         public final float force;
         public final AbilityCommonConfig cc;
-        private final SolItem chargeExample;
+        private final PtmItem chargeExample;
 
-        public Config(float rechargeTime, SolItem chargeExample, float force, AbilityCommonConfig cc) {
+        public Config(float rechargeTime, PtmItem chargeExample, float force, AbilityCommonConfig cc) {
             this.rechargeTime = rechargeTime;
             this.chargeExample = chargeExample;
             this.force = force;
@@ -107,7 +107,7 @@ public class KnockBack implements ShipAbility {
         public static AbilityConfig load(JsonValue abNode, ItemManager itemManager, AbilityCommonConfig cc) {
             float rechargeTime = abNode.getFloat("rechargeTime");
             float force = abNode.getFloat("force");
-            SolItem chargeExample = itemManager.getExample("knockBackCharge");
+            PtmItem chargeExample = itemManager.getExample("knockBackCharge");
             return new Config(rechargeTime, chargeExample, force, cc);
         }
 
@@ -117,7 +117,7 @@ public class KnockBack implements ShipAbility {
         }
 
         @Override
-        public SolItem getChargeExample() {
+        public PtmItem getChargeExample() {
             return chargeExample;
         }
 

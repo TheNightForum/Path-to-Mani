@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.tnf.ptm.SolApplication;
+import old.tnf.ptm.PtmApplication;
 
 public interface ShipUiControl {
-    default void update(SolApplication solApplication, boolean enabled) {
+    default void update(PtmApplication ptmApplication, boolean enabled) {
         // Intentionally left blank
     }
 

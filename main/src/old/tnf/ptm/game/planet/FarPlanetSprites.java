@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.FarObj;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraMan;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.FarObj;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraMan;
 
 import java.util.List;
 
@@ -46,20 +46,20 @@ public class FarPlanetSprites implements FarObj {
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(PtmGame game) {
         return false;
     }
 
     @Override
-    public SolObject toObj(SolGame game) {
+    public PtmObject toObj(PtmGame game) {
         return new PlanetSprites(myPlanet, myRelAngleToPlanet, myDist, myDras, myToPlanetRotSpd);
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         myRelAngleToPlanet += myToPlanetRotSpd * game.getTimeStep();
         if (game.getPlanetMan().getNearestPlanet() == myPlanet) {
-            SolMath.fromAl(myPos, myPlanet.getAngle() + myRelAngleToPlanet, myDist);
+            PtmMath.fromAl(myPos, myPlanet.getAngle() + myRelAngleToPlanet, myDist);
             myPos.add(myPlanet.getPos());
         }
     }

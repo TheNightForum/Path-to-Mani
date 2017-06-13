@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.assets.audio;
+package old.tnf.ptm.assets.audio;
 
 import com.google.common.base.Charsets;
-import com.tnf.ptm.IniReader;
+import old.tnf.ptm.IniReader;
 import org.terasology.assets.format.AbstractAssetAlterationFileFormat;
 import org.terasology.assets.format.AssetDataFile;
 import org.terasology.assets.module.annotations.RegisterAssetSupplementalFileFormat;

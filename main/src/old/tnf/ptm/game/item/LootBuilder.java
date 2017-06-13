@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.item;
+package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -22,13 +22,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.dra.RectSprite;
-import com.tnf.ptm.game.particle.LightSrc;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.game.particle.LightSrc;
+import old.tnf.ptm.game.ship.PtmShip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +39,11 @@ public class LootBuilder {
     }
 
     // set spd & rot spd
-    public Loot build(SolGame game, Vector2 pos, SolItem item, Vector2 spd, int life, float rotSpd, SolShip owner) {
+    public Loot build(PtmGame game, Vector2 pos, PtmItem item, Vector2 spd, int life, float rotSpd, PtmShip owner) {
         List<Dra> dras = new ArrayList<Dra>();
         TextureAtlas.AtlasRegion tex = item.getIcon(game);
         float sz = item.getItemType().sz;
-        RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.GUNS, 0, 0, SolColor.WHITE, false);
+        RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.GUNS, 0, 0, PtmColor.WHITE, false);
         dras.add(s);
         Body b = buildBody(game, pos, sz);
         b.setLinearVelocity(spd);
@@ -56,7 +56,7 @@ public class LootBuilder {
         return loot;
     }
 
-    private Body buildBody(SolGame game, Vector2 pos, float sz) {
+    private Body buildBody(PtmGame game, Vector2 pos, float sz) {
         BodyDef bd = new BodyDef();
         bd.type = BodyDef.BodyType.DynamicBody;
         bd.angle = 0;

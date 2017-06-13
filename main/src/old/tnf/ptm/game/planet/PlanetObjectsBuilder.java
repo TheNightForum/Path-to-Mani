@@ -13,31 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.game.dra.RectSprite;
-import com.tnf.ptm.game.item.TradeConfig;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.DebugOptions;
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.ShipConfig;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.input.AiPilot;
-import com.tnf.ptm.game.input.OrbiterDestProvider;
-import com.tnf.ptm.game.input.Pilot;
-import com.tnf.ptm.game.input.StillGuard;
-import com.tnf.ptm.game.ship.FarShip;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.game.item.TradeConfig;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.game.DebugOptions;
+import old.tnf.ptm.game.Faction;
+import old.tnf.ptm.game.ShipConfig;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.input.AiPilot;
+import old.tnf.ptm.game.input.OrbiterDestProvider;
+import old.tnf.ptm.game.input.Pilot;
+import old.tnf.ptm.game.input.StillGuard;
+import old.tnf.ptm.game.ship.FarShip;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,9 +56,9 @@ public class PlanetObjectsBuilder {
     private static final float CLOUD_DENSITY = .2f;
 
     private static final float DECO_PACK_SZ = 5f;
-    private static final float DECO_PACK_ANGULAR_WIDTH = 360 * DECO_PACK_SZ / (2 * SolMath.PI * Const.MAX_GROUND_HEIGHT);
+    private static final float DECO_PACK_ANGULAR_WIDTH = 360 * DECO_PACK_SZ / (2 * PtmMath.PI * Const.MAX_GROUND_HEIGHT);
 
-    public float createPlanetObjs(SolGame game, Planet planet) {
+    public float createPlanetObjs(PtmGame game, Planet planet) {
         if (DebugOptions.NO_OBJS) {
             return 0;
         }
@@ -73,7 +73,7 @@ public class PlanetObjectsBuilder {
         return minR;
     }
 
-    private void createShips(SolGame game, Planet planet) {
+    private void createShips(PtmGame game, Planet planet) {
         ConsumedAngles takenAngles = new ConsumedAngles();
 
         ShipConfig cfg = planet.getConfig().stationConfig;
@@ -97,7 +97,7 @@ public class PlanetObjectsBuilder {
         buildOrbitEnemies(game, planet, gh, .1f, .6f, config.highOrbitEnemies, Const.AI_DET_DIST);
     }
 
-    private void buildOrbitEnemies(SolGame game, Planet planet, float gh, float offsetPerc, float atmPerc,
+    private void buildOrbitEnemies(PtmGame game, Planet planet, float gh, float offsetPerc, float atmPerc,
                                    List<ShipConfig> configs, float detDist) {
         if (configs.isEmpty()) {
             return;
@@ -121,10 +121,10 @@ public class PlanetObjectsBuilder {
         }
     }
 
-    private float createGround(SolGame game, Planet planet) {
+    private float createGround(PtmGame game, Planet planet) {
         // helper values
         float maxR = planet.getGroundHeight() - TOP_TILE_SZ / 2;
-        int cols = (int) (2 * SolMath.PI * maxR / TOP_TILE_SZ);
+        int cols = (int) (2 * PtmMath.PI * maxR / TOP_TILE_SZ);
         if (cols <= 0) {
             throw new AssertionError("eh");
         }
@@ -135,7 +135,7 @@ public class PlanetObjectsBuilder {
         float[] tileSizes = new float[rows];
         float currRadius = maxR;
         for (int row = 0; row < rows; row++) {
-            float tileSize = 2 * SolMath.PI * currRadius / cols;
+            float tileSize = 2 * PtmMath.PI * currRadius / cols;
             radii[row] = currRadius;
             tileSizes[row] = tileSize;
             currRadius -= tileSize;
@@ -167,12 +167,12 @@ public class PlanetObjectsBuilder {
         return minR;
     }
 
-    private void createClouds(SolGame game, Planet planet) {
+    private void createClouds(PtmGame game, Planet planet) {
         ArrayList<TextureAtlas.AtlasRegion> cloudTexs = planet.getConfig().cloudTexs;
         if (cloudTexs.isEmpty()) {
             return;
         }
-        int cloudCount = SolMath.intRnd(.7f, (int) (CLOUD_DENSITY * Const.ATM_HEIGHT * planet.getGroundHeight()));
+        int cloudCount = PtmMath.intRnd(.7f, (int) (CLOUD_DENSITY * Const.ATM_HEIGHT * planet.getGroundHeight()));
         for (int i = 0; i < cloudCount; i++) {
             FarPlanetSprites cloud = createCloud(planet, cloudTexs, game.getTexMan());
             game.getObjMan().addFarObjNow(cloud);
@@ -180,14 +180,14 @@ public class PlanetObjectsBuilder {
     }
 
     private FarPlanetSprites createCloud(Planet planet, ArrayList<TextureAtlas.AtlasRegion> cloudTexs, TextureManager textureManager) {
-        float distPerc = SolMath.rnd(0, 1);
+        float distPerc = PtmMath.rnd(0, 1);
         float dist = planet.getGroundHeight() - TOP_TILE_SZ + .9f * Const.ATM_HEIGHT * distPerc;
-        float angle = SolMath.rnd(180);
+        float angle = PtmMath.rnd(180);
 
         ArrayList<Dra> dras = new ArrayList<Dra>();
-        float sizePerc = SolMath.rnd(.2f, 1);
+        float sizePerc = PtmMath.rnd(.2f, 1);
         float linearWidth = sizePerc * (distPerc + .5f) * AVG_CLOUD_LINEAR_WIDTH;
-        float maxAngleShift = SolMath.arcToAngle(linearWidth, dist);
+        float maxAngleShift = PtmMath.arcToAngle(linearWidth, dist);
         float maxDistShift = (1 - distPerc) * MAX_CLOUD_PIECE_DIST_SHIFT;
 
         int pieceCount = (int) (sizePerc * MAX_CLOUD_PIECE_COUNT);
@@ -195,7 +195,7 @@ public class PlanetObjectsBuilder {
             RectSprite s = createCloudSprite(cloudTexs, maxAngleShift, maxDistShift, dist, textureManager);
             dras.add(s);
         }
-        float rotSpd = SolMath.rnd(.1f, 1) * SolMath.arcToAngle(MAX_CLOUD_LINEAR_SPD, dist);
+        float rotSpd = PtmMath.rnd(.1f, 1) * PtmMath.arcToAngle(MAX_CLOUD_LINEAR_SPD, dist);
 
         return new FarPlanetSprites(planet, angle, dist, dras, rotSpd);
     }
@@ -204,29 +204,29 @@ public class PlanetObjectsBuilder {
                                          float maxAngleShift,
                                          float maxDistShift, float baseDist, TextureManager textureManager) {
 
-        TextureAtlas.AtlasRegion tex = SolMath.elemRnd(cloudTexs);
-        if (SolMath.test(.5f)) {
+        TextureAtlas.AtlasRegion tex = PtmMath.elemRnd(cloudTexs);
+        if (PtmMath.test(.5f)) {
             tex = textureManager.getFlipped(tex);
         }
-        float angleShiftRel = SolMath.rnd(1);
-        float distPerc = 1 - SolMath.abs(angleShiftRel);
+        float angleShiftRel = PtmMath.rnd(1);
+        float distPerc = 1 - PtmMath.abs(angleShiftRel);
         float sz = .5f * (1 + distPerc) * MAX_CLOUD_PIECE_SZ;
 
-        float relAngle = SolMath.rnd(30);
-        float rotSpd = SolMath.rnd(MAX_CLOUT_PIECE_ROT_SPD);
+        float relAngle = PtmMath.rnd(30);
+        float rotSpd = PtmMath.rnd(MAX_CLOUT_PIECE_ROT_SPD);
         float angleShift = angleShiftRel * maxAngleShift;
-        float distShift = maxDistShift == 0 ? 0 : distPerc * SolMath.rnd(0, maxDistShift);
+        float distShift = maxDistShift == 0 ? 0 : distPerc * PtmMath.rnd(0, maxDistShift);
         float dist = baseDist + distShift;
-        Vector2 basePos = SolMath.getVec(0, -baseDist);
+        Vector2 basePos = PtmMath.getVec(0, -baseDist);
         Vector2 relPos = new Vector2(0, -dist);
-        SolMath.rotate(relPos, angleShift, true);
+        PtmMath.rotate(relPos, angleShift, true);
         relPos.sub(basePos);
-        SolMath.free(basePos);
+        PtmMath.free(basePos);
 
-        return new RectSprite(tex, sz, 0, 0, relPos, DraLevel.CLOUDS, relAngle, rotSpd, SolColor.WHITE, false);
+        return new RectSprite(tex, sz, 0, 0, relPos, DraLevel.CLOUDS, relAngle, rotSpd, PtmColor.WHITE, false);
     }
 
-    public void createDeco(SolGame game, Planet planet) {
+    public void createDeco(PtmGame game, Planet planet) {
         float groundHeight = planet.getGroundHeight();
         Vector2 planetPos = planet.getPos();
         float planetAngle = planet.getAngle();
@@ -239,14 +239,14 @@ public class PlanetObjectsBuilder {
         for (Map.Entry<Vector2, List<Dra>> e : collector.entrySet()) {
             Vector2 packPos = e.getKey();
             List<Dra> ss = e.getValue();
-            float packAngle = SolMath.angle(planetPos, packPos, true) - planetAngle;
+            float packAngle = PtmMath.angle(planetPos, packPos, true) - planetAngle;
             float packDist = packPos.dst(planetPos);
             FarPlanetSprites ps = new FarPlanetSprites(planet, packAngle, packDist, ss, 0);
             game.getObjMan().addFarObjNow(ps);
         }
     }
 
-    private void addDeco0(SolGame game, float groundHeight, Vector2 planetPos,
+    private void addDeco0(PtmGame game, float groundHeight, Vector2 planetPos,
                           Map<Vector2, List<Dra>> collector, DecoConfig dc) {
         World w = game.getObjMan().getWorld();
         ConsumedAngles consumed = new ConsumedAngles();
@@ -263,49 +263,49 @@ public class PlanetObjectsBuilder {
             }
         };
 
-        int decoCount = (int) (2 * SolMath.PI * groundHeight * dc.density);
+        int decoCount = (int) (2 * PtmMath.PI * groundHeight * dc.density);
         for (int i = 0; i < decoCount; i++) {
-            float decoSz = SolMath.rnd(dc.szMin, dc.szMax);
-            float angularHalfWidth = SolMath.angularWidthOfSphere(decoSz / 2, groundHeight);
+            float decoSz = PtmMath.rnd(dc.szMin, dc.szMax);
+            float angularHalfWidth = PtmMath.angularWidthOfSphere(decoSz / 2, groundHeight);
 
             float decoAngle = 0;
             for (int j = 0; j < 5; j++) {
-                decoAngle = SolMath.rnd(180);
+                decoAngle = PtmMath.rnd(180);
                 if (!consumed.isConsumed(decoAngle, angularHalfWidth)) {
                     consumed.add(decoAngle, angularHalfWidth);
                     break;
                 }
             }
 
-            SolMath.fromAl(rayCasted, decoAngle, groundHeight, true);
+            PtmMath.fromAl(rayCasted, decoAngle, groundHeight, true);
             rayCasted.add(planetPos);
             w.rayCast(rcc, rayCasted, planetPos);
             float decoDist = rayCasted.dst(planetPos);
 
-            float baseAngle = SolMath.windowCenter(decoAngle, DECO_PACK_ANGULAR_WIDTH);
-            float baseDist = SolMath.windowCenter(decoDist, DECO_PACK_SZ);
-            Vector2 basePos = SolMath.fromAl(baseAngle, baseDist).add(planetPos);
+            float baseAngle = PtmMath.windowCenter(decoAngle, DECO_PACK_ANGULAR_WIDTH);
+            float baseDist = PtmMath.windowCenter(decoDist, DECO_PACK_SZ);
+            Vector2 basePos = PtmMath.fromAl(baseAngle, baseDist).add(planetPos);
             Vector2 decoRelPos = new Vector2(rayCasted).sub(basePos);
-            SolMath.rotate(decoRelPos, -baseAngle - 90, true);
+            PtmMath.rotate(decoRelPos, -baseAngle - 90, true);
             float decoRelAngle = decoAngle - baseAngle;
 
-            TextureAtlas.AtlasRegion decoTex = SolMath.elemRnd(dc.texs);
-            if (dc.allowFlip && SolMath.test(.5f)) {
+            TextureAtlas.AtlasRegion decoTex = PtmMath.elemRnd(dc.texs);
+            if (dc.allowFlip && PtmMath.test(.5f)) {
                 decoTex = game.getTexMan().getFlipped(decoTex);
             }
 
-            RectSprite s = new RectSprite(decoTex, decoSz, dc.orig.x, dc.orig.y, decoRelPos, DraLevel.DECO, decoRelAngle, 0, SolColor.WHITE, false);
+            RectSprite s = new RectSprite(decoTex, decoSz, dc.orig.x, dc.orig.y, decoRelPos, DraLevel.DECO, decoRelAngle, 0, PtmColor.WHITE, false);
             List<Dra> ss = collector.get(basePos);
             if (ss == null) {
                 ss = new ArrayList<Dra>();
                 collector.put(new Vector2(basePos), ss);
             }
             ss.add(s);
-            SolMath.free(basePos);
+            PtmMath.free(basePos);
         }
     }
 
-    public FarShip buildGroundShip(SolGame game, Planet planet, ShipConfig ge,
+    public FarShip buildGroundShip(PtmGame game, Planet planet, ShipConfig ge,
                                    TradeConfig tc,
                                    Faction faction, ConsumedAngles takenAngles, String mapHint) {
         Vector2 pos = game.getPlanetMan().findFlatPlace(game, planet, takenAngles, ge.hull.getApproxRadius());
@@ -322,15 +322,15 @@ public class PlanetObjectsBuilder {
             aboveGround = ge.hull.getSize();
         }
         pos.scl((height + aboveGround) / height);
-        SolMath.toWorld(pos, pos, planet.getAngle(), planet.getPos(), false);
+        PtmMath.toWorld(pos, pos, planet.getAngle(), planet.getPos(), false);
 
-        Vector2 toPlanet = SolMath.getVec(planet.getPos()).sub(pos);
-        float angle = SolMath.angle(toPlanet) - 180;
+        Vector2 toPlanet = PtmMath.getVec(planet.getPos()).sub(pos);
+        float angle = PtmMath.angle(toPlanet) - 180;
         if (station) {
             angle += 90;
         }
         Vector2 spd = new Vector2(toPlanet).nor();
-        SolMath.free(toPlanet);
+        PtmMath.free(toPlanet);
 
         Pilot provider = new AiPilot(new StillGuard(pos, game, ge), false, faction, true, mapHint, Const.AI_DET_DIST);
 
@@ -338,21 +338,21 @@ public class PlanetObjectsBuilder {
                 null, hasRepairer, money, tc, true);
     }
 
-    public FarShip buildOrbitEnemy(SolGame game, Planet planet, float heightPerc, ShipConfig oe, float detDist) {
+    public FarShip buildOrbitEnemy(PtmGame game, Planet planet, float heightPerc, ShipConfig oe, float detDist) {
         float height = planet.getGroundHeight() + heightPerc * Const.ATM_HEIGHT;
         Vector2 pos = new Vector2();
-        SolMath.fromAl(pos, SolMath.rnd(180), height);
+        PtmMath.fromAl(pos, PtmMath.rnd(180), height);
         Vector2 planetPos = planet.getPos();
         pos.add(planetPos);
-        float spdLen = SolMath.sqrt(planet.getGravConst() / height);
-        boolean cw = SolMath.test(.5f);
+        float spdLen = PtmMath.sqrt(planet.getGravConst() / height);
+        boolean cw = PtmMath.test(.5f);
         if (!cw) {
             spdLen *= -1;
         }
         Vector2 spd = new Vector2(0, -spdLen);
-        Vector2 v = SolMath.distVec(pos, planetPos);
-        SolMath.rotate(spd, SolMath.angle(v));
-        SolMath.free(v);
+        Vector2 v = PtmMath.distVec(pos, planetPos);
+        PtmMath.rotate(spd, PtmMath.angle(v));
+        PtmMath.free(v);
 
         OrbiterDestProvider dp = new OrbiterDestProvider(planet, height, cw);
         Pilot provider = new AiPilot(dp, false, Faction.EHAR, true, null, detDist);

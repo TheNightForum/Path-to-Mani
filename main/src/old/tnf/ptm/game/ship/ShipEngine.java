@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.ship;
+package old.tnf.ptm.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.tnf.ptm.game.item.Engine;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.input.Pilot;
-import com.tnf.ptm.game.particle.EffectConfig;
-import com.tnf.ptm.game.particle.LightSrc;
-import com.tnf.ptm.game.particle.PartMan;
-import com.tnf.ptm.game.particle.ParticleSrc;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.item.Engine;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.input.Pilot;
+import old.tnf.ptm.game.particle.EffectConfig;
+import old.tnf.ptm.game.particle.LightSrc;
+import old.tnf.ptm.game.particle.PartMan;
+import old.tnf.ptm.game.particle.ParticleSrc;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +46,7 @@ public class ShipEngine {
     private final List<Dra> myDras;
     private float myRecoverAwait;
 
-    public ShipEngine(SolGame game, Engine ei, Vector2 e1RelPos, Vector2 e2RelPos, SolShip ship) {
+    public ShipEngine(PtmGame game, Engine ei, Vector2 e1RelPos, Vector2 e2RelPos, PtmShip ship) {
         myItem = ei;
         myDras = new ArrayList<Dra>();
         EffectConfig ec = myItem.getEffectConfig();
@@ -67,7 +67,7 @@ public class ShipEngine {
         return myDras;
     }
 
-    public void update(float angle, SolGame game, Pilot provider, Body body, Vector2 spd, SolObject owner,
+    public void update(float angle, PtmGame game, Pilot provider, Body body, Vector2 spd, PtmObject owner,
                        boolean controlsEnabled, float mass) {
         boolean working = applyInput(game, angle, provider, body, spd, controlsEnabled, mass);
 
@@ -81,27 +81,27 @@ public class ShipEngine {
         }
     }
 
-    private boolean applyInput(SolGame cmp, float shipAngle, Pilot provider, Body body, Vector2 spd,
+    private boolean applyInput(PtmGame cmp, float shipAngle, Pilot provider, Body body, Vector2 spd,
                                boolean controlsEnabled, float mass) {
-        boolean spdOk = SolMath.canAccelerate(shipAngle, spd);
+        boolean spdOk = PtmMath.canAccelerate(shipAngle, spd);
         boolean working = controlsEnabled && provider.isUp() && spdOk;
 
         Engine e = myItem;
         if (working) {
-            Vector2 v = SolMath.fromAl(shipAngle, mass * e.getAcc());
+            Vector2 v = PtmMath.fromAl(shipAngle, mass * e.getAcc());
             body.applyForceToCenter(v, true);
-            SolMath.free(v);
+            PtmMath.free(v);
         }
 
         float ts = cmp.getTimeStep();
-        float rotSpd = body.getAngularVelocity() * SolMath.radDeg;
+        float rotSpd = body.getAngularVelocity() * PtmMath.radDeg;
         float desiredRotSpd = 0;
         float rotAcc = e.getRotAcc();
         boolean l = controlsEnabled && provider.isLeft();
         boolean r = controlsEnabled && provider.isRight();
-        float absRotSpd = SolMath.abs(rotSpd);
+        float absRotSpd = PtmMath.abs(rotSpd);
         if (absRotSpd < e.getMaxRotSpd() && l != r) {
-            desiredRotSpd = SolMath.toInt(r) * e.getMaxRotSpd();
+            desiredRotSpd = PtmMath.toInt(r) * e.getMaxRotSpd();
             if (absRotSpd < MAX_RECOVER_ROT_SPD) {
                 if (myRecoverAwait > 0) {
                     myRecoverAwait -= ts;
@@ -113,11 +113,11 @@ public class ShipEngine {
         } else {
             myRecoverAwait = RECOVER_AWAIT;
         }
-        body.setAngularVelocity(SolMath.degRad * SolMath.approach(rotSpd, desiredRotSpd, rotAcc * ts));
+        body.setAngularVelocity(PtmMath.degRad * PtmMath.approach(rotSpd, desiredRotSpd, rotAcc * ts));
         return working;
     }
 
-    public void onRemove(SolGame game, Vector2 basePos) {
+    public void onRemove(PtmGame game, Vector2 basePos) {
         PartMan pm = game.getPartMan();
         pm.finish(game, myFlameSrc1, basePos);
         pm.finish(game, myFlameSrc2, basePos);

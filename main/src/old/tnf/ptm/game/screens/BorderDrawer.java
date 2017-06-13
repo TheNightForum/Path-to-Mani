@@ -13,30 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.planet.SolSystem;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.FactionManager;
-import com.tnf.ptm.game.HardnessCalc;
-import com.tnf.ptm.game.MapDrawer;
-import com.tnf.ptm.game.SolCam;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.StarPort;
-import com.tnf.ptm.game.planet.PlanetManager;
-import com.tnf.ptm.game.planet.SunSingleton;
-import com.tnf.ptm.game.ship.FarShip;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.planet.PtmSystem;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.game.Faction;
+import old.tnf.ptm.game.FactionManager;
+import old.tnf.ptm.game.HardnessCalc;
+import old.tnf.ptm.game.MapDrawer;
+import old.tnf.ptm.game.PtmCam;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.StarPort;
+import old.tnf.ptm.game.planet.PlanetManager;
+import old.tnf.ptm.game.planet.SunSingleton;
+import old.tnf.ptm.game.ship.FarShip;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,7 @@ public class BorderDrawer {
     private final ArrayList<Tishch> myTishches;
     private final Vector2 myTmpVec = new Vector2();
 
-    public BorderDrawer(float r, SolApplication cmp) {
+    public BorderDrawer(float r, PtmApplication cmp) {
         TextureAtlas.AtlasRegion tex = cmp.getTexMan().getTexture("ui/tishch");
         int hCellCount = (int) (r / TISHCH_SZ);
         int vCellCount = (int) (1 / TISHCH_SZ);
@@ -77,21 +77,21 @@ public class BorderDrawer {
         }
     }
 
-    public void draw(UiDrawer drawer, SolApplication cmp) {
-        SolGame g = cmp.getGame();
-        SolCam cam = g.getCam();
+    public void draw(UiDrawer drawer, PtmApplication cmp) {
+        PtmGame g = cmp.getGame();
+        PtmCam cam = g.getCam();
         Vector2 camPos = cam.getPos();
-        SolShip hero = g.getHero();
+        PtmShip hero = g.getHero();
         drawTishches(drawer, g, cam, camPos);
         MapDrawer mapDrawer = g.getMapDrawer();
         FactionManager factionManager = g.getFactionMan();
         float heroDmgCap = hero == null ? Float.MAX_VALUE : HardnessCalc.getShipDmgCap(hero);
 
-        List<SolObject> objs = g.getObjMan().getObjs();
+        List<PtmObject> objs = g.getObjMan().getObjs();
         for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-            SolObject o = objs.get(i);
-            if ((o instanceof SolShip)) {
-                SolShip ship = (SolShip) o;
+            PtmObject o = objs.get(i);
+            if ((o instanceof PtmShip)) {
+                PtmShip ship = (PtmShip) o;
                 Vector2 shipPos = ship.getPosition();
                 Faction shipFaction = ship.getPilot().getFaction();
                 float shipSize = ship.getHull().config.getSize();
@@ -120,8 +120,8 @@ public class BorderDrawer {
         }
     }
 
-    private void maybeDrawIcon(UiDrawer drawer, Vector2 pos, SolCam cam, float objSize,
-                               float objAngle, MapDrawer mapDrawer, FactionManager factionManager, SolShip hero,
+    private void maybeDrawIcon(UiDrawer drawer, Vector2 pos, PtmCam cam, float objSize,
+                               float objAngle, MapDrawer mapDrawer, FactionManager factionManager, PtmShip hero,
                                Faction objFac, Object shipHack, float heroDmgCap, TextureAtlas.AtlasRegion icon) {
         Vector2 camPos = cam.getPos();
         float closeness = 1 - pos.dst(camPos) / MAX_ICON_DIST;
@@ -129,7 +129,7 @@ public class BorderDrawer {
             return;
         }
         float camAngle = cam.getAngle();
-        SolMath.toRel(pos, myTmpVec, camAngle, camPos);
+        PtmMath.toRel(pos, myTmpVec, camAngle, camPos);
         float len = myTmpVec.len();
         float newLen = len - .25f * objSize;
         myTmpVec.scl(newLen / len);
@@ -142,15 +142,15 @@ public class BorderDrawer {
         float prefX = drawer.r / 2 - sz / 2;
         float prefY = .5f - sz / 2;
         float r = prefX / prefY;
-        boolean prefXAxis = myTmpVec.y == 0 || r < SolMath.abs(myTmpVec.x / myTmpVec.y);
-        float mul = SolMath.abs(prefXAxis ? (prefX / myTmpVec.x) : (prefY / myTmpVec.y));
+        boolean prefXAxis = myTmpVec.y == 0 || r < PtmMath.abs(myTmpVec.x / myTmpVec.y);
+        float mul = PtmMath.abs(prefXAxis ? (prefX / myTmpVec.x) : (prefY / myTmpVec.y));
         myTmpVec.scl(mul);
         myTmpVec.add(drawer.r / 2, .5f);
 
         mapDrawer.drawObjIcon(sz, myTmpVec, objAngle - camAngle, factionManager, hero, objFac, heroDmgCap, shipHack, icon, drawer);
     }
 
-    private void drawTishches(UiDrawer drawer, SolGame g, SolCam cam, Vector2 camPos) {
+    private void drawTishches(UiDrawer drawer, PtmGame g, PtmCam cam, Vector2 camPos) {
         PlanetManager pMan = g.getPlanetMan();
         Planet np = pMan.getNearestPlanet();
         if (np != null && np.getPos().dst(camPos) < np.getFullHeight()) {
@@ -169,7 +169,7 @@ public class BorderDrawer {
             float objRad = p.getFullHeight();
             apply0(camPos, camAngle, objPos, objRad);
         }
-        SolSystem sys = pMan.getNearestSystem(camPos);
+        PtmSystem sys = pMan.getNearestSystem(camPos);
         apply0(camPos, camAngle, sys.getPos(), SunSingleton.SUN_HOT_RAD);
         for (int i = 0, myTishchesSize = myTishches.size(); i < myTishchesSize; i++) {
             Tishch t = myTishches.get(i);
@@ -181,8 +181,8 @@ public class BorderDrawer {
         float dst = objPos.dst(camPos);
         float distPerc = (dst - objRad) / MAX_DRAW_DIST;
         if (distPerc < 1) {
-            float relAngle = SolMath.angle(camPos, objPos) - camAngle;
-            float angularWHalf = SolMath.angularWidthOfSphere(objRad, dst);
+            float relAngle = PtmMath.angle(camPos, objPos) - camAngle;
+            float angularWHalf = PtmMath.angularWidthOfSphere(objRad, dst);
             apply(distPerc, angularWHalf, relAngle);
         }
     }
@@ -190,7 +190,7 @@ public class BorderDrawer {
     private void apply(float distPerc, float angularWHalf, float relAngle) {
         for (int i = 0, myTishchesSize = myTishches.size(); i < myTishchesSize; i++) {
             Tishch t = myTishches.get(i);
-            if (SolMath.angleDiff(t.myAngle, relAngle) < angularWHalf) {
+            if (PtmMath.angleDiff(t.myAngle, relAngle) < angularWHalf) {
                 t.setDistPerc(distPerc);
             }
         }
@@ -212,8 +212,8 @@ public class BorderDrawer {
             myMaxSz = maxSz * .9f;
             Vector2 pos = new Vector2(x, y);
             Vector2 centah = new Vector2(r / 2, .5f);
-            myAngle = SolMath.angle(centah, pos, true);
-            myCol = new Color(SolColor.UI_DARK);
+            myAngle = PtmMath.angle(centah, pos, true);
+            myCol = new Color(PtmColor.UI_DARK);
         }
 
         public void draw(UiDrawer drawer) {

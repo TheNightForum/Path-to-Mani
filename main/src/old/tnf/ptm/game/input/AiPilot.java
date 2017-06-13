@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.item.Engine;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.planet.PlanetBind;
-import com.tnf.ptm.game.ship.FarShip;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.item.Gun;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.item.Engine;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.planet.PlanetBind;
+import old.tnf.ptm.game.ship.FarShip;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.game.Faction;
+import old.tnf.ptm.game.item.Gun;
 
 public class AiPilot implements Pilot {
 
@@ -67,7 +67,7 @@ public class AiPilot implements Pilot {
     }
 
     @Override
-    public void update(SolGame game, SolShip ship, SolShip nearestEnemy) {
+    public void update(PtmGame game, PtmShip ship, PtmShip nearestEnemy) {
         myAbilityUpdater.update(ship, nearestEnemy);
         myPlanetBind = null;
         Vector2 shipPos = ship.getPosition();
@@ -140,7 +140,7 @@ public class AiPilot implements Pilot {
         return maxIdleDist;
     }
 
-    private Boolean canShoot0(SolShip ship) {
+    private Boolean canShoot0(PtmShip ship) {
         Gun g1 = ship.getHull().getGun(false);
         if (g1 != null && g1.canShoot()) {
             return !g1.config.fixed ? null : true;
@@ -212,7 +212,7 @@ public class AiPilot implements Pilot {
     }
 
     @Override
-    public void updateFar(SolGame game, FarShip farShip) {
+    public void updateFar(PtmGame game, FarShip farShip) {
         Vector2 shipPos = farShip.getPos();
         HullConfig hullConfig = farShip.getHullConfig();
         float maxIdleDist = getMaxIdleDist(hullConfig);
@@ -245,29 +245,29 @@ public class AiPilot implements Pilot {
                 spd.set(myDestProvider.getDestSpd());
                 desiredAngle = angle; // can be improved
             } else {
-                desiredAngle = SolMath.angle(shipPos, dest);
+                desiredAngle = PtmMath.angle(shipPos, dest);
                 if (myDestProvider.shouldAvoidBigObjs()) {
                     desiredAngle = myMover.getBigObjAvoider().avoid(game, shipPos, dest, desiredAngle);
                 }
                 float desiredSpdLen = myDestProvider.getDesiredSpdLen();
                 float spdLenDiff = engine.getAcc() * ts;
-                float spdLen = SolMath.approach(spd.len(), desiredSpdLen, spdLenDiff);
+                float spdLen = PtmMath.approach(spd.len(), desiredSpdLen, spdLenDiff);
                 if (toDestLen < spdLen) {
                     spdLen = toDestLen;
                 }
-                SolMath.fromAl(spd, desiredAngle, spdLen);
+                PtmMath.fromAl(spd, desiredAngle, spdLen);
             }
-            angle = SolMath.approachAngle(angle, desiredAngle, engine.getMaxRotSpd() * ts);
+            angle = PtmMath.approachAngle(angle, desiredAngle, engine.getMaxRotSpd() * ts);
         }
 
         farShip.setSpd(spd);
         farShip.setAngle(angle);
 
-        Vector2 newPos = SolMath.getVec(spd);
+        Vector2 newPos = PtmMath.getVec(spd);
         newPos.scl(ts);
         newPos.add(shipPos);
         farShip.setPos(newPos);
-        SolMath.free(newPos);
+        PtmMath.free(newPos);
     }
 
     @Override

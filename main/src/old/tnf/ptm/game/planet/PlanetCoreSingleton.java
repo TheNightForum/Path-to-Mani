@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.game.GameDrawer;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolCam;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.game.GameDrawer;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.PtmCam;
 
 public class PlanetCoreSingleton {
     private final TextureAtlas.AtlasRegion myTex;
@@ -30,8 +30,8 @@ public class PlanetCoreSingleton {
         myTex = textureManager.getTexture("planetStarCommons/planetCore");
     }
 
-    public void draw(SolGame game, GameDrawer drawer) {
-        SolCam cam = game.getCam();
+    public void draw(PtmGame game, GameDrawer drawer) {
+        PtmCam cam = game.getCam();
         Vector2 camPos = cam.getPos();
         Planet p = game.getPlanetMan().getNearestPlanet();
         Vector2 pPos = p.getPos();
@@ -40,7 +40,7 @@ public class PlanetCoreSingleton {
         float gh = p.getMinGroundHeight();
         if (toCamLen < gh + vd) {
             float sz = gh;
-            drawer.draw(myTex, sz * 2, sz * 2, sz, sz, pPos.x, pPos.y, p.getAngle(), SolColor.WHITE);
+            drawer.draw(myTex, sz * 2, sz * 2, sz, sz, pPos.x, pPos.y, p.getAngle(), PtmColor.WHITE);
         }
     }
 }

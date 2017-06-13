@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.RectSprite;
-import com.tnf.ptm.game.FarObj;
-import com.tnf.ptm.game.SolObject;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.DmgType;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.game.FarObj;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileObject implements SolObject {
+public class TileObject implements PtmObject {
 
     private final Planet myPlanet;
     private final float myToPlanetRelAngle;
@@ -61,43 +61,43 @@ public class TileObject implements SolObject {
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         setDependentParams();
 
         if (myBody != null) {
             float ts = game.getTimeStep();
-            Vector2 spd = SolMath.getVec(myPos);
+            Vector2 spd = PtmMath.getVec(myPos);
             spd.sub(myBody.getPosition());
             spd.scl(1f / ts);
             myBody.setLinearVelocity(spd);
-            SolMath.free(spd);
-            float bodyAngle = myBody.getAngle() * SolMath.radDeg;
-            float av = SolMath.norm(myAngle - bodyAngle) * SolMath.degRad / ts;
+            PtmMath.free(spd);
+            float bodyAngle = myBody.getAngle() * PtmMath.radDeg;
+            float av = PtmMath.norm(myAngle - bodyAngle) * PtmMath.degRad / ts;
             myBody.setAngularVelocity(av);
         }
     }
 
     private void setDependentParams() {
         float toPlanetAngle = myPlanet.getAngle() + myToPlanetRelAngle;
-        SolMath.fromAl(myPos, toPlanetAngle, myDist, true);
+        PtmMath.fromAl(myPos, toPlanetAngle, myDist, true);
         myPos.add(myPlanet.getPos());
         myAngle = toPlanetAngle + 90;
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(PtmGame game) {
         return false;
     }
 
     @Override
-    public void onRemove(SolGame game) {
+    public void onRemove(PtmGame game) {
         if (myBody != null) {
             myBody.getWorld().destroyBody(myBody);
         }
     }
 
     @Override
-    public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+    public void receiveDmg(float dmg, PtmGame game, Vector2 pos, DmgType dmgType) {
         game.getSpecialSounds().playHit(game, this, pos, dmgType);
     }
 
@@ -107,7 +107,7 @@ public class TileObject implements SolObject {
     }
 
     @Override
-    public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+    public void receiveForce(Vector2 force, PtmGame game, boolean acc) {
     }
 
     @Override
@@ -136,8 +136,8 @@ public class TileObject implements SolObject {
     }
 
     @Override
-    public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-                              SolGame game, Vector2 collPos) {
+    public void handleContact(PtmObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+                              PtmGame game, Vector2 collPos) {
     }
 
     @Override

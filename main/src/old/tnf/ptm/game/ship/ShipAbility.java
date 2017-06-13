@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.ship;
+package old.tnf.ptm.game.ship;
 
-import com.tnf.ptm.game.AbilityCommonConfig;
-import com.tnf.ptm.game.SolGame;
+import old.tnf.ptm.game.AbilityCommonConfig;
+import old.tnf.ptm.game.PtmGame;
 
 public interface ShipAbility {
-    boolean update(SolGame game, SolShip owner, boolean tryToUse);
+    boolean update(PtmGame game, PtmShip owner, boolean tryToUse);
 
     public AbilityConfig getConfig();
 

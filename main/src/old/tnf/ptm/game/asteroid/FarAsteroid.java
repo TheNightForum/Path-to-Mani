@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.asteroid;
+package old.tnf.ptm.game.asteroid;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.game.RemoveController;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.FarObj;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.RemoveController;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.FarObj;
 
 public class FarAsteroid implements FarObj {
     private final Vector2 myPos;
@@ -43,17 +43,17 @@ public class FarAsteroid implements FarObj {
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(PtmGame game) {
         return myRemoveController != null && myRemoveController.shouldRemove(myPos);
     }
 
     @Override
-    public SolObject toObj(SolGame game) {
+    public PtmObject toObj(PtmGame game) {
         return game.getAsteroidBuilder().build(game, myPos, myTex, mySz, myAngle, myRotSpd, mySpd, myRemoveController);
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
     }
 
     @Override

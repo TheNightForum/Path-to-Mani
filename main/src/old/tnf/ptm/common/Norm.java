@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.common;
+package old.tnf.ptm.common;
 
 import java.lang.annotation.Documented;
 

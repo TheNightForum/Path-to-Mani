@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
-import com.tnf.ptm.ui.SolLayouts;
-import com.tnf.ptm.SolApplication;
+import old.tnf.ptm.ui.PtmLayouts;
+import old.tnf.ptm.PtmApplication;
 
 public class GameScreens {
     public final MainScreen mainScreen;
@@ -25,8 +25,8 @@ public class GameScreens {
     public final InventoryScreen inventoryScreen;
     public final TalkScreen talkScreen;
 
-    public GameScreens(float r, SolApplication cmp) {
-        SolLayouts layouts = cmp.getLayouts();
+    public GameScreens(float r, PtmApplication cmp) {
+        PtmLayouts layouts = cmp.getLayouts();
         RightPaneLayout rightPaneLayout = layouts.rightPaneLayout;
         mainScreen = new MainScreen(r, rightPaneLayout, cmp);
         mapScreen = new MapScreen(rightPaneLayout, cmp.isMobile(), r, cmp.getOptions());

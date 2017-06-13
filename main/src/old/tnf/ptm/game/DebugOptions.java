@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.SolFileReader;
-import com.tnf.ptm.IniReader;
+import old.tnf.ptm.PtmFileReader;
+import old.tnf.ptm.IniReader;
 
 public class DebugOptions {
     public static final Vector2 DEBUG_POINT = new Vector2();
@@ -57,7 +57,7 @@ public class DebugOptions {
     public static MissingResourceAction MISSING_TEXTURE_ACTION;
     public static MissingResourceAction MISSING_PHYSICS_ACTION;
 
-    public static void read(SolFileReader reader) {
+    public static void read(PtmFileReader reader) {
         IniReader r = new IniReader("debugOptions.ini", reader, true);
 
         EMULATE_MOBILE = r.getBoolean("emulateMobile", EMULATE_MOBILE);

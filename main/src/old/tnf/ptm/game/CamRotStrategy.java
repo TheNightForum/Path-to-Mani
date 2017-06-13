@@ -13,36 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.planet.SolSystem;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.planet.PtmSystem;
 
 public interface CamRotStrategy {
-    public float getRotation(Vector2 pos, SolGame game);
+    public float getRotation(Vector2 pos, PtmGame game);
 
     public static class Static implements CamRotStrategy {
-        public float getRotation(Vector2 pos, SolGame game) {
+        public float getRotation(Vector2 pos, PtmGame game) {
             return 0;
         }
     }
 
     public static class ToPlanet implements CamRotStrategy {
 
-        public float getRotation(Vector2 pos, SolGame game) {
+        public float getRotation(Vector2 pos, PtmGame game) {
             Planet np = game.getPlanetMan().getNearestPlanet();
             float fh = np.getFullHeight();
             Vector2 npPos = np.getPos();
             if (npPos.dst(pos) < fh) {
-                return SolMath.angle(pos, npPos, true) - 90;
+                return PtmMath.angle(pos, npPos, true) - 90;
             }
-            SolSystem sys = game.getPlanetMan().getNearestSystem(pos);
+            PtmSystem sys = game.getPlanetMan().getNearestSystem(pos);
             Vector2 sysPos = sys.getPos();
             if (sysPos.dst(pos) < Const.SUN_RADIUS) {
-                return SolMath.angle(pos, sysPos, true) - 90;
+                return PtmMath.angle(pos, sysPos, true) - 90;
             }
             return 0;
         }

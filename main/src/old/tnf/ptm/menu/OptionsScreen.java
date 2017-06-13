@@ -13,57 +13,57 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.menu;
+package old.tnf.ptm.menu;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.ui.SolUiScreen;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.ui.PtmUiScreen;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.UiDrawer;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OptionsScreen implements SolUiScreen {
+public class OptionsScreen implements PtmUiScreen {
     private final TextureAtlas.AtlasRegion bgTex;
 
-    private final ArrayList<SolUiControl> controls = new ArrayList<>();
-    private final SolUiControl backControl;
-    private final SolUiControl resolutionControl;
-    private final SolUiControl inputTypeControl;
-    private final SolUiControl inputMapControl;
-    private final SolUiControl soundVolumeControl;
-    private final SolUiControl musicVolumeControl;
+    private final ArrayList<PtmUiControl> controls = new ArrayList<>();
+    private final PtmUiControl backControl;
+    private final PtmUiControl resolutionControl;
+    private final PtmUiControl inputTypeControl;
+    private final PtmUiControl inputMapControl;
+    private final PtmUiControl soundVolumeControl;
+    private final PtmUiControl musicVolumeControl;
 
     OptionsScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-        resolutionControl = new SolUiControl(menuLayout.buttonRect(-1, 1), true);
+        resolutionControl = new PtmUiControl(menuLayout.buttonRect(-1, 1), true);
         resolutionControl.setDisplayName("Resolution");
         controls.add(resolutionControl);
 
-        inputTypeControl = new SolUiControl(menuLayout.buttonRect(-1, 2), true, Input.Keys.C);
+        inputTypeControl = new PtmUiControl(menuLayout.buttonRect(-1, 2), true, Input.Keys.C);
         inputTypeControl.setDisplayName("Control Type");
         controls.add(inputTypeControl);
 
-        inputMapControl = new SolUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.M);
+        inputMapControl = new PtmUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.M);
         inputMapControl.setDisplayName("Controls");
         controls.add(inputMapControl);
 
-        backControl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+        backControl = new PtmUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
         backControl.setDisplayName("Back");
         controls.add(backControl);
 
-        soundVolumeControl = new SolUiControl(menuLayout.buttonRect(-1, 0), true);
+        soundVolumeControl = new PtmUiControl(menuLayout.buttonRect(-1, 0), true);
         soundVolumeControl.setDisplayName("Sound Volume");
         controls.add(soundVolumeControl);
 
-        musicVolumeControl = new SolUiControl(menuLayout.buttonRect(-1, -1), true);
+        musicVolumeControl = new PtmUiControl(menuLayout.buttonRect(-1, -1), true);
         musicVolumeControl.setDisplayName("Music Volume");
         controls.add(musicVolumeControl);
 
@@ -71,20 +71,20 @@ public class OptionsScreen implements SolUiScreen {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void updateCustom(SolApplication solApplication, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
-        SolInputManager inputManager = solApplication.getInputMan();
-        MenuScreens screens = solApplication.getMenuScreens();
-        GameOptions options = solApplication.getOptions();
+    public void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+        PtmInputManager inputManager = ptmApplication.getInputMan();
+        MenuScreens screens = ptmApplication.getMenuScreens();
+        GameOptions options = ptmApplication.getOptions();
         if (resolutionControl.isJustOff()) {
-            inputManager.setScreen(solApplication, screens.resolutionScreen);
+            inputManager.setScreen(ptmApplication, screens.resolutionScreen);
         }
 
-        int controlType = solApplication.getOptions().controlType;
+        int controlType = ptmApplication.getOptions().controlType;
         String controlName = "Keyboard";
         if (controlType == GameOptions.CONTROL_MIXED) {
             controlName = "KB + Mouse";
@@ -97,11 +97,11 @@ public class OptionsScreen implements SolUiScreen {
         }
         inputTypeControl.setDisplayName("Input: " + controlName);
         if (inputTypeControl.isJustOff()) {
-            solApplication.getOptions().advanceControlType(false);
+            ptmApplication.getOptions().advanceControlType(false);
         }
 
         if (backControl.isJustOff()) {
-            inputManager.setScreen(solApplication, screens.main);
+            inputManager.setScreen(ptmApplication, screens.main);
         }
 
         if (inputMapControl.isJustOff()) {
@@ -112,7 +112,7 @@ public class OptionsScreen implements SolUiScreen {
             } else if (controlType == GameOptions.CONTROL_CONTROLLER) {
                 screens.inputMapScreen.setOperations(screens.inputMapScreen.inputMapControllerScreen);
             }
-            inputManager.setScreen(solApplication, screens.inputMapScreen);
+            inputManager.setScreen(ptmApplication, screens.inputMapScreen);
         }
 
         soundVolumeControl.setDisplayName("Sound Volume: " + options.getSFXVolumeAsText());
@@ -123,12 +123,12 @@ public class OptionsScreen implements SolUiScreen {
         musicVolumeControl.setDisplayName("Music Volume: " + options.getMusicVolumeAsText());
         if (musicVolumeControl.isJustOff()) {
             options.advanceMusicVolMul();
-            solApplication.getMusicManager().resetVolume(options);
+            ptmApplication.getMusicManager().resetVolume(options);
         }
     }
 
     @Override
-    public void drawBg(UiDrawer uiDrawer, SolApplication solApplication) {
-        uiDrawer.draw(bgTex, uiDrawer.r, 1, uiDrawer.r / 2, 0.5f, uiDrawer.r / 2, 0.5f, 0, SolColor.WHITE);
+    public void drawBg(UiDrawer uiDrawer, PtmApplication ptmApplication) {
+        uiDrawer.draw(bgTex, uiDrawer.r, 1, uiDrawer.r / 2, 0.5f, uiDrawer.r / 2, 0.5f, 0, PtmColor.WHITE);
     }
 }

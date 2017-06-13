@@ -13,26 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.game.item.TradeConfig;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.planet.SolSystem;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.input.AiPilot;
-import com.tnf.ptm.game.input.ExplorerDestProvider;
-import com.tnf.ptm.game.input.Guardian;
-import com.tnf.ptm.game.input.MoveDestProvider;
-import com.tnf.ptm.game.input.NoDestProvider;
-import com.tnf.ptm.game.input.Pilot;
-import com.tnf.ptm.game.maze.Maze;
-import com.tnf.ptm.game.planet.ConsumedAngles;
-import com.tnf.ptm.game.planet.PlanetManager;
-import com.tnf.ptm.game.planet.SysConfig;
-import com.tnf.ptm.game.ship.FarShip;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.item.TradeConfig;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.planet.PtmSystem;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.game.input.AiPilot;
+import old.tnf.ptm.game.input.ExplorerDestProvider;
+import old.tnf.ptm.game.input.Guardian;
+import old.tnf.ptm.game.input.MoveDestProvider;
+import old.tnf.ptm.game.input.NoDestProvider;
+import old.tnf.ptm.game.input.Pilot;
+import old.tnf.ptm.game.maze.Maze;
+import old.tnf.ptm.game.planet.ConsumedAngles;
+import old.tnf.ptm.game.planet.PlanetManager;
+import old.tnf.ptm.game.planet.SysConfig;
+import old.tnf.ptm.game.ship.FarShip;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -45,19 +45,19 @@ public class GalaxyFiller {
     public GalaxyFiller() {
     }
 
-    private Vector2 getPosForStation(SolSystem sys, boolean mainStation, ConsumedAngles angles) {
+    private Vector2 getPosForStation(PtmSystem sys, boolean mainStation, ConsumedAngles angles) {
         Planet p;
         ArrayList<Planet> planets = sys.getPlanets();
         float angleToSun;
         if (mainStation) {
             p = planets.get(planets.size() - 2);
-            angleToSun = p.getAngleToSys() + 20 * SolMath.toInt(p.getToSysRotSpd() > 0);
+            angleToSun = p.getAngleToSys() + 20 * PtmMath.toInt(p.getToSysRotSpd() > 0);
         } else {
-            int pIdx = SolMath.intRnd(planets.size() - 1);
+            int pIdx = PtmMath.intRnd(planets.size() - 1);
             p = planets.get(pIdx);
             angleToSun = 0;
             for (int i = 0; i < 10; i++) {
-                angleToSun = SolMath.rnd(180);
+                angleToSun = PtmMath.rnd(180);
                 if (!angles.isConsumed(angleToSun, STATION_CONSUME_SECTOR)) {
                     break;
                 }
@@ -66,12 +66,12 @@ public class GalaxyFiller {
         angles.add(angleToSun, STATION_CONSUME_SECTOR);
         float stationDist = p.getDist() + p.getFullHeight() + Const.PLANET_GAP;
         Vector2 stationPos = new Vector2();
-        SolMath.fromAl(stationPos, angleToSun, stationDist);
+        PtmMath.fromAl(stationPos, angleToSun, stationDist);
         stationPos.add(p.getSys().getPos());
         return stationPos;
     }
 
-    private FarShip build(SolGame game, ShipConfig cfg, Faction faction, boolean mainStation, SolSystem sys,
+    private FarShip build(PtmGame game, ShipConfig cfg, Faction faction, boolean mainStation, PtmSystem sys,
                           ConsumedAngles angles) {
         HullConfig hullConf = cfg.hull;
 
@@ -96,7 +96,7 @@ public class GalaxyFiller {
             }
         }
         Pilot pilot = new AiPilot(dp, true, faction, true, "something", detectionDist);
-        float angle = mainStation ? 0 : SolMath.rnd(180);
+        float angle = mainStation ? 0 : PtmMath.rnd(180);
         boolean hasRepairer;
         hasRepairer = faction == Faction.LAANI;
         int money = cfg.money;
@@ -108,7 +108,7 @@ public class GalaxyFiller {
             for (int i = 0; i < guardConf.density; i++) {
                 float guardianAngle = 0;
                 for (int j = 0; j < 5; j++) {
-                    guardianAngle = SolMath.rnd(180);
+                    guardianAngle = PtmMath.rnd(180);
                     if (!ca.isConsumed(guardianAngle, guardConf.hull.getApproxRadius())) {
                         ca.add(guardianAngle, guardConf.hull.getApproxRadius());
                         break;
@@ -120,12 +120,12 @@ public class GalaxyFiller {
         return s;
     }
 
-    public void fill(SolGame game) {
+    public void fill(PtmGame game) {
         if (DebugOptions.NO_OBJS) {
             return;
         }
         createStarPorts(game);
-        ArrayList<SolSystem> systems = game.getPlanetMan().getSystems();
+        ArrayList<PtmSystem> systems = game.getPlanetMan().getSystems();
 
         ShipConfig mainStationCfg = game.getPlayerSpawnConfig().mainStation;
         ConsumedAngles angles = new ConsumedAngles();
@@ -133,7 +133,7 @@ public class GalaxyFiller {
         myMainStationPos = new Vector2(mainStation.getPos());
         myMainStationHc = mainStation.getHullConfig();
 
-        for (SolSystem sys : systems) {
+        for (PtmSystem sys : systems) {
             SysConfig sysConfig = sys.getConfig();
             for (ShipConfig shipConfig : sysConfig.constAllies) {
                 int count = (int) (shipConfig.density);
@@ -151,10 +151,10 @@ public class GalaxyFiller {
         }
     }
 
-    private void createStarPorts(SolGame game) {
+    private void createStarPorts(PtmGame game) {
         PlanetManager planetManager = game.getPlanetMan();
         ArrayList<Planet> biggest = new ArrayList<Planet>();
-        for (SolSystem s : planetManager.getSystems()) {
+        for (PtmSystem s : planetManager.getSystems()) {
             float minH = 0;
             Planet biggestP = null;
             int bi = -1;
@@ -184,21 +184,21 @@ public class GalaxyFiller {
 
     }
 
-    private void link(SolGame game, Planet a, Planet b) {
+    private void link(PtmGame game, Planet a, Planet b) {
         if (a == b) {
             throw new AssertionError("Linking planet to itself");
         }
         Vector2 aPos = StarPort.getDesiredPos(a, b, false);
         StarPort.MyFar sp = new StarPort.MyFar(a, b, aPos, false);
-        SolMath.free(aPos);
+        PtmMath.free(aPos);
         game.getObjMan().addFarObjNow(sp);
         Vector2 bPos = StarPort.getDesiredPos(b, a, false);
         sp = new StarPort.MyFar(b, a, bPos, false);
-        SolMath.free(bPos);
+        PtmMath.free(bPos);
         game.getObjMan().addFarObjNow(sp);
     }
 
-    private void createGuard(SolGame game, FarShip target, ShipConfig guardConf, Faction faction, float guardRelAngle) {
+    private void createGuard(PtmGame game, FarShip target, ShipConfig guardConf, Faction faction, float guardRelAngle) {
         Guardian dp = new Guardian(game, guardConf.hull, target.getPilot(), target.getPos(), target.getHullConfig(), guardRelAngle);
         Pilot pilot = new AiPilot(dp, true, faction, false, null, Const.AI_DET_DIST);
         boolean hasRepairer = faction == Faction.LAANI;
@@ -208,13 +208,13 @@ public class GalaxyFiller {
         game.getObjMan().addFarObjNow(e);
     }
 
-    private Vector2 getEmptySpace(SolGame game, SolSystem s) {
+    private Vector2 getEmptySpace(PtmGame game, PtmSystem s) {
         Vector2 res = new Vector2();
         Vector2 sPos = s.getPos();
         float sRadius = s.getConfig().hard ? s.getRadius() : s.getInnerRad();
 
         for (int i = 0; i < 100; i++) {
-            SolMath.fromAl(res, SolMath.rnd(180), SolMath.rnd(sRadius));
+            PtmMath.fromAl(res, PtmMath.rnd(180), PtmMath.rnd(sRadius));
             res.add(sPos);
             if (game.isPlaceEmpty(res, true)) {
                 return res;
@@ -223,7 +223,7 @@ public class GalaxyFiller {
         throw new AssertionError("could not generate ship position");
     }
 
-    public Vector2 getPlayerSpawnPos(SolGame game) {
+    public Vector2 getPlayerSpawnPos(PtmGame game) {
         Vector2 pos = new Vector2(Const.SUN_RADIUS * 2, 0);
 
         if ("planet".equals(DebugOptions.SPAWN_PLACE)) {
@@ -231,7 +231,7 @@ public class GalaxyFiller {
             pos.set(p.getPos());
             pos.x += p.getFullHeight();
         } else if (DebugOptions.SPAWN_PLACE.isEmpty() && myMainStationPos != null) {
-            SolMath.fromAl(pos, 90, myMainStationHc.getSize() / 2);
+            PtmMath.fromAl(pos, 90, myMainStationHc.getSize() / 2);
             pos.add(myMainStationPos);
         } else if ("maze".equals(DebugOptions.SPAWN_PLACE)) {
             Maze m = game.getPlanetMan().getMazes().get(0);

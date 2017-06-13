@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.ship;
+package old.tnf.ptm.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.particle.ParticleSrc;
-import com.tnf.ptm.game.input.Pilot;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.Faction;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.particle.ParticleSrc;
+import old.tnf.ptm.game.input.Pilot;
 
 import java.util.List;
 
@@ -34,27 +34,27 @@ public class ForceBeacon {
     private final Vector2 myPrevPos;
     private final ParticleSrc myEffect;
 
-    public ForceBeacon(SolGame game, Vector2 relPos, Vector2 basePos, Vector2 baseSpd) {
+    public ForceBeacon(PtmGame game, Vector2 relPos, Vector2 basePos, Vector2 baseSpd) {
         myRelPos = relPos;
         myEffect = game.getSpecialEffects().buildForceBeacon(.6f, game, relPos, basePos, baseSpd);
         myEffect.setWorking(true);
         myPrevPos = new Vector2();
     }
 
-    public static SolShip pullShips(SolGame game, SolObject owner, Vector2 ownPos, Vector2 ownSpd, Faction faction,
+    public static PtmShip pullShips(PtmGame game, PtmObject owner, Vector2 ownPos, Vector2 ownSpd, Faction faction,
                                     float maxPullDist) {
-        SolShip res = null;
+        PtmShip res = null;
         float minLen = Float.MAX_VALUE;
-        List<SolObject> objs = game.getObjMan().getObjs();
+        List<PtmObject> objs = game.getObjMan().getObjs();
         for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-            SolObject o = objs.get(i);
+            PtmObject o = objs.get(i);
             if (o == owner) {
                 continue;
             }
-            if (!(o instanceof SolShip)) {
+            if (!(o instanceof PtmShip)) {
                 continue;
             }
-            SolShip ship = (SolShip) o;
+            PtmShip ship = (PtmShip) o;
             Pilot pilot = ship.getPilot();
             if (pilot.isUp() || pilot.isLeft() || pilot.isRight()) {
                 continue;
@@ -62,7 +62,7 @@ public class ForceBeacon {
             if (game.getFactionMan().areEnemies(faction, pilot.getFaction())) {
                 continue;
             }
-            Vector2 toMe = SolMath.distVec(ship.getPosition(), ownPos);
+            Vector2 toMe = PtmMath.distVec(ship.getPosition(), ownPos);
             float toMeLen = toMe.len();
             if (toMeLen < maxPullDist) {
                 if (toMeLen > 1) {
@@ -78,7 +78,7 @@ public class ForceBeacon {
                     minLen = toMeLen;
                 }
             }
-            SolMath.free(toMe);
+            PtmMath.free(toMe);
         }
         return res;
     }
@@ -87,13 +87,13 @@ public class ForceBeacon {
         dras.add(myEffect);
     }
 
-    public void update(SolGame game, Vector2 basePos, float baseAngle, SolShip ship) {
-        Vector2 pos = SolMath.toWorld(myRelPos, baseAngle, basePos);
-        Vector2 spd = SolMath.distVec(myPrevPos, pos).scl(1 / game.getTimeStep());
+    public void update(PtmGame game, Vector2 basePos, float baseAngle, PtmShip ship) {
+        Vector2 pos = PtmMath.toWorld(myRelPos, baseAngle, basePos);
+        Vector2 spd = PtmMath.distVec(myPrevPos, pos).scl(1 / game.getTimeStep());
         Faction faction = ship.getPilot().getFaction();
         pullShips(game, ship, pos, spd, faction, MAX_PULL_DIST);
-        SolMath.free(spd);
+        PtmMath.free(spd);
         myPrevPos.set(pos);
-        SolMath.free(pos);
+        PtmMath.free(pos);
     }
 }

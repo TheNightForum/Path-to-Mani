@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.game.ship.PtmShip;
 
 public class MountDetectDrawer {
     private final Vector2 myNePos;
@@ -35,7 +35,7 @@ public class MountDetectDrawer {
         myTex = textureManager.getTexture("smallGameObjects/targetDetected");
     }
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         myShouldDraw = false;
         float ts = game.getTimeStep();
         myAnimPerc += ts / 2f;
@@ -48,7 +48,7 @@ public class MountDetectDrawer {
         }
     }
 
-    public void setNe(SolShip ne) {
+    public void setNe(PtmShip ne) {
         myNePos.set(ne.getPosition());
         myBaseRad = ne.getHull().config.getApproxRadius();
         myShouldDraw = true;
@@ -63,6 +63,6 @@ public class MountDetectDrawer {
             radPerc = 2 - radPerc;
         }
         float rad = myBaseRad * (1 + .5f * radPerc);
-        drawer.draw(myTex, rad * 2, rad * 2, rad, rad, myNePos.x, myNePos.y, myAngle, SolColor.WHITE);
+        drawer.draw(myTex, rad * 2, rad * 2, rad, rad, myNePos.x, myNePos.y, myAngle, PtmColor.WHITE);
     }
 }

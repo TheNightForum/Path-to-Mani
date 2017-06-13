@@ -13,32 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.menu;
+package old.tnf.ptm.menu;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.ui.SolUiScreen;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.ui.FontSize;
-import com.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.ui.PtmUiScreen;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.ui.FontSize;
+import old.tnf.ptm.ui.UiDrawer;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreditsScreen implements SolUiScreen {
+public class CreditsScreen implements PtmUiScreen {
     private static final float MAX_AWAIT = 6f;
     private final TextureAtlas.AtlasRegion bgTex;
-    private final ArrayList<SolUiControl> controls = new ArrayList<>();
-    private final SolUiControl closeControl;
+    private final ArrayList<PtmUiControl> controls = new ArrayList<>();
+    private final PtmUiControl closeControl;
 
     private final ArrayList<String> myPages = new ArrayList<>();
     private final Color myColor;
@@ -46,10 +46,10 @@ public class CreditsScreen implements SolUiScreen {
     private float pageProgressPercent;
 
     CreditsScreen(float resolutionRatio, GameOptions gameOptions) {
-        closeControl = new SolUiControl(MenuLayout.bottomRightFloatingButton(resolutionRatio), true, gameOptions.getKeyEscape());
+        closeControl = new PtmUiControl(MenuLayout.bottomRightFloatingButton(resolutionRatio), true, gameOptions.getKeyEscape());
         closeControl.setDisplayName("Close");
         controls.add(closeControl);
-        myColor = SolColor.col(1, 1);
+        myColor = PtmColor.col(1, 1);
 
         String[][] sss = {
                 {
@@ -116,21 +116,21 @@ public class CreditsScreen implements SolUiScreen {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void onAdd(SolApplication solApplication) {
+    public void onAdd(PtmApplication ptmApplication) {
         pageIndex = 0;
         pageProgressPercent = 0;
         myColor.a = 0;
     }
 
     @Override
-    public void updateCustom(SolApplication solApplication, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+    public void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
         if (closeControl.isJustOff()) {
-            solApplication.getInputMan().setScreen(solApplication, solApplication.getMenuScreens().main);
+            ptmApplication.getInputMan().setScreen(ptmApplication, ptmApplication.getMenuScreens().main);
             return;
         }
         pageProgressPercent += Const.REAL_TIME_STEP / MAX_AWAIT;
@@ -146,16 +146,16 @@ public class CreditsScreen implements SolUiScreen {
             a = 2 - a;
         }
         a *= 3;
-        myColor.a = SolMath.clamp(a);
+        myColor.a = PtmMath.clamp(a);
     }
 
     @Override
-    public void drawBg(UiDrawer uiDrawer, SolApplication solApplication) {
-        uiDrawer.draw(bgTex, uiDrawer.r, 1, uiDrawer.r / 2, 0.5f, uiDrawer.r / 2, 0.5f, 0, SolColor.WHITE);
+    public void drawBg(UiDrawer uiDrawer, PtmApplication ptmApplication) {
+        uiDrawer.draw(bgTex, uiDrawer.r, 1, uiDrawer.r / 2, 0.5f, uiDrawer.r / 2, 0.5f, 0, PtmColor.WHITE);
     }
 
     @Override
-    public void drawText(UiDrawer uiDrawer, SolApplication solApplication) {
+    public void drawText(UiDrawer uiDrawer, PtmApplication ptmApplication) {
         uiDrawer.drawString(myPages.get(pageIndex), uiDrawer.r / 2, .5f, FontSize.MENU, true, myColor);
     }
 }

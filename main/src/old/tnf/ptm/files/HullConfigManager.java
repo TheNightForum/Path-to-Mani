@@ -13,24 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.files;
+package old.tnf.ptm.files;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.game.item.Engine;
-import com.tnf.ptm.game.ship.Teleport;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.AbilityCommonConfigs;
-import com.tnf.ptm.game.item.ItemManager;
-import com.tnf.ptm.game.ship.AbilityConfig;
-import com.tnf.ptm.game.ship.EmWave;
-import com.tnf.ptm.game.ship.KnockBack;
-import com.tnf.ptm.game.ship.SloMo;
-import com.tnf.ptm.game.ship.UnShield;
-import com.tnf.ptm.game.ship.hulls.GunSlot;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.item.Engine;
+import old.tnf.ptm.game.ship.Teleport;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.game.AbilityCommonConfigs;
+import old.tnf.ptm.game.item.ItemManager;
+import old.tnf.ptm.game.ship.AbilityConfig;
+import old.tnf.ptm.game.ship.EmWave;
+import old.tnf.ptm.game.ship.KnockBack;
+import old.tnf.ptm.game.ship.SloMo;
+import old.tnf.ptm.game.ship.UnShield;
+import old.tnf.ptm.game.ship.hulls.GunSlot;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.HashMap;
@@ -55,7 +55,7 @@ public final class HullConfigManager {
         String string = jsonValue.getString(name, null);
         return (string == null)
                 ? defaultValue
-                : SolMath.readV2(string);
+                : PtmMath.readV2(string);
     }
 
     private static Engine.Config readEngineConfig(String engineName, ItemManager itemManager) {
@@ -135,10 +135,10 @@ public final class HullConfigManager {
         configData.e1Pos = readVector2(rootNode, "e1Pos", new Vector2());
         configData.e2Pos = readVector2(rootNode, "e2Pos", new Vector2());
 
-        configData.lightSrcPoss = SolMath.readV2List(rootNode, "lightSrcPoss");
+        configData.lightSrcPoss = PtmMath.readV2List(rootNode, "lightSrcPoss");
         configData.hasBase = rootNode.getBoolean("hasBase", false);
-        configData.forceBeaconPoss = SolMath.readV2List(rootNode, "forceBeaconPoss");
-        configData.doorPoss = SolMath.readV2List(rootNode, "doorPoss");
+        configData.forceBeaconPoss = PtmMath.readV2List(rootNode, "forceBeaconPoss");
+        configData.doorPoss = PtmMath.readV2List(rootNode, "doorPoss");
         configData.type = HullConfig.Type.forName(rootNode.getString("type"));
         configData.durability = (configData.type == HullConfig.Type.BIG) ? 3 : .25f;
         configData.engineConfig = readEngineConfig(rootNode.getString("engine", null), itemManager);

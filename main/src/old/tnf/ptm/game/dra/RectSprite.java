@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.dra;
+package old.tnf.ptm.game.dra;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.Consumed;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.GameDrawer;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
+import old.tnf.ptm.common.Consumed;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.GameDrawer;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
 
 public class RectSprite implements Dra {
 
@@ -86,9 +86,9 @@ public class RectSprite implements Dra {
         myOrigX = myTexSzX / 2 + texSz * myOrigPercX;
         myOrigY = myTexSzY / 2 + texSz * myOrigPercY;
 
-        float rx = myTexSzX / 2 + texSz * SolMath.abs(myOrigPercX);
-        float ry = myTexSzY / 2 + texSz * SolMath.abs(myOrigPercY);
-        myRadius = SolMath.sqrt(rx * rx + ry * ry);
+        float rx = myTexSzX / 2 + texSz * PtmMath.abs(myOrigPercX);
+        float ry = myTexSzY / 2 + texSz * PtmMath.abs(myOrigPercY);
+        myRadius = PtmMath.sqrt(rx * rx + ry * ry);
     }
 
     public Texture getTex0() {
@@ -104,14 +104,14 @@ public class RectSprite implements Dra {
         return myLevel;
     }
 
-    public void update(SolGame game, SolObject o) {
+    public void update(PtmGame game, PtmObject o) {
         relAngle += myRotSpd * game.getTimeStep();
     }
 
-    public void prepare(SolObject o) {
+    public void prepare(PtmObject o) {
         float baseAngle = o.getAngle();
         Vector2 basePos = o.getPosition();
-        SolMath.toWorld(myPos, relPos, baseAngle, basePos, false);
+        PtmMath.toWorld(myPos, relPos, baseAngle, basePos, false);
         myAngle = relAngle + baseAngle;
     }
 
@@ -128,7 +128,7 @@ public class RectSprite implements Dra {
         return myRadius;
     }
 
-    public void draw(GameDrawer drawer, SolGame game) {
+    public void draw(GameDrawer drawer, PtmGame game) {
         float x = myPos.x;
         float y = myPos.y;
         if (myLevel.depth != 1) {

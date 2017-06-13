@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.menu;
+package old.tnf.ptm.menu;
 
-import com.tnf.ptm.ui.SolUiScreen;
-import com.tnf.ptm.GameOptions;
+import old.tnf.ptm.ui.PtmUiScreen;
+import old.tnf.ptm.GameOptions;
 
 import java.util.List;
 
-public interface InputMapOperations extends SolUiScreen {
+public interface InputMapOperations extends PtmUiScreen {
     /**
      * Get the header title to display on the input mapping screen.
      *

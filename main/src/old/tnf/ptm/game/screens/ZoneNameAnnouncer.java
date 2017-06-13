@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.planet.SolSystem;
-import com.tnf.ptm.ui.UiDrawer;
-import com.tnf.ptm.game.planet.PlanetManager;
-import com.tnf.ptm.ui.FontSize;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.planet.PtmSystem;
+import old.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.game.planet.PlanetManager;
+import old.tnf.ptm.ui.FontSize;
 
 public class ZoneNameAnnouncer {
     private static final float FADE_TIME = 4f;
@@ -31,7 +31,7 @@ public class ZoneNameAnnouncer {
     private String myZone;
     private String myText;
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         PlanetManager pm = game.getPlanetMan();
         String zone = null;
         String pref = null;
@@ -41,7 +41,7 @@ public class ZoneNameAnnouncer {
             zone = p.getName();
             pref = "Planet";
         } else {
-            SolSystem s = pm.getNearestSystem(camPos);
+            PtmSystem s = pm.getNearestSystem(camPos);
             if (s.getPos().dst(camPos) < s.getRadius()) {
                 zone = s.getName();
                 pref = "System";

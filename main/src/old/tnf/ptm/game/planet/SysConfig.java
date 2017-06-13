@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
-import com.tnf.ptm.game.item.TradeConfig;
-import com.tnf.ptm.game.ShipConfig;
-import com.tnf.ptm.game.chunk.SpaceEnvConfig;
+import old.tnf.ptm.game.item.TradeConfig;
+import old.tnf.ptm.game.ShipConfig;
+import old.tnf.ptm.game.chunk.SpaceEnvConfig;
 
 import java.util.ArrayList;
 

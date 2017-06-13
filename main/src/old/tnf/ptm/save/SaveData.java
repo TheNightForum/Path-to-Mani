@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.save;
+package old.tnf.ptm.save;
 
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.planet.SolSystem;
-import com.tnf.ptm.game.FarObj;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.planet.PtmSystem;
+import old.tnf.ptm.game.FarObj;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SaveData {
     public final List<FarObj> farObjs;
-    public final List<SolSystem> systems;
+    public final List<PtmSystem> systems;
     public final List<Planet> planets;
 
     public SaveData() {
         farObjs = new ArrayList<FarObj>();
         planets = new ArrayList<Planet>();
-        systems = new ArrayList<SolSystem>();
+        systems = new ArrayList<PtmSystem>();
     }
 }

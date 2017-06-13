@@ -13,55 +13,55 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.math.Rectangle;
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.ui.SolUiScreen;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
-import com.tnf.ptm.menu.MenuLayout;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.ui.PtmUiScreen;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.menu.MenuLayout;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TalkScreen implements SolUiScreen {
+public class TalkScreen implements PtmUiScreen {
     static final float MAX_TALK_DIST = 1f;
 
-    private final List<SolUiControl> controls = new ArrayList<>();
-    public final SolUiControl buyControl;
-    public final SolUiControl closeControl;
-    private final SolUiControl sellControl;
-    private final SolUiControl shipsControl;
-    private final SolUiControl hireControl;
+    private final List<PtmUiControl> controls = new ArrayList<>();
+    public final PtmUiControl buyControl;
+    public final PtmUiControl closeControl;
+    private final PtmUiControl sellControl;
+    private final PtmUiControl shipsControl;
+    private final PtmUiControl hireControl;
 
     private final Rectangle bg;
-    private SolShip target;
+    private PtmShip target;
 
     TalkScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-        sellControl = new SolUiControl(menuLayout.buttonRect(-1, 0), true, gameOptions.getKeySellMenu());
+        sellControl = new PtmUiControl(menuLayout.buttonRect(-1, 0), true, gameOptions.getKeySellMenu());
         sellControl.setDisplayName("Sell");
         controls.add(sellControl);
 
-        buyControl = new SolUiControl(menuLayout.buttonRect(-1, 1), true, gameOptions.getKeyBuyMenu());
+        buyControl = new PtmUiControl(menuLayout.buttonRect(-1, 1), true, gameOptions.getKeyBuyMenu());
         buyControl.setDisplayName("Buy");
         controls.add(buyControl);
 
-        shipsControl = new SolUiControl(menuLayout.buttonRect(-1, 2), true, gameOptions.getKeyChangeShipMenu());
+        shipsControl = new PtmUiControl(menuLayout.buttonRect(-1, 2), true, gameOptions.getKeyChangeShipMenu());
         shipsControl.setDisplayName("Change Ship");
         controls.add(shipsControl);
 
-        hireControl = new SolUiControl(menuLayout.buttonRect(-1, 3), true, gameOptions.getKeyHireShipMenu());
+        hireControl = new PtmUiControl(menuLayout.buttonRect(-1, 3), true, gameOptions.getKeyHireShipMenu());
         hireControl.setDisplayName("Hire");
         controls.add(hireControl);
 
-        closeControl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyClose());
+        closeControl = new PtmUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyClose());
         closeControl.setDisplayName("Close");
         controls.add(closeControl);
 
@@ -69,21 +69,21 @@ public class TalkScreen implements SolUiScreen {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void updateCustom(SolApplication solApplication, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+    public void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
         if (clickedOutside) {
-            closeControl.maybeFlashPressed(solApplication.getOptions().getKeyClose());
+            closeControl.maybeFlashPressed(ptmApplication.getOptions().getKeyClose());
             return;
         }
-        SolGame g = solApplication.getGame();
-        SolShip hero = g.getHero();
-        SolInputManager inputMan = solApplication.getInputMan();
+        PtmGame g = ptmApplication.getGame();
+        PtmShip hero = g.getHero();
+        PtmInputManager inputMan = ptmApplication.getInputMan();
         if (closeControl.isJustOff() || isTargetFar(hero)) {
-            inputMan.setScreen(solApplication, g.getScreens().mainScreen);
+            inputMan.setScreen(ptmApplication, g.getScreens().mainScreen);
             return;
         }
 
@@ -98,12 +98,12 @@ public class TalkScreen implements SolUiScreen {
         boolean hire = hireControl.isJustOff();
         if (sell || buy || sellShips || hire) {
             is.setOperations(sell ? is.sellItems : buy ? is.buyItems : sellShips ? is.changeShip : is.hireShips);
-            inputMan.setScreen(solApplication, g.getScreens().mainScreen);
-            inputMan.addScreen(solApplication, is);
+            inputMan.setScreen(ptmApplication, g.getScreens().mainScreen);
+            inputMan.addScreen(ptmApplication, is);
         }
     }
 
-    boolean isTargetFar(SolShip hero) {
+    boolean isTargetFar(PtmShip hero) {
         if (hero == null || target == null || target.getLife() <= 0) {
             return true;
         }
@@ -112,8 +112,8 @@ public class TalkScreen implements SolUiScreen {
     }
 
     @Override
-    public void drawBg(UiDrawer uiDrawer, SolApplication solApplication) {
-        uiDrawer.draw(bg, SolColor.UI_BG);
+    public void drawBg(UiDrawer uiDrawer, PtmApplication ptmApplication) {
+        uiDrawer.draw(bg, PtmColor.UI_BG);
     }
 
     @Override
@@ -122,15 +122,15 @@ public class TalkScreen implements SolUiScreen {
     }
 
     @Override
-    public boolean isCursorOnBg(SolInputManager.InputPointer inputPointer) {
+    public boolean isCursorOnBg(PtmInputManager.InputPointer inputPointer) {
         return bg.contains(inputPointer.x, inputPointer.y);
     }
 
-    public SolShip getTarget() {
+    public PtmShip getTarget() {
         return target;
     }
 
-    public void setTarget(SolShip target) {
+    public void setTarget(PtmShip target) {
         this.target = target;
     }
 }

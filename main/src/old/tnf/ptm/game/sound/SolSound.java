@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.sound;
+package old.tnf.ptm.game.sound;
 
 import com.badlogic.gdx.audio.Sound;
 

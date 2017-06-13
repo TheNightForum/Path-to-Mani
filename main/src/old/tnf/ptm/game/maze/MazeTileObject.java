@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.maze;
+package old.tnf.ptm.game.maze;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
@@ -23,21 +23,21 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.dra.RectSprite;
-import com.tnf.ptm.game.FarObj;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.DmgType;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.game.FarObj;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MazeTileObject implements SolObject {
+public class MazeTileObject implements PtmObject {
     private final List<Dra> myDras;
     private final Body myBody;
     private final Vector2 myPos;
@@ -55,23 +55,23 @@ public class MazeTileObject implements SolObject {
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(PtmGame game) {
         return false;
     }
 
     @Override
-    public void onRemove(SolGame game) {
+    public void onRemove(PtmGame game) {
         if (myBody != null) {
             myBody.getWorld().destroyBody(myBody);
         }
     }
 
     @Override
-    public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+    public void receiveDmg(float dmg, PtmGame game, Vector2 pos, DmgType dmgType) {
         game.getSpecialSounds().playHit(game, this, pos, dmgType);
     }
 
@@ -81,7 +81,7 @@ public class MazeTileObject implements SolObject {
     }
 
     @Override
-    public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+    public void receiveForce(Vector2 force, PtmGame game, boolean acc) {
     }
 
     @Override
@@ -110,8 +110,8 @@ public class MazeTileObject implements SolObject {
     }
 
     @Override
-    public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-                              SolGame game, Vector2 collPos) {
+    public void handleContact(PtmObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+                              PtmGame game, Vector2 collPos) {
     }
 
     @Override
@@ -144,17 +144,17 @@ public class MazeTileObject implements SolObject {
         }
 
         @Override
-        public boolean shouldBeRemoved(SolGame game) {
+        public boolean shouldBeRemoved(PtmGame game) {
             return false;
         }
 
         @Override
-        public SolObject toObj(SolGame game) {
+        public PtmObject toObj(PtmGame game) {
             return new Builder().build(game, myTile, myPos, myAngle, myFlipped);
         }
 
         @Override
-        public void update(SolGame game) {
+        public void update(PtmGame game) {
         }
 
         @Override
@@ -179,7 +179,7 @@ public class MazeTileObject implements SolObject {
     }
 
     public static class Builder {
-        public MazeTileObject build(SolGame game, MazeTile tile, Vector2 pos, float angle, boolean flipped) {
+        public MazeTileObject build(PtmGame game, MazeTile tile, Vector2 pos, float angle, boolean flipped) {
             List<Dra> dras = new ArrayList<Dra>();
             TextureAtlas.AtlasRegion tex = tile.tex;
             TextureAtlas.AtlasRegion bgTex = tile.bgTex;
@@ -187,9 +187,9 @@ public class MazeTileObject implements SolObject {
                 tex = game.getTexMan().getFlipped(tex);
                 bgTex = game.getTexMan().getFlipped(bgTex);
             }
-            RectSprite s = new RectSprite(tex, MazeBuilder.TILE_SZ, 0, 0, new Vector2(), DraLevel.GROUND, 0, 0, SolColor.WHITE, false);
+            RectSprite s = new RectSprite(tex, MazeBuilder.TILE_SZ, 0, 0, new Vector2(), DraLevel.GROUND, 0, 0, PtmColor.WHITE, false);
             dras.add(s);
-            RectSprite s2 = new RectSprite(bgTex, MazeBuilder.TILE_SZ, 0, 0, new Vector2(), DraLevel.DECO, 0, 0, SolColor.WHITE, false);
+            RectSprite s2 = new RectSprite(bgTex, MazeBuilder.TILE_SZ, 0, 0, new Vector2(), DraLevel.DECO, 0, 0, PtmColor.WHITE, false);
             dras.add(s2);
             Body body = buildBody(game, angle, pos, tile, flipped);
             MazeTileObject res = new MazeTileObject(tile, dras, body, pos, angle, flipped);
@@ -197,11 +197,11 @@ public class MazeTileObject implements SolObject {
             return res;
         }
 
-        private Body buildBody(SolGame game, float angle, Vector2 pos, MazeTile tile, boolean flipped) {
+        private Body buildBody(PtmGame game, float angle, Vector2 pos, MazeTile tile, boolean flipped) {
             BodyDef def = new BodyDef();
             def.type = BodyDef.BodyType.KinematicBody;
             def.position.set(pos);
-            def.angle = angle * SolMath.degRad;
+            def.angle = angle * PtmMath.degRad;
             def.angularDamping = 0;
             Body body = game.getObjMan().getWorld().createBody(def);
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 public enum Direction {
     UP(-90), DOWN(90), LEFT(180), RIGHT(0);

@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
-import com.tnf.ptm.files.FileManager;
-import com.tnf.ptm.files.HullConfigManager;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
-import com.tnf.ptm.IniReader;
-import com.tnf.ptm.game.item.Gun;
-import com.tnf.ptm.game.item.ItemManager;
+import old.tnf.ptm.files.FileManager;
+import old.tnf.ptm.files.HullConfigManager;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.IniReader;
+import old.tnf.ptm.game.item.Gun;
+import old.tnf.ptm.game.item.ItemManager;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -30,10 +30,10 @@ public class SaveManager {
 
     public static final String FILE_NAME = "prevShip.ini";
 
-    public static void writeShip(HullConfig hull, float money, ArrayList<SolItem> items, SolGame game) {
+    public static void writeShip(HullConfig hull, float money, ArrayList<PtmItem> items, PtmGame game) {
         String hullName = game.getHullConfigs().getName(hull);
         StringBuilder sb = new StringBuilder();
-        for (SolItem i : items) {
+        for (PtmItem i : items) {
             sb.append(i.getCode());
             if (i.isEquipped() > 0) {
                 sb.append("-" + i.isEquipped());

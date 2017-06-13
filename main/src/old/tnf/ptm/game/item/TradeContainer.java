@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.item;
+package old.tnf.ptm.game.item;
 
-import com.tnf.ptm.game.SolGame;
+import old.tnf.ptm.game.PtmGame;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class TradeContainer {
         myItems = new ItemContainer();
     }
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         if (0 < myAwait) {
             myAwait -= game.getTimeStep();
             return;
@@ -44,7 +44,7 @@ public class TradeContainer {
         List<ItemConfig> items = myConfig.items;
         for (int i1 = 0, sz = items.size(); i1 < sz; i1++) {
             ItemConfig i = items.get(i1);
-            SolItem ex = i.examples.get(0);
+            PtmItem ex = i.examples.get(0);
             int amt = ex.isSame(ex) ? 16 : 1;
             for (int j = 0; j < amt; j++) {
                 if (myItems.canAdd(ex)) {

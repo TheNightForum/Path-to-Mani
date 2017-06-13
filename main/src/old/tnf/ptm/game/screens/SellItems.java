@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.item.ItemContainer;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.item.ItemContainer;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.GameOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,24 +30,24 @@ import java.util.List;
 public class SellItems implements InventoryOperations {
     private static float PERC = .8f;
 
-    private final ArrayList<SolUiControl> controls = new ArrayList<>();
-    private final SolUiControl sellControl;
+    private final ArrayList<PtmUiControl> controls = new ArrayList<>();
+    private final PtmUiControl sellControl;
 
     SellItems(InventoryScreen inventoryScreen, GameOptions gameOptions) {
-        sellControl = new SolUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeySellItem());
+        sellControl = new PtmUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeySellItem());
         sellControl.setDisplayName("Sell");
         controls.add(sellControl);
     }
 
     @Override
-    public ItemContainer getItems(SolGame game) {
-        SolShip h = game.getHero();
+    public ItemContainer getItems(PtmGame game) {
+        PtmShip h = game.getHero();
         return h == null ? null : h.getItemContainer();
     }
 
     @Override
-    public boolean isUsing(SolGame game, SolItem item) {
-        SolShip h = game.getHero();
+    public boolean isUsing(PtmGame game, PtmItem item) {
+        PtmShip h = game.getHero();
         return h != null && h.maybeUnequip(game, item, false);
     }
 
@@ -62,29 +62,29 @@ public class SellItems implements InventoryOperations {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void updateCustom(SolApplication solApplication, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
-        SolGame game = solApplication.getGame();
+    public void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+        PtmGame game = ptmApplication.getGame();
         InventoryScreen is = game.getScreens().inventoryScreen;
         TalkScreen talkScreen = game.getScreens().talkScreen;
-        SolShip target = talkScreen.getTarget();
-        SolShip hero = game.getHero();
+        PtmShip target = talkScreen.getTarget();
+        PtmShip hero = game.getHero();
         if (talkScreen.isTargetFar(hero)) {
-            solApplication.getInputMan().setScreen(solApplication, game.getScreens().mainScreen);
+            ptmApplication.getInputMan().setScreen(ptmApplication, game.getScreens().mainScreen);
             return;
         }
-        SolItem selItem = is.getSelectedItem();
+        PtmItem selItem = is.getSelectedItem();
         if (selItem == null) {
             sellControl.setDisplayName("----");
             sellControl.setEnabled(false);
             return;
         }
 
-        boolean isWornAndCanBeSold = isItemEquippedAndSellable(selItem, solApplication.getOptions());
+        boolean isWornAndCanBeSold = isItemEquippedAndSellable(selItem, ptmApplication.getOptions());
         boolean enabled = isItemSellable(selItem, target);
 
         if (enabled && isWornAndCanBeSold) {
@@ -110,12 +110,12 @@ public class SellItems implements InventoryOperations {
         }
     }
 
-    private boolean isItemSellable(SolItem item, SolShip target) {
+    private boolean isItemSellable(PtmItem item, PtmShip target) {
         return target.getTradeContainer().getItems().canAdd(item);
     }
 
     // Return true if the item is not worn, or is worn and canSellEquippedItems is true
-    private boolean isItemEquippedAndSellable(SolItem item, GameOptions options) {
+    private boolean isItemEquippedAndSellable(PtmItem item, GameOptions options) {
         return (item.isEquipped() == 0 || options.canSellEquippedItems);
     }
 }

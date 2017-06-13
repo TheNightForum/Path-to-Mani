@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.menu;
+package old.tnf.ptm.menu;
 
 /**
  * <h1>Holds Input Mapping Information</h1>

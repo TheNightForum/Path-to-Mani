@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.ObjectManager;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.ship.FarShip;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.ObjectManager;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.ship.FarShip;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
 
 import java.util.List;
 
@@ -38,10 +38,10 @@ public class Guardian implements MoveDestProvider {
     private final Vector2 myDest;
     private final float myRelAngle;
 
-    private SolShip myTarget;
+    private PtmShip myTarget;
     private FarShip myFarTarget;
 
-    public Guardian(SolGame game, HullConfig hullConfig, Pilot targetPilot, Vector2 targetPos, HullConfig targetHc,
+    public Guardian(PtmGame game, HullConfig hullConfig, Pilot targetPilot, Vector2 targetPos, HullConfig targetHc,
                     float relAngle) {
         myTargetPilot = targetPilot;
         myDest = new Vector2();
@@ -70,7 +70,7 @@ public class Guardian implements MoveDestProvider {
     }
 
     @Override
-    public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+    public void update(PtmGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, PtmShip nearestEnemy) {
         updateTarget(game);
         myDest.set(shipPos);
         Vector2 targetPos;
@@ -88,9 +88,9 @@ public class Guardian implements MoveDestProvider {
         setDest(game, targetPos, targetApproxRad, hullConfig);
     }
 
-    public void updateTarget(SolGame game) {
+    public void updateTarget(PtmGame game) {
         ObjectManager om = game.getObjMan();
-        List<SolObject> objs = om.getObjs();
+        List<PtmObject> objs = om.getObjs();
         if (myTarget != null && objs.contains(myTarget)) {
             return;
         }
@@ -102,11 +102,11 @@ public class Guardian implements MoveDestProvider {
         myFarTarget = null;
 
         for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-            SolObject o = objs.get(i);
-            if (!(o instanceof SolShip)) {
+            PtmObject o = objs.get(i);
+            if (!(o instanceof PtmShip)) {
                 continue;
             }
-            SolShip other = (SolShip) o;
+            PtmShip other = (PtmShip) o;
             if (other.getPilot() != myTargetPilot) {
                 continue;
             }
@@ -123,18 +123,18 @@ public class Guardian implements MoveDestProvider {
         }
     }
 
-    private void setDest(SolGame game, Vector2 targetPos, float targetApproxRad, HullConfig hullConfig) {
+    private void setDest(PtmGame game, Vector2 targetPos, float targetApproxRad, HullConfig hullConfig) {
         Planet np = game.getPlanetMan().getNearestPlanet(targetPos);
         float desiredAngle = myRelAngle;
         if (np.isNearGround(targetPos)) {
-            desiredAngle = SolMath.angle(np.getPos(), targetPos);
+            desiredAngle = PtmMath.angle(np.getPos(), targetPos);
         }
-        SolMath.fromAl(myDest, desiredAngle, targetApproxRad + DIST + hullConfig.getApproxRadius());
+        PtmMath.fromAl(myDest, desiredAngle, targetApproxRad + DIST + hullConfig.getApproxRadius());
         myDest.add(targetPos);
     }
 
     @Override
-    public Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround) {
+    public Boolean shouldManeuver(boolean canShoot, PtmShip nearestEnemy, boolean nearGround) {
         if (!canShoot) {
             return null;
         }

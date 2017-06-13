@@ -13,17 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package old.tnf.ptm.ui;
+package old.tnf.ptm.game.item;
 
-import old.tnf.ptm.game.screens.RightPaneLayout;
-import old.tnf.ptm.menu.MenuLayout;
+import com.badlogic.gdx.graphics.Color;
+import old.tnf.ptm.assets.audio.PlayableSound;
 
-public class SolLayouts {
-    public final RightPaneLayout rightPaneLayout;
-    public final MenuLayout menuLayout;
+public class PtmItemType {
+    public final Color color;
+    public final PlayableSound pickUpSound;
+    public final Color uiColor;
+    public final float sz;
 
-    public SolLayouts(float r) {
-        rightPaneLayout = new RightPaneLayout(r);
-        menuLayout = new MenuLayout(r);
+    public PtmItemType(Color color, PlayableSound pickUpSound, float sz) {
+        this.color = color;
+        this.sz = sz;
+        uiColor = new Color(color);
+        uiColor.a = .3f;
+        this.pickUpSound = pickUpSound;
     }
+
 }

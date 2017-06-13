@@ -13,28 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.sound;
+package old.tnf.ptm.game.sound;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.Nullable;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.GameDrawer;
-import com.tnf.ptm.game.SolObject;
+import old.tnf.ptm.common.Nullable;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.GameDrawer;
+import old.tnf.ptm.game.PtmObject;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 public class DebugHintDrawer {
-    private final Map<SolObject, DebugHint> myTracedNotes;
+    private final Map<PtmObject, DebugHint> myTracedNotes;
     private final Map<Vector2, DebugHint> myFreeNotes;
 
     public DebugHintDrawer() {
-        myTracedNotes = new HashMap<SolObject, DebugHint>();
+        myTracedNotes = new HashMap<PtmObject, DebugHint>();
         myFreeNotes = new HashMap<Vector2, DebugHint>();
     }
 
-    public void add(@Nullable SolObject owner, Vector2 pos, String value) {
+    public void add(@Nullable PtmObject owner, Vector2 pos, String value) {
         DebugHint dh;
         if (owner == null) {
             dh = myFreeNotes.get(pos);
@@ -52,12 +52,12 @@ public class DebugHintDrawer {
         dh.add(value);
     }
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         updateEach(game, myTracedNotes.values().iterator());
         updateEach(game, myFreeNotes.values().iterator());
     }
 
-    private void updateEach(SolGame game, Iterator<DebugHint> it) {
+    private void updateEach(PtmGame game, Iterator<DebugHint> it) {
         while (it.hasNext()) {
             DebugHint n = it.next();
             n.update(game);
@@ -67,7 +67,7 @@ public class DebugHintDrawer {
         }
     }
 
-    public void draw(GameDrawer drawer, SolGame game) {
+    public void draw(GameDrawer drawer, PtmGame game) {
         for (DebugHint n : myTracedNotes.values()) {
             n.draw(drawer, game);
         }

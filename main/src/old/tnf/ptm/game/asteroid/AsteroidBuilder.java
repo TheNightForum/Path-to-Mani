@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.asteroid;
+package old.tnf.ptm.game.asteroid;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
@@ -21,16 +21,16 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.RemoveController;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.dra.RectSprite;
-import com.tnf.ptm.game.CollisionMeshLoader;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.RemoveController;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.game.CollisionMeshLoader;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -52,10 +52,10 @@ public class AsteroidBuilder {
         return parts[parts.length - 1];
     }
 
-    public static Body buildBall(SolGame game, Vector2 pos, float angle, float rad, float density, boolean sensor) {
+    public static Body buildBall(PtmGame game, Vector2 pos, float angle, float rad, float density, boolean sensor) {
         BodyDef bd = new BodyDef();
         bd.type = BodyDef.BodyType.DynamicBody;
-        bd.angle = angle * SolMath.degRad;
+        bd.angle = angle * PtmMath.degRad;
         bd.angularDamping = 0;
         bd.position.set(pos);
         bd.linearDamping = 0;
@@ -72,19 +72,19 @@ public class AsteroidBuilder {
     }
 
     // doesn't consume pos
-    public Asteroid buildNew(SolGame game, Vector2 pos, Vector2 spd, float sz, RemoveController removeController) {
-        float rotSpd = SolMath.rnd(MAX_A_ROT_SPD);
-        return build(game, pos, SolMath.elemRnd(myTexs), sz, SolMath.rnd(180), rotSpd, spd, removeController);
+    public Asteroid buildNew(PtmGame game, Vector2 pos, Vector2 spd, float sz, RemoveController removeController) {
+        float rotSpd = PtmMath.rnd(MAX_A_ROT_SPD);
+        return build(game, pos, PtmMath.elemRnd(myTexs), sz, PtmMath.rnd(180), rotSpd, spd, removeController);
     }
 
     // doesn't consume pos
     public FarAsteroid buildNewFar(Vector2 pos, Vector2 spd, float sz, RemoveController removeController) {
-        float rotSpd = SolMath.rnd(MAX_A_ROT_SPD);
-        return new FarAsteroid(SolMath.elemRnd(myTexs), new Vector2(pos), SolMath.rnd(180), removeController, sz, new Vector2(spd), rotSpd);
+        float rotSpd = PtmMath.rnd(MAX_A_ROT_SPD);
+        return new FarAsteroid(PtmMath.elemRnd(myTexs), new Vector2(pos), PtmMath.rnd(180), removeController, sz, new Vector2(spd), rotSpd);
     }
 
     // doesn't consume pos
-    public Asteroid build(SolGame game, Vector2 pos, TextureAtlas.AtlasRegion tex, float sz, float angle, float rotSpd, Vector2 spd, RemoveController removeController) {
+    public Asteroid build(PtmGame game, Vector2 pos, TextureAtlas.AtlasRegion tex, float sz, float angle, float rotSpd, Vector2 spd, RemoveController removeController) {
 
         ArrayList<Dra> dras = new ArrayList<Dra>();
         Body body;
@@ -93,7 +93,7 @@ public class AsteroidBuilder {
                     BodyDef.BodyType.DynamicBody, pos, angle, dras, DENSITY, DraLevel.BODIES, tex);
         } else {
             body = buildBall(game, pos, angle, sz / 2, DENSITY, false);
-            RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.BODIES, 0, 0, SolColor.WHITE, false);
+            RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.BODIES, 0, 0, PtmColor.WHITE, false);
             dras.add(s);
         }
         body.setAngularVelocity(rotSpd);

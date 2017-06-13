@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.maze;
+package old.tnf.ptm.game.maze;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.game.HardnessCalc;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolCam;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.game.HardnessCalc;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.PtmCam;
 
 public class Maze {
 
@@ -37,8 +37,8 @@ public class Maze {
         myDps = HardnessCalc.getMazeDps(config);
     }
 
-    public void update(SolGame game) {
-        SolCam cam = game.getCam();
+    public void update(PtmGame game) {
+        PtmCam cam = game.getCam();
         Vector2 camPos = cam.getPos();
         if (!myObjsCreated && camPos.dst(myPos) < myRadius + Const.CAM_VIEW_DIST_JOURNEY * 2) {
             new MazeBuilder().build(game, this);

@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.common;
+package old.tnf.ptm.common;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.Pool;
-import com.tnf.ptm.Const;
+import old.tnf.ptm.Const;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,8 +30,8 @@ import java.util.List;
 /**
  * A class with helpful mathematical functions
  */
-public class SolMath {
-    private static Logger logger = LoggerFactory.getLogger(SolMath.class);
+public class PtmMath {
+    private static Logger logger = LoggerFactory.getLogger(PtmMath.class);
     public static final float PI = MathUtils.PI;
     public static float radDeg = MathUtils.radDeg;
     public static float degRad = MathUtils.degRad;
@@ -110,10 +110,10 @@ public class SolMath {
     public static float rnd(float min, float max) {
         float result = max;
         if (min == max) {
-            Gdx.app.log("SolMath", "rnd was called with bad parameters! Min " + min + " matches max " + max + ", accepting max.");
-            Gdx.app.log("SolMath", "Please review appropriate code in the stack dump:");
+            Gdx.app.log("PtmMath", "rnd was called with bad parameters! Min " + min + " matches max " + max + ", accepting max.");
+            Gdx.app.log("PtmMath", "Please review appropriate code in the stack dump:");
             for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
-                Gdx.app.log("SolMath", ste.toString());
+                Gdx.app.log("PtmMath", ste.toString());
             }
 
             return result;
@@ -333,7 +333,7 @@ public class SolMath {
      * @return a length of a projection of a vector onto a line defined by angle
      */
     public static float project(Vector2 v, float angle) {
-        float angleDiff = angle - SolMath.angle(v);
+        float angleDiff = angle - PtmMath.angle(v);
         return v.len() * cos(angleDiff);
     }
 
@@ -425,8 +425,8 @@ public class SolMath {
     }
 
     public static void checkVectorsTaken(Object o) {
-        if (SolMath.VECTORS_TAKEN != 0) {
-            throw new AssertionError("vectors " + SolMath.VECTORS_TAKEN + ", blame on " + o);
+        if (PtmMath.VECTORS_TAKEN != 0) {
+            throw new AssertionError("vectors " + PtmMath.VECTORS_TAKEN + ", blame on " + o);
         }
     }
 

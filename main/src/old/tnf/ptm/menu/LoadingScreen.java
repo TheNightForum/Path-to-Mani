@@ -14,27 +14,27 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.menu;
+package old.tnf.ptm.menu;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.ui.FontSize;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.ui.SolUiScreen;
-import com.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.ui.FontSize;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.ui.PtmUiScreen;
+import old.tnf.ptm.ui.UiDrawer;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoadingScreen implements SolUiScreen {
+public class LoadingScreen implements PtmUiScreen {
     private final TextureAtlas.AtlasRegion bgTex;
 
-    private final ArrayList<SolUiControl> controls = new ArrayList<>();
+    private final ArrayList<PtmUiControl> controls = new ArrayList<>();
     private boolean loadTutorial;
     private boolean usePreviousShip;
 
@@ -43,18 +43,18 @@ public class LoadingScreen implements SolUiScreen {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void updateCustom(SolApplication solApplication, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
-        solApplication.startNewGame(loadTutorial, usePreviousShip);
+    public void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+        ptmApplication.startNewGame(loadTutorial, usePreviousShip);
     }
 
     @Override
-    public void drawText(UiDrawer uiDrawer, SolApplication solApplication) {
-        uiDrawer.drawString("Loading...", uiDrawer.r / 2, .5f, FontSize.MENU, true, SolColor.WHITE);
+    public void drawText(UiDrawer uiDrawer, PtmApplication ptmApplication) {
+        uiDrawer.drawString("Loading...", uiDrawer.r / 2, .5f, FontSize.MENU, true, PtmColor.WHITE);
     }
 
     public void setMode(boolean loadTutorial, boolean usePreviousShip) {
@@ -63,7 +63,7 @@ public class LoadingScreen implements SolUiScreen {
     }
 
     @Override
-    public void drawBg(UiDrawer uiDrawer, SolApplication solApplication) {
-        uiDrawer.draw(bgTex, uiDrawer.r, 1, uiDrawer.r / 2, 0.5f, uiDrawer.r / 2, 0.5f, 0, SolColor.WHITE);
+    public void drawBg(UiDrawer uiDrawer, PtmApplication ptmApplication) {
+        uiDrawer.draw(bgTex, uiDrawer.r, 1, uiDrawer.r / 2, 0.5f, uiDrawer.r / 2, 0.5f, 0, PtmColor.WHITE);
     }
 }

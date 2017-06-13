@@ -18,10 +18,10 @@ package old.tnf.ptm.ui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
-import old.tnf.ptm.SolApplication;
-import old.tnf.ptm.common.SolColor;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.common.PtmColor;
 
-public class SolUiControl {
+public class PtmUiControl {
     private final int[] myKeys;
     private final Rectangle myScreenArea;
     private final boolean myWithSound;
@@ -36,7 +36,7 @@ public class SolUiControl {
     private boolean myMouseHover;
     private int myWarnCount;
 
-    public SolUiControl(Rectangle screenArea, boolean withSound, int... keys) {
+    public PtmUiControl(Rectangle screenArea, boolean withSound, int... keys) {
         myWithSound = withSound;
         myKeys = keys == null ? new int[0] : keys;
         myScreenArea = screenArea;
@@ -57,7 +57,7 @@ public class SolUiControl {
         return false;
     }
 
-    public boolean maybeFlashPressed(SolInputManager.InputPointer inputPointer) {
+    public boolean maybeFlashPressed(PtmInputManager.InputPointer inputPointer) {
         if (!myEnabled) {
             return false;
         }
@@ -68,8 +68,8 @@ public class SolUiControl {
         return pressed;
     }
 
-    public void update(SolInputManager.InputPointer[] inputPointers, boolean cursorShown, boolean canBePressed, SolInputManager inputMan,
-                       SolApplication cmp) {
+    public void update(PtmInputManager.InputPointer[] inputPointers, boolean cursorShown, boolean canBePressed, PtmInputManager inputMan,
+                       PtmApplication cmp) {
         if (!myEnabled) {
             canBePressed = false;
         }
@@ -84,7 +84,7 @@ public class SolUiControl {
         }
     }
 
-    private void updateHover(SolInputManager.InputPointer[] inputPointers, boolean cursorShown, SolInputManager inputMan, SolApplication cmp) {
+    private void updateHover(PtmInputManager.InputPointer[] inputPointers, boolean cursorShown, PtmInputManager inputMan, PtmApplication cmp) {
         if (myScreenArea == null || myAreaPressed || inputPointers[0].pressed) {
             return;
         }
@@ -115,7 +115,7 @@ public class SolUiControl {
         }
     }
 
-    private void updateArea(SolInputManager.InputPointer[] inputPointers, boolean canBePressed) {
+    private void updateArea(PtmInputManager.InputPointer[] inputPointers, boolean canBePressed) {
         if (myScreenArea == null) {
             return;
         }
@@ -127,7 +127,7 @@ public class SolUiControl {
             myAreaPressed = false;
             if (canBePressed) {
                 for (int i = 0, ptrsLength = inputPointers.length; i < ptrsLength; i++) {
-                    SolInputManager.InputPointer inputPointer = inputPointers[i];
+                    PtmInputManager.InputPointer inputPointer = inputPointers[i];
                     if (!myScreenArea.contains(inputPointer.x, inputPointer.y)) {
                         continue;
                     }
@@ -153,18 +153,18 @@ public class SolUiControl {
         myDisplayName = displayName;
     }
 
-    public void drawButton(UiDrawer uiDrawer, SolApplication cmp, Color warnCol) {
+    public void drawButton(UiDrawer uiDrawer, PtmApplication cmp, Color warnCol) {
         if (myScreenArea == null) {
             return;
         }
-        Color tint = SolColor.UI_INACTIVE;
+        Color tint = PtmColor.UI_INACTIVE;
         if (myEnabled) {
             if (isOn()) {
-                tint = SolColor.UI_LIGHT;
+                tint = PtmColor.UI_LIGHT;
             } else if (myMouseHover) {
-                tint = SolColor.UI_MED;
+                tint = PtmColor.UI_MED;
             } else {
-                tint = SolColor.UI_DARK;
+                tint = PtmColor.UI_DARK;
             }
         }
         uiDrawer.draw(myScreenArea, tint);
@@ -177,7 +177,7 @@ public class SolUiControl {
         if (myScreenArea == null) {
             return;
         }
-        Color tint = myEnabled ? SolColor.WHITE : SolColor.G;
+        Color tint = myEnabled ? PtmColor.WHITE : PtmColor.G;
         uiDrawer.drawString(myDisplayName, myScreenArea.x + myScreenArea.width / 2, myScreenArea.y + myScreenArea.height / 2,
                 FontSize.MENU, true, tint);
     }

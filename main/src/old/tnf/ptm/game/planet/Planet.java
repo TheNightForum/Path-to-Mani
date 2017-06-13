@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.Bound;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.HardnessCalc;
-import com.tnf.ptm.game.SolGame;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.Bound;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.HardnessCalc;
+import old.tnf.ptm.game.PtmGame;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Planet {
-    private final SolSystem mySys;
+    private final PtmSystem mySys;
     private final Vector2 myPos;
     private final float myDist;
     private final float myToSysRotSpd;
@@ -45,7 +45,7 @@ public class Planet {
     private float myMinGroundHeight;
     private Vector2 mySpd;
 
-    public Planet(SolSystem sys, float angleToSys, float dist, float angle, float toSysRotSpd, float rotSpd,
+    public Planet(PtmSystem sys, float angleToSys, float dist, float angle, float toSysRotSpd, float rotSpd,
                   float groundHeight, boolean objsCreated, PlanetConfig config, String name) {
         mySys = sys;
         myAngleToSys = angleToSys;
@@ -60,7 +60,7 @@ public class Planet {
         myObjsCreated = objsCreated;
         myPos = new Vector2();
         mySpd = new Vector2();
-        float grav = SolMath.rnd(config.minGrav, config.maxGrav);
+        float grav = PtmMath.rnd(config.minGrav, config.maxGrav);
         myGravConst = grav * myGroundHeight * myGroundHeight;
         myGroundDps = HardnessCalc.getGroundDps(myConfig, grav);
         myAtmDps = HardnessCalc.getAtmDps(myConfig);
@@ -68,7 +68,7 @@ public class Planet {
         setSecondaryParams();
     }
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         float ts = game.getTimeStep();
         myAngleToSys += myToSysRotSpd * ts;
         myAngle += myRotSpd * ts;
@@ -83,14 +83,14 @@ public class Planet {
     }
 
     private void setSecondaryParams() {
-        SolMath.fromAl(myPos, myAngleToSys, myDist, true);
+        PtmMath.fromAl(myPos, myAngleToSys, myDist, true);
         myPos.add(mySys.getPos());
-        float spdLen = SolMath.angleToArc(myToSysRotSpd, myDist);
+        float spdLen = PtmMath.angleToArc(myToSysRotSpd, myDist);
         float spdAngle = myAngleToSys + 90;
-        SolMath.fromAl(mySpd, spdAngle, spdLen);
+        PtmMath.fromAl(mySpd, spdAngle, spdLen);
     }
 
-    private void fillLangingPlaces(SolGame game) {
+    private void fillLangingPlaces(PtmGame game) {
         for (int i = 0; i < 10; i++) {
             Vector2 lp = game.getPlanetMan().findFlatPlace(game, this, null, 0);
             myLps.add(lp);
@@ -113,34 +113,34 @@ public class Planet {
         return myGroundHeight;
     }
 
-    public SolSystem getSys() {
+    public PtmSystem getSys() {
         return mySys;
     }
 
     @Bound
     public Vector2 getAdjustedEffectSpd(Vector2 pos, Vector2 spd) {
-        Vector2 r = SolMath.getVec(spd);
+        Vector2 r = PtmMath.getVec(spd);
         if (myConfig.skyConfig == null) {
             return r;
         }
-        Vector2 up = SolMath.distVec(myPos, pos);
+        Vector2 up = PtmMath.distVec(myPos, pos);
         float dst = up.len();
         if (dst == 0 || getFullHeight() < dst) {
-            SolMath.free(up);
+            PtmMath.free(up);
             return r;
         }
         float smokeConst = 1.2f * myGravConst;
         if (dst < myGroundHeight) {
             up.scl(smokeConst / dst / myGroundHeight / myGroundHeight);
             r.set(up);
-            SolMath.free(up);
+            PtmMath.free(up);
             return r;
         }
         float spdPerc = (dst - myGroundHeight) / Const.ATM_HEIGHT;
         r.scl(spdPerc);
         up.scl(smokeConst / dst / dst / dst);
         r.add(up);
-        SolMath.free(up);
+        PtmMath.free(up);
         return r;
     }
 
@@ -189,11 +189,11 @@ public class Planet {
     }
 
     public void calcSpdAtPos(Vector2 spd, Vector2 pos) {
-        Vector2 toPos = SolMath.distVec(myPos, pos);
-        float fromPlanetAngle = SolMath.angle(toPos);
-        float hSpdLen = SolMath.angleToArc(myRotSpd, toPos.len());
-        SolMath.free(toPos);
-        SolMath.fromAl(spd, fromPlanetAngle + 90, hSpdLen);
+        Vector2 toPos = PtmMath.distVec(myPos, pos);
+        float fromPlanetAngle = PtmMath.angle(toPos);
+        float hSpdLen = PtmMath.angleToArc(myRotSpd, toPos.len());
+        PtmMath.free(toPos);
+        PtmMath.fromAl(spd, fromPlanetAngle + 90, hSpdLen);
         spd.add(mySpd);
     }
 

@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.game.HardnessCalc;
+import old.tnf.ptm.game.HardnessCalc;
 
 public class SystemBelt {
     private final Float myHalfWidth;
     private final float myRadius;
-    private final SolSystem myS;
+    private final PtmSystem myS;
     private final SysConfig myConfig;
     private final float myDps;
 
-    public SystemBelt(Float halfWidth, float radius, SolSystem s, SysConfig config) {
+    public SystemBelt(Float halfWidth, float radius, PtmSystem s, SysConfig config) {
         myHalfWidth = halfWidth;
         myRadius = radius;
         myS = s;

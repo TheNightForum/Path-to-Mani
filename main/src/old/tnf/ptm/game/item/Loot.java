@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.item;
+package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.game.FarObj;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.particle.LightSrc;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.DmgType;
+import old.tnf.ptm.game.FarObj;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.particle.LightSrc;
+import old.tnf.ptm.game.ship.PtmShip;
 
 import java.util.List;
 
-public class Loot implements SolObject {
+public class Loot implements PtmObject {
 
     public static final int MAX_ROT_SPD = 4;
     public static final float MAX_SPD = .2f;
@@ -39,19 +39,19 @@ public class Loot implements SolObject {
     public static final float PULL_DESIRED_SPD = 1f;
     public static final float PULL_FORCE = .1f;
     public static final float MAX_OWNER_AWAIT = 4f;
-    private final SolItem myItem;
+    private final PtmItem myItem;
     private final List<Dra> myDras;
     private final LightSrc myLightSrc;
     private final Vector2 myPos;
     private final Body myBody;
     private final float myMass;
 
-    private SolShip myOwner;
+    private PtmShip myOwner;
     private float myOwnerAwait;
     private int myLife;
     private float myAngle;
 
-    public Loot(SolItem item, Body body, int life, List<Dra> dras, LightSrc ls, SolShip owner) {
+    public Loot(PtmItem item, Body body, int life, List<Dra> dras, LightSrc ls, PtmShip owner) {
         myBody = body;
         myLife = life;
         myItem = item;
@@ -65,7 +65,7 @@ public class Loot implements SolObject {
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         setParamsFromBody();
         myLightSrc.update(true, myAngle, game);
         if (myOwnerAwait > 0) {
@@ -74,15 +74,15 @@ public class Loot implements SolObject {
                 myOwner = null;
             }
         }
-        SolShip puller = null;
+        PtmShip puller = null;
         float minDist = Float.MAX_VALUE;
-        List<SolObject> objs = game.getObjMan().getObjs();
+        List<PtmObject> objs = game.getObjMan().getObjs();
         for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-            SolObject o = objs.get(i);
-            if (!(o instanceof SolShip)) {
+            PtmObject o = objs.get(i);
+            if (!(o instanceof PtmShip)) {
                 continue;
             }
-            SolShip ship = (SolShip) o;
+            PtmShip ship = (PtmShip) o;
             if (!ship.getPilot().collectsItems()) {
                 continue;
             }
@@ -103,21 +103,21 @@ public class Loot implements SolObject {
 
     private void setParamsFromBody() {
         myPos.set(myBody.getPosition());
-        myAngle = myBody.getAngle() * SolMath.radDeg;
+        myAngle = myBody.getAngle() * PtmMath.radDeg;
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(PtmGame game) {
         return myLife <= 0;
     }
 
     @Override
-    public void onRemove(SolGame game) {
+    public void onRemove(PtmGame game) {
         myBody.getWorld().destroyBody(myBody);
     }
 
     @Override
-    public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+    public void receiveDmg(float dmg, PtmGame game, Vector2 pos, DmgType dmgType) {
         myLife -= dmg;
         game.getSpecialSounds().playHit(game, this, pos, dmgType);
     }
@@ -128,7 +128,7 @@ public class Loot implements SolObject {
     }
 
     @Override
-    public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+    public void receiveForce(Vector2 force, PtmGame game, boolean acc) {
         if (acc) {
             force.scl(myMass);
         }
@@ -161,8 +161,8 @@ public class Loot implements SolObject {
     }
 
     @Override
-    public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-                              SolGame game, Vector2 collPos) {
+    public void handleContact(PtmObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+                              PtmGame game, Vector2 collPos) {
         float dmg = absImpulse / myMass / DURABILITY;
         receiveDmg((int) dmg, game, collPos, DmgType.CRASH);
     }
@@ -182,28 +182,28 @@ public class Loot implements SolObject {
         return true;
     }
 
-    public void maybePulled(SolShip ship, Vector2 pullerPos, float radius) {
+    public void maybePulled(PtmShip ship, Vector2 pullerPos, float radius) {
         if (ship == myOwner) {
             return;
         }
-        Vector2 toPuller = SolMath.getVec(pullerPos);
+        Vector2 toPuller = PtmMath.getVec(pullerPos);
         toPuller.sub(getPosition());
         float pullerDist = toPuller.len();
         if (0 < pullerDist && pullerDist < radius) {
             toPuller.scl(PULL_DESIRED_SPD / pullerDist);
             Vector2 spd = myBody.getLinearVelocity();
-            Vector2 spdDiff = SolMath.distVec(spd, toPuller);
+            Vector2 spdDiff = PtmMath.distVec(spd, toPuller);
             float spdDiffLen = spdDiff.len();
             if (spdDiffLen > 0) {
                 spdDiff.scl(PULL_FORCE / spdDiffLen);
                 myBody.applyForceToCenter(spdDiff, true);
             }
-            SolMath.free(spdDiff);
+            PtmMath.free(spdDiff);
         }
-        SolMath.free(toPuller);
+        PtmMath.free(toPuller);
     }
 
-    public SolItem getItem() {
+    public PtmItem getItem() {
         return myLife > 0 ? myItem : null;
     }
 
@@ -211,11 +211,11 @@ public class Loot implements SolObject {
         myLife = life;
     }
 
-    public SolShip getOwner() {
+    public PtmShip getOwner() {
         return myOwner;
     }
 
-    public void pickedUp(SolGame game, SolShip ship) {
+    public void pickedUp(PtmGame game, PtmShip ship) {
         myLife = 0;
         Vector2 spd = new Vector2(ship.getPosition());
         spd.sub(myPos);

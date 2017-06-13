@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.projectile;
+package old.tnf.ptm.game.projectile;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.assets.audio.PlayableSound;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.game.particle.EffectConfig;
+import old.tnf.ptm.assets.audio.PlayableSound;
+import old.tnf.ptm.game.DmgType;
+import old.tnf.ptm.game.particle.EffectConfig;
 
 public class ProjectileConfig {
 

@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.farBg;
+package old.tnf.ptm.game.farBg;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolColorUtil;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.GameDrawer;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.SolCam;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmColorUtil;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.GameDrawer;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.PtmCam;
 
 import java.util.ArrayList;
 
@@ -40,25 +40,25 @@ public class FarBackgroundManagerOld {
 
     public FarBackgroundManagerOld(TextureManager textureManager) {
         TextureAtlas.AtlasRegion nebTex = textureManager.getTexture("farBgBig/nebulae2");
-        if (SolMath.test(.5f)) {
+        if (PtmMath.test(.5f)) {
             nebTex = textureManager.getFlipped(nebTex);
         }
         myNebTex = nebTex;
 
-        myNebAngle = SolMath.rnd(180);
+        myNebAngle = PtmMath.rnd(180);
         myStars = new ArrayList<FarBgStar>();
         for (int i = 0; i < 400; i++) {
             FarBgStar star = new FarBgStar(textureManager);
             myStars.add(star);
         }
-        myNebTint = SolColor.col(.5f, 1);
+        myNebTint = PtmColor.col(.5f, 1);
     }
 
-    public void draw(GameDrawer drawer, SolCam cam, SolGame game) {
+    public void draw(GameDrawer drawer, PtmCam cam, PtmGame game) {
         Planet np = game.getPlanetMan().getNearestPlanet();
         Vector2 camPos = cam.getPos();
         float nebPerc = (camPos.dst(np.getPos()) - np.getGroundHeight()) / (4 * Const.ATM_HEIGHT);
-        nebPerc = SolMath.clamp(nebPerc, 0, 1);
+        nebPerc = PtmMath.clamp(nebPerc, 0, 1);
         myNebTint.a = nebPerc;
 
         float vd = cam.getViewDist();
@@ -78,13 +78,13 @@ public class FarBackgroundManagerOld {
         private final Vector2 myPos;
 
         private FarBgStar(TextureManager textureManager) {
-            myShiftPerc = new Vector2(SolMath.rnd(1), SolMath.rnd(1));
+            myShiftPerc = new Vector2(PtmMath.rnd(1), PtmMath.rnd(1));
             myPos = new Vector2();
-            boolean small = SolMath.test(.8f);
+            boolean small = PtmMath.test(.8f);
             myTex = textureManager.getTexture("decorations/bigStar");
-            mySzPerc = (small ? .01f : .04f) * SolMath.rnd(.5f, 1);
+            mySzPerc = (small ? .01f : .04f) * PtmMath.rnd(.5f, 1);
             myTint = new Color();
-            SolColorUtil.fromHSB(SolMath.rnd(0, 1), .25f, 1, .7f, myTint);
+            PtmColorUtil.fromHSB(PtmMath.rnd(0, 1), .25f, 1, .7f, myTint);
         }
 
         public void draw(GameDrawer drawer, float vd, Vector2 camPos, float camAngle) {

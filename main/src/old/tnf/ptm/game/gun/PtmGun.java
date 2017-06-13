@@ -14,30 +14,30 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.gun;
+package old.tnf.ptm.game.gun;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.dra.RectSprite;
-import com.tnf.ptm.game.item.Clip;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.projectile.ProjectileConfig;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.item.Gun;
-import com.tnf.ptm.game.item.ItemContainer;
-import com.tnf.ptm.game.particle.LightSrc;
-import com.tnf.ptm.game.projectile.Projectile;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.game.item.Clip;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.projectile.ProjectileConfig;
+import old.tnf.ptm.game.Faction;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.item.Gun;
+import old.tnf.ptm.game.item.ItemContainer;
+import old.tnf.ptm.game.particle.LightSrc;
+import old.tnf.ptm.game.projectile.Projectile;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolGun {
+public class PtmGun {
     private final LightSrc myLightSrc;
     private final Vector2 myRelPos;
     private final RectSprite mySprite;
@@ -46,10 +46,10 @@ public class SolGun {
     private float myCoolDown;
     private float myCurrAngleVar;
 
-    public SolGun(SolGame game, Gun item, Vector2 relPos, boolean underShip) {
+    public PtmGun(PtmGame game, Gun item, Vector2 relPos, boolean underShip) {
         myItem = item;
         if (myItem.config.lightOnShot) {
-            Color lightCol = SolColor.WHITE;
+            Color lightCol = PtmColor.WHITE;
             ProjectileConfig projConfig = myItem.config.clipConf.projConfig;
             if (projConfig.bodyEffect != null) {
                 lightCol = projConfig.bodyEffect.tint;
@@ -63,7 +63,7 @@ public class SolGun {
         myRelPos = new Vector2(relPos);
         DraLevel level = underShip ? DraLevel.U_GUNS : DraLevel.GUNS;
         float texLen = myItem.config.gunLength / myItem.config.texLenPerc * 2;
-        mySprite = new RectSprite(myItem.config.tex, texLen, 0, 0, new Vector2(relPos), level, 0, 0, SolColor.WHITE, false);
+        mySprite = new RectSprite(myItem.config.tex, texLen, 0, 0, new Vector2(relPos), level, 0, 0, PtmColor.WHITE, false);
         myDras = new ArrayList<Dra>();
         myDras.add(mySprite);
         if (myLightSrc != null) {
@@ -75,7 +75,7 @@ public class SolGun {
         return myDras;
     }
 
-    private void shoot(Vector2 gunSpd, SolGame game, float gunAngle, Vector2 muzzlePos, Faction faction, SolObject creator) {
+    private void shoot(Vector2 gunSpd, PtmGame game, float gunAngle, Vector2 muzzlePos, Faction faction, PtmObject creator) {
         Vector2 baseSpd = gunSpd;
         Clip.Config cc = myItem.config.clipConf;
         if (cc.projConfig.zeroAbsSpd) {
@@ -87,12 +87,12 @@ public class SolGun {
             }
         }
 
-        myCurrAngleVar = SolMath.approach(myCurrAngleVar, myItem.config.maxAngleVar, myItem.config.angleVarPerShot);
+        myCurrAngleVar = PtmMath.approach(myCurrAngleVar, myItem.config.maxAngleVar, myItem.config.angleVarPerShot);
         boolean multiple = cc.projectilesPerShot > 1;
         for (int i = 0; i < cc.projectilesPerShot; i++) {
             float bulletAngle = gunAngle;
             if (myCurrAngleVar > 0) {
-                bulletAngle += SolMath.rnd(myCurrAngleVar);
+                bulletAngle += PtmMath.rnd(myCurrAngleVar);
             }
             Projectile proj = new Projectile(game, bulletAngle, muzzlePos, baseSpd, faction, cc.projConfig, multiple);
             game.getObjMan().addObjDelayed(proj);
@@ -102,18 +102,18 @@ public class SolGun {
         game.getSoundManager().play(game, myItem.config.shootSound, muzzlePos, creator);
     }
 
-    public void update(ItemContainer ic, SolGame game, float gunAngle, SolObject creator, boolean shouldShoot, Faction faction) {
+    public void update(ItemContainer ic, PtmGame game, float gunAngle, PtmObject creator, boolean shouldShoot, Faction faction) {
         float baseAngle = creator.getAngle();
         Vector2 basePos = creator.getPosition();
         float gunRelAngle = gunAngle - baseAngle;
         mySprite.relAngle = gunRelAngle;
-        Vector2 muzzleRelPos = SolMath.fromAl(gunRelAngle, myItem.config.gunLength);
+        Vector2 muzzleRelPos = PtmMath.fromAl(gunRelAngle, myItem.config.gunLength);
         muzzleRelPos.add(myRelPos);
         if (myLightSrc != null) {
             myLightSrc.setRelPos(muzzleRelPos);
         }
-        Vector2 muzzlePos = SolMath.toWorld(muzzleRelPos, baseAngle, basePos);
-        SolMath.free(muzzleRelPos);
+        Vector2 muzzlePos = PtmMath.toWorld(muzzleRelPos, baseAngle, basePos);
+        PtmMath.free(muzzleRelPos);
 
         float ts = game.getTimeStep();
         if (myItem.ammo <= 0 && myItem.reloadAwait <= 0) {
@@ -137,12 +137,12 @@ public class SolGun {
             Vector2 gunSpd = creator.getSpd();
             shoot(gunSpd, game, gunAngle, muzzlePos, faction, creator);
         } else {
-            myCurrAngleVar = SolMath.approach(myCurrAngleVar, myItem.config.minAngleVar, myItem.config.angleVarDamp * ts);
+            myCurrAngleVar = PtmMath.approach(myCurrAngleVar, myItem.config.minAngleVar, myItem.config.angleVarDamp * ts);
         }
         if (myLightSrc != null) {
             myLightSrc.update(shot, baseAngle, game);
         }
-        SolMath.free(muzzlePos);
+        PtmMath.free(muzzlePos);
     }
 
     public Gun.Config getConfig() {

@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.maze;
+package old.tnf.ptm.game.maze;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.files.HullConfigManager;
-import com.tnf.ptm.game.CollisionMeshLoader;
-import com.tnf.ptm.game.ShipConfig;
-import com.tnf.ptm.game.chunk.SpaceEnvConfig;
-import com.tnf.ptm.game.item.ItemManager;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.files.HullConfigManager;
+import old.tnf.ptm.game.CollisionMeshLoader;
+import old.tnf.ptm.game.ShipConfig;
+import old.tnf.ptm.game.chunk.SpaceEnvConfig;
+import old.tnf.ptm.game.item.ItemManager;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -84,7 +84,7 @@ public class MazeConfig {
                                    ArrayList<TextureAtlas.AtlasRegion> texs) {
         for (TextureAtlas.AtlasRegion tex : texs) {
             String pathEntry = tex.name + "_" + tex.index + ".png";
-            TextureAtlas.AtlasRegion bgTex = SolMath.elemRnd(bgTexs);
+            TextureAtlas.AtlasRegion bgTex = PtmMath.elemRnd(bgTexs);
             MazeTile iw = MazeTile.load(tex, paths, wall, pathEntry, metal, bgTex);
             list.add(iw);
         }

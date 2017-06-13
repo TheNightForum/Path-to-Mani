@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.maze.MazeConfigs;
-import com.tnf.ptm.game.DebugOptions;
-import com.tnf.ptm.game.SolNames;
-import com.tnf.ptm.game.maze.Maze;
-import com.tnf.ptm.game.maze.MazeConfig;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.maze.MazeConfigs;
+import old.tnf.ptm.game.DebugOptions;
+import old.tnf.ptm.game.PtmNames;
+import old.tnf.ptm.game.maze.Maze;
+import old.tnf.ptm.game.maze.MazeConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,26 +37,26 @@ public class SystemsBuilder {
     private static final float MAZE_GAP = 10f;
     private static final float BELT_HALF_WIDTH = 20f;
 
-    public List<SolSystem> build(List<SolSystem> systems, List<Planet> planets, ArrayList<SystemBelt> belts,
+    public List<PtmSystem> build(List<PtmSystem> systems, List<Planet> planets, ArrayList<SystemBelt> belts,
                                  PlanetConfigs planetConfigs,
-                                 MazeConfigs mazeConfigs, ArrayList<Maze> mazes, SysConfigs sysConfigs, SolNames names) {
+                                 MazeConfigs mazeConfigs, ArrayList<Maze> mazes, SysConfigs sysConfigs, PtmNames names) {
         int sysLeft = SYS_COUNT;
         int mazesLeft = MAZE_COUNT;
         while (sysLeft > 0 || mazesLeft > 0) {
             boolean createSys = sysLeft > 0;
             if (createSys && mazesLeft > 0 && !systems.isEmpty()) {
-                createSys = SolMath.test(.5f);
+                createSys = PtmMath.test(.5f);
             }
             if (createSys) {
                 List<Float> ghs = generatePlanetGhs();
                 float sysRadius = calcSysRadius(ghs);
                 Vector2 pos = getBodyPos(systems, mazes, sysRadius);
-                SolSystem s = createSystem(ghs, pos, planets, belts, planetConfigs, sysRadius, sysConfigs, names, systems.isEmpty());
+                PtmSystem s = createSystem(ghs, pos, planets, belts, planetConfigs, sysRadius, sysConfigs, names, systems.isEmpty());
                 systems.add(s);
                 sysLeft--;
             } else {
-                MazeConfig mc = SolMath.elemRnd(mazeConfigs.configs);
-                float mazeRadius = SolMath.rnd(.7f, 1) * MAX_MAZE_RADIUS;
+                MazeConfig mc = PtmMath.elemRnd(mazeConfigs.configs);
+                float mazeRadius = PtmMath.rnd(.7f, 1) * MAX_MAZE_RADIUS;
                 Vector2 pos = getBodyPos(systems, mazes, mazeRadius + MAZE_GAP);
                 Maze m = new Maze(mc, pos, mazeRadius);
                 mazes.add(m);
@@ -70,10 +70,10 @@ public class SystemsBuilder {
         ArrayList<Float> res = new ArrayList<Float>();
         boolean beltCreated = false;
         for (int i = 0; i < PLANET_COUNT; i++) {
-            boolean createBelt = !beltCreated && 0 < i && i < .5f * PLANET_COUNT && SolMath.test(.6f);
+            boolean createBelt = !beltCreated && 0 < i && i < .5f * PLANET_COUNT && PtmMath.test(.6f);
             float gh;
             if (!createBelt) {
-                gh = SolMath.rnd(.5f, 1) * Const.MAX_GROUND_HEIGHT;
+                gh = PtmMath.rnd(.5f, 1) * Const.MAX_GROUND_HEIGHT;
             } else {
                 gh = -BELT_HALF_WIDTH;
                 beltCreated = true;
@@ -102,15 +102,15 @@ public class SystemsBuilder {
         return r;
     }
 
-    private Vector2 getBodyPos(List<SolSystem> systems, ArrayList<Maze> mazes, float bodyRadius) {
+    private Vector2 getBodyPos(List<PtmSystem> systems, ArrayList<Maze> mazes, float bodyRadius) {
         Vector2 res = new Vector2();
         float dist = 0;
         while (true) {
             for (int i = 0; i < 20; i++) {
-                float angle = SolMath.rnd(180);
-                SolMath.fromAl(res, angle, dist);
+                float angle = PtmMath.rnd(180);
+                PtmMath.fromAl(res, angle, dist);
                 boolean good = true;
-                for (SolSystem system : systems) {
+                for (PtmSystem system : systems) {
                     if (system.getPos().dst(res) < system.getRadius() + bodyRadius) {
                         good = false;
                         break;
@@ -130,9 +130,9 @@ public class SystemsBuilder {
         }
     }
 
-    private SolSystem createSystem(List<Float> ghs, Vector2 sysPos, List<Planet> planets, ArrayList<SystemBelt> belts,
+    private PtmSystem createSystem(List<Float> ghs, Vector2 sysPos, List<Planet> planets, ArrayList<SystemBelt> belts,
                                    PlanetConfigs planetConfigs,
-                                   float sysRadius, SysConfigs sysConfigs, SolNames names, boolean firstSys) {
+                                   float sysRadius, SysConfigs sysConfigs, PtmNames names, boolean firstSys) {
         boolean hard = !firstSys;
         String st = DebugOptions.FORCE_SYSTEM_TYPE;
         SysConfig sysConfig;
@@ -141,8 +141,8 @@ public class SystemsBuilder {
         } else {
             sysConfig = sysConfigs.getConfig(st);
         }
-        String name = firstSys ? SolMath.elemRnd(names.systems) : "Sol"; //hack
-        SolSystem s = new SolSystem(sysPos, sysConfig, name, sysRadius);
+        String name = firstSys ? PtmMath.elemRnd(names.systems) : "Sol"; //hack
+        PtmSystem s = new PtmSystem(sysPos, sysConfig, name, sysRadius);
         float planetDist = Const.SUN_RADIUS;
         for (int idx = 0, sz = ghs.size(); idx < sz; idx++) {
             Float gh = ghs.get(idx);
@@ -173,18 +173,18 @@ public class SystemsBuilder {
             }
             planetDist += reserved;
         }
-        if (SolMath.abs(sysRadius - planetDist) > .1f) {
+        if (PtmMath.abs(sysRadius - planetDist) > .1f) {
             throw new AssertionError(sysRadius + " " + planetDist);
         }
         return s;
     }
 
-    private Planet createPlanet(float planetDist, SolSystem s, float groundHeight, PlanetConfig planetConfig,
-                                SolNames names) {
-        float toSysRotSpd = SolMath.arcToAngle(PLANET_SPD, planetDist) * SolMath.toInt(SolMath.test(.5f));
-        float rotSpd = SolMath.arcToAngle(GROUND_SPD, groundHeight) * SolMath.toInt(SolMath.test(.5f));
-        String name = SolMath.elemRnd(names.planets);
-        return new Planet(s, SolMath.rnd(180), planetDist, SolMath.rnd(180), toSysRotSpd, rotSpd, groundHeight, false, planetConfig, name);
+    private Planet createPlanet(float planetDist, PtmSystem s, float groundHeight, PlanetConfig planetConfig,
+                                PtmNames names) {
+        float toSysRotSpd = PtmMath.arcToAngle(PLANET_SPD, planetDist) * PtmMath.toInt(PtmMath.test(.5f));
+        float rotSpd = PtmMath.arcToAngle(GROUND_SPD, groundHeight) * PtmMath.toInt(PtmMath.test(.5f));
+        String name = PtmMath.elemRnd(names.planets);
+        return new Planet(s, PtmMath.rnd(180), planetDist, PtmMath.rnd(180), toSysRotSpd, rotSpd, groundHeight, false, planetConfig, name);
     }
 
 }

@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.ship;
+package old.tnf.ptm.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.game.AbilityCommonConfig;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.item.ItemManager;
-import com.tnf.ptm.game.particle.ParticleSrc;
+import old.tnf.ptm.game.AbilityCommonConfig;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.item.ItemManager;
+import old.tnf.ptm.game.particle.ParticleSrc;
 
 public class EmWave implements ShipAbility {
     public static final int MAX_RADIUS = 4;
@@ -50,16 +50,16 @@ public class EmWave implements ShipAbility {
     }
 
     @Override
-    public boolean update(SolGame game, SolShip owner, boolean tryToUse) {
+    public boolean update(PtmGame game, PtmShip owner, boolean tryToUse) {
         if (!tryToUse) {
             return false;
         }
         Vector2 ownerPos = owner.getPosition();
-        for (SolObject o : game.getObjMan().getObjs()) {
-            if (!(o instanceof SolShip) || o == owner) {
+        for (PtmObject o : game.getObjMan().getObjs()) {
+            if (!(o instanceof PtmShip) || o == owner) {
                 continue;
             }
-            SolShip oShip = (SolShip) o;
+            PtmShip oShip = (PtmShip) o;
             if (!game.getFactionMan().areEnemies(oShip, owner)) {
                 continue;
             }
@@ -80,10 +80,10 @@ public class EmWave implements ShipAbility {
     public static class Config implements AbilityConfig {
         public final float rechargeTime;
         public final float duration;
-        private final SolItem chargeExample;
+        private final PtmItem chargeExample;
         private final AbilityCommonConfig cc;
 
-        public Config(float rechargeTime, SolItem chargeExample, float duration, AbilityCommonConfig cc) {
+        public Config(float rechargeTime, PtmItem chargeExample, float duration, AbilityCommonConfig cc) {
             this.rechargeTime = rechargeTime;
             this.chargeExample = chargeExample;
             this.duration = duration;
@@ -93,7 +93,7 @@ public class EmWave implements ShipAbility {
         public static AbilityConfig load(JsonValue abNode, ItemManager itemManager, AbilityCommonConfig cc) {
             float rechargeTime = abNode.getFloat("rechargeTime");
             float duration = abNode.getFloat("duration");
-            SolItem chargeExample = itemManager.getExample("emWaveCharge");
+            PtmItem chargeExample = itemManager.getExample("emWaveCharge");
             return new Config(rechargeTime, chargeExample, duration, cc);
         }
 
@@ -103,7 +103,7 @@ public class EmWave implements ShipAbility {
         }
 
         @Override
-        public SolItem getChargeExample() {
+        public PtmItem getChargeExample() {
             return chargeExample;
         }
 

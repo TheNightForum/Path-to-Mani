@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.ship.hulls;
+package old.tnf.ptm.game.ship.hulls;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.Immutable;
-import com.tnf.ptm.common.NotNull;
+import old.tnf.ptm.common.Immutable;
+import old.tnf.ptm.common.NotNull;
 
 /**
  * Gun slot of a ship hull, to which a gun can be attached.

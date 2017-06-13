@@ -13,65 +13,65 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.input.Shooter;
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.input.Mover;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.ui.SolInputManager;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.input.Shooter;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.input.Mover;
+import old.tnf.ptm.ui.PtmInputManager;
 
 import java.util.List;
 
 public class ShipMixedControl implements ShipUiControl {
-    public final SolUiControl upCtrl;
-    public final SolUiControl shootCtrl;
-    public final SolUiControl shoot2Ctrl;
-    public final SolUiControl abilityCtrl;
-    private final SolUiControl myDownCtrl;
+    public final PtmUiControl upCtrl;
+    public final PtmUiControl shootCtrl;
+    public final PtmUiControl shoot2Ctrl;
+    public final PtmUiControl abilityCtrl;
+    private final PtmUiControl myDownCtrl;
     private final Vector2 myMouseWorldPos;
     private final TextureAtlas.AtlasRegion myCursor;
     private boolean myRight;
     private boolean myLeft;
 
-    ShipMixedControl(SolApplication solApplication, List<SolUiControl> controls) {
-        GameOptions gameOptions = solApplication.getOptions();
-        myCursor = solApplication.getTexMan().getTexture("ui/cursorTarget");
+    ShipMixedControl(PtmApplication ptmApplication, List<PtmUiControl> controls) {
+        GameOptions gameOptions = ptmApplication.getOptions();
+        myCursor = ptmApplication.getTexMan().getTexture("ui/cursorTarget");
         myMouseWorldPos = new Vector2();
-        upCtrl = new SolUiControl(null, false, gameOptions.getKeyUpMouse());
+        upCtrl = new PtmUiControl(null, false, gameOptions.getKeyUpMouse());
         controls.add(upCtrl);
-        myDownCtrl = new SolUiControl(null, false, gameOptions.getKeyDownMouse());
+        myDownCtrl = new PtmUiControl(null, false, gameOptions.getKeyDownMouse());
         controls.add(myDownCtrl);
-        shootCtrl = new SolUiControl(null, false, gameOptions.getKeyShoot());
+        shootCtrl = new PtmUiControl(null, false, gameOptions.getKeyShoot());
         controls.add(shootCtrl);
-        shoot2Ctrl = new SolUiControl(null, false, gameOptions.getKeyShoot2());
+        shoot2Ctrl = new PtmUiControl(null, false, gameOptions.getKeyShoot2());
         controls.add(shoot2Ctrl);
-        abilityCtrl = new SolUiControl(null, false, gameOptions.getKeyAbility());
+        abilityCtrl = new PtmUiControl(null, false, gameOptions.getKeyAbility());
         controls.add(abilityCtrl);
     }
 
     @Override
-    public void update(SolApplication solApplication, boolean enabled) {
-        GameOptions gameOptions = solApplication.getOptions();
+    public void update(PtmApplication ptmApplication, boolean enabled) {
+        GameOptions gameOptions = ptmApplication.getOptions();
         blur();
         if (!enabled) {
             return;
         }
-        SolInputManager im = solApplication.getInputMan();
-        SolGame game = solApplication.getGame();
-        SolShip hero = game.getHero();
+        PtmInputManager im = ptmApplication.getInputMan();
+        PtmGame game = ptmApplication.getGame();
+        PtmShip hero = game.getHero();
         if (hero != null) {
             myMouseWorldPos.set(Gdx.input.getX(), Gdx.input.getY());
             game.getCam().screenToWorld(myMouseWorldPos);
-            float desiredAngle = SolMath.angle(hero.getPosition(), myMouseWorldPos);
+            float desiredAngle = PtmMath.angle(hero.getPosition(), myMouseWorldPos);
             Boolean ntt = Mover.needsToTurn(hero.getAngle(), desiredAngle, hero.getRotSpd(), hero.getRotAcc(), Shooter.MIN_SHOOT_AAD);
             if (ntt != null) {
                 if (ntt) {

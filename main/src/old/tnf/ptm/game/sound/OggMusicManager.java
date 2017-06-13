@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.sound;
+package old.tnf.ptm.game.sound;
 
 import com.badlogic.gdx.audio.Music;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.assets.Assets;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.assets.Assets;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

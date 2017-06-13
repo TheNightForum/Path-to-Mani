@@ -14,54 +14,54 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.menu;
+package old.tnf.ptm.menu;
 
 import com.badlogic.gdx.Input;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.ui.SolUiScreen;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.ui.FontSize;
-import com.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.ui.PtmUiScreen;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.ui.FontSize;
+import old.tnf.ptm.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewShipScreen implements SolUiScreen {
-    private final List<SolUiControl> controls = new ArrayList<>();
-    private final SolUiControl cancelControl;
-    private final SolUiControl okControl;
+public class NewShipScreen implements PtmUiScreen {
+    private final List<PtmUiControl> controls = new ArrayList<>();
+    private final PtmUiControl cancelControl;
+    private final PtmUiControl okControl;
 
     NewShipScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-        okControl = new SolUiControl(menuLayout.buttonRect(-1, 1), true, Input.Keys.H);
+        okControl = new PtmUiControl(menuLayout.buttonRect(-1, 1), true, Input.Keys.H);
         okControl.setDisplayName("OK");
         controls.add(okControl);
 
-        cancelControl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+        cancelControl = new PtmUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
         cancelControl.setDisplayName("Cancel");
         controls.add(cancelControl);
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void updateCustom(SolApplication solApplication, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+    public void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
         if (cancelControl.isJustOff()) {
-            solApplication.getInputMan().setScreen(solApplication, solApplication.getMenuScreens().newGame);
+            ptmApplication.getInputMan().setScreen(ptmApplication, ptmApplication.getMenuScreens().newGame);
             return;
         }
         if (okControl.isJustOff()) {
-            solApplication.loadNewGame(false, false);
+            ptmApplication.loadNewGame(false, false);
         }
     }
 
     @Override
-    public void drawText(UiDrawer uiDrawer, SolApplication solApplication) {
-        uiDrawer.drawString("This will erase your previous ship", .5f * uiDrawer.r, .3f, FontSize.MENU, true, SolColor.WHITE);
+    public void drawText(UiDrawer uiDrawer, PtmApplication ptmApplication) {
+        uiDrawer.drawString("This will erase your previous ship", .5f * uiDrawer.r, .3f, FontSize.MENU, true, PtmColor.WHITE);
     }
 }

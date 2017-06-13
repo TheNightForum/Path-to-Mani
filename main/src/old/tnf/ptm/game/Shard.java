@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.dra.Dra;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Shard implements SolObject {
+public class Shard implements PtmObject {
 
     private final Body myBody;
     private final Vector2 myPos;
@@ -67,8 +67,8 @@ public class Shard implements SolObject {
     }
 
     @Override
-    public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-                              SolGame game, Vector2 collPos) {
+    public void handleContact(PtmObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+                              PtmGame game, Vector2 collPos) {
     }
 
     @Override
@@ -87,27 +87,27 @@ public class Shard implements SolObject {
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         setParamsFromBody();
     }
 
     private void setParamsFromBody() {
         myPos.set(myBody.getPosition());
-        myAngle = myBody.getAngle() * SolMath.radDeg;
+        myAngle = myBody.getAngle() * PtmMath.radDeg;
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(PtmGame game) {
         return false;
     }
 
     @Override
-    public void onRemove(SolGame game) {
+    public void onRemove(PtmGame game) {
         myBody.getWorld().destroyBody(myBody);
     }
 
     @Override
-    public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+    public void receiveDmg(float dmg, PtmGame game, Vector2 pos, DmgType dmgType) {
     }
 
     @Override
@@ -116,7 +116,7 @@ public class Shard implements SolObject {
     }
 
     @Override
-    public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+    public void receiveForce(Vector2 force, PtmGame game, boolean acc) {
         if (acc) {
             force.scl(myMass);
         }

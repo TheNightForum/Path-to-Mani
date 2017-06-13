@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
 
-public class SolNames {
+public class PtmNames {
     public final ArrayList<String> planets;
     public final ArrayList<String> systems;
 
-    public SolNames() {
+    public PtmNames() {
         planets = readList(new ResourceUrn("core:planetNamesConfig"));
         systems = readList(new ResourceUrn("core:systemNamesConfig"));
     }

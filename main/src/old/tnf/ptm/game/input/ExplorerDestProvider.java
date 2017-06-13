@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.planet.SolSystem;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.planet.PtmSystem;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,14 +37,14 @@ public class ExplorerDestProvider implements MoveDestProvider {
     private final Vector2 myDest;
     private final boolean myAggressive;
     private final float myDesiredSpdLen;
-    private final SolSystem mySys;
+    private final PtmSystem mySys;
     private Vector2 myRelDest;
     private Planet myPlanet;
     private float myAwaitOnPlanet;
     private boolean myDestIsLanding;
     private Vector2 myDestSpd;
 
-    public ExplorerDestProvider(SolGame game, Vector2 pos, boolean aggressive, HullConfig config, SolSystem sys) {
+    public ExplorerDestProvider(PtmGame game, Vector2 pos, boolean aggressive, HullConfig config, PtmSystem sys) {
         mySys = sys;
         myDest = new Vector2();
         float minDst = Float.MAX_VALUE;
@@ -75,14 +75,14 @@ public class ExplorerDestProvider implements MoveDestProvider {
     private void calcRelDest(HullConfig hullConfig) {
         List<Vector2> lps = myPlanet.getLandingPlaces();
         if (lps.size() > 0) {
-            myRelDest = new Vector2(SolMath.elemRnd(lps));
+            myRelDest = new Vector2(PtmMath.elemRnd(lps));
             float len = myRelDest.len();
             float aboveGround = hullConfig.getType() == HullConfig.Type.BIG ? Const.ATM_HEIGHT * .75f : .75f * hullConfig.getSize();
             myRelDest.scl((len + aboveGround) / len);
             myDestIsLanding = true;
         } else {
             myRelDest = new Vector2();
-            SolMath.fromAl(myRelDest, SolMath.rnd(180), myPlanet.getGroundHeight() + .3f * Const.ATM_HEIGHT);
+            PtmMath.fromAl(myRelDest, PtmMath.rnd(180), myPlanet.getGroundHeight() + .3f * Const.ATM_HEIGHT);
             myDestIsLanding = false;
         }
     }
@@ -98,13 +98,13 @@ public class ExplorerDestProvider implements MoveDestProvider {
     }
 
     @Override
-    public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+    public void update(PtmGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, PtmShip nearestEnemy) {
         if (myDest.dst(shipPos) < maxIdleDist) {
             if (myAwaitOnPlanet > 0) {
                 myAwaitOnPlanet -= game.getTimeStep();
             } else {
                 ArrayList<Planet> ps = mySys.getPlanets();
-                int pIdx = SolMath.intRnd(allowedSz());
+                int pIdx = PtmMath.intRnd(allowedSz());
                 myPlanet = ps.get(pIdx);
                 calcRelDest(hullConfig);
                 myAwaitOnPlanet = MAX_AWAIT_ON_PLANET;
@@ -115,12 +115,12 @@ public class ExplorerDestProvider implements MoveDestProvider {
             calcRelDest(hullConfig);
         }
 
-        SolMath.toWorld(myDest, myRelDest, myPlanet.getAngle(), myPlanet.getPos(), false);
+        PtmMath.toWorld(myDest, myRelDest, myPlanet.getAngle(), myPlanet.getPos(), false);
         myPlanet.calcSpdAtPos(myDestSpd, myDest);
     }
 
     @Override
-    public Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround) {
+    public Boolean shouldManeuver(boolean canShoot, PtmShip nearestEnemy, boolean nearGround) {
         if (myAggressive && canShoot) {
             return true;
         }

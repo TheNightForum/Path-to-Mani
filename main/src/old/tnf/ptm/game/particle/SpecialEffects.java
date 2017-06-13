@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.particle;
+package old.tnf.ptm.game.particle;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
-import com.tnf.ptm.game.GameColors;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.game.GameColors;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class SpecialEffects {
         json.dispose();
     }
 
-    public List<ParticleSrc> buildBodyEffs(float objRad, SolGame game, Vector2 pos, Vector2 spd) {
+    public List<ParticleSrc> buildBodyEffs(float objRad, PtmGame game, Vector2 pos, Vector2 spd) {
         ArrayList<ParticleSrc> res = new ArrayList<>();
         float sz = objRad * .9f;
         ParticleSrc smoke = new ParticleSrc(mySmoke, sz, DraLevel.PART_FG_0, new Vector2(), true, game, pos, spd, 0);
@@ -69,7 +69,7 @@ public class SpecialEffects {
         return res;
     }
 
-    public void explodeShip(SolGame game, Vector2 pos, float sz) {
+    public void explodeShip(PtmGame game, Vector2 pos, float sz) {
         PartMan pm = game.getPartMan();
         ParticleSrc smoke = new ParticleSrc(myShipExplSmoke, 2 * sz, DraLevel.PART_FG_0, new Vector2(), false, game, pos, Vector2.Zero, 0);
         pm.finish(game, smoke, pos);
@@ -78,13 +78,13 @@ public class SpecialEffects {
         pm.blinks(pos, game, sz);
     }
 
-    public void asteroidDust(SolGame game, Vector2 pos, Vector2 spd, float size) {
+    public void asteroidDust(PtmGame game, Vector2 pos, Vector2 spd, float size) {
         PartMan pm = game.getPartMan();
         ParticleSrc smoke = new ParticleSrc(myAsteroidDust, size, DraLevel.PART_FG_0, new Vector2(), true, game, pos, spd, 0);
         pm.finish(game, smoke, pos);
     }
 
-    public ParticleSrc buildForceBeacon(float sz, SolGame game, Vector2 relPos, Vector2 basePos, Vector2 spd) {
+    public ParticleSrc buildForceBeacon(float sz, PtmGame game, Vector2 relPos, Vector2 basePos, Vector2 spd) {
         return new ParticleSrc(myForceBeacon, sz, DraLevel.PART_FG_0, relPos, false, game, basePos, spd, 0);
     }
 }

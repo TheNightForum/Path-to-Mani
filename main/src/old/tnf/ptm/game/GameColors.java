@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.common.SolColorUtil;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.common.PtmColorUtil;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.HashMap;
@@ -61,7 +61,7 @@ public class GameColors {
 
     public Color load(String s) {
         if (s.contains(" ")) {
-            return SolColorUtil.load(s);
+            return PtmColorUtil.load(s);
         }
 
         return get(s);

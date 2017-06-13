@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.assets;
+package old.tnf.ptm.assets;
 
-import com.tnf.ptm.assets.atlas.Atlas;
-import com.tnf.ptm.assets.fonts.Font;
-import com.tnf.ptm.assets.audio.OggMusic;
-import com.tnf.ptm.assets.audio.OggSound;
-import com.tnf.ptm.assets.emitters.Emitter;
-import com.tnf.ptm.assets.json.Json;
-import com.tnf.ptm.assets.textures.DSTexture;
-import com.tnf.ptm.game.DebugOptions;
+import old.tnf.ptm.assets.atlas.Atlas;
+import old.tnf.ptm.assets.fonts.Font;
+import old.tnf.ptm.assets.audio.OggMusic;
+import old.tnf.ptm.assets.audio.OggSound;
+import old.tnf.ptm.assets.emitters.Emitter;
+import old.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.assets.textures.DSTexture;
+import old.tnf.ptm.game.DebugOptions;
 import org.terasology.assets.Asset;
 import org.terasology.assets.AssetData;
 import org.terasology.assets.ResourceUrn;

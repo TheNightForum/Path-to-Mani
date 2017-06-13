@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.maze;
+package old.tnf.ptm.game.maze;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.ShipConfig;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.input.AiPilot;
-import com.tnf.ptm.game.input.Pilot;
-import com.tnf.ptm.game.input.StillGuard;
-import com.tnf.ptm.game.ship.FarShip;
-import com.tnf.ptm.game.ship.ShipBuilder;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.Faction;
+import old.tnf.ptm.game.ShipConfig;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.input.AiPilot;
+import old.tnf.ptm.game.input.Pilot;
+import old.tnf.ptm.game.input.StillGuard;
+import old.tnf.ptm.game.ship.FarShip;
+import old.tnf.ptm.game.ship.ShipBuilder;
 
 import java.util.ArrayList;
 
@@ -38,17 +38,17 @@ public class MazeBuilder {
     private float myMazeAngle;
     private float myInnerRad;
 
-    public void build(SolGame game, Maze maze) {
+    public void build(PtmGame game, Maze maze) {
         myInnerRad = maze.getRadius() - BORDER;
         mySz = (int) (myInnerRad * 2 / TILE_SZ);
         myMazePos = maze.getPos();
-        myMazeAngle = SolMath.rnd(180);
+        myMazeAngle = PtmMath.rnd(180);
 
         MazeLayout layout = buildMaze(game, maze);
         buildEnemies(game, maze, layout);
     }
 
-    public MazeLayout buildMaze(SolGame game, Maze maze) {
+    public MazeLayout buildMaze(PtmGame game, Maze maze) {
         MazeLayout layout = new MazeLayoutBuilder(mySz).build();
         MazeTileObject.Builder builder = new MazeTileObject.Builder();
         MazeConfig config = maze.getConfig();
@@ -70,8 +70,8 @@ public class MazeBuilder {
                     } else {
                         tiles = inner ? config.innerPasses : config.borderPasses;
                     }
-                    MazeTile tile = SolMath.elemRnd(tiles);
-                    MazeTileObject.MyFar mto = new MazeTileObject.MyFar(tile, tileAngle, new Vector2(tilePos), SolMath.test(.5f));
+                    MazeTile tile = PtmMath.elemRnd(tiles);
+                    MazeTileObject.MyFar mto = new MazeTileObject.MyFar(tile, tileAngle, new Vector2(tilePos), PtmMath.test(.5f));
                     game.getObjMan().addFarObjNow(mto);
                 }
 
@@ -90,8 +90,8 @@ public class MazeBuilder {
                     } else {
                         tiles = inner ? config.innerPasses : config.borderPasses;
                     }
-                    MazeTile tile = SolMath.elemRnd(tiles);
-                    MazeTileObject.MyFar mto = new MazeTileObject.MyFar(tile, tileAngle, new Vector2(tilePos), SolMath.test(.5f));
+                    MazeTile tile = PtmMath.elemRnd(tiles);
+                    MazeTileObject.MyFar mto = new MazeTileObject.MyFar(tile, tileAngle, new Vector2(tilePos), PtmMath.test(.5f));
                     game.getObjMan().addFarObjNow(mto);
                 }
             }
@@ -101,20 +101,20 @@ public class MazeBuilder {
 
     private Vector2 cellPos(int col, int row, float xOffset, float yOffset) {
         Vector2 res = new Vector2((col - mySz / 2) * TILE_SZ + xOffset, (row - mySz / 2) * TILE_SZ + yOffset);
-        SolMath.rotate(res, myMazeAngle);
+        PtmMath.rotate(res, myMazeAngle);
         res.add(myMazePos);
         return res;
     }
 
-    private void buildEnemies(SolGame game, Maze maze, MazeLayout layout) {
+    private void buildEnemies(PtmGame game, Maze maze, MazeLayout layout) {
         MazeConfig config = maze.getConfig();
         float dist = maze.getRadius() - BORDER / 2;
-        float circleLen = dist * SolMath.PI * 2;
+        float circleLen = dist * PtmMath.PI * 2;
         for (ShipConfig e : config.outerEnemies) {
             int count = (int) (e.density * circleLen);
             for (int i = 0; i < count; i++) {
                 Vector2 pos = new Vector2();
-                SolMath.fromAl(pos, SolMath.rnd(180), dist);
+                PtmMath.fromAl(pos, PtmMath.rnd(180), dist);
                 pos.add(myMazePos);
                 buildEnemy(pos, game, e, false);
             }
@@ -123,7 +123,7 @@ public class MazeBuilder {
         boolean[][] occupiedCells = new boolean[mySz][mySz];
         occupiedCells[mySz / 2][mySz / 2] = true;
         for (ShipConfig e : config.innerEnemies) {
-            int count = (int) (e.density * myInnerRad * myInnerRad * SolMath.PI);
+            int count = (int) (e.density * myInnerRad * myInnerRad * PtmMath.PI);
             for (int i = 0; i < count; i++) {
                 Vector2 pos = getFreeCellPos(occupiedCells);
                 if (pos != null) {
@@ -131,15 +131,15 @@ public class MazeBuilder {
                 }
             }
         }
-        ShipConfig bossConfig = SolMath.elemRnd(config.bosses);
+        ShipConfig bossConfig = PtmMath.elemRnd(config.bosses);
         Vector2 pos = cellPos(mySz / 2, mySz / 2, 0f, 0f);
         buildEnemy(pos, game, bossConfig, true);
     }
 
     private Vector2 getFreeCellPos(boolean[][] occupiedCells) {
         for (int i = 0; i < 10; i++) {
-            int col = SolMath.intRnd(mySz);
-            int row = SolMath.intRnd(mySz);
+            int col = PtmMath.intRnd(mySz);
+            int row = PtmMath.intRnd(mySz);
             if (occupiedCells[col][row]) {
                 continue;
             }
@@ -153,8 +153,8 @@ public class MazeBuilder {
         return null;
     }
 
-    private void buildEnemy(Vector2 pos, SolGame game, ShipConfig e, boolean inner) {
-        float angle = SolMath.rnd(180);
+    private void buildEnemy(Vector2 pos, PtmGame game, ShipConfig e, boolean inner) {
+        float angle = PtmMath.rnd(180);
         ShipBuilder sb = game.getShipBuilder();
         float viewDist = Const.AI_DET_DIST;
         if (inner) {

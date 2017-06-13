@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.files;
+package old.tnf.ptm.files;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.tnf.ptm.game.DebugOptions;
+import old.tnf.ptm.game.DebugOptions;
 
 /**
  * Singleton class that can provide file handles to various directories.

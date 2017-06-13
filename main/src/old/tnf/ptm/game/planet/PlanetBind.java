@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
 
 public class PlanetBind {
     private final Planet myPlanet;
@@ -28,11 +28,11 @@ public class PlanetBind {
         myPlanet = planet;
         myRelPos = new Vector2();
         float planetAngle = planet.getAngle();
-        SolMath.toRel(pos, myRelPos, planetAngle, planet.getPos());
+        PtmMath.toRel(pos, myRelPos, planetAngle, planet.getPos());
         myRelAngle = angle - planetAngle;
     }
 
-    public static PlanetBind tryBind(SolGame game, Vector2 pos, float angle) {
+    public static PlanetBind tryBind(PtmGame game, Vector2 pos, float angle) {
         Planet np = game.getPlanetMan().getNearestPlanet(pos);
         if (!np.isNearGround(pos)) {
             return null;
@@ -41,7 +41,7 @@ public class PlanetBind {
     }
 
     public void setDiff(Vector2 diff, Vector2 pos, boolean precise) {
-        SolMath.toWorld(diff, myRelPos, myPlanet.getAngle(), myPlanet.getPos(), precise);
+        PtmMath.toWorld(diff, myRelPos, myPlanet.getAngle(), myPlanet.getPos(), precise);
         diff.sub(pos);
     }
 

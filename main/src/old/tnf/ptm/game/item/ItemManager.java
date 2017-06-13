@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.item;
+package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.GameColors;
-import com.tnf.ptm.game.particle.EffectTypes;
-import com.tnf.ptm.game.projectile.ProjectileConfigs;
-import com.tnf.ptm.game.sound.OggSoundManager;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.GameColors;
+import old.tnf.ptm.game.particle.EffectTypes;
+import old.tnf.ptm.game.projectile.ProjectileConfigs;
+import old.tnf.ptm.game.sound.OggSoundManager;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -34,10 +34,10 @@ public class ItemManager {
     public final TextureAtlas.AtlasRegion medMoneyIcon;
     public final TextureAtlas.AtlasRegion bigMoneyIcon;
     public final TextureAtlas.AtlasRegion repairIcon;
-    private final HashMap<String, SolItem> myM = new HashMap<>();
-    private final ArrayList<SolItem> myL= new ArrayList<>();
+    private final HashMap<String, PtmItem> myM = new HashMap<>();
+    private final ArrayList<PtmItem> myL= new ArrayList<>();
     private final HashMap<ResourceUrn, Engine.Config> engineConfigs = new HashMap<>();
-    private final SolItemTypes myTypes;
+    private final PtmItemTypes myTypes;
     private final RepairItem myRepairExample;
     private final OggSoundManager soundManager;
     private final TextureManager textureManager;
@@ -55,7 +55,7 @@ public class ItemManager {
         bigMoneyIcon = textureManager.getTexture(TextureManager.ICONS_DIR + "bigMoney");
         repairIcon = textureManager.getTexture(TextureManager.ICONS_DIR + "repairItem");
 
-        myTypes = new SolItemTypes(soundManager, gameColors);
+        myTypes = new PtmItemTypes(soundManager, gameColors);
         projConfigs = new ProjectileConfigs(textureManager, soundManager, effectTypes, gameColors);
 
         myRepairExample = new RepairItem(myTypes.repair);
@@ -68,8 +68,8 @@ public class ItemManager {
         List<ItemConfig> list = parseItems(items);
         for (ItemConfig ic : list) {
             for (int i = 0; i < ic.amt; i++) {
-                if (SolMath.test(ic.chance)) {
-                    SolItem item = SolMath.elemRnd(ic.examples).copy();
+                if (PtmMath.test(ic.chance)) {
+                    PtmItem item = PtmMath.elemRnd(ic.examples).copy();
                     c.add(item);
                 }
             }
@@ -120,7 +120,7 @@ public class ItemManager {
 
             String[] itemNames = parts[itemsIndex].split("[+]");
 
-            ArrayList<SolItem> examples = new ArrayList<>();
+            ArrayList<PtmItem> examples = new ArrayList<>();
             for (String itemName : itemNames) {
                 int wasEquipped = 0;
 
@@ -132,7 +132,7 @@ public class ItemManager {
                     itemName = itemName.substring(0, itemName.length() - 2); // Remove equipped number
                 }
 
-                SolItem example = getExample(itemName);
+                PtmItem example = getExample(itemName);
 
                 if (example == null) {
                     // TODO: Temporary hacky way!
@@ -155,7 +155,7 @@ public class ItemManager {
                     throw new AssertionError("Unknown item " + itemName + " @ " + parts[0] + " @ " + rec + " @ " + items);
                 }
 
-                SolItem itemCopy = example.copy();
+                PtmItem itemCopy = example.copy();
                 itemCopy.setEquipped(wasEquipped);
 
                 examples.add(itemCopy);
@@ -172,7 +172,7 @@ public class ItemManager {
         return result;
     }
 
-    public SolItem getExample(String name) {
+    public PtmItem getExample(String name) {
         return myM.get(name);
     }
 
@@ -180,13 +180,13 @@ public class ItemManager {
         return engineConfigs.computeIfAbsent(engineName, engineConfig -> Engine.Config.load(engineConfig, soundManager, effectTypes, textureManager, gameColors));
     }
 
-    public SolItem random() {
-        return myL.get(SolMath.intRnd(myM.size())).copy();
+    public PtmItem random() {
+        return myL.get(PtmMath.intRnd(myM.size())).copy();
     }
 
-    public void registerItem(SolItem example) {
+    public void registerItem(PtmItem example) {
         String code = example.getCode();
-        SolItem existing = getExample(code);
+        PtmItem existing = getExample(code);
         if (existing != null) {
             throw new AssertionError("2 item types registered for item code " + code + ":\n" + existing + " and " + example);
         }
@@ -195,7 +195,7 @@ public class ItemManager {
     }
 
     public MoneyItem moneyItem(float amt) {
-        SolItemType t;
+        PtmItemType t;
         if (amt == MoneyItem.BIG_AMT) {
             t = myTypes.bigMoney;
         } else if (amt == MoneyItem.MED_AMT) {
@@ -211,14 +211,14 @@ public class ItemManager {
     }
 
     public void addAllGuns(ItemContainer ic) {
-        for (SolItem i : myM.values()) {
+        for (PtmItem i : myM.values()) {
             if (i instanceof Clip && !((Clip) i).getConfig().infinite) {
                 for (int j = 0; j < 8; j++) {
                     ic.add(i.copy());
                 }
             }
         }
-        for (SolItem i : myM.values()) {
+        for (PtmItem i : myM.values()) {
             if (i instanceof Gun) {
                 if (ic.canAdd(i)) {
                     ic.add(i.copy());

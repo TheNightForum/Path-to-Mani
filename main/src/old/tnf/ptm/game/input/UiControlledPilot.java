@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
-import com.tnf.ptm.Const;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.screens.MainScreen;
-import com.tnf.ptm.game.ship.FarShip;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.Faction;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.screens.MainScreen;
+import old.tnf.ptm.game.ship.FarShip;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.Faction;
 
 public class UiControlledPilot implements Pilot {
 
@@ -32,7 +32,7 @@ public class UiControlledPilot implements Pilot {
     }
 
     @Override
-    public void update(SolGame game, SolShip ship, SolShip nearestEnemy) {
+    public void update(PtmGame game, PtmShip ship, PtmShip nearestEnemy) {
     }
 
     @Override
@@ -91,7 +91,7 @@ public class UiControlledPilot implements Pilot {
     }
 
     @Override
-    public void updateFar(SolGame game, FarShip farShip) {
+    public void updateFar(PtmGame game, FarShip farShip) {
     }
 
     @Override

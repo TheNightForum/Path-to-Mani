@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.game.FarObj;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.game.FarObj;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.PtmObject;
 
 public class FarSky implements FarObj {
     private final Planet myPlanet;
@@ -30,17 +30,17 @@ public class FarSky implements FarObj {
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(PtmGame game) {
         return false;
     }
 
     @Override
-    public SolObject toObj(SolGame game) {
+    public PtmObject toObj(PtmGame game) {
         return new Sky(game, myPlanet);
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
     }
 
     @Override

@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.game.BeaconHandler;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.game.BeaconHandler;
 
 public class ShipMouseControl implements ShipUiControl {
     private final TextureAtlas.AtlasRegion myMoveCursor;
@@ -32,7 +32,7 @@ public class ShipMouseControl implements ShipUiControl {
 
     private TextureAtlas.AtlasRegion myCursor;
 
-    ShipMouseControl(SolApplication cmp) {
+    ShipMouseControl(PtmApplication cmp) {
         myMoveCursor = cmp.getTexMan().getTexture("ui/cursorMove");
         myAttackCursor = cmp.getTexMan().getTexture("ui/cursorAttack");
         myFollowCursor = cmp.getTexMan().getTexture("ui/cursorFollow");
@@ -40,14 +40,14 @@ public class ShipMouseControl implements ShipUiControl {
     }
 
     @Override
-    public void update(SolApplication solApplication, boolean enabled) {
-        SolGame g = solApplication.getGame();
-        SolShip h = g.getHero();
+    public void update(PtmApplication ptmApplication, boolean enabled) {
+        PtmGame g = ptmApplication.getGame();
+        PtmShip h = g.getHero();
         myCursor = null;
         if (h != null) {
             myMouseWorldPos.set(Gdx.input.getX(), Gdx.input.getY());
             g.getCam().screenToWorld(myMouseWorldPos);
-            SolInputManager im = solApplication.getInputMan();
+            PtmInputManager im = ptmApplication.getInputMan();
             boolean clicked = im.getPtrs()[0].pressed;
             boolean onMap = im.isScreenOn(g.getScreens().mapScreen);
             BeaconHandler.Action a = g.getBeaconHandler().processMouse(g, myMouseWorldPos, clicked, onMap);

@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.ship;
+package old.tnf.ptm.game.ship;
 
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.item.ItemContainer;
-import com.tnf.ptm.game.item.RepairItem;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.item.ItemContainer;
+import old.tnf.ptm.game.item.RepairItem;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
 
 public class ShipRepairer {
     public static final float REPAIR_AWAIT = 2f;
@@ -30,7 +30,7 @@ public class ShipRepairer {
     public ShipRepairer() {
     }
 
-    public float tryRepair(SolGame game, ItemContainer ic, float life, HullConfig config) {
+    public float tryRepair(PtmGame game, ItemContainer ic, float life, HullConfig config) {
         // Don't attempt to repair if already at full health
         if (life == config.getMaxLife()) {
             return 0;
@@ -46,7 +46,7 @@ public class ShipRepairer {
                 inc = myRepairPoints;
             }
             myRepairPoints -= inc;
-            return SolMath.approach(life, inc, config.getMaxLife());
+            return PtmMath.approach(life, inc, config.getMaxLife());
         }
         return 0;
     }

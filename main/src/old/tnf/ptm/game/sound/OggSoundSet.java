@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.sound;
+package old.tnf.ptm.game.sound;
 
-import com.tnf.ptm.assets.audio.PlayableSound;
-import com.tnf.ptm.assets.audio.OggSound;
-import com.tnf.ptm.common.SolMath;
+import old.tnf.ptm.assets.audio.PlayableSound;
+import old.tnf.ptm.assets.audio.OggSound;
+import old.tnf.ptm.common.PtmMath;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class OggSoundSet implements PlayableSound {
 
     @Override
     public OggSound getOggSound() {
-        return oggSoundManager.getSound(SolMath.elemRnd(urnList));
+        return oggSoundManager.getSound(PtmMath.elemRnd(urnList));
     }
 
     @Override

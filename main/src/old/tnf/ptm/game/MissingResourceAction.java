@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
-import com.tnf.ptm.ui.DebugCollector;
+import old.tnf.ptm.ui.DebugCollector;
 
 public enum MissingResourceAction {
     IGNORE("ignore"), WARN("warn"), FAIL("fail");

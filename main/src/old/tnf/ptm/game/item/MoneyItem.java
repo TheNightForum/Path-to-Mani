@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.item;
+package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.tnf.ptm.game.SolGame;
+import old.tnf.ptm.game.PtmGame;
 
-public class MoneyItem implements SolItem {
+public class MoneyItem implements PtmItem {
     public static final int AMT = 10;
     public static final int MED_AMT = 3 * AMT;
     public static final int BIG_AMT = 10 * AMT;
 
     private final float myAmt;
-    private final SolItemType myItemType;
+    private final PtmItemType myItemType;
 
-    public MoneyItem(float amt, SolItemType itemType) {
+    public MoneyItem(float amt, PtmItemType itemType) {
         myAmt = amt;
         myItemType = itemType;
     }
@@ -53,12 +53,12 @@ public class MoneyItem implements SolItem {
     }
 
     @Override
-    public boolean isSame(SolItem item) {
+    public boolean isSame(PtmItem item) {
         return item instanceof MoneyItem && ((MoneyItem) item).myAmt == myAmt;
     }
 
     @Override
-    public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+    public TextureAtlas.AtlasRegion getIcon(PtmGame game) {
         ItemManager im = game.getItemMan();
         if (myAmt == BIG_AMT) {
             return im.bigMoneyIcon;
@@ -70,7 +70,7 @@ public class MoneyItem implements SolItem {
     }
 
     @Override
-    public SolItemType getItemType() {
+    public PtmItemType getItemType() {
         return myItemType;
     }
 

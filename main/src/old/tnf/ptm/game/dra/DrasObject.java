@@ -13,23 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.dra;
+package old.tnf.ptm.game.dra;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.common.Consumed;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.game.FarObj;
-import com.tnf.ptm.game.RemoveController;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.*;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.common.Consumed;
+import old.tnf.ptm.game.PtmObject;
 
 import java.util.List;
 
-public class DrasObject implements SolObject {
+public class DrasObject implements PtmObject {
     private final Vector2 myPos;
     private final Vector2 mySpd;
     private final RemoveController myRemoveController;
@@ -55,7 +52,7 @@ public class DrasObject implements SolObject {
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         myMoveDiff.set(mySpd);
         float ts = game.getTimeStep();
         myMoveDiff.scl(ts);
@@ -76,7 +73,7 @@ public class DrasObject implements SolObject {
                 Vector2 draPos = dra.getPos();
                 float gradSz = .25f * Const.ATM_HEIGHT;
                 float distPerc = (draPos.dst(npPos) - npgh - Const.ATM_HEIGHT) / gradSz;
-                distPerc = SolMath.clamp(distPerc);
+                distPerc = PtmMath.clamp(distPerc);
                 ((RectSprite) dra).tint.a = distPerc;
             }
         } else if (myMaxFadeTime > 0) {
@@ -88,14 +85,14 @@ public class DrasObject implements SolObject {
                     continue;
                 }
                 RectSprite rs = (RectSprite) dra;
-                rs.tint.a = SolMath.clamp(tintPerc * rs.baseAlpha);
+                rs.tint.a = PtmMath.clamp(tintPerc * rs.baseAlpha);
             }
 
         }
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(PtmGame game) {
         if (myMaxFadeTime > 0 && myFadeTime <= 0) {
             return true;
         }
@@ -116,11 +113,11 @@ public class DrasObject implements SolObject {
     }
 
     @Override
-    public void onRemove(SolGame game) {
+    public void onRemove(PtmGame game) {
     }
 
     @Override
-    public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+    public void receiveDmg(float dmg, PtmGame game, Vector2 pos, DmgType dmgType) {
     }
 
     @Override
@@ -129,7 +126,7 @@ public class DrasObject implements SolObject {
     }
 
     @Override
-    public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+    public void receiveForce(Vector2 force, PtmGame game, boolean acc) {
     }
 
     @Override
@@ -158,8 +155,8 @@ public class DrasObject implements SolObject {
     }
 
     @Override
-    public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-                              SolGame game, Vector2 collPos) {
+    public void handleContact(PtmObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+                              PtmGame game, Vector2 collPos) {
     }
 
     @Override

@@ -14,36 +14,36 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.chunk;
+package old.tnf.ptm.game.chunk;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.RemoveController;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.dra.RectSprite;
-import com.tnf.ptm.game.input.AiPilot;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.planet.SolSystem;
-import com.tnf.ptm.game.planet.SysConfig;
-import com.tnf.ptm.game.planet.SystemBelt;
-import com.tnf.ptm.game.ship.FarShip;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
-import com.tnf.ptm.game.DebugOptions;
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.ShipConfig;
-import com.tnf.ptm.game.asteroid.FarAsteroid;
-import com.tnf.ptm.game.dra.FarDras;
-import com.tnf.ptm.game.input.MoveDestProvider;
-import com.tnf.ptm.game.input.Pilot;
-import com.tnf.ptm.game.input.StillGuard;
-import com.tnf.ptm.game.maze.Maze;
-import com.tnf.ptm.game.planet.PlanetManager;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.RemoveController;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.game.input.AiPilot;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.planet.PtmSystem;
+import old.tnf.ptm.game.planet.SysConfig;
+import old.tnf.ptm.game.planet.SystemBelt;
+import old.tnf.ptm.game.ship.FarShip;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.game.DebugOptions;
+import old.tnf.ptm.game.Faction;
+import old.tnf.ptm.game.ShipConfig;
+import old.tnf.ptm.game.asteroid.FarAsteroid;
+import old.tnf.ptm.game.dra.FarDras;
+import old.tnf.ptm.game.input.MoveDestProvider;
+import old.tnf.ptm.game.input.Pilot;
+import old.tnf.ptm.game.input.StillGuard;
+import old.tnf.ptm.game.maze.Maze;
+import old.tnf.ptm.game.planet.PlanetManager;
 
 import java.util.ArrayList;
 
@@ -74,12 +74,12 @@ public class ChunkFiller {
     /**
      * Fill the background of a given chunk with floating junk.
      *
-     * @param game    The {@link SolGame} instance to work with
+     * @param game    The {@link PtmGame} instance to work with
      * @param chunk   The coordinates of the chunk
      * @param remover
      * @param farBg   Determines which of the background layers should be filled. <code>true</code> fills the layers furthest away, <code>false</code> fills the closer one.
      */
-    public void fill(SolGame game, Vector2 chunk, RemoveController remover, boolean farBg) {
+    public void fill(PtmGame game, Vector2 chunk, RemoveController remover, boolean farBg) {
         if (DebugOptions.NO_OBJS) {
             return;
         }
@@ -105,10 +105,10 @@ public class ChunkFiller {
         }
     }
 
-    private SpaceEnvConfig getConfig(SolGame game, Vector2 chCenter, float[] densityMul,
+    private SpaceEnvConfig getConfig(PtmGame game, Vector2 chCenter, float[] densityMul,
                                      RemoveController remover, boolean farBg) {
         PlanetManager pm = game.getPlanetMan();
-        SolSystem sys = pm.getNearestSystem(chCenter);
+        PtmSystem sys = pm.getNearestSystem(chCenter);
         float toSys = sys.getPos().dst(chCenter);
         if (toSys < sys.getRadius()) {
             if (toSys < Const.SUN_RADIUS) {
@@ -153,7 +153,7 @@ public class ChunkFiller {
         return null;
     }
 
-    private void fillForSys(SolGame game, Vector2 chCenter, RemoveController remover, SolSystem sys) {
+    private void fillForSys(PtmGame game, Vector2 chCenter, RemoveController remover, PtmSystem sys) {
         SysConfig conf = sys.getConfig();
         Vector2 mainStationPos = game.getGalaxyFiller().getMainStationPos();
         Vector2 startPos = mainStationPos == null ? new Vector2() : mainStationPos;
@@ -167,7 +167,7 @@ public class ChunkFiller {
         }
     }
 
-    private void fillEnemies(SolGame game, RemoveController remover, ShipConfig enemyConf, Vector2 chCenter) {
+    private void fillEnemies(PtmGame game, RemoveController remover, ShipConfig enemyConf, Vector2 chCenter) {
         int count = getEntityCount(enemyConf.density);
         if (count == 0) {
             return;
@@ -181,24 +181,24 @@ public class ChunkFiller {
         }
     }
 
-    public FarShip buildSpaceEnemy(SolGame game, Vector2 pos, RemoveController remover,
+    public FarShip buildSpaceEnemy(PtmGame game, Vector2 pos, RemoveController remover,
                                    ShipConfig enemyConf) {
         if (pos == null) {
             return null;
         }
         Vector2 spd = new Vector2();
-        SolMath.fromAl(spd, SolMath.rnd(180), SolMath.rnd(0, ENEMY_MAX_SPD));
-        float rotSpd = SolMath.rnd(ENEMY_MAX_ROT_SPD);
+        PtmMath.fromAl(spd, PtmMath.rnd(180), PtmMath.rnd(0, ENEMY_MAX_SPD));
+        float rotSpd = PtmMath.rnd(ENEMY_MAX_ROT_SPD);
         MoveDestProvider dp = new StillGuard(pos, game, enemyConf);
         Pilot provider = new AiPilot(dp, false, Faction.EHAR, true, null, Const.AI_DET_DIST);
         HullConfig config = enemyConf.hull;
         int money = enemyConf.money;
-        float angle = SolMath.rnd(180);
+        float angle = PtmMath.rnd(180);
         return game.getShipBuilder().buildNewFar(game, pos, spd, angle, rotSpd, provider, enemyConf.items, config,
                 remover, false, money, null, true);
     }
 
-    private void fillAsteroids(SolGame game, RemoveController remover, boolean forBelt, Vector2 chCenter) {
+    private void fillAsteroids(PtmGame game, RemoveController remover, boolean forBelt, Vector2 chCenter) {
         float density = forBelt ? BELT_A_DENSITY : ASTEROID_DENSITY;
         int count = getEntityCount(density);
         if (count == 0) {
@@ -211,9 +211,9 @@ public class ChunkFiller {
             }
             float minSz = forBelt ? MIN_BELT_A_SZ : MIN_SYS_A_SZ;
             float maxSz = forBelt ? MAX_BELT_A_SZ : MAX_SYS_A_SZ;
-            float sz = SolMath.rnd(minSz, maxSz);
+            float sz = PtmMath.rnd(minSz, maxSz);
             Vector2 spd = new Vector2();
-            SolMath.fromAl(spd, SolMath.rnd(180), MAX_A_SPD);
+            PtmMath.fromAl(spd, PtmMath.rnd(180), MAX_A_SPD);
 
             FarAsteroid a = game.getAsteroidBuilder().buildNewFar(asteroidPos, spd, sz, remover);
             game.getObjMan().addFarObjNow(a);
@@ -226,14 +226,14 @@ public class ChunkFiller {
      * This type of junk does not move on its own, it merely changes position as the camera moves, simulating different
      * depths relative to the camera.
      *
-     * @param game       The {@link SolGame} instance to work with
+     * @param game       The {@link PtmGame} instance to work with
      * @param chCenter   The center of the chunk
      * @param remover
      * @param draLevel   The depth of the junk
      * @param conf       The environment configuration
      * @param densityMul A density multiplier. This will be multiplied with the density defined in the environment configuration
      */
-    private void fillFarJunk(SolGame game, Vector2 chCenter, RemoveController remover, DraLevel draLevel,
+    private void fillFarJunk(PtmGame game, Vector2 chCenter, RemoveController remover, DraLevel draLevel,
                              SpaceEnvConfig conf, float densityMul) {
         if (conf == null) {
             return;
@@ -248,21 +248,21 @@ public class ChunkFiller {
 
         for (int i = 0; i < count; i++) {
             // Select a random far junk texture
-            TextureAtlas.AtlasRegion tex = SolMath.elemRnd(conf.farJunkTexs);
+            TextureAtlas.AtlasRegion tex = PtmMath.elemRnd(conf.farJunkTexs);
             // Flip atlas for every other piece of junk
-            if (SolMath.test(.5f)) {
+            if (PtmMath.test(.5f)) {
                 tex = textureManager.getFlipped(tex);
             }
             // Choose a random size (within a range)
-            float sz = SolMath.rnd(.3f, 1) * FAR_JUNK_MAX_SZ;
+            float sz = PtmMath.rnd(.3f, 1) * FAR_JUNK_MAX_SZ;
             // Apply a random rotation speed
-            float rotSpd = SolMath.rnd(FAR_JUNK_MAX_ROT_SPD);
+            float rotSpd = PtmMath.rnd(FAR_JUNK_MAX_ROT_SPD);
             // Select a random position in the chunk centered around chCenter, relative to the position of the chunk.
             Vector2 junkPos = getRndPos(chCenter);
             junkPos.sub(chCenter);
 
             // Create the resulting sprite and add it to the list
-            RectSprite s = new RectSprite(tex, sz, 0, 0, junkPos, draLevel, SolMath.rnd(180), rotSpd, SolColor.DDG, false);
+            RectSprite s = new RectSprite(tex, sz, 0, 0, junkPos, draLevel, PtmMath.rnd(180), rotSpd, PtmColor.DDG, false);
             dras.add(s);
         }
 
@@ -278,12 +278,12 @@ public class ChunkFiller {
      * This type of junk moves at the same speed as the camera (similar to the dust) but additionally has its own floating
      * direction and angle for every individual piece of junk.
      *
-     * @param game     The {@link SolGame} instance to work with
+     * @param game     The {@link PtmGame} instance to work with
      * @param remover
      * @param conf     The environment configuration
      * @param chCenter The center of the chunk
      */
-    private void fillJunk(SolGame game, RemoveController remover, SpaceEnvConfig conf, Vector2 chCenter) {
+    private void fillJunk(PtmGame game, RemoveController remover, SpaceEnvConfig conf, Vector2 chCenter) {
         if (conf == null) {
             return;
         }
@@ -297,24 +297,24 @@ public class ChunkFiller {
             Vector2 junkPos = getRndPos(chCenter);
 
             // Select a random junk atlas
-            TextureAtlas.AtlasRegion tex = SolMath.elemRnd(conf.junkTexs);
+            TextureAtlas.AtlasRegion tex = PtmMath.elemRnd(conf.junkTexs);
             // Flip atlas for every other piece of junk
-            if (SolMath.test(.5f)) {
+            if (PtmMath.test(.5f)) {
                 tex = game.getTexMan().getFlipped(tex);
             }
             // Choose a random size (within a range)
-            float sz = SolMath.rnd(.3f, 1) * JUNK_MAX_SZ;
+            float sz = PtmMath.rnd(.3f, 1) * JUNK_MAX_SZ;
             // Apply a random rotation speed
-            float rotSpd = SolMath.rnd(JUNK_MAX_ROT_SPD);
+            float rotSpd = PtmMath.rnd(JUNK_MAX_ROT_SPD);
 
             // Create the resulting sprite and add it to the list as the only element
-            RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.DECO, SolMath.rnd(180), rotSpd, SolColor.LG, false);
+            RectSprite s = new RectSprite(tex, sz, 0, 0, new Vector2(), DraLevel.DECO, PtmMath.rnd(180), rotSpd, PtmColor.LG, false);
             ArrayList<Dra> dras = new ArrayList<Dra>();
             dras.add(s);
 
             // Create a FarDras instance for this piece of junk and only allow it to be drawn when it's not hidden by a planet
             Vector2 spd = new Vector2();
-            SolMath.fromAl(spd, SolMath.rnd(180), SolMath.rnd(JUNK_MAX_SPD_LEN));
+            PtmMath.fromAl(spd, PtmMath.rnd(180), PtmMath.rnd(JUNK_MAX_SPD_LEN));
             FarDras so = new FarDras(dras, junkPos, spd, remover, true);
             // Add the object to the object manager
             game.getObjMan().addFarObjNow(so);
@@ -326,11 +326,11 @@ public class ChunkFiller {
      * <p/>
      * Dust is fixed in the world and therefore moves opposite to the cameras movement.
      *
-     * @param game     The {@link SolGame} instance to work with
+     * @param game     The {@link PtmGame} instance to work with
      * @param chCenter The center of the chunk
      * @param remover
      */
-    private void fillDust(SolGame game, Vector2 chCenter, RemoveController remover) {
+    private void fillDust(PtmGame game, Vector2 chCenter, RemoveController remover) {
         ArrayList<Dra> dras = new ArrayList<Dra>();
         int count = getEntityCount(DUST_DENSITY);
         if (count == 0) {
@@ -343,7 +343,7 @@ public class ChunkFiller {
             Vector2 dustPos = getRndPos(chCenter);
             dustPos.sub(chCenter);
             // Create the resulting sprite and add it to the list
-            RectSprite s = new RectSprite(tex, DUST_SZ, 0, 0, dustPos, DraLevel.DECO, 0, 0, SolColor.WHITE, false);
+            RectSprite s = new RectSprite(tex, DUST_SZ, 0, 0, dustPos, DraLevel.DECO, 0, 0, PtmColor.WHITE, false);
             dras.add(s);
         }
 
@@ -358,11 +358,11 @@ public class ChunkFiller {
      * <p/>
      * Up to 100 tries will be made to find an unoccupied position; if by then none has been found, <code>null</code> will be returned.
      *
-     * @param g        The {@link SolGame} instance to work with
+     * @param g        The {@link PtmGame} instance to work with
      * @param chCenter The center of a chunk in which a random position should be found
      * @return A random, unoccupied position in a chunk centered around chCenter, relative to the entire map, or <code>null</code> if within 100 tries no unoccupied position has been found
      */
-    private Vector2 getFreeRndPos(SolGame g, Vector2 chCenter) {
+    private Vector2 getFreeRndPos(PtmGame g, Vector2 chCenter) {
         for (int i = 0; i < 100; i++) {
             Vector2 pos = getRndPos(new Vector2(chCenter));
             if (g.isPlaceEmpty(pos, true)) {
@@ -380,8 +380,8 @@ public class ChunkFiller {
      */
     private Vector2 getRndPos(Vector2 chCenter) {
         Vector2 pos = new Vector2(chCenter);
-        pos.x += SolMath.rnd(Const.CHUNK_SIZE / 2);
-        pos.y += SolMath.rnd(Const.CHUNK_SIZE / 2);
+        pos.x += PtmMath.rnd(Const.CHUNK_SIZE / 2);
+        pos.y += PtmMath.rnd(Const.CHUNK_SIZE / 2);
         return pos;
     }
 
@@ -397,7 +397,7 @@ public class ChunkFiller {
         if (amt >= 1) {
             return (int) amt;
         }
-        return SolMath.test(amt) ? 1 : 0;
+        return PtmMath.test(amt) ? 1 : 0;
     }
 
 }

@@ -13,43 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.menu;
+package old.tnf.ptm.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.ui.SolUiScreen;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.ui.FontSize;
-import com.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.ui.PtmUiScreen;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.ui.FontSize;
+import old.tnf.ptm.ui.UiDrawer;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResolutionScreen implements SolUiScreen {
+public class ResolutionScreen implements PtmUiScreen {
     private final TextureAtlas.AtlasRegion bgTex;
 
-    private final ArrayList<SolUiControl> myControls = new ArrayList<>();
-    private final SolUiControl closeControl;
-    private final SolUiControl resolutionControl;
-    private final SolUiControl fullscreenControl;
+    private final ArrayList<PtmUiControl> myControls = new ArrayList<>();
+    private final PtmUiControl closeControl;
+    private final PtmUiControl resolutionControl;
+    private final PtmUiControl fullscreenControl;
 
     ResolutionScreen(MenuLayout menuLayout, GameOptions gameOptions) {
-        resolutionControl = new SolUiControl(menuLayout.buttonRect(-1, 2), true);
+        resolutionControl = new PtmUiControl(menuLayout.buttonRect(-1, 2), true);
         resolutionControl.setDisplayName("Resolution");
         myControls.add(resolutionControl);
 
-        fullscreenControl = new SolUiControl(menuLayout.buttonRect(-1, 3), true);
+        fullscreenControl = new PtmUiControl(menuLayout.buttonRect(-1, 3), true);
         fullscreenControl.setDisplayName("Fullscreen");
         myControls.add(fullscreenControl);
 
-        closeControl = new SolUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
+        closeControl = new PtmUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
         closeControl.setDisplayName("Back");
         myControls.add(closeControl);
 
@@ -57,18 +57,18 @@ public class ResolutionScreen implements SolUiScreen {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return myControls;
     }
 
     @Override
-    public void updateCustom(SolApplication solApplication, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
-        SolInputManager inputManager = solApplication.getInputMan();
-        GameOptions options = solApplication.getOptions();
+    public void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+        PtmInputManager inputManager = ptmApplication.getInputMan();
+        GameOptions options = ptmApplication.getOptions();
 
         if (closeControl.isJustOff()) {
             Gdx.graphics.setDisplayMode(options.x, options.y, options.fullscreen);
-            inputManager.setScreen(solApplication, solApplication.getMenuScreens().options);
+            inputManager.setScreen(ptmApplication, ptmApplication.getMenuScreens().options);
             return;
         }
 
@@ -84,12 +84,12 @@ public class ResolutionScreen implements SolUiScreen {
     }
 
     @Override
-    public void drawBg(UiDrawer uiDrawer, SolApplication solApplication) {
-        uiDrawer.draw(bgTex, uiDrawer.r, 1, uiDrawer.r / 2, 0.5f, uiDrawer.r / 2, 0.5f, 0, SolColor.WHITE);
+    public void drawBg(UiDrawer uiDrawer, PtmApplication ptmApplication) {
+        uiDrawer.draw(bgTex, uiDrawer.r, 1, uiDrawer.r / 2, 0.5f, uiDrawer.r / 2, 0.5f, 0, PtmColor.WHITE);
     }
 
     @Override
-    public void drawText(UiDrawer uiDrawer, SolApplication solApplication) {
-        uiDrawer.drawString("Click 'Back' to apply changes", .5f * uiDrawer.r, .3f, FontSize.MENU, true, SolColor.WHITE);
+    public void drawText(UiDrawer uiDrawer, PtmApplication ptmApplication) {
+        uiDrawer.drawString("Click 'Back' to apply changes", .5f * uiDrawer.r, .3f, FontSize.MENU, true, PtmColor.WHITE);
     }
 }

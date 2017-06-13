@@ -13,28 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.game.item.Gun;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.ui.SolUiControl;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.game.item.Gun;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.ui.PtmUiControl;
 
 import java.util.List;
 
 public class ShipKbControl implements ShipUiControl {
-    public final SolUiControl leftCtrl;
-    public final SolUiControl rightCtrl;
-    public final SolUiControl upCtrl;
-    public final SolUiControl myDownCtrl;
-    public final SolUiControl shootCtrl;
-    public final SolUiControl shoot2Ctrl;
-    public final SolUiControl abilityCtrl;
+    public final PtmUiControl leftCtrl;
+    public final PtmUiControl rightCtrl;
+    public final PtmUiControl upCtrl;
+    public final PtmUiControl myDownCtrl;
+    public final PtmUiControl shootCtrl;
+    public final PtmUiControl shoot2Ctrl;
+    public final PtmUiControl abilityCtrl;
 
-    ShipKbControl(SolApplication solApplication, float resolutionRatio, List<SolUiControl> controls) {
-        GameOptions gameOptions = solApplication.getOptions();
-        boolean showButtons = solApplication.isMobile();
+    ShipKbControl(PtmApplication ptmApplication, float resolutionRatio, List<PtmUiControl> controls) {
+        GameOptions gameOptions = ptmApplication.getOptions();
+        boolean showButtons = ptmApplication.isMobile();
         float col0 = 0;
         float col1 = col0 + MainScreen.CELL_SZ;
         float colN0 = resolutionRatio - MainScreen.CELL_SZ;
@@ -42,30 +42,30 @@ public class ShipKbControl implements ShipUiControl {
         float rowN0 = 1 - MainScreen.CELL_SZ;
         float rowN1 = rowN0 - MainScreen.CELL_SZ;
 
-        leftCtrl = new SolUiControl(showButtons ? MainScreen.btn(colN1, rowN0, false) : null, false, gameOptions.getKeyLeft());
+        leftCtrl = new PtmUiControl(showButtons ? MainScreen.btn(colN1, rowN0, false) : null, false, gameOptions.getKeyLeft());
         leftCtrl.setDisplayName("Left");
         controls.add(leftCtrl);
-        rightCtrl = new SolUiControl(showButtons ? MainScreen.btn(colN0, rowN0, false) : null, false, gameOptions.getKeyRight());
+        rightCtrl = new PtmUiControl(showButtons ? MainScreen.btn(colN0, rowN0, false) : null, false, gameOptions.getKeyRight());
         rightCtrl.setDisplayName("Right");
         controls.add(rightCtrl);
-        upCtrl = new SolUiControl(showButtons ? MainScreen.btn(col0, rowN0, false) : null, false, gameOptions.getKeyUp());
+        upCtrl = new PtmUiControl(showButtons ? MainScreen.btn(col0, rowN0, false) : null, false, gameOptions.getKeyUp());
         upCtrl.setDisplayName("Fwd");
         controls.add(upCtrl);
-        myDownCtrl = new SolUiControl(null, true, gameOptions.getKeyDown());
+        myDownCtrl = new PtmUiControl(null, true, gameOptions.getKeyDown());
         controls.add(myDownCtrl);
-        shootCtrl = new SolUiControl(showButtons ? MainScreen.btn(col0, rowN1, false) : null, false, gameOptions.getKeyShoot());
+        shootCtrl = new PtmUiControl(showButtons ? MainScreen.btn(col0, rowN1, false) : null, false, gameOptions.getKeyShoot());
         shootCtrl.setDisplayName("Gun 1");
         controls.add(shootCtrl);
-        shoot2Ctrl = new SolUiControl(showButtons ? MainScreen.btn(col1, rowN0, false) : null, false, gameOptions.getKeyShoot2());
+        shoot2Ctrl = new PtmUiControl(showButtons ? MainScreen.btn(col1, rowN0, false) : null, false, gameOptions.getKeyShoot2());
         shoot2Ctrl.setDisplayName("Gun 2");
         controls.add(shoot2Ctrl);
-        abilityCtrl = new SolUiControl(showButtons ? MainScreen.btn(colN0, rowN1, false) : null, false, gameOptions.getKeyAbility());
+        abilityCtrl = new PtmUiControl(showButtons ? MainScreen.btn(colN0, rowN1, false) : null, false, gameOptions.getKeyAbility());
         abilityCtrl.setDisplayName("Ability");
         controls.add(abilityCtrl);
     }
 
     @Override
-    public void update(SolApplication solApplication, boolean enabled) {
+    public void update(PtmApplication ptmApplication, boolean enabled) {
         if (!enabled) {
             upCtrl.setEnabled(false);
             leftCtrl.setEnabled(false);
@@ -75,7 +75,7 @@ public class ShipKbControl implements ShipUiControl {
             abilityCtrl.setEnabled(false);
             return;
         }
-        SolShip hero = solApplication.getGame().getHero();
+        PtmShip hero = ptmApplication.getGame().getHero();
         boolean hasEngine = hero != null && hero.getHull().getEngine() != null;
         upCtrl.setEnabled(hasEngine);
         leftCtrl.setEnabled(hasEngine);

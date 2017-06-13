@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerListener;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,8 +61,8 @@ public class ShipControllerControl implements ShipUiControl {
     private boolean controllerUp;
     private boolean controllerDown;
 
-    ShipControllerControl(SolApplication solApplication) {
-        final GameOptions gameOptions = solApplication.getOptions();
+    ShipControllerControl(PtmApplication ptmApplication) {
+        final GameOptions gameOptions = ptmApplication.getOptions();
 
         Controllers.clearListeners();
 

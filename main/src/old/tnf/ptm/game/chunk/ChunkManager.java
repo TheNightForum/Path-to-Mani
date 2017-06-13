@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.chunk;
+package old.tnf.ptm.game.chunk;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.RemoveController;
-import com.tnf.ptm.game.SolGame;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.RemoveController;
+import old.tnf.ptm.game.PtmGame;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -50,7 +50,7 @@ public class ChunkManager {
         myFiller = new ChunkFiller(textureManager);
     }
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         Vector2 camPos = game.getCam().getPos();
         boolean refill = updateCurrChunk(camPos);
         if (refill) {
@@ -90,7 +90,7 @@ public class ChunkManager {
         return x <= myX - dist || myX + dist <= x || y <= myY - dist || myY + dist <= y;
     }
 
-    private void addNewChunks(Set<Vector2> chunks, int dist, SolGame game) {
+    private void addNewChunks(Set<Vector2> chunks, int dist, PtmGame game) {
         maybeAddChunk(chunks, 0, 0, game);
         for (int i = -dist; i < dist + 1; i++) {
             for (int j = -dist; j < dist + 1; j++) {
@@ -102,15 +102,15 @@ public class ChunkManager {
         }
     }
 
-    private void maybeAddChunk(Set<Vector2> chunks, int oX, int oY, SolGame game) {
-        Vector2 v = SolMath.getVec(myX + oX, myY + oY);
+    private void maybeAddChunk(Set<Vector2> chunks, int oX, int oY, PtmGame game) {
+        Vector2 v = PtmMath.getVec(myX + oX, myY + oY);
         if (!chunks.contains(v)) {
             Vector2 chunk = new Vector2(v);
             chunks.add(chunk);
             boolean bg = chunks == myBgFilledChunks;
             myFiller.fill(game, chunk, bg ? myBgRemover : myRemover, bg);
         }
-        SolMath.free(v);
+        PtmMath.free(v);
     }
 
     public boolean isInactive(Vector2 pos, int dist) {

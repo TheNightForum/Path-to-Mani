@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.ship.PtmShip;
 
 public class BattleDestProvider {
     public static final float MIN_DIR_CHANGE_AWAIT = 10f;
@@ -33,16 +33,16 @@ public class BattleDestProvider {
 
     public BattleDestProvider() {
         myDest = new Vector2();
-        myCw = SolMath.test(.5f);
+        myCw = PtmMath.test(.5f);
     }
 
-    public Vector2 getDest(SolShip ship, SolShip enemy, Planet np, boolean battle, float ts,
+    public Vector2 getDest(PtmShip ship, PtmShip enemy, Planet np, boolean battle, float ts,
                            boolean canShootUnfixed, boolean nearGround) {
         myDirChangeAwait -= ts;
         if (myDirChangeAwait <= 0) {
-            int rnd = SolMath.intRnd(0, 2);
+            int rnd = PtmMath.intRnd(0, 2);
             myCw = rnd == 0 ? null : rnd == 1;
-            myDirChangeAwait = SolMath.rnd(MIN_DIR_CHANGE_AWAIT, MAX_DIR_CHANGE_AWAIT);
+            myDirChangeAwait = PtmMath.rnd(MIN_DIR_CHANGE_AWAIT, MAX_DIR_CHANGE_AWAIT);
         }
         if (!battle) {
             throw new AssertionError("can't flee yet!");
@@ -53,21 +53,21 @@ public class BattleDestProvider {
         float enemyApproxRad = enemy.getHull().config.getApproxRadius();
 
         if (nearGround) {
-            prefAngle = SolMath.angle(np.getPos(), enemyPos);
+            prefAngle = PtmMath.angle(np.getPos(), enemyPos);
             myStopNearDest = false;
             float dist = canShootUnfixed ? .9f * Const.AUTO_SHOOT_GROUND : .75f * Const.CAM_VIEW_DIST_GROUND;
             dist += approxRad + enemyApproxRad;
-            SolMath.fromAl(myDest, prefAngle, dist);
+            PtmMath.fromAl(myDest, prefAngle, dist);
             myDest.add(enemyPos);
         } else {
             Vector2 shipPos = ship.getPosition();
-            float a = SolMath.angle(enemyPos, shipPos);
+            float a = PtmMath.angle(enemyPos, shipPos);
             if (myCw != null) {
-                a += 90 * SolMath.toInt(myCw);
+                a += 90 * PtmMath.toInt(myCw);
             }
             float len = canShootUnfixed ? .9f * Const.AUTO_SHOOT_SPACE : .5f * Const.CAM_VIEW_DIST_SPACE;
             len += approxRad + enemyApproxRad;
-            SolMath.fromAl(myDest, a, len);
+            PtmMath.fromAl(myDest, a, len);
             myDest.add(enemyPos);
             myStopNearDest = false;
         }

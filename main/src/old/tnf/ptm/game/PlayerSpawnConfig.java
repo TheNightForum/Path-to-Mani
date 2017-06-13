@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.files.HullConfigManager;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
-import com.tnf.ptm.game.item.ItemManager;
+import old.tnf.ptm.files.HullConfigManager;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.game.item.ItemManager;
 import org.terasology.assets.ResourceUrn;
 
 public class PlayerSpawnConfig {

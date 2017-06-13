@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.asteroid.AsteroidBuilder;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.ship.ShipBuilder;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.asteroid.AsteroidBuilder;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.ship.ShipBuilder;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class ShardBuilder {
         myTexs = textureManager.getPack("smallGameObjects/shard");
     }
 
-    public void buildExplosionShards(SolGame game, Vector2 pos, Vector2 baseSpd, float size) {
+    public void buildExplosionShards(PtmGame game, Vector2 pos, Vector2 baseSpd, float size) {
         int count = (int) (size * SIZE_TO_SHARD_COUNT);
         for (int i = 0; i < count; i++) {
             Shard s = build(game, pos, baseSpd, size);
@@ -51,23 +51,23 @@ public class ShardBuilder {
         }
     }
 
-    public Shard build(SolGame game, Vector2 basePos, Vector2 baseSpd, float size) {
+    public Shard build(PtmGame game, Vector2 basePos, Vector2 baseSpd, float size) {
 
         ArrayList<Dra> dras = new ArrayList<Dra>();
-        float scale = SolMath.rnd(MIN_SCALE, MAX_SCALE);
-        TextureAtlas.AtlasRegion tex = SolMath.elemRnd(myTexs);
-        float spdAngle = SolMath.rnd(180);
+        float scale = PtmMath.rnd(MIN_SCALE, MAX_SCALE);
+        TextureAtlas.AtlasRegion tex = PtmMath.elemRnd(myTexs);
+        float spdAngle = PtmMath.rnd(180);
         Vector2 pos = new Vector2();
-        SolMath.fromAl(pos, spdAngle, SolMath.rnd(size));
+        PtmMath.fromAl(pos, spdAngle, PtmMath.rnd(size));
         pos.add(basePos);
         Body body = myCollisionMeshLoader.getBodyAndSprite(game, "smallGameObjects", AsteroidBuilder.removePath(tex.name) + "_" + tex.index, scale,
-                BodyDef.BodyType.DynamicBody, pos, SolMath.rnd(180), dras, ShipBuilder.SHIP_DENSITY, DraLevel.PROJECTILES, tex);
+                BodyDef.BodyType.DynamicBody, pos, PtmMath.rnd(180), dras, ShipBuilder.SHIP_DENSITY, DraLevel.PROJECTILES, tex);
 
-        body.setAngularVelocity(SolMath.rnd(MAX_ROT_SPD));
-        Vector2 spd = SolMath.fromAl(spdAngle, SolMath.rnd(MAX_SPD));
+        body.setAngularVelocity(PtmMath.rnd(MAX_ROT_SPD));
+        Vector2 spd = PtmMath.fromAl(spdAngle, PtmMath.rnd(MAX_SPD));
         spd.add(baseSpd);
         body.setLinearVelocity(spd);
-        SolMath.free(spd);
+        PtmMath.free(spd);
 
         Shard shard = new Shard(body, dras);
         body.setUserData(shard);

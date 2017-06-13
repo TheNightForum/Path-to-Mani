@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.item;
+package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.files.HullConfigManager;
-import com.tnf.ptm.game.ShipConfig;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.files.HullConfigManager;
+import old.tnf.ptm.game.ShipConfig;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

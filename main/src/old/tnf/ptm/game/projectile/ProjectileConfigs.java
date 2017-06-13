@@ -13,21 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.projectile;
+package old.tnf.ptm.game.projectile;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.assets.audio.OggSound;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
-import com.tnf.ptm.game.GameColors;
-import com.tnf.ptm.game.particle.EffectConfig;
-import com.tnf.ptm.game.particle.EffectTypes;
-import com.tnf.ptm.game.sound.OggSoundManager;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.assets.audio.OggSound;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.DmgType;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.game.GameColors;
+import old.tnf.ptm.game.particle.EffectConfig;
+import old.tnf.ptm.game.particle.EffectTypes;
+import old.tnf.ptm.game.sound.OggSoundManager;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.HashMap;
@@ -60,7 +60,7 @@ public class ProjectileConfigs {
             EffectConfig collisionEffectBg = EffectConfig.load(sh.get("collisionEffectBg"), effectTypes, textureManager, cols);
             float guideRotSpd = sh.getFloat("guideRotSpd", 0);
             boolean zeroAbsSpd = sh.getBoolean("zeroAbsSpd", false);
-            Vector2 origin = SolMath.readV2(sh.getString("texOrig", "0 0"));
+            Vector2 origin = PtmMath.readV2(sh.getString("texOrig", "0 0"));
             float acc = sh.getFloat("acceleration", 0);
             String workSoundUrn = sh.getString("workSound", "");
             OggSound workSound = workSoundUrn.isEmpty() ? null : soundManager.getSound(workSoundUrn);

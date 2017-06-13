@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.sound;
+package old.tnf.ptm.game.sound;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.assets.audio.PlayableSound;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.game.SolObject;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.assets.audio.PlayableSound;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.DmgType;
 
 import java.util.Arrays;
 
@@ -82,7 +82,7 @@ public class SpecialSounds {
         return null;
     }
 
-    public void playHit(SolGame game, SolObject o, Vector2 pos, DmgType dmgType) {
+    public void playHit(PtmGame game, PtmObject o, Vector2 pos, DmgType dmgType) {
         if (o == null) {
             return;
         }
@@ -97,7 +97,7 @@ public class SpecialSounds {
         game.getSoundManager().play(game, sound, pos, o);
     }
 
-    public void playColl(SolGame game, float absImpulse, SolObject o, Vector2 pos) {
+    public void playColl(PtmGame game, float absImpulse, PtmObject o, Vector2 pos) {
         if (o == null || absImpulse < .1f) {
             return;
         }

@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.ship.hulls;
+package old.tnf.ptm.game.ship.hulls;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.Immutable;
-import com.tnf.ptm.game.item.Engine;
-import com.tnf.ptm.game.ship.AbilityConfig;
+import old.tnf.ptm.common.Immutable;
+import old.tnf.ptm.game.item.Engine;
+import old.tnf.ptm.game.ship.AbilityConfig;
 
 import java.util.ArrayList;
 import java.util.List;

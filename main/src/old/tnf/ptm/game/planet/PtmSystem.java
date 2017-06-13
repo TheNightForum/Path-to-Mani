@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.game.HardnessCalc;
+import old.tnf.ptm.game.HardnessCalc;
 
 import java.util.ArrayList;
 
-public class SolSystem {
+public class PtmSystem {
 
     private final Vector2 myPos;
     private final ArrayList<Planet> myPlanets;
@@ -32,7 +32,7 @@ public class SolSystem {
     private final float myInnerDps;
     private float myInnerRad;
 
-    public SolSystem(Vector2 pos, SysConfig config, String name, float sysRadius) {
+    public PtmSystem(Vector2 pos, SysConfig config, String name, float sysRadius) {
         myConfig = config;
         myName = name;
         myPos = new Vector2(pos);

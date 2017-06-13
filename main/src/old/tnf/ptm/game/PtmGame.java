@@ -13,61 +13,58 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.CommonDrawer;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.files.HullConfigManager;
-import com.tnf.ptm.game.dra.DraMan;
-import com.tnf.ptm.game.item.ItemContainer;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.planet.SolSystem;
-import com.tnf.ptm.game.screens.GameScreens;
-import com.tnf.ptm.game.ship.FarShip;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
-import com.tnf.ptm.game.sound.OggMusicManager;
-import com.tnf.ptm.ui.DebugCollector;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.common.DebugCol;
-import com.tnf.ptm.game.asteroid.AsteroidBuilder;
-import com.tnf.ptm.game.chunk.ChunkManager;
-import com.tnf.ptm.game.dra.DraDebugger;
-import com.tnf.ptm.game.farBg.FarBackgroundManagerOld;
-import com.tnf.ptm.game.input.AiPilot;
-import com.tnf.ptm.game.input.BeaconDestProvider;
-import com.tnf.ptm.game.input.Pilot;
-import com.tnf.ptm.game.input.UiControlledPilot;
-import com.tnf.ptm.game.item.Gun;
-import com.tnf.ptm.game.item.ItemManager;
-import com.tnf.ptm.game.item.LootBuilder;
-import com.tnf.ptm.game.particle.EffectTypes;
-import com.tnf.ptm.game.particle.PartMan;
-import com.tnf.ptm.game.particle.SpecialEffects;
-import com.tnf.ptm.game.planet.PlanetManager;
-import com.tnf.ptm.game.planet.SunSingleton;
-import com.tnf.ptm.game.ship.ShipAbility;
-import com.tnf.ptm.game.ship.ShipBuilder;
-import com.tnf.ptm.game.ship.SloMo;
-import com.tnf.ptm.game.sound.OggSoundManager;
-import com.tnf.ptm.game.sound.SpecialSounds;
-import com.tnf.ptm.ui.TutorialManager;
-import com.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.CommonDrawer;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.files.HullConfigManager;
+import old.tnf.ptm.game.dra.DraMan;
+import old.tnf.ptm.game.item.ItemContainer;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.planet.PtmSystem;
+import old.tnf.ptm.game.screens.GameScreens;
+import old.tnf.ptm.game.ship.*;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.game.sound.OggMusicManager;
+import old.tnf.ptm.ui.DebugCollector;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.common.DebugCol;
+import old.tnf.ptm.game.asteroid.AsteroidBuilder;
+import old.tnf.ptm.game.chunk.ChunkManager;
+import old.tnf.ptm.game.dra.DraDebugger;
+import old.tnf.ptm.game.farBg.FarBackgroundManagerOld;
+import old.tnf.ptm.game.input.AiPilot;
+import old.tnf.ptm.game.input.BeaconDestProvider;
+import old.tnf.ptm.game.input.Pilot;
+import old.tnf.ptm.game.input.UiControlledPilot;
+import old.tnf.ptm.game.item.Gun;
+import old.tnf.ptm.game.item.ItemManager;
+import old.tnf.ptm.game.item.LootBuilder;
+import old.tnf.ptm.game.particle.EffectTypes;
+import old.tnf.ptm.game.particle.PartMan;
+import old.tnf.ptm.game.particle.SpecialEffects;
+import old.tnf.ptm.game.planet.PlanetManager;
+import old.tnf.ptm.game.planet.SunSingleton;
+import old.tnf.ptm.game.sound.OggSoundManager;
+import old.tnf.ptm.game.sound.SpecialSounds;
+import old.tnf.ptm.ui.TutorialManager;
+import old.tnf.ptm.ui.UiDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolGame {
+public class PtmGame {
     private final GameScreens myScreens;
-    private final SolCam myCam;
+    private final PtmCam myCam;
     private final ObjectManager myObjectManager;
-    private final SolApplication myCmp;
+    private final PtmApplication myCmp;
     private final DraMan myDraMan;
     private final PlanetManager myPlanetManager;
     private final TextureManager myTextureManager;
@@ -93,13 +90,13 @@ public class SolGame {
     private final SpecialEffects mySpecialEffects;
     private final GameColors gameColors;
     private final AbilityCommonConfigs myAbilityCommonConfigs;
-    private final SolNames myNames;
+    private final PtmNames myNames;
     private final BeaconHandler myBeaconHandler;
     private final MountDetectDrawer myMountDetectDrawer;
     private final TutorialManager myTutorialManager;
     private final GalaxyFiller myGalaxyFiller;
-    private final ArrayList<SolItem> myRespawnItems;
-    private SolShip myHero;
+    private final ArrayList<PtmItem> myRespawnItems;
+    private PtmShip myHero;
     private float myTimeStep;
     private float myTime;
     private boolean myPaused;
@@ -108,7 +105,7 @@ public class SolGame {
     private float myRespawnMoney;
     private HullConfig myRespawnHull;
 
-    public SolGame(SolApplication cmp, boolean usePrevShip, TextureManager textureManager, boolean tut, CommonDrawer commonDrawer) {
+    public PtmGame(PtmApplication cmp, boolean usePrevShip, TextureManager textureManager, boolean tut, CommonDrawer commonDrawer) {
         myCmp = cmp;
         GameDrawer drawer = new GameDrawer(textureManager, commonDrawer);
         gameColors = new GameColors();
@@ -116,7 +113,7 @@ public class SolGame {
         musicManager = myCmp.getMusicManager();
         mySpecialSounds = new SpecialSounds(soundManager);
         myDraMan = new DraMan(drawer);
-        myCam = new SolCam(drawer.r);
+        myCam = new PtmCam(drawer.r);
         myScreens = new GameScreens(drawer.r, cmp);
         myTutorialManager = tut ? new TutorialManager(commonDrawer.r, myScreens, cmp.isMobile(), cmp.getOptions(), this) : null;
         myTextureManager = textureManager;
@@ -127,9 +124,9 @@ public class SolGame {
         myItemManager = new ItemManager(myTextureManager, soundManager, myEffectTypes, gameColors);
         myAbilityCommonConfigs = new AbilityCommonConfigs(myEffectTypes, myTextureManager, gameColors, soundManager);
         hullConfigManager = new HullConfigManager(myItemManager, myAbilityCommonConfigs);
-        myNames = new SolNames();
+        myNames = new PtmNames();
         myPlanetManager = new PlanetManager(myTextureManager, hullConfigManager, gameColors, myItemManager);
-        SolContactListener contactListener = new SolContactListener(this);
+        PtmContactListener contactListener = new PtmContactListener(this);
         myFactionManager = new FactionManager();
         myObjectManager = new ObjectManager(contactListener, myFactionManager);
         myGridDrawer = new GridDrawer(textureManager);
@@ -153,7 +150,7 @@ public class SolGame {
         myGalaxyFiller.fill(this);
         ShipConfig startingShip = usePrevShip ? SaveManager.readShip(hullConfigManager, myItemManager) : null;
         createPlayer(startingShip);
-        SolMath.checkVectorsTaken(null);
+        PtmMath.checkVectorsTaken(null);
     }
 
     // uh, this needs refactoring
@@ -190,7 +187,7 @@ public class SolGame {
         ItemContainer ic = myHero.getItemContainer();
         if (!myRespawnItems.isEmpty()) {
             for (int i1 = 0, sz = myRespawnItems.size(); i1 < sz; i1++) {
-                SolItem item = myRespawnItems.get(i1);
+                PtmItem item = myRespawnItems.get(i1);
                 ic.add(item);
                 // Ensure that previously equipped items stay equipped
                 if (item.isEquipped() > 0) {
@@ -208,7 +205,7 @@ public class SolGame {
                 if (ic.groupCount() > 1.5f * Const.ITEM_GROUPS_PER_PAGE) {
                     break;
                 }
-                SolItem it = myItemManager.random();
+                PtmItem it = myItemManager.random();
                 if (!(it instanceof Gun) && it.getIcon(this) != null && ic.canAdd(it)) {
                     ic.add(it.copy());
                 }
@@ -234,13 +231,13 @@ public class SolGame {
         }
         HullConfig hull;
         float money;
-        ArrayList<SolItem> items;
+        ArrayList<PtmItem> items;
         if (myHero != null) {
             hull = myHero.getHull().config;
             money = myHero.getMoney();
-            items = new ArrayList<SolItem>();
-            for (List<SolItem> group : myHero.getItemContainer()) {
-                for (SolItem i : group) {
+            items = new ArrayList<PtmItem>();
+            for (List<PtmItem> group : myHero.getItemContainer()) {
+                for (PtmItem i : group) {
                     items.add(0, i);
                 }
             }
@@ -248,9 +245,9 @@ public class SolGame {
             FarShip farH = myTranscendentHero.getShip();
             hull = farH.getHullConfig();
             money = farH.getMoney();
-            items = new ArrayList<SolItem>();
-            for (List<SolItem> group : farH.getIc()) {
-                for (SolItem i : group) {
+            items = new ArrayList<PtmItem>();
+            for (List<PtmItem> group : farH.getIc()) {
+                for (PtmItem i : group) {
                     items.add(0, i);
                 }
             }
@@ -298,11 +295,11 @@ public class SolGame {
 
         myHero = null;
         myTranscendentHero = null;
-        List<SolObject> objs = myObjectManager.getObjs();
+        List<PtmObject> objs = myObjectManager.getObjs();
         for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-            SolObject obj = objs.get(i);
-            if ((obj instanceof SolShip)) {
-                SolShip ship = (SolShip) obj;
+            PtmObject obj = objs.get(i);
+            if ((obj instanceof PtmShip)) {
+                PtmShip ship = (PtmShip) obj;
                 Pilot prov = ship.getPilot();
                 if (prov.isPlayer()) {
                     myHero = ship;
@@ -353,11 +350,11 @@ public class SolGame {
         return myTimeStep;
     }
 
-    public SolCam getCam() {
+    public PtmCam getCam() {
         return myCam;
     }
 
-    public SolApplication getCmp() {
+    public PtmApplication getCmp() {
         return myCmp;
     }
 
@@ -389,7 +386,7 @@ public class SolGame {
         return myLootBuilder;
     }
 
-    public SolShip getHero() {
+    public PtmShip getHero() {
         return myHero;
     }
 
@@ -438,13 +435,13 @@ public class SolGame {
                 return false;
             }
         }
-        SolSystem ns = myPlanetManager.getNearestSystem(pos);
+        PtmSystem ns = myPlanetManager.getNearestSystem(pos);
         if (ns.getPos().dst(pos) < SunSingleton.SUN_HOT_RAD) {
             return false;
         }
-        List<SolObject> objs = myObjectManager.getObjs();
+        List<PtmObject> objs = myObjectManager.getObjs();
         for (int i = 0, objsSize = objs.size(); i < objsSize; i++) {
-            SolObject o = objs.get(i);
+            PtmObject o = objs.get(i);
             if (!o.hasBody()) {
                 continue;
             }
@@ -549,7 +546,7 @@ public class SolGame {
         setRespawnState(money, ic, myHero.getHull().config);
 
         myHero.setMoney(money - myRespawnMoney);
-        for (SolItem item : myRespawnItems) {
+        for (PtmItem item : myRespawnItems) {
             ic.remove(item);
         }
     }
@@ -558,10 +555,10 @@ public class SolGame {
         myRespawnMoney = .75f * money;
         myRespawnHull = hullConfig;
         myRespawnItems.clear();
-        for (List<SolItem> group : ic) {
-            for (SolItem item : group) {
+        for (List<PtmItem> group : ic) {
+            for (PtmItem item : group) {
                 boolean equipped = myHero == null || myHero.maybeUnequip(this, item, false);
-                if (equipped || SolMath.test(.75f)) {
+                if (equipped || PtmMath.test(.75f)) {
                     myRespawnItems.add(0, item);
                 }
             }

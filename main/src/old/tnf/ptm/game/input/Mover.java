@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.ship.PtmShip;
 
 public class Mover {
     public static final float MIN_MOVE_AAD = 2f;
@@ -43,21 +43,21 @@ public class Mover {
     }
 
     public static Boolean needsToTurn(float angle, float destAngle, float rotSpd, float rotAcc, float allowedAngleDiff) {
-        if (SolMath.angleDiff(destAngle, angle) < allowedAngleDiff || rotAcc == 0) {
+        if (PtmMath.angleDiff(destAngle, angle) < allowedAngleDiff || rotAcc == 0) {
             return null;
         }
 
         float breakWay = rotSpd * rotSpd / rotAcc / 2;
-        float angleAfterBreak = angle + breakWay * SolMath.toInt(rotSpd > 0);
-        float relAngle = SolMath.norm(angle - destAngle);
-        float relAngleAfterBreak = SolMath.norm(angleAfterBreak - destAngle);
+        float angleAfterBreak = angle + breakWay * PtmMath.toInt(rotSpd > 0);
+        float relAngle = PtmMath.norm(angle - destAngle);
+        float relAngleAfterBreak = PtmMath.norm(angleAfterBreak - destAngle);
         if (relAngle > 0 == relAngleAfterBreak > 0) {
             return relAngle < 0;
         }
         return relAngle > 0;
     }
 
-    public void update(SolGame game, SolShip ship, Vector2 dest, Planet np,
+    public void update(PtmGame game, PtmShip ship, Vector2 dest, Planet np,
                        float maxIdleDist, boolean hasEngine, boolean avoidBigObjs, float desiredSpdLen, boolean stopNearDest,
                        Vector2 destSpd) {
         myUp = false;
@@ -91,8 +91,8 @@ public class Mover {
         float rotSpd = ship.getRotSpd();
         float rotAcc = ship.getRotAcc();
 
-        float desiredAngle = SolMath.angle(shipSpd, myDesiredSpd);
-        float angleDiff = SolMath.angleDiff(desiredAngle, shipAngle);
+        float desiredAngle = PtmMath.angle(shipSpd, myDesiredSpd);
+        float angleDiff = PtmMath.angleDiff(desiredAngle, shipAngle);
         myUp = angleDiff < MIN_ANGLE_TO_ACC;
         Boolean ntt = needsToTurn(shipAngle, desiredAngle, rotSpd, rotAcc, MIN_MOVE_AAD);
         if (ntt != null) {
@@ -104,11 +104,11 @@ public class Mover {
         }
     }
 
-    private void updateDesiredSpd(SolGame game, SolShip ship, Vector2 dest, float toDestLen, boolean stopNearDest,
+    private void updateDesiredSpd(PtmGame game, PtmShip ship, Vector2 dest, float toDestLen, boolean stopNearDest,
                                   Planet np, boolean avoidBigObjs, float desiredSpdLen, Vector2 destSpd) {
         float toDestAngle = getToDestAngle(game, ship, dest, avoidBigObjs, np);
         if (stopNearDest) {
-            float tangentSpd = SolMath.project(ship.getSpd(), toDestAngle);
+            float tangentSpd = PtmMath.project(ship.getSpd(), toDestAngle);
             float turnWay = tangentSpd * ship.calcTimeToTurn(toDestAngle + 180);
             float breakWay = tangentSpd * tangentSpd / ship.getAcc() / 2;
             boolean needsToBreak = toDestLen < .5f * tangentSpd + turnWay + breakWay;
@@ -117,10 +117,10 @@ public class Mover {
                 return;
             }
         }
-        SolMath.fromAl(myDesiredSpd, toDestAngle, desiredSpdLen);
+        PtmMath.fromAl(myDesiredSpd, toDestAngle, desiredSpdLen);
     }
 
-    public void rotateOnIdle(SolShip ship, Planet np, Vector2 dest, boolean stopNearDest, float maxIdleDist) {
+    public void rotateOnIdle(PtmShip ship, Planet np, Vector2 dest, boolean stopNearDest, float maxIdleDist) {
         if (isActive() || dest == null) {
             return;
         }
@@ -136,14 +136,14 @@ public class Mover {
                 return; // stopping in space, don't care of angle
             }
             // stopping on planet
-            desiredAngle = SolMath.angle(np.getPos(), shipPos);
+            desiredAngle = PtmMath.angle(np.getPos(), shipPos);
             allowedAngleDiff = MIN_PLANET_MOVE_AAD;
         } else {
             // flying somewhere
             if (dstToPlanet < np.getFullHeight() + Const.ATM_HEIGHT) {
                 return; // near planet, don't care of angle
             }
-            desiredAngle = SolMath.angle(ship.getSpd());
+            desiredAngle = PtmMath.angle(ship.getSpd());
             allowedAngleDiff = MIN_MOVE_AAD;
         }
 
@@ -157,9 +157,9 @@ public class Mover {
         }
     }
 
-    private float getToDestAngle(SolGame game, SolShip ship, Vector2 dest, boolean avoidBigObjs, Planet np) {
+    private float getToDestAngle(PtmGame game, PtmShip ship, Vector2 dest, boolean avoidBigObjs, Planet np) {
         Vector2 shipPos = ship.getPosition();
-        float toDestAngle = SolMath.angle(shipPos, dest);
+        float toDestAngle = PtmMath.angle(shipPos, dest);
         if (avoidBigObjs) {
             toDestAngle = myBigObjAvoider.avoid(game, shipPos, dest, toDestAngle);
         }

@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.ship.FarShip;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.game.Faction;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.ship.FarShip;
+import old.tnf.ptm.game.ship.PtmShip;
 
 public interface Pilot {
-    void update(SolGame game, SolShip ship, SolShip nearestEnemy);
+    void update(PtmGame game, PtmShip ship, PtmShip nearestEnemy);
 
     boolean isUp();
 
@@ -46,7 +46,7 @@ public interface Pilot {
 
     String getMapHint();
 
-    void updateFar(SolGame game, FarShip farShip);
+    void updateFar(PtmGame game, FarShip farShip);
 
     String toDebugString();
 

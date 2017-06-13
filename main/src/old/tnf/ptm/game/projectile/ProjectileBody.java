@@ -13,26 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.projectile;
+package old.tnf.ptm.game.projectile;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.ship.PtmShip;
 
 public interface ProjectileBody {
-    void update(SolGame game);
+    void update(PtmGame game);
 
     Vector2 getPos();
 
     Vector2 getSpd();
 
-    void receiveForce(Vector2 force, SolGame game, boolean acc);
+    void receiveForce(Vector2 force, PtmGame game, boolean acc);
 
-    void onRemove(SolGame game);
+    void onRemove(PtmGame game);
 
     float getAngle();
 
     void changeAngle(float diff);
 
-    float getDesiredAngle(SolShip ne);
+    float getDesiredAngle(PtmShip ne);
 }

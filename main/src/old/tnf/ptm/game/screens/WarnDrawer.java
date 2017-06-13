@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.ui.FontSize;
-import com.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.ui.FontSize;
+import old.tnf.ptm.ui.UiDrawer;
 
 public abstract class WarnDrawer {
     private static final float FADE_TIME = 1f;
@@ -37,26 +37,26 @@ public abstract class WarnDrawer {
     WarnDrawer(float resolutionRatio, String text) {
         myWarn = rect(resolutionRatio);
         myText = text;
-        myBgCol = new Color(SolColor.UI_WARN);
+        myBgCol = new Color(PtmColor.UI_WARN);
         myBgOrigA = myBgCol.a;
-        myTextCol = new Color(SolColor.WHITE);
+        myTextCol = new Color(PtmColor.WHITE);
     }
 
     private static Rectangle rect(float resolutionRatio) {
         return new Rectangle(.4f * resolutionRatio, 0, .2f * resolutionRatio, .1f);
     }
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         if (shouldWarn(game)) {
             drawPerc = 1;
         } else {
-            drawPerc = SolMath.approach(drawPerc, 0, Const.REAL_TIME_STEP / FADE_TIME);
+            drawPerc = PtmMath.approach(drawPerc, 0, Const.REAL_TIME_STEP / FADE_TIME);
         }
         myBgCol.a = myBgOrigA * drawPerc;
         myTextCol.a = drawPerc;
     }
 
-    protected abstract boolean shouldWarn(SolGame game);
+    protected abstract boolean shouldWarn(PtmGame game);
 
     public void draw(UiDrawer uiDrawer) {
         uiDrawer.draw(myWarn, myBgCol);

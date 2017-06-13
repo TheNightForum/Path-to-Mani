@@ -13,26 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.item;
+package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.audio.PlayableSound;
-import com.tnf.ptm.assets.json.Json;
-import com.tnf.ptm.game.GameColors;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.particle.EffectConfig;
-import com.tnf.ptm.game.particle.EffectTypes;
-import com.tnf.ptm.game.sound.OggSoundManager;
-import com.tnf.ptm.game.sound.OggSoundSet;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.audio.PlayableSound;
+import old.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.game.GameColors;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.particle.EffectConfig;
+import old.tnf.ptm.game.particle.EffectTypes;
+import old.tnf.ptm.game.sound.OggSoundManager;
+import old.tnf.ptm.game.sound.OggSoundSet;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class Engine implements SolItem {
+public class Engine implements PtmItem {
     private final Config myConfig;
 
     private Engine(Config config) {
@@ -76,17 +76,17 @@ public class Engine implements SolItem {
     }
 
     @Override
-    public boolean isSame(SolItem item) {
+    public boolean isSame(PtmItem item) {
         return item instanceof Engine && ((Engine) item).myConfig == myConfig;
     }
 
     @Override
-    public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+    public TextureAtlas.AtlasRegion getIcon(PtmGame game) {
         return myConfig.icon;
     }
 
     @Override
-    public SolItemType getItemType() {
+    public PtmItemType getItemType() {
         return null;
     }
 

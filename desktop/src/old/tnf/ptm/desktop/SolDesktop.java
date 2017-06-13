@@ -18,9 +18,9 @@ package old.tnf.ptm.desktop;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import old.tnf.ptm.SolFileReader;
+import old.tnf.ptm.PtmFileReader;
 import old.tnf.ptm.GameOptions;
-import old.tnf.ptm.SolApplication;
+import old.tnf.ptm.PtmApplication;
 import old.tnf.ptm.game.DebugOptions;
 import old.tnf.ptm.soundtest.SoundTestListener;
 import org.slf4j.Logger;
@@ -89,10 +89,10 @@ public class SolDesktop {
         });
         */
 
-        new LwjglApplication(new SolApplication(), applicationConfig);
+        new LwjglApplication(new PtmApplication(), applicationConfig);
     }
 
-    private static class MyReader implements SolFileReader {
+    private static class MyReader implements PtmFileReader {
         @Override
         public Path create(String fileName, List<String> lines) {
             if (DebugOptions.DEV_ROOT_PATH != null) {

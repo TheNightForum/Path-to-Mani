@@ -13,30 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package old.tnf.ptm;
 
-package com.tnf.ptm.game.item;
+import java.nio.file.Path;
+import java.util.List;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.tnf.ptm.game.SolGame;
+public interface PtmFileReader {
+    Path create(String fileName, List<String> lines);
 
-public interface SolItem {
-    String getDisplayName();
-
-    float getPrice();
-
-    String getDesc();
-
-    SolItem copy();
-
-    boolean isSame(SolItem item);
-
-    TextureAtlas.AtlasRegion getIcon(SolGame game);
-
-    SolItemType getItemType();
-
-    String getCode();
-
-    int isEquipped();
-
-    void setEquipped(int equipped);
+    List<String> read(String fileName);
 }

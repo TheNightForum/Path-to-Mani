@@ -13,43 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.ShipConfig;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.input.AiPilot;
-import com.tnf.ptm.game.item.ItemContainer;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.ship.FarShip;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.input.Guardian;
-import com.tnf.ptm.game.item.MercItem;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.ShipConfig;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.input.AiPilot;
+import old.tnf.ptm.game.item.ItemContainer;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.ship.FarShip;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.game.Faction;
+import old.tnf.ptm.game.input.Guardian;
+import old.tnf.ptm.game.item.MercItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HireShips implements InventoryOperations {
-    private final ArrayList<SolUiControl> controls = new ArrayList<>();
-    private final SolUiControl hireControl;
+    private final ArrayList<PtmUiControl> controls = new ArrayList<>();
+    private final PtmUiControl hireControl;
 
     HireShips(InventoryScreen inventoryScreen, GameOptions gameOptions) {
-        hireControl = new SolUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyHireShip());
+        hireControl = new PtmUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyHireShip());
         hireControl.setDisplayName("Hire");
         controls.add(hireControl);
     }
 
     @Override
-    public ItemContainer getItems(SolGame game) {
+    public ItemContainer getItems(PtmGame game) {
         return game.getScreens().talkScreen.getTarget().getTradeContainer().getMercs();
     }
 
@@ -59,21 +59,21 @@ public class HireShips implements InventoryOperations {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void updateCustom(SolApplication solApplication, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
-        SolGame game = solApplication.getGame();
+    public void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+        PtmGame game = ptmApplication.getGame();
         InventoryScreen is = game.getScreens().inventoryScreen;
-        SolShip hero = game.getHero();
+        PtmShip hero = game.getHero();
         TalkScreen talkScreen = game.getScreens().talkScreen;
         if (talkScreen.isTargetFar(hero)) {
-            solApplication.getInputMan().setScreen(solApplication, game.getScreens().mainScreen);
+            ptmApplication.getInputMan().setScreen(ptmApplication, game.getScreens().mainScreen);
             return;
         }
-        SolItem selItem = is.getSelectedItem();
+        PtmItem selItem = is.getSelectedItem();
         boolean enabled = selItem != null && hero.getMoney() >= selItem.getPrice();
         hireControl.setDisplayName(enabled ? "Hire" : "---");
         hireControl.setEnabled(enabled);
@@ -88,9 +88,9 @@ public class HireShips implements InventoryOperations {
         }
     }
 
-    private boolean hireShip(SolGame game, SolShip hero, MercItem selected) {
+    private boolean hireShip(PtmGame game, PtmShip hero, MercItem selected) {
         ShipConfig config = selected.getConfig();
-        Guardian dp = new Guardian(game, config.hull, hero.getPilot(), hero.getPosition(), hero.getHull().config, SolMath.rnd(180));
+        Guardian dp = new Guardian(game, config.hull, hero.getPilot(), hero.getPosition(), hero.getHull().config, PtmMath.rnd(180));
         AiPilot pilot = new AiPilot(dp, true, Faction.LAANI, false, "Merc", Const.AI_DET_DIST);
         Vector2 pos = getPos(game, hero, config.hull);
         if (pos == null) {
@@ -101,21 +101,21 @@ public class HireShips implements InventoryOperations {
         return true;
     }
 
-    private Vector2 getPos(SolGame game, SolShip hero, HullConfig hull) {
+    private Vector2 getPos(PtmGame game, PtmShip hero, HullConfig hull) {
         Vector2 pos = new Vector2();
         float dist = hero.getHull().config.getApproxRadius() + Guardian.DIST + hull.getApproxRadius();
         Vector2 heroPos = hero.getPosition();
         Planet np = game.getPlanetMan().getNearestPlanet();
         boolean nearGround = np.isNearGround(heroPos);
-        float fromPlanet = SolMath.angle(np.getPos(), heroPos);
+        float fromPlanet = PtmMath.angle(np.getPos(), heroPos);
         for (int i = 0; i < 50; i++) {
             float relAngle;
             if (nearGround) {
                 relAngle = fromPlanet;
             } else {
-                relAngle = SolMath.rnd(180);
+                relAngle = PtmMath.rnd(180);
             }
-            SolMath.fromAl(pos, relAngle, dist);
+            PtmMath.fromAl(pos, relAngle, dist);
             pos.add(heroPos);
             if (game.isPlaceEmpty(pos, false)) {
                 return pos;

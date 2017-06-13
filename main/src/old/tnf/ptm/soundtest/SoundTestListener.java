@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.soundtest;
+package old.tnf.ptm.soundtest;
 
 import com.badlogic.gdx.ApplicationListener;
 

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.gun.GunMount;
-import com.tnf.ptm.game.item.Gun;
-import com.tnf.ptm.game.projectile.ProjectileConfig;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.gun.GunMount;
+import old.tnf.ptm.game.item.Gun;
+import old.tnf.ptm.game.projectile.ProjectileConfig;
+import old.tnf.ptm.game.ship.PtmShip;
 
 public class Shooter {
 
@@ -37,36 +37,36 @@ public class Shooter {
 
     public static float calcShootAngle(Vector2 gunPos, Vector2 gunSpd, Vector2 ePos, Vector2 eSpd, float projSpd,
                                        boolean sharp) {
-        Vector2 eSpdShortened = SolMath.getVec(eSpd);
+        Vector2 eSpdShortened = PtmMath.getVec(eSpd);
         if (!sharp) {
             eSpdShortened.scl(E_SPD_PERC);
         }
-        Vector2 relESpd = SolMath.distVec(gunSpd, eSpdShortened);
-        SolMath.free(eSpdShortened);
-        float rotAngle = SolMath.angle(relESpd);
+        Vector2 relESpd = PtmMath.distVec(gunSpd, eSpdShortened);
+        PtmMath.free(eSpdShortened);
+        float rotAngle = PtmMath.angle(relESpd);
         float v = relESpd.len();
         float v2 = projSpd;
-        SolMath.free(relESpd);
-        Vector2 toE = SolMath.distVec(gunPos, ePos);
-        SolMath.rotate(toE, -rotAngle);
+        PtmMath.free(relESpd);
+        Vector2 toE = PtmMath.distVec(gunPos, ePos);
+        PtmMath.rotate(toE, -rotAngle);
         float x = toE.x;
         float y = toE.y;
         float a = v * v - v2 * v2;
         float b = 2 * x * v;
         float c = x * x + y * y;
-        float t = SolMath.genQuad(a, b, c);
+        float t = PtmMath.genQuad(a, b, c);
         float res;
         if (t != t) {
             res = Float.NaN;
         } else {
             toE.x += t * v;
-            res = SolMath.angle(toE) + rotAngle;
+            res = PtmMath.angle(toE) + rotAngle;
         }
-        SolMath.free(toE);
+        PtmMath.free(toE);
         return res;
     }
 
-    public void update(SolShip ship, Vector2 enemyPos, boolean dontRotate, boolean canShoot, Vector2 enemySpd,
+    public void update(PtmShip ship, Vector2 enemyPos, boolean dontRotate, boolean canShoot, Vector2 enemySpd,
                        float enemyApproxRad) {
         myLeft = false;
         myRight = false;
@@ -101,25 +101,25 @@ public class Shooter {
         }
 
         Vector2 gunRelPos = ship.getHull().getGunMount(g == g2).getRelPos();
-        Vector2 gunPos = SolMath.toWorld(gunRelPos, ship.getAngle(), shipPos);
+        Vector2 gunPos = PtmMath.toWorld(gunRelPos, ship.getAngle(), shipPos);
         float shootAngle = calcShootAngle(gunPos, ship.getSpd(), enemyPos, enemySpd, projSpd, false);
-        SolMath.free(gunPos);
+        PtmMath.free(gunPos);
         if (shootAngle != shootAngle) {
             return;
         }
         {
             // ok this is a hack
-            float toShip = SolMath.angle(enemyPos, shipPos);
-            float toGun = SolMath.angle(enemyPos, gunPos);
+            float toShip = PtmMath.angle(enemyPos, shipPos);
+            float toGun = PtmMath.angle(enemyPos, gunPos);
             shootAngle += toGun - toShip;
         }
         float shipAngle = ship.getAngle();
-        float maxAngleDiff = SolMath.angularWidthOfSphere(enemyApproxRad, toEnemyDst) + 10f;
+        float maxAngleDiff = PtmMath.angularWidthOfSphere(enemyApproxRad, toEnemyDst) + 10f;
         ProjectileConfig projConfig = g.config.clipConf.projConfig;
         if (projSpd > 0 && projConfig.guideRotSpd > 0) {
             maxAngleDiff += projConfig.guideRotSpd * toEnemyDst / projSpd;
         }
-        if (SolMath.angleDiff(shootAngle, shipAngle) < maxAngleDiff) {
+        if (PtmMath.angleDiff(shootAngle, shipAngle) < maxAngleDiff) {
             myShoot = true;
             myShoot2 = true;
             return;
@@ -139,7 +139,7 @@ public class Shooter {
     }
 
     // returns gun if it's fixed & can shoot
-    private Gun processGun(SolShip ship, boolean second) {
+    private Gun processGun(PtmShip ship, boolean second) {
         GunMount mount = ship.getHull().getGunMount(second);
         if (mount == null) {
             return null;

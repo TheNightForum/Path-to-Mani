@@ -17,11 +17,11 @@ package old.tnf.ptm.ui;
 
 import com.badlogic.gdx.InputProcessor;
 
-public class SolInputProcessor implements InputProcessor {
+public class PtmInputProcessor implements InputProcessor {
 
-    private final SolInputManager myInputMan;
+    private final PtmInputManager myInputMan;
 
-    public SolInputProcessor(SolInputManager inputMan) {
+    public PtmInputProcessor(PtmInputManager inputMan) {
         myInputMan = inputMan;
     }
 

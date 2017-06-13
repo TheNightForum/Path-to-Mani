@@ -21,14 +21,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.physics.box2d.Box2D;
-import old.tnf.ptm.common.SolColor;
-import old.tnf.ptm.common.SolMath;
-import old.tnf.ptm.game.SolGame;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.game.sound.OggMusicManager;
 import old.tnf.ptm.menu.MenuScreens;
 import old.tnf.ptm.ui.DebugCollector;
-import old.tnf.ptm.ui.SolInputManager;
-import old.tnf.ptm.ui.SolLayouts;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.PtmLayouts;
 import old.tnf.ptm.ui.UiDrawer;
 import old.tnf.ptm.game.DebugOptions;
 import old.tnf.ptm.game.sound.OggSoundManager;
@@ -39,14 +39,14 @@ import org.slf4j.LoggerFactory;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public class SolApplication implements ApplicationListener {
-    private static Logger logger = LoggerFactory.getLogger(SolApplication.class);
+public class PtmApplication implements ApplicationListener {
+    private static Logger logger = LoggerFactory.getLogger(PtmApplication.class);
 
-    private SolInputManager myInputMan;
+    private PtmInputManager myInputMan;
     private UiDrawer myUiDrawer;
     private MenuScreens myMenuScreens;
     private TextureManager myTextureManager;
-    private SolLayouts myLayouts;
+    private PtmLayouts myLayouts;
     private boolean myReallyMobile;
     private GameOptions myOptions;
     private CommonDrawer myCommonDrawer;
@@ -58,9 +58,9 @@ public class SolApplication implements ApplicationListener {
     private String myFatalErrorTrace;
 
     private float myAccum = 0;
-    private SolGame myGame;
+    private PtmGame myGame;
 
-    public SolApplication() {
+    public PtmApplication() {
         // Initiate Box2D to make sure natives are loaded early enough
         Box2D.init();
     }
@@ -86,8 +86,8 @@ public class SolApplication implements ApplicationListener {
         myTextureManager = new TextureManager();
         myCommonDrawer = new CommonDrawer();
         myUiDrawer = new UiDrawer(myTextureManager, myCommonDrawer);
-        myInputMan = new SolInputManager(myTextureManager, soundManager);
-        myLayouts = new SolLayouts(myUiDrawer.r);
+        myInputMan = new PtmInputManager(myTextureManager, soundManager);
+        myLayouts = new PtmLayouts(myUiDrawer.r);
         myMenuScreens = new MenuScreens(myLayouts, isMobile(), myUiDrawer.r, myOptions);
 
         myInputMan.setScreen(this, myMenuScreens.main);
@@ -150,7 +150,7 @@ public class SolApplication implements ApplicationListener {
             myGame.update();
         }
 
-        SolMath.checkVectorsTaken(null);
+        PtmMath.checkVectorsTaken(null);
     }
 
     private void draw() {
@@ -165,13 +165,13 @@ public class SolApplication implements ApplicationListener {
             myGame.drawDebugUi(myUiDrawer);
         }
         if (myFatalErrorMsg != null) {
-            myUiDrawer.draw(myUiDrawer.whiteTex, myUiDrawer.r, .5f, 0, 0, 0, .25f, 0, SolColor.UI_BG);
-            myUiDrawer.drawString(myFatalErrorMsg, myUiDrawer.r / 2, .5f, FontSize.MENU, true, SolColor.WHITE);
-            myUiDrawer.drawString(myFatalErrorTrace, .2f * myUiDrawer.r, .6f, FontSize.DEBUG, false, SolColor.WHITE);
+            myUiDrawer.draw(myUiDrawer.whiteTex, myUiDrawer.r, .5f, 0, 0, 0, .25f, 0, PtmColor.UI_BG);
+            myUiDrawer.drawString(myFatalErrorMsg, myUiDrawer.r / 2, .5f, FontSize.MENU, true, PtmColor.WHITE);
+            myUiDrawer.drawString(myFatalErrorTrace, .2f * myUiDrawer.r, .6f, FontSize.DEBUG, false, PtmColor.WHITE);
         }
         DebugCollector.draw(myUiDrawer);
         if (myGame == null) {
-            myUiDrawer.drawString("v" + Const.VERSION, 0.01f, .974f, FontSize.DEBUG, TextAlignment.LEFT, false, SolColor.WHITE);
+            myUiDrawer.drawString("v" + Const.VERSION, 0.01f, .974f, FontSize.DEBUG, TextAlignment.LEFT, false, PtmColor.WHITE);
         }
         myCommonDrawer.end();
     }
@@ -186,12 +186,12 @@ public class SolApplication implements ApplicationListener {
     }
 
     public void startNewGame(boolean tut, boolean usePrevShip) {
-        myGame = new SolGame(this, usePrevShip, myTextureManager, tut, myCommonDrawer);
+        myGame = new PtmGame(this, usePrevShip, myTextureManager, tut, myCommonDrawer);
         myInputMan.setScreen(this, myGame.getScreens().mainScreen);
         musicManager.playGameMusic(myOptions);
     }
 
-    public SolInputManager getInputMan() {
+    public PtmInputManager getInputMan() {
         return myInputMan;
     }
 
@@ -208,11 +208,11 @@ public class SolApplication implements ApplicationListener {
         myInputMan.dispose();
     }
 
-    public SolGame getGame() {
+    public PtmGame getGame() {
         return myGame;
     }
 
-    public SolLayouts getLayouts() {
+    public PtmLayouts getLayouts() {
         return myLayouts;
     }
 

@@ -13,25 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.ship.PtmShip;
 
 public class CollisionWarnDrawer extends WarnDrawer {
     private final CollisionRayCastCallback warnCallback = new CollisionRayCastCallback();
-    private SolShip hero;
+    private PtmShip hero;
 
     CollisionWarnDrawer(float r) {
         super(r, "Object Near");
     }
 
-    public boolean shouldWarn(SolGame game) {
+    public boolean shouldWarn(PtmGame game) {
         hero = game.getHero();
         if (hero == null) {
             return false;
@@ -40,7 +40,7 @@ public class CollisionWarnDrawer extends WarnDrawer {
         Vector2 spd = hero.getSpd();
         float acc = hero.getAcc();
         float spdLen = spd.len();
-        float spdAngle = SolMath.angle(spd);
+        float spdAngle = PtmMath.angle(spd);
         if (acc <= 0 || spdLen < 2 * acc) {
             return false;
         }
@@ -48,12 +48,12 @@ public class CollisionWarnDrawer extends WarnDrawer {
         // s = att/2 = vv/a/2;
         float breakWay = spdLen * spdLen / acc / 2;
         breakWay += 2 * spdLen;
-        Vector2 finalPos = SolMath.getVec(0, 0);
-        SolMath.fromAl(finalPos, spdAngle, breakWay);
+        Vector2 finalPos = PtmMath.getVec(0, 0);
+        PtmMath.fromAl(finalPos, spdAngle, breakWay);
         finalPos.add(pos);
         warnCallback.show = false;
         game.getObjMan().getWorld().rayCast(warnCallback, pos, finalPos);
-        SolMath.free(finalPos);
+        PtmMath.free(finalPos);
         return warnCallback.show;
     }
 
@@ -62,7 +62,7 @@ public class CollisionWarnDrawer extends WarnDrawer {
 
         @Override
         public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
-            SolObject o = (SolObject) fixture.getBody().getUserData();
+            PtmObject o = (PtmObject) fixture.getBody().getUserData();
             if (hero == o) {
                 return -1;
             }

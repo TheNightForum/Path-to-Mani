@@ -13,27 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.projectile.Projectile;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.projectile.Projectile;
 
-public class SolContactListener implements ContactListener {
-    private final SolGame myGame;
+public class PtmContactListener implements ContactListener {
+    private final PtmGame myGame;
 
-    public SolContactListener(SolGame game) {
+    public PtmContactListener(PtmGame game) {
         myGame = game;
     }
 
     @Override
     public void beginContact(Contact contact) {
-        SolObject oA = (SolObject) contact.getFixtureA().getBody().getUserData();
-        SolObject oB = (SolObject) contact.getFixtureB().getBody().getUserData();
+        PtmObject oA = (PtmObject) contact.getFixtureA().getBody().getUserData();
+        PtmObject oB = (PtmObject) contact.getFixtureB().getBody().getUserData();
 
         boolean aIsProj = oA instanceof Projectile;
         if (!aIsProj && !(oB instanceof Projectile)) {
@@ -41,7 +41,7 @@ public class SolContactListener implements ContactListener {
         }
 
         Projectile proj = (Projectile) (aIsProj ? oA : oB);
-        SolObject o = aIsProj ? oB : oA;
+        PtmObject o = aIsProj ? oB : oA;
         proj.setObstacle(o, myGame);
     }
 
@@ -55,8 +55,8 @@ public class SolContactListener implements ContactListener {
 
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
-        SolObject soa = (SolObject) contact.getFixtureA().getBody().getUserData();
-        SolObject sob = (SolObject) contact.getFixtureB().getBody().getUserData();
+        PtmObject soa = (PtmObject) contact.getFixtureA().getBody().getUserData();
+        PtmObject sob = (PtmObject) contact.getFixtureB().getBody().getUserData();
         if (soa instanceof Projectile && ((Projectile) soa).getConfig().density <= 0) {
             return;
         }
@@ -78,7 +78,7 @@ public class SolContactListener implements ContactListener {
         float[] normImpulses = impulse.getNormalImpulses();
         for (int i = 0; i < pointCount; i++) {
             float normImpulse = normImpulses[i];
-            normImpulse = SolMath.abs(normImpulse);
+            normImpulse = PtmMath.abs(normImpulse);
             if (absImpulse < normImpulse) {
                 absImpulse = normImpulse;
             }

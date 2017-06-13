@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.dra;
+package old.tnf.ptm.game.dra;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.game.FarObj;
-import com.tnf.ptm.game.RemoveController;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
+import old.tnf.ptm.game.FarObj;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.RemoveController;
+import old.tnf.ptm.game.PtmGame;
 
 import java.util.List;
 
@@ -43,17 +43,17 @@ public class FarDras implements FarObj {
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(PtmGame game) {
         return myRemoveController != null && myRemoveController.shouldRemove(myPos);
     }
 
     @Override
-    public SolObject toObj(SolGame game) {
+    public PtmObject toObj(PtmGame game) {
         return new DrasObject(myDras, myPos, mySpd, myRemoveController, false, myHideOnPlanet);
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
     }
 
     @Override

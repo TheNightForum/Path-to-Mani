@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.game.CollisionMeshLoader;
-import com.tnf.ptm.game.DebugOptions;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.game.CollisionMeshLoader;
+import old.tnf.ptm.game.DebugOptions;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -125,7 +125,7 @@ public class PlanetTiles {
 
     public Tile getGround(SurfaceDirection from, SurfaceDirection to) {
         List<Tile> list = myGroundTiles.get(from).get(to);
-        return SolMath.elemRnd(list);
+        return PtmMath.elemRnd(list);
     }
 
     public Tile getDungeonEntrance(boolean down, boolean left, boolean right) {

@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.graphics.Color;
-import com.tnf.ptm.common.SolColorUtil;
-import com.tnf.ptm.common.SolMath;
+import old.tnf.ptm.common.PtmColorUtil;
+import old.tnf.ptm.common.PtmMath;
 
 public abstract class ColorSpan {
 
@@ -27,14 +27,14 @@ public abstract class ColorSpan {
 
     public static RgbSpan rgb(float[] start, float[] end) {
         Color startC = new Color();
-        SolColorUtil.fromHSB(start[0], start[1], start[2], start[3], startC);
+        PtmColorUtil.fromHSB(start[0], start[1], start[2], start[3], startC);
         Color endC = new Color();
-        SolColorUtil.fromHSB(end[0], end[1], end[2], end[3], endC);
+        PtmColorUtil.fromHSB(end[0], end[1], end[2], end[3], endC);
         return rgb(startC, endC);
     }
 
     public static HsbSpan hsb(Color start, Color end) {
-        return hsb(SolColorUtil.toHSB(start), SolColorUtil.toHSB(end));
+        return hsb(PtmColorUtil.toHSB(start), PtmColorUtil.toHSB(end));
     }
 
     public static HsbSpan hsb(float[] start, float[] end) {
@@ -54,7 +54,7 @@ public abstract class ColorSpan {
 
         @Override
         public void set(float perc, Color col) {
-            perc = SolMath.clamp(perc, 0, 1);
+            perc = PtmMath.clamp(perc, 0, 1);
             col.r = midVal(myStart.r, myEnd.r, perc);
             col.g = midVal(myStart.g, myEnd.g, perc);
             col.b = midVal(myStart.b, myEnd.b, perc);

@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.files.HullConfigManager;
-import com.tnf.ptm.game.item.TradeConfig;
-import com.tnf.ptm.game.GameColors;
-import com.tnf.ptm.game.ShipConfig;
-import com.tnf.ptm.game.item.ItemManager;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.files.HullConfigManager;
+import old.tnf.ptm.game.item.TradeConfig;
+import old.tnf.ptm.game.GameColors;
+import old.tnf.ptm.game.ShipConfig;
+import old.tnf.ptm.game.item.ItemManager;
 
 import java.util.ArrayList;
 import java.util.List;

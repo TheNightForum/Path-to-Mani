@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.item;
+package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
 import org.terasology.assets.ResourceUrn;
 
-public class AbilityCharge implements SolItem {
+public class AbilityCharge implements PtmItem {
     private final Config myConfig;
 
     public AbilityCharge(Config config) {
@@ -45,22 +45,22 @@ public class AbilityCharge implements SolItem {
     }
 
     @Override
-    public SolItem copy() {
+    public PtmItem copy() {
         return new AbilityCharge(myConfig);
     }
 
     @Override
-    public boolean isSame(SolItem item) {
+    public boolean isSame(PtmItem item) {
         return item instanceof AbilityCharge && ((AbilityCharge) item).myConfig == myConfig;
     }
 
     @Override
-    public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+    public TextureAtlas.AtlasRegion getIcon(PtmGame game) {
         return myConfig.icon;
     }
 
     @Override
-    public SolItemType getItemType() {
+    public PtmItemType getItemType() {
         return myConfig.itemType;
     }
 
@@ -78,7 +78,7 @@ public class AbilityCharge implements SolItem {
     public void setEquipped(int equipped) { }
 
     public static class Config {
-        public final SolItemType itemType;
+        public final PtmItemType itemType;
         public final String code;
         public final TextureAtlas.AtlasRegion icon;
         public final float price;
@@ -86,7 +86,7 @@ public class AbilityCharge implements SolItem {
         public final String desc;
         public final AbilityCharge example;
 
-        public Config(TextureAtlas.AtlasRegion icon, float price, String displayName, String desc, SolItemType itemType,
+        public Config(TextureAtlas.AtlasRegion icon, float price, String displayName, String desc, PtmItemType itemType,
                       String code) {
             this.icon = icon;
             this.price = price;
@@ -97,7 +97,7 @@ public class AbilityCharge implements SolItem {
             this.example = new AbilityCharge(this);
         }
 
-        public static void load(ResourceUrn abilityName, ItemManager itemManager, SolItemTypes types) {
+        public static void load(ResourceUrn abilityName, ItemManager itemManager, PtmItemTypes types) {
             Json json = Assets.getJson(abilityName);
             JsonValue rootNode = json.getJsonValue();
 

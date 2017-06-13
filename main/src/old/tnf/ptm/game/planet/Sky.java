@@ -13,27 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.ColorSpan;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.game.FarObj;
-import com.tnf.ptm.game.SolCam;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.dra.DraLevel;
-import com.tnf.ptm.game.dra.RectSprite;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.*;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.dra.DraLevel;
+import old.tnf.ptm.game.dra.RectSprite;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sky implements SolObject {
+public class Sky implements PtmObject {
 
     private final Planet myPlanet;
     private final RectSprite myFill;
@@ -42,13 +38,13 @@ public class Sky implements SolObject {
     private final ColorSpan mySkySpan;
     private final Vector2 myPos;
 
-    public Sky(SolGame game, Planet planet) {
+    public Sky(PtmGame game, Planet planet) {
         myPlanet = planet;
         myDras = new ArrayList<Dra>();
 
-        myFill = new RectSprite(game.getTexMan().getTexture("planetStarCommons/whiteTex"), 5, 0, 0, new Vector2(), DraLevel.ATM, 0f, 0, SolColor.col(.5f, 0), false);
+        myFill = new RectSprite(game.getTexMan().getTexture("planetStarCommons/whiteTex"), 5, 0, 0, new Vector2(), DraLevel.ATM, 0f, 0, PtmColor.col(.5f, 0), false);
         myDras.add(myFill);
-        myGrad = new RectSprite(game.getTexMan().getTexture("planetStarCommons/grad"), 5, 0, 0, new Vector2(), DraLevel.ATM, 0f, 0, SolColor.col(.5f, 0), false);
+        myGrad = new RectSprite(game.getTexMan().getTexture("planetStarCommons/grad"), 5, 0, 0, new Vector2(), DraLevel.ATM, 0f, 0, PtmColor.col(.5f, 0), false);
         myDras.add(myGrad);
         SkyConfig config = planet.getConfig().skyConfig;
         mySkySpan = ColorSpan.rgb(config.dawn, config.day);
@@ -56,7 +52,7 @@ public class Sky implements SolObject {
         updatePos(game);
     }
 
-    private void updatePos(SolGame game) {
+    private void updatePos(PtmGame game) {
         Vector2 camPos = game.getCam().getPos();
         Vector2 planetPos = myPlanet.getPos();
         if (planetPos.dst(camPos) < myPlanet.getGroundHeight() + Const.MAX_SKY_HEIGHT_FROM_GROUND) {
@@ -67,11 +63,11 @@ public class Sky implements SolObject {
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         updatePos(game);
 
         Vector2 planetPos = myPlanet.getPos();
-        SolCam cam = game.getCam();
+        PtmCam cam = game.getCam();
         Vector2 camPos = cam.getPos();
         float distPerc = 1 - (planetPos.dst(camPos) - myPlanet.getGroundHeight()) / Const.MAX_SKY_HEIGHT_FROM_GROUND;
         if (distPerc < 0) {
@@ -82,17 +78,17 @@ public class Sky implements SolObject {
         }
 
         Vector2 sysPos = myPlanet.getSys().getPos();
-        float angleToCam = SolMath.angle(planetPos, camPos);
-        float angleToSun = SolMath.angle(planetPos, sysPos);
-        float dayPerc = 1 - SolMath.angleDiff(angleToCam, angleToSun) / 180;
-        float skyIntensity = SolMath.clamp(1 - ((1 - dayPerc) / .75f));
-        float skyColorPerc = SolMath.clamp((skyIntensity - .5f) * 2f + .5f);
+        float angleToCam = PtmMath.angle(planetPos, camPos);
+        float angleToSun = PtmMath.angle(planetPos, sysPos);
+        float dayPerc = 1 - PtmMath.angleDiff(angleToCam, angleToSun) / 180;
+        float skyIntensity = PtmMath.clamp(1 - ((1 - dayPerc) / .75f));
+        float skyColorPerc = PtmMath.clamp((skyIntensity - .5f) * 2f + .5f);
         mySkySpan.set(skyColorPerc, myGrad.tint);
         mySkySpan.set(skyColorPerc, myFill.tint);
-        float gradPerc = SolMath.clamp(2 * skyIntensity);
-        float fillPerc = SolMath.clamp(2 * (skyIntensity - .5f));
+        float gradPerc = PtmMath.clamp(2 * skyIntensity);
+        float fillPerc = PtmMath.clamp(2 * (skyIntensity - .5f));
         myGrad.tint.a = gradPerc * distPerc;
-        myFill.tint.a = fillPerc * SolMath.clamp(1 - (1 - distPerc) * 2) * .37f;
+        myFill.tint.a = fillPerc * PtmMath.clamp(1 - (1 - distPerc) * 2) * .37f;
 
         float viewDist = cam.getViewDist();
         float sz = 2 * viewDist;
@@ -101,7 +97,7 @@ public class Sky implements SolObject {
 
         float angleCamToSun = angleToCam - angleToSun;
         float relAngle;
-        if (SolMath.abs(SolMath.norm(angleCamToSun)) < 90) {
+        if (PtmMath.abs(PtmMath.norm(angleCamToSun)) < 90) {
             relAngle = angleToCam + 180 + angleCamToSun;
         } else {
             relAngle = angleToCam - angleCamToSun;
@@ -110,16 +106,16 @@ public class Sky implements SolObject {
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(PtmGame game) {
         return false;
     }
 
     @Override
-    public void onRemove(SolGame game) {
+    public void onRemove(PtmGame game) {
     }
 
     @Override
-    public void receiveDmg(float dmg, SolGame game, Vector2 pos, DmgType dmgType) {
+    public void receiveDmg(float dmg, PtmGame game, Vector2 pos, DmgType dmgType) {
     }
 
     @Override
@@ -128,7 +124,7 @@ public class Sky implements SolObject {
     }
 
     @Override
-    public void receiveForce(Vector2 force, SolGame game, boolean acc) {
+    public void receiveForce(Vector2 force, PtmGame game, boolean acc) {
     }
 
     @Override
@@ -157,8 +153,8 @@ public class Sky implements SolObject {
     }
 
     @Override
-    public void handleContact(SolObject other, ContactImpulse impulse, boolean isA, float absImpulse,
-                              SolGame game, Vector2 collPos) {
+    public void handleContact(PtmObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+                              PtmGame game, Vector2 collPos) {
     }
 
     @Override

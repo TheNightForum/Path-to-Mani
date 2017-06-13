@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.item;
+package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.tnf.ptm.game.ShipConfig;
-import com.tnf.ptm.game.SolGame;
+import old.tnf.ptm.game.ShipConfig;
+import old.tnf.ptm.game.PtmGame;
 
-public class MercItem implements SolItem {
+public class MercItem implements PtmItem {
     private final ShipConfig myConfig;
     private final String myDesc;
 
@@ -45,22 +45,22 @@ public class MercItem implements SolItem {
     }
 
     @Override
-    public SolItem copy() {
+    public PtmItem copy() {
         return new MercItem(myConfig);
     }
 
     @Override
-    public boolean isSame(SolItem item) {
+    public boolean isSame(PtmItem item) {
         return item instanceof MercItem && ((MercItem) item).myConfig == myConfig;
     }
 
     @Override
-    public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+    public TextureAtlas.AtlasRegion getIcon(PtmGame game) {
         return myConfig.hull.getIcon();
     }
 
     @Override
-    public SolItemType getItemType() {
+    public PtmItemType getItemType() {
         return ShipItem.EMPTY;
     }
 

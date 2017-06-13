@@ -13,26 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.item;
+package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.assets.audio.PlayableSound;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.DmgType;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.projectile.ProjectileConfig;
-import com.tnf.ptm.game.sound.OggSoundSet;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
-import com.tnf.ptm.game.HardnessCalc;
-import com.tnf.ptm.game.sound.OggSoundManager;
+import old.tnf.ptm.assets.audio.PlayableSound;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.DmgType;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.projectile.ProjectileConfig;
+import old.tnf.ptm.game.sound.OggSoundSet;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.game.HardnessCalc;
+import old.tnf.ptm.game.sound.OggSoundManager;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class Gun implements SolItem {
+public class Gun implements PtmItem {
 
     public final Config config;
     public int ammo;
@@ -71,17 +71,17 @@ public class Gun implements SolItem {
     }
 
     @Override
-    public boolean isSame(SolItem item) {
+    public boolean isSame(PtmItem item) {
         return false;
     }
 
     @Override
-    public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+    public TextureAtlas.AtlasRegion getIcon(PtmGame game) {
         return config.icon;
     }
 
     @Override
-    public SolItemType getItemType() {
+    public PtmItemType getItemType() {
         return config.itemType;
     }
 
@@ -123,7 +123,7 @@ public class Gun implements SolItem {
         public final TextureAtlas.AtlasRegion icon;
         public final boolean fixed;
         public final float meanDps;
-        public final SolItemType itemType;
+        public final PtmItemType itemType;
         public final float texLenPerc;
         public final String code;
 
@@ -132,7 +132,7 @@ public class Gun implements SolItem {
                       float reloadTime, float gunLength, String displayName,
                       boolean lightOnShot, int price,
                       Clip.Config clipConf, PlayableSound shootSound, PlayableSound reloadSound, TextureAtlas.AtlasRegion tex,
-                      TextureAtlas.AtlasRegion icon, boolean fixed, SolItemType itemType, float texLenPerc, String code) {
+                      TextureAtlas.AtlasRegion icon, boolean fixed, PtmItemType itemType, float texLenPerc, String code) {
             this.shootSound = shootSound;
             this.reloadSound = reloadSound;
 
@@ -161,7 +161,7 @@ public class Gun implements SolItem {
             example = new Gun(this, 0, 0);
         }
 
-        public static void load(ResourceUrn gunName, ItemManager itemManager, OggSoundManager soundManager, SolItemTypes types) {
+        public static void load(ResourceUrn gunName, ItemManager itemManager, OggSoundManager soundManager, PtmItemTypes types) {
             Json json = Assets.getJson(gunName);
             JsonValue rootNode = json.getJsonValue();
 
@@ -183,7 +183,7 @@ public class Gun implements SolItem {
             float shootPitch = rootNode.getFloat("shootSoundPitch", 1);
             OggSoundSet shootSoundSet = new OggSoundSet(soundManager, shootSoundUrns, shootPitch);
             boolean fixed = rootNode.getBoolean("fixed", false);
-            SolItemType itemType = fixed ? types.fixedGun : types.gun;
+            PtmItemType itemType = fixed ? types.fixedGun : types.gun;
 
             Clip.Config clipConf = null;
             if (!clipName.isEmpty()) {
@@ -211,7 +211,7 @@ public class Gun implements SolItem {
             ProjectileConfig pc = clipConf.projConfig;
             sb.append(fixed ? "Heavy gun (no rotation)\n" : "Light gun (auto rotation)\n");
             if (pc.dmg > 0) {
-                sb.append("Dmg: ").append(SolMath.nice(dps)).append("/s\n");
+                sb.append("Dmg: ").append(PtmMath.nice(dps)).append("/s\n");
                 DmgType dmgType = pc.dmgType;
                 if (dmgType == DmgType.ENERGY) {
                     sb.append("Weak against armor\n");
@@ -219,12 +219,12 @@ public class Gun implements SolItem {
                     sb.append("Weak against shields\n");
                 }
             } else if (pc.emTime > 0) {
-                sb.append("Disables enemy ships for ").append(SolMath.nice(pc.emTime)).append(" s\n");
+                sb.append("Disables enemy ships for ").append(PtmMath.nice(pc.emTime)).append(" s\n");
             }
             if (pc.density > 0) {
                 sb.append("Knocks enemies back\n");
             }
-            sb.append("Reload: ").append(SolMath.nice(reloadTime)).append(" s\n");
+            sb.append("Reload: ").append(PtmMath.nice(reloadTime)).append(" s\n");
             if (clipConf.infinite) {
                 sb.append("Infinite ammo\n");
             } else {

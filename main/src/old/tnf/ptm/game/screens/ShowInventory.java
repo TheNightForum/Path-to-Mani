@@ -13,51 +13,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.item.ItemContainer;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.SolUiControl;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.item.ItemContainer;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.PtmUiControl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ShowInventory implements InventoryOperations {
-    private final List<SolUiControl> controls = new ArrayList<>();
-    public final SolUiControl eq1Control;
-    private final SolUiControl eq2Control;
-    public final SolUiControl dropControl;
+    private final List<PtmUiControl> controls = new ArrayList<>();
+    public final PtmUiControl eq1Control;
+    private final PtmUiControl eq2Control;
+    public final PtmUiControl dropControl;
 
     ShowInventory(InventoryScreen inventoryScreen, GameOptions gameOptions) {
-        eq1Control = new SolUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyEquip());
+        eq1Control = new PtmUiControl(inventoryScreen.itemCtrl(0), true, gameOptions.getKeyEquip());
         eq1Control.setDisplayName("Eq");
         controls.add(eq1Control);
 
-        eq2Control = new SolUiControl(inventoryScreen.itemCtrl(1), true, gameOptions.getKeyEquip2());
+        eq2Control = new PtmUiControl(inventoryScreen.itemCtrl(1), true, gameOptions.getKeyEquip2());
         eq2Control.setDisplayName("Eq2");
         controls.add(eq2Control);
 
-        dropControl = new SolUiControl(inventoryScreen.itemCtrl(2), true, gameOptions.getKeyDrop());
+        dropControl = new PtmUiControl(inventoryScreen.itemCtrl(2), true, gameOptions.getKeyDrop());
         dropControl.setDisplayName("Drop");
         controls.add(dropControl);
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void updateCustom(SolApplication solApplication, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
-        SolGame g = solApplication.getGame();
+    public void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+        PtmGame g = ptmApplication.getGame();
         InventoryScreen is = g.getScreens().inventoryScreen;
-        SolItem selItem = is.getSelectedItem();
-        SolShip hero = g.getHero();
+        PtmItem selItem = is.getSelectedItem();
+        PtmShip hero = g.getHero();
 
         eq1Control.setDisplayName("---");
         eq1Control.setEnabled(false);
@@ -73,7 +73,7 @@ public class ShowInventory implements InventoryOperations {
         if (dropControl.isJustOff()) {
             ItemContainer ic = hero.getItemContainer();
             is.setSelected(ic.getSelectionAfterRemove(is.getSelected()));
-            hero.dropItem(solApplication.getGame(), selItem);
+            hero.dropItem(ptmApplication.getGame(), selItem);
             return;
         }
 
@@ -107,14 +107,14 @@ public class ShowInventory implements InventoryOperations {
     }
 
     @Override
-    public ItemContainer getItems(SolGame game) {
-        SolShip h = game.getHero();
+    public ItemContainer getItems(PtmGame game) {
+        PtmShip h = game.getHero();
         return h == null ? null : h.getItemContainer();
     }
 
     @Override
-    public boolean isUsing(SolGame game, SolItem item) {
-        SolShip h = game.getHero();
+    public boolean isUsing(PtmGame game, PtmItem item) {
+        PtmShip h = game.getHero();
         return h != null && h.maybeUnequip(game, item, false);
     }
 

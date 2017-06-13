@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.assets.json;
+package old.tnf.ptm.assets.json;
 
 import com.badlogic.gdx.utils.JsonValue;
 import org.terasology.assets.Asset;

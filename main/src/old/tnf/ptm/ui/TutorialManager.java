@@ -16,9 +16,9 @@
 package old.tnf.ptm.ui;
 
 import com.badlogic.gdx.math.Rectangle;
-import old.tnf.ptm.common.SolColor;
-import old.tnf.ptm.game.SolGame;
-import old.tnf.ptm.game.item.SolItem;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.item.PtmItem;
 import old.tnf.ptm.game.screens.GameScreens;
 import old.tnf.ptm.game.screens.MainScreen;
 import old.tnf.ptm.game.screens.ShipMixedControl;
@@ -35,7 +35,7 @@ public class TutorialManager {
 
     private int myStepIdx;
 
-    public TutorialManager(float r, GameScreens screens, boolean mobile, GameOptions gameOptions, SolGame game) {
+    public TutorialManager(float r, GameScreens screens, boolean mobile, GameOptions gameOptions, PtmGame game) {
         float bgW = r * .5f;
         float bgH = .2f;
         myBg = new Rectangle(r / 2 - bgW / 2, 1 - bgH, bgW, bgH);
@@ -44,12 +44,12 @@ public class TutorialManager {
 
         MainScreen main = screens.mainScreen;
         boolean mouseCtrl = main.shipControl instanceof ShipMixedControl;
-        SolUiControl shootCtrl;
+        PtmUiControl shootCtrl;
         String shootKey;
         String shootKey2;
-        SolUiControl upCtrl;
-        SolUiControl leftCtrl;
-        SolUiControl abilityCtrl;
+        PtmUiControl upCtrl;
+        PtmUiControl leftCtrl;
+        PtmUiControl abilityCtrl;
         if (mouseCtrl) {
             ShipMixedControl mixedControl = (ShipMixedControl) main.shipControl;
             shootCtrl = mixedControl.shootCtrl;
@@ -213,11 +213,11 @@ public class TutorialManager {
         addStep("Tutorial is complete and will exit now!\n" + shootKey2, shootCtrl);
     }
 
-    private void addStep(String text, SolUiControl ctrl) {
+    private void addStep(String text, PtmUiControl ctrl) {
         addStep(text, ctrl, false);
     }
 
-    private void addStep(String text, SolUiControl ctrl, boolean checkOn) {
+    private void addStep(String text, PtmUiControl ctrl, boolean checkOn) {
         mySteps.add(new Step(text, ctrl, checkOn));
     }
 
@@ -238,11 +238,11 @@ public class TutorialManager {
             return;
         }
         Step step = mySteps.get(myStepIdx);
-        uiDrawer.draw(myBg, SolColor.UI_BG_LIGHT);
-        uiDrawer.drawLine(myBg.x, myBg.y, 0, myBg.width, SolColor.WHITE);
-        uiDrawer.drawLine(myBg.x + myBg.width, myBg.y, 90, myBg.height, SolColor.WHITE);
-        uiDrawer.drawLine(myBg.x, myBg.y, 90, myBg.height, SolColor.WHITE);
-        uiDrawer.drawString(step.text, uiDrawer.r / 2, myBg.y + myBg.height / 2, FontSize.TUT, true, SolColor.WHITE);
+        uiDrawer.draw(myBg, PtmColor.UI_BG_LIGHT);
+        uiDrawer.drawLine(myBg.x, myBg.y, 0, myBg.width, PtmColor.WHITE);
+        uiDrawer.drawLine(myBg.x + myBg.width, myBg.y, 90, myBg.height, PtmColor.WHITE);
+        uiDrawer.drawLine(myBg.x, myBg.y, 90, myBg.height, PtmColor.WHITE);
+        uiDrawer.drawString(step.text, uiDrawer.r / 2, myBg.y + myBg.height / 2, FontSize.TUT, true, PtmColor.WHITE);
     }
 
     public boolean isFinished() {
@@ -251,10 +251,10 @@ public class TutorialManager {
 
     public static class Step {
         public final String text;
-        public final SolUiControl ctrl;
+        public final PtmUiControl ctrl;
         public final boolean checkOn;
 
-        public Step(String text, SolUiControl ctrl, boolean checkOn) {
+        public Step(String text, PtmUiControl ctrl, boolean checkOn) {
             this.text = text;
             this.ctrl = ctrl;
             this.checkOn = checkOn;
@@ -278,9 +278,9 @@ public class TutorialManager {
 
     public static class SelectEquippedItemStep extends Step {
         InventoryScreen inventoryScreen;
-        SolGame game;
+        PtmGame game;
 
-        public SelectEquippedItemStep(String text, InventoryScreen inventoryScreen, SolGame game) {
+        public SelectEquippedItemStep(String text, InventoryScreen inventoryScreen, PtmGame game) {
             super(text, null, true);
             this.inventoryScreen = inventoryScreen;
             this.game = game;
@@ -288,7 +288,7 @@ public class TutorialManager {
 
         @Override
         public boolean canProgressToNextStep() {
-            SolItem selected = inventoryScreen.getSelectedItem();
+            PtmItem selected = inventoryScreen.getSelectedItem();
             if (selected != null && selected.isEquipped() != 0) {
                 return true;
             }
@@ -298,8 +298,8 @@ public class TutorialManager {
         // Highlight all equipped items on opened inventory page
         @Override
         public void highlight() {
-            List<SolUiControl> equippedItemControls = inventoryScreen.getEquippedItemUIControlsForTutorial(game);
-            for (SolUiControl control : equippedItemControls) {
+            List<PtmUiControl> equippedItemControls = inventoryScreen.getEquippedItemUIControlsForTutorial(game);
+            for (PtmUiControl control : equippedItemControls) {
                 control.enableWarn();
             }
         }

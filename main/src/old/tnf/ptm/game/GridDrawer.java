@@ -13,28 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolColor;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmColor;
 
 public class GridDrawer {
 
     public GridDrawer(TextureManager textureManager) {
     }
 
-    public void draw(GameDrawer drawer, SolGame game, float gridSz, TextureAtlas.AtlasRegion tex) {
-        SolCam cam = game.getCam();
+    public void draw(GameDrawer drawer, PtmGame game, float gridSz, TextureAtlas.AtlasRegion tex) {
+        PtmCam cam = game.getCam();
         float lw = 4 * cam.getRealLineWidth();
         Vector2 camPos = cam.getPos();
         float viewDist = cam.getViewDist(cam.getRealZoom());
         float x = (int) ((camPos.x - viewDist) / gridSz) * gridSz;
         float y = (int) ((camPos.y - viewDist) / gridSz) * gridSz;
         int count = (int) (viewDist * 2 / gridSz);
-        Color col = SolColor.UI_INACTIVE;
+        Color col = PtmColor.UI_INACTIVE;
         for (int i = 0; i < count; i++) {
             drawer.draw(tex, lw, viewDist * 2, lw / 2, 0, x, y, 0, col);
             drawer.draw(tex, lw, viewDist * 2, lw / 2, 0, x, y, 90, col);

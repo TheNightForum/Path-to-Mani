@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.planet.PlanetBind;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
-import com.tnf.ptm.game.ShipConfig;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.planet.PlanetBind;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.game.ShipConfig;
 
 public class StillGuard implements MoveDestProvider {
 
@@ -31,7 +31,7 @@ public class StillGuard implements MoveDestProvider {
     private Vector2 myDest;
     private Vector2 myDestSpd;
 
-    public StillGuard(Vector2 target, SolGame game, ShipConfig sc) {
+    public StillGuard(Vector2 target, PtmGame game, ShipConfig sc) {
         myDest = new Vector2(target);
         myPlanetBind = PlanetBind.tryBind(game, myDest, 0);
         myDesiredSpdLen = sc.hull.getType() == HullConfig.Type.BIG ? Const.BIG_AI_SPD : Const.DEFAULT_AI_SPD;
@@ -59,18 +59,18 @@ public class StillGuard implements MoveDestProvider {
     }
 
     @Override
-    public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+    public void update(PtmGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, PtmShip nearestEnemy) {
         if (myPlanetBind != null) {
-            Vector2 diff = SolMath.getVec();
+            Vector2 diff = PtmMath.getVec();
             myPlanetBind.setDiff(diff, myDest, false);
             myDest.add(diff);
-            SolMath.free(diff);
+            PtmMath.free(diff);
             myPlanetBind.getPlanet().calcSpdAtPos(myDestSpd, myDest);
         }
     }
 
     @Override
-    public Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround) {
+    public Boolean shouldManeuver(boolean canShoot, PtmShip nearestEnemy, boolean nearGround) {
         return true;
     }
 

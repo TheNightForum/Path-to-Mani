@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.screens;
+package old.tnf.ptm.game.screens;
 
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.ship.PtmShip;
 
 public class DmgWarnDrawer extends WarnDrawer {
     DmgWarnDrawer(float r) {
@@ -24,8 +24,8 @@ public class DmgWarnDrawer extends WarnDrawer {
     }
 
     @Override
-    protected boolean shouldWarn(SolGame game) {
-        SolShip hero = game.getHero();
+    protected boolean shouldWarn(PtmGame game) {
+        PtmShip hero = game.getHero();
         if (hero == null) {
             return false;
         }

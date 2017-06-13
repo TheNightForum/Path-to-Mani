@@ -18,7 +18,7 @@ package old.tnf.ptm;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import old.tnf.ptm.common.SolMath;
+import old.tnf.ptm.common.PtmMath;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -83,10 +83,10 @@ public class TextureManager {
 
     public TextureAtlas.AtlasRegion getRndTex(String name, Boolean flipped) {
         if (flipped == null) {
-            flipped = SolMath.test(.5f);
+            flipped = PtmMath.test(.5f);
         }
         ArrayList<TextureAtlas.AtlasRegion> pack = getPack(name);
-        TextureAtlas.AtlasRegion r = SolMath.elemRnd(pack);
+        TextureAtlas.AtlasRegion r = PtmMath.elemRnd(pack);
         if (flipped) {
             r = getFlipped(r);
         }

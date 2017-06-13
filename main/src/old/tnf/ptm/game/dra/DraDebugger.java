@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.dra;
+package old.tnf.ptm.game.dra;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.game.DebugOptions;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.ui.FontSize;
-import com.tnf.ptm.ui.UiDrawer;
-import com.tnf.ptm.common.DebugCol;
+import old.tnf.ptm.common.PtmColor;
+import old.tnf.ptm.game.DebugOptions;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.ui.FontSize;
+import old.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.common.DebugCol;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -37,14 +37,14 @@ public class DraDebugger {
         myCollector = new HashSet<>();
     }
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         if (!DebugOptions.TEX_INFO) {
             return;
         }
         maybeCollectTexs(game);
     }
 
-    private void maybeCollectTexs(SolGame game) {
+    private void maybeCollectTexs(PtmGame game) {
         if (!Gdx.input.isTouched()) {
             return;
         }
@@ -61,13 +61,13 @@ public class DraDebugger {
         float y = GAP;
         for (TextureAtlas.AtlasRegion tex : myCollector) {
             float x = GAP;
-            uiDrawer.draw(uiDrawer.whiteTex, 5 * TEX_SZ, TEX_SZ + 2 * GAP, 0, 0, x, y, 0, SolColor.DG);
+            uiDrawer.draw(uiDrawer.whiteTex, 5 * TEX_SZ, TEX_SZ + 2 * GAP, 0, 0, x, y, 0, PtmColor.DG);
             y += GAP;
             x += GAP;
             float r = 1f * tex.getTexture().getWidth() / tex.getTexture().getHeight();
             float w = r > 1 ? TEX_SZ : TEX_SZ / r;
             float h = r > 1 ? TEX_SZ / r : TEX_SZ;
-            uiDrawer.draw(tex, w, h, w / 2, h / 2, x + .5f * TEX_SZ, y + .5f * TEX_SZ, 0, SolColor.WHITE);
+            uiDrawer.draw(tex, w, h, w / 2, h / 2, x + .5f * TEX_SZ, y + .5f * TEX_SZ, 0, PtmColor.WHITE);
             x += TEX_SZ + GAP;
             uiDrawer.drawString(tex.name, x, y, FontSize.DEBUG, false, DebugCol.TEX_INFO);
             y += .5f * TEX_SZ;

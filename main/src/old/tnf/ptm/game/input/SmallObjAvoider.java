@@ -14,24 +14,24 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.ship.SolShip;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.ship.PtmShip;
 
 public class SmallObjAvoider {
     public static final float MANEUVER_TIME = 2f;
     public static final float MIN_RAYCAST_LEN = .5f;
     private final RayCastCallback myRayBack;
     private final Vector2 myDest;
-    private SolShip myShip;
+    private PtmShip myShip;
     private boolean myCollided;
 
     public SmallObjAvoider() {
@@ -39,7 +39,7 @@ public class SmallObjAvoider {
         myDest = new Vector2();
     }
 
-    public float avoid(SolGame game, SolShip ship, float toDestAngle, Planet np) {
+    public float avoid(PtmGame game, PtmShip ship, float toDestAngle, Planet np) {
         myShip = ship;
         Vector2 shipPos = ship.getPosition();
         float shipSpdLen = ship.getSpd().len();
@@ -49,7 +49,7 @@ public class SmallObjAvoider {
             raycastLen = MIN_RAYCAST_LEN;
         }
 
-        SolMath.fromAl(myDest, toDestAngle, raycastLen);
+        PtmMath.fromAl(myDest, toDestAngle, raycastLen);
         myDest.add(shipPos);
         myCollided = false;
         World w = game.getObjMan().getWorld();
@@ -59,7 +59,7 @@ public class SmallObjAvoider {
         }
 
         toDestAngle += 45;
-        SolMath.fromAl(myDest, toDestAngle, raycastLen);
+        PtmMath.fromAl(myDest, toDestAngle, raycastLen);
         myDest.add(shipPos);
         myCollided = false;
         w.rayCast(myRayBack, shipPos, myDest);
@@ -68,7 +68,7 @@ public class SmallObjAvoider {
         }
 
         toDestAngle -= 90;
-        SolMath.fromAl(myDest, toDestAngle, raycastLen);
+        PtmMath.fromAl(myDest, toDestAngle, raycastLen);
         myDest.add(shipPos);
         myCollided = false;
         w.rayCast(myRayBack, shipPos, myDest);
@@ -79,13 +79,13 @@ public class SmallObjAvoider {
         if (np.getFullHeight() < np.getPos().dst(shipPos)) {
             return toDestAngle - 45;
         }
-        return SolMath.angle(np.getPos(), shipPos);
+        return PtmMath.angle(np.getPos(), shipPos);
     }
 
     private class MyRayBack implements RayCastCallback {
         @Override
         public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
-            SolObject o = (SolObject) fixture.getBody().getUserData();
+            PtmObject o = (PtmObject) fixture.getBody().getUserData();
             if (myShip == o) {
                 return -1;
             }

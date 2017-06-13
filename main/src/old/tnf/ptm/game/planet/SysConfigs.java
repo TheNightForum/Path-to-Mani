@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.files.HullConfigManager;
-import com.tnf.ptm.game.ShipConfig;
-import com.tnf.ptm.game.chunk.SpaceEnvConfig;
-import com.tnf.ptm.game.item.ItemManager;
-import com.tnf.ptm.game.item.TradeConfig;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.files.HullConfigManager;
+import old.tnf.ptm.game.ShipConfig;
+import old.tnf.ptm.game.chunk.SpaceEnvConfig;
+import old.tnf.ptm.game.item.ItemManager;
+import old.tnf.ptm.game.item.TradeConfig;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -73,7 +73,7 @@ public class SysConfigs {
 
     public SysConfig getRandomBelt(boolean hard) {
         Map<String, SysConfig> config = hard ? myHardBeltConfigs : myBeltConfigs;
-        return SolMath.elemRnd(new ArrayList<SysConfig>(config.values()));
+        return PtmMath.elemRnd(new ArrayList<SysConfig>(config.values()));
     }
 
     public SysConfig getConfig(String name) {
@@ -86,7 +86,7 @@ public class SysConfigs {
 
     public SysConfig getRandomCfg(boolean hard) {
         Map<String, SysConfig> config = hard ? myHardConfigs : myConfigs;
-        return SolMath.elemRnd(new ArrayList<SysConfig>(config.values()));
+        return PtmMath.elemRnd(new ArrayList<SysConfig>(config.values()));
     }
 
     public void addAllConfigs(ArrayList<ShipConfig> l) {

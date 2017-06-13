@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.planet;
+package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.files.HullConfigManager;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.GameColors;
-import com.tnf.ptm.game.item.ItemManager;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.files.HullConfigManager;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.game.GameColors;
+import old.tnf.ptm.game.item.ItemManager;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
@@ -71,7 +71,7 @@ public class PlanetConfigs {
 
     public PlanetConfig getRandom(boolean easy, boolean hard) {
         List<PlanetConfig> cfg = easy ? myEasy : hard ? myHard : myMedium;
-        return SolMath.elemRnd(cfg);
+        return PtmMath.elemRnd(cfg);
     }
 
     public Map<String, PlanetConfig> getAllConfigs() {

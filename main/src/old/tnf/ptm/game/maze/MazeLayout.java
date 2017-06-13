@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.maze;
+package old.tnf.ptm.game.maze;
 
 public class MazeLayout {
     public final boolean[][] inners;

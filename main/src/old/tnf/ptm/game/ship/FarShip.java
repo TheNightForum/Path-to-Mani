@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.ship;
+package old.tnf.ptm.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.game.item.Engine;
-import com.tnf.ptm.game.FarObj;
-import com.tnf.ptm.game.RemoveController;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.input.Pilot;
-import com.tnf.ptm.game.item.Armor;
-import com.tnf.ptm.game.item.Gun;
-import com.tnf.ptm.game.item.ItemContainer;
-import com.tnf.ptm.game.item.Shield;
-import com.tnf.ptm.game.item.TradeContainer;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.game.item.Engine;
+import old.tnf.ptm.game.FarObj;
+import old.tnf.ptm.game.RemoveController;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.input.Pilot;
+import old.tnf.ptm.game.item.Armor;
+import old.tnf.ptm.game.item.Gun;
+import old.tnf.ptm.game.item.ItemContainer;
+import old.tnf.ptm.game.item.Shield;
+import old.tnf.ptm.game.item.TradeContainer;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
 
 public class FarShip implements FarObj {
     private final Vector2 myPos;
@@ -87,18 +87,18 @@ public class FarShip implements FarObj {
     }
 
     @Override
-    public boolean shouldBeRemoved(SolGame game) {
+    public boolean shouldBeRemoved(PtmGame game) {
         return myRemoveController != null && myRemoveController.shouldRemove(myPos);
     }
 
     @Override
-    public SolShip toObj(SolGame game) {
+    public PtmShip toObj(PtmGame game) {
         return game.getShipBuilder().build(game, myPos, mySpd, myAngle, myRotSpd, myPilot, myContainer, myHullConfig, myLife, myGun1,
                 myGun2, myRemoveController, myEngine, myRepairer, myMoney, myTradeContainer, myShield, myArmor);
     }
 
     @Override
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         myPilot.updateFar(game, this);
         if (myTradeContainer != null) {
             myTradeContainer.update(game);

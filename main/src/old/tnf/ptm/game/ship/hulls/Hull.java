@@ -14,26 +14,26 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.ship.hulls;
+package old.tnf.ptm.game.ship.hulls;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.dra.Dra;
-import com.tnf.ptm.game.gun.GunMount;
-import com.tnf.ptm.game.item.Engine;
-import com.tnf.ptm.game.item.Gun;
-import com.tnf.ptm.game.item.ItemContainer;
-import com.tnf.ptm.game.particle.LightSrc;
-import com.tnf.ptm.game.planet.PlanetBind;
-import com.tnf.ptm.game.ship.ShipEngine;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.Faction;
-import com.tnf.ptm.game.input.Pilot;
-import com.tnf.ptm.game.ship.Door;
-import com.tnf.ptm.game.ship.ForceBeacon;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.dra.Dra;
+import old.tnf.ptm.game.gun.GunMount;
+import old.tnf.ptm.game.item.Engine;
+import old.tnf.ptm.game.item.Gun;
+import old.tnf.ptm.game.item.ItemContainer;
+import old.tnf.ptm.game.particle.LightSrc;
+import old.tnf.ptm.game.planet.PlanetBind;
+import old.tnf.ptm.game.ship.ShipEngine;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.Faction;
+import old.tnf.ptm.game.input.Pilot;
+import old.tnf.ptm.game.ship.Door;
+import old.tnf.ptm.game.ship.ForceBeacon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +58,7 @@ public class Hull {
     private float myRotSpd;
     private ShipEngine myEngine;
 
-    public Hull(SolGame game, HullConfig hullConfig, Body body, GunMount gunMount1, GunMount gunMount2, Fixture base,
+    public Hull(PtmGame game, HullConfig hullConfig, Body body, GunMount gunMount1, GunMount gunMount2, Fixture base,
                 List<LightSrc> lightSrcs, float life, ArrayList<ForceBeacon> forceBeacons,
                 ArrayList<Door> doors, Fixture shieldFixture) {
         config = hullConfig;
@@ -101,7 +101,7 @@ public class Hull {
         return m.getGun();
     }
 
-    public void update(SolGame game, ItemContainer container, Pilot provider, SolShip ship, SolShip nearestEnemy) {
+    public void update(PtmGame game, ItemContainer container, Pilot provider, PtmShip ship, PtmShip nearestEnemy) {
         setParamsFromBody();
         boolean controlsEnabled = ship.isControlsEnabled();
 
@@ -135,25 +135,25 @@ public class Hull {
         }
 
         if (myPlanetBind != null) {
-            Vector2 spd = SolMath.getVec();
+            Vector2 spd = PtmMath.getVec();
             myPlanetBind.setDiff(spd, myPos, true);
             float fps = 1 / game.getTimeStep();
             spd.scl(fps);
             myBody.setLinearVelocity(spd);
-            SolMath.free(spd);
+            PtmMath.free(spd);
             float angleDiff = myPlanetBind.getDesiredAngle() - myAngle;
-            myBody.setAngularVelocity(angleDiff * SolMath.degRad * fps);
+            myBody.setAngularVelocity(angleDiff * PtmMath.degRad * fps);
         }
     }
 
     private void setParamsFromBody() {
         myPos.set(myBody.getPosition());
-        myAngle = myBody.getAngle() * SolMath.radDeg;
-        myRotSpd = myBody.getAngularVelocity() * SolMath.radDeg;
+        myAngle = myBody.getAngle() * PtmMath.radDeg;
+        myRotSpd = myBody.getAngularVelocity() * PtmMath.radDeg;
         mySpd.set(myBody.getLinearVelocity());
     }
 
-    public void onRemove(SolGame game) {
+    public void onRemove(PtmGame game) {
         for (Door door : myDoors) {
             door.onRemove(game);
         }
@@ -164,7 +164,7 @@ public class Hull {
 
     }
 
-    public void setEngine(SolGame game, SolShip ship, Engine ei) {
+    public void setEngine(PtmGame game, PtmShip ship, Engine ei) {
         List<Dra> dras = ship.getDras();
         if (myEngine != null) {
             List<Dra> dras1 = myEngine.getDras();

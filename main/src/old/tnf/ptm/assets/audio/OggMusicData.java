@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.assets.audio;
+package old.tnf.ptm.assets.audio;
 
 import com.badlogic.gdx.audio.Music;
 import org.terasology.assets.AssetData;

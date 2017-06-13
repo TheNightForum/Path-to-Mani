@@ -13,25 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game;
+package old.tnf.ptm.game;
 
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.maze.MazeConfig;
-import com.tnf.ptm.game.planet.PlanetConfig;
-import com.tnf.ptm.game.planet.SysConfig;
-import com.tnf.ptm.game.projectile.ProjectileConfig;
-import com.tnf.ptm.game.ship.FarShip;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.ship.hulls.Hull;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
-import com.tnf.ptm.game.item.Armor;
-import com.tnf.ptm.game.item.Clip;
-import com.tnf.ptm.game.item.Gun;
-import com.tnf.ptm.game.item.ItemConfig;
-import com.tnf.ptm.game.item.ItemManager;
-import com.tnf.ptm.game.item.Shield;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.ship.hulls.GunSlot;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.maze.MazeConfig;
+import old.tnf.ptm.game.planet.PlanetConfig;
+import old.tnf.ptm.game.planet.SysConfig;
+import old.tnf.ptm.game.projectile.ProjectileConfig;
+import old.tnf.ptm.game.ship.FarShip;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.ship.hulls.Hull;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.game.item.Armor;
+import old.tnf.ptm.game.item.Clip;
+import old.tnf.ptm.game.item.Gun;
+import old.tnf.ptm.game.item.ItemConfig;
+import old.tnf.ptm.game.item.ItemManager;
+import old.tnf.ptm.game.item.Shield;
+import old.tnf.ptm.game.item.PtmItem;
+import old.tnf.ptm.game.ship.hulls.GunSlot;
 
 import java.util.Iterator;
 import java.util.List;
@@ -61,7 +61,7 @@ public class HardnessCalc {
             if (pc.physSize > 0) {
                 projHitChance += pc.physSize;
             }
-            projHitChance = SolMath.clamp(projHitChance, .1f, 1);
+            projHitChance = PtmMath.clamp(projHitChance, .1f, 1);
             if (gc.fixed) {
                 projHitChance *= .3f;
             }
@@ -88,14 +88,14 @@ public class HardnessCalc {
 
     private static float getItemCfgDps(ItemConfig ic, boolean fixed) {
         float dps = 0;
-        for (SolItem e : ic.examples) {
+        for (PtmItem e : ic.examples) {
             if (!(e instanceof Gun)) {
                 throw new AssertionError("all item options must be of the same type");
             }
             Gun g = (Gun) e;
             if (g.config.fixed != fixed) {
                 String items = "";
-                for (SolItem ex : ic.examples) {
+                for (PtmItem ex : ic.examples) {
                     items += ex.getDisplayName() + " ";
                 }
                 throw new AssertionError("all gun options must have equal fixed param: " + items);
@@ -115,7 +115,7 @@ public class HardnessCalc {
 
         while (itemConfigIterator.hasNext() && !unusedGunSlots.isEmpty()) {
             ItemConfig itemConfig = itemConfigIterator.next();
-            final SolItem item = itemConfig.examples.get(0);
+            final PtmItem item = itemConfig.examples.get(0);
 
             if (item instanceof Gun) {
                 final Gun gun = (Gun) item;
@@ -142,16 +142,16 @@ public class HardnessCalc {
         float meanShieldLife = 0;
         float meanArmorPerc = 0;
         for (ItemConfig ic : parsed) {
-            SolItem item = ic.examples.get(0);
+            PtmItem item = ic.examples.get(0);
             if (meanShieldLife == 0 && item instanceof Shield) {
-                for (SolItem ex : ic.examples) {
+                for (PtmItem ex : ic.examples) {
                     meanShieldLife += ((Shield) ex).getLife();
                 }
                 meanShieldLife /= ic.examples.size();
                 meanShieldLife *= ic.chance;
             }
             if (meanArmorPerc == 0 && item instanceof Armor) {
-                for (SolItem ex : ic.examples) {
+                for (PtmItem ex : ic.examples) {
                     meanArmorPerc += ((Armor) ex).getPerc();
                 }
                 meanArmorPerc /= ic.examples.size();
@@ -205,7 +205,7 @@ public class HardnessCalc {
         return g.config.meanDps;
     }
 
-    public static float getShipDps(SolShip s) {
+    public static float getShipDps(PtmShip s) {
         Hull h = s.getHull();
         return getGunDps(h.getGun(false)) + getGunDps(h.getGun(true));
     }
@@ -214,7 +214,7 @@ public class HardnessCalc {
         return getGunDps(s.getGun(false)) + getGunDps(s.getGun(true));
     }
 
-    public static float getShipDmgCap(SolShip s) {
+    public static float getShipDmgCap(PtmShip s) {
         return getDmgCap(s.getHull().config, s.getArmor(), s.getShield());
     }
 
@@ -244,6 +244,6 @@ public class HardnessCalc {
     }
 
     public static float getShipObjDps(Object srcObj) {
-        return srcObj instanceof SolShip ? getShipDps((SolShip) srcObj) : getFarShipDps((FarShip) srcObj);
+        return srcObj instanceof PtmShip ? getShipDps((PtmShip) srcObj) : getFarShipDps((FarShip) srcObj);
     }
 }

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.game.input;
+package old.tnf.ptm.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.game.ship.hulls.HullConfig;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.game.ship.hulls.HullConfig;
 
 /**
  * Flies in the planet orbit
@@ -37,7 +37,7 @@ public class OrbiterDestProvider implements MoveDestProvider {
         myPlanet = planet;
         myHeight = height;
         myCw = cw;
-        myDesiredSpd = SolMath.sqrt(myPlanet.getGravConst() / myHeight);
+        myDesiredSpd = PtmMath.sqrt(myPlanet.getGravConst() / myHeight);
         myDest = new Vector2();
     }
 
@@ -62,15 +62,15 @@ public class OrbiterDestProvider implements MoveDestProvider {
     }
 
     @Override
-    public void update(SolGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, SolShip nearestEnemy) {
+    public void update(PtmGame game, Vector2 shipPos, float maxIdleDist, HullConfig hullConfig, PtmShip nearestEnemy) {
         Vector2 pPos = myPlanet.getPos();
-        float destAngle = SolMath.angle(pPos, shipPos) + 5 * SolMath.toInt(myCw);
-        SolMath.fromAl(myDest, destAngle, myHeight);
+        float destAngle = PtmMath.angle(pPos, shipPos) + 5 * PtmMath.toInt(myCw);
+        PtmMath.fromAl(myDest, destAngle, myHeight);
         myDest.add(pPos);
     }
 
     @Override
-    public Boolean shouldManeuver(boolean canShoot, SolShip nearestEnemy, boolean nearGround) {
+    public Boolean shouldManeuver(boolean canShoot, PtmShip nearestEnemy, boolean nearGround) {
         return null;
     }
 

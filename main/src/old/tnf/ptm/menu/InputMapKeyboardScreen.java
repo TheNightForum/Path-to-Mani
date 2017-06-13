@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.tnf.ptm.menu;
+package old.tnf.ptm.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.SolUiControl;
-import com.tnf.ptm.ui.UiDrawer;
-import com.tnf.ptm.GameOptions;
+import old.tnf.ptm.PtmApplication;
+import old.tnf.ptm.ui.PtmInputManager;
+import old.tnf.ptm.ui.PtmUiControl;
+import old.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.GameOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,13 +31,13 @@ import java.util.List;
 public class InputMapKeyboardScreen implements InputMapOperations {
     private static final String HEADER_TEXT = "Keyboard Inputs";
 
-    private final ArrayList<SolUiControl> controls;
+    private final ArrayList<PtmUiControl> controls;
     private boolean isEnterNewKey;
     private List<InputConfigItem> itemsList = new ArrayList<InputConfigItem>();
     private int selectedIndex;
 
     public InputMapKeyboardScreen(InputMapScreen inputMapScreen, GameOptions gameOptions) {
-        controls = new ArrayList<SolUiControl>();
+        controls = new ArrayList<PtmUiControl>();
     }
 
     private void InitialiseList(GameOptions gameOptions) {
@@ -176,12 +176,12 @@ public class InputMapKeyboardScreen implements InputMapOperations {
     }
 
     @Override
-    public List<SolUiControl> getControls() {
+    public List<PtmUiControl> getControls() {
         return controls;
     }
 
     @Override
-    public void updateCustom(SolApplication cmp, SolInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+    public void updateCustom(PtmApplication cmp, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
     }
 
     /**
@@ -198,17 +198,17 @@ public class InputMapKeyboardScreen implements InputMapOperations {
     }
 
     @Override
-    public void drawBg(UiDrawer uiDrawer, SolApplication cmp) {
+    public void drawBg(UiDrawer uiDrawer, PtmApplication cmp) {
 
     }
 
     @Override
-    public void drawImgs(UiDrawer uiDrawer, SolApplication cmp) {
+    public void drawImgs(UiDrawer uiDrawer, PtmApplication cmp) {
 
     }
 
     @Override
-    public void drawText(UiDrawer uiDrawer, SolApplication cmp) {
+    public void drawText(UiDrawer uiDrawer, PtmApplication cmp) {
     }
 
     @Override
@@ -217,19 +217,19 @@ public class InputMapKeyboardScreen implements InputMapOperations {
     }
 
     @Override
-    public boolean isCursorOnBg(SolInputManager.InputPointer inputPointer) {
+    public boolean isCursorOnBg(PtmInputManager.InputPointer inputPointer) {
         return false;
     }
 
     @Override
-    public void onAdd(SolApplication cmp) {
+    public void onAdd(PtmApplication cmp) {
         InitialiseList(cmp.getOptions());
         isEnterNewKey = false;
         selectedIndex = 0;
     }
 
     @Override
-    public void blurCustom(SolApplication cmp) {
+    public void blurCustom(PtmApplication cmp) {
 
     }
 

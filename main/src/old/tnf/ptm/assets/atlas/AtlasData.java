@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.assets.atlas;
+package old.tnf.ptm.assets.atlas;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import org.terasology.assets.AssetData;

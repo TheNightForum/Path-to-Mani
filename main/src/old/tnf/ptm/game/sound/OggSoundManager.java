@@ -13,22 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.sound;
+package old.tnf.ptm.game.sound;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.assets.audio.OggSound;
-import com.tnf.ptm.assets.audio.PlayableSound;
-import com.tnf.ptm.common.Nullable;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.GameDrawer;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.SolObject;
-import com.tnf.ptm.game.planet.Planet;
-import com.tnf.ptm.game.ship.SolShip;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.game.DebugOptions;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.assets.audio.OggSound;
+import old.tnf.ptm.assets.audio.PlayableSound;
+import old.tnf.ptm.common.Nullable;
+import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.GameDrawer;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.planet.Planet;
+import old.tnf.ptm.game.ship.PtmShip;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.game.DebugOptions;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.HashMap;
@@ -38,7 +38,7 @@ import java.util.Map;
 public class OggSoundManager {
     // private static Logger logger = LoggerFactory.getLogger(OggSoundManager.class);
     private final Map<String, OggSound> soundMap;
-    private final Map<SolObject, Map<OggSound, Float>> loopedSoundMap;
+    private final Map<PtmObject, Map<OggSound, Float>> loopedSoundMap;
     private final DebugHintDrawer debugHintDrawer;
 
     private float myLoopAwait;
@@ -71,7 +71,7 @@ public class OggSoundManager {
      * @param source           bearer of a sound. Must not be null for looped sounds
      * @param volumeMultiplier multiplier for sound volume
      */
-    public void play(SolGame game, PlayableSound playableSound, @Nullable Vector2 position, @Nullable SolObject source, float volumeMultiplier) {
+    public void play(PtmGame game, PlayableSound playableSound, @Nullable Vector2 position, @Nullable PtmObject source, float volumeMultiplier) {
         if (playableSound == null) {
             return;
         }
@@ -102,7 +102,7 @@ public class OggSoundManager {
         float airPerc = 0;
         if (nearestPlanet.getConfig().skyConfig != null) {
             float distanceToAtmosphere = cameraPosition.dst(nearestPlanet.getPos()) - nearestPlanet.getGroundHeight() - Const.ATM_HEIGHT / 2;
-            airPerc = SolMath.clamp(1 - distanceToAtmosphere / (Const.ATM_HEIGHT / 2));
+            airPerc = PtmMath.clamp(1 - distanceToAtmosphere / (Const.ATM_HEIGHT / 2));
         }
         if (DebugOptions.SOUND_IN_SPACE) {
             airPerc = 1;
@@ -110,10 +110,10 @@ public class OggSoundManager {
 
         float maxSoundDist = 1 + 1.5f * Const.CAM_VIEW_DIST_GROUND * airPerc;
 
-        SolShip hero = game.getHero();
+        PtmShip hero = game.getHero();
         float soundRadius = hero == null ? 0 : hero.getHull().config.getApproxRadius();
         float distance = position.dst(cameraPosition) - soundRadius;
-        float distanceMultiplier = SolMath.clamp(1 - distance / maxSoundDist);
+        float distanceMultiplier = PtmMath.clamp(1 - distance / maxSoundDist);
 
         float volume = sound.getBaseVolume() * volumeMultiplier * distanceMultiplier * globalVolumeMultiplier;
 
@@ -122,7 +122,7 @@ public class OggSoundManager {
         }
 
         // Calculate the pitch for the sound
-        float pitch = SolMath.rnd(.97f, 1.03f) * game.getTimeFactor() * playableSound.getBasePitch();
+        float pitch = PtmMath.rnd(.97f, 1.03f) * game.getTimeFactor() * playableSound.getBasePitch();
 
         if (skipLooped(source, sound, game.getTime())) {
             return;
@@ -142,11 +142,11 @@ public class OggSoundManager {
      * @param position position of a sound. If null, source.getPosition() will be used
      * @param source   bearer of a sound. Must not be null for looped sounds
      */
-    public void play(SolGame game, PlayableSound sound, @Nullable Vector2 position, @Nullable SolObject source) {
+    public void play(PtmGame game, PlayableSound sound, @Nullable Vector2 position, @Nullable PtmObject source) {
         this.play(game, sound, position, source, 1f);
     }
 
-    private boolean skipLooped(SolObject source, OggSound sound, float time) {
+    private boolean skipLooped(PtmObject source, OggSound sound, float time) {
         if (sound.getLoopTime() == 0) {
             return false;
         }
@@ -169,13 +169,13 @@ public class OggSoundManager {
         return playing;
     }
 
-    public void drawDebug(GameDrawer drawer, SolGame game) {
+    public void drawDebug(GameDrawer drawer, PtmGame game) {
         if (DebugOptions.SOUND_INFO) {
             debugHintDrawer.draw(drawer, game);
         }
     }
 
-    public void update(SolGame game) {
+    public void update(PtmGame game) {
         if (DebugOptions.SOUND_INFO) {
             debugHintDrawer.update(game);
         }
@@ -187,10 +187,10 @@ public class OggSoundManager {
         }
     }
 
-    private void cleanLooped(SolGame game) {
-        Iterator<SolObject> it = loopedSoundMap.keySet().iterator();
+    private void cleanLooped(PtmGame game) {
+        Iterator<PtmObject> it = loopedSoundMap.keySet().iterator();
         while (it.hasNext()) {
-            SolObject o = it.next();
+            PtmObject o = it.next();
             if (o.shouldBeRemoved(game)) {
                 it.remove();
             }

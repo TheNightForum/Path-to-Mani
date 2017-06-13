@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.item;
+package old.tnf.ptm.game.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.assets.json.Json;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.projectile.ProjectileConfig;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.json.Json;
+import old.tnf.ptm.game.PtmGame;
+import old.tnf.ptm.game.projectile.ProjectileConfig;
 import org.terasology.assets.ResourceUrn;
 
-public class Clip implements SolItem {
+public class Clip implements PtmItem {
     private final Config myConfig;
 
     public Clip(Config config) {
@@ -50,22 +50,22 @@ public class Clip implements SolItem {
     }
 
     @Override
-    public SolItem copy() {
+    public PtmItem copy() {
         return new Clip(myConfig);
     }
 
     @Override
-    public boolean isSame(SolItem item) {
+    public boolean isSame(PtmItem item) {
         return item instanceof Clip && ((Clip) item).myConfig == myConfig;
     }
 
     @Override
-    public TextureAtlas.AtlasRegion getIcon(SolGame game) {
+    public TextureAtlas.AtlasRegion getIcon(PtmGame game) {
         return myConfig.icon;
     }
 
     @Override
-    public SolItemType getItemType() {
+    public PtmItemType getItemType() {
         return myConfig.itemType;
     }
 
@@ -91,13 +91,13 @@ public class Clip implements SolItem {
         public final ProjectileConfig projConfig;
         public final boolean infinite;
         public final int projectilesPerShot;
-        public final SolItemType itemType;
+        public final PtmItemType itemType;
         public final String plural;
         public final String code;
         public final Clip example;
 
         public Config(ProjectileConfig projConfig, boolean infinite, int price, String displayName, int size,
-                          String plural, TextureAtlas.AtlasRegion icon, int projectilesPerShot, SolItemType itemType, String code) {
+                      String plural, TextureAtlas.AtlasRegion icon, int projectilesPerShot, PtmItemType itemType, String code) {
             this.projConfig = projConfig;
             this.infinite = infinite;
             this.price = price;
@@ -112,7 +112,7 @@ public class Clip implements SolItem {
             this.example = new Clip(this);
         }
 
-        public static void load(ResourceUrn clipName, ItemManager itemManager, SolItemTypes types) {
+        public static void load(ResourceUrn clipName, ItemManager itemManager, PtmItemTypes types) {
             Json json = Assets.getJson(clipName);
             JsonValue rootNode = json.getJsonValue();
 

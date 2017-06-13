@@ -17,7 +17,7 @@ package old.tnf.ptm.ui;
 
 import com.badlogic.gdx.utils.TimeUtils;
 import old.tnf.ptm.game.screens.BorderDrawer;
-import old.tnf.ptm.common.SolColor;
+import old.tnf.ptm.common.PtmColor;
 import old.tnf.ptm.game.DebugOptions;
 
 import java.util.HashMap;
@@ -33,7 +33,7 @@ public class DebugCollector {
     }
 
     public static void draw(UiDrawer drawer) {
-        drawer.drawString(myDebugStrings.toString(), .5f, BorderDrawer.TISHCH_SZ, FontSize.DEBUG, false, SolColor.WHITE);
+        drawer.drawString(myDebugStrings.toString(), .5f, BorderDrawer.TISHCH_SZ, FontSize.DEBUG, false, PtmColor.WHITE);
     }
 
     public static void debug(String name, String val) {

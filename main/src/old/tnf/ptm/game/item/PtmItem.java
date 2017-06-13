@@ -13,23 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.game.item;
 
-import com.badlogic.gdx.graphics.Color;
-import com.tnf.ptm.assets.audio.PlayableSound;
+package old.tnf.ptm.game.item;
 
-public class SolItemType {
-    public final Color color;
-    public final PlayableSound pickUpSound;
-    public final Color uiColor;
-    public final float sz;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import old.tnf.ptm.game.PtmGame;
 
-    public SolItemType(Color color, PlayableSound pickUpSound, float sz) {
-        this.color = color;
-        this.sz = sz;
-        uiColor = new Color(color);
-        uiColor.a = .3f;
-        this.pickUpSound = pickUpSound;
-    }
+public interface PtmItem {
+    String getDisplayName();
 
+    float getPrice();
+
+    String getDesc();
+
+    PtmItem copy();
+
+    boolean isSame(PtmItem item);
+
+    TextureAtlas.AtlasRegion getIcon(PtmGame game);
+
+    PtmItemType getItemType();
+
+    String getCode();
+
+    int isEquipped();
+
+    void setEquipped(int equipped);
 }
