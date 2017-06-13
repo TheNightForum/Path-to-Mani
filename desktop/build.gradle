@@ -2,11 +2,7 @@ apply from: '../config/gradle/common.gradle'
 
 sourceSets.main.java.srcDirs = ["src/"]
 
-<<<<<<< HEAD
 project.ext.mainClassName = "com.tnf.ptm.desktop.SolDesktop"
-=======
-project.ext.mainClassName = "org.destinationsol.desktop.SolDesktop"
->>>>>>> Re-base
 
 dependencies {
     compile project(":main")
@@ -60,7 +56,7 @@ task dist(type: Sync) {
 task distZip(type: Zip) {
     dependsOn dist
     from "$distsDir/app"
-    archiveName = "PathToMani.zip"
+    archiveName = "DestinationSol.zip"
 }
 
 // TODO: LibGDX Generated config for Eclipse. Needs adjustment for assets not being in the Android facade
