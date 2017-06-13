@@ -16,7 +16,7 @@
 package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.Const;
+import com.tnf.ptm.common.Const;
 import com.tnf.ptm.common.Bound;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.HardnessCalc;

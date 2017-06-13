@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import old.tnf.ptm.Const;
+import com.tnf.ptm.common.Const;
 import com.tnf.ptm.common.Bound;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;

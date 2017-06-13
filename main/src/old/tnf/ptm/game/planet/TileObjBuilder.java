@@ -23,7 +23,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.dra.RectSprite;
-import old.tnf.ptm.Const;
+import com.tnf.ptm.common.Const;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.game.dra.DraLevel;
 

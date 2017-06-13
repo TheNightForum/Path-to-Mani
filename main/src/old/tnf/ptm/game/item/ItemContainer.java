@@ -16,7 +16,7 @@
 
 package old.tnf.ptm.game.item;
 
-import old.tnf.ptm.Const;
+import com.tnf.ptm.common.Const;
 import com.tnf.ptm.common.PtmMath;
 
 import java.util.ArrayList;

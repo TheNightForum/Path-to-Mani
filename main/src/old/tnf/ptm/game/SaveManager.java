@@ -19,7 +19,7 @@ import old.tnf.ptm.files.FileManager;
 import old.tnf.ptm.files.HullConfigManager;
 import old.tnf.ptm.game.item.PtmItem;
 import old.tnf.ptm.game.ship.hulls.HullConfig;
-import old.tnf.ptm.IniReader;
+import com.tnf.ptm.common.IniReader;
 import old.tnf.ptm.game.item.Gun;
 import old.tnf.ptm.game.item.ItemManager;
 import org.terasology.assets.ResourceUrn;

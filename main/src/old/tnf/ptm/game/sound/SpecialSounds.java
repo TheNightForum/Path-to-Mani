@@ -16,7 +16,7 @@
 package old.tnf.ptm.game.sound;
 
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.Const;
+import com.tnf.ptm.common.Const;
 import com.tnf.ptm.assets.audio.PlayableSound;
 import old.tnf.ptm.game.PtmObject;
 import old.tnf.ptm.game.PtmGame;

@@ -27,7 +27,7 @@ import old.tnf.ptm.game.ship.hulls.Hull;
 import old.tnf.ptm.game.ship.hulls.HullConfig;
 import com.tnf.ptm.screens.controlers.PtmInputManager;
 import com.tnf.ptm.screens.controlers.PtmUiControl;
-import old.tnf.ptm.GameOptions;
+import com.tnf.ptm.common.GameOptions;
 import old.tnf.ptm.game.item.ShipItem;
 import old.tnf.ptm.game.ship.ShipRepairer;
 

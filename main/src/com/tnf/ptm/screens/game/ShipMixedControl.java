@@ -23,7 +23,7 @@ import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.input.Shooter;
 import old.tnf.ptm.game.ship.PtmShip;
 import com.tnf.ptm.screens.controlers.PtmUiControl;
-import old.tnf.ptm.GameOptions;
+import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.game.input.Mover;

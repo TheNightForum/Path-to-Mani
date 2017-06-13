@@ -19,7 +19,7 @@ package old.tnf.ptm.game.farBg;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.Const;
+import com.tnf.ptm.common.Const;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmColorUtil;

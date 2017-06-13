@@ -20,7 +20,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.Pool;
-import old.tnf.ptm.Const;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

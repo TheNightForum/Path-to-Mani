@@ -16,7 +16,7 @@
 package old.tnf.ptm.game.sound;
 
 import com.badlogic.gdx.audio.Music;
-import old.tnf.ptm.GameOptions;
+import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.assets.Assets;
 import org.terasology.assets.ResourceUrn;
 

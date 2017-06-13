@@ -17,7 +17,7 @@ package old.tnf.ptm.game.dra;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import old.tnf.ptm.Const;
+import com.tnf.ptm.common.Const;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.*;
 import old.tnf.ptm.game.planet.Planet;

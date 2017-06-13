@@ -16,7 +16,7 @@
 package com.tnf.ptm.screens.game;
 
 import com.badlogic.gdx.math.Rectangle;
-import old.tnf.ptm.GameOptions;
+import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
 import old.tnf.ptm.game.MapDrawer;
 import old.tnf.ptm.game.PtmGame;

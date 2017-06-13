@@ -16,7 +16,7 @@
 package com.tnf.ptm.screens.main;
 
 import com.tnf.ptm.screens.controlers.PtmLayouts;
-import old.tnf.ptm.GameOptions;
+import com.tnf.ptm.common.GameOptions;
 
 public class MenuScreens {
     public final MainScreen main;

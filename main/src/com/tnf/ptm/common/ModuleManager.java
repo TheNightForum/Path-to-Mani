@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package old.tnf.ptm;
+package com.tnf.ptm.common;
 
 import com.google.common.collect.Sets;
 import com.tnf.ptm.assets.atlas.Atlas;

@@ -25,7 +25,7 @@ import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.dra.RectSprite;
 import old.tnf.ptm.game.item.TradeConfig;
-import old.tnf.ptm.Const;
+import com.tnf.ptm.common.Const;
 import old.tnf.ptm.game.DebugOptions;
 import old.tnf.ptm.game.Faction;
 import old.tnf.ptm.game.ShipConfig;

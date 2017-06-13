@@ -18,7 +18,7 @@ package old.tnf.ptm.game;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import old.tnf.ptm.Const;
+import com.tnf.ptm.common.Const;
 import com.tnf.ptm.common.DebugCol;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;

@@ -22,7 +22,7 @@ import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.screens.controlers.PtmInputManager;
 import com.tnf.ptm.screens.controlers.PtmUiControl;
 import com.tnf.ptm.screens.controlers.PtmUiScreen;
-import old.tnf.ptm.GameOptions;
+import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
 import com.tnf.ptm.assets.Assets;
 import com.tnf.ptm.screens.controlers.FontSize;

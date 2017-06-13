@@ -20,7 +20,7 @@ import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.item.TradeConfig;
 import old.tnf.ptm.game.planet.Planet;
 import old.tnf.ptm.game.planet.PtmSystem;
-import old.tnf.ptm.Const;
+import com.tnf.ptm.common.Const;
 import old.tnf.ptm.game.input.AiPilot;
 import old.tnf.ptm.game.input.ExplorerDestProvider;
 import old.tnf.ptm.game.input.Guardian;

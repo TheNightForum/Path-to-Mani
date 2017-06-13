@@ -16,8 +16,8 @@
 package old.tnf.ptm.game;
 
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.PtmFileReader;
-import old.tnf.ptm.IniReader;
+import com.tnf.ptm.common.PtmFileReader;
+import com.tnf.ptm.common.IniReader;
 
 public class DebugOptions {
     public static final Vector2 DEBUG_POINT = new Vector2();

@@ -16,7 +16,7 @@
 package com.tnf.ptm.screens.game;
 
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.Const;
+import com.tnf.ptm.common.Const;
 import com.tnf.ptm.PtmApplication;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.ShipConfig;
@@ -30,7 +30,7 @@ import old.tnf.ptm.game.ship.PtmShip;
 import old.tnf.ptm.game.ship.hulls.HullConfig;
 import com.tnf.ptm.screens.controlers.PtmInputManager;
 import com.tnf.ptm.screens.controlers.PtmUiControl;
-import old.tnf.ptm.GameOptions;
+import com.tnf.ptm.common.GameOptions;
 import old.tnf.ptm.game.Faction;
 import old.tnf.ptm.game.input.Guardian;
 import old.tnf.ptm.game.item.MercItem;

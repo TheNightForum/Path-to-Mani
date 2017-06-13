@@ -16,7 +16,7 @@
 package com.tnf.ptm.screens.main;
 
 import com.tnf.ptm.screens.controlers.PtmUiScreen;
-import old.tnf.ptm.GameOptions;
+import com.tnf.ptm.common.GameOptions;
 
 import java.util.List;
 

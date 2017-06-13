@@ -16,7 +16,7 @@
 package com.tnf.ptm.assets.audio;
 
 import com.google.common.base.Charsets;
-import old.tnf.ptm.IniReader;
+import com.tnf.ptm.common.IniReader;
 import org.terasology.assets.format.AbstractAssetAlterationFileFormat;
 import org.terasology.assets.format.AssetDataFile;
 import org.terasology.assets.module.annotations.RegisterAssetSupplementalFileFormat;

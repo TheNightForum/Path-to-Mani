@@ -18,7 +18,7 @@ package old.tnf.ptm.game.planet;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import old.tnf.ptm.Const;
+import com.tnf.ptm.common.Const;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;

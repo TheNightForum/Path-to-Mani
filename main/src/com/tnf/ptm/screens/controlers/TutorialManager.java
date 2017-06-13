@@ -22,7 +22,7 @@ import old.tnf.ptm.game.item.PtmItem;
 import com.tnf.ptm.screens.game.GameScreens;
 import com.tnf.ptm.screens.game.MainScreen;
 import com.tnf.ptm.screens.game.ShipMixedControl;
-import old.tnf.ptm.GameOptions;
+import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.screens.game.InventoryScreen;
 import com.tnf.ptm.screens.game.ShipKbControl;
 

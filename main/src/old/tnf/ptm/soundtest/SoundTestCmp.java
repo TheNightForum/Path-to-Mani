@@ -22,7 +22,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.TimeUtils;
-import old.tnf.ptm.Const;
+import com.tnf.ptm.common.Const;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

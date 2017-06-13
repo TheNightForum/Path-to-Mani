@@ -25,7 +25,7 @@ import com.tnf.ptm.screens.controlers.PtmInputManager;
 import com.tnf.ptm.screens.controlers.PtmUiControl;
 import com.tnf.ptm.screens.controlers.PtmUiScreen;
 import com.tnf.ptm.screens.controlers.UiDrawer;
-import old.tnf.ptm.GameOptions;
+import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.assets.Assets;
 import old.tnf.ptm.game.DebugOptions;
 import org.terasology.assets.ResourceUrn;
