@@ -18,8 +18,8 @@ package old.tnf.ptm.game;
 import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.common.Const;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.planet.Planet;
-import old.tnf.ptm.game.planet.PtmSystem;
+import com.tnf.ptm.entities.planet.Planet;
+import com.tnf.ptm.entities.planet.PtmSystem;
 
 public interface CamRotStrategy {
     public float getRotation(Vector2 pos, PtmGame game);

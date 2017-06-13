@@ -17,8 +17,8 @@ package com.tnf.ptm.screens.game;
 
 import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
-import old.tnf.ptm.game.item.Gun;
-import old.tnf.ptm.game.ship.PtmShip;
+import com.tnf.ptm.entities.item.Gun;
+import com.tnf.ptm.entities.ship.PtmShip;
 import com.tnf.ptm.screens.controlers.PtmUiControl;
 
 import java.util.List;

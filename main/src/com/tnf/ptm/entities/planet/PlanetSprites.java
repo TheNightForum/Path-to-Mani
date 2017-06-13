@@ -1,0 +1,130 @@
+/*
+ * Copyright 2017 TheNightForum
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.tnf.ptm.entities.planet;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.game.DmgType;
+import old.tnf.ptm.game.FarObj;
+import old.tnf.ptm.game.PtmObject;
+import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.handler.dra.Dra;
+
+import java.util.List;
+
+public class PlanetSprites implements PtmObject {
+
+    private final Planet myPlanet;
+    private final float myDist;
+    private final List<Dra> myDras;
+    private final float myToPlanetRotSpd;
+    private final Vector2 myPos;
+    private float myRelAngleToPlanet;
+    private float myAngle;
+
+    public PlanetSprites(Planet planet, float relAngleToPlanet, float dist, List<Dra> dras, float toPlanetRotSpd) {
+        myPlanet = planet;
+        myRelAngleToPlanet = relAngleToPlanet;
+        myDist = dist;
+        myDras = dras;
+        myToPlanetRotSpd = toPlanetRotSpd;
+        myPos = new Vector2();
+        setDependentParams();
+    }
+
+    @Override
+    public void update(PtmGame game) {
+        setDependentParams();
+        myRelAngleToPlanet += myToPlanetRotSpd * game.getTimeStep();
+    }
+
+    private void setDependentParams() {
+        float angleToPlanet = myPlanet.getAngle() + myRelAngleToPlanet;
+        PtmMath.fromAl(myPos, angleToPlanet, myDist, true);
+        myPos.add(myPlanet.getPos());
+        myAngle = angleToPlanet + 90;
+    }
+
+    @Override
+    public boolean shouldBeRemoved(PtmGame game) {
+        return false;
+    }
+
+    @Override
+    public void onRemove(PtmGame game) {
+    }
+
+    @Override
+    public void receiveDmg(float dmg, PtmGame game, Vector2 pos, DmgType dmgType) {
+    }
+
+    @Override
+    public boolean receivesGravity() {
+        return false;
+    }
+
+    @Override
+    public void receiveForce(Vector2 force, PtmGame game, boolean acc) {
+    }
+
+    @Override
+    public Vector2 getPosition() {
+        return myPos;
+    }
+
+    @Override
+    public FarObj toFarObj() {
+        return new FarPlanetSprites(myPlanet, myRelAngleToPlanet, myDist, myDras, myToPlanetRotSpd);
+    }
+
+    @Override
+    public List<Dra> getDras() {
+        return myDras;
+    }
+
+    @Override
+    public float getAngle() {
+        return myAngle;
+    }
+
+    @Override
+    public Vector2 getSpd() {
+        return null;
+    }
+
+    @Override
+    public void handleContact(PtmObject other, ContactImpulse impulse, boolean isA, float absImpulse,
+                              PtmGame game, Vector2 collPos) {
+    }
+
+    @Override
+    public String toDebugString() {
+        return null;
+    }
+
+    @Override
+    public Boolean isMetal() {
+        return false;
+    }
+
+    @Override
+    public boolean hasBody() {
+        return false;
+    }
+
+}

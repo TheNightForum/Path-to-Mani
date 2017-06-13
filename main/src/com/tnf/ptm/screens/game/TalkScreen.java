@@ -16,14 +16,14 @@
 package com.tnf.ptm.screens.game;
 
 import com.badlogic.gdx.math.Rectangle;
-import old.tnf.ptm.game.ship.PtmShip;
+import com.tnf.ptm.entities.ship.PtmShip;
 import com.tnf.ptm.screens.controlers.PtmUiControl;
 import com.tnf.ptm.screens.controlers.PtmUiScreen;
 import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
 import com.tnf.ptm.common.PtmColor;
 import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.ship.hulls.HullConfig;
+import com.tnf.ptm.entities.ship.hulls.HullConfig;
 import com.tnf.ptm.screens.main.MenuLayout;
 import com.tnf.ptm.screens.controlers.PtmInputManager;
 import com.tnf.ptm.screens.controlers.UiDrawer;

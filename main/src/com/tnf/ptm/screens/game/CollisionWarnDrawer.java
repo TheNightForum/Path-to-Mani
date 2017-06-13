@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.PtmObject;
 import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.ship.PtmShip;
+import com.tnf.ptm.entities.ship.PtmShip;
 
 public class CollisionWarnDrawer extends WarnDrawer {
     private final CollisionRayCastCallback warnCallback = new CollisionRayCastCallback();

@@ -19,7 +19,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.ship.PtmShip;
+import com.tnf.ptm.entities.ship.PtmShip;
 import com.tnf.ptm.screens.controlers.PtmInputManager;
 import com.tnf.ptm.PtmApplication;
 import old.tnf.ptm.game.BeaconHandler;

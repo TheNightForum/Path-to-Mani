@@ -17,11 +17,11 @@ package old.tnf.ptm.game;
 
 import com.tnf.ptm.handler.files.FileManager;
 import com.tnf.ptm.handler.files.HullConfigManager;
-import old.tnf.ptm.game.item.PtmItem;
-import old.tnf.ptm.game.ship.hulls.HullConfig;
+import com.tnf.ptm.entities.item.PtmItem;
+import com.tnf.ptm.entities.ship.hulls.HullConfig;
 import com.tnf.ptm.common.IniReader;
-import old.tnf.ptm.game.item.Gun;
-import old.tnf.ptm.game.item.ItemManager;
+import com.tnf.ptm.entities.item.Gun;
+import com.tnf.ptm.entities.item.ItemManager;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

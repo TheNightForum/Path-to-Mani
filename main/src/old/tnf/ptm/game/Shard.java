@@ -19,7 +19,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.dra.Dra;
+import com.tnf.ptm.handler.dra.Dra;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -17,7 +17,8 @@ package old.tnf.ptm.game;
 
 import com.badlogic.gdx.physics.box2d.ContactFilter;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import old.tnf.ptm.game.projectile.Projectile;
+import com.tnf.ptm.entities.projectile.Projectile;
+import com.tnf.ptm.handler.FactionManager;
 
 public class PtmContactFilter implements ContactFilter {
     private final FactionManager myFactionManager;

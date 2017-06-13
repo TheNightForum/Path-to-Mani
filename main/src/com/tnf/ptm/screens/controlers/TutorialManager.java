@@ -18,7 +18,7 @@ package com.tnf.ptm.screens.controlers;
 import com.badlogic.gdx.math.Rectangle;
 import com.tnf.ptm.common.PtmColor;
 import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.item.PtmItem;
+import com.tnf.ptm.entities.item.PtmItem;
 import com.tnf.ptm.screens.game.GameScreens;
 import com.tnf.ptm.screens.game.MainScreen;
 import com.tnf.ptm.screens.game.ShipMixedControl;

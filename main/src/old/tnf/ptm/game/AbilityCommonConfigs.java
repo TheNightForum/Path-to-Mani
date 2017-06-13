@@ -19,8 +19,8 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.assets.Assets;
 import com.tnf.ptm.assets.json.Json;
-import old.tnf.ptm.game.particle.EffectTypes;
-import old.tnf.ptm.game.sound.OggSoundManager;
+import com.tnf.ptm.gfx.particle.EffectTypes;
+import com.tnf.ptm.sound.OggSoundManager;
 import org.terasology.assets.ResourceUrn;
 
 public class AbilityCommonConfigs {

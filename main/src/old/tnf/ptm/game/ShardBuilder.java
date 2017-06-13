@@ -21,10 +21,10 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.asteroid.AsteroidBuilder;
-import old.tnf.ptm.game.dra.Dra;
-import old.tnf.ptm.game.dra.DraLevel;
-import old.tnf.ptm.game.ship.ShipBuilder;
+import com.tnf.ptm.entities.asteroid.AsteroidBuilder;
+import com.tnf.ptm.handler.dra.Dra;
+import com.tnf.ptm.handler.dra.DraLevel;
+import com.tnf.ptm.entities.ship.ShipBuilder;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

@@ -19,9 +19,9 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.assets.audio.PlayableSound;
 import com.tnf.ptm.assets.audio.OggSound;
-import old.tnf.ptm.game.particle.EffectConfig;
-import old.tnf.ptm.game.particle.EffectTypes;
-import old.tnf.ptm.game.sound.OggSoundManager;
+import com.tnf.ptm.gfx.particle.EffectConfig;
+import com.tnf.ptm.gfx.particle.EffectTypes;
+import com.tnf.ptm.sound.OggSoundManager;
 
 public class AbilityCommonConfig {
     public final EffectConfig effect;

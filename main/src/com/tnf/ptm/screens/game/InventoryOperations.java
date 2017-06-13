@@ -16,8 +16,8 @@
 package com.tnf.ptm.screens.game;
 
 import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.item.ItemContainer;
-import old.tnf.ptm.game.item.PtmItem;
+import com.tnf.ptm.entities.item.ItemContainer;
+import com.tnf.ptm.entities.item.PtmItem;
 import com.tnf.ptm.screens.controlers.PtmUiScreen;
 
 public interface InventoryOperations extends PtmUiScreen {

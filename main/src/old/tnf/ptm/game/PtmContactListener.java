@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.projectile.Projectile;
+import com.tnf.ptm.entities.projectile.Projectile;
 
 public class PtmContactListener implements ContactListener {
     private final PtmGame myGame;

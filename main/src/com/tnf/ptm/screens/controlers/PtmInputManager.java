@@ -30,7 +30,7 @@ import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
 import com.tnf.ptm.common.PtmColor;
 import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.sound.OggSoundManager;
+import com.tnf.ptm.sound.OggSoundManager;
 
 import java.util.ArrayList;
 import java.util.List;

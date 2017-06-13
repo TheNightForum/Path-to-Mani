@@ -19,7 +19,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmColor;
-import old.tnf.ptm.game.ship.PtmShip;
+import com.tnf.ptm.entities.ship.PtmShip;
 
 public class MountDetectDrawer {
     private final Vector2 myNePos;

@@ -22,10 +22,11 @@ import com.tnf.ptm.common.Const;
 import com.tnf.ptm.common.DebugCol;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.dra.Dra;
-import old.tnf.ptm.game.dra.DraMan;
-import old.tnf.ptm.game.dra.FarDras;
-import old.tnf.ptm.game.ship.FarShip;
+import com.tnf.ptm.handler.FactionManager;
+import com.tnf.ptm.handler.dra.Dra;
+import com.tnf.ptm.handler.dra.DraMan;
+import com.tnf.ptm.handler.dra.FarDras;
+import com.tnf.ptm.entities.ship.FarShip;
 
 import java.util.ArrayList;
 import java.util.HashMap;

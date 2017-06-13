@@ -23,9 +23,9 @@ import com.badlogic.gdx.math.Vector3;
 import com.tnf.ptm.common.Const;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.planet.Planet;
+import com.tnf.ptm.entities.planet.Planet;
 import com.tnf.ptm.screens.game.MainScreen;
-import old.tnf.ptm.game.ship.PtmShip;
+import com.tnf.ptm.entities.ship.PtmShip;
 
 public class PtmCam {
     public static final float CAM_ROT_SPD = 90f;

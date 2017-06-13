@@ -20,13 +20,13 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.input.Shooter;
-import old.tnf.ptm.game.ship.PtmShip;
+import com.tnf.ptm.handler.input.Shooter;
+import com.tnf.ptm.entities.ship.PtmShip;
 import com.tnf.ptm.screens.controlers.PtmUiControl;
 import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
 import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.input.Mover;
+import com.tnf.ptm.handler.input.Mover;
 import com.tnf.ptm.screens.controlers.PtmInputManager;
 
 import java.util.List;
