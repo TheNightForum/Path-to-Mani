@@ -22,7 +22,7 @@ import com.tnf.ptm.common.PtmFileReader;
 import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
 import old.tnf.ptm.game.DebugOptions;
-import old.tnf.ptm.soundtest.SoundTestListener;
+import com.tnf.ptm.sound.SoundTestListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

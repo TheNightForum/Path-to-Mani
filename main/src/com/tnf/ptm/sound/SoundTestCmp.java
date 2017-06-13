@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package old.tnf.ptm.soundtest;
+package com.tnf.ptm.sound;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
