@@ -20,8 +20,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.Pool;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.tnf.ptm.handler.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ import java.util.List;
  * A class with helpful mathematical functions
  */
 public class PtmMath {
-    private static Logger logger = LoggerFactory.getLogger(PtmMath.class);
+    private static Logger logger = new Logger();
     public static final float PI = MathUtils.PI;
     public static float radDeg = MathUtils.radDeg;
     public static float degRad = MathUtils.degRad;
