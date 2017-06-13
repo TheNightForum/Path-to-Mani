@@ -24,10 +24,10 @@ import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmColorUtil;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.GameDrawer;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.GameDrawer;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.planet.Planet;
-import old.tnf.ptm.game.PtmCam;
+import com.tnf.ptm.gfx.PtmCam;
 
 import java.util.ArrayList;
 

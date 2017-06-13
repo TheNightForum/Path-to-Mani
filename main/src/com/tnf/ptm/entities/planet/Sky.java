@@ -17,11 +17,9 @@ package com.tnf.ptm.entities.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.tnf.ptm.common.Const;
-import com.tnf.ptm.common.PtmColor;
-import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.*;
-import old.tnf.ptm.game.PtmObject;
+import com.tnf.ptm.common.*;
+import com.tnf.ptm.gfx.PtmCam;
+import com.tnf.ptm.common.PtmObject;
 import com.tnf.ptm.handler.dra.Dra;
 import com.tnf.ptm.handler.dra.DraLevel;
 import com.tnf.ptm.handler.dra.RectSprite;

@@ -19,8 +19,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.PtmObject;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmObject;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.ship.PtmShip;
 
 public class CollisionWarnDrawer extends WarnDrawer {

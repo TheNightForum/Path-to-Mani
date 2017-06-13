@@ -15,7 +15,7 @@
  */
 package com.tnf.ptm.screens.game;
 
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.ship.PtmShip;
 
 public class DmgWarnDrawer extends WarnDrawer {

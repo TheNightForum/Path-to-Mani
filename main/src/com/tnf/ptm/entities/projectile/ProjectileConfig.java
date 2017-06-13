@@ -18,7 +18,7 @@ package com.tnf.ptm.entities.projectile;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.assets.audio.PlayableSound;
-import old.tnf.ptm.game.DmgType;
+import com.tnf.ptm.common.DmgType;
 import com.tnf.ptm.gfx.particle.EffectConfig;
 
 public class ProjectileConfig {

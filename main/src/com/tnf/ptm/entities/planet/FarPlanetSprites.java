@@ -17,9 +17,9 @@ package com.tnf.ptm.entities.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.FarObj;
-import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.PtmObject;
+import com.tnf.ptm.common.FarObj;
+import com.tnf.ptm.common.PtmGame;
+import com.tnf.ptm.common.PtmObject;
 import com.tnf.ptm.handler.dra.Dra;
 import com.tnf.ptm.handler.dra.DraMan;
 

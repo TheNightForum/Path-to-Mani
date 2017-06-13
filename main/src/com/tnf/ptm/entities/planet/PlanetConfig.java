@@ -20,8 +20,8 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.handler.files.HullConfigManager;
 import com.tnf.ptm.entities.item.TradeConfig;
-import old.tnf.ptm.game.GameColors;
-import old.tnf.ptm.game.ShipConfig;
+import com.tnf.ptm.common.GameColors;
+import com.tnf.ptm.common.ShipConfig;
 import com.tnf.ptm.entities.item.ItemManager;
 
 import java.util.ArrayList;

@@ -17,10 +17,10 @@ package com.tnf.ptm.entities.asteroid;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.game.PtmObject;
-import old.tnf.ptm.game.RemoveController;
-import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.FarObj;
+import com.tnf.ptm.common.PtmObject;
+import com.tnf.ptm.common.RemoveController;
+import com.tnf.ptm.common.PtmGame;
+import com.tnf.ptm.common.FarObj;
 
 public class FarAsteroid implements FarObj {
     private final Vector2 myPos;

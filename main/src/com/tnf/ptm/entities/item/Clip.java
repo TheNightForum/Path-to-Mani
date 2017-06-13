@@ -19,7 +19,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.assets.Assets;
 import com.tnf.ptm.assets.json.Json;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.projectile.ProjectileConfig;
 import org.terasology.assets.ResourceUrn;
 

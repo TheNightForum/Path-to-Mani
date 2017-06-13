@@ -17,7 +17,7 @@ package com.tnf.ptm.screens.controlers;
 
 import com.badlogic.gdx.utils.TimeUtils;
 import com.tnf.ptm.common.PtmColor;
-import old.tnf.ptm.game.DebugOptions;
+import com.tnf.ptm.common.DebugOptions;
 
 import java.util.HashMap;
 import java.util.Iterator;

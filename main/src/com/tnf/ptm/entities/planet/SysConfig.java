@@ -16,7 +16,7 @@
 package com.tnf.ptm.entities.planet;
 
 import com.tnf.ptm.entities.item.TradeConfig;
-import old.tnf.ptm.game.ShipConfig;
+import com.tnf.ptm.common.ShipConfig;
 import com.tnf.ptm.entities.chunk.SpaceEnvConfig;
 
 import java.util.ArrayList;

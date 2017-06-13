@@ -17,7 +17,7 @@ package com.tnf.ptm.entities.planet;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonValue;
-import old.tnf.ptm.game.GameColors;
+import com.tnf.ptm.common.GameColors;
 
 public class SkyConfig {
     public final Color dawn;

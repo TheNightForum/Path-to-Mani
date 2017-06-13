@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package old.tnf.ptm.game.chunk;
+package com.tnf.ptm.entities.chunk;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
@@ -22,11 +22,11 @@ import com.tnf.ptm.common.Const;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.RemoveController;
-import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.dra.Dra;
-import old.tnf.ptm.game.dra.DraLevel;
-import old.tnf.ptm.game.dra.RectSprite;
+import com.tnf.ptm.common.RemoveController;
+import com.tnf.ptm.common.PtmGame;
+import com.tnf.ptm.handler.dra.Dra;
+import com.tnf.ptm.handler.dra.DraLevel;
+import com.tnf.ptm.handler.dra.RectSprite;
 import com.tnf.ptm.handler.input.AiPilot;
 import com.tnf.ptm.entities.planet.Planet;
 import com.tnf.ptm.entities.planet.PtmSystem;
@@ -34,11 +34,11 @@ import com.tnf.ptm.entities.planet.SysConfig;
 import com.tnf.ptm.entities.planet.SystemBelt;
 import com.tnf.ptm.entities.ship.FarShip;
 import com.tnf.ptm.entities.ship.hulls.HullConfig;
-import old.tnf.ptm.game.DebugOptions;
-import old.tnf.ptm.game.Faction;
-import old.tnf.ptm.game.ShipConfig;
+import com.tnf.ptm.common.DebugOptions;
+import com.tnf.ptm.entities.Faction;
+import com.tnf.ptm.common.ShipConfig;
 import com.tnf.ptm.entities.asteroid.FarAsteroid;
-import old.tnf.ptm.game.dra.FarDras;
+import com.tnf.ptm.handler.dra.FarDras;
 import com.tnf.ptm.handler.input.MoveDestProvider;
 import com.tnf.ptm.handler.input.Pilot;
 import com.tnf.ptm.handler.input.StillGuard;

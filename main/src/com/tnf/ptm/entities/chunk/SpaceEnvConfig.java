@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package old.tnf.ptm.game.chunk;
+package com.tnf.ptm.entities.chunk;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;

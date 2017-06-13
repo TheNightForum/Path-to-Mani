@@ -19,10 +19,10 @@ package com.tnf.ptm.entities.planet;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.DmgType;
-import old.tnf.ptm.game.FarObj;
-import old.tnf.ptm.game.PtmObject;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.DmgType;
+import com.tnf.ptm.common.FarObj;
+import com.tnf.ptm.common.PtmObject;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.handler.dra.Dra;
 
 import java.util.List;

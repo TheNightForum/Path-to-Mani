@@ -16,7 +16,7 @@
 
 package com.tnf.ptm.entities.item;
 
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 
 import java.util.List;
 

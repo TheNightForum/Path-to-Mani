@@ -18,11 +18,11 @@ package com.tnf.ptm.entities.item;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.assets.audio.PlayableSound;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.sound.OggSoundSet;
 import com.tnf.ptm.assets.Assets;
 import com.tnf.ptm.assets.json.Json;
-import old.tnf.ptm.game.DmgType;
+import com.tnf.ptm.common.DmgType;
 import com.tnf.ptm.sound.OggSoundManager;
 import org.terasology.assets.ResourceUrn;
 

@@ -16,7 +16,7 @@
 package com.tnf.ptm.entities.projectile;
 
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.ship.PtmShip;
 
 public interface ProjectileBody {

@@ -19,8 +19,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.common.Const;
 import com.tnf.ptm.common.Bound;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.HardnessCalc;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.HardnessCalc;
+import com.tnf.ptm.common.PtmGame;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -22,8 +22,8 @@ import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import com.tnf.ptm.common.PtmMath;
 import com.tnf.ptm.entities.planet.Planet;
-import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.PtmObject;
+import com.tnf.ptm.common.PtmGame;
+import com.tnf.ptm.common.PtmObject;
 import com.tnf.ptm.entities.ship.PtmShip;
 
 public class SmallObjAvoider {

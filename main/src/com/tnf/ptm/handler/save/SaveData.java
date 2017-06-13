@@ -18,7 +18,7 @@ package com.tnf.ptm.handler.save;
 
 import com.tnf.ptm.entities.planet.Planet;
 import com.tnf.ptm.entities.planet.PtmSystem;
-import old.tnf.ptm.game.FarObj;
+import com.tnf.ptm.common.FarObj;
 
 import java.util.ArrayList;
 import java.util.List;

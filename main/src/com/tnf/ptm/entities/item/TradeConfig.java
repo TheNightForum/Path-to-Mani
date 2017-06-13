@@ -17,7 +17,7 @@ package com.tnf.ptm.entities.item;
 
 import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.handler.files.HullConfigManager;
-import old.tnf.ptm.game.ShipConfig;
+import com.tnf.ptm.common.ShipConfig;
 import com.tnf.ptm.entities.ship.hulls.HullConfig;
 import org.terasology.assets.ResourceUrn;
 

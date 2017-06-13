@@ -17,8 +17,8 @@
 package com.tnf.ptm.entities.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import old.tnf.ptm.game.ShipConfig;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.ShipConfig;
+import com.tnf.ptm.common.PtmGame;
 
 public class MercItem implements PtmItem {
     private final ShipConfig myConfig;

@@ -17,7 +17,7 @@
 package com.tnf.ptm.entities.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 
 public class RepairItem implements PtmItem {
     public static final int LIFE_AMT = 20;

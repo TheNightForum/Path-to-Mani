@@ -18,7 +18,7 @@ package com.tnf.ptm.handler.input;
 
 import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.item.Engine;
 import com.tnf.ptm.entities.planet.Planet;
 import com.tnf.ptm.entities.planet.PlanetBind;

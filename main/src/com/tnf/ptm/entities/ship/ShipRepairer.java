@@ -17,7 +17,7 @@
 package com.tnf.ptm.entities.ship;
 
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.item.ItemContainer;
 import com.tnf.ptm.entities.item.RepairItem;
 import com.tnf.ptm.entities.ship.hulls.HullConfig;

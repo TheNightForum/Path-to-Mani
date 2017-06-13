@@ -22,9 +22,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.OrderedMap;
-import old.tnf.ptm.game.*;
-import com.tnf.ptm.common.DebugCol;
-import old.tnf.ptm.game.PtmObject;
+import com.tnf.ptm.common.*;
+import com.tnf.ptm.gfx.PtmCam;
+import com.tnf.ptm.handler.ObjectManager;
 
 import java.util.ArrayList;
 import java.util.Collection;

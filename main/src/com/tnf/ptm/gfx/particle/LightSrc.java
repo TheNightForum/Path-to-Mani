@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.common.PtmColorUtil;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.handler.dra.Dra;
 import com.tnf.ptm.handler.dra.DraLevel;
 import com.tnf.ptm.handler.dra.RectSprite;

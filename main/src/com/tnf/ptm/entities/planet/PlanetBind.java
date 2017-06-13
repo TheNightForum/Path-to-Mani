@@ -17,7 +17,7 @@ package com.tnf.ptm.entities.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 
 public class PlanetBind {
     private final Planet myPlanet;

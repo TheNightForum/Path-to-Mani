@@ -26,13 +26,13 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.tnf.ptm.common.Const;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.DmgType;
-import old.tnf.ptm.game.PtmObject;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.DmgType;
+import com.tnf.ptm.common.PtmObject;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.handler.dra.Dra;
 import com.tnf.ptm.handler.dra.DraLevel;
 import com.tnf.ptm.handler.dra.RectSprite;
-import old.tnf.ptm.game.FarObj;
+import com.tnf.ptm.common.FarObj;
 
 import java.util.ArrayList;
 import java.util.List;

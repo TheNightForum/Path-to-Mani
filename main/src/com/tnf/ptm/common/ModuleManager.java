@@ -24,7 +24,6 @@ import com.tnf.ptm.assets.audio.OggSound;
 import com.tnf.ptm.assets.emitters.Emitter;
 import com.tnf.ptm.assets.json.Json;
 import com.tnf.ptm.assets.textures.DSTexture;
-import old.tnf.ptm.game.DebugOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.assets.Asset;

@@ -18,11 +18,11 @@ package com.tnf.ptm.entities.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import old.tnf.ptm.game.AbilityCommonConfig;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.handler.AbilityCommonConfig;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.handler.dra.DraLevel;
 import com.tnf.ptm.entities.item.PtmItem;
-import old.tnf.ptm.game.PtmObject;
+import com.tnf.ptm.common.PtmObject;
 import com.tnf.ptm.entities.item.ItemManager;
 import com.tnf.ptm.gfx.particle.ParticleSrc;
 

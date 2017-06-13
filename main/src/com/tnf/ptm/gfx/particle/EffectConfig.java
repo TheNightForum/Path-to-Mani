@@ -19,7 +19,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.gfx.TextureManager;
-import old.tnf.ptm.game.GameColors;
+import com.tnf.ptm.common.GameColors;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

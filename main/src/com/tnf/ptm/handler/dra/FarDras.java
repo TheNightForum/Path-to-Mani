@@ -17,10 +17,10 @@
 package com.tnf.ptm.handler.dra;
 
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.game.FarObj;
-import old.tnf.ptm.game.PtmObject;
-import old.tnf.ptm.game.RemoveController;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.FarObj;
+import com.tnf.ptm.common.PtmObject;
+import com.tnf.ptm.common.RemoveController;
+import com.tnf.ptm.common.PtmGame;
 
 import java.util.List;
 

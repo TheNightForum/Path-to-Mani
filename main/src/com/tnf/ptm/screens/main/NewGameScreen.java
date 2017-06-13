@@ -24,7 +24,7 @@ import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
 import com.tnf.ptm.assets.Assets;
 import com.tnf.ptm.common.PtmColor;
-import old.tnf.ptm.game.SaveManager;
+import com.tnf.ptm.handler.SaveManager;
 import com.tnf.ptm.screens.controlers.PtmInputManager;
 import com.tnf.ptm.screens.controlers.UiDrawer;
 import org.terasology.assets.ResourceUrn;

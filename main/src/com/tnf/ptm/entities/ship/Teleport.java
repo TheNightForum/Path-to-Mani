@@ -22,9 +22,9 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.common.PtmMath;
 import com.tnf.ptm.entities.planet.Planet;
-import old.tnf.ptm.game.AbilityCommonConfig;
+import com.tnf.ptm.handler.AbilityCommonConfig;
 import com.tnf.ptm.entities.Faction;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.item.ItemManager;
 import com.tnf.ptm.entities.item.PtmItem;
 

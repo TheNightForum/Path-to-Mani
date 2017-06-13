@@ -22,7 +22,7 @@ import com.tnf.ptm.assets.audio.OggSound;
 import com.tnf.ptm.assets.emitters.Emitter;
 import com.tnf.ptm.assets.json.Json;
 import com.tnf.ptm.assets.textures.DSTexture;
-import old.tnf.ptm.game.DebugOptions;
+import com.tnf.ptm.common.DebugOptions;
 import org.terasology.assets.Asset;
 import org.terasology.assets.AssetData;
 import org.terasology.assets.ResourceUrn;

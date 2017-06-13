@@ -17,7 +17,7 @@
 package com.tnf.ptm.handler.input;
 
 import com.tnf.ptm.common.Const;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.screens.game.MainScreen;
 import com.tnf.ptm.entities.ship.FarShip;
 import com.tnf.ptm.entities.ship.PtmShip;

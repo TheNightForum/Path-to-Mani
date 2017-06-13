@@ -22,8 +22,8 @@ import com.tnf.ptm.entities.ship.PtmShip;
 import com.tnf.ptm.handler.input.Pilot;
 import com.tnf.ptm.entities.projectile.Projectile;
 import com.tnf.ptm.entities.Faction;
-import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.PtmObject;
+import com.tnf.ptm.common.PtmGame;
+import com.tnf.ptm.common.PtmObject;
 
 import java.util.List;
 

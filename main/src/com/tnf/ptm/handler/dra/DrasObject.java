@@ -17,12 +17,8 @@ package com.tnf.ptm.handler.dra;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.tnf.ptm.common.Const;
-import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.*;
+import com.tnf.ptm.common.*;
 import com.tnf.ptm.entities.planet.Planet;
-import com.tnf.ptm.common.Consumed;
-import old.tnf.ptm.game.PtmObject;
 
 import java.util.List;
 

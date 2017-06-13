@@ -22,13 +22,13 @@ import com.tnf.ptm.assets.audio.OggSound;
 import com.tnf.ptm.assets.audio.PlayableSound;
 import com.tnf.ptm.common.Nullable;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.GameDrawer;
-import old.tnf.ptm.game.PtmObject;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.GameDrawer;
+import com.tnf.ptm.common.PtmObject;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.planet.Planet;
 import com.tnf.ptm.entities.ship.PtmShip;
 import com.tnf.ptm.assets.Assets;
-import old.tnf.ptm.game.DebugOptions;
+import com.tnf.ptm.common.DebugOptions;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.HashMap;

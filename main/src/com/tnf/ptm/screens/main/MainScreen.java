@@ -27,7 +27,7 @@ import com.tnf.ptm.screens.controlers.PtmUiScreen;
 import com.tnf.ptm.screens.controlers.UiDrawer;
 import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.assets.Assets;
-import old.tnf.ptm.game.DebugOptions;
+import com.tnf.ptm.common.DebugOptions;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package old.tnf.ptm.game.particle;
+package com.tnf.ptm.gfx.particle;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
@@ -23,11 +23,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.GameDrawer;
-import old.tnf.ptm.game.PtmObject;
-import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.dra.Dra;
-import old.tnf.ptm.game.dra.DraLevel;
+import com.tnf.ptm.common.GameDrawer;
+import com.tnf.ptm.common.PtmObject;
+import com.tnf.ptm.common.PtmGame;
+import com.tnf.ptm.handler.dra.Dra;
+import com.tnf.ptm.handler.dra.DraLevel;
 import com.tnf.ptm.entities.planet.Planet;
 
 public class ParticleSrc implements Dra {

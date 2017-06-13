@@ -29,7 +29,7 @@ import com.tnf.ptm.common.PtmMath;
 import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
 import com.tnf.ptm.common.PtmColor;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.sound.OggSoundManager;
 
 import java.util.ArrayList;

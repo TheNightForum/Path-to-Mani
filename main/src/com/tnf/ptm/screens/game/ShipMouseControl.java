@@ -18,11 +18,11 @@ package com.tnf.ptm.screens.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.ship.PtmShip;
 import com.tnf.ptm.screens.controlers.PtmInputManager;
 import com.tnf.ptm.PtmApplication;
-import old.tnf.ptm.game.BeaconHandler;
+import com.tnf.ptm.handler.BeaconHandler;
 
 public class ShipMouseControl implements ShipUiControl {
     private final TextureAtlas.AtlasRegion myMoveCursor;

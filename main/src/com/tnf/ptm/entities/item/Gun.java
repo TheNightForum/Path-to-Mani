@@ -19,13 +19,13 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.assets.audio.PlayableSound;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.DmgType;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.DmgType;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.projectile.ProjectileConfig;
 import com.tnf.ptm.sound.OggSoundSet;
 import com.tnf.ptm.assets.Assets;
 import com.tnf.ptm.assets.json.Json;
-import old.tnf.ptm.game.HardnessCalc;
+import com.tnf.ptm.common.HardnessCalc;
 import com.tnf.ptm.sound.OggSoundManager;
 import org.terasology.assets.ResourceUrn;
 

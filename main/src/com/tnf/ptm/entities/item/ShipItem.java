@@ -18,7 +18,7 @@ package com.tnf.ptm.entities.item;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.ship.hulls.HullConfig;
 
 public class ShipItem implements PtmItem {

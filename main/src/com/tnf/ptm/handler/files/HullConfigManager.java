@@ -22,7 +22,7 @@ import com.tnf.ptm.entities.item.Engine;
 import com.tnf.ptm.entities.ship.Teleport;
 import com.tnf.ptm.assets.Assets;
 import com.tnf.ptm.assets.json.Json;
-import old.tnf.ptm.game.AbilityCommonConfigs;
+import com.tnf.ptm.handler.AbilityCommonConfigs;
 import com.tnf.ptm.entities.item.ItemManager;
 import com.tnf.ptm.entities.ship.AbilityConfig;
 import com.tnf.ptm.entities.ship.EmWave;

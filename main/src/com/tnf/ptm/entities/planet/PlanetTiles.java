@@ -20,8 +20,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmMath;
 import com.tnf.ptm.assets.Assets;
-import old.tnf.ptm.game.CollisionMeshLoader;
-import old.tnf.ptm.game.DebugOptions;
+import com.tnf.ptm.common.CollisionMeshLoader;
+import com.tnf.ptm.common.DebugOptions;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

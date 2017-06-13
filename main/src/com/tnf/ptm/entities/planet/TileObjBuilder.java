@@ -24,7 +24,7 @@ import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;
 import com.tnf.ptm.handler.dra.RectSprite;
 import com.tnf.ptm.common.Const;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.handler.dra.DraLevel;
 
 import java.util.ArrayList;

@@ -17,7 +17,7 @@ package com.tnf.ptm.screens.game;
 
 import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.item.ItemContainer;
 import com.tnf.ptm.entities.item.PtmItem;
 import com.tnf.ptm.entities.ship.PtmShip;

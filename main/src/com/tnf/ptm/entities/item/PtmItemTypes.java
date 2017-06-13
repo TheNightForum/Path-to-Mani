@@ -18,7 +18,7 @@ package com.tnf.ptm.entities.item;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.assets.audio.OggSound;
-import old.tnf.ptm.game.GameColors;
+import com.tnf.ptm.common.GameColors;
 import com.tnf.ptm.sound.OggSoundManager;
 import com.tnf.ptm.assets.Assets;
 import com.tnf.ptm.assets.json.Json;

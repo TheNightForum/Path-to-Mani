@@ -17,9 +17,9 @@ package com.tnf.ptm.sound;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
-import old.tnf.ptm.game.GameDrawer;
-import old.tnf.ptm.game.PtmObject;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.GameDrawer;
+import com.tnf.ptm.common.PtmObject;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.common.DebugCol;
 
 import java.util.HashMap;

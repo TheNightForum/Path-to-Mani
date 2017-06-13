@@ -19,9 +19,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmColor;
-import old.tnf.ptm.game.GameDrawer;
-import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.PtmCam;
+import com.tnf.ptm.common.GameDrawer;
+import com.tnf.ptm.common.PtmGame;
+import com.tnf.ptm.gfx.PtmCam;
 
 public class PlanetCoreSingleton {
     private final TextureAtlas.AtlasRegion myTex;

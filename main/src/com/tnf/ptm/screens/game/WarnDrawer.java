@@ -19,7 +19,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
 import com.tnf.ptm.common.Const;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.screens.controlers.FontSize;
 import com.tnf.ptm.screens.controlers.UiDrawer;

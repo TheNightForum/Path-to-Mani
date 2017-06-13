@@ -18,8 +18,8 @@ package com.tnf.ptm.entities.maze;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.game.CollisionMeshLoader;
-import old.tnf.ptm.game.DebugOptions;
+import com.tnf.ptm.common.CollisionMeshLoader;
+import com.tnf.ptm.common.DebugOptions;
 import com.tnf.ptm.entities.asteroid.AsteroidBuilder;
 
 import java.util.ArrayList;

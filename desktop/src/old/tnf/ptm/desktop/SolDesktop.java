@@ -21,7 +21,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.tnf.ptm.common.PtmFileReader;
 import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
-import old.tnf.ptm.game.DebugOptions;
+import com.tnf.ptm.common.DebugOptions;
 import com.tnf.ptm.sound.SoundTestListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

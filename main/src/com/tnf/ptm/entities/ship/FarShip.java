@@ -18,9 +18,9 @@ package com.tnf.ptm.entities.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.entities.item.Engine;
-import old.tnf.ptm.game.FarObj;
-import old.tnf.ptm.game.RemoveController;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.FarObj;
+import com.tnf.ptm.common.RemoveController;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.handler.input.Pilot;
 import com.tnf.ptm.entities.item.Armor;
 import com.tnf.ptm.entities.item.Gun;

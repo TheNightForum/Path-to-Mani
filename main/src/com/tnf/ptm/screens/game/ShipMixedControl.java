@@ -25,7 +25,7 @@ import com.tnf.ptm.entities.ship.PtmShip;
 import com.tnf.ptm.screens.controlers.PtmUiControl;
 import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.handler.input.Mover;
 import com.tnf.ptm.screens.controlers.PtmInputManager;
 

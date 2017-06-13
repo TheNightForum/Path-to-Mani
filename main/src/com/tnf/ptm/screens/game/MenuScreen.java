@@ -19,7 +19,7 @@ import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.screens.controlers.PtmUiScreen;
 import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.screens.main.MenuLayout;
 import com.tnf.ptm.screens.controlers.PtmInputManager;
 import com.tnf.ptm.screens.controlers.PtmUiControl;

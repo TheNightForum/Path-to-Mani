@@ -25,12 +25,12 @@ import com.tnf.ptm.common.Const;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.RemoveController;
-import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.dra.Dra;
-import old.tnf.ptm.game.dra.DraLevel;
-import old.tnf.ptm.game.dra.RectSprite;
-import old.tnf.ptm.game.CollisionMeshLoader;
+import com.tnf.ptm.common.RemoveController;
+import com.tnf.ptm.common.PtmGame;
+import com.tnf.ptm.handler.dra.Dra;
+import com.tnf.ptm.handler.dra.DraLevel;
+import com.tnf.ptm.handler.dra.RectSprite;
+import com.tnf.ptm.common.CollisionMeshLoader;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

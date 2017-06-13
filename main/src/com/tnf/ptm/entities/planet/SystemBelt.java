@@ -16,7 +16,7 @@
 package com.tnf.ptm.entities.planet;
 
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.game.HardnessCalc;
+import com.tnf.ptm.common.HardnessCalc;
 
 public class SystemBelt {
     private final Float myHalfWidth;

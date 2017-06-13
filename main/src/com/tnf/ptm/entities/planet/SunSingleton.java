@@ -22,10 +22,10 @@ import com.tnf.ptm.common.Const;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmColor;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.DmgType;
-import old.tnf.ptm.game.PtmObject;
-import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.GameDrawer;
+import com.tnf.ptm.common.DmgType;
+import com.tnf.ptm.common.PtmObject;
+import com.tnf.ptm.common.PtmGame;
+import com.tnf.ptm.common.GameDrawer;
 
 public class SunSingleton {
     public static final float SUN_HOT_RAD = .75f * Const.SUN_RADIUS;

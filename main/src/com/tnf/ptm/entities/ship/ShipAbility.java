@@ -16,8 +16,8 @@
 
 package com.tnf.ptm.entities.ship;
 
-import old.tnf.ptm.game.AbilityCommonConfig;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.handler.AbilityCommonConfig;
+import com.tnf.ptm.common.PtmGame;
 
 public interface ShipAbility {
     boolean update(PtmGame game, PtmShip owner, boolean tryToUse);

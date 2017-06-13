@@ -19,8 +19,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.common.Const;
 import com.tnf.ptm.common.PtmMath;
 import com.tnf.ptm.entities.maze.MazeConfigs;
-import old.tnf.ptm.game.DebugOptions;
-import old.tnf.ptm.game.PtmNames;
+import com.tnf.ptm.common.DebugOptions;
+import com.tnf.ptm.common.PtmNames;
 import com.tnf.ptm.entities.maze.Maze;
 import com.tnf.ptm.entities.maze.MazeConfig;
 

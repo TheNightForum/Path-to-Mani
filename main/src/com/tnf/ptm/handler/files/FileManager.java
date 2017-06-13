@@ -18,7 +18,7 @@ package com.tnf.ptm.handler.files;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import old.tnf.ptm.game.DebugOptions;
+import com.tnf.ptm.common.DebugOptions;
 
 /**
  * Singleton class that can provide file handles to various directories.

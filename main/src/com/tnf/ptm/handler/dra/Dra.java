@@ -19,9 +19,9 @@ package com.tnf.ptm.handler.dra;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.game.GameDrawer;
-import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.game.PtmObject;
+import com.tnf.ptm.common.GameDrawer;
+import com.tnf.ptm.common.PtmGame;
+import com.tnf.ptm.common.PtmObject;
 
 //TODO Dra?
 public interface Dra {

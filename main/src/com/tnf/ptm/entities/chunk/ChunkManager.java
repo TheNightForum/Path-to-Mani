@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package old.tnf.ptm.game.chunk;
+package com.tnf.ptm.entities.chunk;
 
 import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.common.Const;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.game.RemoveController;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.RemoveController;
+import com.tnf.ptm.common.PtmGame;
 
 import java.util.HashSet;
 import java.util.Iterator;

@@ -18,7 +18,7 @@ package com.tnf.ptm.screens.game;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.common.Const;
-import old.tnf.ptm.game.PtmGame;
+import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.entities.planet.Planet;
 import com.tnf.ptm.entities.planet.PtmSystem;
 import com.tnf.ptm.screens.controlers.UiDrawer;
