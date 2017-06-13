@@ -22,8 +22,7 @@ import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
 import com.tnf.ptm.common.GameOptions;
 import com.tnf.ptm.PtmApplication;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.tnf.ptm.handler.Logger;
 
 // XBOX 360 Button Mapping
 // 0 = Up
@@ -51,7 +50,7 @@ import org.slf4j.LoggerFactory;
 // 5 = Right Vertical
 
 public class ShipControllerControl implements ShipUiControl {
-    private static Logger logger = LoggerFactory.getLogger(ShipControllerControl.class);
+    private static Logger logger = new Logger();
 
     private boolean controllerShoot;
     private boolean controllerShoot2;
@@ -67,10 +66,10 @@ public class ShipControllerControl implements ShipUiControl {
         Controllers.clearListeners();
 
         // print the currently connected controllers to the console
-        logger.debug("Controllers Size: {}", Controllers.getControllers().size);
+        logger.printDebug(String.format("Controllers Size: {}", Controllers.getControllers().size));
         int i = 0;
         for (Controller controller : Controllers.getControllers()) {
-            logger.debug("#{}:{}", i++, controller.getName());
+            logger.printDebug(String.format("#{}:{}", i++, controller.getName()));
         }
 
         // setup the listener that prints events to the console
@@ -164,19 +163,19 @@ public class ShipControllerControl implements ShipUiControl {
 
             @Override
             public boolean povMoved(Controller controller, int povIndex, PovDirection value) {
-                logger.debug("#{}, pov {}: {}", indexOf(controller), povIndex, value);
+                logger.printDebug(String.format("#{}, pov {}: {}", indexOf(controller), povIndex, value));
                 return false;
             }
 
             @Override
             public boolean xSliderMoved(Controller controller, int sliderIndex, boolean value) {
-                logger.debug("#{},  x slider  {}: {}", indexOf(controller), sliderIndex, value);
+                logger.printDebug(String.format("#{},  x slider  {}: {}", indexOf(controller), sliderIndex, value));
                 return false;
             }
 
             @Override
             public boolean ySliderMoved(Controller controller, int sliderIndex, boolean value) {
-                logger.debug("#{},  y slider  {}: {}", indexOf(controller), sliderIndex, value);
+                logger.printDebug(String.format("#{},  y slider  {}: {}", indexOf(controller), sliderIndex, value));
                 return false;
             }
 
