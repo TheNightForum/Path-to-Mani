@@ -28,7 +28,7 @@ public class Logger {
     public static final String NORMAL =  "       ";
     public static final String WARNING = "WARNING";
     public static final String ERROR =   "!ERROR!";
-    public static final String MODULE =  "MODULE";
+    public static final String MODULE =  "MODULE ";
     private static final String DEBUG =  "DEBUG";
     private static boolean debugEnabled = false;
 
@@ -73,6 +73,10 @@ public class Logger {
 
     public static void printLine(int inputInt) {
         printLine(Integer.toString(inputInt));
+    }
+
+    public static void printLine(String inputString, int i){
+        System.out.println("         | " + inputString + i);
     }
 
     public static void enabledDebug(){

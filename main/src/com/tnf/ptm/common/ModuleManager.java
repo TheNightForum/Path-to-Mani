@@ -24,8 +24,7 @@ import com.tnf.ptm.assets.audio.OggSound;
 import com.tnf.ptm.assets.emitters.Emitter;
 import com.tnf.ptm.assets.json.Json;
 import com.tnf.ptm.assets.textures.DSTexture;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.tnf.ptm.handler.Logger;
 import org.terasology.assets.Asset;
 import org.terasology.assets.ResourceUrn;
 import org.terasology.module.ClasspathModule;
@@ -48,7 +47,7 @@ import java.nio.file.Paths;
 import java.util.Set;
 
 public class ModuleManager {
-    private static Logger logger = LoggerFactory.getLogger(ModuleManager.class);
+    private static Logger logger = new Logger();
 
     private StandardPermissionProviderFactory permissionProviderFactory = new StandardPermissionProviderFactory();
     private ModuleEnvironment environment;
@@ -117,7 +116,7 @@ public class ModuleManager {
         for (Module module : registry) {
             String moduleName = module.getId().toString();
 
-            logger.info("Module Discovered: {}", module.toString());
+            logger.printLine("Module Discovered: " + module.toString(), Logger.MODULE);
 
             int armors = 0;
             int abilityCharges = 0;
@@ -191,25 +190,25 @@ public class ModuleManager {
                 }
             }
 
-            logger.info("\t-Items:");
-            logger.info("\t\t-Armors: {}", armors);
-            logger.info("\t\t-AbilityCharges: {}", abilityCharges);
-            logger.info("\t\t-Clips: {}", clips);
-            logger.info("\t\t-Engines: {}", engines);
-            logger.info("\t\t-Shields: {}", shields);
-            logger.info("\t\t-Others: {}", jsonOthers);
+            logger.printLine("\t-Items:");
+            logger.printLine("\t\t-Armors: ", armors);
+            logger.printLine("\t\t-AbilityCharges: ", abilityCharges);
+            logger.printLine("\t\t-Clips: ", clips);
+            logger.printLine("\t\t-Engines: ", engines);
+            logger.printLine("\t\t-Shields: ", shields);
+            logger.printLine("\t\t-Others: ", jsonOthers);
 
-            logger.info("\t-Atlas: {}", atlas);
+            logger.printLine("\t-Atlas: ", atlas);
 
-            logger.info("\t-Emitters: {}", emitters);
+            logger.printLine("\t-Emitters: ", emitters);
 
-            logger.info("\t-Sounds: {}", sounds);
+            logger.printLine("\t-Sounds: ", sounds);
 
-            logger.info("\t-Music: {}", music);
+            logger.printLine("\t-Music: ", music);
 
-            logger.info("\t-Textures: {}", textures);
+            logger.printLine("\t-Textures: ", textures);
 
-            logger.info("");
+            logger.printLine("");
         }
     }
 }
