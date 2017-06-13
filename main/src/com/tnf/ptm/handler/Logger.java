@@ -83,6 +83,10 @@ public class Logger {
         debugEnabled = true;
     }
 
+    public static void disableDebug(){
+        debugEnabled = false;
+    }
+
     public static boolean isInDebug(){
         return debugEnabled;
     }
