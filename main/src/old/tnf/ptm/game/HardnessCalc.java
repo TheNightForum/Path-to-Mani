@@ -15,7 +15,7 @@
  */
 package old.tnf.ptm.game;
 
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.maze.MazeConfig;
 import old.tnf.ptm.game.planet.PlanetConfig;
 import old.tnf.ptm.game.planet.SysConfig;

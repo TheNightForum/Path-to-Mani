@@ -15,7 +15,7 @@
  */
 package old.tnf.ptm.game.planet;
 
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 
 import java.util.ArrayList;
 import java.util.List;

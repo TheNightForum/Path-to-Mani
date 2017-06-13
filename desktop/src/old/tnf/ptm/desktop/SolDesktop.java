@@ -20,7 +20,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import old.tnf.ptm.PtmFileReader;
 import old.tnf.ptm.GameOptions;
-import old.tnf.ptm.PtmApplication;
+import com.tnf.ptm.PtmApplication;
 import old.tnf.ptm.game.DebugOptions;
 import old.tnf.ptm.soundtest.SoundTestListener;
 import org.slf4j.Logger;
@@ -63,7 +63,7 @@ public class SolDesktop {
             applicationConfig.fullscreen = d.fullscreen;
         }
 
-        applicationConfig.title = "Destination Sol";
+        applicationConfig.title = "Path to Mani";
         if (DebugOptions.DEV_ROOT_PATH == null) {
             applicationConfig.addIcon("res/icon.png", Files.FileType.Internal);
         } else {

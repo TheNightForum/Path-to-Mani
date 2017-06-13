@@ -18,8 +18,8 @@ package old.tnf.ptm.ui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
-import old.tnf.ptm.PtmApplication;
-import old.tnf.ptm.common.PtmColor;
+import com.tnf.ptm.PtmApplication;
+import com.tnf.ptm.common.PtmColor;
 
 public class PtmUiControl {
     private final int[] myKeys;

@@ -16,8 +16,8 @@
 package old.tnf.ptm.game;
 
 import com.badlogic.gdx.graphics.Color;
-import old.tnf.ptm.common.PtmColorUtil;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmColorUtil;
+import com.tnf.ptm.common.PtmMath;
 
 public abstract class ColorSpan {
 

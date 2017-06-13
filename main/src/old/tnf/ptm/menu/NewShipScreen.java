@@ -17,12 +17,12 @@
 package old.tnf.ptm.menu;
 
 import com.badlogic.gdx.Input;
-import old.tnf.ptm.common.PtmColor;
+import com.tnf.ptm.common.PtmColor;
 import old.tnf.ptm.ui.PtmInputManager;
 import old.tnf.ptm.ui.PtmUiControl;
 import old.tnf.ptm.ui.PtmUiScreen;
 import old.tnf.ptm.GameOptions;
-import old.tnf.ptm.PtmApplication;
+import com.tnf.ptm.PtmApplication;
 import old.tnf.ptm.ui.FontSize;
 import old.tnf.ptm.ui.UiDrawer;
 

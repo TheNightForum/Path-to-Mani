@@ -15,10 +15,10 @@
  */
 package old.tnf.ptm.game.screens;
 
-import old.tnf.ptm.common.PtmColor;
+import com.tnf.ptm.common.PtmColor;
 import old.tnf.ptm.ui.PtmUiScreen;
 import old.tnf.ptm.GameOptions;
-import old.tnf.ptm.PtmApplication;
+import com.tnf.ptm.PtmApplication;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.menu.MenuLayout;
 import old.tnf.ptm.ui.PtmInputManager;

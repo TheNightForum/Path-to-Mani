@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package old.tnf.ptm;
+package com.tnf.ptm;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
@@ -21,8 +21,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.physics.box2d.Box2D;
-import old.tnf.ptm.common.PtmColor;
-import old.tnf.ptm.common.PtmMath;
+import old.tnf.ptm.*;
+import com.tnf.ptm.common.PtmColor;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.game.sound.OggMusicManager;
 import old.tnf.ptm.menu.MenuScreens;

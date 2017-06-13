@@ -16,7 +16,7 @@
 package old.tnf.ptm.ui;
 
 import com.badlogic.gdx.math.Rectangle;
-import old.tnf.ptm.common.PtmColor;
+import com.tnf.ptm.common.PtmColor;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.game.item.PtmItem;
 import old.tnf.ptm.game.screens.GameScreens;

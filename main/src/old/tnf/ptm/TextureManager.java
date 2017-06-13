@@ -18,7 +18,7 @@ package old.tnf.ptm;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

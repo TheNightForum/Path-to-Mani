@@ -15,7 +15,7 @@
  */
 package old.tnf.ptm.ui;
 
-import old.tnf.ptm.PtmApplication;
+import com.tnf.ptm.PtmApplication;
 
 import java.util.List;
 

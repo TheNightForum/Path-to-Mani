@@ -19,7 +19,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import old.tnf.ptm.TextureManager;
-import old.tnf.ptm.common.PtmColor;
+import com.tnf.ptm.common.PtmColor;
 
 public class GridDrawer {
 

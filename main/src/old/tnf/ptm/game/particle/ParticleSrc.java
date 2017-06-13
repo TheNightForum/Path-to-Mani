@@ -22,7 +22,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.GameDrawer;
 import old.tnf.ptm.game.PtmObject;
 import old.tnf.ptm.game.PtmGame;

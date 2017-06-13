@@ -20,7 +20,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import old.tnf.ptm.game.GameDrawer;
 import old.tnf.ptm.game.PtmObject;
 import old.tnf.ptm.game.PtmGame;
-import old.tnf.ptm.common.DebugCol;
+import com.tnf.ptm.common.DebugCol;
 
 import java.util.HashMap;
 import java.util.Iterator;

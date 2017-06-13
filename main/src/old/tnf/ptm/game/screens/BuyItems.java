@@ -18,7 +18,7 @@ package old.tnf.ptm.game.screens;
 
 import old.tnf.ptm.ui.PtmUiControl;
 import old.tnf.ptm.GameOptions;
-import old.tnf.ptm.PtmApplication;
+import com.tnf.ptm.PtmApplication;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.game.item.ItemContainer;
 import old.tnf.ptm.game.item.PtmItem;

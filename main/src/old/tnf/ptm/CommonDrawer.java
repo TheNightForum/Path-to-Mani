@@ -26,7 +26,7 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import old.tnf.ptm.assets.Assets;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import org.terasology.assets.ResourceUrn;
 
 public class CommonDrawer {

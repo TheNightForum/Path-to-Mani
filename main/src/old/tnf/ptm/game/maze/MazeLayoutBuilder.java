@@ -16,7 +16,7 @@
 
 package old.tnf.ptm.game.maze;
 
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 
 public class MazeLayoutBuilder {
     public static final float HOLE_PERC = .2f;

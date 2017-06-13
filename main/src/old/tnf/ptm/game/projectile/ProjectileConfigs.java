@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import old.tnf.ptm.TextureManager;
 import old.tnf.ptm.assets.audio.OggSound;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.DmgType;
 import old.tnf.ptm.assets.Assets;
 import old.tnf.ptm.assets.json.Json;

@@ -17,7 +17,7 @@ package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.math.Vector2;
 import old.tnf.ptm.Const;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.maze.MazeConfigs;
 import old.tnf.ptm.game.DebugOptions;
 import old.tnf.ptm.game.PtmNames;

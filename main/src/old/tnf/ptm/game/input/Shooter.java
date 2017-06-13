@@ -17,7 +17,7 @@
 package old.tnf.ptm.game.input;
 
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.gun.GunMount;
 import old.tnf.ptm.game.item.Gun;
 import old.tnf.ptm.game.projectile.ProjectileConfig;

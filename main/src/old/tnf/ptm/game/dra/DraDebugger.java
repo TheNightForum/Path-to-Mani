@@ -18,12 +18,12 @@ package old.tnf.ptm.game.dra;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.common.PtmColor;
+import com.tnf.ptm.common.PtmColor;
 import old.tnf.ptm.game.DebugOptions;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.ui.FontSize;
 import old.tnf.ptm.ui.UiDrawer;
-import old.tnf.ptm.common.DebugCol;
+import com.tnf.ptm.common.DebugCol;
 
 import java.util.HashSet;
 import java.util.Set;

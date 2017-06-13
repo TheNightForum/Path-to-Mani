@@ -19,7 +19,7 @@ package old.tnf.ptm.menu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import old.tnf.ptm.PtmApplication;
+import com.tnf.ptm.PtmApplication;
 import old.tnf.ptm.ui.PtmInputManager;
 import old.tnf.ptm.ui.PtmUiControl;
 import old.tnf.ptm.ui.UiDrawer;

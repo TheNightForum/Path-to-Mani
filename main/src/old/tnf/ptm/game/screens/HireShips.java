@@ -17,8 +17,8 @@ package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.math.Vector2;
 import old.tnf.ptm.Const;
-import old.tnf.ptm.PtmApplication;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.PtmApplication;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.ShipConfig;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.game.input.AiPilot;

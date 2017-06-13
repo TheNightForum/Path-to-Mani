@@ -18,8 +18,8 @@ package old.tnf.ptm.menu;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import old.tnf.ptm.PtmApplication;
-import old.tnf.ptm.common.PtmColor;
+import com.tnf.ptm.PtmApplication;
+import com.tnf.ptm.common.PtmColor;
 import old.tnf.ptm.assets.Assets;
 import old.tnf.ptm.ui.FontSize;
 import old.tnf.ptm.ui.PtmInputManager;

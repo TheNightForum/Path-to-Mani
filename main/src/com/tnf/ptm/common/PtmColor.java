@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package old.tnf.ptm.common;
+package com.tnf.ptm.common;
 
 import com.badlogic.gdx.graphics.Color;
 

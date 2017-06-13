@@ -18,7 +18,7 @@ package old.tnf.ptm.game.item;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
 import old.tnf.ptm.assets.audio.PlayableSound;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.DmgType;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.game.projectile.ProjectileConfig;

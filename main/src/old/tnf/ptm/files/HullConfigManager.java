@@ -17,7 +17,7 @@ package old.tnf.ptm.files;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.item.Engine;
 import old.tnf.ptm.game.ship.Teleport;
 import old.tnf.ptm.assets.Assets;

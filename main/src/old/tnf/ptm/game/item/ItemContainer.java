@@ -17,7 +17,7 @@
 package old.tnf.ptm.game.item;
 
 import old.tnf.ptm.Const;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 
 import java.util.ArrayList;
 import java.util.HashSet;

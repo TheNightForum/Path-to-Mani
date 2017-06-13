@@ -15,7 +15,7 @@
  */
 package old.tnf.ptm.game.planet;
 
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 
 public class GroundBuilder {
     private static final int PURE_GROUND_ROWS = 0;

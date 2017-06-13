@@ -16,7 +16,7 @@
 
 package old.tnf.ptm.game.input;
 
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.item.PtmItem;
 import old.tnf.ptm.game.ship.PtmShip;
 import old.tnf.ptm.game.ship.ShipAbility;

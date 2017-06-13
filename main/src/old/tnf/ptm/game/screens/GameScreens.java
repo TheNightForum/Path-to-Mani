@@ -16,7 +16,7 @@
 package old.tnf.ptm.game.screens;
 
 import old.tnf.ptm.ui.PtmLayouts;
-import old.tnf.ptm.PtmApplication;
+import com.tnf.ptm.PtmApplication;
 
 public class GameScreens {
     public final MainScreen mainScreen;

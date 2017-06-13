@@ -17,7 +17,7 @@ package old.tnf.ptm.ui;
 
 import com.badlogic.gdx.utils.TimeUtils;
 import old.tnf.ptm.game.screens.BorderDrawer;
-import old.tnf.ptm.common.PtmColor;
+import com.tnf.ptm.common.PtmColor;
 import old.tnf.ptm.game.DebugOptions;
 
 import java.util.HashMap;

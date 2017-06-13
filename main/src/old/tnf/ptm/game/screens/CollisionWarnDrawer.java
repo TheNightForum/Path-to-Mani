@@ -18,7 +18,7 @@ package old.tnf.ptm.game.screens;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.PtmObject;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.game.ship.PtmShip;

@@ -18,8 +18,8 @@ package old.tnf.ptm.game.gun;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.common.PtmColor;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmColor;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.PtmObject;
 import old.tnf.ptm.game.dra.RectSprite;
 import old.tnf.ptm.game.item.Clip;

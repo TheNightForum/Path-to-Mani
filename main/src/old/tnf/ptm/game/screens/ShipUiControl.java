@@ -16,7 +16,7 @@
 package old.tnf.ptm.game.screens;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import old.tnf.ptm.PtmApplication;
+import com.tnf.ptm.PtmApplication;
 
 public interface ShipUiControl {
     default void update(PtmApplication ptmApplication, boolean enabled) {

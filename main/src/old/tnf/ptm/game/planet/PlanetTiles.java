@@ -18,7 +18,7 @@ package old.tnf.ptm.game.planet;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import old.tnf.ptm.TextureManager;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.assets.Assets;
 import old.tnf.ptm.game.CollisionMeshLoader;
 import old.tnf.ptm.game.DebugOptions;

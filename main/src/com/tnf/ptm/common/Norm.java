@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package old.tnf.ptm.common;
+package com.tnf.ptm.common;
 
 import java.lang.annotation.Documented;
 
 /**
- * Annotated variable can be null, param can be null, method can return null.
+ * When used for annotating methods, indicates that the returned float value is an angle and is normalized (-180 < a && a <= 180)
+ * When used for annotating params, indicates that the param angle must be normalized
  */
 @Documented
-public @interface Nullable {
+public @interface Norm {
+
 }

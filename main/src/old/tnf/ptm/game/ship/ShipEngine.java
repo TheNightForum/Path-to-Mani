@@ -18,7 +18,7 @@ package old.tnf.ptm.game.ship;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.game.item.Engine;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.game.PtmObject;

@@ -16,7 +16,7 @@
 package old.tnf.ptm.game.screens;
 
 import old.tnf.ptm.GameOptions;
-import old.tnf.ptm.PtmApplication;
+import com.tnf.ptm.PtmApplication;
 import old.tnf.ptm.game.item.Gun;
 import old.tnf.ptm.game.ship.PtmShip;
 import old.tnf.ptm.ui.PtmUiControl;

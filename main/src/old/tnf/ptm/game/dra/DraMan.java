@@ -23,7 +23,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.OrderedMap;
 import old.tnf.ptm.game.*;
-import old.tnf.ptm.common.DebugCol;
+import com.tnf.ptm.common.DebugCol;
 import old.tnf.ptm.game.PtmObject;
 
 import java.util.ArrayList;

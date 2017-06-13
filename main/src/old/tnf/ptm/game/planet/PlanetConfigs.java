@@ -17,7 +17,7 @@ package old.tnf.ptm.game.planet;
 
 import com.badlogic.gdx.utils.JsonValue;
 import old.tnf.ptm.TextureManager;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 import old.tnf.ptm.files.HullConfigManager;
 import old.tnf.ptm.assets.Assets;
 import old.tnf.ptm.assets.json.Json;

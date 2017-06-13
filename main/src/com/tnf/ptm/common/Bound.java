@@ -14,18 +14,16 @@
  * limitations under the License.
  */
 
-package old.tnf.ptm.common;
+package com.tnf.ptm.common;
 
 import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Target;
 
 /**
- * Used to indicate that the value of a parameter/variable is not allowed to be null.
- * When used on a method, it means that the method should never return a null value.
+ * When used for annotating methods, indicates that the returned Vector is bound.
+ * Bound vectors should be freed before leaving the method. They should not be used after they are freed.
+ * When used for annotating params, indicates that the param Vector is bound and should be freed in the method
+ * (or passed into another method that requires the bound Vector)
  */
 @Documented
-@Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.LOCAL_VARIABLE, ElementType.METHOD})
-public @interface NotNull {
-
+public @interface Bound {
 }

@@ -16,7 +16,7 @@
 package old.tnf.ptm.game.sound;
 
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.common.Nullable;
+import com.tnf.ptm.common.Nullable;
 import old.tnf.ptm.game.PtmGame;
 import old.tnf.ptm.game.GameDrawer;
 import old.tnf.ptm.game.PtmObject;

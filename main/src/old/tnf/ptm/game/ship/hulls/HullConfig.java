@@ -17,7 +17,7 @@ package old.tnf.ptm.game.ship.hulls;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import old.tnf.ptm.common.Immutable;
+import com.tnf.ptm.common.Immutable;
 import old.tnf.ptm.game.item.Engine;
 import old.tnf.ptm.game.ship.AbilityConfig;
 

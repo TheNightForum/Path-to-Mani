@@ -17,7 +17,7 @@ package old.tnf.ptm.game.sound;
 
 import old.tnf.ptm.assets.audio.PlayableSound;
 import old.tnf.ptm.assets.audio.OggSound;
-import old.tnf.ptm.common.PtmMath;
+import com.tnf.ptm.common.PtmMath;
 
 import java.util.List;
 
