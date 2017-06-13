@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package old.tnf.ptm.game;
+package com.tnf.ptm.handler;
 
 import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.handler.files.FileManager;
@@ -23,6 +23,7 @@ import com.tnf.ptm.entities.ship.hulls.HullConfig;
 import com.tnf.ptm.common.IniReader;
 import com.tnf.ptm.entities.item.Gun;
 import com.tnf.ptm.entities.item.ItemManager;
+import com.tnf.ptm.common.ShipConfig;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

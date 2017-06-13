@@ -17,11 +17,7 @@ package com.tnf.ptm.common;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.tnf.ptm.common.Nullable;
-import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.handler.dra.Dra;
-import old.tnf.ptm.game.DmgType;
-import old.tnf.ptm.game.FarObj;
 
 import java.util.List;
 

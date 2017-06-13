@@ -16,12 +16,11 @@
 package com.tnf.ptm.common;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.PtmMath;
 import com.tnf.ptm.entities.Faction;
+import com.tnf.ptm.entities.StarPort;
 import com.tnf.ptm.entities.item.TradeConfig;
 import com.tnf.ptm.entities.planet.Planet;
 import com.tnf.ptm.entities.planet.PtmSystem;
-import com.tnf.ptm.common.Const;
 import com.tnf.ptm.handler.input.AiPilot;
 import com.tnf.ptm.handler.input.ExplorerDestProvider;
 import com.tnf.ptm.handler.input.Guardian;
@@ -34,7 +33,6 @@ import com.tnf.ptm.entities.planet.PlanetManager;
 import com.tnf.ptm.entities.planet.SysConfig;
 import com.tnf.ptm.entities.ship.FarShip;
 import com.tnf.ptm.entities.ship.hulls.HullConfig;
-import old.tnf.ptm.game.*;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

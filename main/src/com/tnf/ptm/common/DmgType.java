@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package old.tnf.ptm.game;
+package com.tnf.ptm.common;
 
 public enum DmgType {
     BULLET("bullet"), ENERGY("energy"), EXPLOSION("explosion"), CRASH("crash"), FIRE("fire");

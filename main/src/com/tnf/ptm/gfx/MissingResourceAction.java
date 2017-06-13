@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package old.tnf.ptm.game;
+package com.tnf.ptm.gfx;
 
 import com.tnf.ptm.screens.controlers.DebugCollector;
 

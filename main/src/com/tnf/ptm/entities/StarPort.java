@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package old.tnf.ptm.game;
+package com.tnf.ptm.entities;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
@@ -33,6 +33,9 @@ import com.tnf.ptm.entities.ship.FarShip;
 import com.tnf.ptm.entities.ship.ForceBeacon;
 import com.tnf.ptm.entities.ship.PtmShip;
 import com.tnf.ptm.entities.ship.Teleport;
+import com.tnf.ptm.common.DmgType;
+import com.tnf.ptm.common.FarObj;
+import com.tnf.ptm.common.PtmObject;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

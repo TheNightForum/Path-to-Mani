@@ -19,7 +19,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.*;
 import com.tnf.ptm.entities.Faction;
 import com.tnf.ptm.entities.StarPort;
 import com.tnf.ptm.gfx.PtmCam;

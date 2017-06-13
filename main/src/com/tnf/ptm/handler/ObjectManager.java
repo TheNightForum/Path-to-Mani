@@ -13,16 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package old.tnf.ptm.game;
+package com.tnf.ptm.handler;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.tnf.ptm.common.Const;
-import com.tnf.ptm.common.DebugCol;
-import com.tnf.ptm.common.PtmColor;
-import com.tnf.ptm.common.PtmMath;
-import com.tnf.ptm.handler.FactionManager;
+import com.tnf.ptm.common.*;
+import com.tnf.ptm.entities.StarPort;
+import com.tnf.ptm.gfx.PtmCam;
 import com.tnf.ptm.handler.dra.Dra;
 import com.tnf.ptm.handler.dra.DraMan;
 import com.tnf.ptm.handler.dra.FarDras;

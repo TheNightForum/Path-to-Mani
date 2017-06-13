@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package old.tnf.ptm.game;
+package com.tnf.ptm.entities;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
@@ -27,6 +27,7 @@ import com.tnf.ptm.entities.asteroid.AsteroidBuilder;
 import com.tnf.ptm.handler.dra.Dra;
 import com.tnf.ptm.handler.dra.DraLevel;
 import com.tnf.ptm.entities.ship.ShipBuilder;
+import com.tnf.ptm.common.Shard;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

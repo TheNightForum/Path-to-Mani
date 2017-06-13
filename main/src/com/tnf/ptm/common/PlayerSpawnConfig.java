@@ -13,18 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.handler;
+package com.tnf.ptm.common;
 
 import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.handler.files.HullConfigManager;
 import com.tnf.ptm.assets.Assets;
 import com.tnf.ptm.assets.json.Json;
 import com.tnf.ptm.entities.item.ItemManager;
-import old.tnf.ptm.game.ShipConfig;
 import org.terasology.assets.ResourceUrn;
 
 public class PlayerSpawnConfig {
-    public final ShipConfig mainStation;
+    final ShipConfig mainStation;
     final ShipConfig godShipConfig;
     final ShipConfig shipConfig;
 

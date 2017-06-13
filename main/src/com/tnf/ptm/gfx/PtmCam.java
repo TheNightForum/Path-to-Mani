@@ -25,8 +25,8 @@ import com.tnf.ptm.entities.StarPort;
 import com.tnf.ptm.entities.planet.Planet;
 import com.tnf.ptm.screens.game.MainScreen;
 import com.tnf.ptm.entities.ship.PtmShip;
-import old.tnf.ptm.game.CamRotStrategy;
-import old.tnf.ptm.game.MapDrawer;
+import com.tnf.ptm.common.CamRotStrategy;
+import com.tnf.ptm.common.MapDrawer;
 
 public class PtmCam {
     public static final float CAM_ROT_SPD = 90f;

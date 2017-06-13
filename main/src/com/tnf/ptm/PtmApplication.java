@@ -25,6 +25,7 @@ import com.tnf.ptm.common.*;
 import com.tnf.ptm.gfx.TextAlignment;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmGame;
+import com.tnf.ptm.handler.Logger;
 import com.tnf.ptm.sound.OggMusicManager;
 import com.tnf.ptm.screens.main.MenuScreens;
 import com.tnf.ptm.screens.controlers.DebugCollector;
@@ -34,14 +35,13 @@ import com.tnf.ptm.screens.controlers.UiDrawer;
 import com.tnf.ptm.common.DebugOptions;
 import com.tnf.ptm.sound.OggSoundManager;
 import com.tnf.ptm.screens.controlers.FontSize;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
 public class PtmApplication implements ApplicationListener {
-    private static Logger logger = LoggerFactory.getLogger(PtmApplication.class);
+
+    private static Logger logger = new Logger();
 
     private PtmInputManager myInputMan;
     private UiDrawer myUiDrawer;
@@ -78,7 +78,7 @@ public class PtmApplication implements ApplicationListener {
         moduleManager = new ModuleManager();
         musicManager = new OggMusicManager();
 
-        logger.info("\n\n ------------------------------------------------------------ \n");
+        logger.printLine("\n\n ------------------------------------------------------------ \n");
         moduleManager.printAvailableModules();
 
         musicManager.playMenuMusic(myOptions);
@@ -127,7 +127,7 @@ public class PtmApplication implements ApplicationListener {
         try {
             update();
         } catch (Throwable t) {
-            logger.error("Fatal Error:", t);
+            logger.printLine(t);
             myFatalErrorMsg = "A fatal error occurred:\n" + t.getMessage();
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);

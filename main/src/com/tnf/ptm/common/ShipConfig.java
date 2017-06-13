@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.handler.files.HullConfigManager;
 import com.tnf.ptm.entities.ship.hulls.HullConfig;
 import com.tnf.ptm.entities.item.ItemManager;
-import old.tnf.ptm.game.HardnessCalc;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

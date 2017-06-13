@@ -16,9 +16,7 @@
 package com.tnf.ptm.common;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.PtmFileReader;
-import com.tnf.ptm.common.IniReader;
-import old.tnf.ptm.game.MissingResourceAction;
+import com.tnf.ptm.gfx.MissingResourceAction;
 
 public class DebugOptions {
     public static final Vector2 DEBUG_POINT = new Vector2();

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package old.tnf.ptm.game;
+package com.tnf.ptm.handler;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -21,7 +21,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.tnf.ptm.common.PtmGame;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmMath;
-import com.tnf.ptm.handler.ObjectManager;
 import com.tnf.ptm.handler.dra.Dra;
 import com.tnf.ptm.handler.dra.DraLevel;
 import com.tnf.ptm.handler.dra.DrasObject;
@@ -31,6 +30,9 @@ import com.tnf.ptm.entities.ship.FarShip;
 import com.tnf.ptm.entities.ship.PtmShip;
 import com.tnf.ptm.handler.dra.FarDras;
 import com.tnf.ptm.handler.input.Pilot;
+import com.tnf.ptm.common.FarObj;
+import com.tnf.ptm.common.FarObjData;
+import com.tnf.ptm.common.PtmObject;
 
 import java.util.ArrayList;
 import java.util.List;

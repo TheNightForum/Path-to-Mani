@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package old.tnf.ptm.game;
+package com.tnf.ptm.handler;
 
 import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.common.GameColors;

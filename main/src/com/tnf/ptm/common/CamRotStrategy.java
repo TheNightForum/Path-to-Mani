@@ -16,9 +16,6 @@
 package com.tnf.ptm.common;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.common.Const;
-import com.tnf.ptm.common.PtmGame;
-import com.tnf.ptm.common.PtmMath;
 import com.tnf.ptm.entities.planet.Planet;
 import com.tnf.ptm.entities.planet.PtmSystem;
 
