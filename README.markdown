@@ -120,9 +120,12 @@ Contributors
 * [askneller](https://github.com/askneller)
 * [JGelfand](https://github.com/JGelfand)
 * [AvaLanCS](https://github.com/Avalancs)
+<<<<<<< HEAD
 * [scirelli](https://github.com/scirelli)
 * [Sigma-One](https://github.com/Sigma-One)
 * [vampcat](https://github.com/vampcat)
+=======
+>>>>>>> Re-base
 
 ... and your name here? :-) More coming!
 

@@ -2,7 +2,11 @@ apply from: '../config/gradle/common.gradle'
 
 sourceSets.main.java.srcDirs = ["src/"]
 
+<<<<<<< HEAD
 project.ext.mainClassName = "com.tnf.ptm.desktop.SolDesktop"
+=======
+project.ext.mainClassName = "org.destinationsol.desktop.SolDesktop"
+>>>>>>> Re-base
 
 dependencies {
     compile project(":main")
