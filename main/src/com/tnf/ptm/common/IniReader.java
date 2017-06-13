@@ -16,7 +16,7 @@
 package com.tnf.ptm.common;
 
 import com.badlogic.gdx.files.FileHandle;
-import old.tnf.ptm.files.FileManager;
+import com.tnf.ptm.handler.files.FileManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;

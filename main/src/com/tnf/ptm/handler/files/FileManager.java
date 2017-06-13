@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package old.tnf.ptm.files;
+package com.tnf.ptm.handler.files;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;

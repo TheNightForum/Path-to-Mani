@@ -18,7 +18,7 @@ package old.tnf.ptm.game.planet;
 import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.files.HullConfigManager;
+import com.tnf.ptm.handler.files.HullConfigManager;
 import old.tnf.ptm.game.ShipConfig;
 import old.tnf.ptm.game.chunk.SpaceEnvConfig;
 import old.tnf.ptm.game.item.ItemManager;

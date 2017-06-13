@@ -19,7 +19,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.files.HullConfigManager;
+import com.tnf.ptm.handler.files.HullConfigManager;
 import old.tnf.ptm.game.CollisionMeshLoader;
 import old.tnf.ptm.game.ShipConfig;
 import old.tnf.ptm.game.chunk.SpaceEnvConfig;

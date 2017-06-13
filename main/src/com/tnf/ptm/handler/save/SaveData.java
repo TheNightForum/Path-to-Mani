@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package old.tnf.ptm.save;
+package com.tnf.ptm.handler.save;
 
 import old.tnf.ptm.game.planet.Planet;
 import old.tnf.ptm.game.planet.PtmSystem;

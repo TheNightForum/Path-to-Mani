@@ -21,7 +21,7 @@ import com.tnf.ptm.common.CommonDrawer;
 import com.tnf.ptm.common.Const;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.common.PtmMath;
-import old.tnf.ptm.files.HullConfigManager;
+import com.tnf.ptm.handler.files.HullConfigManager;
 import old.tnf.ptm.game.dra.DraMan;
 import old.tnf.ptm.game.item.ItemContainer;
 import old.tnf.ptm.game.item.PtmItem;

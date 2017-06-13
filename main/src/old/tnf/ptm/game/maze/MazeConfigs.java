@@ -19,7 +19,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.gfx.TextureManager;
 import com.tnf.ptm.assets.Assets;
 import com.tnf.ptm.assets.json.Json;
-import old.tnf.ptm.files.HullConfigManager;
+import com.tnf.ptm.handler.files.HullConfigManager;
 import old.tnf.ptm.game.item.ItemManager;
 import org.terasology.assets.ResourceUrn;
 

@@ -18,7 +18,7 @@ package old.tnf.ptm.game.planet;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.JsonValue;
 import com.tnf.ptm.gfx.TextureManager;
-import old.tnf.ptm.files.HullConfigManager;
+import com.tnf.ptm.handler.files.HullConfigManager;
 import old.tnf.ptm.game.item.TradeConfig;
 import old.tnf.ptm.game.GameColors;
 import old.tnf.ptm.game.ShipConfig;

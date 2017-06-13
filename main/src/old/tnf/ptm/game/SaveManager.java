@@ -15,8 +15,8 @@
  */
 package old.tnf.ptm.game;
 
-import old.tnf.ptm.files.FileManager;
-import old.tnf.ptm.files.HullConfigManager;
+import com.tnf.ptm.handler.files.FileManager;
+import com.tnf.ptm.handler.files.HullConfigManager;
 import old.tnf.ptm.game.item.PtmItem;
 import old.tnf.ptm.game.ship.hulls.HullConfig;
 import com.tnf.ptm.common.IniReader;
