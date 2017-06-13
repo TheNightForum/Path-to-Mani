@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm;
+package old.tnf.ptm;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.tnf.ptm.assets.Assets;
+import old.tnf.ptm.assets.Assets;
 import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;

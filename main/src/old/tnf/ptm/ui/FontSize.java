@@ -13,17 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.ui;
+package old.tnf.ptm.ui;
 
-import com.tnf.ptm.game.screens.RightPaneLayout;
-import com.tnf.ptm.menu.MenuLayout;
-
-public class SolLayouts {
-    public final RightPaneLayout rightPaneLayout;
-    public final MenuLayout menuLayout;
-
-    public SolLayouts(float r) {
-        rightPaneLayout = new RightPaneLayout(r);
-        menuLayout = new MenuLayout(r);
-    }
+public class FontSize {
+    public static final float TUT = 1.3f;
+    public static final float MENU = 1f;
+    public static final float HUD = .7f;
+    public static final float WINDOW = .7f;
+    public static final float DEBUG = .5f;
+    public static final float HINT = .5f;
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.ui;
+package old.tnf.ptm.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -22,15 +22,15 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.Const;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.assets.audio.PlayableSound;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.sound.OggSoundManager;
+import old.tnf.ptm.Const;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.assets.audio.PlayableSound;
+import old.tnf.ptm.common.SolMath;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.SolApplication;
+import old.tnf.ptm.common.SolColor;
+import old.tnf.ptm.game.SolGame;
+import old.tnf.ptm.game.sound.OggSoundManager;
 
 import java.util.ArrayList;
 import java.util.List;

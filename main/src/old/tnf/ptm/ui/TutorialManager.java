@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.ui;
+package old.tnf.ptm.ui;
 
 import com.badlogic.gdx.math.Rectangle;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.item.SolItem;
-import com.tnf.ptm.game.screens.GameScreens;
-import com.tnf.ptm.game.screens.MainScreen;
-import com.tnf.ptm.game.screens.ShipMixedControl;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.game.screens.InventoryScreen;
-import com.tnf.ptm.game.screens.ShipKbControl;
+import old.tnf.ptm.common.SolColor;
+import old.tnf.ptm.game.SolGame;
+import old.tnf.ptm.game.item.SolItem;
+import old.tnf.ptm.game.screens.GameScreens;
+import old.tnf.ptm.game.screens.MainScreen;
+import old.tnf.ptm.game.screens.ShipMixedControl;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.game.screens.InventoryScreen;
+import old.tnf.ptm.game.screens.ShipKbControl;
 
 import java.util.ArrayList;
 import java.util.List;

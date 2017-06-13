@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.ui;
+package old.tnf.ptm.ui;
 
 import com.badlogic.gdx.utils.TimeUtils;
-import com.tnf.ptm.game.screens.BorderDrawer;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.game.DebugOptions;
+import old.tnf.ptm.game.screens.BorderDrawer;
+import old.tnf.ptm.common.SolColor;
+import old.tnf.ptm.game.DebugOptions;
 
 import java.util.HashMap;
 import java.util.Iterator;

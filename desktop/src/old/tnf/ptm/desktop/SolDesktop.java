@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.desktop;
+package old.tnf.ptm.desktop;
 
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.tnf.ptm.SolFileReader;
-import com.tnf.ptm.GameOptions;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.game.DebugOptions;
-import com.tnf.ptm.soundtest.SoundTestListener;
+import old.tnf.ptm.SolFileReader;
+import old.tnf.ptm.GameOptions;
+import old.tnf.ptm.SolApplication;
+import old.tnf.ptm.game.DebugOptions;
+import old.tnf.ptm.soundtest.SoundTestListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

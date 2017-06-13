@@ -13,13 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm;
+package old.tnf.ptm;
 
-import java.nio.file.Path;
-import java.util.List;
-
-public interface SolFileReader {
-    Path create(String fileName, List<String> lines);
-
-    List<String> read(String fileName);
+public enum TextAlignment {
+    LEFT,
+    CENTER,
+    RIGHT
 }

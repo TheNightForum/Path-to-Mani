@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm;
+package old.tnf.ptm;
 
 import com.badlogic.gdx.files.FileHandle;
-import com.tnf.ptm.files.FileManager;
+import old.tnf.ptm.files.FileManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;

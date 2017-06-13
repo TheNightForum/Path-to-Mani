@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm;
+package old.tnf.ptm;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
@@ -21,18 +21,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.physics.box2d.Box2D;
-import com.tnf.ptm.common.SolColor;
-import com.tnf.ptm.common.SolMath;
-import com.tnf.ptm.game.SolGame;
-import com.tnf.ptm.game.sound.OggMusicManager;
-import com.tnf.ptm.menu.MenuScreens;
-import com.tnf.ptm.ui.DebugCollector;
-import com.tnf.ptm.ui.SolInputManager;
-import com.tnf.ptm.ui.SolLayouts;
-import com.tnf.ptm.ui.UiDrawer;
-import com.tnf.ptm.game.DebugOptions;
-import com.tnf.ptm.game.sound.OggSoundManager;
-import com.tnf.ptm.ui.FontSize;
+import old.tnf.ptm.common.SolColor;
+import old.tnf.ptm.common.SolMath;
+import old.tnf.ptm.game.SolGame;
+import old.tnf.ptm.game.sound.OggMusicManager;
+import old.tnf.ptm.menu.MenuScreens;
+import old.tnf.ptm.ui.DebugCollector;
+import old.tnf.ptm.ui.SolInputManager;
+import old.tnf.ptm.ui.SolLayouts;
+import old.tnf.ptm.ui.UiDrawer;
+import old.tnf.ptm.game.DebugOptions;
+import old.tnf.ptm.game.sound.OggSoundManager;
+import old.tnf.ptm.ui.FontSize;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

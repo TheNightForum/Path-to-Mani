@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.ui;
+package old.tnf.ptm.ui;
 
-import com.tnf.ptm.SolApplication;
+import old.tnf.ptm.SolApplication;
 
 import java.util.List;
 

@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.ui;
+package old.tnf.ptm.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
-import com.tnf.ptm.SolApplication;
-import com.tnf.ptm.common.SolColor;
+import old.tnf.ptm.SolApplication;
+import old.tnf.ptm.common.SolColor;
 
 public class SolUiControl {
     private final int[] myKeys;

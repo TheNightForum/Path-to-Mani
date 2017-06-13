@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm.ui;
+package old.tnf.ptm.ui;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.CommonDrawer;
-import com.tnf.ptm.TextureManager;
-import com.tnf.ptm.TextAlignment;
+import old.tnf.ptm.CommonDrawer;
+import old.tnf.ptm.TextureManager;
+import old.tnf.ptm.TextAlignment;
 
 public class UiDrawer {
 

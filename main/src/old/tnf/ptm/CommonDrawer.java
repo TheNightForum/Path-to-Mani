@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tnf.ptm;
+package old.tnf.ptm;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -25,8 +25,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.tnf.ptm.assets.Assets;
-import com.tnf.ptm.common.SolMath;
+import old.tnf.ptm.assets.Assets;
+import old.tnf.ptm.common.SolMath;
 import org.terasology.assets.ResourceUrn;
 
 public class CommonDrawer {
