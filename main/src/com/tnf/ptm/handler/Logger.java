@@ -79,6 +79,10 @@ public class Logger {
         System.out.println("         | " + inputString + i);
     }
 
+    public static void printLine(String inputString, Throwable t){
+        System.out.println(" " + ERROR + " | " + inputString + t);
+    }
+
     public static void enabledDebug(){
         debugEnabled = true;
     }
