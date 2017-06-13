@@ -16,9 +16,9 @@ allprojects {
     apply plugin: 'eclipse'
     apply plugin: 'idea'
 
-    version = '1.4.2'
+    version = '2.0.0'
     ext {
-        appName = 'DestinationSol'
+        appName = 'Path to Mani'
         gdxVersion = '1.7.0'
         roboVMVersion = '1.8.0'
     }
@@ -41,7 +41,7 @@ configurations {
 }
 
 dependencies {
-    // Config for our code analytics lives in a centralized repo: https://github.com/MovingBlocks/TeraConfig
+    // Config for our code analytics lives in a centralized repo: https://github.com/TheNightForum/TeraConfig
     codeMetrics group: 'org.terasology.config', name: 'codemetrics', version: '1.1.0', ext: 'zip'
 }
 
@@ -78,7 +78,7 @@ idea {
             }
 
             // Sets sourceCompatibility within IntelliJ (without this root build having the Java plugin applied)
-            whenMerged {project ->
+            whenMerged { project ->
                 project.jdk.languageLevel = 'JDK_1_8'
             }
         }
@@ -102,10 +102,10 @@ task(fetchAndroid, type: GitClone) {
     description = 'Git clones the Android facade source from GitHub'
 
     // Repo name is the dynamic part of the task name
-    def repo = 'DestSolAndroid'
+    def repo = 'PTMAndroid'
 
     // Default GitHub account to use. Supply with -PgithubAccount="TargetAccountName" or via gradle.properties
-    def githubHome = 'MovingBlocks'
+    def githubHome = 'TheNightForum'
 
     def destination = file('android')
 
@@ -126,10 +126,10 @@ task(fetchGwt, type: GitClone) {
     description = 'Git clones the GWT facade source from GitHub'
 
     // Repo name is the dynamic part of the task name
-    def repo = 'DestSolGwt'
+    def repo = 'PTMGwt'
 
     // Default GitHub account to use. Supply with -PgithubAccount="TargetAccountName" or via gradle.properties
-    def githubHome = 'MovingBlocks'
+    def githubHome = 'TheNightForum'
 
     def destination = file('gwt')
 

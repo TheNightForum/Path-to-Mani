@@ -1,4 +1,4 @@
-Destination Sol
+Path to Mani
 ==========
 
 <p align="center"><img src="/main/imgSrcs/ui/title.png" alt="Destination Sol"/></p>

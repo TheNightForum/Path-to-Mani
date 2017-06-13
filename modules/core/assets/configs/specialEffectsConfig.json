@@ -1,0 +1,58 @@
+{
+    "smoke": {
+        "effectFile": "core:smoke",
+        "tex": "smoke",
+        "floatsUp": true,
+        "tint": "smoke"
+    },
+
+    "fire": {
+        "effectFile": "core:fire",
+        "tex": "fire",
+        "floatsUp": true,
+        "tint": "fire"
+    },
+
+    "electricity": {
+        "effectFile": "core:electricity",
+        "tex": "electricity",
+        "tint": "white"
+    },
+
+    "shipExplosionSmoke": {
+        "effectFile": "core:explSmoke",
+        "tex": "smoke",
+        "floatsUp": true,
+        "tint": "smoke"
+    },
+
+    "shipExplosionFire": {
+        "effectFile": "core:explFire",
+        "tex": "fire",
+        "tint": "fire"
+    },
+
+    "asteroidDust": {
+        "effectFile": "core:explSmoke",
+        "tex": "fire",
+        "tint": "dust"
+    },
+
+    "forceBeacon": {
+        "effectFile": "core:forceBeacon",
+        "tex": "forceBeacon",
+        "tint": "white"
+    },
+
+    "starPortFlow": {
+        "effectFile": "core:starPortFlow",
+        "tex": "forceTail",
+        "tint": "white"
+    },
+
+    "transcendentWork": {
+        "effectFile": "core:transcendentWork",
+        "tex": "forceTail",
+        "tint": "white"
+    }
+}

@@ -1,8 +1,8 @@
 apply from: '../config/gradle/common.gradle'
 
-sourceSets.main.java.srcDirs = [ "src/" ]
+sourceSets.main.java.srcDirs = ["src/"]
 
-project.ext.mainClassName = "org.destinationsol.desktop.SolDesktop"
+project.ext.mainClassName = "com.tnf.ptm.desktop.SolDesktop"
 
 dependencies {
     compile project(":main")
@@ -13,6 +13,7 @@ dependencies {
     compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
 
     compile group: 'org.terasology.crashreporter', name: 'cr-destsol', version: '4.0.0'
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
 }
 
 task run(type: JavaExec) {
@@ -26,16 +27,16 @@ task run(type: JavaExec) {
 }
 
 jar {
-    archiveName = "solDesktop.jar"
+    archiveName = "ptmDesktop.jar"
 
     manifest {
-        def manifestClasspath = configurations.runtime.collect {it.getName() }.join(" ")
+        def manifestClasspath = configurations.runtime.collect { it.getName() }.join(" ")
         attributes 'Main-Class': project.mainClassName
-        attributes("Class-Path" : manifestClasspath)
+        attributes("Class-Path": manifestClasspath)
     }
 }
 
-task dist (type: Sync) {
+task dist(type: Sync) {
     description = "Creates an application package for distribution"
 
     into("$distsDir/app")
@@ -52,7 +53,7 @@ task dist (type: Sync) {
     }
 }
 
-task distZip (type: Zip) {
+task distZip(type: Zip) {
     dependsOn dist
     from "$distsDir/app"
     archiveName = "DestinationSol.zip"
@@ -69,10 +70,16 @@ eclipse {
 task afterEclipseImport(description: "Post processing after project generation", group: "IDE") {
     doLast {
         def classpath = new XmlParser().parse(file(".classpath"))
-        new Node(classpath, "classpathentry", [ kind: 'src', path: 'assets' ]);
+        new Node(classpath, "classpathentry", [kind: 'src', path: 'assets']);
         def writer = new FileWriter(file(".classpath"))
         def printer = new XmlNodePrinter(new PrintWriter(writer))
         printer.setPreserveWhitespace(true)
         printer.print(classpath)
+    }
+}
+
+tasks.withType(JavaExec) {
+    if (System.getProperty('DEBUG', 'false') == 'true') {
+        jvmArgs '-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9099'
     }
 }

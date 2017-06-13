@@ -1,0 +1,43 @@
+{
+    "sloMo": {
+        "effect": {
+            "effectFile": "core:areaShipAbility",
+            "tex": "sloMo",
+            "tint": "fire",
+            "size": 5
+        },
+        "activatedSound": "core:sloMoActivated"
+    },
+
+    "knockBack": {
+        "effect": {
+            "effectFile": "core:knockBack",
+            "tex": "knockBack",
+            "tint": "50 200 250"
+        },
+        "activatedSound": "core:knockBack"
+    },
+
+    "emWave": {
+        "effect": {
+            "effectFile": "core:areaShipAbility",
+            "tex": "emWave",
+            "tint": "0 255 0"
+        },
+        "activatedSound": "core:unshield"
+    },
+
+    "unShield": {
+        "effect": {
+            "effectFile": "core:knockBack",
+            "tex": "unShield",
+            "tint": "0 100 255"
+        },
+
+        "activatedSound": "core:unshield"
+    },
+
+    "teleport": {
+        "activatedSound": "core:teleport"
+    }
+}
