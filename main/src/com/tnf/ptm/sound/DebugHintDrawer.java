@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class DebugHintDrawer {
+public class  DebugHintDrawer {
     private final Map<PtmObject, DebugHint> myTracedNotes;
     private final Map<Vector2, DebugHint> myFreeNotes;
 

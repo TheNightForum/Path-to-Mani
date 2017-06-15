@@ -93,7 +93,7 @@ idea {
 }
 
 cleanIdea.doLast {
-    new File('DestinationSol.iws').delete()
+    new File('Path-to-Mani.iws').delete()
     new File('config/metrics').deleteDir()
     println "Cleaned root - don't forget to re-extract code metrics config! 'gradlew extractConfig' will do so, or 'gradlew idea' (or eclipse)"
 }
