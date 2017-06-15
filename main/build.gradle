@@ -21,11 +21,11 @@ sourceSets {
 }
 
 jar {
-    archiveName = "sol.jar"
+    archiveName = "ptm.jar"
 
     doFirst {
         copy {
-            from 'src/SolAppListener.gwt.xml'
+            from 'src/PTMAppListener.gwt.xml'
             into 'build/classes/main'
         }
     }
