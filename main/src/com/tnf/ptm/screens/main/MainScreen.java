@@ -41,35 +41,33 @@ public class MainScreen implements PtmUiScreen {
     public final TextureAtlas.AtlasRegion bgTex;
 
     private final ArrayList<PtmUiControl> controls = new ArrayList<>();
-    private final PtmUiControl tutorialControl;
     private final PtmUiControl optionsControl;
     private final PtmUiControl exitControl;
-    private final PtmUiControl newGameControl;
+    //private final PtmUiControl newGameControl;
     private final PtmUiControl creditsControl;
+
+    private final PtmUiControl playControl;
 
     MainScreen(MenuLayout menuLayout, boolean isMobile, float resolutionRatio, GameOptions gameOptions) {
         this.isMobile = isMobile;
         this.gameOptions = gameOptions;
 
-        tutorialControl = new PtmUiControl(menuLayout.buttonRect(-1, 1), true, Input.Keys.T);
-        tutorialControl.setDisplayName("Tutorial");
-        controls.add(tutorialControl);
+        playControl = new PtmUiControl(menuLayout.buttonRect(-1, 1), true, gameOptions.getKeyShoot());
+        playControl.setDisplayName("PLAY");
+        controls.add(playControl);
 
-        newGameControl = new PtmUiControl(menuLayout.buttonRect(-1, 2), true, gameOptions.getKeyShoot());
-        newGameControl.setDisplayName("New Game");
-        controls.add(newGameControl);
-
-        optionsControl = new PtmUiControl(isMobile ? null : menuLayout.buttonRect(-1, 3), true, Input.Keys.O);
+        optionsControl = new PtmUiControl(isMobile ? null : menuLayout.buttonRect(-1, 2), true, Input.Keys.O);
         optionsControl.setDisplayName("Options");
         controls.add(optionsControl);
+
+        creditsControl = new PtmUiControl(menuLayout.buttonRect(-1, 3), true, Input.Keys.C);
+        creditsControl.setDisplayName("Credits");
+        controls.add(creditsControl);
 
         exitControl = new PtmUiControl(menuLayout.buttonRect(-1, 4), true, gameOptions.getKeyEscape());
         exitControl.setDisplayName("Exit");
         controls.add(exitControl);
 
-        creditsControl = new PtmUiControl(MenuLayout.bottomRightFloatingButton(resolutionRatio), true, Input.Keys.C);
-        creditsControl.setDisplayName("Credits");
-        controls.add(creditsControl);
 
         bgTex = Assets.getAtlasRegion(new ResourceUrn("engine:mainMenuBg"), Texture.TextureFilter.Linear);
         logoTex = Assets.getAtlasRegion(new ResourceUrn("engine:mainMenuLogo"), Texture.TextureFilter.Linear);
@@ -81,6 +79,9 @@ public class MainScreen implements PtmUiScreen {
 
     @Override
     public void updateCustom(PtmApplication ptmApplication, PtmInputManager.InputPointer[] inputPointers, boolean clickedOutside) {
+        PtmInputManager inputManager = ptmApplication.getInputMan();
+        MenuScreens screens = ptmApplication.getMenuScreens();
+        /*
         if (ptmApplication.getOptions().controlType == GameOptions.CONTROL_CONTROLLER) {
             tutorialControl.setEnabled(false);
         } else {
@@ -92,17 +93,26 @@ public class MainScreen implements PtmUiScreen {
             return;
         }
 
-        PtmInputManager inputManager = ptmApplication.getInputMan();
-        MenuScreens screens = ptmApplication.getMenuScreens();
+
 
         if (newGameControl.isJustOff()) {
             inputManager.setScreen(ptmApplication, screens.newGame);
+            return;
+        }
+*/
+        //TODO: change this.
+        if (playControl.isJustOff()) {
+            inputManager.setScreen(ptmApplication, screens.newShip);
             return;
         }
 
         if (optionsControl.isJustOff()) {
             inputManager.setScreen(ptmApplication, screens.options);
             return;
+        }
+
+        if (creditsControl.isJustOff()) {
+            inputManager.setScreen(ptmApplication, screens.credits);
         }
 
         if (exitControl.isJustOff()) {
@@ -112,10 +122,6 @@ public class MainScreen implements PtmUiScreen {
             }
             Gdx.app.exit();
             return;
-        }
-
-        if (creditsControl.isJustOff()) {
-            inputManager.setScreen(ptmApplication, screens.credits);
         }
     }
 
